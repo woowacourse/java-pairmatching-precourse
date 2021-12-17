@@ -2,17 +2,22 @@ plugins {
     id 'java'
 }
 
-group 'org.example'
-version = '1.0.0'
-sourceCompatibility = 1.8
+group 'camp.nextstep.edu'
+version '1.0-SNAPSHOT'
 
 repositories {
-    maven { url 'https://jitpack.io' }
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
-    implementation('com.github.woowacourse-projects:mission-utils:1.0.0')
+    implementation 'com.github.woowacourse-projects:mission-utils:1.0.0'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
 }
 
 test {
