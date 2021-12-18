@@ -15,7 +15,7 @@ public class ReadFile {
 //        String url = ReadFile.class.getResource(".").getPath();
 //        File file = new File(url+"backend-crew.txt");
 
-        File file = new File(path)
+        File file = new File(path);
         List<String> allNames = new ArrayList<String>() ;
         try {
             Scanner scan = new Scanner(file);
