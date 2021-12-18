@@ -81,8 +81,8 @@ public class Matching {
 		return frontResult;
 	}
 
-	// public void resetResults() {
-	// 	backResult.clear();
-	// 	frontResult.clear();
-	// }
+	public void resetResults() {
+		backResult.clear();
+		frontResult.clear();
+	}
 }

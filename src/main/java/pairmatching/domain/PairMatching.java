@@ -68,4 +68,10 @@ public class PairMatching {
 		}
 		return null;
 	}
+
+	public void resetAllMatchingResult() {
+		for (Matching matching : matchings) {
+			matching.resetResults();
+		}
+	}
 }

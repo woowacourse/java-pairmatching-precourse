@@ -90,6 +90,9 @@ public class PairMatchingController {
 		if (functionNumber.equals(Menu.READ.getFunctionNumber())) {
 			read();
 		}
+		if (functionNumber.equals(Menu.RESET.getFunctionNumber())) {
+			reset();
+		}
 	}
 
 	private void matching() {
@@ -113,5 +116,9 @@ public class PairMatchingController {
 		List<List<String>> matchingResult = pairMatching.getMatchingResult(getInputMatchingCourse(inputMatching),
 			selectedMatching);
 		outputView.printMatchingResult(matchingResult);
+	}
+
+	private void reset() {
+		pairMatching.resetAllMatchingResult();
 	}
 }
