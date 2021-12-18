@@ -88,6 +88,5 @@ public class Matching {
         for (List<String> eachCourse : course) {
             eachCourse.clear();
         }
-        course.clear();
     }
 }

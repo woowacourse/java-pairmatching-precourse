@@ -22,7 +22,7 @@ public class MatchingService {
         } catch (IOException e) {
             throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
-
+            throw new IllegalArgumentException();
         }
     }
 
@@ -80,8 +80,7 @@ public class MatchingService {
     public List<String> makeMatchingList(List<String> originalPeople) {
         List<String> shufflePeople = Randoms.shuffle(originalPeople);
         List<String> matchingList = new ArrayList<>();
-        int index = 0;
-        for (index = 0; index < shufflePeople.size(); index += 2) {
+        for (int index = 0; index < shufflePeople.size(); index += 2) {
             if (index == shufflePeople.size() - 3) {
                 matchingList.add(shufflePeople.get(index) + " : " + shufflePeople.get(index + 1)
                         + " : " + shufflePeople.get(index + 2));
@@ -90,5 +89,9 @@ public class MatchingService {
             matchingList.add(shufflePeople.get(index) + " : " + shufflePeople.get(index + 1));
         }
         return matchingList;
+    }
+
+    public void initAllMatching(){
+        matching.initCourseMatching();
     }
 }
