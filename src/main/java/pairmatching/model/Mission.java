@@ -24,4 +24,8 @@ public class Mission {
 	public Level getLevel() {
 		return this.level;
 	}
+
+	public void initPairs() {
+		this.pairs.clear();
+	}
 }

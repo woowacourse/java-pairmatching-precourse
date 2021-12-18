@@ -18,14 +18,17 @@ public class ServiceController {
 			askFunction();
 			if (choice.equals("1")) {
 				doMatching();
-			}// } else if (choice.equals("2")) {
-			//
-			// } else if (choice.equals("3")) {
-			//
-			// }
+			} else if (choice.equals("3")) {
+				initPairs();
+			}
 		}
 	}
 
+	private static void initPairs() {
+		for (Mission mission : missions) {
+			mission.initPairs();
+		}
+	}
 
 	private static void doMatching() {
 		askMatchingInfo();
