@@ -26,7 +26,7 @@ public class MatchingService {
         Level level = Level.getLevel(levelName);
         while (shuffledCrewList.isMatched(level)) {
             List<String> shuffledCrewListString = crewList.shuffle();
-            shuffledCrewList.toCrewListBy(shuffledCrewListString);
+            shuffledCrewList.initCrewListBy(shuffledCrewListString);
             count++;
             if (count == LIMIT_CHANCE) break;
         }

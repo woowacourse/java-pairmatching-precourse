@@ -27,21 +27,6 @@ public class CrewList {
         crewList = newCrewList;
     }
 
-    public void toCrewListBy(List<String> stringList) {
-        List<Crew> newCrewList = new ArrayList<>();
-        for (String str : stringList) {
-            for (Crew crew : crewList) {
-                if (crew.getName().equals(str)) {
-                    newCrewList.add(crew);
-                }
-            }
-        }
-        for (Crew crew : newCrewList) {
-            System.out.println("crew = " + crew);
-        }
-        crewList = newCrewList;
-    }
-
     public boolean isMatched(Level level) {
         for (int i = 0; i < crewList.size() - EVEN; i = i + EVEN) {
             Crew crew = crewList.get(i);
