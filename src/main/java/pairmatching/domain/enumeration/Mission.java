@@ -26,7 +26,7 @@ public enum Mission {
 
     public static Mission findMissionByInput(String input) {
         return Arrays.stream(Mission.values())
-                .filter(missionName -> missionName.equals(input))
+                .filter(mission -> mission.getMissionName().equals(input))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(ConstantMessages.PREFIX_ERROR + ConstantMessages.ERROR_INVALID_INPUT));
     }

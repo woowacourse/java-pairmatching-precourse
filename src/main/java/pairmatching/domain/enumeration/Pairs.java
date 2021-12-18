@@ -1,5 +1,6 @@
 package pairmatching.domain.enumeration;
 
+import pairmatching.domain.Crew;
 import pairmatching.domain.Pair;
 
 import java.util.ArrayList;
@@ -19,10 +20,24 @@ public class Pairs {
         pairList.add(pair);
     }
 
+    public void addLastMember(Crew crew) {
+        int lastIndex = pairList.size() - 1;
+        Pair pair = pairList.get(lastIndex);
+        pair.addCrew(crew);
+
+        pairList.remove(lastIndex);
+        pairList.add(pair);
+    }
+
     public void removeAll() {
         int size = pairList.size();
         for (int i = 0; i < size; i++) {
             pairList.remove(FIRST_INDEX);
         }
+    }
+
+    @Override
+    public String toString() {
+        return pairList.toString();
     }
 }

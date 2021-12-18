@@ -21,9 +21,17 @@ public enum Level {
         this.missionList = missionList;
     }
 
+    public List<Mission> getMissionList() {
+        return missionList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public static Level findLevelByInput(String input) {
         return Arrays.stream(Level.values())
-                .filter(levelName -> levelName.equals(input))
+                .filter(level -> level.getName().equals(input))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(ConstantMessages.PREFIX_ERROR + ConstantMessages.ERROR_INVALID_INPUT));
     }
@@ -40,5 +48,4 @@ public enum Level {
                 .anyMatch(mission -> mission == missionType);
     }
 
-    // 추가 기능 구현
 }
