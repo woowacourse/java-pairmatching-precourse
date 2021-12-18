@@ -7,16 +7,16 @@ import pairmatching.domain.Mission;
 import pairmatching.repository.CrewRepository;
 import pairmatching.repository.MissionRepository;
 import pairmatching.view.InputView;
+import pairmatching.view.Message.ErrorMessage;
+import pairmatching.view.Message.QuestionMessage;
 import pairmatching.view.OutputView;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
 import static camp.nextstep.edu.missionutils.Randoms.shuffle;
-import static pairmatching.service.FileRead.fileRead;
-import static pairmatching.view.Main.MainInfo.printMainInfo;
+import static pairmatching.view.Message.QuestionMessage.printQuestionRematch;
+import static pairmatching.view.Message.ResetMessage.printReset;
 
 public class PairService {
 
@@ -55,8 +55,7 @@ public class PairService {
 
     public boolean getPair(Course course, Level level, Mission mission) throws IOException {
         if (mission.isExistMatchingCrews()) {
-            System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n" +
-                    "네 | 아니오");
+            printQuestionRematch();
             String input = InputView.input();
             if (input.equals("네")) {
                 mission.removeMatching();
@@ -66,13 +65,13 @@ public class PairService {
             mission.printPair();
             return false;
         }
-        throw new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.");
+        throw new IllegalArgumentException(ErrorMessage.ERROR + ErrorMessage.NO_MATCH);
     }
 
 
     public boolean removePair(Course course, Level level, Mission mission) {
         mission.removeMatching();
-        System.out.println("초기화 되었습니다. ");
+        printReset();
         return false;
     }
 
