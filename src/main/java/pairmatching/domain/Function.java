@@ -9,4 +9,17 @@ public class Function {
 	}
 
 
+	private void matching() {
+
+	}
+
+	private void check() {
+
+	}
+
+	private void initialize() {
+
+	}
+
+
 }

@@ -1,5 +1,7 @@
 package pairmatching.controller;
 
+import java.io.IOException;
+
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.exception.dto.ResponseError;
 import pairmatching.service.PairMatchingService;
@@ -15,7 +17,6 @@ public class PairMatchingController {
 
 	public boolean selectFunction() {
 		try {
-			boolean start = true;
 			InputView.PrintSelectFunction();
 			return pairMatchingService.selectFunction(Console.readLine());
 
@@ -30,7 +31,8 @@ public class PairMatchingController {
 	public void selectProcessLevelMission() {
 		try {
 			InputView.printSelectProcessMissionLevel();
-		} catch (IllegalArgumentException e) {
+			pairMatchingService.selectProcessLevelMission(Console.readLine());
+		} catch (IllegalArgumentException | IOException e) {
 			ResponseError.of(e.getMessage());
 		}
 	}
