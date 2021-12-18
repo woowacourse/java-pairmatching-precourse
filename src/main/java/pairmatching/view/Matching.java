@@ -36,6 +36,8 @@ public class Matching {
             return true;
         }
         if (c == '2') {
+            String[] matching = matching();
+            IOProvider.printMatchingResult(MatchingController.getMissionResult(MissionName.isEqualName(matching[2])));
             return true;
         }
         if (c == '3') {
@@ -53,7 +55,7 @@ public class Matching {
                 course.getNameList());
     }
     private static boolean doMatch(String[] arr) {
-        if (MatchingController.hasMission(Level.valueOf(arr[1]), MissionName.valueOf(arr[2]))) {
+        if (MatchingController.hasMission(MissionName.valueOf(arr[2]))) {
             if(IOProvider.printAlreadyMatched()) {
                 MatchingController.removeMission(MissionName.valueOf(arr[2]));
                 makeMission(arr);

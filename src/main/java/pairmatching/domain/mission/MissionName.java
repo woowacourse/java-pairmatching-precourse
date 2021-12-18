@@ -32,6 +32,24 @@ public enum MissionName {
                 "배포".equals(input));
     }
 
+    public static MissionName isEqualName(String s) {
+        if(s.equals("자동차경주"))
+            return MissionName.RACING_CAR;
+        if(s.equals("로또"))
+            return MissionName.LOTTO;
+        if(s.equals("숫자야구게임"))
+            return MissionName.BASEBALL;
+        if(s.equals("장바구니"))
+            return MissionName.POCKET;
+        if(s.equals("결제"))
+            return MissionName.PAYMENT;
+        if(s.equals("지하철노선도"))
+            return MissionName.SUBWAY;
+        if(s.equals("성능개선"))
+            return MissionName.PERFORMANCE;
+        return MissionName.RELEASE;
+    }
+
     public String getName() {
         return name;
     }

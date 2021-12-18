@@ -32,9 +32,9 @@ public class Validator {
     }
 
     public static String[] isValidMissionChoosen(String input) {
-        if (isNotValidRegex(input)) {
+/*        if (isNotValidRegex(input)) {
             throw new IllegalArgumentException(NOT_VALID_CHOOSEN.getMessage());
-        }
+        }*/
 
         String[] splitInfo = input.split(",");
 
@@ -45,9 +45,9 @@ public class Validator {
         return splitInfo;
     }
 
-    private static boolean isNotValidRegex(String input) {
+/*    private static boolean isNotValidRegex(String input) {
         return !Pattern.matches(REGEX, input);
-    }
+    }*/
 
     private static void validCourse(String input) {
         if(Course.BACKEND.isNot(input) && Course.FRONTEND.isNot(input)) {

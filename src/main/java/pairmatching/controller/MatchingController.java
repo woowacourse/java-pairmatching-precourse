@@ -31,4 +31,8 @@ public class MatchingController {
     public static String getMissionResult(MissionName name) {
         return missionSet.getMissionResult(name);
     }
+
+    public static boolean hasMission(MissionName input) {
+        return missionSet.hasMissionByName(input);
+    }
 }
