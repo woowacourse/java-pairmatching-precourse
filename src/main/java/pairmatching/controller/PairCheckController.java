@@ -10,9 +10,11 @@ public class PairCheckController {
 	private static final PairCheckController pairCheckController = new PairCheckController();
 
 	private final ViewController viewController;
+	private final PairMachMap pairMachMap;
 
 	private PairCheckController() {
 		viewController = ViewController.getInstance();
+		pairMachMap = PairMachMap.getInstance();
 	}
 
 	public static PairCheckController getInstance() {
@@ -20,5 +22,7 @@ public class PairCheckController {
 	}
 
 	public void run() {
+		List<String> targetSelection = viewController.getTargetSelection();
+		pairMachMap.getPair(targetSelection);
 	}
 }

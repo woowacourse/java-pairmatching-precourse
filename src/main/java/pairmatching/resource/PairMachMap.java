@@ -64,4 +64,10 @@ public class PairMachMap {
 		}
 		return pairList;
 	}
+
+	public List<List<Crew>> getPair(List<String> targetSelection) {
+		return pairMap.get(targetSelection.get(0))
+				.get(targetSelection.get(1))
+				.get(targetSelection.get(2));
+	}
 }
