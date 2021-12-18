@@ -4,7 +4,25 @@ import pairmatching.enums.Course;
 import pairmatching.enums.Level;
 
 public class Section {
-    Course course;
-    Level level;
-    String misson;
+    private Course course;
+    private Level level;
+    private String misson;
+
+    public Section(Course course, Level level, String misson) {
+        this.course = course;
+        this.level = level;
+        this.misson = misson;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public String getMisson() {
+        return misson;
+    }
 }

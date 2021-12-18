@@ -9,10 +9,7 @@ public class Application {
     public static void main(String[] args) {
         // TODO 구현 진행
         MainController mainController = new MainController();
-        List<List<String>> pairList = CrewRepository.makeBackendPair();
-        for(List<String> pair : pairList) {
-            System.out.print(pair);
-        }
+        mainController.start();
     }
 
 }
