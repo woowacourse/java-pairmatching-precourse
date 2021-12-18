@@ -1,4 +1,4 @@
 package pairmatching.view;
 
-public class OutputView {
+public abstract class OutputView {
 }
