@@ -49,4 +49,9 @@ public class Mission {
 
         return null;
     }
+
+    public void reset() {
+        backendPair = new ArrayList<>();
+        frontendPair = new ArrayList<>();
+    }
 }
