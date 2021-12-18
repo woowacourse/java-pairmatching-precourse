@@ -1,4 +1,4 @@
-package pairmatching.domain.enumeration;
+package pairmatching.domain;
 
 import pairmatching.domain.Crew;
 import pairmatching.domain.Pair;
