@@ -1,6 +1,6 @@
 package pairmatching.domain.enumeration;
 
-import pairmatching.utils.ErrorMessages;
+import pairmatching.utils.ConstantMessages;
 
 import java.util.Arrays;
 
@@ -28,6 +28,6 @@ public enum Mission {
         return Arrays.stream(Mission.values())
                 .filter(missionName -> missionName.equals(input))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorMessages.PREFIX_ERROR + ErrorMessages.ERROR_INVALID_INPUT));
+                .orElseThrow(() -> new IllegalArgumentException(ConstantMessages.PREFIX_ERROR + ConstantMessages.ERROR_INVALID_INPUT));
     }
 }

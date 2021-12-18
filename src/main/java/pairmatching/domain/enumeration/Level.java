@@ -1,6 +1,6 @@
 package pairmatching.domain.enumeration;
 
-import pairmatching.utils.ErrorMessages;
+import pairmatching.utils.ConstantMessages;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,14 +25,14 @@ public enum Level {
         return Arrays.stream(Level.values())
                 .filter(levelName -> levelName.equals(input))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorMessages.PREFIX_ERROR + ErrorMessages.ERROR_INVALID_INPUT));
+                .orElseThrow(() -> new IllegalArgumentException(ConstantMessages.PREFIX_ERROR + ConstantMessages.ERROR_INVALID_INPUT));
     }
 
     public static Level findLevelByMission(Mission mission) {
         return Arrays.stream(Level.values())
                 .filter(level -> level.hasMission(mission))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorMessages.PREFIX_ERROR + ErrorMessages.ERROR_INVALID_INPUT));
+                .orElseThrow(() -> new IllegalArgumentException(ConstantMessages.PREFIX_ERROR + ConstantMessages.ERROR_INVALID_INPUT));
     }
 
     public boolean hasMission(Mission missionType) {

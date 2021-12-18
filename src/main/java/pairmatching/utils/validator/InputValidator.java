@@ -3,21 +3,15 @@ package pairmatching.utils.validator;
 import pairmatching.domain.enumeration.Course;
 import pairmatching.domain.enumeration.Level;
 import pairmatching.domain.enumeration.Mission;
-import pairmatching.utils.ErrorMessages;
+import pairmatching.utils.ConstantMessages;
+
 
 public class InputValidator {
-    private final static int COURSE_INDEX = 0;
-    private final static int LEVEL_INDEX = 1;
-    private final static int MISSION_INDEX = 2;
-    private final static int SPACING = 1;
-
-    private final static String YES = "네";
-    private final static String NO = "아니오";
 
     public static void validateCourseLevelMissionInput(String[] input) {
-        String courseName = input[COURSE_INDEX];
-        String level = input[LEVEL_INDEX].substring(SPACING);
-        String mission = input[MISSION_INDEX].substring(SPACING);
+        String courseName = input[ConstantMessages.COURSE_INDEX];
+        String level = input[ConstantMessages.LEVEL_INDEX].substring(ConstantMessages.SPACING);
+        String mission = input[ConstantMessages.MISSION_INDEX].substring(ConstantMessages.SPACING);
 
         Course.findCourseByInput(courseName);
         Level levelByInput = Level.findLevelByInput(level);
@@ -28,7 +22,7 @@ public class InputValidator {
 
     private static void validateLevelAndMissionLevel(Level levelByInput, Level missionLevel) {
         if(levelByInput != missionLevel) {
-            throw new IllegalArgumentException(ErrorMessages.PREFIX_ERROR + ErrorMessages.ERROR_INVALID_INPUT);
+            throw new IllegalArgumentException(ConstantMessages.PREFIX_ERROR + ConstantMessages.ERROR_INVALID_INPUT);
         }
     }
 
