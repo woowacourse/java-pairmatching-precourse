@@ -1,9 +1,6 @@
 package pairmatching.view;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -35,9 +32,32 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static String function1(){
+    public static String fairMatching() {
+        System.out.println(MENU_DELIMETER);
+        System.out.println(MENU_COURSES);
+        System.out.println(MENU_MISSION);
+        System.out.println(LEVEL_1);
+        System.out.println(LEVEL_2);
+        System.out.println(LEVEL_3);
+        System.out.println(LEVEL_4);
+        System.out.println(LEVEL_5);
+        System.out.println(MENU_DELIMETER);
+        System.out.println(SELECT_C_L_M);
+        System.out.println(EX_C_L_M);
+        return Console.readLine();
+    }
+
+    public static String reMatching() {
+        System.out.println(ASK_REMATCHING_MSG);
+        System.out.println(REMATCHING_OPTION_MSG);
+        return Console.readLine();
+    }
+
+    public static String fairLookUp() {
         return "";
     }
 
-
+    public static String fairInit() {
+        return "";
+    }
 }

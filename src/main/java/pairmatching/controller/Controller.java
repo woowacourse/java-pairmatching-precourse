@@ -17,10 +17,18 @@ public class Controller {
     }
 
     public static void run() {
-        selectFunctions();
+        String userInput = selectFunctions();
+        printOptionView(userInput);
+
     }
 
     private static String selectFunctions() {
         return InputView.selectFunction();
+    }
+
+    private static void printOptionView(String userInput) {
+        if (userInput == "1") {
+
+        }
     }
 }
