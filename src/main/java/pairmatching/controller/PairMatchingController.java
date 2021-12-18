@@ -24,6 +24,9 @@ public class PairMatchingController {
 			if (inputFunction.equals("2")) {
 				search();
 			}
+			if (inputFunction.equals("3")) {
+				matches.clear();
+			}
 			if (inputFunction.equals("Q")) {
 				break;
 			}
