@@ -19,6 +19,10 @@ public enum Mission {
 		this.name = name;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	public static List<String> getMissionByLevel(String level) {
 		List<String> missions = new ArrayList<>();
 		if (level.equals("레벨1")) {

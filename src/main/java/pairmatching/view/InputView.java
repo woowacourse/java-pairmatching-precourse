@@ -23,6 +23,13 @@ public class InputView {
 
 	public static String selectInformation() {
 		OutputView.askInformation();
-		return Console.readLine();
+		try {
+			String information = Console.readLine();
+			InputException.validateInformation(information);
+			return information;
+		} catch (IllegalArgumentException IAE) {
+			OutputView.printError(IAE);
+			return selectInformation();
+		}
 	}
 }
