@@ -2,6 +2,7 @@ package pairmatching.controller;
 
 import static pairmatching.exception.EmptyException.*;
 import static pairmatching.exception.FunctionException.*;
+import static pairmatching.exception.SourceFormatException.*;
 
 import pairmatching.service.PairService;
 import pairmatching.view.InputView;
@@ -34,7 +35,7 @@ public class PairMatchingController {
 
 	private void proceedFunction(String function) {
 		if (function.equals("1")) {
-			pairService.match(checkEmptyInput(inputView.requestSource()));
+			matchPair(checkEmptyInput(inputView.requestSource()));
 		}
 		if (function.equals("2")) {
 			pairService.look(checkEmptyInput(inputView.requestSource()));
@@ -42,5 +43,17 @@ public class PairMatchingController {
 		if (function.equals("3")) {
 			pairService.init();
 		}
+	}
+
+	private void matchPair(String source) {
+		checkSourceFormat(source);
+		String[] sourceSplitByComma = source.replaceAll(" ", "").split(",");
+		if (pairService.findMatch(sourceSplitByComma[0], sourceSplitByComma[1], sourceSplitByComma[2])) {
+			String match = inputView.requestDuplicateMatch();
+			if (match.equals("아니오")) {
+				run();
+			}
+		}
+		pairService.match(sourceSplitByComma[0], sourceSplitByComma[1], sourceSplitByComma[2]);
 	}
 }

@@ -15,6 +15,8 @@ public class InputView {
 		+ "  - 레벨5: \n"
 		+ "############################################\n"
 		+ "과정, 레벨, 미션을 선택하세요.";
+	static final String REQUEST_REMATCHING_MSG = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
+		+ "네 | 아니오";
 
 	public String requestFunction() {
 		System.out.println(REQUEST_FUNCTION_MSG);
@@ -23,6 +25,11 @@ public class InputView {
 
 	public String requestSource() {
 		System.out.println(REQUEST_PAIR_RESOURCE_MSG);
+		return readLine();
+	}
+
+	public String requestDuplicateMatch() {
+		System.out.println(REQUEST_REMATCHING_MSG);
 		return readLine();
 	}
 }
