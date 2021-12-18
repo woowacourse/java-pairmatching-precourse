@@ -1,6 +1,6 @@
 package pairmatching.view;
 
-import static pairmatching.constants.InputMsg.*;
+import static pairmatching.constants.InputMessage.*;
 
 import camp.nextstep.edu.missionutils.Console;
 

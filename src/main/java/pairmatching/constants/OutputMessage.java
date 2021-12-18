@@ -1,4 +1,4 @@
 package pairmatching.constants;
 
-public class OutputMsg {
+public class OutputMessage {
 }
