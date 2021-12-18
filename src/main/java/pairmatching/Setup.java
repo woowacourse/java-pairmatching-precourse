@@ -6,6 +6,10 @@ import pairmatching.domain.LevelMissonRepository;
 import pairmatching.enums.Level;
 
 public class Setup {
+    public Setup() {
+        setupMissons();
+    }
+
     public void setupMissons() {
         LevelMissonRepository.addMission(new LevelMisson(Level.LEVEL1, Arrays.asList(
             new String[]{"자동차경주", "로또", "숫자야구게임"})));
