@@ -27,6 +27,8 @@ public class InputConverter {
 		String[] inputArray = input.split(", ");
 
 		Course course = Course.getByName(inputArray[0]);
+		pairValidator.validateCourse(course);
+
 		Level level = Level.getByName(inputArray[1]);
 		Mission mission = Mission.getByName(inputArray[2]);
 
