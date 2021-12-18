@@ -40,6 +40,24 @@ public abstract class InputView {
         }
     }
 
+    public static List<String> readBackendCrew() {
+        try {
+            final List<String> crewNames = new ArrayList<>();
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("./src/main/resources/backend-crew.md"));
+
+            String line = null;
+            while ((line = bufferedReader.readLine()) != null) {
+                crewNames.add(line);
+            }
+
+            return crewNames;
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            return readFrontendCrew();
+        }
+    }
+
     public static String[] inputCourseInformation() {
         try {
 //            System.out.println(createCourseInformationPrintFormat());
