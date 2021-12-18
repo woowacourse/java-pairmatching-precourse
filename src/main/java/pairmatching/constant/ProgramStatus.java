@@ -1,4 +1,4 @@
-package pairmatching.model;
+package pairmatching.constant;
 
 public enum ProgramStatus {
 	SHOW_FUNCTIONS,
