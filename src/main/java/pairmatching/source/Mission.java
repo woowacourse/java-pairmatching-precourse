@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Mission {
+    private final static String NO_MACTHING_PAIRS = "매칭 정보가 없습니다.";
+
     private final String name;
     private boolean isMatched = false;
     private List<Pair> missionPairs = new ArrayList<>();
@@ -20,6 +22,7 @@ public class Mission {
 
         if(shuffledNames.size() % 2 == 0){
             matchEvenPair(shuffledNames,crewMap);
+            isMatched = true;
             return;
         }
 
@@ -64,6 +67,10 @@ public class Mission {
     }
 
     public void printMatchedPairs(){
+        if(!isMatched){
+            System.out.println(NO_MACTHING_PAIRS);
+            return;
+        }
 
         for(Pair currentPair : missionPairs){
             System.out.println(currentPair);
