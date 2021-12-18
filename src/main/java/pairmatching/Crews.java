@@ -26,4 +26,19 @@ public class Crews {
 	public List<Crew> getCrewList() {
 		return CREW_LIST;
 	}
+
+	public Crew getCrewByCourseAndName(Course course, String name) {
+		for (Crew crew : CREW_LIST) {
+			if (isCrew(crew, course, name)){
+				return crew;
+			}
+		}
+		throw new IllegalArgumentException("[ERROR] 존재하지 않는 크루 이름입니다.");
+	}
+
+	private boolean isCrew(Crew crew, Course course, String name) {
+		boolean isSameCourse = crew.getCourse().equals(course);
+		boolean isSameName = crew.toString().equals(name);
+		return  isSameCourse && isSameName;
+	}
 }
