@@ -20,7 +20,7 @@ public enum Command {
         return Command.findByService(Arrays.stream(Command.values())
             .filter(command -> command.input.equals(inputCommand))
             .findAny()
-            .orElseThrow(ErrorMessage.INVALID_COMMAND::getException));
+            .orElseThrow(ErrorMessage.NOT_FOUND_COMMAND::getException));
     }
 
     private static PairMatchingService findByService(Command command) {

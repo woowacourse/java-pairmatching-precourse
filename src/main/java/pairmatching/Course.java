@@ -1,6 +1,7 @@
 package pairmatching;
 
 import java.util.Arrays;
+import pairmatching.exception.ErrorMessage;
 
 public enum Course {
     BACKEND("백엔드"),
@@ -16,7 +17,7 @@ public enum Course {
         return Arrays.stream(Course.values())
             .filter(course -> course.name.equals(name))
             .findAny()
-            .orElseThrow(IllegalArgumentException::new)
+            .orElseThrow(ErrorMessage.NOT_FOUND_COURSE::getException)
             .name;
     }
 }
