@@ -19,7 +19,7 @@ public class PairRepository {
 		return pairs;
 	}
 
-	public static List<Pair> findByCourseAndMission(Mission mission) {
+	public static List<Pair> findByMission(Mission mission) {
 		return pairs.stream().filter(p -> p.getMission().equals(mission)).collect(Collectors.toList());
 	}
 
@@ -33,5 +33,13 @@ public class PairRepository {
 
 	public static void deleteAll() {
 		pairs.clear();
+	}
+
+	public static void deleteByMission(Mission mission) {
+		List<Pair> wantToDeletePairs = findByMission(mission);
+
+		for (Pair wantToDelete : wantToDeletePairs) {
+			pairs.remove(wantToDelete);
+		}
 	}
 }

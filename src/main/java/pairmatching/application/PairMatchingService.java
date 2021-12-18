@@ -16,6 +16,7 @@ public class PairMatchingService {
 
 	public List<Pair> match(String courseName, String levelName, String missionName) {
 		Mission mission = parseToMission(missionName, courseName);
+		PairRepository.deleteByMission(mission);
 		List<Pair> pairList = pairGenerator.generate(mission);
 		PairRepository.saveAll(pairList);
 		return pairList;
@@ -26,7 +27,7 @@ public class PairMatchingService {
 			throw new IllegalArgumentException("매칭 이력이 없습니다.");
 		}
 
-		return PairRepository.findByCourseAndMission(parseToMission(missionName, courseName));
+		return PairRepository.findByMission(parseToMission(missionName, courseName));
 	}
 
 	public void initializeMatchedPair() {

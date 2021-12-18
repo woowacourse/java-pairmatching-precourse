@@ -63,7 +63,7 @@ public class PairGenerator {
 	}
 
 	private boolean isDuplicatedPairByOtherMission(List<Pair> pairList, Mission otherMission) {
-		List<Pair> otherPairList = PairRepository.findByCourseAndMission(otherMission);
+		List<Pair> otherPairList = PairRepository.findByMission(otherMission);
 		return otherPairList.stream().anyMatch(p -> isDuplicatedByOtherPairList(pairList, p));
 	}
 
