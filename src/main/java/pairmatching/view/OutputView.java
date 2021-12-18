@@ -22,20 +22,11 @@ public class OutputView {
 
     public static String printCourseAndMission() {
         System.out.println("#############################################");
+
         System.out.print("과정: ");
         Course.printCourse();
 
-        System.out.println("미션: ");
-        System.out.println("\t- 레벨1: ");
-        printMissionByLevel(LEVEL1);
-        System.out.println("\t- 레벨2: ");
-        printMissionByLevel(LEVEL2);
-        System.out.println("\t- 레벨3: ");
-        printMissionByLevel(LEVEL3);
-        System.out.println("\t- 레벨4: ");
-        printMissionByLevel(LEVEL4);
-        System.out.println("\t- 레벨5: ");
-        printMissionByLevel(LEVEL5);
+        printMission();
 
         System.out.println("#############################################");
 
@@ -43,5 +34,24 @@ public class OutputView {
         System.out.println("ex) 백엔드, 레벨1, 자동차경주");
 
         return Console.readLine();
+    }
+
+    private static void printMission() {
+        System.out.println("미션: ");
+
+        System.out.println("\t- 레벨1: ");
+        printMissionByLevel(LEVEL1);
+
+        System.out.println("\t- 레벨2: ");
+        printMissionByLevel(LEVEL2);
+
+        System.out.println("\t- 레벨3: ");
+        printMissionByLevel(LEVEL3);
+
+        System.out.println("\t- 레벨4: ");
+        printMissionByLevel(LEVEL4);
+
+        System.out.println("\t- 레벨5: ");
+        printMissionByLevel(LEVEL5);
     }
 }
