@@ -11,7 +11,6 @@ public class InputValidator {
 		"1", "2", "3", "Q"
 	);
 
-
 	public static void isSizeThree(String[] stringArray) throws IllegalArgumentException {
 		if (stringArray.length != 3) {
 			throw new IllegalArgumentException(IS_SIZE_THREE_ERROR_MESSAGE);

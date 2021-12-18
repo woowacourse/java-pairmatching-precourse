@@ -2,7 +2,6 @@ package pairmatching.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -40,7 +39,8 @@ public class PairMatchingService {
 		Level level = toLevel(splitInput[LEVEL_INDEX].trim());
 		Mission mission = toMission(level, splitInput[MISSION_INDEX].trim());
 		pairMatch(course, level, mission);
-		return pairMatchingRepository.getPairCrews(Objects.hash(course.toString(), level.toString(), mission.toString()));
+		return pairMatchingRepository.getPairCrews(
+			Objects.hash(course.toString(), level.toString(), mission.toString()));
 	}
 
 	public void pairMatch(Course course, Level level, Mission mission) throws IllegalArgumentException {

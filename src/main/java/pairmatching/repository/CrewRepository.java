@@ -27,14 +27,6 @@ public class CrewRepository {
 		frontendCrews.add(crew);
 	}
 
-	public List<Crew> getBackendCrews() {
-		return backendCrews;
-	}
-
-	public List<Crew> getFrontendCrews() {
-		return frontendCrews;
-	}
-
 	public List<Crew> getCrews(Course course) {
 		if (course.getName().equals(Course.BACKEND.getName())) {
 			return backendCrews;

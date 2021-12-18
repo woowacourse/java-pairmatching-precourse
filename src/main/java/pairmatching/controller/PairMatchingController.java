@@ -15,8 +15,6 @@ public class PairMatchingController {
 	private final CrewService crewService = new CrewService();
 	private final PairMatchingService pairMatchingService = new PairMatchingService();
 
-
-
 	public PairMatchingController() {
 		try {
 			crewService.init();

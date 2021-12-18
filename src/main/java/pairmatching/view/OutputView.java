@@ -34,7 +34,7 @@ public class OutputView {
 	}
 
 	public static void printResultPairMatching(PairCrews pairCrews) {
- 		System.out.println("페어 매칭 결과입니다.");
+		System.out.println("페어 매칭 결과입니다.");
 		System.out.println(pairCrews.get().stream()
 			.map(pairCrew -> pairCrew.toString())
 			.collect(Collectors.joining("\n")));
