@@ -66,7 +66,9 @@ public class PairMatchingController {
     private void notFirstMatching(String value) {
         if (Input.rematching().equals("아니오")) {
             matching();
+            return;
         }
+        firstMatching(value);
     }
 
     private void search() {

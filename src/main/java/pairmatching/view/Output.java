@@ -7,7 +7,7 @@ import java.util.List;
 public class Output {
 
     public static void LIST() {
-        System.out.println("\n" + LIST);
+        System.out.print("\n" + LIST);
     }
 
     public static void matching(List<String> names) {

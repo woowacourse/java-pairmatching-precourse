@@ -12,7 +12,7 @@ public class Input {
     }
 
     public static String matching() {
-        System.out.println(MATCHING);
+        System.out.println("\n" + MATCHING);
         return Console.readLine();
     }
 
