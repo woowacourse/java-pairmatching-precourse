@@ -45,4 +45,23 @@ public class Matching {
 	public void showCrews() {
 		printPairMatching(this.crews);
 	}
+
+	public boolean isDuplicatedPair(ArrayList<String> nowCrew) {
+		for (ArrayList<String> pair : crews) {
+			if (isContains(pair, nowCrew)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private boolean isContains(ArrayList<String> pair, ArrayList<String> nowCrew) {
+		int count = 0;
+		for (String crew : nowCrew) {
+			if (pair.contains(crew)) {
+				count += 1;
+			}
+		}
+		return count > 1;
+	}
 }

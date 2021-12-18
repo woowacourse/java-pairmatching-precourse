@@ -13,6 +13,7 @@ import pairmatching.type.Course;
 
 public class PairMatching {
 	private static final int PAIR_LIMIT = 2;
+	private static int nowTimes = 0;
 	private static final int times = 3;
 
 	private List<String> backEnd;
@@ -38,7 +39,6 @@ public class PairMatching {
 	}
 
 	public void match(HashMap<String, String> pairMatching) {
-		int count = 0;
 		Queue<String> crewQueue = suffledCrews(pairMatching.get("course"));
 
 		ArrayList<ArrayList<String>> matching = new ArrayList<>();
@@ -66,6 +66,19 @@ public class PairMatching {
 			return backEnd;
 		}
 		return frontEnd;
+	}
+
+	private boolean isDuplicated(ArrayList<String> crews) {
+		for (Matching matching : matchings) {
+			if (matching.isDuplicatedPair(crews)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private boolean isAvailableReMatching() {
+		return nowTimes == times;
 	}
 
 	public void show(HashMap<String, String> pairMatchingMap) {
