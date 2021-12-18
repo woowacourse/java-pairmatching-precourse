@@ -8,10 +8,12 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.View.InputView;
@@ -25,6 +27,7 @@ public class PairMatchingController {
 	private static final String FRONTEND_COURSE = "프론트엔드";
 	private static final String BACKEND_COURSE = "백엔드";
 	private static Map<Crew, ArrayList<Crew>> pair;
+	private static Set<String> pairHistory = new HashSet<>();
 
 	private final InputView inputView;
 
@@ -40,6 +43,13 @@ public class PairMatchingController {
 		if (functionNumber == ONE) {
 			String[] courseAndLevelAndMission = inputView.scanCourseAndLevelAndMission().trim().split(DELIMITER);
 			String course = courseAndLevelAndMission[0];
+			if (pairHistory.contains(courseAndLevelAndMission[0] + courseAndLevelAndMission[1])
+				&& !isRematch(courseAndLevelAndMission)) {
+				OutputView.printPairResult(pair);
+				return;
+			}
+
+			pairHistory.add(courseAndLevelAndMission[0] + courseAndLevelAndMission[1]);
 			if (course.equals(FRONTEND_COURSE)) {
 				matchPair(Course.FRONTEND);
 			}
@@ -89,5 +99,12 @@ public class PairMatchingController {
 			e.printStackTrace();
 		}
 		return crewNames;
+	}
+
+	public boolean isRematch(String[] courseAndLevelAndMission) {
+		if (inputView.scanIsRematch().equals("네")) {
+			return true;
+		}
+		return false;
 	}
 }

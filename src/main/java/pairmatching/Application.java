@@ -12,7 +12,7 @@ public class Application {
             if (functionNumber.equals("Q")) {
                 break;
             }
+            pairMatchingController.matchFunction(Integer.parseInt(functionNumber));
         }
-        pairMatchingController.matchFunction(Integer.parseInt(functionNumber));
     }
 }
