@@ -2,4 +2,4 @@
 
 ### 사전 제공 정보 초기화
 > 백엔드 크루 파일, 프론트엔드 크루 파일을 저장소에 저장한다.
-- [ ] `backend-crew.md` `frontend-crew.md`의 이름을 저장소에 저장해야 한다.
+- [x] `backend-crew.md` `frontend-crew.md`의 이름을 저장소에 저장해야 한다.
