@@ -18,4 +18,16 @@ public class Crew {
     public String getName() {
         return name;
     }
+
+    public boolean equals(Crew crew) {
+        return (isCourse(crew.course) && isName(crew.name));
+    }
+
+    public boolean isCourse(Course course) {
+        return this.course.toString().equals(course.toString());
+    }
+
+    public boolean isName(String name) {
+        return this.name.equals(name);
+    }
 }
