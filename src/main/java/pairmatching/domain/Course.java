@@ -19,4 +19,12 @@ public enum Course {
 			.findAny()
 			.orElseThrow(() -> new IllegalArgumentException(command + ERROR_NOT_COURSE));
 	}
+
+	public boolean isValidateBackend() {
+		return name.equals("백엔드");
+	}
+
+	public boolean isValidateFrontend() {
+		return name.equals("프론트엔드");
+	}
 }
