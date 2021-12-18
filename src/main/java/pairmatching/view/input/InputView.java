@@ -8,4 +8,6 @@ public interface InputView {
     Function inputFunction();
 
     List<String> inputCourseAndMission();
+
+    OverWrite inputOverWrite();
 }

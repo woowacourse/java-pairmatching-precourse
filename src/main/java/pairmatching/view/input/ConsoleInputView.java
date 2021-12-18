@@ -22,6 +22,7 @@ public class ConsoleInputView implements InputView {
             + "과정, 레벨, 미션을 선택하세요.\n"
             + "ex) 백엔드, 레벨1, 자동차경주";
     private static final String DELIMITER = ", ";
+    private static final String OVERLAP_MESSAGE = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n네 | 아니오";
 
     @Override
     public void showErrorMessage(final String errorMessage) {
@@ -40,5 +41,11 @@ public class ConsoleInputView implements InputView {
         String userInput = readLine();
         return Arrays.stream(userInput.split(DELIMITER))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public OverWrite inputOverWrite() {
+        System.out.println(OVERLAP_MESSAGE);
+        return OverWrite.of(readLine());
     }
 }
