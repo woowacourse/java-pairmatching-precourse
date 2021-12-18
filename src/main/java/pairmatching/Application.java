@@ -4,11 +4,17 @@ public class Application {
     public static void main(String[] args) {
         // TODO 구현 진행
         while(true){
-            boolean quit = ProgramManager.selectFunction();
+            boolean quit = true;
 
-            if(quit == true){
-                break;
+            while(quit != true){
+                try{
+                    quit = ProgramManager.selectFunction();
+                }catch(IllegalArgumentException e){
+                    System.out.println(e.getMessage());
+                }
             }
+
+            break;
         }
     }
 }
