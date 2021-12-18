@@ -48,6 +48,7 @@ public class PairMatching implements PairMatchingService {
     }
 
     private void printPair() {
+        System.out.println("페어 매칭 결과입니다.");
         for (Mission mission : MissionRepository.getMissions()) {
             for (Pair pair : mission.getPairs()) {
                 List<String> pairNames = pair.getCrews().stream().map(Crew::getName).collect(Collectors.toList());
