@@ -1,9 +1,9 @@
 package pairmatching.domain.crew;
 
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import pairmatching.domain.Level;
 
@@ -29,8 +29,8 @@ public class CrewRepository {
 		crews.put(Level.LEVEL5, null);
 	}
 
-	public Set<Crew> getCrews(Level level) {
-		HashSet<Crew> crews = new HashSet<>();
+	public List<Crew> getCrews(Level level) {
+		List<Crew> crews = new LinkedList<>();
 		for (Map.Entry<Level, Crew> entry : this.crews.entrySet()) {
 			if (entry.getKey() != level) {
 				continue;

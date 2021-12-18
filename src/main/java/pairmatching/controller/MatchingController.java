@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.domain.Course;
 import pairmatching.domain.Menu;
 import pairmatching.domain.Pair;
+import pairmatching.domain.crew.Crew;
 import pairmatching.domain.crew.CrewRepository;
 import pairmatching.domain.matcing.Matching;
 import pairmatching.domain.matcing.MatchingRepository;
@@ -27,11 +29,22 @@ public class MatchingController {
 	}
 
 	public void matching(Menu menu) {
-		Matching matching = new Matching(menu.getCourse(), menu.getLevel(), menu.getMission());
-
 		List<String> crewNames = createCrewNames(menu.getCourse());
 		List<String> shuffledCrew = Randoms.shuffle(crewNames);
 
+		List<Crew> list = crewRepository.getCrews(menu.getLevel());
+		if (list.size() != 0) { // 매칭 이력이 존재한다.
+			// 다시 셔플
+		}
+
+		Matching matching = createMatching(menu, shuffledCrew);
+
+		OutputView.printMatching(matching.getPairs());
+		matchingRepository.addMatching(matching);
+	}
+
+	private Matching createMatching(Menu menu, List<String> shuffledCrew) {
+		Matching matching = new Matching(menu.getCourse(), menu.getLevel(), menu.getMission());
 		Queue<String> queue = new LinkedList<>(shuffledCrew);
 		while (!queue.isEmpty()) {
 			Pair pair = new Pair(queue.poll(), queue.poll());
@@ -41,8 +54,7 @@ public class MatchingController {
 			matching.addPair(pair);
 		}
 
-		OutputView.printMatching(matching.getPairs());
-		matchingRepository.addMatching(matching);
+		return matching;
 	}
 
 	private List<String> createCrewNames(Course course) {
