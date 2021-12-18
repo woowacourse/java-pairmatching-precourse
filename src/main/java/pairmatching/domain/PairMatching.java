@@ -1,7 +1,7 @@
 package pairmatching.domain;
 
 import java.util.List;
-
+import java.util.Objects;
 
 public class PairMatching {
 	private Course course;
@@ -25,5 +25,20 @@ public class PairMatching {
 			stringBuilder.append("\n");
 		}
 		return stringBuilder.toString();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		PairMatching that = (PairMatching)o;
+		return course == that.course && mission.equals(that.mission);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(course, mission);
 	}
 }

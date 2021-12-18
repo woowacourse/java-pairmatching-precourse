@@ -7,9 +7,10 @@ import java.util.Arrays;
 
 import pairmatching.domain.PairMatching;
 import pairmatching.domain.repository.PairMatchingRepository;
+import pairmatching.service.PairMatchingService;
 
 public enum PairMatchingFunction {
-	PAIR_MATCHING("1"){
+	PAIR_MATCHING("1") {
 		@Override
 		void function() {
 			printPairMatchingScreen();
@@ -17,12 +18,15 @@ public enum PairMatchingFunction {
 			String course = splitPairMatching[0].trim();
 			String level = splitPairMatching[1].trim();
 			String mission = splitPairMatching[2].trim();
-			PairMatchingRepository.add(course, level, mission);
-			PairMatching pairMatching = PairMatchingRepository.find(course, level, mission);
-			printPairMatchingResult(pairMatching.getPairMatchingResult());
+			if (PairMatchingRepository.isExistPairMatching(course, level, mission)) {
+				if (inputRequestRematching().equals("네")) {
+					PairMatchingService.pairReMatching(course, level, mission);
+				}
+			}
+			PairMatchingService.pairMatching(course, level, mission);
 		}
 	},
-	PAIR_FIND("2"){
+	PAIR_FIND("2") {
 		@Override
 		void function() {
 			printPairMatchingScreen();
@@ -34,13 +38,13 @@ public enum PairMatchingFunction {
 			printPairMatchingResult(pairMatching.getPairMatchingResult());
 		}
 	},
-	PAIR_RESET("3"){
+	PAIR_RESET("3") {
 		@Override
 		void function() {
 			PairMatchingRepository.reset();
 		}
 	},
-	QUIT("Q"){
+	QUIT("Q") {
 		@Override
 		void function() {
 
@@ -48,6 +52,7 @@ public enum PairMatchingFunction {
 	};
 
 	private String command;
+
 	abstract void function();
 
 	PairMatchingFunction(String command) {
@@ -58,7 +63,7 @@ public enum PairMatchingFunction {
 		return command;
 	}
 
-	public static PairMatchingFunction findFunction(String command){
+	public static PairMatchingFunction findFunction(String command) {
 		return Arrays.stream(values())
 			.filter(function -> function.command.equals(command))
 			.findFirst()

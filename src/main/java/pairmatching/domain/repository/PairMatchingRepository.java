@@ -3,6 +3,7 @@ package pairmatching.domain.repository;
 import static pairmatching.domain.repository.CrewRepository.*;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -14,9 +15,15 @@ import pairmatching.domain.Mission;
 import pairmatching.domain.PairMatching;
 
 public class PairMatchingRepository {
-	public static List<PairMatching> pairMatchingList = new ArrayList<>();
+	public static List<PairMatching> pairMatchingList = new LinkedList<>();
 
 	public static void add(String course, String level, String mission) {
+		List<MatchingCrew> crewList = createMatchingCrews(course);
+		pairMatchingList.add(new PairMatching(Course.find(course), new Mission(Level.find(level), mission), crewList));
+	}
+
+	public static void rematching(String course, String level, String mission) {
+		pairMatchingList.remove(PairMatchingRepository.find(course, level, mission));
 		List<MatchingCrew> crewList = createMatchingCrews(course);
 		pairMatchingList.add(new PairMatching(Course.find(course), new Mission(Level.find(level), mission), crewList));
 	}
@@ -26,6 +33,15 @@ public class PairMatchingRepository {
 			.filter(pairMatching -> pairMatching.isSame(course, level, mission))
 			.findFirst()
 			.orElseThrow(() -> new IllegalArgumentException("올바른 페어 매칭 값이 아닙니다."));
+	}
+
+	public static boolean isExistPairMatching(String course, String level, String mission) {
+		for (PairMatching pairMatching: pairMatchingList) {
+			if (pairMatching.isSame(course, level, mission)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public static List<MatchingCrew> createMatchingCrews(String course) {
