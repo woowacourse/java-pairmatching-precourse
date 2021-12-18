@@ -11,6 +11,13 @@ public class MatchedPairsRepository {
 			.anyMatch(matchedPairs -> matchedPairs.isMission(mission) && matchedPairs.isCourse(course));
 	}
 
+	public static MatchedPairs findByCourseAndMission(Course course, Mission mission) {
+		return matchedPairsList.stream()
+			.filter(matchedPairs -> matchedPairs.isMission(mission) && matchedPairs.isCourse(course))
+			.findFirst()
+			.orElse(null);
+	}
+
 	public static void add(MatchedPairs matchedPairs) {
 		matchedPairsList.add(matchedPairs);
 	}

@@ -12,6 +12,9 @@ import pairmatching.domain.Pair;
 public class OutputView {
 	private static final String TITLE_MAIN = "기능을 선택하세요.";
 	private static final String TITLE_MATCHED = "페어 매칭 결과입니다.";
+	private static final String TITLE_INQUIRY = "조회 결과입니다.";
+
+	private static final String NOTICE_NO_MATCHED = "매칭 이력이 없습니다.";
 
 	private static final String QUESTION_MISSION = "과정, 레벨, 미션을 선택하세요.";
 	private static final String QUESTION_MISSION_EX = "ex) 백엔드, 레벨1, 자동차경주";
@@ -47,6 +50,16 @@ public class OutputView {
 
 	public void printMatchedPairs(MatchedPairs matchedPairs) {
 		System.out.println(TITLE_MATCHED);
+		matchedPairs.getPairs()
+			.forEach(this::printPair);
+	}
+
+	public void printInquiryResult(MatchedPairs matchedPairs) {
+		System.out.println(TITLE_INQUIRY);
+		if (matchedPairs == null) {
+			System.out.println(NOTICE_NO_MATCHED);
+			return;
+		}
 		matchedPairs.getPairs()
 			.forEach(this::printPair);
 	}

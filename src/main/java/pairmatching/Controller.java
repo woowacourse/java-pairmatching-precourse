@@ -80,11 +80,16 @@ public class Controller {
 		if (function == Function.MATCHING) {
 			runMatchingFunction(course, level, mission);
 		}
+		runInquiryFunction(course, level, mission);
 	}
 
 	private void runMatchingFunction(Course course, Level level, Mission mission) {
 		MatchedPairs matchedPairs = pairManager.matchPair(course, level, mission);
 		MatchedPairsRepository.add(matchedPairs);
 		outputView.printMatchedPairs(matchedPairs);
+	}
+
+	private void runInquiryFunction(Course course, Level level, Mission mission) {
+		outputView.printInquiryResult(pairManager.inquiryPair(course, level, mission));
 	}
 }
