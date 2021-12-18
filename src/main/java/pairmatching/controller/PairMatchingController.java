@@ -1,5 +1,6 @@
 package pairmatching.controller;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import pairmatching.domain.PairMatching;
@@ -35,6 +36,9 @@ public class PairMatchingController {
         }
         if (function.equals("3")) {
             reset();
+        }
+        if (function.equals("Q")) {
+            return;
         }
     }
 
