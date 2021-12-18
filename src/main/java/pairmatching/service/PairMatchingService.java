@@ -15,6 +15,7 @@ import static pairmatching.utils.PairMatchUtils.returnMatchResult;
 import static pairmatching.utils.PairMatchUtils.validateNoDuplicateHistory;
 import static pairmatching.utils.UserChoiceValidator.*;
 import static pairmatching.view.InputView.*;
+import static pairmatching.view.InputView.requestRetryPairMatchInput;
 import static pairmatching.view.OutputView.*;
 
 public class PairMatchingService {
@@ -30,19 +31,40 @@ public class PairMatchingService {
         showMatchResult(matchResult);
     }
 
-    public void postNewMatchResult() {
-        showBackgroundInfo();
-        String optionsInput = requestPairMatchingOptionsInput();
-        MatchResult existingResult = MatchResultRepository.getMatchResultByOptions(optionsInput);
-        if (!confirmPostNewMatchResult(existingResult)) {
-            return;
+    public void postMatchResult() {
+        boolean isRunning = true;
+        while (isRunning) {
+            showBackgroundInfo();
+            String optionsInput = requestPairMatchingOptionsInput();
+            MatchResult existingResult = MatchResultRepository.getMatchResultByOptions(optionsInput);
+            if (!confirmPostNewMatchResult(existingResult)) break;
+            isRunning = postMatchResultWithOptions(optionsInput);
         }
+    }
 
-        MatchResult matchResult = generateValidMatchResult(optionsInput);
-        if (matchResult == null) {
-            postNewMatchResult();
+    public boolean postMatchResultWithOptions(String optionsInput) {
+        while (true) {
+            MatchResult matchResult = generateValidMatchResult(optionsInput);
+            if (matchResult == null) {
+                if (checkContinuePostMatchResult()) continue;
+                return true;
+            }
+            saveValidMatchResult(matchResult);
+            return false;
         }
-        saveValidMatchResult(matchResult);
+    }
+
+    public boolean checkContinuePostMatchResult() {
+        while(true) {
+            try {
+                String userChoice = requestRetryPairMatchInput();
+                validateYesNoInput(userChoice);
+                if (userChoice.equals(YES)) return true;
+                if (userChoice.equals(NO)) return false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private MatchResult generateValidMatchResult(String optionsInput) {

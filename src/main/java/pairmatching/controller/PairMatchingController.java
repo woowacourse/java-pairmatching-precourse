@@ -26,7 +26,7 @@ public class PairMatchingController {
         if (userChoice.equals(EXIT_Q)) return false;
 
         if (userChoice.equals(ONE)) {
-            pairMatchingService.postNewMatchResult();
+            pairMatchingService.postMatchResult();
         }
         if (userChoice.equals(TWO)) {
             pairMatchingService.readMatchResult();

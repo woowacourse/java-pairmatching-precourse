@@ -13,4 +13,7 @@ public class InputMessages {
 
     public static String REQUEST_NEW_MATCH_INPUT = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n" +
             "네 | 아니오\n";
+
+    public static String REQUEST_RETRY_PAIR_MATCH_INPUT = "매칭에 실패하였습니다. 다시 시도하겠습니까?\n" +
+            "네 | 아니오\n";
 }

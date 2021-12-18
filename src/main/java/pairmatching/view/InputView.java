@@ -20,4 +20,9 @@ public class InputView {
         System.out.println(REQUEST_NEW_MATCH_INPUT);
         return Console.readLine();
     }
+
+    public static String requestRetryPairMatchInput() {
+        System.out.println(REQUEST_RETRY_PAIR_MATCH_INPUT);
+        return Console.readLine();
+    }
 }
