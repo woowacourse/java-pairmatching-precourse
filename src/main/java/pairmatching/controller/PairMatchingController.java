@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import pairmatching.domain.Crew;
+import pairmatching.domain.ProgramInfo;
 import pairmatching.util.Initializer;
 import pairmatching.util.ProgramInfoTransformer;
 import pairmatching.view.InputView;
@@ -28,6 +29,6 @@ public class PairMatchingController {
 
     public void run() {
         inputView.determineMainFunction(); // TODO : 기능 선택은 나중에 하자.
-        ProgramInfoTransformer.makeProgramInfo(inputView.determineProgramInfo());
+        ProgramInfo programInfo = ProgramInfoTransformer.makeProgramInfo(inputView.determineProgramInfo());
     }
 }
