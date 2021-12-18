@@ -19,6 +19,9 @@ import pairmatching.view.OutputView;
 
 public class PairMatchingController {
 	private static final String SPLIT_REGEX = ",";
+	private static final String BACKEND_FILE_PATH = "D:\\woowacourse\\java-pairmatching-precourse\\src\\main\\resources\\backend-crew.md";
+	private static final String FRONTEND_FILE_PATH = "D:\\woowacourse\\java-pairmatching-precourse\\src\\main\\resources\\frontend-crew.md";
+	private static final String FILE_ERROR_MESSAGE = "[ERROR] 파일을 읽는데 실패하였습니다.";
 
 	private final InputView inputView;
 	private final OutputView outputView;
@@ -54,13 +57,12 @@ public class PairMatchingController {
 	private List<String> readBackEndCrewFile() {
 		List<String> crewNames = new ArrayList<>();
 		try {
-			Path path = Paths.get(
-				"D:\\woowacourse\\java-pairmatching-precourse\\src\\main\\resources\\backend-crew.md");
+			Path path = Paths.get(BACKEND_FILE_PATH);
 			Stream<String> lines = Files.lines(path);
 			crewNames = lines.collect(Collectors.toList());
 			lines.close();
 		} catch (IOException e) {
-			System.out.println("[ERROR] 파일을 읽는데 실패하였습니다.");
+			System.out.println(FILE_ERROR_MESSAGE);
 		}
 		return crewNames;
 	}
@@ -68,13 +70,12 @@ public class PairMatchingController {
 	private List<String> readFrontEndCrewFile() {
 		List<String> crewNames = new ArrayList<>();
 		try {
-			Path path = Paths.get(
-				"D:\\woowacourse\\java-pairmatching-precourse\\src\\main\\resources\\frontend-crew.md");
+			Path path = Paths.get(FRONTEND_FILE_PATH);
 			Stream<String> lines = Files.lines(path);
 			crewNames = lines.collect(Collectors.toList());
 			lines.close();
 		} catch (IOException e) {
-			System.out.println("[ERROR] 파일을 읽는데 실패하였습니다.");
+			System.out.println(FILE_ERROR_MESSAGE);
 		}
 		return crewNames;
 	}

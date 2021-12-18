@@ -4,8 +4,8 @@ import java.util.List;
 
 public class OutputView {
 	private static final String MATCHING_RESULT_MESSAGE = "페어 매칭 결과입니다.";
-	private final static String COLON = " : ";
-	private final static String END_LINE = "\n";
+	private static final String COLON = " : ";
+	private static final String END_LINE = "\n";
 
 	public void printMatchingResult(List<List<String>> matchingResult) {
 		StringBuilder message = new StringBuilder();

@@ -6,15 +6,15 @@ import pairmatching.constant.Level;
 import pairmatching.constant.Menu;
 
 public class InputView {
-	private final static String INPUT_FUNCTION_MESSAGE = "기능을 선택하세요.\n";
-	private final static String LINE = "#############################################\n";
-	private final static String COURSE_NAME = "과정";
-	private final static String MISSION_NAME = "미션";
-	private final static String DASH = " - ";
-	private final static String INPUT_MATCHING_INFO_MESSAGE = "과정, 레벨, 미션을 선택하세요.\nex) 백엔드, 레벨1, 자동차경주";
-	private final static String COLON = ": ";
-	private final static String PIPE = " | ";
-	private final static String END_LINE = "\n";
+	private static final String INPUT_FUNCTION_MESSAGE = "기능을 선택하세요.\n";
+	private static final String LINE = "#############################################\n";
+	private static final String COURSE_NAME = "과정";
+	private static final String MISSION_NAME = "미션";
+	private static final String DASH = " - ";
+	private static final String INPUT_MATCHING_INFO_MESSAGE = "과정, 레벨, 미션을 선택하세요.\nex) 백엔드, 레벨1, 자동차경주";
+	private static final String COLON = ": ";
+	private static final String PIPE = " | ";
+	private static final String END_LINE = "\n";
 
 	public String getInputFunction() {
 		printInputFunction();
