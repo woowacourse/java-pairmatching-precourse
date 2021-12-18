@@ -9,6 +9,8 @@ import pairmatching.constant.Level;
 import pairmatching.constant.Mission;
 
 public class PairMatching {
+	private static final String NO_MISSION_ERROR_MESSAGE = "[ERROR] 없는 미션입니다.\n";
+
 	private final HashMap<Course, List<String>> crewNameMap;
 	private final List<Matching> matchings;
 
@@ -42,7 +44,7 @@ public class PairMatching {
 				return matching;
 			}
 		}
-		return null;
+		throw new IllegalArgumentException(NO_MISSION_ERROR_MESSAGE);
 	}
 
 	private List<Matching> getMatchings() {
