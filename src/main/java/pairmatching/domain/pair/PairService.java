@@ -38,20 +38,21 @@ public class PairService {
         }
 
         PairRepository.save(pairTag, result);
-
         return result;
     }
 
     private List<Pair> matchPairs(PairTag pairTag) {
         List<Pair> result = new ArrayList<>();
-        List<String> shuffledNames = Randoms.shuffle(backend);
+        List<String> shuffledNames;
         List<Crew> shuffledCrew = null;
         if (pairTag.getCourse() == Course.BACKEND) {
+            shuffledNames = Randoms.shuffle(backend);
             shuffledCrew = shuffledNames.stream()
                     .map(name -> new Crew(Course.BACKEND, name))
                     .collect(Collectors.toList());
         }
         if (pairTag.getCourse() == Course.FRONTEND) {
+            shuffledNames = Randoms.shuffle(frontend);
             shuffledCrew = shuffledNames.stream()
                     .map(name -> new Crew(Course.FRONTEND, name))
                     .collect(Collectors.toList());
