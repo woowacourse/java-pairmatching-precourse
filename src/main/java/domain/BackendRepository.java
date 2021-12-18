@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-
+import java.util.Arrays;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class BackendRepository {
@@ -15,8 +15,8 @@ public class BackendRepository {
     
     public static void addCrewNames() {
         try {
-            backendCrews = Files.readAllLines(Paths.get("c:\\backend-crew.md"));
-        } catch (IOException e) {
+            backendCrews = Arrays.asList("백호","태웅","치수","태섭","대만","준호","대협","덕규","태산","경태","수겸","현준","준섭","한나","소연","호열","대남","용팔","구식","달재");
+        } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }
     }

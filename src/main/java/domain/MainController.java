@@ -43,14 +43,14 @@ public class MainController {
     }
     
     private static void navigateSubMenu(String option) {
-        if(option == PAIR_MATCHING) {
+        if(option.equals(PAIR_MATCHING)) {
             OperationController.runMatchingManagement();
         }
-        if(option == PAIR_SEARCH) {
+        if(option.equals(PAIR_SEARCH)) {
             OperationController.runSearchingManagement();
         }
-        if(option == PAIR_INITIALIZE) {
-            System.out.println("망함");
+        if(option.equals(PAIR_INITIALIZE)) {
+            System.out.println();
         }
     }
 }
