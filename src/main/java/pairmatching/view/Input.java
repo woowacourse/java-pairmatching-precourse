@@ -33,7 +33,7 @@ public class Input {
 		try {
 			File file = new File(filePath);
 			Scanner sc = new Scanner(file);
-			while(sc.hasNext()) {
+			while (sc.hasNext()) {
 				crewName.add(sc.next());
 			}
 			sc.close();

@@ -19,6 +19,12 @@ public class MainController {
 		InitializeController.run();
 	}
 
+	private static void validateMissionInput(List<String> missionInput) {
+		if (missionInput.size() != MISSION_INPUT_COUNT) {
+			throw new IllegalArgumentException(ERROR_MISSION_INPUT_COUNT);
+		}
+	}
+
 	public void run() {
 		Option option;
 		do {
@@ -76,12 +82,6 @@ public class MainController {
 		return MissionRepository.getMission(missionInput.stream()
 			.map(String::trim)
 			.collect(Collectors.toList()));
-	}
-
-	private static void validateMissionInput(List<String> missionInput) {
-		if (missionInput.size() != MISSION_INPUT_COUNT) {
-			throw new IllegalArgumentException(ERROR_MISSION_INPUT_COUNT);
-		}
 	}
 
 	private void printMatching(Mission mission) {

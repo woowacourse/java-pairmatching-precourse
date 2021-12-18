@@ -11,7 +11,7 @@ public class MissionRepository {
 
 	public static void initMission() {
 		missions = new ArrayList<>();
-		for(Course course: Course.values()) {
+		for (Course course : Course.values()) {
 			missions.add(new Mission(course, Level.LEVEL1, "자동차경주"));
 			missions.add(new Mission(course, Level.LEVEL1, "로또"));
 			missions.add(new Mission(course, Level.LEVEL1, "숫자야구게임"));

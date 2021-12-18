@@ -3,7 +3,6 @@ package pairmatching.domain.crew;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -21,7 +20,7 @@ public class CrewRepository {
 	}
 
 	public static boolean haveMeet(Map<Crew, List<Crew>> pairs, Crew targetCrew, List<Crew> crews) {
-		for (Crew crew: crews) {
+		for (Crew crew : crews) {
 			if (pairs.get(targetCrew).contains(crew)) {
 				return true;
 			}

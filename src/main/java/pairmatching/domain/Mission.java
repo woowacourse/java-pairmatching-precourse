@@ -1,10 +1,8 @@
 package pairmatching.domain;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import pairmatching.domain.crew.BackendCrewRepository;
 import pairmatching.domain.crew.Crew;
@@ -23,12 +21,12 @@ public class Mission {
 		this.name = name;
 	}
 
-	public void setPairs(List<List<Crew>> pairs) {
-		this.pairs = pairs;
-	}
-
 	public List<List<Crew>> getPairs() {
 		return pairs;
+	}
+
+	public void setPairs(List<List<Crew>> pairs) {
+		this.pairs = pairs;
 	}
 
 	public Course getCourse() {

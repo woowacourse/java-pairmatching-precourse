@@ -49,7 +49,7 @@ public class Output {
 
 	public static void pairs(List<List<Crew>> pairs) {
 		System.out.println(MATCHING_RESULT);
-		for(List<Crew> pair: pairs) {
+		for (List<Crew> pair : pairs) {
 			System.out.println(Arrays.stream(pair.toArray())
 				.map(Object::toString)
 				.collect(Collectors.joining(" : ")));

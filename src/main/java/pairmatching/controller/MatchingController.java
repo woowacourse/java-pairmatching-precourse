@@ -1,9 +1,7 @@
 package pairmatching.controller;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import pairmatching.domain.Course;
 import pairmatching.domain.Mission;
@@ -26,7 +24,7 @@ public class MatchingController {
 		}
 		for (int i = 0; i < MAX_TRIAL; i++) {
 			List<List<Crew>> pairs = matchingPairs(targetMission);
-			if(!validateSamePairs(targetMission, pairs)) {
+			if (!validateSamePairs(targetMission, pairs)) {
 				continue;
 			}
 			targetMission.setPairs(pairs);
@@ -48,7 +46,7 @@ public class MatchingController {
 	private static List<List<Crew>> matchingPairs(Mission mission) {
 		List<Crew> randomOrderCrews = getRandomOrderCrews(mission);
 		List<List<Crew>> pairs = new ArrayList<>();
-		for(int i = 0; i < randomOrderCrews.size() - 1; i += PAIR_UNIT) {
+		for (int i = 0; i < randomOrderCrews.size() - 1; i += PAIR_UNIT) {
 			addPairs(randomOrderCrews, pairs, i);
 			if ((i == randomOrderCrews.size() - MAX_PAIR_UNIT))
 				break;
@@ -77,7 +75,7 @@ public class MatchingController {
 	private static boolean validateSamePairs(Mission targetMission, List<List<Crew>> pairs) {
 		List<Mission> missionGroup
 			= MissionRepository.getMissionsOfSameGroup(targetMission.getCourse(), targetMission.getLevel());
-		for (Mission mission: missionGroup) {
+		for (Mission mission : missionGroup) {
 			if (!targetMission.equals(mission) && mission.haveSamePair(pairs)) {
 				return false;
 			}
