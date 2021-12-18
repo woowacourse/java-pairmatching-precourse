@@ -10,6 +10,10 @@ public class PairMatchingController {
 	}
 
 	public void start() {
+		readCrews();
+	}
 
+	private void readCrews() {
+		pairMatching.setCrews();
 	}
 }

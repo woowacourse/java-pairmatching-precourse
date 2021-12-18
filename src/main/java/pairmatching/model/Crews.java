@@ -3,5 +3,9 @@ package pairmatching.model;
 import java.util.ArrayList;
 
 public class Crews {
-	private ArrayList<Crew> crews = new ArrayList<>();
+	private ArrayList<String> crews;
+
+	public Crews(ArrayList<String> crews) {
+		this.crews = crews;
+	}
 }
