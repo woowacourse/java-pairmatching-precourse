@@ -13,6 +13,8 @@ public class InputView {
 
 	public static RequestExecuteFeatureDto inputExecuteFeature() {
 		System.out.println(EXECUTE_FEATURE_MESSAGE);
-		return new RequestExecuteFeatureDto(readLine());
+		RequestExecuteFeatureDto requestExecuteFeatureDto = new RequestExecuteFeatureDto(readLine());
+		System.out.println();
+		return requestExecuteFeatureDto;
 	}
 }

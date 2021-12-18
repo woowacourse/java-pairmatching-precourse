@@ -1,6 +1,7 @@
 package pairmatching.controller;
 
 import static pairmatching.view.InputView.*;
+import static pairmatching.view.OutputView.*;
 
 import pairmatching.enums.FeatureEnum;
 import pairmatching.service.PairMatchingService;
@@ -29,9 +30,11 @@ public class PairMatching {
 	}
 
 	private void pairMatching() {
+		outputCourseAndLevel();
 	}
 
 	private void pairSearch() {
+		outputCourseAndLevel();
 	}
 
 	private void pairInitialize() {
