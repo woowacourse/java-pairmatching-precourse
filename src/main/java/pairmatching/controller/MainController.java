@@ -1,7 +1,5 @@
 package pairmatching.controller;
 
-import pairmatching.view.OutputView;
-
 public class MainController {
     InitController initController = new InitController();
     MenuController menuController = new MenuController();
@@ -15,10 +13,10 @@ public class MainController {
             if (menu == 1) {
                 pairController.matching();
             }
-            if(menu==2){
+            else if (menu == 2) {
                 pairController.select();
             }
-            if(menu==3){
+            else if (menu == 3) {
                 pairController.clear();
             }
         } while (menu != 0);

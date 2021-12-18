@@ -13,36 +13,16 @@ public class InputDTO {
         this.mission = MissionRepository.getMissionByName(mission);
     }
 
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-
     public Level getLevel() {
         return level;
-    }
-
-    public void setLevel(Level level) {
-        this.level = level;
     }
 
     public Mission getMission() {
         return mission;
     }
 
-    public void setMission(Mission mission) {
-        this.mission = mission;
+    public Course getCourse() {
+        return course;
     }
 
-    @Override
-    public String toString() {
-        return "InputDTO{" +
-                "course=" + course +
-                ", level=" + level +
-                ", mission=" + mission +
-                '}';
-    }
 }

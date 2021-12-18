@@ -39,12 +39,16 @@ public class PairController {
     }
 
     public void setInputDTO() {
-        OutputView.printCourseAndMission();
-        getInput();
-        if (!MatchingRepository.isMatched(inputDTO)) {
-            if (!inputService.parseRematch(InputView.isRematch())) {
-                setInputDTO();
+        try {
+            OutputView.printCourseAndMission();
+            getInput();
+            if (!MatchingRepository.isMatched(inputDTO)) {
+                if (!inputService.parseRematch(InputView.isRematch())) {
+                    setInputDTO();
+                }
             }
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
         }
     }
 

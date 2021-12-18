@@ -1,8 +1,6 @@
 package pairmatching.controller;
 
 import pairmatching.constant.ErrorConstant;
-import pairmatching.domain.CrewRepository;
-import pairmatching.domain.MissionRepository;
 import pairmatching.service.InitService;
 import pairmatching.view.OutputView;
 
