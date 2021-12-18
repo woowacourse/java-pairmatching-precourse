@@ -11,12 +11,4 @@ public class PairList {
     public ArrayList<Pair> getPairList(){
         return pairList;
     }
-    public int getPairListLength(){
-        return pairList.size();
-    }
-    public void printPairList(){
-        for(Pair  pair  : pairList){
-            pair.printPair();
-        }
-    }
 }

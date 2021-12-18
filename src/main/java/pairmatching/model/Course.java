@@ -23,10 +23,6 @@ public enum Course {
         crewList.add(crew);
     }
 
-    public List<Crew> getCrewList() {
-        return crewList;
-    }
-
     public void addStringCrew(String name) {
         stringCrewList.add(name);
     }

@@ -19,13 +19,11 @@ public class PairController {
     public void run() {
         initialSetting.initialInformation();
         initialSetting.getFileNameInDirectory();
-        while(selectMenu()){
-
+        while (selectMenu()) {
         }
-
     }
 
-    public boolean selectMenu() {
+    private boolean selectMenu() {
         try {
             inputView.printSelectMenu();
             String selectMenu = Console.readLine();
@@ -49,7 +47,7 @@ public class PairController {
         return true;
     }
 
-    public void pairMatch() {
+    private void pairMatch() {
         try {
             outputView.printInformation();
             inputView.inputInformation();
@@ -66,7 +64,7 @@ public class PairController {
         }
     }
 
-    public void getPair() {
+    private void getPair() {
         try {
             outputView.printInformation();
             inputView.inputInformation();
@@ -77,16 +75,16 @@ public class PairController {
             Mission mission = validator.validateMission(level, splitInformation[2]);
             validator.validateExistPairList(course, mission);
             outputView.printPairList(course, mission);
-        }catch (IllegalArgumentException exception){
+        } catch (IllegalArgumentException exception) {
             outputView.printError(exception.getMessage());
         }
     }
 
-    public void initialPair() {
+    private void initialPair() {
 
     }
 
-    public void inputPair(Course course, Mission mission) {
+    private void inputPair(Course course, Mission mission) {
         List<String> crewList = shuffleStringCrew(course);
         PairList pairList = new PairList();
         for (int idx = 0; idx < crewList.size(); idx += 2) {
@@ -101,7 +99,7 @@ public class PairController {
         mission.addPairMap(course, pairList);
     }
 
-    public List<String> shuffleStringCrew(Course course) {
+    private List<String> shuffleStringCrew(Course course) {
         return Randoms.shuffle(course.getStringCrewList());
     }
 }

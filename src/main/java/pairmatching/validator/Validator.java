@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 public class Validator {
     private static final String[] MENU_LIST = {"1", "2", "3", "Q"};
+    private static final char SPACE = ' ';
 
     public void validateSelectMenu(String menu) {
         if (!Arrays.asList(MENU_LIST).contains(menu)) {
@@ -47,7 +48,7 @@ public class Validator {
     }
 
     public String validateExistSpace(String string) {
-        if (string.charAt(0) != ' ') {
+        if (string.charAt(0) != SPACE) {
             throw new IllegalArgumentException("입력 형식을 확인해주세요. - 입력 값 사이에 공백을 입력해주세요.");
         }
         return string.substring(1);

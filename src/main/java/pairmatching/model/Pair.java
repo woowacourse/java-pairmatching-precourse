@@ -16,14 +16,4 @@ public class Pair {
     public ArrayList<String> getPair(){
         return pair;
     }
-    public int getPairLength(){
-        return pair.size();
-    }
-    public void clearPair(){
-        pair.clear();;
-    }
-    
-    public void printPair(){
-        System.out.println(String.join(":", pair));
-    }
 }
