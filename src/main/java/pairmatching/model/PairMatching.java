@@ -53,12 +53,13 @@ public class PairMatching {
 
 		}
 
-		if (str[0].equals("백엔드")) {
-			missionInfo = new MissionInfo(str[0], str[1], str[2], backendCrew);
-		} else {
-			missionInfo = new MissionInfo(str[0], str[1], str[2], frontendCrew);
+		List<String> crew = backendCrew;
+
+		if (str[0].equals("프론트엔드")) {
+			crew = frontendCrew;
 		}
 
+		missionInfo = new MissionInfo(str[0], str[1], str[2], crew);
 		missionInfoSet.add(missionInfo);
 		MakingShuffleList.printPairList(missionInfo.missionList);
 	}
@@ -87,4 +88,21 @@ public class PairMatching {
 
 		return true;
 	}
+
+	public List<String> checkReduplication(List<String> crew, String course, String level) {
+		for (int i = 0; i < 3; i++) {
+			int j;
+			for (j = 0; j < missionInfoSet.size(); j++) {
+				crew = MakingShuffleList.shuffle(crew);
+				if (missionInfoSet.get(j).checkReDuple(course, level, crew))
+					break;
+			}
+
+			if (j == missionInfoSet.size())
+				return crew;
+		}
+
+		throw new IllegalArgumentException("[ERROR] 적절한 페어 만들기 실패");
+	}
+
 }
