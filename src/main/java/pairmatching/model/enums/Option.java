@@ -20,7 +20,7 @@ public enum Option {
 
     public static Option findNameByValue(String value) {
         return Arrays.stream(Option.values())
-                .filter(option -> option.getValue().equals(value))
+                .filter(option -> option.getValue().equalsIgnoreCase(value))
                 .findFirst()
                 .orElse(null);
     }
