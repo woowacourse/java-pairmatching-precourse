@@ -8,7 +8,7 @@ public class MatchingValidator {
 
 	public static void checkDuplicatedValidation(Level level, Matching matching) {
 		//존재하지 않는다면
-		if (matching.getPairsMap().get(level).isEmpty()) {
+		if (matching.isExsistLevel(level)) {
 			return;
 		}
 		InputView.askRematching();

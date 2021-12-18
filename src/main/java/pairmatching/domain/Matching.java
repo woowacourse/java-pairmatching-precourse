@@ -15,6 +15,12 @@ public class Matching {
 		return pairsMap;
 	}
 
+	public boolean isExsistLevel(Level level){
+		if (pairsMap.containsKey(level)) {
+			return true;
+		}
+		return false;
+	}
 	@Override
 	public String toString() {
 		StringBuilder stringBuffer = new StringBuilder();
