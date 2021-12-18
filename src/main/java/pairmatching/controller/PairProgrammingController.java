@@ -3,15 +3,13 @@ package pairmatching.controller;
 import java.util.ArrayList;
 import java.util.List;
 import pairmatching.domain.PairProgramming;
+import pairmatching.domain.PairProgrammings;
 import pairmatching.view.InputView;
+import pairmatching.view.OutputView;
 
 public class PairProgrammingController {
 
-    private List<PairProgramming> pairProgrammings = new ArrayList<>();
-
-    public PairProgrammingController() {
-
-    }
+    private PairProgrammings pairProgrammings = new PairProgrammings();
 
     public void run() {
 
@@ -19,7 +17,8 @@ public class PairProgrammingController {
             String mainFunction = InputView.mainFunction();
             if (mainFunction.equals("1")) {
                 String detailedFunction = InputView.detailedFunction();
-                pairProgrammings.add(new PairProgramming(detailedFunction));
+                pairProgrammings.enrollNewProgram(detailedFunction);
+                OutputView.printPairInfo();
             }
             if (mainFunction.equals("Q")) {
                 break;

@@ -26,11 +26,7 @@ public class PairProgramming {
         .asList("보노", "시저", "쉐리", "신디", "다비", "덴버", "이브", "제시", "라라", "린다", "리사", "니콜", "로드",
         "윌터", "제키");
 
-    public PairProgramming(String detailedFunction) {
-        String[] detailedFunctions = detailedFunction.split(", ");
-        String targetCourse = detailedFunctions[0];
-        String targetLevel = detailedFunctions[1];
-        String targetMission = detailedFunctions[2];
+    public PairProgramming(String targetCourse, String targetLevel, String targetMission) {
         this.course = targetCourse;
         this.level = targetLevel;
         this.mission = targetMission;
@@ -94,5 +90,9 @@ public class PairProgramming {
         crewPairInfo.put(mission, new HashMap<>());
         backEndCrew.forEach(crew -> crewPairInfo.get(mission).put(crew, new HashSet()));
         backEndCrew.forEach(crew -> crewPairInfoHistory.put(crew, new HashSet()));
+    }
+
+    public Map<String, Map<String, Set>> getCrewPairInfo() {
+        return crewPairInfo;
     }
 }
