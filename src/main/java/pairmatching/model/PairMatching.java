@@ -60,8 +60,9 @@ public class PairMatching {
 		}
 
 		crew = checkReduplication(crew, str[0], str[1]);
-		
-		missionInfo = new MissionInfo(str[0], str[1], str[2], crew);
+
+		missionInfo = new MissionInfo(str[0], str[1], str[2]);
+		missionInfo.missionList = crew;
 		missionInfoSet.add(missionInfo);
 		MakingShuffleList.printPairList(missionInfo.missionList);
 	}
