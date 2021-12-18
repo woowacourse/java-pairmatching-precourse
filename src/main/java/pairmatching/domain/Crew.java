@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class Crew {
     private final String name;
-    private Map<Level, Set<Crew>> memorieswithCrewByLevel;
+    private Map<Level, Set<Crew>> memoriesWithCrewByLevel;
 
     public Crew(String name) {
         this.name = name;
@@ -16,14 +16,14 @@ public class Crew {
     }
 
     private void initMatchingHistory() {
-        memorieswithCrewByLevel = new HashMap<>();
+        memoriesWithCrewByLevel = new HashMap<>();
         for (Level level : Level.values()) {
-            memorieswithCrewByLevel.put(level, new HashSet<>());
+            memoriesWithCrewByLevel.put(level, new HashSet<>());
         }
     }
 
     public void addHistory(Crew colleague, Level level) {
-        memorieswithCrewByLevel.get(level).add(colleague);
+        memoriesWithCrewByLevel.get(level).add(colleague);
     }
 
     @Override
@@ -40,11 +40,11 @@ public class Crew {
             return false;
         }
         Crew other = (Crew) object;
-        return this.name.equals(other.name) && this.memorieswithCrewByLevel == other.memorieswithCrewByLevel;
+        return this.name.equals(other.name) && this.memoriesWithCrewByLevel == other.memoriesWithCrewByLevel;
     }
 
     public boolean isContainCrew(Level level, Crew colleague) {
-        return this.memorieswithCrewByLevel.get(level).contains(colleague);
+        return this.memoriesWithCrewByLevel.get(level).contains(colleague);
     }
 
     @Override
