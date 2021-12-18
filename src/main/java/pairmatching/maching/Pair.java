@@ -10,4 +10,8 @@ public class Pair {
 	public Pair(List<Crew> pairs) {
 		this.pairs = pairs;
 	}
+
+	public List<Crew> getCrews() {
+		return pairs;
+	}
 }

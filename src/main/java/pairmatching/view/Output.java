@@ -1,9 +1,13 @@
-package pairmatching.View;
+package pairmatching.view;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import pairmatching.crew.Crew;
 import pairmatching.edu.Course;
 import pairmatching.edu.Level;
+import pairmatching.maching.Pair;
 
 public class Output {
 	private final String CHOOSE_FEAT = "기능을 선택하세요.";
@@ -51,5 +55,13 @@ public class Output {
 	public void printExistMaching() {
 		System.out.println(MACHING_EXIST);
 		System.out.println("네 | 아니오");
+	}
+
+	public void printPairList(List<Pair> pairList) {
+		System.out.println("\n페어 매칭 결과입니다.");
+		pairList.forEach(s -> {
+			System.out.println(
+				String.join(" : ", s.getCrews().stream().map(Crew::getName).collect(Collectors.toList())));
+		});
 	}
 }

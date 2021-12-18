@@ -28,5 +28,12 @@ public enum Course {
 		return String.join(spliter, toStrings());
 	}
 
+	public static Course findByName(String name) {
+		return Arrays.stream(Course.values())
+			.filter(n -> n.getName().equals(name))
+			.collect(Collectors.toList())
+			.get(0);
+	}
+
 	// 추가 기능 구현
 }

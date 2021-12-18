@@ -1,6 +1,6 @@
 package pairmatching.crew;
 
-import static pairmatching.View.Input.*;
+import static pairmatching.view.Input.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
