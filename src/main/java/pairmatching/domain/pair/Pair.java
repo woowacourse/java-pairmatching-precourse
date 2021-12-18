@@ -12,9 +12,6 @@ public class Pair {
     public Pair() {
     }
 
-    public Pair(List<String> shuffledCrews) {
-    }
-
     public void addCrew(String crew) {
         crews.add(new Crew(crew));
     }
