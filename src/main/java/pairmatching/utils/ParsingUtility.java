@@ -1,6 +1,6 @@
 package pairmatching.utils;
 
-import pairmatching.dto.PropertyDto;
+import pairmatching.dto.CourseLevelMissionDto;
 
 public class ParsingUtility {
     private ParsingUtility() {}
@@ -9,7 +9,7 @@ public class ParsingUtility {
         return ParsingUtility.LazyHolder.INSTANCE;
     }
 
-    public PropertyDto extractedPropertyInformation(String courseAndLevelAndMission) {
+    public CourseLevelMissionDto extractedPropertyInformation(String courseAndLevelAndMission) {
         String[] propertyInformation = courseAndLevelAndMission.split(",");
         for (int index = 0; index < propertyInformation.length; index++) {
             propertyInformation[index] = propertyInformation[index].trim();
@@ -17,7 +17,7 @@ public class ParsingUtility {
         String course = propertyInformation[0];
         String level = propertyInformation[1];
         String mission = propertyInformation[2];
-        return new PropertyDto(course, level, mission);
+        return new CourseLevelMissionDto(course, level, mission);
     }
 
     private static class LazyHolder {

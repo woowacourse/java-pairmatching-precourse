@@ -6,7 +6,7 @@ import pairmatching.Configuration.DependencyInjection;
 import pairmatching.System.SystemErrorMessage;
 import pairmatching.System.SystemInputMessage;
 import pairmatching.domain.Crew;
-import pairmatching.dto.PropertyDto;
+import pairmatching.dto.CourseLevelMissionDto;
 import pairmatching.service.MatchingService;
 import pairmatching.utils.ParsingUtility;
 import pairmatching.view.InputSystem;
@@ -29,7 +29,7 @@ public class PairMatchingManagementApplication {
     private final MatchingService matchingService;
     private final ParsingUtility parsingUtility;
 
-    private Map<PropertyDto, String> matchingHistories;
+    private Map<CourseLevelMissionDto, String> matchingHistories;
 
     public PairMatchingManagementApplication() {
         DependencyInjection dependencyInjection = new DependencyInjection();
@@ -44,14 +44,14 @@ public class PairMatchingManagementApplication {
     public void start() {
         char inputFunctionNumber;
         List<Crew> crews = new ArrayList<>();
-        PropertyDto previousPropertyDto = null;
+        CourseLevelMissionDto previousCourseLevelMissionDto = null;
         do {
             inputFunctionNumber = inputSystem.inputFunctionList();
-            if (inputFunctionNumber == PAIR_SELECT && previousPropertyDto == null) {
+            if (inputFunctionNumber == PAIR_SELECT && previousCourseLevelMissionDto == null) {
                 outputSystem.printConsoleMessage(SystemErrorMessage.NOT_MATCHING_HISTORY.getMessage());
                 continue;
             } else if (inputFunctionNumber == PAIR_SELECT) {
-                outputSystem.printConsoleMessage(matchingHistories.get(previousPropertyDto));
+                outputSystem.printConsoleMessage(matchingHistories.get(previousCourseLevelMissionDto));
                 continue;
             }
             if (inputFunctionNumber == PAIR_RESET) {
@@ -60,26 +60,26 @@ public class PairMatchingManagementApplication {
                 continue;
             }
             String courseAndLevelAndMission = inputSystem.inputPropertyInput();
-            PropertyDto propertyDto = parsingUtility.extractedPropertyInformation(courseAndLevelAndMission);
-            crews = pickCrews(propertyDto.getCourse());
-            if (!matchingHistories.containsKey(propertyDto)) {
-                String matchingResult = matchingService.matchTheCrews(crews, propertyDto).toString();
+            CourseLevelMissionDto courseLevelMissionDto = parsingUtility.extractedPropertyInformation(courseAndLevelAndMission);
+            crews = pickCrews(courseLevelMissionDto.getCourse());
+            if (!matchingHistories.containsKey(courseLevelMissionDto)) {
+                String matchingResult = matchingService.matchTheCrews(crews, courseLevelMissionDto).toString();
                 if (matchingResult.toString().equals(SystemErrorMessage.NOT_MATCHING.getMessage())) {
                     outputSystem.printConsoleMessage(matchingResult.toString());
                     continue;
                 }
-                previousPropertyDto = propertyDto;
-                matchingHistories.put(propertyDto, SystemInputMessage.RESULT_PAIR_MATCHING.getMessage() + "\n" + matchingResult);
+                previousCourseLevelMissionDto = courseLevelMissionDto;
+                matchingHistories.put(courseLevelMissionDto, SystemInputMessage.RESULT_PAIR_MATCHING.getMessage() + "\n" + matchingResult);
             } else {
                 String inputYesOrNo = inputSystem.inputYesOrNo();
                 if (inputYesOrNo.equals(YES)) {
-                    matchingHistories.put(propertyDto, SystemInputMessage.RESULT_PAIR_MATCHING.getMessage() + "\n" + matchingService.matchTheCrews(crews, propertyDto).toString());
-                    previousPropertyDto = propertyDto;
+                    matchingHistories.put(courseLevelMissionDto, SystemInputMessage.RESULT_PAIR_MATCHING.getMessage() + "\n" + matchingService.matchTheCrews(crews, courseLevelMissionDto).toString());
+                    previousCourseLevelMissionDto = courseLevelMissionDto;
                 } else if (inputYesOrNo.equals(NO)) {
                     continue;
                 }
             }
-            outputSystem.printConsoleMessage(matchingHistories.get(propertyDto));
+            outputSystem.printConsoleMessage(matchingHistories.get(courseLevelMissionDto));
         } while (inputFunctionNumber != EXIT);
     }
 

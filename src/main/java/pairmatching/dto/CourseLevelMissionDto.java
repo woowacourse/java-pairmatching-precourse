@@ -2,12 +2,12 @@ package pairmatching.dto;
 
 import java.util.Objects;
 
-public class PropertyDto {
+public class CourseLevelMissionDto {
     private final String course;
     private final String level;
     private final String mission;
 
-    public PropertyDto(String course, String level, String mission) {
+    public CourseLevelMissionDto(String course, String level, String mission) {
         this.course = course;
         this.level = level;
         this.mission = mission;
@@ -26,7 +26,7 @@ public class PropertyDto {
         if (object == null || this.getClass() != object.getClass()) {
             return false;
         }
-        PropertyDto other = (PropertyDto) object;
+        CourseLevelMissionDto other = (CourseLevelMissionDto) object;
         return this.course.equals(other.course) && this.level.equals(other.level) && this.mission.equals(other.mission);
     }
 

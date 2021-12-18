@@ -6,7 +6,7 @@ import java.util.List;
 import pairmatching.System.SystemErrorMessage;
 import pairmatching.domain.Crew;
 import pairmatching.domain.Level;
-import pairmatching.dto.PropertyDto;
+import pairmatching.dto.CourseLevelMissionDto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -21,10 +21,10 @@ public class MatchingService {
         return MatchingService.LazyHolder.INSTANCE;
     }
 
-    public StringBuilder matchTheCrews(List<Crew> crews, PropertyDto propertyDto) {
+    public StringBuilder matchTheCrews(List<Crew> crews, CourseLevelMissionDto courseLevelMissionDto) {
         boolean isSuccessMatching = false;
         int limitCount = LIMIT_SHUFFLE_COUNT;
-        Level level = returnLevel(propertyDto.getLevel());
+        Level level = returnLevel(courseLevelMissionDto.getLevel());
         boolean isEvenNumber = isEven(crews.size());
         StringBuilder matchingResults = new StringBuilder();
         do {

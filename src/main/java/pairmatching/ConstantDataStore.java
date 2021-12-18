@@ -1,11 +1,11 @@
 package pairmatching;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 import pairmatching.domain.Crew;
 import pairmatching.domain.Level;
 import pairmatching.utils.FileUtility;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 public class ConstantDataStore {
     private final static List<String> readToListFromREADME = Arrays.asList("backend-crew.md", "frontend-crew.md");

@@ -1,13 +1,14 @@
 package pairmatching.validation;
 
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
+
 import pairmatching.Configuration.DependencyInjection;
 import pairmatching.ConstantDataStore;
 import pairmatching.domain.Course;
 import pairmatching.domain.Level;
 
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Pattern;
 
 public class ValidationImplementation implements Validation {
 
