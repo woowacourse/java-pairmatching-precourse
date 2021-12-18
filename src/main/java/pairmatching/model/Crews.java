@@ -14,7 +14,11 @@ public class Crews {
         return new Crews(crews);
     }
 
-    public List<String> getCrewsName() {
+    public List<Crew> getCrews() {
+        return crews;
+    }
+
+    public List<String> getCrewNames() {
         return crews.stream().map(Crew::getName).collect(Collectors.toList());
     }
 }

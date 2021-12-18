@@ -24,4 +24,8 @@ public class Pair {
     public int hashCode() {
         return Objects.hash(crewX, crewY);
     }
+
+    public static Pair from(Crew crewX, Crew crewY) {
+        return new Pair(crewX, crewY);
+    }
 }

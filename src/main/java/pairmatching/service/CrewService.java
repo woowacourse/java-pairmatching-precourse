@@ -12,12 +12,24 @@ public class CrewService {
     private Crews backendCrews;
     private Crews frontendCrews;
 
-    public List<String> getBackendCrewsName() {
-        return backendCrews.getCrewsName();
+    public List<Crew> getCrews(String course) {
+        if (course.equals(Course.BACKEND.getName())) {
+            return backendCrews.getCrews();
+        }
+        if (course.equals(Course.FRONTEND.getName())) {
+            return frontendCrews.getCrews();
+        }
+        return null;
     }
 
-    public List<String> getFrontendCrewsName() {
-        return frontendCrews.getCrewsName();
+    public List<String> getCrewNames(String course) {
+        if (course.equals(Course.BACKEND.getName())) {
+            return backendCrews.getCrewNames();
+        }
+        if (course.equals(Course.FRONTEND.getName())) {
+            return frontendCrews.getCrewNames();
+        }
+        return null;
     }
 
     public void initCrewsByReader() {
