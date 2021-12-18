@@ -7,6 +7,7 @@ public class PairMatchingOutputView {
 	private static final String PAIR_INITIALIZING_FUNCTION = "3. 페어 초기화";
 	private static final String QUIT_FUNCTION = "Q. 종료";
 	private static final String COURSE_LEVEL_MISSION_INPUT = "과정, 레벨, 미션을 선택하세요.";
+	private static final String COURSE_LEVEL_MISSION_INPUT_EXAMPLE = "ex) 백엔드, 레벨1, 자동차경주";
 	private static final String COURSE = "과정";
 	private static final String BACKEND = "백엔드";
 	private static final String FRONTEND = "프론트엔드";
@@ -42,6 +43,7 @@ public class PairMatchingOutputView {
 	public static void printCourseAndMissionInputMessage() {
 		printCourseAndMission();
 		System.out.println(COURSE_LEVEL_MISSION_INPUT);
+		System.out.println(COURSE_LEVEL_MISSION_INPUT_EXAMPLE);
 	}
 	public static void printCourseAndMission() {
 		StringBuilder courseAndMissionMessage = new StringBuilder();
