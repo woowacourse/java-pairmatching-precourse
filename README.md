@@ -16,11 +16,11 @@
 - 크루 리스트 반환 ( -> List<String>) (백/프론트)
 
 ### 페어 리스트 저장소
-1. 필드값 : HashMap<Course, HashMap<Level, HashMap<Crew, HashSet(Crew)> > >
-   - Course - Front/Back 구분
+1. 필드값 : HashMap<Crew, HashMap<Level, HashSet(Crew)> > 
+   - Crew - 코스, 크루이름
    - Level - 1,2,4레벨 구분
-   - Crew - 크루 이름
    - HashSet - 페어매치된 크루들 목록
+
 
 
 ### 협력 목록
