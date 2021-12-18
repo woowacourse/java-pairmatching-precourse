@@ -4,6 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.domain.Course;
+import pairmatching.domain.Crew;
+import pairmatching.domain.Level;
+import pairmatching.domain.Mission;
+import pairmatching.domain.PairKey;
 import pairmatching.repository.PairMap;
 import pairmatching.service.PairMatchingService;
 import pairmatching.service.Validator;
@@ -21,7 +26,11 @@ public class PairController {
 
 		PairView.printGuideMessage();
 		List<String> input = getCourseLevelMission();
+		while (askRematch(input) != MATCH_START) {
+			input = getCourseLevelMission();
+		}
 		PairMatchingService.match(input);
+		printResult(input);
 	}
 
 	private static boolean askRematch(List<String> input) {
@@ -55,9 +64,6 @@ public class PairController {
 		try {
 			String inputString = Console.readLine();
 			List<String> inputList = getValidStringList(inputString);
-			if (askRematch(inputList) != MATCH_START) {
-				return getCourseLevelMission();
-			}
 			return inputList;
 		} catch (IllegalArgumentException e) {
 			ErrorMessage.print(e.getMessage());
@@ -72,5 +78,25 @@ public class PairController {
 		Validator.checkListSize(inputList, INPUT_SIZE);
 		Validator.checkExistence(inputList);
 		return inputList;
+	}
+
+	public static void showPairByInput() {
+		PairView.printGuideMessage();
+		List<String> input = getCourseLevelMission();
+		printResult(input);
+	}
+
+	private static void printResult(List<String> input) {
+		PairKey key = getKey(input);
+		List<Crew> crews = PairMap.getCrewsByKey(key);
+		PairView.printPair(crews);
+	}
+
+	private static PairKey getKey(List<String> input) {
+
+		String course = input.get(0);
+		String level = input.get(1);
+		String mission = input.get(2);
+		return new PairKey(Course.find(course), Level.find(level), Mission.find(mission));
 	}
 }

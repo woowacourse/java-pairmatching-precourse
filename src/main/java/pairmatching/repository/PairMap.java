@@ -21,4 +21,8 @@ public class PairMap {
 	public static void add(PairKey key, List<Crew> crews) {
 		pairs.put(key, crews);
 	}
+
+	public static List<Crew> getCrewsByKey(PairKey key) {
+		return pairs.get(key);
+	}
 }

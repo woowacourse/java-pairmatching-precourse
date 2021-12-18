@@ -38,7 +38,6 @@ public class PairMatchingService {
 			crews = Randoms.shuffle(crews);
 			if (isValidPair(crews)) {
 				PairMap.add(key, crews);
-				PairView.printPair(crews);
 				return;
 			}
 			trial++;
@@ -48,6 +47,8 @@ public class PairMatchingService {
 	}
 
 	private static boolean isValidPair(List<Crew> crews) {
+		// 이전에 매칭한 적이 있는지 확인
+
 		return true;
 	}
 

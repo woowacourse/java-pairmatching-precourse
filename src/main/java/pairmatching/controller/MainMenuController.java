@@ -22,7 +22,7 @@ public class MainMenuController {
 		if (input.equals(Menu.PAIR_MATCHING.toString())) {
 			PairController.startPairMatching();
 		} else if (input.equals(Menu.PAIR_SHOW.toString())) {
-
+			PairController.showPairByInput();
 		} else if (input.equals(Menu.PAIR_INIT.toString())) {
 
 		}
