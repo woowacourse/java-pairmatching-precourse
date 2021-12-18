@@ -21,20 +21,20 @@ public class MissionRepository {
 
 	public Mission getMissionByLevelAndName(Level level, String missionName) {
 		return missions.stream()
-					.filter(
-						mission -> Objects.equals(mission.getName(), missionName)
-									&& Objects.equals(level, mission.getLevel()))
-					.findFirst()
-					.get();
+			.filter(
+				mission -> Objects.equals(mission.getName(), missionName)
+					&& Objects.equals(level, mission.getLevel()))
+			.findFirst()
+			.get();
 	}
 
 	private List<Mission> createMissionList(List<String> missions) {
 		return missions
-				.stream()
-				.map(e -> new Mission(
-										Level.valueOf(e.split(DELIMITER_FOR_MISSION_INFO)[LEVEL_INFO_INDEX]),
-										e.split(DELIMITER_FOR_MISSION_INFO)[MISSION_NAME_INDEX]))
-				.collect(Collectors.toList());
+			.stream()
+			.map(e -> new Mission(
+				Level.valueOf(e.split(DELIMITER_FOR_MISSION_INFO)[LEVEL_INFO_INDEX]),
+				e.split(DELIMITER_FOR_MISSION_INFO)[MISSION_NAME_INDEX]))
+			.collect(Collectors.toList());
 	}
 
 	private void validateMissionNames(List<String> missions) {

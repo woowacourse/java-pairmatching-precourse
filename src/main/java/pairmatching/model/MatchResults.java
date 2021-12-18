@@ -11,9 +11,9 @@ public class MatchResults {
 
 	public boolean hasMatchResultsByMission(Course course, Mission mission) {
 		return matchResults.stream()
-							.filter(match -> match.getMission().equals(mission))
-							.collect(Collectors.toList())
-							.size() > 0;
+			.filter(match -> match.getMission().equals(mission))
+			.collect(Collectors.toList())
+			.size() > 0;
 	}
 
 	public String getMatchResultByMission(Mission mission) {
@@ -72,7 +72,8 @@ public class MatchResults {
 		}
 	}
 
-	private void matchFinalProcess(CrewRepository crewsByString, Mission mission, int trial, List<MatchResult> trialList) {
+	private void matchFinalProcess(CrewRepository crewsByString, Mission mission, int trial,
+		List<MatchResult> trialList) {
 		boolean matched = isMatchedBefore(matchResults, trialList);
 		if (matched) {
 			match(crewsByString, mission, trial++);
@@ -86,8 +87,8 @@ public class MatchResults {
 		for (MatchResult trial : trialList) {
 			matchResults.forEach(e -> {
 				if (e.getLevel().equals(trial.getLevel())
-				&& !e.getOwner().equals(trial.getOwner())
-				&& e.getPairMembers().contains(trial.getOwner())) {
+					&& !e.getOwner().equals(trial.getOwner())
+					&& e.getPairMembers().contains(trial.getOwner())) {
 					result.set(true);
 				}
 			});

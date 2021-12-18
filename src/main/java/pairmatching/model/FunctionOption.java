@@ -19,8 +19,8 @@ public enum FunctionOption {
 
 	public static FunctionOption of(String request) {
 		return Arrays.stream(FunctionOption.values())
-				.filter(functionOption -> Objects.equals(functionOption.functionOption, request))
-				.findFirst()
-				.orElseThrow(() -> new NotFoundFunctionOptionException());
+			.filter(functionOption -> Objects.equals(functionOption.functionOption, request))
+			.findFirst()
+			.orElseThrow(() -> new NotFoundFunctionOptionException());
 	}
 }
