@@ -11,15 +11,20 @@ public class PairMatchingController {
 	private Manager manager = new Manager();
 
 	public void selectMenu() {
-		String selection = view.inputMenu();
-		if (selection.equals("1")) {
-			matching();
-		}
-		if (selection.equals("2")) {
-			search();
-		}
-		if (selection.equals("3")) {
-			reset();
+		while (true) {
+			String selection = view.inputMenu();
+			if (selection.equals("1")) {
+				matching();
+			}
+			if (selection.equals("2")) {
+				search();
+			}
+			if (selection.equals("3")) {
+				reset();
+			}
+			if (selection.equals("Q")) {
+				break;
+			}
 		}
 	}
 
@@ -34,14 +39,14 @@ public class PairMatchingController {
 				if (choice.equals("아니오")) {
 					continue;
 				}
-				if(choice.equals("네")){
+				if (choice.equals("네")) {
 					MatchInfo matchInfo = manager.find(selects);
 					manager.rematch(matchInfo);
 					view.printPair(matchInfo.getPairList());
 					break;
 				}
 			}
-			if(!manager.isDuplication(selects)){
+			if (!manager.isDuplication(selects)) {
 				manager.setDetail(selects);
 				MatchInfo matchInfo = manager.find(selects);
 				view.printPair(matchInfo.getPairList());
