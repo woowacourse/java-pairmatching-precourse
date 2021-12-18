@@ -1,6 +1,10 @@
 package pairmatching;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Application {
+	private static final String ERROR_INVALID_INPUT = "[ERROR] 잘못된 입력입니다.";
 	private static boolean end = false;
 
 	public static void main(String[] args) {
@@ -21,6 +25,7 @@ public class Application {
 
 	public static void chooseOperation(PairMatcher matcher) {
 		String input = InputView.getInputToOperate();
+		validUserInput(input);
 		if (input.equals("1")) {
 			matcher.pairMatching();
 		}
@@ -30,8 +35,15 @@ public class Application {
 		if (input.equals("3")) {
 			matcher.pairInitiate();
 		}
-		if (input.equals("Q")) {
+		if (input.equals("Q") || input.equals("q")) {
 			end = true;
+		}
+	}
+
+	private static void validUserInput(String input) {
+		List<String> possibleInputs = Arrays.asList("1", "2", "3", "Q", "q");
+		if (!possibleInputs.contains(input)) {
+			throw new IllegalArgumentException(ERROR_INVALID_INPUT);
 		}
 	}
 }
