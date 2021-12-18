@@ -14,16 +14,33 @@ public class CrewRepository {
         backendCrewList.add(crew);
     }
 
-    public static List<String> getBackendCrewNames() {
-        return backendCrewList.stream().map(crew -> crew.getName()).collect(Collectors.toList());
-    }
-
     public static void addFrontendCrew(Crew crew) {
         frontendCrewList.add(crew);
     }
 
-    public static List<String> getFrontendCrewNames() {
-        return frontendCrewList.stream().map(crew -> crew.getName()).collect(Collectors.toList());
+    public static List<List<String>> makeBackendPair() {
+        List<String> nameList = shuffleBackendCrew();
+        return makePairs(nameList);
+    }
+
+    public static List<List<String>> makeFrontendPair() {
+        List<String> nameList = shuffleFrontendCrew();
+        return makePairs(nameList);
+    }
+
+    private static List<List<String>> makePairs(List<String> nameList) {
+        List<List<String>> pairList = new ArrayList<>();
+        int i = 0;
+        for(; i < nameList.size() - 1; i+=2) {
+            List<String> pair = new ArrayList<>();
+            pair.add(nameList.get(i));
+            pair.add(nameList.get(i+1));
+            pairList.add(pair);
+        }
+        if(i != nameList.size()) {
+            pairList.get(pairList.size()-1).add(nameList.get(i));
+        }
+        return pairList;
     }
 
     public static List<String> shuffleBackendCrew() {
@@ -36,16 +53,11 @@ public class CrewRepository {
         return Randoms.shuffle(nameList);
     }
 
-//    public static void printBackend() {
-//        System.out.println("printBackend");
-//        for(Crew crew : backendCrewList) {
-//            System.out.println(crew.getName());
-//        }
-//    }
-//    public static void printFront() {
-//        System.out.println("printFrontEnd");
-//        for(Crew crew : frontendCrewList) {
-//            System.out.println(crew.getName());
-//        }
-//    }
+    public static List<String> getBackendCrewNames() {
+        return backendCrewList.stream().map(crew -> crew.getName()).collect(Collectors.toList());
+    }
+
+    public static List<String> getFrontendCrewNames() {
+        return frontendCrewList.stream().map(crew -> crew.getName()).collect(Collectors.toList());
+    }
 }
