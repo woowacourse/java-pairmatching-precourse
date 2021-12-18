@@ -17,6 +17,7 @@ import pairmatching.view.OutputView;
 public class PairMatchingController {
 
 	private static final String NO = "아니요";
+	private static final String ERROR_NOT_FOUND_PAIR = "매칭 이력이 없습니다.";
 
 	private Map<PairMatching, Pair> pairMap;
 	private Crews crews;
@@ -81,6 +82,9 @@ public class PairMatchingController {
 
 	private void findPair(PairMatching matchingInformation) {
 		Pair pair = pairMap.get(matchingInformation);
+		if (pair == null) {
+			throw new IllegalArgumentException(ERROR_NOT_FOUND_PAIR);
+		}
 		pair.findPair();
 	}
 
