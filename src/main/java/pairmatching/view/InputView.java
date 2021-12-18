@@ -4,14 +4,28 @@ import camp.nextstep.edu.missionutils.Console;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import pairmatching.domain.Command;
+import pairmatching.domain.Level;
 
 public class InputView {
 
     private static final String SELECT_COMMAND = "기능을 선택하세요.";
     private static final String COMMAND_LIST = "%s. %s\n";
+
+    private static final String COURSE = "과정: ";
+    private static final String MISSION = "미션:";
+    private static final String MISSION_LEVEL = "  - %s: %s";
+
+    private static final String INPUT_COURSE_LEVEL_MISSION = "과정, 레벨, 미션을 선택하세요.\nex) 백엔드, 레벨1, 자동차경주";
+
+    private static final String PRINT_DELEMITER = "############################################";
+    private static final String LIST_DELEMITER = " | ";
+    private static final String DELEMITER = ",";
 
     private InputView() {
     }
@@ -129,5 +143,32 @@ public class InputView {
 
     private static void printCommand(Command command) {
         System.out.printf(COMMAND_LIST, command.request(), command.commandName());
+    }
+
+    public static void printCurrentBoard(List<String> courses, Map<Level, List<String>> missions) {
+        System.out.println(PRINT_DELEMITER);
+        System.out.print(COURSE);
+        System.out.println(printCourses(courses));
+        System.out.println(MISSION);
+        for (Level level : missions.keySet()) {
+            System.out.printf(MISSION_LEVEL, level.getName(), printMissions(missions.get(level)));
+            System.out.println();
+        }
+        System.out.println(PRINT_DELEMITER);
+    }
+
+    private static String printCourses(List<String> courses) {
+        return String.join(LIST_DELEMITER, courses);
+    }
+
+    private static String printMissions(List<String> missions) {
+        return String.join(LIST_DELEMITER, missions);
+    }
+
+    public static List<String> inputCourseAndLevelAndMission() {
+        System.out.println(INPUT_COURSE_LEVEL_MISSION);
+        return Arrays.stream(Console.readLine().split(DELEMITER))
+            .map(String::trim)
+            .collect(Collectors.toList());
     }
 }
