@@ -41,6 +41,7 @@ public class Matching {
             return true;
         }
         if (c == '3') {
+            MatchingController.clear();
             IOProvider.printInit();
             return true;
         }

@@ -35,4 +35,8 @@ public class MatchingController {
     public static boolean hasMission(MissionName input) {
         return missionSet.hasMissionByName(input);
     }
+
+    public static void clear() {
+        missionSet.clear();
+    }
 }

@@ -49,4 +49,8 @@ public class MissionSet {
     public boolean hasMissionByName(MissionName input) {
         return missions.stream().anyMatch((mission) -> mission.isName(input.getName()));
     }
+
+    public void clear() {
+        missions.clear();
+    }
 }
