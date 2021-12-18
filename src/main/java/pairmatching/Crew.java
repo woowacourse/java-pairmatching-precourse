@@ -14,8 +14,6 @@ public class Crew {
         this.name = name;
     }
 
-    public static void PrintName() {
-        System.out.println(name);
-    }
+
 
 }

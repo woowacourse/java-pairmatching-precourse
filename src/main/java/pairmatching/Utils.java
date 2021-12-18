@@ -23,7 +23,7 @@ public class Utils {
             PrintPage.PrintMatching();
         }
         if (answer.equals("3")) {
-            // 페어 초기화
+            PairReset();
         }
         if (!(answer.equals("1")||answer.equals("2")||answer.equals("3")||answer.equals("Q"))) {
             Except.StartPageError();
@@ -68,5 +68,10 @@ public class Utils {
         } catch (Exception e) {
             System.out.println("[ERROR] : 프론트엔드 명단이 이상해요");
         }
+    }
+
+    public static void PairReset() {
+        System.out.println("초기화 되었습니다.");
+        PrintPage.StartPage();
     }
 }
