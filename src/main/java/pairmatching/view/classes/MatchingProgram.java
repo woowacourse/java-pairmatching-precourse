@@ -3,25 +3,45 @@ package pairmatching.view.classes;
 import static camp.nextstep.edu.missionutils.Console.*;
 import static pairmatching.constant.PromptConstants.*;
 
+import java.io.FileNotFoundException;
+
+import pairmatching.constant.CheckValidationCourseLevelMissionStatus;
 import pairmatching.constant.FunctionStatus;
 import pairmatching.constant.ProgramStatus;
+import pairmatching.controller.CheckerValidationCourseLevelMissionInput;
 import pairmatching.controller.FunctionSelector;
 import pairmatching.exception.InvalidFunctionSelectException;
+import pairmatching.model.ProgramData;
 import pairmatching.view.MatchingProgramInterface;
 
 public class MatchingProgram implements MatchingProgramInterface {
 	ProgramStatus programStatus = ProgramStatus.SHOW_FUNCTIONS;
-	FunctionStatus functionStatus;
 	FunctionSelector functionSelector = new FunctionSelector();
+	ProgramData programData;
 
 	@Override
 	public void start() {
+		initProgramData();
 		while(true) {
 			if (proceedFunctionSelect())
 				break;
 
-			if (programStatus == ProgramStatus.SHOW_PAIR_MATCHING_BOARD_FOR_MATCHING) {
-				System.out.println("matching");
+			proceedShowPairMatchingBoardForMatching();
+			if (programStatus == ProgramStatus.INPUT_COURSE_LEVEL_MISSION) {
+				String inputCourseLevelMission = readLine();
+				CheckerValidationCourseLevelMissionInput validationChecker = new CheckerValidationCourseLevelMissionInput(inputCourseLevelMission);
+				if (validationChecker.checkValidation() == CheckValidationCourseLevelMissionStatus.VALID) {
+
+				}
+				if (validationChecker.checkValidation() == CheckValidationCourseLevelMissionStatus.INVALID_COURSE) {
+
+				}
+				if (validationChecker.checkValidation() == CheckValidationCourseLevelMissionStatus.INVALID_LEVEL) {
+
+				}
+				if (validationChecker.checkValidation() == CheckValidationCourseLevelMissionStatus.INVALID_MISSION) {
+
+				}
 				break;
 			}
 
@@ -34,6 +54,22 @@ public class MatchingProgram implements MatchingProgramInterface {
 				System.out.println("clean");
 				break;
 			}
+		}
+	}
+
+	private void proceedShowPairMatchingBoardForMatching() {
+		if (programStatus == ProgramStatus.SHOW_PAIR_MATCHING_BOARD_FOR_MATCHING) {
+			System.out.println(PAIR_MATCHING_BOARD);
+			System.out.println(ASKING_COURSE_LEVEL_MISSION);
+			programStatus = ProgramStatus.INPUT_COURSE_LEVEL_MISSION;
+		}
+	}
+
+	private void initProgramData() {
+		try {
+			programData = new ProgramData();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 

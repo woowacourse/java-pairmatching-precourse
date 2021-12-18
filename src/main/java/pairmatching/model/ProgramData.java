@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class GameData {
+public class ProgramData {
 	List<Crew> backendCrews = new ArrayList<Crew>();
 	List<Crew> frontendCrews = new ArrayList<Crew>();
 
-	public GameData() throws FileNotFoundException {
+	public ProgramData() throws FileNotFoundException {
 		makeCrewsFromFile();
 	}
 
