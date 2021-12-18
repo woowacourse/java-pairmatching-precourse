@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -14,11 +15,11 @@ public class Crews {
 	List<String> shuffledCrew;
 
 	public Crews() throws IOException {
-		this.crewNames = readFile();
+		this.crewNames = loadCrewsFromFile();
 		this.shuffledCrew = Randoms.shuffle(crewNames);
 	}
 
-	public static List<String> readFile() throws IOException {
+	public static List<String> loadCrewsFromFile() throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader(BACkEND_CREW_PATH));
 		List<String> crewNames = new ArrayList<>();
 		while (true) {
@@ -32,10 +33,31 @@ public class Crews {
 		return crewNames;
 	}
 
+	public List<Pair> makePairs() {
+		List<Pair> pairList = new ArrayList<>();
+		int index = 0;
+		for (String crew : this.shuffledCrew) {
+			if (index % 2 == 1) {
+				System.out.println("size of pairList: " + pairList.size());
+				System.out.println("index: " + index);
+				pairList.get((index - 1) / 2).addCrew(crew);
+				index += 1;
+				continue;
+			}
+			pairList.add(new Pair(crew));
+			index += 1;
+		}
+		return pairList;
+	}
+
 	public static void main(String[] args) throws IOException {
 		Crews backEnd = new Crews();
 		backEnd.crewNames.forEach(System.out::println);
 		System.out.println();
 		backEnd.shuffledCrew.forEach(System.out::println);
+		List<Pair> pairList = backEnd.makePairs();
+		for (Pair pair : pairList) {
+			System.out.println(pair.toString());
+		}
 	}
 }
