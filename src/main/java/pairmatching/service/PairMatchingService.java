@@ -27,7 +27,7 @@ public class PairMatchingService {
 		String[] userInput = splitCourseInfo(rawInfo);
 		while (true) {
 			try {
-				match(userInput);
+				play(userInput);
 				break;
 			} catch (IllegalArgumentException e) {
 
@@ -42,11 +42,18 @@ public class PairMatchingService {
 		while (duplicateNum != 3) {
 			matchReuslt = match(userInput);
 			if (!checkDuplicate(userInput, matchReuslt)) {
-				//saveReuslt(userInput, matchResult);
+				saveResult(userInput,  matchReuslt);
 				return;
 			}
 		}
 		throw new IllegalArgumentException("[ERROR] 같은 레벨에서 이미 페어로 만난적이 있는 크루끼리 다시 페어로 매칭 되었습니다.");
+
+	}
+
+	public void saveResult(String[] userInput, ArrayList<ArrayList<String>> matchReuslt) {
+		if(userInput[0].equals("백엔드")){
+			backendRecord.saveResult(userInput, matchReuslt);
+		}
 
 	}
 
@@ -125,11 +132,12 @@ public class PairMatchingService {
 		return "src/main/resources/frontend-crew.md";
 	}
 
-	public void isDuplicate(String[] courseInfo, ArrayList<ArrayList<String>> matchResult) {
+	public boolean isDuplicate(String[] courseInfo, ArrayList<ArrayList<String>> matchResult) {
 		if (courseInfo[0].equals("백엔드")) {
-
+			return backendRecord.checkDuplicate(courseInfo, matchResult);
 		}
 
+		return false;
 	}
 
 	public boolean checkDuplicate(String[] userInput, ArrayList<ArrayList<String>> matchResult) {

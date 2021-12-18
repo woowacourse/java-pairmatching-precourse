@@ -9,6 +9,20 @@ public class BackendRecord {
 	Level4Record level4Record = new Level4Record();
 	Level5Record level5Record = new Level5Record();
 
+	public void saveResult(String[] courseInfo, ArrayList<ArrayList<String>> matchResult) {
+		if (courseInfo[1].equals("레벨1")) {
+			level1Record.setMission(courseInfo[2], matchResult);
+		}
+		System.out.println("저장완료");
+	}
+
+	public boolean checkDuplicate(String[] courseInfo, ArrayList<ArrayList<String>> matchResult) {
+		if (courseInfo[1].equals("레벨1")) {
+			return checkDuplicateLevel1(matchResult);
+		}
+		return false;
+	}
+
 	public boolean checkDuplicateLevel1(ArrayList<ArrayList<String>> matchResult) {
 		for (ArrayList<ArrayList<String>> level1 : level1Record.getLevel1Record()) {
 			if (isDuplicate(level1, matchResult)) {

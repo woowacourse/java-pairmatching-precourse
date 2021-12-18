@@ -11,15 +11,21 @@ public class Leve1Record {
 	private static boolean isLottoRecord = false;
 	private static boolean isBaseballGameRecord = false;
 
-	public void setRacingCar(ArrayList<ArrayList<String>> matchResult){
+	public void setMission(String mission, ArrayList<ArrayList<String>> matchResult) {
+		if (mission.equals("자동차경주")) {
+			setRacingCar(matchResult);
+		}
+	}
+
+	public void setRacingCar(ArrayList<ArrayList<String>> matchResult) {
 		this.racingCar = matchResult;
 	}
 
-	public void setLotto(ArrayList<ArrayList<String>> matchResult){
+	public void setLotto(ArrayList<ArrayList<String>> matchResult) {
 		this.lotto = matchResult;
 	}
 
-	public void setBaseballGame(ArrayList<ArrayList<String>> matchResult){
+	public void setBaseballGame(ArrayList<ArrayList<String>> matchResult) {
 		this.baseballGame = matchResult;
 	}
 
