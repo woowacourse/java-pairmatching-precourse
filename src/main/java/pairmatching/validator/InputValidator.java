@@ -4,11 +4,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import pairmatching.constant.LevelAndMission;
+import pairmatching.domain.Match;
+import pairmatching.dto.ChoiceDto;
+
 public class InputValidator {
 
 	public static final String ERROR_PREFIX = "[ERROR] ";
 	public static final String INVALID_ENTRY_MENU_CHOICE = ERROR_PREFIX + "존재 하지 않는 메뉴 항목입니다";
 	public static final String INVALID_SUB_MENU_CHOICE = ERROR_PREFIX + "잘못된 입력입니다. 예: 과정, 레벨, 미션";
+	public static final String INVALID_NOT_FOUND_MISSIONS = ERROR_PREFIX + "존재하지 않는 미션입니다";
 
 	public static final List<String> ENTRY_MENU_LIST = Arrays.asList("1", "2", "3", "Q");
 
@@ -25,4 +30,16 @@ public class InputValidator {
 			throw new IllegalArgumentException(INVALID_SUB_MENU_CHOICE);
 		}
 	}
+
+	public static void validateMatching(String input) {
+		ChoiceDto choiceDto = new ChoiceDto(input);
+		String levelName = choiceDto.getLevel();
+		String missionName = choiceDto.getMission();
+		boolean matches =
+			LevelAndMission.isExistLevelAndMissions(levelName, missionName);
+		if (!matches) {
+			throw new IllegalArgumentException(INVALID_NOT_FOUND_MISSIONS);
+		}
+	}
+
 }

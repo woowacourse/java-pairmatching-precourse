@@ -1,7 +1,7 @@
 package pairmatching.constant.message;
 
 import pairmatching.constant.Course;
-import pairmatching.constant.Level;
+import pairmatching.constant.LevelAndMission;
 
 public class SystemMessage {
 
@@ -17,7 +17,7 @@ public class SystemMessage {
 	public static final String INPUT_COURSE_MENU =
 		SHARP_LINE + "과정: " + Course.getSelfDescription() + NEWLINE
 			+ "미션:" + NEWLINE
-			+ Level.getSelfDescription()
+			+ LevelAndMission.getSelfDescription()
 			+ SHARP_LINE
 			+ "과정, 레벨, 미션을 선택하세요." + NEWLINE
 			+ "ex) 백엔드, 레벨1, 자동차경주";

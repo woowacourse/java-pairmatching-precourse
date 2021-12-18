@@ -21,6 +21,10 @@ public class PairMatchRepository {
 		return pairMatches;
 	}
 
+	public static void clear() {
+		pairMatches = new ArrayList<>();
+	}
+
 	public static PairMatch addPairMatches(Match match, List<Crew> crews) {
 		List<Pair> pairs = makePairs(crews);
 		PairMatch pairMatch = new PairMatch(match, pairs);
@@ -64,7 +68,4 @@ public class PairMatchRepository {
 			.orElseGet(() -> null);
 	}
 
-	public static void clear() {
-		pairMatches = new ArrayList<>();
-	}
 }

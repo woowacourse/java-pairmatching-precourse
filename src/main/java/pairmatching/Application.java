@@ -1,10 +1,6 @@
 package pairmatching;
 
-import java.util.List;
-
 import pairmatching.controller.PairmatchingController;
-import pairmatching.service.PairmatchingService;
-import pairmatching.util.FileInputUtils;
 
 public class Application {
     private static PairmatchingController pairmatchingController;

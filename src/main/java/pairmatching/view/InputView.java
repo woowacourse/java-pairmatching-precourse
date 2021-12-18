@@ -3,18 +3,7 @@ package pairmatching.view;
 import static java.lang.System.*;
 import static pairmatching.constant.message.SystemMessage.*;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.function.Supplier;
-
-import com.sun.org.apache.xpath.internal.compiler.FunctionTable;
-
 import camp.nextstep.edu.missionutils.Console;
-import pairmatching.domain.Pair;
-import pairmatching.domain.PairMatch;
-import pairmatching.repository.PairMatchRepository;
 import pairmatching.validator.InputValidator;
 
 public class InputView {
@@ -27,19 +16,25 @@ public class InputView {
 			try {
 				input = Console.readLine();
 				InputValidator.validateEntryMenu(input);
+				return input;
 			} catch (Exception e) {
 				out.println(e.getMessage());
 				continue;
 			}
-			if (input.equals(QUIT)) {
-				return QUIT;
-			}
-			return input;
 		}
 	}
 
 	public static String inputMatching() {
-		return commonSubMenuInput();
+		String input;
+		while (true) {
+			try {
+				input = commonSubMenuInput();
+				InputValidator.validateMatching(input);
+				return input;
+			} catch (Exception e) {
+				out.println(e.getMessage());
+			}
+		}
 	}
 
 	public static String inputRetrieve() {
