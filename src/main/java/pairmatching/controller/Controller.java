@@ -6,6 +6,7 @@ import java.util.List;
 
 import pairmatching.domain.Course;
 import pairmatching.domain.Level;
+import pairmatching.domain.MatchingInfo;
 import pairmatching.domain.System;
 import pairmatching.utils.Validator;
 import pairmatching.view.ConsoleInputView;
@@ -36,7 +37,9 @@ public class Controller {
             if (inputFunction.equals(PAIR_MATCHING_SIGN)) {
                 pushMatchingInfo();
             }
-            
+            if (inputFunction.equals(PAIR_LOOKING_UP_SIGN)) {
+                lookUpPair();
+            }
             if (inputFunction.equals(PAIR_INITIALIZATION_SIGN)) {
                 initializeMatchingInfo();
             }
@@ -71,6 +74,13 @@ public class Controller {
             inputFunction = getInputFunction();
         }
         return inputFunction;
+    }
+
+    private void lookUpPair() {
+        List<String> matchInfoList = Arrays.asList(ConsoleInputView.inputMatchingInfo().split(COMMA_SEPARATION));
+        MatchingInfo matchingInfo = system.getMatchingInfo(Course.getCourse(matchInfoList.get(COURSE_INDEX)),
+            Level.getLevel(matchInfoList.get(LEVEL_INDEX)), matchInfoList.get(MISSION_INDEX));
+        OutputView.printPairs(matchingInfo);
     }
 
 }
