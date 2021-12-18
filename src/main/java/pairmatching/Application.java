@@ -9,5 +9,4 @@ public class Application {
         MainController mainController = MainController.getInstance();
         mainController.run();
     }
-
 }

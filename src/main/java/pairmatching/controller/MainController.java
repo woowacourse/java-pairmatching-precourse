@@ -1,5 +1,7 @@
 package pairmatching.controller;
 
+import pairmatching.view.InputView;
+
 public class MainController {
     public static MainController instance;
 
@@ -15,5 +17,7 @@ public class MainController {
     }
 
     private void initMain() {
+        InputView.printSelectMode();
+        String input = InputView.getInput();
     }
 }
