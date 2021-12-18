@@ -22,6 +22,8 @@ public class Matching {
             this.course = arrayList.get(0).trim();
             this.level = arrayList.get(1).trim();
             this.mission = arrayList.get(2).trim();
+            ArrayList<String> backendCrewList = (ArrayList)InputView.inputCrew("backend");
+            ArrayList<String> frontendCrewList = (ArrayList)InputView.inputCrew("frontend");
         }
         if (actionNumber.equals("2")) {
             OutputView.outputCourse();
