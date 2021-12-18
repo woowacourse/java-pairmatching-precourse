@@ -1,15 +1,25 @@
 package pairmatching.controller;
 import pairmatching.domain.Pair;
 import pairmatching.domain.PairMatching;
-import pairmatching.utils.ExceptionMessage;
+import pairmatching.utils.Validator;
 import pairmatching.view.PairMatchingInput;
 import pairmatching.view.PairMatchingOutput;
 
 public class PairMatchingController {
     private PairMatching pairMatching = new PairMatching();
 
-    public int inputFunction() {
-        return 0;
+    public int inputFunctionNumber() {
+        boolean again = false;
+        int function = -1;
+        do {
+            try{
+                function = PairMatchingInput.inputNumberToExecute();
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+                again = true;
+            }
+        } while (again);
+        return function;
     }
 
     public void match(){
@@ -38,13 +48,14 @@ public class PairMatchingController {
 
     public void search() {
         PairMatchingOutput.matchInstruction();
-        String[] information = PairMatchingInput.choiceMatchingInformation();
-        Pair pair = getPairResultIfExist(information);
-        if(pair == null) {
-            System.out.println(ExceptionMessage.NO_MATCHING_HISTORY);
-            return;
+        try {
+            String[] information = PairMatchingInput.choiceMatchingInformation();
+            Pair pair = getPairResultIfExist(information);
+            Validator.ValidateMatchingHistory(pair);
+            PairMatchingOutput.printPair(pair);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
         }
-        PairMatchingOutput.printPair(pair);
     }
 
 
