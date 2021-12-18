@@ -44,6 +44,7 @@ public class CrewProcessor {
 			PairLog pairLog = createValidPair(course, level, mission);
 			pairLogList.remove(checkDuplicatePairResult(course, level, mission));
 			pairLogList.add(pairLog);
+			outputHandler.printPairInformation(pairLog);
 		} catch (IllegalArgumentException iae) {
 			outputHandler.printErrorMessage(iae);
 			return;

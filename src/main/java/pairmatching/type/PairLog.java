@@ -8,7 +8,7 @@ public class PairLog {
 	Level level;
 	String mission;
 
-	public List<List<Crew>> pairResult;
+	List<List<Crew>> pairResult;
 
 	public PairLog(Course course, Level level, String mission, List<List<Crew>> pairResult) {
 		this.course = course;
@@ -58,5 +58,9 @@ public class PairLog {
 			results.add(crew);
 		}
 		return results;
+	}
+
+	public List<List<Crew>> getPairResult() {
+		return pairResult;
 	}
 }
