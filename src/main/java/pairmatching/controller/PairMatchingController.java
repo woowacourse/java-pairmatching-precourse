@@ -54,7 +54,7 @@ public class PairMatchingController {
 	private void lookPair(String source) {
 		checkSourceFormat(source);
 		String[] sourceSplitByComma = source.replaceAll(" ", "").split(",");
-		if (pairService.findMatch(sourceSplitByComma[0], sourceSplitByComma[1], sourceSplitByComma[2])) {
+		if (!pairService.findMatch(sourceSplitByComma[0], sourceSplitByComma[1], sourceSplitByComma[2])) {
 			throw new NotFindMatchException();
 		}
 		Match match = pairService.look(sourceSplitByComma[0], sourceSplitByComma[1], sourceSplitByComma[2]);
