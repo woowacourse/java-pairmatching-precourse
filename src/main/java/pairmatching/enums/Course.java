@@ -29,10 +29,12 @@ public enum Course {
 	}
 
 	public static Course getByValue(String course) {
-		if (course.equals(BACKEND.get())) {
-			return BACKEND;
+		for (Course value : Course.values()) {
+			if (value.get().equals(course)) {
+				return value;
+			}
 		}
-		return FRONTEND;
+		throw new IllegalArgumentException(COURSE_GET_BY_VALUE_ERROR.get());
 	}
 
 	public static String getNamesJoinBar() {
