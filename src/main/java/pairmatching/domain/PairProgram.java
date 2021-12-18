@@ -16,6 +16,10 @@ public class PairProgram {
         this.levelMission = levelMission;
     }
 
+    public static PairProgram createPairProgram(Crews crews) {
+        return new PairProgram(crews, LevelMission.init());
+    }
+
     public void addMissions(Level level, List<String> missionNames) {
         levelMission.addMission(level, missionNames);
     }
