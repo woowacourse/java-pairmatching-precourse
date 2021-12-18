@@ -9,14 +9,13 @@ import static pairmatching.view.OutputView.*;
 
 import pairmatching.model.MatchingHistory;
 import pairmatching.model.MatchingInfo;
+import pairmatching.model.PairMatching;
 
 public class PairMatchingController {
-	private MatchingHistory matchingHistory;
-	private MatchingInfo matchingInfo;
+	private PairMatching pairMatching;
 
-	public PairMatchingController(MatchingHistory matchingHistory, MatchingInfo matchingInfo) {
-		this.matchingHistory = matchingHistory;
-		this.matchingInfo = matchingInfo;
+	public PairMatchingController(PairMatching pairMatching) {
+		this.pairMatching = pairMatching;
 	}
 
 	public void run() {
