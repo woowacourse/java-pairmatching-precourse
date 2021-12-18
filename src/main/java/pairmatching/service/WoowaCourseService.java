@@ -41,4 +41,8 @@ public class WoowaCourseService {
 	private Optional<Map.Entry<WoowaCourse, PairMatching>> findOne(WoowaCourse woowaCourse) {
 		return woowaCourseRepository.findOne(woowaCourse);
 	}
+
+	public void clearAll() {
+		woowaCourseRepository.clearAll();
+	}
 }

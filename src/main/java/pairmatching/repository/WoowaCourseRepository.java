@@ -19,4 +19,7 @@ public class WoowaCourseRepository {
 		woowaCourses.put(woowaCourse, pairMatching);
 	}
 
+	public void clearAll() {
+		woowaCourses.clear();
+	}
 }
