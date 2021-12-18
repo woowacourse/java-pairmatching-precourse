@@ -25,4 +25,8 @@ public class OutputViews {
             System.out.println(pair.get(pair.size()-1));
         }
     }
+
+    public static void printInitialize() {
+        System.out.println("\n초기화 되었습니다. ");
+    }
 }

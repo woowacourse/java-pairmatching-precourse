@@ -59,5 +59,9 @@ public class MatchInfoRepository {
                 .collect(Collectors.toList()).get(0);
     }
 
+    public void initMatchInfo() {
+        matchInfoList = new ArrayList<>();
+    }
+
 
 }
