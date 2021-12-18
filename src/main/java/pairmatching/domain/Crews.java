@@ -3,6 +3,7 @@ package pairmatching.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import pairmatching.exception.CrewNotFoundException;
 
 public class Crews {
 
@@ -26,5 +27,13 @@ public class Crews {
         return crews.stream()
             .filter(crew -> crew.isEqualsCourse(course))
             .collect(Collectors.toList());
+    }
+
+    public Crew findCrew(String name, Course course) {
+        Crew findCrew = new Crew(course, name);
+        return crews.stream()
+            .filter(crew -> crew.equals(findCrew))
+            .findFirst()
+            .orElseThrow(CrewNotFoundException::new);
     }
 }
