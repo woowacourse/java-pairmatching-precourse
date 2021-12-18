@@ -18,8 +18,9 @@
  * [ ] 페어 매칭이 완료되면 출력을 진행한다.
 
 ### 크루원 입력
- * [ ] `src/main/resources/backend-crew.md`과 `src/main/resources/frontend-crew.md` 파일을 이용한다.
- * [ ] 파일 입출력 방식을 활용한다.
+ * [x] `src/main/resources/backend-crew.md`과 `src/main/resources/frontend-crew.md` 파일을 이용한다.
+ * [x] 파일 입출력 방식을 활용한다.
+ * [x] 파일을 통해 코스별 크루원 목록을 입력 받는다.
 
 ### 페어 매칭
  * [ ] 과정과 미션을 출력하고 매칭하고자 하는 과정, 레벨, 미션을 입력 받는다.

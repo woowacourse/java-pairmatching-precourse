@@ -2,10 +2,13 @@ package pairmatching.view;
 
 import static java.util.stream.Collectors.*;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.Course;
+import pairmatching.domain.Crew;
 import pairmatching.domain.Level;
 import pairmatching.domain.PairMission;
 import pairmatching.domain.command.MainCommand;
@@ -57,5 +60,9 @@ public class InputView {
                     .append(String.join(" | ", level.getMissions()))
                     .toString();
             }).collect(joining("\n"));
+    }
+
+    public static List<Crew> crews(Course course) throws IOException {
+        return course.getCrewsByCourse(course);
     }
 }
