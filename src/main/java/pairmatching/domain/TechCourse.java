@@ -2,22 +2,22 @@ package pairmatching.domain;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-import pairmatching.util.InputValidator;
 
 public class TechCourse {
 	private List<CrewList> crewTable;
 	private static final String BACK_END = "C:\\Users\\admin\\IdeaProjects\\java-pairmatching-precourse\\src\\main\\resources\\backend-crew.md";
 	private static final String FRONT_END = "C:\\Users\\admin\\IdeaProjects\\java-pairmatching-precourse\\src\\main\\resources\\frontend-crew.md";
 	private static final int COURSE_INDEX = 0;
+	private static final String SPLITTER = ", ";
 
 	public TechCourse() {
 		this.crewTable = new ArrayList<>();
 	}
 
 	public List<String> matchPair(String mission) {
-		List<String> missionInfo = InputValidator.isValidFormat(mission);
+		List<String> missionInfo = Arrays.asList(mission.split(SPLITTER));
 		for (CrewList crewList : crewTable) {
 			if (crewList.mission().equals(mission)) {
 				crewList.shuffleCrewNames();

@@ -30,12 +30,11 @@ public class InputValidator {
 		}
 	}
 
-	public static List<String> isValidFormat(String mission) {
+	public static void isValidFormat(String mission) {
 		List<String> missionInfo = Arrays.asList(mission.split(SPLITTER));
 		isValidCourse(missionInfo.get(COURSE));
 		isValidLevel(missionInfo.get(LEVEL));
 		isValidMission(missionInfo.get(MISSION));
-		return missionInfo;
 	}
 
 	private static void isValidCourse(String course) {
@@ -54,7 +53,6 @@ public class InputValidator {
 		if (!Arrays.asList(Mission.values()).contains(Mission.nameOf(mission))) {
 			throw new IllegalArgumentException(ERROR + MISSION_ERROR);
 		}
-
 	}
 
 	public static void rematch(String rematch) {

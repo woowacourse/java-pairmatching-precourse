@@ -57,6 +57,7 @@ public class PairMatchingController {
 	private String missionName() {
 		String missionName = InputView.inputMission();
 		try {
+			InputValidator.isValidFormat(missionName);
 			return missionName;
 		} catch (IllegalArgumentException e) {
 			OutputView.showError(e.getMessage());
