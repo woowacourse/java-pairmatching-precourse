@@ -12,7 +12,9 @@ public class PairMatchingConstants {
 		+ "3. 페어 초기화\n"
 		+ "Q. 종료";
 
+	public static final String PAIR_MATCHING = "1";
+	public static final String PAIR_LOOKUP = "2";
+	public static final String PAIR_RESET = "3";
 	public static final String QUIT = "Q";
-
 }
 

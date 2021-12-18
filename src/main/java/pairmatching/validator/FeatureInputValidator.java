@@ -9,7 +9,8 @@ public class FeatureInputValidator {
 	}
 
 	private static void isRightInput(String input) {
-		if (!input.equals("1") && !input.equals("2") && !input.equals("3") && !input.equals("Q")) {
+		if (!input.equals(PAIR_MATCHING) && !input.equals(PAIR_LOOKUP) && !input.equals(PAIR_RESET) && !input.equals(
+			QUIT)) {
 			throw new IllegalArgumentException(WRONG_FEATURE_INPUT_ERROR);
 		}
 	}
