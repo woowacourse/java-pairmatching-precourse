@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static pairmatching.enums.ErrorMessage.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,14 +23,10 @@ public class PairRepository {
 		return pairsList.stream()
 			.filter(p -> p.find(level, course, mission))
 			.findFirst()
-			.orElse(new Pairs(level, course, mission));
+			.orElseThrow(() -> new IllegalArgumentException(NO_HAS_PAIRS_ERROR.get()));
 	}
 
 	public void addPairsList(Pairs pairs) {
 		pairsList.add(pairs);
-	}
-
-	public void test() {
-		System.out.println();
 	}
 }

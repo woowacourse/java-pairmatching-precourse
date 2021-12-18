@@ -23,6 +23,10 @@ public class MissionList {
 		return Collections.unmodifiableMap(missions);
 	}
 
+	public boolean hasMission(Level level, String mission) {
+		return missions.get(level).contains(mission);
+	}
+
 	private void setupLevel1() {
 		missions.put(Level.LEVEL1, new ArrayList<>());
 		missions.get(Level.LEVEL1).add("자동차경주");

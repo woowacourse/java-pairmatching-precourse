@@ -45,4 +45,8 @@ public class Pairs {
 		}
 		return true;
 	}
+
+	public boolean isEmpty() {
+		return this.pairs.isEmpty();
+	}
 }
