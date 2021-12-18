@@ -16,4 +16,5 @@ public final class PromptConstants {
 		+ "  - 레벨5: \n"
 		+ "############################################";
 	public static final String ASKING_COURSE_LEVEL_MISSION = "과정, 레벨, 미션을 선택하세요.";
+	public static final String ASKING_REMATCHING = "매칭 정보가 있습니다. 다시 매칭하시겠습니까? \n 네 | 아니오";
 }

@@ -4,20 +4,59 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ProgramData {
-	List<Crew> backendCrews = new ArrayList<Crew>();
-	List<Crew> frontendCrews = new ArrayList<Crew>();
+	private List<Crew> backendCrews = new ArrayList<Crew>();
+	private List<Crew> frontendCrews = new ArrayList<Crew>();
+	private Map<String, Boolean> pairExist = new HashMap<>();
+	private Map<String, List<Crew>> pairList = new HashMap<>();
 
 	public ProgramData() throws FileNotFoundException {
 		makeCrewsFromFile();
+	}
+	public boolean hasPair(String key) {
+		return pairExist.containsKey(key);
 	}
 
 	private void makeCrewsFromFile() throws FileNotFoundException {
 		makeBackendCrew();
 		makeFrontendCrew();
+	}
+
+	public List<Crew> getBackendCrews() {
+		return backendCrews;
+	}
+
+	public void setBackendCrews(List<Crew> backendCrews) {
+		this.backendCrews = backendCrews;
+	}
+
+	public List<Crew> getFrontendCrews() {
+		return frontendCrews;
+	}
+
+	public void setFrontendCrews(List<Crew> frontendCrews) {
+		this.frontendCrews = frontendCrews;
+	}
+
+	public Map<String, Boolean> getPairExist() {
+		return pairExist;
+	}
+
+	public void setPairExist(Map<String, Boolean> pairExist) {
+		this.pairExist = pairExist;
+	}
+
+	public Map<String, List<Crew>> getPairList() {
+		return pairList;
+	}
+
+	public void setPairList(Map<String, List<Crew>> pairList) {
+		this.pairList = pairList;
 	}
 
 	private void makeFrontendCrew() throws FileNotFoundException {

@@ -12,4 +12,28 @@ public class Crew {
 		this.course = course;
 		this.name = name;
 	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Map<Crew, Level> getHistory() {
+		return history;
+	}
+
+	public void setHistory(Map<Crew, Level> history) {
+		this.history = history;
+	}
 }

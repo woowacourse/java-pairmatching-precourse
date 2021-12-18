@@ -10,6 +10,7 @@ import pairmatching.constant.FunctionStatus;
 import pairmatching.constant.ProgramStatus;
 import pairmatching.controller.CheckerValidationCourseLevelMissionInput;
 import pairmatching.controller.FunctionSelector;
+import pairmatching.controller.PairMaker;
 import pairmatching.exception.InvalidFunctionSelectException;
 import pairmatching.model.ProgramData;
 import pairmatching.view.MatchingProgramInterface;
@@ -31,7 +32,15 @@ public class MatchingProgram implements MatchingProgramInterface {
 				String inputCourseLevelMission = readLine();
 				CheckerValidationCourseLevelMissionInput validationChecker = new CheckerValidationCourseLevelMissionInput(inputCourseLevelMission);
 				if (validationChecker.checkValidation() == CheckValidationCourseLevelMissionStatus.VALID) {
-
+					inputCourseLevelMission = inputCourseLevelMission.split(", ")[0] + inputCourseLevelMission.split(", ")[1] + inputCourseLevelMission.split(", ")[2];
+					System.out.println(inputCourseLevelMission);
+					if (programData.hasPair(inputCourseLevelMission)) {
+						programStatus = ProgramStatus.ASKING_REMATCHING;
+						continue;
+					}
+					PairMaker pairMaker = new PairMaker();
+					pairMaker.make(programData.getBackendCrews());
+					break;
 				}
 				if (validationChecker.checkValidation() == CheckValidationCourseLevelMissionStatus.INVALID_COURSE) {
 
@@ -42,6 +51,11 @@ public class MatchingProgram implements MatchingProgramInterface {
 				if (validationChecker.checkValidation() == CheckValidationCourseLevelMissionStatus.INVALID_MISSION) {
 
 				}
+				break;
+			}
+
+			if (programStatus == ProgramStatus.ASKING_REMATCHING) {
+				System.out.println(ASKING_REMATCHING);
 				break;
 			}
 
