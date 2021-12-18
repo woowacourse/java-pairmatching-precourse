@@ -55,6 +55,10 @@ public class PairGenerator {
 		return Randoms.shuffle(CrewRepository.findAllByCourse(course).stream().map(Crew::getName).collect(toList()));
 	}
 
+	private boolean isThreeCrewsInLastPair(List<Crew> shuffledCrew, int index) {
+		return shuffledCrew.size() - index == 3;
+	}
+
 	private boolean isValidPairList(Mission mission, List<Pair> pairList) {
 		List<Mission> sameLevelMissions = MissionRepository.findByLevelAndCourse(mission.getLevel(), mission.getCourse());
 		return !sameLevelMissions.stream()
