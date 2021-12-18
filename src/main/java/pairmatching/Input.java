@@ -4,8 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.Function;
 
 public class Input {
-	private static final String MISSION_INPUT_REQUEST_STRING = "과정, 레벨, 미션을 선택하세요.";
-
 	public static Function requestToSelectFunction() {
 		Printer.printFunctions();
 		return readFunctionSelected();
