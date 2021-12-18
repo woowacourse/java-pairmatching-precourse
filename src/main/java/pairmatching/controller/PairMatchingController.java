@@ -2,6 +2,7 @@ package pairmatching.controller;
 
 import pairmatching.model.enums.Mission;
 import pairmatching.model.enums.Process;
+import pairmatching.service.MatchingService;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -25,5 +26,8 @@ public class PairMatchingController {
 
 	private void matchPair() {
 		OutputView.printProcessAndMission(Process.getProcessMessage(), Mission.getMissionMessage());
+		String matchingInput = InputView.getMatchingInput();
+		MatchingService matchingService = new MatchingService();
+		matchingService.validateMatching(matchingInput);
 	}
 }

@@ -24,4 +24,11 @@ public enum Assignment {
 	public String toString() {
 		return String.join(DELIMITER, assignment);
 	}
+
+	public static Assignment getAssignmentByInput(String input) {
+		return Arrays.stream(Assignment.values())
+			.filter(assignment -> assignment.assignment.contains(input))
+			.findAny()
+			.orElseThrow(() -> new IllegalArgumentException("[ERROR] 입력한 미션은 존재하지 않습니다."));
+	}
 }

@@ -9,6 +9,7 @@ public class InputView {
 		+ "3. 페어 초기화\n"
 		+ "Q. 종료";
 	private static final String MENU_REGEX = "^[123Q]$";
+	private static final String ASKING_MATCHING = "과정, 레벨, 미션을 선택하세요.";
 
 	public static String getMenu() {
 		System.out.println(MENU);
@@ -21,5 +22,10 @@ public class InputView {
 			throw new IllegalArgumentException("[ERROR] 1,2,3,Q 중 하나를 입력하세요\n");
 		}
 		return input;
+	}
+
+	public static String getMatchingInput() {
+		System.out.println(ASKING_MATCHING);
+		return Console.readLine();
 	}
 }

@@ -25,4 +25,11 @@ public enum Process {
 				.map(Process::getProcess)
 				.collect(Collectors.toList()));
 	}
+
+	public static Process getProcessByInput(String input) {
+		return Arrays.stream(Process.values())
+			.filter(process -> process.process.equals(input))
+			.findAny()
+			.orElseThrow(() -> new IllegalArgumentException("[ERROR] 입력한 과정은 존재하지 않습니다."));
+	}
 }
