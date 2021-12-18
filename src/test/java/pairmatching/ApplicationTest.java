@@ -7,7 +7,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
-import pairmatching.Application;
 
 class ApplicationTest extends NsTest {
 

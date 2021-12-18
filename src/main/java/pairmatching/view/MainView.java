@@ -69,7 +69,7 @@ public class MainView {
         }
 
         if (input.equals(SELECTOR_INIT)) {
-            // init
+            controller.invalidAllPairs();
             return;
         }
         throw new IllegalArgumentException(ERR_INALID_MENU);
@@ -96,17 +96,13 @@ public class MainView {
             () -> {
                 String input = InputView.getLineWithPrompt(MISSION_SELECT_PROMPT);
                 String[] inputs = input.split(INPUT_DELIMITER);
-                matchPair(inputs[MISSION_INDEX], inputs[POSITION_INDEX], inputs[LEVEL_INDEX]);
-            }
-        );
-    }
-
-    private void matchPair(String mission, String position, String level) {
-        action(
-            () -> {
+                String mission = inputs[MISSION_INDEX];
+                String position = inputs[POSITION_INDEX];
+                String level = inputs[LEVEL_INDEX];
                 if (!controller.matchPair(mission, position, level)) {
                     rematch(mission, position, level);
                 }
+                controller.matchPair(mission, position, level);
                 showResult(mission, position, level);
             }
         );
@@ -120,7 +116,7 @@ public class MainView {
                     throw new IllegalArgumentException(ERR_INALID_INPUT_REMATCH);
                 }
                 if (input.equals(REMATCH_TRUE)) {
-                    matchPair(mission, position, level);
+                    controller.matchPair(mission, position, level);
                 }
             }
         );

@@ -1,8 +1,7 @@
 package pairmatching.pair;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import pairmatching.crew.Crew;
 import pairmatching.crew.Position;
@@ -15,13 +14,13 @@ public class Pair {
     private static final int MIN_SIZE = 2;
     private static final String DELIMITER = " : ";
     private final Position position;
-    private final Set<Crew> pair = new HashSet<>();
+    private final List<Crew> pair;
 
     public Pair(Position position, List<Crew> crews) {
         this.position = position;
         validateCrewCount(crews);
         validatePosition(crews);
-        this.pair.addAll(crews);
+        this.pair = crews;
     }
 
     private void validatePosition(List<Crew> crews) {

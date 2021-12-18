@@ -74,4 +74,9 @@ public class Mission {
         }
         return !frontEdnPair.isEmpty();
     }
+
+    public void init() {
+        frontEdnPair.initPairs();
+        backEndPair.initPairs();
+    }
 }

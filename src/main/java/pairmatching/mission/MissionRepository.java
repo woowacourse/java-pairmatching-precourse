@@ -1,6 +1,7 @@
 package pairmatching.mission;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import pairmatching.utils.MissionInitializer;
@@ -12,6 +13,10 @@ public class MissionRepository {
     );
     private static final String ERR_NAME_NOT_EXIST = "이름이 없습니다.";
     private static final String ERR_LEVEL_NOT_EXIST = "레벨이 없습니다.";
+
+    public static List<Mission> missions() {
+        return Collections.unmodifiableList(missions);
+    }
 
     public boolean add(Mission mission) {
         return missions.add(mission);

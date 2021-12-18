@@ -3,6 +3,7 @@ package pairmatching.matcher;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import pairmatching.crew.Crew;
 import pairmatching.crew.Position;
 import pairmatching.mission.Mission;
@@ -21,7 +22,9 @@ public class PairMatcher {
     public void matchPairs(Mission mission, List<Crew> crews, Position position) {
         List<Mission> missions = MissionRepository.findByLevel(mission.getLevel());
         missions.removeIf(m -> m.getName().equals(mission.getName()));
+        crews.forEach(c -> System.out.println(c.getName()));
         List<Crew> copied = new ArrayList<>(crews);
+        copied.forEach(c -> System.out.println(c.getName()));
         while (!copied.isEmpty()) {
             if (!match(missions, mission, copied, position)) {
                 throw new IllegalArgumentException(ERR_MATCH_UNAVAILABLE);

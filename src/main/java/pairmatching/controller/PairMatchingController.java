@@ -45,4 +45,9 @@ public class PairMatchingController {
             throw new IllegalArgumentException(ERR_INVALID_LEVEL);
         }
     }
+
+    public void invalidAllPairs() {
+        MissionRepository.missions()
+            .forEach(Mission::init);
+    }
 }
