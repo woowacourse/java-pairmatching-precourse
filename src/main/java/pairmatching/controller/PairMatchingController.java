@@ -14,9 +14,22 @@ public class PairMatchingController {
     }
 
     public void match(){
-        String[] information = PairMatchingInput.choiceMatchingInformation();
+        PairMatchingOutput.matchInstruction();
+        String[] information = inputInformation();
         Pair pair = pairMatching.addPairInPairListOfLevel(information[0], information[1], information[2]);
         PairMatchingOutput.printPair(pair);
+    }
+    public String[] inputInformation() {
+        String[] information;
+        boolean rematch = false;
+        do{
+            information = PairMatchingInput.choiceMatchingInformation();
+            if(pairMatching.checkIfPairResultAlreadyExist(information[0], information[1], information[2])){
+                rematch = PairMatchingInput.inputForRematch();
+            }
+        } while (rematch);
+
+        return information;
     }
 
     public void search() {
