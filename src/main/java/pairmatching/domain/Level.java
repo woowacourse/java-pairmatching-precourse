@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static pairmatching.Constant.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,12 +23,12 @@ public enum Level {
 		List<String> strings = Arrays.stream(values()).sorted()
 			.map(Level::toString)
 			.collect(Collectors.toList());
-		return String.join("\n", strings);
+		return String.join(NEW_LINE, strings);
 	}
 
 	@Override
 	public String toString() {
 		List<String> missionNames = Mission.nameListOf(this);
-		return "- " + name + ": " + String.join(" | ", missionNames);
+		return HYPHEN + name + COLON + String.join(DELIMITER, missionNames);
 	}
 }

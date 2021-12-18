@@ -1,5 +1,7 @@
 package pairmatching;
 
+import static pairmatching.Constant.*;
+
 import pairmatching.domain.Course;
 import pairmatching.domain.Function;
 import pairmatching.domain.Level;
@@ -9,7 +11,6 @@ public class Printer {
 	private static final String BORDER_LINE_TEXT = "#############################################";
 	private static final String COURSE_TEXT = "과정: ";
 	private static final String MISSION_TEXT = "미션: ";
-	private static final String NEW_LINE = "\n";
 
 	public static void printFunctions() {
 		System.out.println(FUNCTION_SELECT_TEXT);

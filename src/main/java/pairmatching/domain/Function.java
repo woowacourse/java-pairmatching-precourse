@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static pairmatching.Constant.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,6 +39,6 @@ public enum Function {
 
 	@Override
 	public String toString() {
-		return key + ". " + name;
+		return key + DOT + name;
 	}
 }

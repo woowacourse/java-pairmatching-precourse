@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static pairmatching.Constant.*;
+
 import java.util.Arrays;
 
 public enum Course {
@@ -16,6 +18,6 @@ public enum Course {
 		String[] names = Arrays.stream(values())
 			.map(c -> c.name)
 			.toArray(String[]::new);
-		return String.join(" | ", names);
+		return String.join(DELIMITER, names);
 	}
 }
