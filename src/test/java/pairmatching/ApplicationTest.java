@@ -13,7 +13,7 @@ class ApplicationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-//    @Test
+    @Test
     void 짝수_인원_페어_매칭() {
         assertShuffleTest(
             () -> {
@@ -35,7 +35,7 @@ class ApplicationTest extends NsTest {
         );
     }
 
-//    @Test
+    @Test
     void 없는_미션에_대한_예외_처리() {
         assertSimpleTest(
             () -> {
