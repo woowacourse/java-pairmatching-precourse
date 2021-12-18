@@ -9,7 +9,7 @@ public enum Menu {
 	QUIT("Q. 종료", "Q");
 
 	private static final String ERROR_NOT_FOUND = "해당 기능은 존재하지 않습니다.";
-	
+
 	private String name;
 	private String feature;
 
@@ -26,5 +26,13 @@ public enum Menu {
 		if (!Arrays.stream(Menu.values()).anyMatch(menu -> menu.feature.equals(inputFeature))) {
 			throw new IllegalArgumentException(ERROR_NOT_FOUND);
 		}
+	}
+
+	public static Menu selectMenu(String inputFeature) {
+		return Arrays.stream(Menu.values())
+			.filter(menu -> menu.feature.equals(inputFeature))
+			.findFirst()
+			.orElseThrow(() ->
+				new IllegalArgumentException(ERROR_NOT_FOUND));
 	}
 }
