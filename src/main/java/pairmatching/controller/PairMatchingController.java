@@ -1,9 +1,14 @@
 package pairmatching.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import pairmatching.domain.Course;
 import pairmatching.domain.CourseRepository;
+import pairmatching.domain.Level;
+import pairmatching.domain.MatchParams;
+import pairmatching.domain.Mission;
 import pairmatching.domain.MissionRepository;
 import pairmatching.view.FunctionSelectView;
 import pairmatching.view.PairMatchingInputView;
@@ -15,6 +20,7 @@ import pairmatching.view.View;
 public class PairMatchingController {
 	MissionRepository missionRepository = new MissionRepository();
 	CourseRepository courseRepository = new CourseRepository();
+	public static MatchParams matchParams = null;
 
 	private final Map<ViewMappingKey, View> viewMapper = new HashMap<>();
 
@@ -37,5 +43,11 @@ public class PairMatchingController {
 
 	public String getCourseListString() {
 		return courseRepository.getCourseListString();
+	}
+
+	public void setParams(List<String> params) {
+		matchParams = new MatchParams(Course.valueOf(params.get(0)),
+			Level.valueOf(params.get(1)),
+			Mission.valueOf(params.get(2)));
 	}
 }

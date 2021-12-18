@@ -1,13 +1,20 @@
 package pairmatching.view;
 
+import java.util.List;
+
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.Application;
+import pairmatching.controller.ViewMappingKey;
+import pairmatching.util.MissionInfoValidator;
 import pairmatching.util.SystemMessage;
 
 public class PairMatchingInputView implements View {
 	@Override
 	public void flow() {
 		String missionInfo = readMissionInfo();
+		List<String> params = MissionInfoValidator.validate(missionInfo);
+		Application.controller.setParams(params);
+		Application.controller.view(ViewMappingKey.PAIR_MATCHING_RESULT);
 	}
 
 	@Override
