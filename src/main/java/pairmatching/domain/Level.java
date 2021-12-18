@@ -13,5 +13,18 @@ public enum Level {
 		this.name = name;
 	}
 
-	// 추가 기능 구현
+	public static boolean contains(String name) {
+		for (Level level : values()) {
+			if (level.name.equals(name)) {
+				return true;
+			}
+		}
+		return false;
+
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }

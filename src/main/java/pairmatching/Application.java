@@ -18,7 +18,5 @@ public class Application {
 	private static void initApplication() {
 		FileInputController.setCrewMembers();
 		MissionController.initLevelToMission();
-
-
 	}
 }

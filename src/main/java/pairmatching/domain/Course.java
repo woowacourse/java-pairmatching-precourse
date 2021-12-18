@@ -10,5 +10,26 @@ public enum Course {
 		this.name = name;
 	}
 
-	// 추가 기능 구현
+	@Override
+	public String toString() {
+		return name;
+	}
+
+	public static Course find(String name) {
+		for (Course course : values()) {
+			if (course.name.equals(name)) {
+				return course;
+			}
+		}
+		return null;
+	}
+
+	public static boolean contains(String name) {
+		for (Course course : values()) {
+			if (course.name.equals(name)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

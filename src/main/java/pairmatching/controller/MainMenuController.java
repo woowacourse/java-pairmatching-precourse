@@ -19,11 +19,11 @@ public class MainMenuController {
 	}
 
 	private static void navigate(String input) {
-		if (input.equals(Menu.PAIR_INIT.toString())) {
-
-		} else if (input.equals(Menu.PAIR_MATCHING.toString())) {
-
+		if (input.equals(Menu.PAIR_MATCHING.toString())) {
+			PairController.startPairMatching();
 		} else if (input.equals(Menu.PAIR_SHOW.toString())) {
+
+		} else if (input.equals(Menu.PAIR_INIT.toString())) {
 
 		}
 	}
