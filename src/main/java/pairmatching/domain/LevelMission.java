@@ -2,6 +2,7 @@ package pairmatching.domain;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import pairmatching.exception.MissionNotFoundException;
 
 public class LevelMission {
 
@@ -15,5 +16,11 @@ public class LevelMission {
         Map<Level, Missions> levelMissions = new LinkedHashMap<>();
         Level.levels().forEach(level -> levelMissions.put(level, Missions.init()));
         return new LevelMission(levelMissions);
+    }
+
+    public void checkExistMission(Level level, Mission mission) {
+        if (!levelmissions.containsKey(level) || levelmissions.get(level).isContainMission(mission)) {
+            throw new MissionNotFoundException();
+        }
     }
 }

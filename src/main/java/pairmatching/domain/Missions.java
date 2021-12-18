@@ -27,7 +27,7 @@ public class Missions {
         }
     }
 
-    private boolean isContainMission(Mission mission) {
+    public boolean isContainMission(Mission mission) {
         return missions.stream().anyMatch(mission1 -> mission1.isEqualsMission(mission));
     }
 }
