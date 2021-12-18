@@ -50,6 +50,14 @@ public class ProgramData {
 		List<PairMatchRecorder> history = getMatchingHistory(course, level);
 		history.add(new PairMatchRecorder(course,level,mission,pairNames));
 	}
+	public static void deleteMatchingHistory(){
+		backEndLevel1History.clear();
+		backEndLevel3History.clear();
+		backEndLevel4History.clear();
+		frontEndLevel1History.clear();
+		frontEndLevel3History.clear();
+		frontEndLevel4History.clear();
+	}
 
 	public static List<String> getCrewNames(Course course){
 		if(course == Course.BACKEND){

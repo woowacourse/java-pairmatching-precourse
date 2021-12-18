@@ -10,9 +10,13 @@ public class ProgramManager {
 		String selection = Console.readLine();
 
 		if(selection == "1"){
-			//PairMatcher.pairMatch();
+			String selectLine = Console.readLine();
+			String[] selectedComponent = parseLine(selectLine);
+			PairMatcher.pairMatch(Course.valueOf(selectedComponent[0]), Level.valueOf(selectedComponent[1]), selectedComponent[2]);
 		} else if(selection == "2"){
-			ProgramManager.lookUpPair();
+			String selectLine = Console.readLine();
+			String[] selectedComponent = parseLine(selectLine);
+			ProgramManager.lookUpPair(Course.valueOf(selectedComponent[0]), Level.valueOf(selectedComponent[1]), selectedComponent[2]);
 		} else if(selection == "3"){
 			ProgramManager.initializePair();
 		} else if(selection == "Q"){
@@ -20,6 +24,11 @@ public class ProgramManager {
 		}
 
 		return false;
+	}
+
+	public static String[] parseLine(String selectLine){
+		String[] selectedComponent = selectLine.split(", ");
+		return selectedComponent;
 	}
 
 	public static void lookUpPair(Course course, Level level, String mission){
