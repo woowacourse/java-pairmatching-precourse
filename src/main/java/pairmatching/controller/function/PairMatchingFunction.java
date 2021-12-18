@@ -15,24 +15,23 @@ public enum PairMatchingFunction {
 	PAIR_MATCHING("1") {
 		@Override
 		void function() {
-			printPairMatchingScreen();
-			String[] splitPairMatching = inputPairMatching().split(",");
-			String course = splitPairMatching[0].trim();
-			String level = splitPairMatching[1].trim();
-			String mission = splitPairMatching[2].trim();
 			try{
-				validateInputPairMatching(course, level, mission);
+				printPairMatchingScreen();
+				String[] splitPairMatching = inputPairMatching().split(",");
+				String course = splitPairMatching[0].trim();
+				String level = splitPairMatching[1].trim();
+				String mission = splitPairMatching[2].trim();
+				if (PairMatchingRepository.isExistPairMatching(course, level, mission)) {
+					if (inputRequestRematching().equals("네")) {
+						PairMatchingService.pairReMatching(course, level, mission);
+					}
+					return;
+				}
+				PairMatchingService.pairMatching(course, level, mission);
 			}catch (IllegalArgumentException illegalArgumentException) {
 				System.out.println(illegalArgumentException.getMessage());
 				function();
 			}
-			if (PairMatchingRepository.isExistPairMatching(course, level, mission)) {
-				if (inputRequestRematching().equals("네")) {
-					PairMatchingService.pairReMatching(course, level, mission);
-				}
-				return;
-			}
-			PairMatchingService.pairMatching(course, level, mission);
 		}
 	},
 	PAIR_FIND("2") {

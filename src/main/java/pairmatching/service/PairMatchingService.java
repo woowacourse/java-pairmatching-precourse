@@ -13,8 +13,8 @@ public class PairMatchingService {
 	}
 
 	public static void pairReMatching(String course, String level, String mission) {
-		PairMatching pairMatching = PairMatchingRepository.find(course, level, mission);
 		PairMatchingRepository.rematching(course, level, mission);
+		PairMatching pairMatching = PairMatchingRepository.find(course, level, mission);
 		printPairMatchingResult(pairMatching.getPairMatchingResult());
 	}
 

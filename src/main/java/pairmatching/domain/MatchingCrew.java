@@ -17,10 +17,6 @@ public class MatchingCrew {
 		crewList.add(crew3);
 	}
 
-	public List<Crew> getCrewList() {
-		return crewList;
-	}
-
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
