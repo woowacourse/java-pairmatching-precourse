@@ -9,6 +9,8 @@ import java.util.List;
 
 public class MatchingService {
     private static final int MATCHING_MAX_SIZE = 3;
+    private static final int MATCHING_ODD_MAX_SIZE = 3;
+    private static final int MATCHING_NORMAL_SIZE = 2;
 
     private final String BACK_COURSE = "백엔드";
     private final String FRONT_COURSE = "프론트엔드";
@@ -80,8 +82,8 @@ public class MatchingService {
     public List<String> makeMatchingList(List<String> originalPeople) {
         List<String> shufflePeople = Randoms.shuffle(originalPeople);
         List<String> matchingList = new ArrayList<>();
-        for (int index = 0; index < shufflePeople.size(); index += 2) {
-            if (index == shufflePeople.size() - 3) {
+        for (int index = 0; index < shufflePeople.size(); index += MATCHING_NORMAL_SIZE) {
+            if (index == shufflePeople.size() - MATCHING_ODD_MAX_SIZE) {
                 matchingList.add(shufflePeople.get(index) + " : " + shufflePeople.get(index + 1)
                         + " : " + shufflePeople.get(index + 2));
                 break;
