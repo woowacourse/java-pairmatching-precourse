@@ -23,9 +23,6 @@ public abstract class InputView {
     public static final String DIVIDING_LINE = "\n#############################################";
     public static final String INDENT_NEW_LINE = "  \n";
     public static final String NEW_LINE = "\n";
-    private Course course;
-    private Level level;
-    private Mission mission;
 
     public static String startFunction() {
         try {
@@ -80,6 +77,5 @@ public abstract class InputView {
         String[] splitProgram = userInput.split(",");
 
         return new ArrayList<>(Arrays.asList(splitProgram));
-
     }
 }
