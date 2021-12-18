@@ -43,8 +43,9 @@ public class PairMatchingController {
 
 			if (option.equals("3")) {
 				pairMatching.missionInfoSet.clear();
+				System.out.println("\n초기화 되었습니다.\n");
 			}
-			
+
 		}
 	}
 
