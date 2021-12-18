@@ -1,7 +1,9 @@
 package pairmatching;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import pairmatching.constant.Course;
 import pairmatching.constant.Level;
@@ -17,10 +19,19 @@ public class MatcherController {
 
 	private MatcherService matcherService;
 	private CrewService crewService;
+	private Map<Course, Map<Level, Map<String, Mission>>> missionMap;
 
 	public MatcherController() {
 		this.matcherService = new MatcherService();
 		this.crewService = new CrewService();
+		this.missionMap = new HashMap<>();
+		for (Course course : Course.values()) {
+			Map<Level, Map<String, Mission>> map = new HashMap<>();
+			for(Level level : Level.values()){
+				map.put(level, new HashMap<>());
+			}
+			missionMap.put(course, map);
+		}
 	}
 
 	public MatchObjective requestMatchInfo() {
@@ -35,7 +46,9 @@ public class MatcherController {
 
 	public Mission match(MatchObjective matchObjective) {
 		try {
-			return matcherService.match(matchObjective, 0);
+			Mission mission = matcherService.match(matchObjective, 0);
+			saveMission(mission);
+			return mission;
 		} catch (MatchFailException e) {
 			System.out.println("매칭에 실패했습니다. 메인으로 돌아갑니다.");
 			return null;
@@ -52,6 +65,7 @@ public class MatcherController {
 		}
 		if (input.equals("2")) {
 			MatchObjective matchObjective = requestMatchInfo();
+			printMission(matchObjective);
 			return true;
 		}
 		return false;
@@ -60,5 +74,16 @@ public class MatcherController {
 	public void operate() {
 		while (operateLoop())
 			;
+	}
+
+	public void saveMission(Mission mission) {
+		Map<Level, Map<String, Mission>> mapCourse = missionMap.get(mission.getCourse());
+		Map<String, Mission> map = mapCourse.get(mission.getLevel());
+		map.put(mission.getName(), mission);
+	}
+
+	public void printMission(MatchObjective matchObjective) {
+		Mission mission = missionMap.get(matchObjective.getCourse()).get(matchObjective.getLevel()).get(matchObjective.getMission());
+		OutputView.printMatchInfo(mission);
 	}
 }
