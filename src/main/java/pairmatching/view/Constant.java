@@ -40,4 +40,5 @@ public class Constant {
 
     public static final String ERROR_IS_EMPTY = "[ERROR] 빈칸으로 입력되었습니다.";
     public static final String ERROR_HAS_EMPTY = "[ERROR] 빈칸이 포함되어 있습니다.";
+    public static final String ERROR_IS_NOT_RIGHT = "[ERROR] 기능 선택은 1, 2, 3, B만 가능합니다.";
 }
