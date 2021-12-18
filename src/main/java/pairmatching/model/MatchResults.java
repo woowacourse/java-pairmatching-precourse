@@ -14,7 +14,7 @@ public class MatchResults {
 
 	public boolean hasMatchResultsByMission(Course course, Mission mission) {
 		return matchResults.stream()
-							.filter(match -> match.getMission().equals(mission) && match.getCourse().equals(course))
+							.filter(match -> match.getMission().equals(mission))
 							.collect(Collectors.toList())
 							.size() > 0;
 	}
