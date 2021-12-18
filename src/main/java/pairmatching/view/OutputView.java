@@ -20,5 +20,6 @@ public class OutputView {
         System.out.println(LEVEL_THREE_MISSION);
         System.out.println(LEVEL_FOUR_MISSION);
         System.out.println(LEVEL_FIVE_MISSION);
+        System.out.println(SEPARATOR_LINE);
     }
 }

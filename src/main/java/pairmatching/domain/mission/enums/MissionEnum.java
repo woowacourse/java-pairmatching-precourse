@@ -19,6 +19,10 @@ public enum MissionEnum {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public List<MissionEnum> getLevelOneMissions() {
         return Arrays.asList(CAR_RACING, LOTTO, BASEBALL);
     }

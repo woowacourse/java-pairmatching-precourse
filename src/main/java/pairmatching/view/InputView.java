@@ -2,12 +2,14 @@ package pairmatching.view;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import pairmatching.domain.course.enums.CourseEnum;
 import pairmatching.domain.crew.Crew;
 import pairmatching.domain.crew.Crews;
-import pairmatching.domain.matchingcondition.MatchingCondition;
+import pairmatching.domain.matching.MatchingCondition;
 import pairmatching.domain.menu.Menu;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -41,8 +43,8 @@ public class InputView {
         System.out.println(QUIT_MENU);
     }
 
-    public static Crews requestBackendCrews() {
-        Crews crews = new Crews();
+    public static List<Crew> requestBackendCrews() {
+        List<Crew> crews = new ArrayList<>();
         try {
             Scanner scanner = new Scanner(new File(BACKEND_CREW_RESOURCE_PATH));
             while (scanner.hasNext()) {
@@ -56,8 +58,8 @@ public class InputView {
         }
     }
 
-    public static Crews requestFrontendCrews() {
-        Crews crews = new Crews();
+    public static List<Crew> requestFrontendCrews() {
+        List<Crew> crews = new ArrayList<>();
         try {
             Scanner scanner = new Scanner(new File(FRONTEND_CREW_RESOURCE_PATH));
             while (scanner.hasNext()) {

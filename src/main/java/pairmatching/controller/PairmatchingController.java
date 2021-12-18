@@ -1,24 +1,34 @@
 package pairmatching.controller;
 
+import java.util.List;
+
+import pairmatching.domain.course.enums.CourseEnum;
+import pairmatching.domain.crew.Crew;
 import pairmatching.domain.crew.Crews;
-import pairmatching.domain.matchingcondition.MatchingCondition;
+import pairmatching.domain.matching.MatchingCondition;
+import pairmatching.domain.matching.MatchingResult;
+import pairmatching.domain.matching.MatchingResults;
 import pairmatching.domain.menu.Menu;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class PairmatchingController {
 
-    private Crews backendCrews = new Crews();
-    private Crews frontendCrews = new Crews();
+    private Crews crews = new Crews();
+    private MatchingResults matchingResults = new MatchingResults();
 
     public void run() {
-        backendCrews = InputView.requestBackendCrews();
-        frontendCrews = InputView.requestFrontendCrews();
-
+        loadCrews();
         Menu menu = InputView.requestMenuSelect();
         while (continueProgram(menu)) {
             executeMenu(menu);
+            menu = InputView.requestMenuSelect();
         }
+    }
+
+    private void loadCrews() {
+        crews.add(CourseEnum.BACKEND, InputView.requestBackendCrews());
+        crews.add(CourseEnum.FRONTEND, InputView.requestFrontendCrews());
     }
 
     private boolean continueProgram(Menu menu) {
@@ -40,6 +50,7 @@ public class PairmatchingController {
     private void executePairMatching() {
         OutputView.showCoursesAndMissions();
         MatchingCondition matchingCondition = InputView.requestMatchingCondition();
+        matchingResults.match(matchingCondition);
     }
 
     private void executeReadPair() {
