@@ -9,15 +9,20 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class CrewList {
+	private static final int COURSE_INDEX = 0;
+	private static final int LEVEL_INDEX = 1;
+	private static final int MISSION_INDEX = 2;
+	private static final String SPLITTER = ", ";
+
 	private final Course course;
 	private final Level level;
 	private final Mission mission;
 	private List<String> crewNames;
 
 	public CrewList(List<String> missionInfo, String crewNames) throws IOException {
-		this.course = Course.nameOf(missionInfo.get(0));
-		this.level = Level.nameOf(missionInfo.get(1));
-		this.mission = Mission.nameOf(missionInfo.get(2));
+		this.course = Course.nameOf(missionInfo.get(COURSE_INDEX));
+		this.level = Level.nameOf(missionInfo.get(LEVEL_INDEX));
+		this.mission = Mission.nameOf(missionInfo.get(MISSION_INDEX));
 		BufferedReader reader = new BufferedReader(new FileReader(crewNames));
 		List<String> tempCrewNames = new ArrayList<>();
 		String crewName;
@@ -33,7 +38,7 @@ public class CrewList {
 	}
 
 	public String mission() {
-		return course.getName() + ", " + level.getName() + ", " + mission.getName();
+		return course.getName() + SPLITTER + level.getName() + SPLITTER + mission.getName();
 	}
 
 	public List<String> getCrewNames() {

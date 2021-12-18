@@ -3,14 +3,22 @@ package pairmatching.view;
 import java.util.List;
 
 public class OutputView {
+	private static final int LAST_THREE = 3;
+	private static final int LAST_TWO = 2;
+	private static final int LAST_ONE = 1;
+	private static final int NEXT_ONE = 1;
+	private static final String PAIR_RESULT = "페어 매칭 결과입니다.";
+	private static final String TWO_PAIR = "%s : %s%n";
+	private static final String THREE_PAIR = "%s : %s : %s%n";
+
 	public static void showError(String message) {
 		System.out.println(message);
 	}
 
 	public static void showCrewList(List<String> crewList) {
 		System.out.println();
-		System.out.println("페어 매칭 결과입니다.");
-		if (crewList.size() % 2 == 1) {
+		System.out.println(PAIR_RESULT);
+		if (isOdd(crewList.size())) {
 			printOdd(crewList);
 			System.out.println();
 			return;
@@ -20,21 +28,27 @@ public class OutputView {
 	}
 
 	private static void printOdd(List<String> crewList) {
-		for (int i = 0; i < crewList.size() - 3; i++) {
-			if (i % 2 == 1) {
+		for (int index = 0; index < crewList.size() - LAST_THREE; index++) {
+			if (isOdd(index)) {
 				continue;
 			}
-			System.out.printf("%s : %s%n", crewList.get(i), crewList.get(i+1));
+			System.out.printf(TWO_PAIR, crewList.get(index), crewList.get(index + NEXT_ONE));
 		}
-		System.out.printf("%s : %s : %s%n", crewList.get((crewList.size()-3)), crewList.get((crewList.size()-2)), crewList.get((crewList.size()-1)));
+		System.out.printf(THREE_PAIR, crewList.get((crewList.size() - LAST_THREE)),
+			crewList.get((crewList.size() - LAST_TWO)),
+			crewList.get((crewList.size() - LAST_ONE)));
+	}
+
+	private static boolean isOdd(int number) {
+		return number % 2 == 1;
 	}
 
 	private static void printEven(List<String> crewList) {
-		for (int i = 0; i < crewList.size(); i++) {
-			if (i % 2 == 1) {
+		for (int index = 0; index < crewList.size(); index++) {
+			if (isOdd(index)) {
 				continue;
 			}
-			System.out.printf("%s : %s%n", crewList.get(i), crewList.get(i+1));
+			System.out.printf(TWO_PAIR, crewList.get(index), crewList.get(index + NEXT_ONE));
 		}
 	}
 
