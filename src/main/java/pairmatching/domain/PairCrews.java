@@ -26,4 +26,13 @@ public class PairCrews {
 		PairCrew pairCrew = PairCrew.of(crews);
 		pairCrews.add(pairCrew);
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (PairCrew pairCrew : pairCrews) {
+			sb.append(pairCrew).append("\n");
+		}
+		return sb.toString();
+	}
 }
