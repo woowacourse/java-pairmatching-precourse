@@ -1,15 +1,23 @@
 package pairmatching;
 
+import pairmatching.controller.ChoiceFunctionController;
 import pairmatching.controller.PairMatchingController;
-import pairmatching.domain.Course;
-import pairmatching.domain.Level;
-import pairmatching.view.OutputView;
 
 public class Application {
+	private static final ChoiceFunctionController choiceFunctionController = new ChoiceFunctionController();
+	private static final PairMatchingController pairMatchingController = new PairMatchingController();
+
     public static void main(String[] args) {
         // TODO 구현 진행
-		PairMatchingController pairMatchingController = new PairMatchingController();
-		OutputView.printCourseLevelMission(Course.values(), Level.values());
-		pairMatchingController.pairMatching();
+		while (true) {
+			String function = choiceFunctionController.choiceFunction();
+			if (function.equals("1")) {
+				pairMatchingController.pairMatching();
+			}
+			if (function.equals("Q")) {
+				break;
+			}
+		}
+
     }
 }

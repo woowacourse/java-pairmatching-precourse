@@ -1,17 +1,13 @@
 package pairmatching.view;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.stream.Collectors;
 
 import pairmatching.domain.Course;
 import pairmatching.domain.Level;
-import pairmatching.domain.PairCrew;
 import pairmatching.domain.PairCrews;
 
 public class OutputView {
-
 	public static void printCourseLevelMission(Course[] courses, Level[] levels) {
 		System.out.println("#############################################");
 		printCourse(courses);
@@ -42,6 +38,9 @@ public class OutputView {
 		System.out.println(pairCrews.get().stream()
 			.map(pairCrew -> pairCrew.toString())
 			.collect(Collectors.joining("\n")));
+	}
 
+	public static void breakLine() {
+		System.out.println();
 	}
 }

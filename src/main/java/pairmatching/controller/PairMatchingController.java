@@ -2,6 +2,8 @@ package pairmatching.controller;
 
 import java.io.FileNotFoundException;
 
+import pairmatching.domain.Course;
+import pairmatching.domain.Level;
 import pairmatching.domain.PairCrews;
 import pairmatching.service.CrewService;
 import pairmatching.service.PairMatchingService;
@@ -25,9 +27,11 @@ public class PairMatchingController {
 
 	public void pairMatching() {
 		try {
+			OutputView.printCourseLevelMission(Course.values(), Level.values());
 			String input = InputView.requestCourseLevelMission();
 			PairCrews pairCrews = pairMatchingService.pairMatching(input);
 			OutputView.printResultPairMatching(pairCrews);
+			OutputView.breakLine();
 		} catch (IllegalArgumentException e) {
 			ExceptionView.exceptionUI(e.getMessage());
 			pairMatching();
