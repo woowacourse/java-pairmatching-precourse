@@ -1,6 +1,7 @@
 package pairmatching.controller;
 
 import pairmatching.Initialize.Initializer;
+import pairmatching.service.MainService;
 import pairmatching.service.PairService;
 import pairmatching.validation.MenuValidation;
 import pairmatching.view.InputView;
@@ -13,13 +14,13 @@ import static pairmatching.view.Main.MainMenu.printMainMenu;
 public class MainController {
     private final Initializer initializer;
     private final MenuValidation menuValidation;
-    private final PairService pairService;
+    private final MainService mainService;
 
 
     public MainController() {
         this.initializer = new Initializer();
         this.menuValidation = new MenuValidation();
-        this.pairService = new PairService();
+        this.mainService = new MainService();
     }
 
     public void set() throws IOException {
@@ -44,15 +45,15 @@ public class MainController {
 
     public boolean selectMenu(String input){
         if(input.equals("1")){
-            pairService.match();
+            mainService.match();
             return true;
         }
         if(input.equals("2")){
-            pairService.getPairList();
+            mainService.getPairList();
             return true;
         }
         if(input.equals("3")){
-            pairService.removePairList();
+            mainService.removePairList();
             return true;
         }
         if(input.equals("Q")){
