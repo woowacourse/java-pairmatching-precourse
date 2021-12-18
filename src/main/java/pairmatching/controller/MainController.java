@@ -51,19 +51,27 @@ public class MainController {
     }
 
     private void pairStart() {
-        Output.printMissionAndProcess();
-        String inputProcess = Input.inputProcess();
-        String inputData = "";
-        if (pairInfo.containsKey(inputProcess)) {
-            System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
-            System.out.println("네 | 아니오");
-            inputData = Input.InputYesOrNo();
-            selectMatchingRestart(inputData, inputProcess);
-        } else if (!pairInfo.containsKey(inputProcess)) {
-            setPair(inputProcess);
-        }
-        if (!inputData.equals("아니오")){
-            printPairResult(pairInfo.get(inputProcess));
+        while (true) {
+            Output.printMissionAndProcess();
+            String inputProcess = Input.inputProcess();
+            String inputData = "";
+
+            try {
+                ValidationController.inputProcessValidation(inputProcess);
+                if (pairInfo.containsKey(inputProcess)) {
+                    Output.printRematching();
+                    inputData = Input.InputYesOrNo();
+                    selectMatchingRestart(inputData, inputProcess);
+                }if (!pairInfo.containsKey(inputProcess)) {
+                    setPair(inputProcess);
+                }
+                if (!inputData.equals("아니오")) {
+                    printPairResult(pairInfo.get(inputProcess));
+                }
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -74,7 +82,7 @@ public class MainController {
     }
 
     private void selectMatchingRestart(String inputData, String inputProcess) {
-        if (inputData.equals("아니오")){
+        if (inputData.equals("아니오")) {
             return;
         }
         setPair(inputProcess);

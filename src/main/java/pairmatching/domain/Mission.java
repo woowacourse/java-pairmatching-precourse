@@ -23,25 +23,19 @@ public class Mission {
         level4Mission.add("배포");
     }
 
-    public List<String> getLevel1Mission() {
-        StringBuilder missions;
-
-        return level1Mission;
-    }
-
-    public List<String> getLevel2Mission() {
-        return level2Mission;
-    }
-
-    public List<String> getLevel3Mission() {
-        return level3Mission;
-    }
-
-    public List<String> getLevel4Mission() {
-        return level4Mission;
-    }
-
-    public List<String> getLevel5Mission() {
+    public List<String> getLevelMission(String level){
+        if (level.equals(Level.LEVEL1.getName())){
+            return level1Mission;
+        }
+        if (level.equals(Level.LEVEL2.getName())){
+            return level2Mission;
+        }
+        if (level.equals(Level.LEVEL3.getName())){
+            return level3Mission;
+        }
+        if (level.equals(Level.LEVEL4.getName())){
+            return level4Mission;
+        }
         return level5Mission;
     }
 }
