@@ -16,12 +16,12 @@ public class LevelMissonRepository {
         return Collections.unmodifiableList(levelMissonList);
     }
 
-    public static void print() {
+    public static List<String> findMissonByLevel(Level level) {
         for(LevelMisson levelMisson : levelMissonList) {
-            System.out.println(levelMisson.level);
-            for(String misson : levelMisson.getMissons()) {
-                System.out.println(misson);
+            if(levelMisson.getLevel() == level) {
+                return levelMisson.getMissons();
             }
         }
+        throw new IllegalArgumentException("[ERROR] : 레벨을 찾을 수 없습니다.");
     }
 }

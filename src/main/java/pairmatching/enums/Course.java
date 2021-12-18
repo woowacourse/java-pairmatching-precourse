@@ -31,4 +31,13 @@ public enum Course {
         }
         return nameList;
     }
+
+    public static Course findByName(String name) {
+        for(Course course : Course.values()) {
+            if(course.getName().equals(name)) {
+                return course;
+            }
+        }
+        throw new IllegalArgumentException("[ERROR] : 코스 이름이 존재하지 않습니다.");
+    }
 }

@@ -18,4 +18,12 @@ public enum Level {
     }
 
     // 추가 기능 구현
+    public static Level findByName(String name) {
+        for(Level level : Level.values()) {
+            if(level.getName().equals(name)) {
+                return level;
+            }
+        }
+        throw new IllegalArgumentException("[ERROR] 레벨 이름을 찾을 수 없습니다.");
+    }
 }

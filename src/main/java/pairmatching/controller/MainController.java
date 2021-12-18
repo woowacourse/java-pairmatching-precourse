@@ -53,6 +53,18 @@ public class MainController {
     public void pairMatching() {
         OutputView.printSection();
         //TODO : 매칭하고자 하는 과정 레벨 미션 입력 받기
+        getSection();
+    }
+
+    private Section getSection() {
+        while(true) {
+            try {
+                Section section = InputView.getSection();
+                return section;
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
 }
