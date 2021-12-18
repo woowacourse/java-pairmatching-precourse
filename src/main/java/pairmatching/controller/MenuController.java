@@ -43,24 +43,16 @@ public class MenuController {
 	private String findPairAndReturnCode(MissionService missionService) {
 		OutputView.printStatus(missionService);
 		PairInfoDto pairInfoDto = getPairInfoDto(missionService);
-		// List<Pair> pairs = checkAndFindPair(pairInfoDto);
-		// OutputView.printPairs(pairs);
+		List<Pair> pairs = pairService.findPairs(pairInfoDto);
+		OutputView.printPairs(pairs);
 		return FIND_PAIR;
 	}
 
 	private String runPairMatchingAndReturnCode(MissionService missionService, MemberService memberService) {
 		OutputView.printStatus(missionService);
 		PairInfoDto pairInfoDto = getPairInfoDto(missionService);
+		PairGenerator.generate(memberService, pairInfoDto, pairService);
 		List<Pair> pairs = pairService.findPairs(pairInfoDto);
-		if (!pairs.isEmpty()) {
-			String retry = getRetry();
-			if (retry.equals("네")) {
-				PairGenerator.generate(memberService, pairInfoDto, pairService);
-				pairs = pairService.findPairs(pairInfoDto);
-				OutputView.printPairs(pairs);
-				return PAIR_MATCHING;
-			}
-		}
 		OutputView.printPairs(pairs);
 		return PAIR_MATCHING;
 	}
