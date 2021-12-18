@@ -18,10 +18,6 @@ public enum Level {
 	}
 
 	public static Level getByName(String name) {
-		System.out.println(name + Arrays.stream(values())
-			.filter(level -> level.name.equals(name))
-			.findFirst()
-			.orElseThrow(NoLevelException::new));
 		return Arrays.stream(values())
 			.filter(level -> level.name.equals(name))
 			.findFirst()

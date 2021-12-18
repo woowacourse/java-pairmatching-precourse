@@ -6,8 +6,11 @@ import java.util.stream.Collectors;
 
 import pairmatching.domain.course.Course;
 import pairmatching.domain.level.Level;
+import pairmatching.domain.pair.Pairs;
 import pairmatching.exception.InvalidFormatException;
+import pairmatching.repository.CrewRepository;
 import pairmatching.repository.MissionRepository;
+import pairmatching.repository.PairsRepository;
 import pairmatching.util.FormatChecker;
 import pairmatching.util.InputParser;
 import pairmatching.view.InputView;
@@ -24,6 +27,11 @@ public class PairController {
 		try {
 			showOverview();
 			List<String> courseLevelMission = getCourseLevelMission();
+			createRandomPairs(
+				Course.getByName(courseLevelMission.get(COURSE_INDEX)),
+				Level.getByName(courseLevelMission.get(LEVEL_INDEX)),
+				courseLevelMission.get(MISSION_INDEX)
+			);
 		} catch (IllegalArgumentException e) {
 			OutputView.printError(e);
 			startMatching();
@@ -72,6 +80,12 @@ public class PairController {
 		// if (MissionRepository.contains(level, courseLevelMission.get(MISSION_INDEX))) {
 		// 	throw new NoMissionException();
 		// }
+	}
+
+	private void createRandomPairs(Course course, Level level, String mission) {
+		// TODO: 겹칠경우 최대 3번 반복하는 로직 추가해야함.
+		Pairs pairs = Pairs.createRandom(course, level, mission, CrewRepository.getBackend());
+		PairsRepository.create(pairs);
 	}
 
 	public void startView() {

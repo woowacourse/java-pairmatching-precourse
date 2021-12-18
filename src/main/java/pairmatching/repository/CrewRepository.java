@@ -1,5 +1,6 @@
 package pairmatching.repository;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,8 +19,13 @@ public class CrewRepository {
 		frontendCrews = IOUtils.readFrontendCrews().stream()
 			.map(Crew::from)
 			.collect(Collectors.toList());
+	}
 
-		System.out.println(backendCrews);
-		System.out.println(frontendCrews);
+	public static List<Crew> getBackend() {
+		return Collections.unmodifiableList(backendCrews);
+	}
+
+	public static List<Crew> getFrontend() {
+		return Collections.unmodifiableList(backendCrews);
 	}
 }
