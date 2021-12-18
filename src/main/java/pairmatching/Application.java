@@ -22,15 +22,15 @@ public class Application {
         pairProgram.addMissions(Level.LEVEL5, InputView.inputFifthLevelMission());
 
         Command command = Command.init();
-        runPairProgram();
+        runPairProgram(pairProgram);
     }
 
-    private static void runPairProgram() {
+    private static void runPairProgram(PairProgram pairProgram) {
         Command command = inputCommand();
         if (command.isEndGame()) {
             return;
         }
-        runPairProgram();
+        runPairProgram(pairProgram);
     }
 
     private static Command inputCommand() {
