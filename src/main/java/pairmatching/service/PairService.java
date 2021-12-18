@@ -1,6 +1,7 @@
 package pairmatching.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import pairmatching.model.Course;
 import pairmatching.model.Level;
@@ -29,7 +30,9 @@ public class PairService {
 		return false;
 	}
 
-	public void look(String source) {
+	public Match look(String course, String level, String mission) {
+		return matchRepository.findBySource(course,level,mission);
+
 	}
 
 	public void init() {

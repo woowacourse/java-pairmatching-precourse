@@ -6,6 +6,7 @@ import static pairmatching.exception.SourceFormatException.*;
 
 import java.io.IOException;
 
+import pairmatching.exception.NotFindMatchException;
 import pairmatching.model.Match;
 import pairmatching.service.PairService;
 import pairmatching.view.InputView;
@@ -41,11 +42,21 @@ public class PairMatchingController {
 			matchPair(checkEmptyInput(inputView.requestSource()));
 		}
 		if (function.equals("2")) {
-			pairService.look(checkEmptyInput(inputView.requestSource()));
+			lookPair(checkEmptyInput(inputView.requestSource()));
 		}
 		if (function.equals("3")) {
 			pairService.init();
 		}
+	}
+
+	private void lookPair(String source) {
+		checkSourceFormat(source);
+		String[] sourceSplitByComma = source.replaceAll(" ", "").split(",");
+		if (pairService.findMatch(sourceSplitByComma[0], sourceSplitByComma[1], sourceSplitByComma[2])) {
+			throw new NotFindMatchException();
+		}
+		Match match = pairService.look(sourceSplitByComma[0], sourceSplitByComma[1], sourceSplitByComma[2]);
+		outputView.reportMatch(match.getPair());
 	}
 
 	private void matchPair(String source) throws IOException {
