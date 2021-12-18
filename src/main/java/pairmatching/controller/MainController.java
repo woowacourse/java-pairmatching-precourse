@@ -1,13 +1,17 @@
 package pairmatching.controller;
 
 import pairmatching.domain.Order;
+import pairmatching.domain.matcing.MatchingRepository;
+import pairmatching.view.OutputView;
 
 public class MainController {
 
 	private final ViewController viewController;
+	private final MatchingRepository matchingRepository;
 
 	public MainController() {
 		this.viewController = new ViewController();
+		this.matchingRepository = new MatchingRepository();
 	}
 
 	public void run() {
@@ -31,7 +35,8 @@ public class MainController {
 		}
 
 		if (order.isInit()) {
-			// TODO: 2021/12/18 init
+			matchingRepository.init();
+			OutputView.printInitMessage();
 		}
 	}
 

@@ -8,4 +8,7 @@ public class OutputView {
 		System.out.println(ERROR_FORM + exception.getMessage() + "\n");
 	}
 
+	public static void printInitMessage() {
+		System.out.println("\n초기화 되었습니다.\n");
+	}
 }
