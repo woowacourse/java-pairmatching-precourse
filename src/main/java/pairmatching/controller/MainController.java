@@ -52,6 +52,7 @@ public class MainController {
             return true;
         }
         if(input.equals("3")){
+            pairService.removePairList();
             return true;
         }
         if(input.equals("Q")){

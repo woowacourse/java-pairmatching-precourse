@@ -175,4 +175,30 @@ public class PairService {
         }
         throw new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.");
     }
+
+    public void removePairList(){
+        boolean runStatus = true;
+        while(runStatus){
+            try{
+                printMainInfo();
+                String input = InputView.input();
+                // Validation
+                String[] info = input.split(",");
+                Course course = Course.ofName(info[0].trim());
+                Level level = Level.of(info[1].trim());
+                String missionName = info[2].trim();
+                Mission mission = MissionRepository.findMissionByInfo(course,level,missionName);
+                runStatus = removePair(course,level,mission);
+            }catch (IllegalArgumentException e){
+            }
+        }
+    }
+
+    private boolean removePair(Course course, Level level, Mission mission) {
+        mission.removeMatching();
+        System.out.println("초기화 되었습니다. ");
+        return false;
+    }
+
+
 }
