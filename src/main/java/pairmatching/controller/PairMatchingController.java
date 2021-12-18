@@ -2,6 +2,7 @@ package pairmatching.controller;
 
 import pairmatching.service.PairMatchingService;
 
+import static pairmatching.utils.VerificationUtil.validateFunctionChoice;
 import static pairmatching.view.OutputView.printFunctions;
 
 public class PairMatchingController {
@@ -10,8 +11,15 @@ public class PairMatchingController {
 
     public void runPairMatching() {
         while (true) {
-            String input = printFunctions();
-            choiceFunction(input);
+            try {
+                String input = printFunctions();
+
+                validateFunctionChoice(input);
+
+                choiceFunction(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

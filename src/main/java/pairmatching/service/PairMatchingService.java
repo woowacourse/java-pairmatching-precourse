@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static pairmatching.domain.Mission.getMissionFromNameAndLevel;
+import static pairmatching.utils.VerificationUtil.validateExistPairInput;
 import static pairmatching.view.OutputView.*;
 
 public class PairMatchingService {
@@ -49,21 +50,27 @@ public class PairMatchingService {
     }
 
     private Pair getPairFromInput() {
-        String input = printInputCourseAndMission();
+        while (true) {
+            try {
+                String input = printInputCourseAndMission();
 
-        String[] splitStrings = input.split(", ");
+                String[] splitStrings = input.split(", ");
 
-        Course course = Course.getCourseFromInput(splitStrings[0]);
-        Level level = Level.getLevelFromInput(splitStrings[1]);
-        Mission mission = getMissionFromNameAndLevel(splitStrings[2], level);
+                Course course = Course.getCourseFromInput(splitStrings[0]);
+                Level level = Level.getLevelFromInput(splitStrings[1]);
+                Mission mission = getMissionFromNameAndLevel(splitStrings[2], level);
 
-        List<Crew> crewList = crewService.createCrewList(course);
+                List<Crew> crewList = crewService.createCrewList(course);
 
-        Pair pair = new Pair(crewList, mission);
+                Pair pair = new Pair(crewList, mission);
 
-        checkPairExist(pair);
+                checkPairExist(pair);
 
-        return pair;
+                return pair;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void checkPairExist(Pair pair) {
@@ -71,15 +78,30 @@ public class PairMatchingService {
         String input = "";
 
         if (contains) {
-            input = printExistPair();
+            input = getUserResponse();
         }
 
         if (input.equals("아니오")) {
             getPairFromInput();
+            return;
         }
 
         if (input.equals("네")) {
             pairList.remove(pair);
+            return;
+        }
+    }
+
+    private String getUserResponse() {
+        while (true) {
+            try {
+                String input = printExistPair();
+                validateExistPairInput(input);
+
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
