@@ -13,4 +13,12 @@ public enum Course {
 	public String getName() {
 		return this.name;
 	}
+
+	public boolean isFrontEnd() {
+		return this == Course.FRONTEND;
+	}
+
+	public boolean isBackEnd() {
+		return this == Course.BACKEND;
+	}
 }
