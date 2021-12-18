@@ -17,6 +17,7 @@ public class Pair {
     public Pair(Course course, Mission mission){
         this.course = course;
         this.mission = mission;
+        alreadyMatched = new HashMap<>();
 
         shuffledCrew();
         insertMatchedMap();
