@@ -1,16 +1,11 @@
 package pairmatching.service;
 
-import pairmatching.domain.Course;
-import pairmatching.domain.Crew;
 import pairmatching.domain.Level;
 import pairmatching.domain.MatchResult;
 import pairmatching.domain.MatchResultRepository;
-import pairmatching.domain.Mission;
-import pairmatching.domain.MissionRepository;
 import pairmatching.domain.Pair;
 import pairmatching.domain.PairHistory;
 import pairmatching.domain.PairHistoryRepository;
-import pairmatching.utils.OptionInputUtils;
 
 import java.util.List;
 
@@ -46,15 +41,10 @@ public class PairMatchingService {
             return;
         }
 
-        String[] optionInfos = optionsInput.split(OPTION_SEPARATOR);
-        Course course = OptionInputUtils.courseNameToDomain(optionInfos[0]);
-        Level level = OptionInputUtils.levelNameToDomain(optionInfos[1]);
-        Mission mission = MissionRepository.getMissionByName(optionInfos[2]);
-
         List<Pair> pairs = returnMatchResult();
-        MatchResult matchResult = new MatchResult(course, level, mission, pairs);
+        MatchResult matchResult = new MatchResult(optionsInput, pairs);
         MatchResultRepository.addMatchResult(matchResult);
-        saveAllPairHistory(pairs, level);
+        saveAllPairHistory(matchResult.getPairs(), matchResult.getLevel());
         showMatchResult(matchResult);
     }
 
