@@ -4,6 +4,7 @@ import static pairmatching.enums.ErrorMessage.*;
 import static pairmatching.view.InputView.*;
 import static pairmatching.view.OutputView.*;
 
+import pairmatching.dto.RequestCourseAndLevelAndMissionDto;
 import pairmatching.enums.FeatureEnum;
 import pairmatching.service.PairMatchingService;
 
@@ -33,10 +34,12 @@ public class PairMatching {
 
 	private void pairMatching() {
 		outputCourseAndLevel();
+		RequestCourseAndLevelAndMissionDto requestCourseAndLevelAndMissionDto = inputCourseAndLevelAndMission();
 	}
 
 	private void pairSearch() {
 		outputCourseAndLevel();
+		RequestCourseAndLevelAndMissionDto requestCourseAndLevelAndMissionDto = inputCourseAndLevelAndMission();
 	}
 
 	private void pairInitialize() {
