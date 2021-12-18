@@ -27,7 +27,10 @@ public class OutputView {
     public static void printPairs(Matching m) {
         System.out.println("페어 매칭 결과입니다.");
         System.out.println(m.toString());
+    }
 
+    public static void printClear() {
+        System.out.println("초기화 되었습니다.");
     }
 
 }

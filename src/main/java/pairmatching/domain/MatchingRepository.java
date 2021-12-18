@@ -23,6 +23,10 @@ public class MatchingRepository {
         matchings.add(m);
     }
 
+    public static void clearList(){
+        matchings.clear();
+    }
+
     public static void print() {
         for (Matching m : matchings) {
             System.out.println(m.toString());

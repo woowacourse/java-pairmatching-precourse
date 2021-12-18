@@ -18,6 +18,9 @@ public class MainController {
             if(menu==2){
                 pairController.select();
             }
+            if(menu==3){
+                pairController.clear();
+            }
         } while (menu != 0);
     }
 }
