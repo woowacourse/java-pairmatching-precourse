@@ -8,7 +8,6 @@ import java.util.List;
 
 import pairmatching.domain.ErrorMessage;
 import pairmatching.domain.course.Course;
-import sun.swing.BakedArrayList;
 
 public class CrewReader {
     private final String locationOfBE = "./src/main/resources/backend-crew.md";
@@ -34,7 +33,7 @@ public class CrewReader {
             }
             reader.close();
         } catch (IOException e) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + " " + READER_ERROR);
+            throw new IllegalArgumentException(ErrorMessage.makeErrorMessage(READER_ERROR));
         }
         return crewList;
     }
