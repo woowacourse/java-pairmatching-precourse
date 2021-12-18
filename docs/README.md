@@ -30,6 +30,8 @@
 ### model
    1. Course
    2. Level
+      1. name
+      2. missions
    3. Crew
    4. MatchingHistory
       1. Level
@@ -39,8 +41,7 @@
          1. String : ex)백엔드,레벨1,자동차경주
    6. Pair
       1. List<String>
-   7. Mission
-      1. Level
+
 
 ### view
    1. InputView
