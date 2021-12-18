@@ -12,15 +12,14 @@ import pairmatching.model.Mission;
 import pairmatching.model.Pair;
 
 public class MatchingService {
-	public void match(CourseLevelMission courseLevelMission, List<Crew> backendCrews, List<Crew> frontEndCrews) {
+	public Mission match(CourseLevelMission courseLevelMission, List<Crew> backendCrews, List<Crew> frontEndCrews) {
 		Course course = courseLevelMission.getCourse();
 		Level level = courseLevelMission.getLevel();
 		Mission mission = courseLevelMission.getMission();
 		if (courseLevelMission.getCourse().equals(Course.BACKEND)) {
-			matching(level, mission, backendCrews);
-			return;
+			return matching(level, mission, backendCrews);
 		}
-		matching(level, mission, frontEndCrews);
+		return matching(level, mission, frontEndCrews);
 	}
 
 	public Mission matching(Level level, Mission mission, List<Crew> crews) {

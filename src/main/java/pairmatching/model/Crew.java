@@ -6,7 +6,7 @@ import java.util.Map;
 public class Crew {
 	private Course course;
 	private String name;
-	private MatchedCrew matchedCrew;
+	private MatchedCrew matchedCrew = new MatchedCrew();
 
 	public String getName() {
 		return name;

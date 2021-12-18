@@ -6,6 +6,7 @@ import pairmatching.Util.FileUtils;
 import pairmatching.model.Course;
 import pairmatching.model.CourseLevelMission;
 import pairmatching.model.Crew;
+import pairmatching.model.Mission;
 import pairmatching.model.Role;
 import pairmatching.service.InitializingService;
 import pairmatching.service.InquiringService;
@@ -24,6 +25,7 @@ public class PairMatchingController {
 
 		while (!roleNumber.equals("Q")) {
 			Role.parse(roleNumber).role();
+			roleNumber = inputView.enterRoleNumber();
 		}
 
 		// TODO 매칭 기록 체크
@@ -38,8 +40,7 @@ public class PairMatchingController {
 		String courseLevelMissionStr = inputView.enterCourseLevelMission();
 		CourseLevelMission courseLevelMission = new CourseLevelMission();
 		courseLevelMission.init(courseLevelMissionStr);
-		matchingService.match(courseLevelMission, backendCrews, frontendCrews);
-		//TODO 매칭 결과 체크
+		outputView.printPair(matchingService.match(courseLevelMission, backendCrews, frontendCrews).getMatchingPairs().toString());
 	}
 
 	public static void inquire() {
