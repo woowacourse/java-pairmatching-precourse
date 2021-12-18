@@ -40,4 +40,8 @@ public class Pair {
     public boolean hasCrewName(String targetName) {
         return crewSet.stream().anyMatch((crew) -> crew.isName(targetName));
     }
+
+    public boolean hasCrewNames(String name1, String name2) {
+        return hasCrewName(name1) && hasCrewName(name2);
+    }
 }
