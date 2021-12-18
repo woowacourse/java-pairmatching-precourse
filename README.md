@@ -374,3 +374,19 @@ public class Crew {
 - **Git의 커밋 단위는 앞 단계에서 README.md 파일에 정리한 기능 목록 단위**로 추가한다.
     - [AngularJS Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 참고해 commit log를 남긴다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고한다.
+
+
+## 구현 기능 목록
+
+- 기능의 종류를 출력하고 그 중 하나를 입력
+  - [예외] 1, 2, 3, Q 이외를 입력하면 예외처리
+- 과정과 미션을 출력하고 매칭하고자하는 과정, 레벨, 미션을 입력 받는다.
+  - [예외] 없는 과정이나 레벨 혹은 미션을 입력하면 예외처리
+- 매칭 정보가 있다면 다시 매칭할지 여부를 입력
+- 페어를 매칭
+  - 같은 레벨 동안은 같은 페어를 만나지 않도록 페어 매칭
+  - 크루수가 짝수이면 2명씩 할당, 홀수이면 마지막 페어는 3명을 할당
+- 페어 매칭 조회 결과 출력
+  - [예외] 해당 미션의 페어정보가 없으면 예외처리
+- 페어 초기화
+- 전체 컨트롤러
