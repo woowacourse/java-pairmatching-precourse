@@ -34,11 +34,18 @@ public class PairMatchingController {
 
 			if (option.equals("2")) {
 				pairMatchingView.selectCourseLevelMission();
+
 				if (!pairMatching.findPair(userView.selectCourseLevelMission())) {
 					System.out.println("[ERROR]");
 				}
 				;
 			}
+
+			if (option.equals("3")) {
+				pairMatching.missionInfoSet.clear();
+			}
+			
 		}
 	}
+
 }
