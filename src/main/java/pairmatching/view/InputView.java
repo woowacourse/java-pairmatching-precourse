@@ -34,7 +34,6 @@ public class InputView {
     private static final String INPUT_COURSE_LEVEL_MISSION = "과정, 레벨, 미션을 선택하세요.\nex) 백엔드, 레벨1, 자동차경주";
 
     private static final String INPUT_ALREADY_MATCH = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n네 | 아니오";
-    private static final String INPUT_NO_MATCH = "아니오";
 
     private static final String PRINT_DELEMITER = "############################################";
     private static final String LIST_DELEMITER = " | ";
@@ -48,7 +47,7 @@ public class InputView {
             File file = new File(BACKEND_CREW_FILE_NAME);
             Scanner scanner = new Scanner(file);
             List<String> crews = new ArrayList<>();
-            while(scanner.hasNextLine()) {
+            while (scanner.hasNextLine()) {
                 crews.add(scanner.nextLine());
             }
             return crews;
@@ -63,7 +62,7 @@ public class InputView {
             File file = new File(FRONTEND_CREW_FILE_NAME);
             Scanner scanner = new Scanner(file);
             List<String> crews = new ArrayList<>();
-            while(scanner.hasNextLine()) {
+            while (scanner.hasNextLine()) {
                 crews.add(scanner.nextLine());
             }
             return crews;
@@ -78,7 +77,7 @@ public class InputView {
             File file = new File(FIRST_MISSION);
             Scanner scanner = new Scanner(file);
             List<String> missionNames = new ArrayList<>();
-            while(scanner.hasNextLine()) {
+            while (scanner.hasNextLine()) {
                 missionNames.add(scanner.nextLine());
             }
             return missionNames;
@@ -93,7 +92,7 @@ public class InputView {
             File file = new File(SECOND_MISSION);
             Scanner scanner = new Scanner(file);
             List<String> missionNames = new ArrayList<>();
-            while(scanner.hasNextLine()) {
+            while (scanner.hasNextLine()) {
                 missionNames.add(scanner.nextLine());
             }
             return missionNames;
@@ -108,7 +107,7 @@ public class InputView {
             File file = new File(THIRD_MISSION);
             Scanner scanner = new Scanner(file);
             List<String> missionNames = new ArrayList<>();
-            while(scanner.hasNextLine()) {
+            while (scanner.hasNextLine()) {
                 missionNames.add(scanner.nextLine());
             }
             return missionNames;
@@ -123,7 +122,7 @@ public class InputView {
             File file = new File(FOURTH_MISSION);
             Scanner scanner = new Scanner(file);
             List<String> missionNames = new ArrayList<>();
-            while(scanner.hasNextLine()) {
+            while (scanner.hasNextLine()) {
                 missionNames.add(scanner.nextLine());
             }
             return missionNames;
@@ -138,7 +137,7 @@ public class InputView {
             File file = new File(FIFTH_MISSION);
             Scanner scanner = new Scanner(file);
             List<String> missionNames = new ArrayList<>();
-            while(scanner.hasNextLine()) {
+            while (scanner.hasNextLine()) {
                 missionNames.add(scanner.nextLine());
             }
             return missionNames;
