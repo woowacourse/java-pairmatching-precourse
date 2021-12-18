@@ -23,8 +23,7 @@ public class MissionInfo {
 		if (!str[0].equals(course) || !str[1].equals(level) || !str[2].equals(mission)) {
 			return false;
 		}
-
-		MakingShuffleList.printPairList(missionList);
+		
 		return true;
 	}
 }

@@ -1,7 +1,6 @@
 package pairmatching.controller;
 
 import pairmatching.model.PairMatching;
-import pairmatching.service.MakingShuffleList;
 import pairmatching.service.SelectingOptionService;
 import pairmatching.view.PairMatchingView;
 import pairmatching.view.UserView;
@@ -30,7 +29,7 @@ public class PairMatchingController {
 			if (option.equals("1")) {
 				pairMatchingView.selectCourseLevelMission();
 				try {
-					MakingShuffleList.printPairList(pairMatching.makePair(userView.selectCourseLevelMission()));
+					pairMatching.makePair(userView.selectCourseLevelMission());
 				} catch (IllegalArgumentException e) {
 					System.out.println(e.getMessage());
 				}
@@ -39,10 +38,12 @@ public class PairMatchingController {
 			if (option.equals("2")) {
 				pairMatchingView.selectCourseLevelMission();
 
-				if (!pairMatching.findPair(userView.selectCourseLevelMission())) {
-					System.out.println("[ERROR]");
+				try {
+					pairMatching.findPair(userView.selectCourseLevelMission());
+				} catch (IllegalArgumentException e) {
+					System.out.println(e.getMessage());
 				}
-				;
+
 			}
 
 			if (option.equals("3")) {

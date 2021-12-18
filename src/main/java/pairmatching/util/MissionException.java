@@ -10,7 +10,6 @@ public class MissionException {
 	}
 
 	public String checkMissionNameIsInLevel(String level, String mission) {
-		//System.out.println(level + " " + mission);
 		if (levelMission.mission.containsKey(mission)) {
 			check(levelMission.mission.get(mission), level);
 			return mission;
@@ -22,7 +21,6 @@ public class MissionException {
 	public void check(int idx, String level) {
 
 		if (!levelMission.level[idx].equals(level)) {
-			//System.out.println(levelMission.level[idx]);
 			throw new IllegalArgumentException("[ERROR] 미션이 존재하지 않습니다.");
 		}
 	}

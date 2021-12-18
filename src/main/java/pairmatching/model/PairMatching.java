@@ -9,7 +9,9 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import pairmatching.service.MakingShuffleList;
 import pairmatching.util.MissionException;
+import pairmatching.view.UserView;
 
 public class PairMatching {
 	public List<String> backendCrew;
@@ -38,25 +40,43 @@ public class PairMatching {
 		return contents;
 	}
 
-	public List<String> makePair(String CourseLevelMission) {
+	public void makePair(String CourseLevelMission) {
 		String[] str = CourseLevelMission.split(", ", -1);
 		MissionInfo missionInfo;
 		str[2] = missionException.checkMissionNameIsInLevel(str[1], str[2]);
+
+		for (int i = 0; i < missionInfoSet.size(); i++) {
+
+			if (missionInfoSet.get(i).find(CourseLevelMission)) {
+
+				if (!UserView.reMatch()) {
+					return;
+				}
+
+			}
+
+		}
 
 		if (str[0].equals("백엔드")) {
 			missionInfo = new MissionInfo(str[0], str[1], str[2], backendCrew);
 		} else {
 			missionInfo = new MissionInfo(str[0], str[1], str[2], frontendCrew);
 		}
+
 		missionInfoSet.add(missionInfo);
-		return missionInfo.missionList;
+		MakingShuffleList.printPairList(missionInfo.missionList);
 	}
 
 	public boolean findPair(String CourseLevelMission) {
+
 		for (int i = 0; i < missionInfoSet.size(); i++) {
-			if (missionInfoSet.get(i).find(CourseLevelMission))
+
+			if (missionInfoSet.get(i).find(CourseLevelMission)) {
+				MakingShuffleList.printPairList(missionInfoSet.get(i).missionList);
 				return true;
+			}
+
 		}
-		return false;
+		throw new IllegalArgumentException("\n해당 매칭이 없습니다.\n");
 	}
 }
