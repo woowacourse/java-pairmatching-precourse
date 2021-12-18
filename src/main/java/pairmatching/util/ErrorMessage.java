@@ -1,8 +1,7 @@
 package pairmatching.util;
 
 public enum ErrorMessage {
-	ERROR("[ERROR]"),
-	NOT_NUMBER_ERROR("숫자를 입력해야 합니다.");
+	INVALID_MENU_INPUT("[ERROR] 잘못된 메뉴 입력입니다 1,2,3,Q 중 하나를 입력하세");
 
 	private final String message;
 
