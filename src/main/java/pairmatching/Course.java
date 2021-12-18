@@ -14,4 +14,8 @@ public enum Course {
     public String getCourseName() {
         return name;
     }
+
+    public boolean checkCourse(String requiredName) {
+        return this.name.equals(requiredName);
+    }
 }

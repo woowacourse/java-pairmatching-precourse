@@ -9,4 +9,12 @@ public class Crew {
         this.course = course;
         this.name = name;
     }
+
+    public boolean checkCourse(Course course) {
+        return this.course.equals(course);
+    }
+
+    public String getName() {
+        return this.name;
+    }
 }

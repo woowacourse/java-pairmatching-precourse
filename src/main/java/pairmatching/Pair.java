@@ -11,14 +11,18 @@ import java.util.List;
 public class Pair {
 
     List<Crew> crews;
+    Matching matching;
+    Announcer announcer;
 
     public Pair() {
         PairManager pairManager = new PairManager();
         this.crews = pairManager.registerCrews();
+        matching = new Matching();
+        this.announcer = new Announcer();
     }
 
     public void startPairing() {
-        Matching matching = new Matching();
+
         while (true) {
             String function = selectFunction();
             if (checkQuit(function)) {
@@ -29,8 +33,7 @@ public class Pair {
     }
 
     private String selectFunction() {
-        System.out.println("기능을 선택하세요.");
-        System.out.println("1. 페어 매칭\n2. 페어 조회\n3. 페어 초기화\nQ. 종료");
+        announcer.announceSelectFunction();
         return Console.readLine();
     }
 
@@ -40,7 +43,7 @@ public class Pair {
 
     private void performFunction(Matching matching, String function) {
         if (function.equals(MATCHING_FUNCTION)) {
-            matching.startMatching();
+            matching.startMatching(crews);
             return;
         }
         if (function.equals(READ_PAIRS_FUNCTION)) {
