@@ -3,6 +3,8 @@ package pairmatching.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
+
 import pairmatching.controller.PairMatchingController;
 import pairmatching.view.PairMatchingView;
 
@@ -24,6 +26,11 @@ public class Manager {
 			}
 		}
 		return false;
+	}
+
+	public void rematch(MatchInfo matchInfo){
+		matchInfo.resetPair();
+		matchInfo.match(sameLevelList);
 	}
 
 	public void notDuplicationMatching(MatchInfo matchInfo) {

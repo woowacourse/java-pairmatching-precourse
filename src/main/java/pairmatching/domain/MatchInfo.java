@@ -9,8 +9,8 @@ public class MatchInfo {
 	String mission;
 	List<Pair> pairList = new ArrayList<>();
 	List<String> crewNames = new ArrayList<>();
-	Crew backend = new Crew("백엔드");
-	Crew frontend = new Crew("프론트엔드");
+	static final Crew backend = new Crew("백엔드");
+	static final Crew frontend = new Crew("프론트엔드");
 
 	public MatchInfo(String[] selections) {
 		this.course = selections[0];

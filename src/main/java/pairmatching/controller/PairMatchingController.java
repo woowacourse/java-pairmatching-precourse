@@ -34,8 +34,17 @@ public class PairMatchingController {
 				if (choice.equals("아니오")) {
 					continue;
 				}
+				if(choice.equals("네")){
+					MatchInfo matchInfo = manager.find(selects);
+					manager.rematch(matchInfo);
+					view.printPair(matchInfo.getPairList());
+					break;
+				}
 			}
-			if (manager.setDetail(selects)) {
+			if(!manager.isDuplication(selects)){
+				manager.setDetail(selects);
+				MatchInfo matchInfo = manager.find(selects);
+				view.printPair(matchInfo.getPairList());
 				break;
 			}
 		}
