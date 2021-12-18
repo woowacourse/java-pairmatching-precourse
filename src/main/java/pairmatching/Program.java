@@ -24,7 +24,7 @@ public class Program {
         return again;
     }
 
-    public static void choiceMain() {
+    public static void play() {
         String choice = InputView.askMain();
         if (choice.equals(Constant.ONE)) {
             choiceOne();
