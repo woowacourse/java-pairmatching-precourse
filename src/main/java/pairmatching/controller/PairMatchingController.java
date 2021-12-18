@@ -5,6 +5,7 @@ import java.util.List;
 
 import pairmatching.domain.PairMatching;
 import pairmatching.domain.Pairs;
+import pairmatching.utils.validator.MissionValidator;
 import pairmatching.view.Input;
 import pairmatching.view.Output;
 
@@ -43,23 +44,33 @@ public class PairMatchingController {
     }
 
     private void matching() {
-        String value = Input.matching();
-        if (pairs.getNames(value) != null) {
-            if (Input.rematching().equals("아니오")) {
-                matching();
+        try {
+            String value = Input.matching();
+            if (pairs.getNames(value) != null) {
+                if (Input.rematching().equals("아니오")) {
+                    matching();
+                }
             }
+            pairMatching.validate(value);
+            List<String> names = pairMatching.matching(value);
+            pairs.add(names, value);
+            Output.matching(names);
+            System.out.println();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
-        List<String> names = pairMatching.matching(value);
-        pairs.add(names, value);
-        Output.matching(names);
-        System.out.println();
     }
 
     private void search() {
-        String value = Input.matching();
-        List<String> names = pairs.getNames(value);
-        Output.matching(names);
-        System.out.println();
+        try {
+            String value = Input.matching();
+            pairMatching.validate(value);
+            List<String> names = pairs.getNames(value);
+            Output.matching(names);
+            System.out.println();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void reset() {
