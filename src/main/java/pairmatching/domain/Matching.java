@@ -34,4 +34,8 @@ public class Matching {
 	public int hashCode() {
 		return Objects.hash(course, level, mission);
 	}
+
+	public List<String> getNames() {
+		return names;
+	}
 }

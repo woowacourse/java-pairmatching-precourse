@@ -78,7 +78,8 @@ public class Function {
 	}
 
 	private void check(String course, String level, String mission) {
-
+		OutputView.printMatchingResult(matchingSystem.read(new Matching(Course.mapToCourse(course), Level.mapToLevel(level), Mission
+			.mapToLevel(mission), new ArrayList<>())));
 	}
 
 	private void initialize(String course, String level, String mission) {

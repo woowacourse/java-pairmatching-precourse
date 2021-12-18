@@ -37,12 +37,12 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public static void printQueryMatchingInformation() {
+	public static void printReMatchingQuery() {
 		System.out.println(Message.PRINT_QUERY_MATCHING);
 	}
 
 	public static void printCompleteInitialize() {
-		System.out.println(Message.);
+		System.out.println(Message.PRINT_COMPLETE_INITIALIZE);
 		System.out.println();
 	}
 }
