@@ -20,10 +20,10 @@ public enum Mission {
     }
 
     public static Mission findBy(String name) {
-        return Arrays.stream(Mission.values()).filter(mission -> mission.isSameName(name)).findFirst().get();
+        return Arrays.stream(Mission.values()).filter(mission -> mission.isSame(name)).findFirst().get();
     }
 
-    private boolean isSameName(String name) {
+    public boolean isSame(String name) {
         return this.name.equals(name);
     }
 

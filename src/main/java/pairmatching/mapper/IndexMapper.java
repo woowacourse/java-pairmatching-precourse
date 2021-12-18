@@ -29,12 +29,19 @@ public enum IndexMapper {
     }
 
     private static void mapToInquiry() {
+
     }
 
     private static void mapToMatch() {
         OutputView.printProcess(pairMatchingController.requestProcess());
         OutputView.printMission(pairMatchingController.requestMission());
         String request = InputView.printProcessLevelMissionSelection();
+        if (pairMatchingController.hasAlreadyMatching(new RequestDto(request))) {
+            String YesOrNo = InputView.printRematching();
+            if ("아니오".equals(YesOrNo)) {
+                return;
+            }
+        };
         pairMatchingController.match(new RequestDto(request));
     }
 

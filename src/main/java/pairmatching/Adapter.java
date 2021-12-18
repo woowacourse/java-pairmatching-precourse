@@ -5,7 +5,9 @@ import pairmatching.view.InputView;
 
 public class Adapter {
     public void run() {
-        String request = InputView.printIndex();
-        IndexMapper.map(request);
+        while (true) {
+            String request = InputView.printIndex();
+            IndexMapper.map(request);
+        }
     }
 }

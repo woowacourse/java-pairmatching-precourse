@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pairmatching.dto.PairDto;
+import pairmatching.dto.RequestDto;
 
 public class BackPairs {
     private Level level;
     private Mission mission;
     private final List<Pair> pairs = new ArrayList<>();
 
-    public BackPairs(String mission, String level) {
+    public BackPairs(String level, String mission) {
         this.mission = Mission.findBy(mission);
         this.level = Level.findBy(level);
     }
@@ -20,5 +21,12 @@ public class BackPairs {
     }
     public List<Pair> pairs() {
         return pairs;
+    }
+
+    public boolean isSame(RequestDto requestDto) {
+        if (level.isSame(requestDto.getLevel()) && mission.isSame(requestDto.getMission())) {
+            return true;
+        }
+        return false;
     }
 }

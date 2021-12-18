@@ -1,5 +1,6 @@
 package pairmatching.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,6 +15,9 @@ import pairmatching.dto.PairDto;
 import pairmatching.dto.RequestDto;
 
 public class PairService {
+    private List<BackPairs> backPairsList = new ArrayList<>();
+    private List<FrontPairs> frontPairsList = new ArrayList<>();
+
     public List<PairDto> match(RequestDto requestDto) {
         if (Course.isBackend(requestDto.getCourse())) {
             List<CrewDto> crewDtos = BackCrews.crews().stream().map(CrewDto::new).collect(Collectors.toList());
@@ -44,6 +48,7 @@ public class PairService {
                     backPairs.addPair(new PairDto(names));
                 }
             }
+            backPairsList.add(backPairs);
             return backPairs.pairs().stream().map(PairDto::new).collect(Collectors.toList());
         }
         FrontPairs frontPairs = new FrontPairs(level, mission);
@@ -64,6 +69,14 @@ public class PairService {
                 frontPairs.addPair(new PairDto(names));
             }
         }
+        frontPairsList.add(frontPairs);
         return frontPairs.pairs().stream().map(PairDto::new).collect(Collectors.toList());
+    }
+
+    public boolean hasAlreadyMatching(RequestDto requestDto) {
+        if (Course.isBackend(requestDto.getCourse())) {
+            return backPairsList.stream().anyMatch(backPairs -> backPairs.isSame(requestDto));
+        }
+        return frontPairsList.stream().anyMatch(frontPairs -> frontPairs.isSame(requestDto));
     }
 }

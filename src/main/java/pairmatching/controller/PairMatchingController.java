@@ -38,4 +38,8 @@ public class PairMatchingController {
         List<PairDto> pairDtos = pairService.match(requestDto);
         OutputView.printMatchingResult(pairDtos);
     }
+
+    public boolean hasAlreadyMatching(RequestDto requestDto) {
+        return pairService.hasAlreadyMatching(requestDto);
+    }
 }
