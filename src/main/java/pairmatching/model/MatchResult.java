@@ -19,20 +19,8 @@ public class MatchResult {
 		this.owner = owner;
 	}
 
-	public Course getCourse() {
-		return course;
-	}
-
-	public void setCourse(Course course) {
-		this.course = course;
-	}
-
 	public Level getLevel() {
 		return level;
-	}
-
-	public void setLevel(Level level) {
-		this.level = level;
 	}
 
 	public Mission getMission() {
@@ -47,10 +35,6 @@ public class MatchResult {
 		return pairMembers;
 	}
 
-	public void setPairMembers(List<String> pairMembers) {
-		this.pairMembers = pairMembers;
-	}
-
 	public String getPairMemberNames() {
 		StringBuilder stringBuilder = new StringBuilder(owner + " : ");
 		String collect = pairMembers.stream().collect(Collectors.joining(" : "));
@@ -58,5 +42,3 @@ public class MatchResult {
 		return stringBuilder.toString();
 	}
 }
-
-

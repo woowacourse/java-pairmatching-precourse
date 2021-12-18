@@ -9,15 +9,35 @@ public class MatchResults {
 	public static final String INFO_MESSAGE_RESET_DONE = "\n초기화 되었습니다.\n";
 	private List<MatchResult> matchResults = new ArrayList<>();
 
-	public List<MatchResult> getMatchResults() {
-		return matchResults;
-	}
-
 	public boolean hasMatchResultsByMission(Course course, Mission mission) {
 		return matchResults.stream()
 							.filter(match -> match.getMission().equals(mission))
 							.collect(Collectors.toList())
 							.size() > 0;
+	}
+
+	public String getMatchResultByMission(Mission mission) {
+		StringBuilder resultBuilder = new StringBuilder();
+		List<MatchResult> collect = matchResults.stream().filter(match -> {
+			return match.getMission().getLevel().equals(mission.getLevel())
+				&& match.getMission().getName().equals(mission.getName());
+		}).collect(Collectors.toList());
+
+		collect.forEach(e -> resultBuilder.append(e.getPairMemberNames()));
+		return resultBuilder.toString();
+	}
+
+	public void resetMatchResultByMission(Mission mission) {
+		Level levelToRemove = mission.getLevel();
+		String nameToRemove = mission.getName();
+		matchResults.removeIf(match ->
+			match.getMission().getLevel().equals(levelToRemove)
+				&& match.getMission().getName().equals(nameToRemove));
+	}
+
+	public void reset() {
+		matchResults = new ArrayList<>();
+		System.out.println(INFO_MESSAGE_RESET_DONE);
 	}
 
 	public void match(CrewRepository crewsByString, Mission mission, int trial) {
@@ -62,29 +82,5 @@ public class MatchResults {
 			});
 		}
 		return result.get();
-	}
-
-	public String getMatchResultByMission(Mission mission) {
-		StringBuilder resultBuilder = new StringBuilder();
-		List<MatchResult> collect = matchResults.stream().filter(match -> {
-			return match.getMission().getLevel().equals(mission.getLevel())
-				&& match.getMission().getName().equals(mission.getName());
-		}).collect(Collectors.toList());
-
-		collect.forEach(e -> resultBuilder.append(e.getPairMemberNames()));
-		return resultBuilder.toString();
-	}
-
-	public void resetMatchResultByMission(Mission mission) {
-		Level levelToRemove = mission.getLevel();
-		String nameToRemove = mission.getName();
-		matchResults.removeIf(match ->
-			match.getMission().getLevel().equals(levelToRemove)
-			&& match.getMission().getName().equals(nameToRemove));
-	}
-
-	public void reset() {
-		matchResults = new ArrayList<>();
-		System.out.println(INFO_MESSAGE_RESET_DONE);
 	}
 }

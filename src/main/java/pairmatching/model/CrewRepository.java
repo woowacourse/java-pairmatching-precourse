@@ -14,6 +14,14 @@ public class CrewRepository {
 		this.crews = createCrewRepository(crewNameList);
 	}
 
+	public List<String> shuffle() {
+		List<String> crewNameList = crews.stream()
+			.map(crew -> crew.getName())
+			.collect(Collectors.toList());
+
+		return Randoms.shuffle(crewNameList);
+	}
+
 	private List<Crew> createCrewRepository(List<String> crewNameList) {
 		return crewNameList
 			.stream().map(crewName -> new Crew(crewName))
@@ -28,13 +36,5 @@ public class CrewRepository {
 
 	private boolean hasDuplicatedCrewName(List<String> crewNameList) {
 		return crewNameList.stream().collect(Collectors.toSet()).size() != crewNameList.size();
-	}
-
-	public List<String> shuffle() {
-		List<String> crewNameList = crews.stream()
-										.map(crew -> crew.getName())
-										.collect(Collectors.toList());
-
-		return Randoms.shuffle(crewNameList);
 	}
 }
