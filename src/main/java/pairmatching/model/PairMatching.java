@@ -32,12 +32,15 @@ public class PairMatching {
 	public void matchingPair(String[] courseInfos) {
 		crews = Randoms.shuffle(crews);
 		int resetCnt = RESET_START;
-		try {
+		while (true) {
 			List<Pair> pairList = makePairs(Level.findLevelByString(courseInfos[LEVEL_IDX]), courseInfos[COURSE_IDX]);
-		} catch (IllegalArgumentException illegalArgumentException) {
-			crews = Randoms.shuffle(crews);
+			matchingHistory.addHisotry(Level.findLevelByString(courseInfos[LEVEL_IDX]), pairList);
+			matchingInfo.addInfo(courseInfos, pairList);
+			if (pairList == null) {
+				resetCnt++;
+			}
 			if (resetCnt == RESET_CNT) {
-				throw (new IllegalArgumentException(PAIR_EXIST));
+				throw new IllegalArgumentException(PAIR_EXIST);
 			}
 		}
 	}
@@ -56,7 +59,7 @@ public class PairMatching {
 			}
 			pair.add(crew.getName());
 			if (matchingHistory.isExistPair(level, pair)) {
-				throw new IllegalArgumentException("존재하는 페어가 있습니다.");
+				return null;
 			}
 		}
 		return pairList;

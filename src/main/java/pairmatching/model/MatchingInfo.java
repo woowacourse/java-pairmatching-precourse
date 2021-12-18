@@ -10,4 +10,7 @@ public class MatchingInfo {
 	public MatchingInfo() {
 		matchingInfo = new LinkedHashMap<>();
 	}
+
+	public void addInfo(String[] courseInfos, List<Pair> pairList) {
+	}
 }

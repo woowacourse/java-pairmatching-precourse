@@ -1,8 +1,6 @@
 package pairmatching;
 
 import pairmatching.controller.PairMatchingController;
-import pairmatching.model.MatchingHistory;
-import pairmatching.model.MatchingInfo;
 import pairmatching.model.PairMatching;
 
 public class Application {

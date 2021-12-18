@@ -24,4 +24,14 @@ public class MatchingHistory {
 		}
 		return false;
 	}
+
+	public void addHisotry(Level levelByString, List<Pair> pairList) {
+		List<Pair> existPair = matchingHistory.get(levelByString);
+		if (existPair == null) {
+			matchingHistory.put(levelByString, pairList);
+			return;
+		}
+		existPair.addAll(pairList);
+		matchingHistory.put(levelByString, existPair);
+	}
 }
