@@ -12,7 +12,7 @@ public class Mission {
 	private Set<Map> pairCrews;
 
 	public Mission(Course course, Level level, String name){
-		pairCrews = new HashSet<>();
+		pairCrews = null;
 		this.course = course;
 		this.level = level;
 		this.name = name;

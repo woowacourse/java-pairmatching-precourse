@@ -29,7 +29,7 @@ public class Matching {
 	}
 
 	private void makeEvenNumberCrews(List<String> crewNames) {
-		for (int i = 0; i < crewNames.size() / 2; i += 2) {
+		for (int i = 0; i < crewNames.size(); i += 2) {
 			List<String> pair = new ArrayList<>();
 			pair.add(crewNames.get(i));
 			pair.add(crewNames.get(i + 1));
