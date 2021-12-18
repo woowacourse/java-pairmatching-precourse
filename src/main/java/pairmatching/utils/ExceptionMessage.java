@@ -5,4 +5,6 @@ public class ExceptionMessage {
     public static final String INVALID_INFORMATION_DATA = "[ERROR] 올바른 데이터가 아닙니다.";
     public static final String INCORRECT_INFORMATION_FORMAT = "[ERROR] 올바른 정보 포멧이 아닙니다.";
     public static final String NOT_MATCHABLE = "[ERROR] 매칭이 불가능합니다.";
+    public static final String NO_MATCHING_HISTORY = "[ERROR] 매칭 이력이 없습니다.";
+
 }
