@@ -24,10 +24,7 @@ public class PairMatchingController {
 				getPairList(techCourse);
 			}
 			if (mainCommend.equals(LOOKUP_PAIR)) {
-				OutputView.printMission();
-				String missionName = missionName();
-				List<String> pairList = techCourse.getPairList(missionName);
-				OutputView.showCrewList(pairList);
+				lookupPairList(techCourse);
 			}
 			if (mainCommend.equals(RESET_PAIR)) {
 				techCourse.resetPair();
@@ -35,6 +32,18 @@ public class PairMatchingController {
 			if (mainCommend.equals(TERMINATION)) {
 				return;
 			}
+		}
+	}
+
+	private void lookupPairList(TechCourse techCourse) {
+		try {
+			OutputView.printMission();
+			String missionName = missionName();
+			List<String> pairList = techCourse.getPairList(missionName);
+			InputValidator.isEmpty(pairList);
+			OutputView.showCrewList(pairList);
+		} catch (IllegalArgumentException e) {
+			OutputView.showError(e.getMessage());
 		}
 	}
 
