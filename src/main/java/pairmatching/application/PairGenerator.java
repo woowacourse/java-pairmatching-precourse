@@ -35,12 +35,16 @@ public class PairGenerator {
 
 		for (int index = 0; index < shuffledCrew.size(); index += 2) {
 			result.add(createPair(mission, shuffledCrew, index));
-			if (shuffledCrew.size() - index == 3) {
+			if (isThreeCrewsInLastPair(shuffledCrew, index)) {
 				break;
 			}
 		}
 
 		return result;
+	}
+
+	private boolean isThreeCrewsInLastPair(List<Crew> shuffledCrew, int index) {
+		return shuffledCrew.size() - index == 3;
 	}
 
 	private List<Crew> getShuffledCrewByCourse(Course course) {
@@ -71,7 +75,7 @@ public class PairGenerator {
 		Crew crew2 = shuffledCrew.get(index + 1);
 		Pair pair = Pair.of(mission, crew1, crew2);
 
-		if (shuffledCrew.size() - index == 3) {
+		if (isThreeCrewsInLastPair(shuffledCrew, index)) {
 			pair.addCrew(shuffledCrew.get(index + 2));
 		}
 
