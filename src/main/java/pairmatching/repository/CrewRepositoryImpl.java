@@ -2,8 +2,8 @@ package pairmatching.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import java.util.stream.Collectors;
+
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 

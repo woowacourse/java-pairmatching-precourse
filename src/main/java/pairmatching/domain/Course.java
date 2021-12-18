@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
 import java.util.Arrays;
+
 import pairmatching.exception.CourseNotFoundException;
 
 public enum Course {

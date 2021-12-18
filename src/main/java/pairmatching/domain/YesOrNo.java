@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
 import java.util.Arrays;
+
 import pairmatching.exception.InputIsNotCorrectException;
 
 public enum YesOrNo {

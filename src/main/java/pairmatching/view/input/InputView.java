@@ -1,15 +1,14 @@
 package pairmatching.view.input;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.FunctionChoice;
 import pairmatching.domain.YesOrNo;
 import pairmatching.dto.MatchDto;
 import pairmatching.exception.InputIsNotCorrectException;
-
 
 public class InputView {
 

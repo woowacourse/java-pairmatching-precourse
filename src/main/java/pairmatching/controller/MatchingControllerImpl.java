@@ -38,7 +38,7 @@ public class MatchingControllerImpl implements MatchingController {
 						return;
 				}
 				outputView.printEmptyNewLine();
-			} catch(PairMatchingException ex) {
+			} catch (PairMatchingException ex) {
 				outputView.printErrorMessage(ex.getMessage());
 			}
 		}
@@ -57,7 +57,7 @@ public class MatchingControllerImpl implements MatchingController {
 				List<String> results = matchingService.matchCrews(matchDto);
 				outputView.printMatchResult(results);
 				break;
-			} catch(PairMatchingException ex) {
+			} catch (PairMatchingException ex) {
 				outputView.printErrorMessage(ex.getMessage());
 			}
 		}
@@ -86,7 +86,7 @@ public class MatchingControllerImpl implements MatchingController {
 				List<String> results = matchingService.getPairResultOfMatchGroup(matchDto);
 				outputView.printMatchResult(results);
 				break;
-			} catch(PairMatchingException ex) {
+			} catch (PairMatchingException ex) {
 				outputView.printErrorMessage(ex.getMessage());
 			}
 		}
