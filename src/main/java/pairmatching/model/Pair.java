@@ -1,7 +1,8 @@
 package pairmatching.model;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import pairmatching.service.MakingShuffleList;
 
 public class Pair {
 	public String course;
@@ -13,6 +14,6 @@ public class Pair {
 		this.course = course;
 		this.level = level;
 		this.mission = mission;
-		pairList = new ArrayList<String>();
+		pairList = MakingShuffleList.shuffle(memberList);
 	}
 }
