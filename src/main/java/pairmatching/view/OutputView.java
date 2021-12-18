@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 import pairmatching.Function;
 import pairmatching.domain.Course;
 import pairmatching.domain.Level;
+import pairmatching.domain.Mission;
 
 public class OutputView {
 	private static final String MAIN_TITLE = "기능을 선택하세요.";
@@ -57,20 +58,18 @@ public class OutputView {
 
 	private void printMission() {
 		System.out.println(PREFIX_MISSION);
-		Stream.of(Level.values()).forEach(level -> printLevel(level));
+		Stream.of(Level.values()).forEach(this::printLevel);
 	}
 
 	private void printLevel(Level level) {
 		StringBuilder missions = new StringBuilder();
-		if (level.getMissions().size() == 0) {
-			System.out.printf(LEVEL_FORMAT, level.getName(), "");
-			return;
-		}
-		level.getMissions().stream().forEach(
-			mission -> missions.append(mission).append(CONJUNCTION)
+		Stream.of(Mission.values()).filter(mission -> mission.isLevel(level)).forEach(
+			mission -> missions.append(mission.getName()).append(CONJUNCTION)
 		);
-		missions.delete(
-			missions.lastIndexOf(CONJUNCTION), missions.length());
+		if (missions.length() > 0) {
+			missions.delete(
+				missions.lastIndexOf(CONJUNCTION), missions.length());
+		}
 		System.out.printf(LEVEL_FORMAT, level.getName(), missions);
 	}
 
