@@ -22,10 +22,16 @@ public class Matching {
     }
 
     private static boolean whatTodo(char c) {
+        int count = 0;
         if (c == '1') {
             boolean keep = true;
             while(keep) {
-                keep = doMatch(matching());
+                if(count == 0) {
+                    keep = doMatch(matching());
+                    count++;
+                }
+                if(count != 0)
+                    keep = doMatch(rematching());
             }
             return true;
         }
@@ -37,6 +43,7 @@ public class Matching {
         }
         return false;
     }
+
 
     private static void makeMission(String[] arr) {
         Course course = Course.valueOf(arr[0]);
@@ -52,7 +59,6 @@ public class Matching {
                 makeMission(arr);
                 return false;
             }
-            IOProvider.printReanswer();
             return true;
         }
         makeMission(arr);
@@ -66,6 +72,11 @@ public class Matching {
 
     private static String[] matching() {
         return IOProvider.chooseWhatMissionToDo();
+    }
+
+
+    private static String[] rematching() {
+        return IOProvider.rechooseWhatMissionToDo();
     }
 
     private static void printMatchingResult(String result) {

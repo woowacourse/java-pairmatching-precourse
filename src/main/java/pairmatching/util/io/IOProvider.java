@@ -50,8 +50,9 @@ public class IOProvider {
         System.out.println(message);
     }
 
-    public static void printReanswer() {
+    public static String[] rechooseWhatMissionToDo() {
         System.out.println();
         System.out.println(IOMessage.REANSWER);
+        return Validator.isValidMissionChoosen(Console.readLine());
     }
 }
