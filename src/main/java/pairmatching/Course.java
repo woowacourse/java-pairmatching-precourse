@@ -10,5 +10,8 @@ public enum Course {
 		this.name = name;
 	}
 
-	// 추가 기능 구현
+	@Override
+	public String toString() {
+		return this.name;
+	}
 }
