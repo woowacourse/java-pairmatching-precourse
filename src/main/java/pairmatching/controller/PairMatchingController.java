@@ -1,6 +1,6 @@
 package pairmatching.controller;
 
-import pairmatching.model.CourseLevelInfo;
+import pairmatching.model.*;
 import pairmatching.validation.FunctionSelectValidation;
 import pairmatching.validation.ProcessLevelMissionValidation;
 import pairmatching.view.InputView;
@@ -10,7 +10,7 @@ public class PairMatchingController {
     String selectNum;
     String[] info;
     public void run(){
-        CourseLevelInfo.init();
+        init();
         while(true) {
             functionSelect();
             if (selectNum.equals("1")) {
@@ -26,6 +26,11 @@ public class PairMatchingController {
         }
     }
 
+    private void init(){
+        CourseLevelInfo.init();
+        BackendCrew.createBackendCrewList();;
+        FrontendCrew.createFrontendCrewList();
+    }
     private void functionSelect(){
         String number = InputView.inputFunctionSelect();
         try{
@@ -41,6 +46,8 @@ public class PairMatchingController {
         String input = InputView.inputCourseLevelMissionSelect();
         try{
             info = ProcessLevelMissionValidation.isValidation(input);
+            PairMatching.createPairPerson(info[0], info[1], info[2]);
+            PairMatchingList.printPairMatching();
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
             pairMatching();

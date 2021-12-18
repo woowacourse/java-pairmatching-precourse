@@ -5,8 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import static pairmatching.constant.OutputConstant.*;
-
 public class CourseLevelInfo {
     private static List<Course> courseList;
     private static Map<Level, List<Game>> levelMission;
