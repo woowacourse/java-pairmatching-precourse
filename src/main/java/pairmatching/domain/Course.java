@@ -13,4 +13,11 @@ public enum Course {
     }
 
     // 추가 기능 구현
+
+    public static Course getCourse(final String name) {
+        return Arrays.stream(values())
+            .filter(v -> v.name.equals(name))
+            .findFirst()
+            .orElseThrow(IllegalAccessError::new);
+    }
 }

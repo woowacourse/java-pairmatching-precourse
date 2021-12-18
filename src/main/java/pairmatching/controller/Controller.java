@@ -16,8 +16,6 @@ public class Controller {
     private static final int COURSE_INDEX = 0;
     private static final int LEVEL_INDEX = 1;
     private static final int MISSION_INDEX = 2;
-    private static final String BACKEND = "백엔드";
-    private static final String FRONTEND = "프론트엔드";
 
     private static System system;
 
@@ -34,18 +32,14 @@ public class Controller {
 
     private static void initializeMatchingInfo() {
         List<String> matchInfoList = Arrays.asList(ConsoleInputView.inputMatchinInfo().split(COMMA_SEPARATION));
-        randomMatch(matchInfoList.get(COURSE_INDEX).trim());
+        randomMatch(matchInfoList.get(COURSE_INDEX).trim(),
+            matchInfoList.get(LEVEL_INDEX).trim(),
+            matchInfoList.get(MISSION_INDEX).trim());
     }
 
-    private static void randomMatch(final String courseName) {
-        if (courseName.equals(BACKEND)) {
-            system.randomMatchBE();
-        }
-        if (courseName.equals(FRONTEND)) {
-            system.randomMatchFE();
-        }
+    private static void randomMatch(final String courseName, final String level, final String mission) {
+        system.randomMatch(courseName, level, mission);
     }
-
 
     private static String getInputFunction() {
         String inputFunction;
