@@ -1,5 +1,9 @@
 package pairmatching.view;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import pairmatching.domain.PairMatching;
 
 public class OutputView {
@@ -15,9 +19,15 @@ public class OutputView {
 	}
 
 	public void printPairMatchingInfo() {
+		System.out.println();
 		System.out.println("#############################################");
 		System.out.print("과정: ");
 		System.out.println(String.join(" | ", pairMatching.getGetRoll()));
 		System.out.println("미션: ");
+		Map<String, List<String>> levelMap = pairMatching.getLevel().getLevelMap();
+		for (String levelName : levelMap.keySet()) {
+			System.out.println("  - "+ levelName + ": " + String.join(" | ", levelMap.get(levelName)));
+		}
+		System.out.println("#############################################");
 	}
 }
