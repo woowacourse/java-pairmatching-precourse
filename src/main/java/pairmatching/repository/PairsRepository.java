@@ -16,8 +16,7 @@ public class PairsRepository {
 		return pairsList.stream()
 			.filter(pairs -> pairs.getCourse().equals(course))
 			.filter(pairs -> pairs.getLevel().equals(level))
-			.filter(pairs -> pairs.getMission().equals(mission))
-			.count() > 0;
+			.anyMatch(pairs -> pairs.getMission().equals(mission));
 	}
 
 	public static void create(Pairs pairs) {
