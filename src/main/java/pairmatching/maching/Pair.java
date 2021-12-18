@@ -1,13 +1,13 @@
 package pairmatching.maching;
 
+import java.util.List;
+
 import pairmatching.crew.Crew;
 
 public class Pair {
-	private Crew one;
-	private Crew two;
+	private List<Crew> pairs;
 
-	public Pair(Crew one, Crew two) {
-		this.one = one;
-		this.two = two;
+	public Pair(List<Crew> pairs) {
+		this.pairs = pairs;
 	}
 }
