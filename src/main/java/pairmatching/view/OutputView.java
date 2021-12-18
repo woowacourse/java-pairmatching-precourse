@@ -18,11 +18,13 @@ public class OutputView {
 	public static final String PAIR_BORDER = "#############################################";
 	public static final String PAIR_COURSE = "과정: ";
 	public static final String PAIR_MISSION = "미션: ";
+	public static final String PAIR_REQUEST_INFO = "과정, 레벨, 미션을 선택하세요.";
+
+	public static final String RESET_PAIRS = "초기화 되었습니다.";
 
 	public static final String SCREEN_MISSION_DASH = "  - ";
 	public static final String SCREEN_MISSION_DELIMITER = ": ";
 	public static final String SCREEN_DELIMITER = " | ";
-
 
 	static void printMainScreen() {
 		StringBuilder stringBuilder = new StringBuilder();
@@ -39,7 +41,8 @@ public class OutputView {
 		stringBuilder.append(PAIR_BORDER).append("\n")
 			.append(PAIR_COURSE).append(getCourseList()).append("\n")
 			.append(PAIR_MISSION + "\n").append(getMissionList())
-			.append(PAIR_BORDER);
+			.append(PAIR_BORDER).append("\n")
+			.append(PAIR_REQUEST_INFO);
 		System.out.println(stringBuilder);
 	}
 
@@ -63,5 +66,9 @@ public class OutputView {
 	private static String getMissionByLevel(Level level) {
 		List<String> missionByLevel = MissionRepository.getMissionByLevel(level);
 		return String.join(SCREEN_DELIMITER, missionByLevel);
+	}
+
+	public static void printResetPairs() {
+		System.out.println("\n" + RESET_PAIRS + "\n");
 	}
 }
