@@ -27,9 +27,7 @@ public class Application {
         pairProgram.addMissions(Level.LEVEL4, InputView.inputFourthLevelMission());
         pairProgram.addMissions(Level.LEVEL5, InputView.inputFifthLevelMission());
 
-        Command command = Command.init();
         runPairProgram(pairProgram);
-
     }
 
     private static void runPairProgram(PairProgram pairProgram) {
