@@ -23,7 +23,7 @@ public class PairController {
     private final static int PAIR_CNT = 2;
     private final static Validator validator = new Validator();
 
-    private List<MatchingInfo> matchingInfos;
+    private List<MatchingInfo> matchingInfos = new ArrayList<>();
 
     public PairController() {
     }
@@ -36,15 +36,25 @@ public class PairController {
             try {
                 matchPair(matchingInfo);
                 printPairResult(matchingInfo);
-
+                matchingInfos.add(matchingInfo);
             } catch(IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public void printPair() {
-
+    public void selectPair() {
+        String[] arr = splitMatchingInfo(inputDetails());
+        MatchingInfo nowMatchingInfo = new MatchingInfo(arr[0], arr[1], arr[2]);
+        if (matchingInfos == null) {
+            return;
+        }
+        for (MatchingInfo matchingInfo : matchingInfos) {
+            if (matchingInfo.isSameMatching(nowMatchingInfo)) {
+                printPairResult(matchingInfo);
+                return;
+            }
+        }
     }
 
     public void initialPair() {

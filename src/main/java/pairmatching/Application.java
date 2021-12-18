@@ -16,7 +16,7 @@ public class Application {
                 continue;
             }
             if (input == Option.SELECT_PAIR) {
-                controller.printPair();
+                controller.selectPair();
                 continue;
             }
             if (input == Option.INITIAL_PAIR) {
