@@ -1,12 +1,14 @@
 package pairmatching.domain;
 
-import java.util.*;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Objects;
 
 public class Crew {
-    private static final int MAXIMUM_LEVEL = 1;
-    private static final int MINIMUM_LEVEL = 5;
     private final String name;
-    private Map<Level, Set<Crew>> matchingHistory;
+    private Map<Level, Set<Crew>> memorieswithCrewByLevel;
 
     public Crew(String name) {
         this.name = name;
@@ -14,16 +16,15 @@ public class Crew {
     }
 
     private void initMatchingHistory() {
-        matchingHistory = new HashMap<>();
+        memorieswithCrewByLevel = new HashMap<>();
         for (Level level : Level.values()) {
-            matchingHistory.put(level, new HashSet<>());
+            memorieswithCrewByLevel.put(level, new HashSet<>());
         }
     }
 
     public void addHistory(Crew colleague, Level level) {
-        matchingHistory.get(level).add(colleague);
+        memorieswithCrewByLevel.get(level).add(colleague);
     }
-
 
     @Override
     public int hashCode() {
@@ -39,21 +40,15 @@ public class Crew {
             return false;
         }
         Crew other = (Crew) object;
-        return this.name.equals(other.name) && this.matchingHistory == other.matchingHistory;
+        return this.name.equals(other.name) && this.memorieswithCrewByLevel == other.memorieswithCrewByLevel;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Map<Level, Set<Crew>> getMatchingHistory() {
-        return matchingHistory;
+    public boolean isContainCrew(Level level, Crew colleague) {
+        return this.memorieswithCrewByLevel.get(level).contains(colleague);
     }
 
     @Override
     public String toString() {
-        return "Crew{" +
-                "name='" + name + '\'' +
-                '}';
+        return this.name;
     }
 }

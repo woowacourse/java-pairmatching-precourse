@@ -15,8 +15,7 @@ public class MatchingService {
     private static final int LIMIT_SHUFFLE_COUNT = 3;
     private static final int DEFAULT_START_INDEX = 0;
 
-    private MatchingService() {
-    }
+    private MatchingService() {}
 
     public static MatchingService getInstance() {
         return MatchingService.LazyHolder.INSTANCE;
@@ -30,17 +29,13 @@ public class MatchingService {
         StringBuilder matchingResults = new StringBuilder();
         do {
             List<Crew> shuffleCrews = Randoms.shuffle(crews);
-            if (isEvenNumber) {
-                isSuccessMatching = callEvenSizeMatching(shuffleCrews, level);
-            } else if (!isEvenNumber) {
-                isSuccessMatching = callOddSizeMatching(shuffleCrews, level);
-            }
+            isSuccessMatching = isPossibleMatching(level, shuffleCrews, isEvenNumber);
             if (isSuccessMatching) {
                 if (isEvenNumber) {
-                    recordHistories(matchingResults, DEFAULT_START_INDEX, shuffleCrews.size(), shuffleCrews, level);
+                    recordHistories(matchingResults, shuffleCrews.size(), shuffleCrews, level);
                     return matchingResults;
                 } else if (!isEvenNumber) {
-                    recordHistories(matchingResults, DEFAULT_START_INDEX, shuffleCrews.size() - 3, shuffleCrews, level);
+                    recordHistories(matchingResults, shuffleCrews.size() - 3, shuffleCrews, level);
                     recordRestHistories(matchingResults, shuffleCrews, level);
                     return matchingResults;
                 }
@@ -51,11 +46,18 @@ public class MatchingService {
         return matchingResults.append(SystemErrorMessage.NOT_MATCHING.getMessage());
     }
 
-    private boolean callOddSizeMatching(List<Crew> crews, Level level) {
+    private boolean isPossibleMatching(Level level, List<Crew> shuffleCrews, boolean isEvenNumber) {
+        if (isEvenNumber) {
+            return isPromisingEvenSizeMatching(shuffleCrews, level);
+        }
+        return isPromisingOddSizeMatching(shuffleCrews, level);
+    }
+
+    private boolean isPromisingOddSizeMatching(List<Crew> crews, Level level) {
         for (int i = 0; i < crews.size() - 3; i += 2) {
             Crew crewA = crews.get(i);
             Crew crewB = crews.get(i + 1);
-            if (isIncludeCrew(crewA, crewB, level) || isIncludeCrew(crewB, crewA, level)) {
+            if (isIncludeCrew(crewA, crewB, level)) {
                 return false;
             }
         }
@@ -68,10 +70,10 @@ public class MatchingService {
         restCrews.add(crews.get(crews.size() - 2));
         restCrews.add(crews.get(crews.size() - 1));
         for (int i = 0; i < restCrews.size(); i++) {
-            Crew principal = restCrews.get(i);
+            Crew crewA = restCrews.get(i);
             for (int j = i + 1; j < restCrews.size(); j++) {
-                Crew comparison = restCrews.get(j);
-                if (isIncludeCrew(principal, comparison, level) || isIncludeCrew(comparison, principal, level)) {
+                Crew crewB = restCrews.get(j);
+                if (isIncludeCrew(crewA, crewB, level)) {
                     return false;
                 }
             }
@@ -79,41 +81,30 @@ public class MatchingService {
         return true;
     }
 
-    private boolean callEvenSizeMatching(List<Crew> crews, Level level) {
+    private boolean isPromisingEvenSizeMatching(List<Crew> crews, Level level) {
         for (int i = 0; i < crews.size() - 1; i += 2) {
             Crew crewA = crews.get(i);
             Crew crewB = crews.get(i + 1);
-            if (isIncludeCrew(crewA, crewB, level) || isIncludeCrew(crewB, crewA, level)) {
+            if (isIncludeCrew(crewA, crewB, level)) {
                 return false;
             }
         }
         return true;
     }
 
-    private StringBuilder recordHistories(StringBuilder matchingResults, int startIndex, int lastIndex, List<Crew> crews, Level level) {
-        for (int i = startIndex; i < lastIndex - 1; i += 2) {
+    private StringBuilder recordHistories(StringBuilder matchingResults, int lastIndex, List<Crew> crews, Level level) {
+        for (int i = DEFAULT_START_INDEX; i < lastIndex - 1; i += 2) {
             Crew crewA = crews.get(i);
             Crew crewB = crews.get(i + 1);
             crewA.addHistory(crewB, level);
             crewB.addHistory(crewA, level);
-            matchingResults.append(crewA.getName()).append(" : ").append(crewB.getName()).append("\n");
+            matchingResults.append(crewA.toString()).append(" : ").append(crewB.toString()).append("\n");
         }
         return matchingResults;
     }
 
-    // 1 2 3 4 5
     private StringBuilder recordRestHistories(StringBuilder matchingResults, List<Crew> crews, Level level) {
-        List<Crew> restCrews = new ArrayList<>();
-        Crew crewA = crews.get(crews.size() - 3);
-        Crew crewB = crews.get(crews.size() - 2);
-        Crew crewC = crews.get(crews.size() - 1);
-        restCrews.add(crewA);
-        matchingResults.append(crewA.getName()).append(" : ");
-        restCrews.add(crewB);
-        matchingResults.append(crewB.getName()).append(" : ");
-        restCrews.add(crewC);
-        matchingResults.append(crewC.getName()).append("\n");
-
+        List<Crew> restCrews = getRestCrews(matchingResults, crews);
         for (int i = 0; i < restCrews.size(); i++) {
             Crew principal = restCrews.get(i);
             for (int j = i + 1; j < restCrews.size(); j++) {
@@ -125,8 +116,25 @@ public class MatchingService {
         return matchingResults;
     }
 
-    private boolean isIncludeCrew(Crew principal, Crew comparison, Level level) {
-        return principal.getMatchingHistory().get(level).contains(comparison);
+    private List<Crew> getRestCrews(StringBuilder matchingResults, List<Crew> crews) {
+        List<Crew> restCrews = new ArrayList<>();
+        Crew crewA = crews.get(crews.size() - 3);
+        Crew crewB = crews.get(crews.size() - 2);
+        Crew crewC = crews.get(crews.size() - 1);
+        restCrews.add(crewA);
+        restCrews.add(crewB);
+        restCrews.add(crewC);
+        matchingResults.append(crewA.toString()).append(" : ");
+        matchingResults.append(crewB.toString()).append(" : ");
+        matchingResults.append(crewC.toString()).append("\n");
+        return restCrews;
+    }
+
+    private boolean isIncludeCrew(Crew crewA, Crew crewB, Level level) {
+        if (crewA.isContainCrew(level, crewB) || crewB.isContainCrew(level, crewA)) {
+            return true;
+        }
+        return false;
     }
 
     private Level returnLevel(String inputLevel) {
