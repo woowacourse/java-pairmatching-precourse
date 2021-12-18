@@ -1,5 +1,8 @@
 package pairmatching.domain;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Match {
 
     private final Crew firstCrew;
@@ -16,5 +19,9 @@ public class Match {
 
     boolean containCrew(Crew crew) {
         return firstCrew.equals(crew) || secondCrew.equals(crew);
+    }
+
+    public List<String> crewNames() {
+        return Arrays.asList(firstCrew.name(), secondCrew.name());
     }
 }
