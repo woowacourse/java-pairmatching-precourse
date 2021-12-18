@@ -37,6 +37,8 @@ public class Controller {
 			view.renewal();
 
 			PairMatchingRepository.repo.clear();
+
+			mainMenu();
 		}
 
 		if (mainMenuInput.equals("Q")) {
@@ -68,6 +70,7 @@ public class Controller {
 			}
 
 			pairService.makePairMatching(pairMatchingInput);
+			break;
 		}
 
 		view.pairMatchingResult();
