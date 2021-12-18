@@ -28,6 +28,7 @@ public class MatchingController {
 	public void matchingProgram() {
 		String requestFunction = InputView.requestFunction();
 		findFunction(requestFunction);
+
 	}
 
 	public void registerCrew() {
@@ -59,11 +60,11 @@ public class MatchingController {
 	}
 
 	public void pairMatch() {
-
+		OutputView.printProgramInfo(this.missionList);
 	}
 
 	public void inquireMatchInfo() {
-
+		OutputView.printProgramInfo(this.missionList);
 	}
 
 	public void resetMatchInfo() {
