@@ -29,7 +29,7 @@ public class Match {
 		if (course.isSameName("백엔드")){
 			return Randoms.shuffle(peopleReader.getBackEnd());
 		}
-		if (course.isSameName("프론트앤드")){
+		if (course.isSameName("프론트엔드")){
 			return Randoms.shuffle(peopleReader.getFrontEnd());
 		}
 		return null;
