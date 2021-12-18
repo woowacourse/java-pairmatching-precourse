@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import pairmatching.utils.ErrorPrinter;
 
 public class CrewReader {
 
@@ -21,7 +20,6 @@ public class CrewReader {
     public static List<String> readFrontEndCrews() {
         return readCrewList(FRONTEND_CREW_FILE);
     }
-
 
 
     private static List<String> readCrewList(String fileName) {
