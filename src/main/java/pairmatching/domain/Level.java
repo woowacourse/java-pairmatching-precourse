@@ -2,6 +2,8 @@ package pairmatching.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import pairmatching.util.Constants;
@@ -15,10 +17,15 @@ public enum Level {
 
 	private String name;
 	private final List<String> missions;
+	private HashSet<Pair> pairHashSet = new HashSet<>();
 
 	Level(String name, List<String> missions) {
 		this.name = name;
 		this.missions = missions;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	@Override
@@ -32,5 +39,13 @@ public enum Level {
 
 	public boolean isEqualMission(String name) {
 		return missions.stream().anyMatch(m -> m.equals(name));
+	}
+
+	public boolean checkPairInPast(Pair pair) {
+		boolean havePair = pairHashSet.contains(pair);
+		if(!havePair) {
+			pairHashSet.add(pair);
+		}
+		return havePair;
 	}
 }

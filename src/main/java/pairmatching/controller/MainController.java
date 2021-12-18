@@ -1,5 +1,7 @@
 package pairmatching.controller;
 
+import java.util.List;
+
 public class MainController {
 	public void run() {
 		MenuController menuController = new MenuController();
@@ -8,7 +10,8 @@ public class MainController {
 		CrewController crewController = new CrewController();
 		crewController.loadCrewName();
 
-		ProcessController processController = new ProcessController();
-		processController.input();
+		if(!menuController.run()) {
+			return;
+		}
 	}
 }

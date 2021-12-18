@@ -14,7 +14,7 @@ import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class ProcessController {
-	public void input() {
+	public List<String> input() {
 		OutputView.printProcess(
 			String.join("\n", Arrays.asList(
 				Constants.PROCESS_OUT_LINE
@@ -27,6 +27,7 @@ public class ProcessController {
 		do {
 			process = InputView.inputProcess();
 		} while (!validate(process));
+		return Arrays.asList(process.split(Constants.PROCESS_INPUT_SEPARATOR));
 	}
 
 	private String coursesToString() {
