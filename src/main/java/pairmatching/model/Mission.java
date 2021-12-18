@@ -1,5 +1,9 @@
 package pairmatching.model;
 
+import java.util.Arrays;
+
+import static pairmatching.model.Error.WRONG_MISSION_NAME;
+
 public enum Mission {
 	CAR_RACING("자동차경주"),
 	LOTTO("로또"),
@@ -18,5 +22,12 @@ public enum Mission {
 
 	public String getName() {
 		return name;
+	}
+
+	public static Mission getMissionByName(String name) {
+		return Arrays.stream(Mission.values())
+				.filter(mission -> mission.name.equals(name))
+				.findAny()
+				.orElseThrow(() -> new IllegalArgumentException(WRONG_MISSION_NAME));
 	}
 }

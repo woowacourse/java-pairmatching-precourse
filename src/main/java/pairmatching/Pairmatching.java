@@ -18,6 +18,7 @@ public class Pairmatching {
 		Function function = input.getFunction();
 		if (function == Function.MATCH || function == Function.SEARCH) {
 			viewer.showCourseAndMissions(levelMissionsMap);
+			input.getCourseLevelMission();
 		}
 	}
 }
