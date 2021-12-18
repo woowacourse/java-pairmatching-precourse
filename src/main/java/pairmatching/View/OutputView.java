@@ -29,6 +29,11 @@ public class OutputView {
 	public static void printExistPair() {
 		System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
 	}
+
+	public static void printThreeTimeError() {
+		System.out.println("3회 이상 매칭에 실패했습니다.");
+	}
+
 	public static void printPairResult(List<String> nameList) {
 		if (nameList.size() % 2 == 0) {
 			for (int i = 0; i < nameList.size(); i += 2) {
@@ -40,5 +45,9 @@ public class OutputView {
 			System.out.println(nameList.get(i) + " : " + nameList.get(i + 1));
 		}
 		System.out.println(nameList.get(nameList.size() - 3) + " : " + nameList.get(nameList.size() - 2) + " : " + nameList.get(nameList.size() - 1));
+	}
+
+	public static void printError(String message) {
+		System.out.println("[ERROR] " + message);
 	}
 }

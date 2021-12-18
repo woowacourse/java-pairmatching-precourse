@@ -34,8 +34,10 @@ public class MatchingController {
 	}
 
 	public void matchingProgram() {
-		String requestFunction = InputView.requestFunction();
-		findFunction(requestFunction);
+		do {
+			String requestFunction = InputView.requestFunction();
+			findFunction(requestFunction);
+		} while(exitChecker);
 	}
 
 	public void registerCrew() {
@@ -75,9 +77,10 @@ public class MatchingController {
 		do {
 			String userReqeustInfo = InputView.requestMatchInfo();
 			splitRequestInfo = ParsingString.splitComma(userReqeustInfo);
-			mission = findMission(splitRequestInfo.get(REQUEST_INFO_MISSION_NAME));
+			mission = findMission(splitRequestInfo.get(REQUEST_INFO_MISSION_NAME).trim());
 		} while (existPair(mission));
 		List<String> shuffleNameList = shuffleNameList(splitRequestInfo);
+		mission.setPairList(shuffleNameList);
 		OutputView.printPairResult(shuffleNameList);
 	}
 
@@ -110,10 +113,68 @@ public class MatchingController {
 	}
 
 	public List<String> shuffleNameList(List<String> input) {
-		if (input.get(REQUEST_INFO_COURSE).equals(Course.BACKEND.getName())) {
-			return Randoms.shuffle(this.backendCrewNameList);
+		recordChecker = 0;
+		if (input.get(REQUEST_INFO_COURSE).trim().equals(Course.BACKEND.getName())) {
+			return backendShuffle(input.get(REQUEST_INFO_LEVEL).trim());
 		}
-		return Randoms.shuffle(this.frontendCrewNameList);
+		return frontendShuffle(input.get(REQUEST_INFO_LEVEL).trim());
+	}
+
+	public List<String> backendShuffle(String levelInput) {
+		List<String> randomCrewList = new ArrayList<>();
+		try {
+			randomCrewList = Randoms.shuffle(this.backendCrewNameList);
+			checkRecord(levelInput.trim(), randomCrewList);
+		} catch (Exception e) {
+			if (recordChecker != 0 && recordChecker < 3) {
+				return backendShuffle(levelInput.trim());
+			}
+			OutputView.printError(e.getMessage());
+		}
+		return randomCrewList;
+	}
+
+	public List<String> frontendShuffle(String levelInput) {
+		List<String> randomCrewList = new ArrayList<>();
+		try {
+			randomCrewList = Randoms.shuffle(this.frontendCrewNameList);
+			checkRecord(levelInput.trim(), randomCrewList);
+		} catch (Exception e) {
+			if (recordChecker < 3) {
+				return backendShuffle(levelInput.trim());
+			}
+			OutputView.printError(e.getMessage());
+		}
+		return randomCrewList;
+	}
+
+	public void checkRecord(String levelInput, List<String> crewNameList) {
+		Level level = Level.findLevel(levelInput.trim());
+		oddSizeChecker(level, crewNameList);
+		if (crewNameList.size() / 2 != 0) {
+			evensizeChecker(level, crewNameList);
+		}
+	}
+
+	public void oddSizeChecker(Level level, List<String> crewNameList) {
+		for (int i = 0; i < crewNameList.size(); i += 2) {
+			String firstCrewName = crewNameList.get(i);
+			String secondCrewName = crewNameList.get(i + 1);
+			Crew firstCrew = crewHashMap.get(firstCrewName);
+			if (firstCrew.hasRecord(level, secondCrewName)) {
+				existRecord();
+			}
+		}
+	}
+
+	public void evensizeChecker(Level level, List<String> crewNameList) {
+		String firstCrewName = crewNameList.get(crewNameList.size() - 3);
+		String secondCrewName = crewNameList.get(crewNameList.size() - 2);
+		String finalCrewName = crewNameList.get(crewNameList.size() - 1);
+		Crew firstCrew = crewHashMap.get(firstCrewName);
+		if (firstCrew.hasRecord(level, secondCrewName) || firstCrew.hasRecord(level, finalCrewName)) {
+			existRecord();
+		}
 	}
 
 	public void existRecord() {

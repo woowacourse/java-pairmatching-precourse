@@ -30,4 +30,8 @@ public class Mission {
 			System.out.println(asd);
 		}
 	}
+
+	public void setPairList(List<String> pairList) {
+		this.pairList = pairList;
+	}
 }
