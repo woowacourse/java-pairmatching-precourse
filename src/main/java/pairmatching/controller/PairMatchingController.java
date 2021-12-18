@@ -45,10 +45,8 @@ public class PairMatchingController {
 		if (functionNumber == ONE) {
 			String[] courseAndLevelAndMission = inputView.scanCourseAndLevelAndMission().trim().split(DELIMITER);
 
-			if (pairHistory.contains(courseAndLevelAndMission[0] + courseAndLevelAndMission[1])
-				&& !isRematch(courseAndLevelAndMission)) {
-				OutputView.printPairResult(pair);
-				return;
+			if (pairHistory.contains(courseAndLevelAndMission[0] + courseAndLevelAndMission[1])) {
+				courseAndLevelAndMission = isRematch(courseAndLevelAndMission);
 			}
 
 			pairHistory.add(courseAndLevelAndMission[0] + courseAndLevelAndMission[1]);
@@ -113,10 +111,10 @@ public class PairMatchingController {
 		return crewNames;
 	}
 
-	public boolean isRematch(String[] courseAndLevelAndMission) {
+	public String[] isRematch(String[] courseAndLevelAndMission) {
 		if (inputView.scanIsRematch().equals("네")) {
-			return true;
+			return courseAndLevelAndMission;
 		}
-		return false;
+		return inputView.scanCourseAndLevelAndMission().trim().split(DELIMITER);
 	}
 }
