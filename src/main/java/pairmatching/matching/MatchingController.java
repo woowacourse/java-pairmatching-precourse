@@ -23,4 +23,22 @@ public class MatchingController {
         return choice;
     }
 
+
+
+    public void startMatching(){
+        // 매칭 중복 확인로직
+        // 매칭 로직
+        seeMatchingInfo();
+    }
+
+    public void seeMatchingInfo(){
+        MatchingOutputView.seeMatchingResult();
+        // 결과 보여주기
+    }
+
+    public void resetMatching(){
+        // 초기화 로직
+        MatchingOutputView.resetFinishedPrint();
+    }
+
 }
