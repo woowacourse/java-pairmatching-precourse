@@ -1,6 +1,7 @@
 package pairmatching.matching;
 
 import pairmatching.GeneralInputView;
+import pairmatching.ValidatorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +32,10 @@ public class MatchingController {
         String selectCourse;
         try {
             String inputCourse = GeneralInputView.inputCourseByClient();
-            // 검증 로직
+            matchingService.checkValidCourseName(inputCourse);
             selectCourse = inputCourse;
         } catch (IllegalArgumentException e) {
+            ValidatorMessage.printError(ValidatorMessage.ERROR_MESSAGE + ValidatorMessage.NO_MISSION);
             selectCourse = inputCourseByUser();
         }
         return selectCourse;
@@ -42,7 +44,7 @@ public class MatchingController {
 
     public void startMatching(String courseName) {
         matchingService.hasDistinctMatching(courseName);
-        List<String> allMatched = new ArrayList<>();
+        List<String> allMatched;
         try {
             matchingService.hasAlreadyMatching(courseName);
             allMatched = matchingService.startMatching(courseName);
