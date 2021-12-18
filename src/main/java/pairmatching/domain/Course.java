@@ -10,11 +10,6 @@ public enum Course {
 		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		return name;
-	}
-
 	public static Course find(String name) {
 		for (Course course : values()) {
 			if (course.name.equals(name)) {
@@ -31,5 +26,10 @@ public enum Course {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public String toString() {
+		return name;
 	}
 }

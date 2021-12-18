@@ -8,7 +8,7 @@ import pairmatching.domain.Level;
 public class LevelMissionMap {
 	private static final Map<Level, String> levelMissionMap = new HashMap<>();
 
-	public static void add(Level level, String mission){
+	public static void add(Level level, String mission) {
 		levelMissionMap.put(level, mission);
 	}
 }

@@ -92,7 +92,7 @@ public class PairController {
 		try {
 			Validator.checkMatchingResultExist(crews);
 			PairView.printPair(crews);
-		} catch(IllegalArgumentException e){
+		} catch (IllegalArgumentException e) {
 			ErrorMessage.print(e.getMessage());
 		}
 	}

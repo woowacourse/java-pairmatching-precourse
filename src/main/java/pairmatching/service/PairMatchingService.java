@@ -11,7 +11,6 @@ import pairmatching.domain.PairKey;
 import pairmatching.repository.CrewMembers;
 import pairmatching.repository.PairMap;
 import pairmatching.view.ErrorMessage;
-import pairmatching.view.PairView;
 
 public class PairMatchingService {
 	private static final int MAX_TRIAL = 3;

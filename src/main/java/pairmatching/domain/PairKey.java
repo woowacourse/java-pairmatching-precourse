@@ -15,17 +15,17 @@ public class PairKey {
 
 	@Override
 	public boolean equals(Object o) {
-		if(o==null){
+		if (o == null) {
 			return false;
 		}
-		if(o==this){
+		if (o == this) {
 			return true;
 		}
 		if (getClass() != o.getClass()) {
 			return false;
 		}
 
-		PairKey key = (PairKey) o;
+		PairKey key = (PairKey)o;
 		return this.course.equals(key.course)
 			&& this.level.equals(key.level)
 			&& this.mission.equals(key.mission);

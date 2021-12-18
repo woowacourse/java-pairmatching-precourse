@@ -29,7 +29,7 @@ public class FileInputController {
 	private static void addCrewMembers(Course course, List<String> names) {
 
 		List<Crew> crews = new ArrayList<>();
-		for(String name: names){
+		for (String name : names) {
 			crews.add(new Crew(course, name));
 		}
 		CrewMembers.add(course, crews);

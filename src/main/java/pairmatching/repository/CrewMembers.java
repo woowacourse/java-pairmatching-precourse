@@ -15,7 +15,7 @@ public class CrewMembers {
 		crewMembers.put(course, crews);
 	}
 
-	public static List<Crew> getCrewsByCourse(Course course){
+	public static List<Crew> getCrewsByCourse(Course course) {
 		return crewMembers.get(course);
 	}
 }

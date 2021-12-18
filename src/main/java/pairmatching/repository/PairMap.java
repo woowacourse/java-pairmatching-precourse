@@ -23,7 +23,7 @@ public class PairMap {
 	}
 
 	public static List<Crew> getCrewsByKey(PairKey key) {
-		if(pairs.containsKey(key)) {
+		if (pairs.containsKey(key)) {
 			return pairs.get(key);
 		}
 		return null;
