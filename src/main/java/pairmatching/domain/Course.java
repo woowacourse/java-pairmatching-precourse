@@ -17,7 +17,7 @@ public enum Course {
 	}
 
 	// 추가 기능 구현
-	public Course mappingStringValue(String courseName) {
+	public static Course mappingStringValue(String courseName) {
 		return Arrays.stream(Course.values())
 			.filter(course -> course.getName().equals(courseName))
 			.findFirst()
