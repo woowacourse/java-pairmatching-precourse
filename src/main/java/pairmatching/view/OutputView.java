@@ -2,6 +2,7 @@ package pairmatching.view;
 
 public class OutputView {
 	private static final String LINE = "#############################################";
+	private static final String MATCHING_RESULT = "페어 매칭 결과입니다.";
 
 	public static void printProcessAndMission(String process, String Misison) {
 		System.out.println();
@@ -10,5 +11,11 @@ public class OutputView {
 		System.out.print("미션:");
 		System.out.println(Misison);
 		System.out.println(LINE);
+	}
+
+	public static void printCombination(String combination) {
+		System.out.println();
+		System.out.println(MATCHING_RESULT);
+		System.out.println(combination);
 	}
 }
