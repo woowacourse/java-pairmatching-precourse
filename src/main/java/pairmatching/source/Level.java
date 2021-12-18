@@ -64,6 +64,8 @@ public enum Level {
             return true;
         }
 
+        System.out.println("재매칭 되지 않았습니다.\n");
+
         return false;
     }
 
