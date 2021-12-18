@@ -14,11 +14,13 @@ public class MainController {
 	private final ViewController viewController;
 	private final MatchingRepository matchingRepository;
 	private final SearchController searchController;
+	private final MatchingController matchingController;
 
 	public MainController() {
 		this.viewController = new ViewController();
 		this.matchingRepository = new MatchingRepository();
 		this.searchController = new SearchController(matchingRepository, viewController);
+		this.matchingController = new MatchingController(matchingRepository);
 	}
 
 	public void run() {
@@ -61,7 +63,7 @@ public class MainController {
 			matchingRepository.deleteMatching(matching.get());
 		}
 
-		// TODO: 2021/12/18 matching
+		matchingController.matching(menu);
 	}
 
 }
