@@ -4,22 +4,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CrewRepository {
-    List<Crew> backendCrewList = new ArrayList<>();
-    List<Crew> frontendCrewList = new ArrayList<>();
+    private static List<Crew> backendCrewList = new ArrayList<>();
+    private static List<Crew> frontendCrewList = new ArrayList<>();
 
-    public void addBackendCrew(Crew crew) {
+    public static void addBackendCrew(Crew crew) {
         backendCrewList.add(crew);
     }
 
-    public List<String> getBackendCrewNames() {
+    public static List<String> getBackendCrewNames() {
         return null;
     }
 
-    public void addFrontendCrew(Crew crew) {
+    public static void addFrontendCrew(Crew crew) {
         frontendCrewList.add(crew);
     }
 
-    public List<String> getFrontendCrewNames() {
+    public static List<String> getFrontendCrewNames() {
         return null;
+    }
+
+    public static void printBackend() {
+        System.out.println("printBackend");
+        for(Crew crew : backendCrewList) {
+            System.out.println(crew.getName());
+        }
+    }
+    public static void printFront() {
+        System.out.println("printFrontEnd");
+        for(Crew crew : frontendCrewList) {
+            System.out.println(crew.getName());
+        }
     }
 }

@@ -11,4 +11,12 @@ public class LevelMisson {
         this.level = level;
         this.missons = missons;
     }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public List<String> getMissons() {
+        return missons;
+    }
 }

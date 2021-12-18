@@ -15,4 +15,13 @@ public class LevelMissonRepository {
     public static List<LevelMisson> getLevelMissonList() {
         return Collections.unmodifiableList(levelMissonList);
     }
+
+    public static void print() {
+        for(LevelMisson levelMisson : levelMissonList) {
+            System.out.println(levelMisson.level);
+            for(String misson : levelMisson.getMissons()) {
+                System.out.println(misson);
+            }
+        }
+    }
 }
