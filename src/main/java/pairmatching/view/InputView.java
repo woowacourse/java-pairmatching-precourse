@@ -9,7 +9,6 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.model.Course;
 import pairmatching.model.Levels;
-import pairmatching.model.Missions;
 import pairmatching.model.ProgramFunction;
 
 public abstract class InputView {
@@ -33,6 +32,8 @@ public abstract class InputView {
     private static final int COURSE_INDEX = 0;
     private static final int LEVEL_INDEX = 1;
     private static final int MISSION_INDEX = 2;
+    private static final String ERROR_MESSAGE_NOT_CONTAINS_COURSES = "[ERROR] 해당 과정이 존재하지 않습니다.";
+    private static final String ERROR_MESSAGE_NOT_CONTAINS_LEVELS = "[ERROR] 해당 레벨이 존재하지 않습니다.";
 
     public static List<String> readFrontendCrew() {
         try {
@@ -87,6 +88,22 @@ public abstract class InputView {
 
     private static void validateCourseInformation(final String[] splitInputCourseInformation) {
         validateCourse(splitInputCourseInformation[COURSE_INDEX]);
+        validateLevel(splitInputCourseInformation[LEVEL_INDEX]);
+    }
+
+    private static void validateLevel(final String inputLevel) {
+        boolean isContainsInputLevel = true;
+
+        for (Levels level: Levels.values()) {
+            if (level.getName().equals(inputLevel.trim())) {
+                isContainsInputLevel = false;
+                break;
+            }
+        }
+
+        if(isContainsInputLevel){
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_CONTAINS_LEVELS);
+        }
     }
 
     private static void validateCourse(final String inputCourseName) {
@@ -100,7 +117,7 @@ public abstract class InputView {
         }
 
         if(isContainsInputCourseName){
-            throw new IllegalArgumentException("[ERROR] 해당 과정이 존재하지 않습니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_CONTAINS_COURSES);
         }
     }
 
