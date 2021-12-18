@@ -41,11 +41,15 @@ public class PairService {
         return false;
     }
 
-//    public Pairs findPairs(String[] input) {
-//        Course course = getCourse(input[ConstantMessages.COURSE_INDEX]);
-//        Level level = getLevel(input[ConstantMessages.LEVEL_INDEX]);
-//        Mission mission = getMission(input[ConstantMessages.MISSION_INDEX]);
-//    }
+    public static Pairs findPairs(String[] input) {
+        Course course = getCourse(input[ConstantMessages.COURSE_INDEX]);
+        Mission mission = getMission(input[ConstantMessages.MISSION_INDEX]);
+        return PairRepository.findByCategory(new Category(mission, course));
+    }
+
+    public static void resetPairs() {
+        PairRepository.removeAll();
+    }
 
     private static List<Crew> matchPair(Course course, Level level, Mission mission, int count) {
         List<Crew> crews;
@@ -99,7 +103,7 @@ public class PairService {
 
     private static boolean isCreatePairsSuccess(Level level, Course course, List<Crew> crews, Pairs pairs) {
         for (int i = 0; i < crews.size() - 1; i = i+2) {
-            Pair pair = Pair.createPair(crews.get(i), crews.get(i+1));
+            Pair pair = getPair(crews, i);
             List<Mission> missionListByLevel = level.getMissionList();
             if (isLevelAlreadyHasPair(pair, course, missionListByLevel)) {
                 return false;
@@ -107,6 +111,13 @@ public class PairService {
             pairs.addPair(pair);
         }
         return true;
+    }
+
+    private static Pair getPair(List<Crew> crews, int i) {
+        Pair pair = new Pair();
+        pair.addCrew(crews.get(i));
+        pair.addCrew(crews.get(i +1));
+        return pair;
     }
 
     private static boolean isLevelAlreadyHasPair(Pair pair, Course course, List<Mission> missionListByLevel) {

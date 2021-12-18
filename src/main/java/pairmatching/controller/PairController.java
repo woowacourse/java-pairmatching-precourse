@@ -10,8 +10,9 @@ import pairmatching.view.OutputView;
 public class PairController {
 
     public void run() {
-        while (true){
-            MainFeature mainFeature = selectMainFeature();
+        MainFeature mainFeature = null;
+        while (mainFeature != MainFeature.QUIT){
+            mainFeature = selectMainFeature();
             if(mainFeature == MainFeature.PAIR_RESET) {
                 mainFeature.apply(defaultArr());
                 continue;
