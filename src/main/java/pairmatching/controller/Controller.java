@@ -9,6 +9,10 @@ public class Controller {
         String userChoice = InputView.getUserChoice();
     }
 
+    public void getProcessLevelMission() {
+        String processLevelMission = InputView.getProcessLevelMission();
+    }
+
     public void choicePairMatching() {
         OutputView.printProcess();
     }
