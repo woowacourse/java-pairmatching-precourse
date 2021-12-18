@@ -1,11 +1,13 @@
 package pairmatching.Controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.Domain.Course;
 import pairmatching.Domain.Crew;
+import pairmatching.Domain.Level;
 import pairmatching.Domain.Mission;
 import pairmatching.Domain.MissionRepository;
 import pairmatching.Util.CrewInfoReader;
@@ -19,12 +21,12 @@ public class MatchingController {
 	private static final int REQUEST_INFO_LEVEL = 1;
 	private static final int REQUEST_INFO_MISSION_NAME = 2;
 
-	private List<Crew> backendCrewList;
-	private List<Crew> frontendCrewList;
+	private HashMap<String, Crew> crewHashMap = new HashMap<>();
 	private List<String> backendCrewNameList = new ArrayList<>();
 	private List<String> frontendCrewNameList = new ArrayList<>();
 	private List<Mission> missionList;
 	private boolean exitChecker = true;
+	private int recordChecker = 0;
 
 	public void ready() {
 		registerCrew();
@@ -34,19 +36,20 @@ public class MatchingController {
 	public void matchingProgram() {
 		String requestFunction = InputView.requestFunction();
 		findFunction(requestFunction);
-
 	}
 
 	public void registerCrew() {
-		this.backendCrewList = CrewInfoReader.getBackendCrewInfo();
-		this.frontendCrewList = CrewInfoReader.getFrontendCrewInfo();
+		List<Crew> backendCrewList = CrewInfoReader.getBackendCrewInfo();
+		List<Crew> frontendCrewList = CrewInfoReader.getFrontendCrewInfo();
 		this.backendCrewNameList = new ArrayList<>();
-		for (Crew crew : this.backendCrewList) {
+		for (Crew crew : backendCrewList) {
 			this.backendCrewNameList.add(crew.getName());
+			crewHashMap.put(crew.getName(), crew);
 		}
 		this.frontendCrewNameList = new ArrayList<>();
-		for (Crew crew : this.frontendCrewList) {
+		for (Crew crew : frontendCrewList) {
 			this.frontendCrewNameList.add(crew.getName());
+			crewHashMap.put(crew.getName(), crew);
 		}
 	}
 
@@ -73,8 +76,9 @@ public class MatchingController {
 			String userReqeustInfo = InputView.requestMatchInfo();
 			splitRequestInfo = ParsingString.splitComma(userReqeustInfo);
 			mission = findMission(splitRequestInfo.get(REQUEST_INFO_MISSION_NAME));
-		} while (!existPair(mission));
-		List<String> shuffleNameList = shuffleNameList(splitRequestInfo.get(REQUEST_INFO_COURSE));
+		} while (existPair(mission));
+		List<String> shuffleNameList = shuffleNameList(splitRequestInfo);
+		OutputView.printPairResult(shuffleNameList);
 	}
 
 	public void inquireMatchInfo() {
@@ -105,10 +109,19 @@ public class MatchingController {
 		return false;
 	}
 
-	public List<String> shuffleNameList(String input) {
-		if (input.equals(Course.BACKEND.getName())) {
+	public List<String> shuffleNameList(List<String> input) {
+		if (input.get(REQUEST_INFO_COURSE).equals(Course.BACKEND.getName())) {
 			return Randoms.shuffle(this.backendCrewNameList);
 		}
 		return Randoms.shuffle(this.frontendCrewNameList);
+	}
+
+	public void existRecord() {
+		recordChecker += 1;
+		if (recordChecker == 3) {
+			OutputView.printThreeTimeError();
+			throw new IllegalArgumentException("3회 이상 매칭 실패.");
+		}
+		throw new IllegalArgumentException("이미 매칭된 기록이 있는 크루입니다.");
 	}
 }
