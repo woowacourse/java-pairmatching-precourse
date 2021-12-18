@@ -17,8 +17,7 @@ public class FunctionController {
 			getPairMatching();
 		}
 		if ("3".equals(functionNumber)) {
-			//TODO: 페어 초기화 함수 구현
-			// return ~
+			clearPair();
 		}
 	}
 
@@ -31,5 +30,10 @@ public class FunctionController {
 
 	private void getPairMatching() {
 		matchingService.getMatchingList();
+	}
+
+	private void clearPair() {
+		matchingService.clearMatchingList();
+		OutputView.printClearMessage();
 	}
 }

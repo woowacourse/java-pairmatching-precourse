@@ -8,6 +8,7 @@ public class OutputView {
 	private static final String MISSION = "미션:";
 	private static final String COURSE = "과정: 백엔드 | 프론트엔드";
 	private static final String PAIR_RESULT = "페어 매칭 결과입니다.";
+	private static final String CLEAR_MESSAGE = "초기화 되었습니다.";
 
 	public static void printAdvanceInformation() {
 		final Mission mission = new Mission();
@@ -26,6 +27,10 @@ public class OutputView {
 		for (String crewMatching : crewMatchingList) {
 			System.out.println(crewMatching);
 		}
+	}
+
+	public static void printClearMessage() {
+		System.out.println(CLEAR_MESSAGE);
 	}
 
 }

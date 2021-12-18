@@ -58,6 +58,10 @@ public class MatchingService {
 
 	}
 
+	public void clearMatchingList() {
+		matching.clear();
+	}
+
 	private Matching makeMatching(Level level, Course course, List<String> shuffledCrew) {
 		List<Pairs> pairsList = new ArrayList<>();
 		for (int i = 0; i < shuffledCrew.size() - 1; i += 2) {
