@@ -15,6 +15,7 @@ public class MatchingController {
 		if (functionSelectionNumber.equals("1")) {
 			OutputDisplay.showProcessAndLevelAndMission();
 			InputDisplay.askInputProcessAndLevelAndMission();
+			InputController.inputProcessAndLevelAndMission();
 		}
 	}
 }
