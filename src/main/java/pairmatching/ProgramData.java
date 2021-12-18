@@ -7,14 +7,14 @@ import java.util.List;
 import java.util.Map;
 
 public class ProgramData {
-	private List<String> backEndCrewNames;
-	private List<String> frontEndCrewNames;
-	private List<PairMatcher> backEndLevel1History;
-	private List<PairMatcher> backEndLevel3History;
-	private List<PairMatcher> backEndLevel4History;
-	private List<PairMatcher> frontEndLevel1History;
-	private List<PairMatcher> frontEndLevel3History;
-	private List<PairMatcher> frontEndLevel4History;
+	private static List<String> backEndCrewNames;
+	private static List<String> frontEndCrewNames;
+	private static List<PairMatcher> backEndLevel1History;
+	private static List<PairMatcher> backEndLevel3History;
+	private static List<PairMatcher> backEndLevel4History;
+	private static List<PairMatcher> frontEndLevel1History;
+	private static List<PairMatcher> frontEndLevel3History;
+	private static List<PairMatcher> frontEndLevel4History;
 
 	ProgramData() throws IOException {
 		backEndCrewNames = Crew.getCrewNames(Course.BACKEND);
@@ -44,5 +44,14 @@ public class ProgramData {
 		}
 
 		return true;
+	}
+
+	public static List<String> getCrewNames(Course course){
+		if(course == Course.BACKEND){
+			return backEndCrewNames;
+		} else if(course == Course.FRONTEND){
+			return frontEndCrewNames;
+		}
+		return null;
 	}
 }
