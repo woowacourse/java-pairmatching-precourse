@@ -6,17 +6,13 @@ import java.util.List;
 import pairmatching.enums.Level;
 
 public class LevelMissonRepository {
-    List<LevelMisson> levelMissonList;
+    private static List<LevelMisson> levelMissonList = new ArrayList<>();
 
-    public LevelMissonRepository() {
-        levelMissonList = new ArrayList<>();
-    }
-
-    public void addMission(LevelMisson levelMisson) {
+    public static void addMission(LevelMisson levelMisson) {
         levelMissonList.add(levelMisson);
     }
 
-    public List<LevelMisson> getLevelMissonList() {
+    public static List<LevelMisson> getLevelMissonList() {
         return Collections.unmodifiableList(levelMissonList);
     }
 }
