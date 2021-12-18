@@ -10,8 +10,8 @@ public enum Mission {
 	PAY(LEVEL2, "결제"),
 	SUBWAY(LEVEL2, "지하철노선도"),
 	PERFORMANCE(LEVEL4, "성능개선"),
-	DEPLOY(LEVEL4, "배포"),
-	;
+	DEPLOY(LEVEL4, "배포");
+
 	private Level level;
 	private String korean;
 
