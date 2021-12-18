@@ -2,12 +2,15 @@ package pairmatching.controller;
 
 import java.util.List;
 import pairmatching.Setup;
+import pairmatching.constants.InputConstants;
 import pairmatching.domain.CrewRepository;
 import pairmatching.domain.PairMemory;
 import pairmatching.domain.PairMemoryRepository;
 import pairmatching.domain.Section;
 import pairmatching.enums.Course;
 import pairmatching.enums.Level;
+import pairmatching.views.InputView;
+import pairmatching.views.OutputView;
 
 public class MainController {
     private Setup setup;
@@ -19,12 +22,37 @@ public class MainController {
     }
 
     public void start() {
-//        List<List<String>> backends1 = CrewRepository.makeBackendPair();
-//        System.out.println("backend1 그룹 개수 : " + backends1.size());
-//        Section section = new Section(Course.BACKEND, Level.LEVEL1, "경주게임");
-//        pairMemoryRepository.addPairMemory(new PairMemory(section, backends1));
-//        List<List<String>> backends2 = CrewRepository.makeBackendPair();
-//        System.out.println("backend2 그룹 개수 : " + backends2.size());
-//        pairMemoryRepository.validatePairMemory(new PairMemory(section, backends2));
+        while(true) {
+            String function = "";
+            try {
+                function = InputView.getFunction();
+            }catch (IllegalArgumentException e) {
+                System.out.println(e);
+                continue;
+            }
+            if(function.equals(InputConstants.PAIR_QUIT)) {
+                break;
+            }
+            figureFunction(function);
+        }
     }
+
+    public void figureFunction(String function) {
+        if(function.equals(InputConstants.PAIR_MATCHING)) {
+            pairMatching();
+            return;
+        }
+        if(function.equals(InputConstants.PAIR_SEARCHING)) {
+            return;
+        }
+        if(function.equals(InputConstants.PAIR_CLEAR)) {
+            return;
+        }
+    }
+
+    public void pairMatching() {
+        OutputView.printSection();
+        //TODO : 매칭하고자 하는 과정 레벨 미션 입력 받기
+    }
+
 }
