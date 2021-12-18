@@ -37,7 +37,9 @@ public class Pair {
         Pair pair = (Pair) object;
 
         if (this.mission == pair.getMission()) {
-            return true;
+            if (this.crewList.get(0).getCourse() == pair.getCrewList().get(0).getCourse()) {
+                return true;
+            }
         }
 
         return false;
