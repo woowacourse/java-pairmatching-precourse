@@ -2,6 +2,7 @@ package pairmatching.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.util.FunctionValidator;
+import pairmatching.view.DomainMessage;
 
 public class FunctionController {
 
@@ -12,6 +13,9 @@ public class FunctionController {
 		} catch (IllegalArgumentException illegalArgumentException) {
 			System.out.println(illegalArgumentException.getMessage());
 			return getFunction();
+		}
+		if (inputString.matches("[12]")) {
+			DomainMessage.printDomainInformation();
 		}
 		return inputString;
 	}

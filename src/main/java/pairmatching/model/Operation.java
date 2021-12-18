@@ -8,11 +8,28 @@ import pairmatching.view.DomainMessage;
 import pairmatching.view.FunctionMessage;
 
 public class Operation {
-	public static void start() {
+	public static String selectFunction() {
 		FunctionMessage.printManual();
-		String function = FunctionController.getFunction();
+		return FunctionController.getFunction();
+	}
 
+	public static List<String> selectDomain() {
 		DomainMessage.printManual();
-		List<String> DomainList = DomainController.getDomains();
+		return DomainController.getDomains();
+	}
+
+	public static void execute(String function, List<String> domainList, List<String> crews) {
+		if (function.equals("1")) {
+			MatchingService.start(domainList, crews);
+		}
+		if (function.equals("2")) {
+			LookUpService.start(domainList);
+		}
+		if (function.equals("3")) {
+			CleanUpService.start(domainList);
+		}
+		if (function.equals("Q")) {
+			return;
+		}
 	}
 }
