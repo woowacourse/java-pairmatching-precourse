@@ -12,7 +12,6 @@ public class CrewNameReader {
 
     public static List<String> getFrontendCrewNames() {
         List<String> crewNames = getCrewNames("frontend-crew.md");
-        System.out.println(crewNames);
         return crewNames;
     }
 
