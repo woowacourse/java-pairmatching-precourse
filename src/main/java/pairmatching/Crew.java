@@ -11,6 +11,7 @@ public class Crew {
 
     public Crew(String name) {
         this.name = name;
+        metCrew = new HashMap<>();
         for (int i = MIN_LEVEL; i<=MAX_LEVEL; i++) {
             metCrew.put(i, new ArrayList<String>());
         }
