@@ -1,5 +1,7 @@
 package pairmatching.controller;
 
+import java.util.List;
+
 import pairmatching.domain.TechCourse;
 import pairmatching.util.InputValidator;
 import pairmatching.view.InputView;
@@ -23,11 +25,12 @@ public class PairMatchingController {
 			}
 			if (mainCommend.equals(LOOKUP_PAIR)) {
 				OutputView.printMission();
-				String mission = matchPair();
-				OutputView.showCrewList(techCourse.getCrewList(mission));
+				String missionName = missionName();
+				List<String> pairList = techCourse.getPairList(missionName);
+				OutputView.showCrewList(pairList);
 			}
 			if (mainCommend.equals(RESET_PAIR)) {
-				// resetPair();
+				techCourse.resetPair();
 			}
 			if (mainCommend.equals(TERMINATION)) {
 				return;
@@ -36,9 +39,10 @@ public class PairMatchingController {
 	}
 
 	private void getPairList(TechCourse techCourse) {
-		String mission = matchPair();
-		seeIfShuffled(techCourse, mission);
-		OutputView.showCrewList(techCourse.matchPair(mission));
+		String missionName = missionName();
+		seeIfShuffled(techCourse, missionName);
+		List<String> pairList = techCourse.matchPair(missionName);
+		OutputView.showCrewList(pairList);
 	}
 
 	private void seeIfShuffled(TechCourse techCourse, String mission) {
@@ -50,13 +54,13 @@ public class PairMatchingController {
 		}
 	}
 
-	private String matchPair() {
-		String mission = InputView.inputMission();
+	private String missionName() {
+		String missionName = InputView.inputMission();
 		try {
-			return mission;
+			return missionName;
 		} catch (IllegalArgumentException e) {
 			OutputView.showError(e.getMessage());
-			return matchPair();
+			return missionName();
 		}
 	}
 

@@ -18,6 +18,8 @@ public class InputValidator {
 	private static final String LEVEL_ERROR = "해당 레벨이 존재하지 않습니다.";
 	private static final String MISSION_ERROR = "해당 미션이 존재하지 않습니다.";
 	private static final String SPLITTER = ", ";
+	private static final String YES = "네";
+	private static final String NO = "아니오";
 	private static final int COURSE = 0;
 	private static final int LEVEL = 1;
 	private static final int MISSION = 2;
@@ -53,5 +55,11 @@ public class InputValidator {
 			throw new IllegalArgumentException(ERROR + MISSION_ERROR);
 		}
 
+	}
+
+	public static void rematch(String rematch) {
+		if (!(rematch.equals(YES) || rematch.equals(NO))) {
+			throw new IllegalArgumentException(ERROR + INPUT_ERROR);
+		}
 	}
 }

@@ -9,7 +9,6 @@ public class OutputView {
 
 	public static void showCrewList(List<String> crewList) {
 		System.out.println();
-		System.out.println(crewList.toString());
 		System.out.println("페어 매칭 결과입니다.");
 		if (crewList.size() % 2 == 1) {
 			printOdd(crewList);
