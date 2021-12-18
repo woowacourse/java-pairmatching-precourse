@@ -27,6 +27,6 @@ public class CrewRepository {
         if (crews.containsKey(level)) {
             return checkDuplicated(level, crew);
         }
-        return true;
+        return false;
     }
 }

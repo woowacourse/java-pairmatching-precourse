@@ -17,10 +17,11 @@ public class PairMatching {
             List<String> crew = file.getCrew(course);
             if (PairMatching.isPairedCrew(level, crew)) {
                 pairCrew = PairMatching.getPairCrew();
-                return;
+                break;
             }
             if (count == 3) {
-                throw new IllegalArgumentException();
+                System.out.println("더이상 경우의 수가 없습니다.");
+                break;
             }
             count += 1;
         }
@@ -48,7 +49,7 @@ public class PairMatching {
         List<String> crews = crew;
         while (crews.size() != 1) {
             List<String> pair = Arrays.asList(crews.get(0), crews.get(1));
-            if (CrewRepository.checkDuplicated(level, pair)) {
+            if (!CrewRepository.checkExist(level, pair)) {
                 return false;
             }
             pairCrew.add(pair);
@@ -64,7 +65,7 @@ public class PairMatching {
         List<String> crews = crew;
         while (crews.size() != 0) {
             List<String> pair = Arrays.asList(crews.get(0), crews.get(1));
-            if (CrewRepository.checkExist(level, pair)) {
+            if (!CrewRepository.checkExist(level, pair)) {
                 return false;
             }
             pairCrew.add(pair);
