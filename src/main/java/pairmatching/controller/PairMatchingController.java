@@ -32,7 +32,7 @@ public class PairMatchingController {
 		inputView = new InputView(new Scanner(System.in));
 	}
 
-	public int scanFunctionNumber() {
+	public String scanFunctionNumber() {
 		return inputView.scanFunctionNumber();
 	}
 

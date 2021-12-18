@@ -22,9 +22,9 @@ public class InputView {
 		this.scanner = scanner;
 	}
 
-	public int scanFunctionNumber() {
+	public String scanFunctionNumber() {
 		System.out.println(FUNCTION_NUMBER_GUIDE_MESSEAGE);
-		return Integer.parseInt(scanner.nextLine());
+		return scanner.nextLine();
 	}
 
 	public String scanCourseAndLevelAndMission() {
