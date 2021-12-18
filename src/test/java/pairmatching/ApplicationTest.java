@@ -34,6 +34,16 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @Test
+    void 과정_레벨_미션_외_다른_값_입력_시_예외() {
+        assertSimpleTest(
+            () -> {
+                runException("1", "백엔드, 레벨1, 자동차경주,");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            }
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
