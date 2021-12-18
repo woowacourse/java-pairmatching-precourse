@@ -1,12 +1,12 @@
 package pairmatching.model.information;
 
-public enum Course {
+public enum Courses {
     BACKEND("백엔드"),
     FRONTEND("프론트엔드");
 
     private String name;
 
-    Course(String name) {
+    Courses(String name) {
         this.name = name;
     }
 
