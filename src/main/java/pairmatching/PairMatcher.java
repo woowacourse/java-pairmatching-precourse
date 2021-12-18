@@ -3,6 +3,7 @@ package pairmatching;
 import java.util.HashMap;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
+import camp.nextstep.edu.missionutils.Console;
 
 public class PairMatcher {
 	private static final int MAX_NUMBER_OF_ATTEMPT = 3;
@@ -10,11 +11,31 @@ public class PairMatcher {
 	public static void pairMatch(Course course, Level level, String mission) throws  IllegalArgumentException{
 		List<String> crewNames = ProgramData.getCrewNames(course);
 		List<String> shuffledNames = Randoms.shuffle(crewNames);
-
 		List<PairMatchRecorder> checkList = ProgramData.getMatchingHistory(course, level);
-		validatePairMatch(checkList, shuffledNames);
-		ProgramData.setMatchingHistory(course, level, mission, shuffledNames);
+		boolean match = true;
 
+		for(PairMatchRecorder history : checkList){
+			if(!history.isMatchedMission(mission)){
+				match = askToRematch();
+			}
+		}
+
+		if(match == true) {
+			validatePairMatch(checkList, shuffledNames);
+			ProgramData.setMatchingHistory(course, level, mission, shuffledNames);
+			//Printer.printPairInfo
+		}
+	}
+
+	private static boolean askToRematch(){
+		//print 매칭정보있음 다시하실?
+		String response = Console.readLine();
+
+		if(response == "아니오"){
+			return false;
+		}
+
+		return true;
 	}
 
 	private static void validatePairMatch(List<PairMatchRecorder> checkList, List<String> shuffledNames){

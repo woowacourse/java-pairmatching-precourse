@@ -69,4 +69,11 @@ public class PairMatchRecorder {
 
 		return true;
 	}
+
+	public boolean isMatchedMission(String mission){
+		if(this.mission == mission){
+			return true;
+		}
+		return false;
+	}
 }
