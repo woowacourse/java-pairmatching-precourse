@@ -10,8 +10,8 @@ public class Validator {
     }
 
     public static void validateInformationFormat(String information) {
-        String regex = "[가-힣]+,\\s[가-힣]+,\\s[가-힣]+";
-        if(!information.matches(regex)) throw  new IllegalArgumentException(ExceptionMessage.INCORRECT_INFORMATION_FORMAT);
+        String regex = "[가-힣]+,\\s[가-힣]+[0-9],\\s[가-힣]+";
+        if(!information.matches(regex)) throw new IllegalArgumentException(ExceptionMessage.INCORRECT_INFORMATION_FORMAT);
     }
 
     public static void validateRematchFormat(String answer) {
