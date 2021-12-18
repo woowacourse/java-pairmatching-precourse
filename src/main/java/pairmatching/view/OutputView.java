@@ -17,6 +17,7 @@ public class OutputView {
     private static final String LEVEL = "- 레벨";
 
     public void outputInformation() {
+        divisionLine();
         printDecoration();
         printCourse();
         printMission();
@@ -64,7 +65,7 @@ public class OutputView {
     }
 
     public void outputMatching(String course, String level, String mission) {
-        System.out.println("");
+        divisionLine();
         System.out.println("페어 매칭 결과입니다.");
         ArrayList<Pair> pairInformation = PairRepository.getPairInformation();
         for (Pair pair : pairInformation) {
@@ -72,6 +73,11 @@ public class OutputView {
                 printPair(pair);
             }
         }
+        divisionLine();
+    }
+
+    private void divisionLine() {
+        System.out.println();
     }
 
     private void printPair(Pair pair) {

@@ -13,9 +13,12 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class PairMatching {
     private static final String BACKEND = "백엔드";
+    private static final String FRONTEND = "프론트엔드";
+    private static final String LIMIT_ERROR_SHUFFLE_MESSAGE = "[ERROR] 매칭 시도가 3회 이상을 넘어갔습니다.";
     private static final int COURSE_IDX = 0;
     private static final int LEVEL_IDX = 1;
     private static final int MISSION_IDX = 2;
+    private static final int MAX_SHUFFLE = 3;
 
     static ArrayList<String> pair = new ArrayList<>();
     static ArrayList<String> oddPair = new ArrayList<>();
@@ -25,20 +28,27 @@ public class PairMatching {
         outputView.outputInformation();
 
         if (information[COURSE_IDX].equals(BACKEND)) {
-            BackendCrewRepository.initBackCrew();
-            ArrayList<Crew> crews = BackendCrewRepository.getBackendCrews();
-            matching(crews, information[COURSE_IDX], information[LEVEL_IDX], information[MISSION_IDX]);
-            outputView.outputMatching(information[COURSE_IDX], information[LEVEL_IDX], information[MISSION_IDX]);
+            matchingBackend(outputView, information);
             return;
         }
-        System.out.println(information[COURSE_IDX]+information[LEVEL_IDX]+information[MISSION_IDX]);
+        if (information[COURSE_IDX].equals(FRONTEND)) {
+            matchingFrontend(outputView, information);
+            return;
+        }
+    }
+
+    private static void matchingFrontend(OutputView outputView, String[] information) throws IOException {
         FrontendCrewRepository.initFrontCrew();
         ArrayList<Crew> crews = FrontendCrewRepository.getFrontendCrews();
         matching(crews, information[COURSE_IDX], information[LEVEL_IDX], information[MISSION_IDX]);
-        System.out.println("PairRepository.getPairInformation().size()" + PairRepository.getPairInformation().size());
         outputView.outputMatching(information[COURSE_IDX], information[LEVEL_IDX], information[MISSION_IDX]);
-        System.out.println(information[COURSE_IDX]+information[LEVEL_IDX]+information[MISSION_IDX]);
-        return;
+    }
+
+    private static void matchingBackend(OutputView outputView, String[] information) throws IOException {
+        BackendCrewRepository.initBackCrew();
+        ArrayList<Crew> crews = BackendCrewRepository.getBackendCrews();
+        matching(crews, information[COURSE_IDX], information[LEVEL_IDX], information[MISSION_IDX]);
+        outputView.outputMatching(information[COURSE_IDX], information[LEVEL_IDX], information[MISSION_IDX]);
     }
 
     private static void matching(ArrayList<Crew> crews, String course, String level, String mission) {
@@ -59,12 +69,12 @@ public class PairMatching {
                                      ArrayList<Crew> crews, String course, String level, String mission) {
         int shuffleCount = 0;
         while (true) {
-            if (shuffleCount > 3) {
-                System.out.println("[ERROR] 매칭 시도가 3회 이상을 넘어갔습니다.");
+            if (shuffleCount > MAX_SHUFFLE) {
+                System.out.println(LIMIT_ERROR_SHUFFLE_MESSAGE);
                 break;
             }
             List<String> shuffleCrews = Randoms.shuffle(crewsNames);
-            if (isPass(course, level, mission, shuffleCrews)) {
+            if (isEvenPass(course, level, mission, shuffleCrews)) {
                 break;
             }
             shuffleCount ++;
@@ -76,7 +86,7 @@ public class PairMatching {
         int shuffleCount = 0;
         while (true) {
             if (shuffleCount > 3) {
-                System.out.println("[ERROR] 매칭 시도가 3회 이상을 넘어갔습니다.");
+                System.out.println(LIMIT_ERROR_SHUFFLE_MESSAGE);
                 break;
             }
             List<String> shuffleCrews = Randoms.shuffle(crewsNames);
@@ -120,11 +130,10 @@ public class PairMatching {
                 return false;
             }
         }
-        System.out.println("oddPair = " + oddPair.size());
         return true;
     }
 
-    private static boolean isPass(String course, String level, String mission, List<String> shuffleCrews) {
+    private static boolean isEvenPass(String course, String level, String mission, List<String> shuffleCrews) {
         ArrayList<Pair> pairRepositoryTemp= new ArrayList<>();
 
         for (int idx = 0; idx < shuffleCrews.size(); idx++) {

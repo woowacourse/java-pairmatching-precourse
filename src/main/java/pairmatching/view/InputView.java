@@ -12,6 +12,7 @@ public class InputView {
             "3. 페어 초기화\n" +
             "Q. 종료";
     private static final String PAIR_INFORMATION_GUIDE_MESSAGE = "과정, 레벨, 미션을 선택하세요.";
+    private static final String INIT_MESSAGE = "초기화 되었습니다.";
 
     private String init () {
         System.out.println(FUNCTION_GUIDE_MESSAGE);
@@ -41,6 +42,7 @@ public class InputView {
         }
         if (function.equals("3")) {
             PairRepository.initialization();
+            System.out.println(INIT_MESSAGE);
         }
     }
 
