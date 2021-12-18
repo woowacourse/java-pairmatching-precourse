@@ -36,4 +36,6 @@ public class Constant {
     public static final String Y_N = "네 | 아니오";
 
     public static final String RESET = "초기화 되었습니다.";
+
+    public static final String ERROR_IS_EMPTY = "[ERROR] 빈칸으로 입력되었습니다.";
 }
