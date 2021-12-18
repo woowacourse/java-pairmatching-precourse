@@ -23,6 +23,45 @@ public class PairMatchingController {
 	private static final String MATCHING_FAIL_ERROR_MSG = "매칭에 실패했습니다.";
 	private static final String NOT_EXIST_MATCHING_ERROR_MSG = "매칭 이력이 존재하지 않습니다.";
 
+	public void runPairMatching() {
+		String option = InputView.inputOption();
+
+		while (!option.equals("Q")) {
+			matchOption(Integer.parseInt(option));
+			option = InputView.inputOption();
+		}
+	}
+
+	private void matchOption(int optionNum) {
+		if (optionNum == MATCHING_OPTION) {
+			executeMatchingSystem();
+		}
+		if (optionNum == GET_INFO_OPTION) {
+			displayMatchingInfo();
+		}
+		if (optionNum == INIT_OPTION) {
+			initializeMatching();
+		}
+	}
+
+	private void initializeMatching() {
+		OutputView.displayInitMsg();
+		PairResults.clearPairResults();
+	}
+
+	private void displayMatchingInfo() {
+		OutputView.displayInfo(getCourseInfo(), getMissionInfo());
+		List<String> matchingOption = InputView.inputMatchingOption();
+		List<String> result = PairResults.findPairResult(Course.matchValue(matchingOption.get(COURSE_INDEX)),
+			Level.matchValue(matchingOption.get(LEVEL_INDEX)),
+			matchingOption.get(MISSION_INDEX)).getPairs();
+		if (!result.isEmpty()) {
+			OutputView.displayMatchingResult(result);
+			return;
+		}
+		OutputView.displayErrorMsg(NOT_EXIST_MATCHING_ERROR_MSG);
+	}
+
 	private List<String> getCourseInfo() {
 		List<String> courseList = new ArrayList<>();
 		for (Course course : Course.values()) {
