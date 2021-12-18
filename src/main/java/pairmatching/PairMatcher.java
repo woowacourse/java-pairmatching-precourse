@@ -9,12 +9,12 @@ public class PairMatcher {
 	private static final int MAX_NUMBER_OF_ATTEMPT = 3;
 
 	public static void pairMatch(Course course, Level level, String mission) throws  IllegalArgumentException{
-		List<String> crewNames = ProgramData.getCrewNames(course);
-		List<String> shuffledNames = Randoms.shuffle(crewNames);
-		List<PairMatchRecorder> checkList = ProgramData.getMatchingHistory(course, level);
+
 		boolean match = true;
 		ProgramPrinter.printMission();
 		ProgramPrinter.printSelectLine();
+
+		List<PairMatchRecorder> checkList = ProgramData.getMatchingHistory(course, level);
 
 		for(PairMatchRecorder history : checkList){
 			if(!history.isMatchedMission(mission)){
@@ -23,6 +23,8 @@ public class PairMatcher {
 		}
 
 		if(match == true) {
+			List<String> crewNames = ProgramData.getCrewNames(course);
+			List<String> shuffledNames = Randoms.shuffle(crewNames);
 			validatePairMatch(checkList, shuffledNames);
 			ProgramData.setMatchingHistory(course, level, mission, shuffledNames);
 			ProgramPrinter.printPairInfo(shuffledNames);
