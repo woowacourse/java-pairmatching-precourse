@@ -20,6 +20,14 @@ public enum Level {
         this.missions = missions;
     }
 
+    public static Level parseLevel(String inputLevel, String inputMission) {
+        return Arrays.stream(values())
+            .filter(level -> level.name.equals(inputLevel))
+            .filter(level -> level.missions.contains(inputMission))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 레벨과 코스입니다."));
+    }
+
     public String getName() {
         return name;
     }
