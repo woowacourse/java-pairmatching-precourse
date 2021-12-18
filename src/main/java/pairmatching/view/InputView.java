@@ -1,5 +1,7 @@
 package pairmatching.view;
 
+import java.util.List;
+
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.model.ProgramFunction;
 
@@ -8,11 +10,24 @@ public abstract class InputView {
     private static final String INPUT_MESSAGE_CHOOSE_FUNCTION = "기능을 선택하세요.";
     private static final String NEW_LINE = "\n";
     private static final String ERROR_MESSAGE_NOT_CONTAINS_IN_FUNCTION_LIST = "[ERROR] 기능목록에 있는 기능을 선택해 주세요.";
+    private static final String COMMA = ",";
+
+    public static String[] inputCourseInformation() {
+        try {
+            String inputCourseInformation = inputValue();
+
+            return inputCourseInformation.split(COMMA);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+
+            return inputCourseInformation();
+        }
+    }
+
 
     public static String inputPairMatchingFunction() {
         try {
-            String printFormatProvidingFunction = createProvidingFunctionPrintFormat();
-            System.out.print(printFormatProvidingFunction);
+            System.out.print(createProvidingFunctionPrintFormat());
 
             String inputFunctionSignal = inputValue();
             validateInputFunctionSignal(inputFunctionSignal);
