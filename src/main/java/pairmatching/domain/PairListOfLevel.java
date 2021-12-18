@@ -2,6 +2,7 @@ package pairmatching.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PairListOfLevel {
     Level level;
@@ -33,8 +34,26 @@ public class PairListOfLevel {
     public void initialize() {
         pairList = new ArrayList<>();
     }
-    // 과정 삭제
-    // 과정 조사
+
+    // 값 추가
+    public void addPair(Pair pair) {
+        pairList.add(pair);
+    }
+
+    // 값 삭제
+    public void deletePair(Pair pair) {
+        pairList.remove(pair);
+    }
+
+    // 값 조사
+    public Pair getPair(Course course, String mission) {
+        List<Pair> pairs = pairList.stream()
+                .filter(pair -> pair.course == course && pair.mission.equals(mission))
+                .collect(Collectors.toList());
+
+        if (pairs.isEmpty()) return null;
+        return pairs.get(0);
+    }
 
 
 }
