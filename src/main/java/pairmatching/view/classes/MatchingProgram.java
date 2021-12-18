@@ -27,7 +27,10 @@ public class MatchingProgram implements MatchingProgramInterface {
 	@Override
 	public void start() {
 		initProgramData();
+		Map<String, List<NamePair>> clean = new HashMap<>();
+		programData.setHistory(clean);
 		while(true) {
+
 			if (proceedFunctionSelect())
 				break;
 
@@ -51,6 +54,7 @@ public class MatchingProgram implements MatchingProgramInterface {
 					for (NamePair s : pairMaker.make(programData, inputCourse, inputLevel, inputMission)) {
 						System.out.print(s.getFirstName() + " : " + s.getSecondName());
 						if (s.getThirdName() == "") {
+							System.out.print("\n");
 							continue;
 						}
 						System.out.println(" : " + s.getThirdName());

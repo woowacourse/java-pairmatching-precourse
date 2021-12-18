@@ -55,9 +55,10 @@ public class PairMaker {
 			if (!data.getHistory().containsKey(level)) {
 				result.add(new NamePair(tmp.get(i), tmp.get(i + 1)));
 			}
-
-			return result;
 		}
+		NamePair last = result.get(tmp.size() - 2);
+		last.setThirdName(tmp.get(tmp.size() - 1));
+		result.add(last);
 		return result;
 	}
 }
