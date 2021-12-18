@@ -62,7 +62,7 @@ public class Pairmatching {
 			Level level = Level.getLevelByName(inputs.get(LEVEL_INDEX));
 			Mission mission = Mission.getMissionByName(inputs.get(MISSION_INDEX));
 			checkMissionInLevel(levelMissionsMap, level, mission);
-			List<String> crewNames = fileService.readCrewNamesFromFile(Course.BACKEND);
+			List<String> crewNames = fileService.readCrewNamesFromFile(course);
 			List<String > randomMatch = matchService.getRandomMatch(crewNames);
 			viewer.showCrewPairs(randomMatch);
 			saveMatchResult(getMatchFileName(course, level, mission), randomMatch);
