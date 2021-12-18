@@ -13,7 +13,7 @@ public class ChoiceDto {
 	private String mission;
 
 	public ChoiceDto(String items) {
-		InputValidator.validateCourseMenu(items);
+		InputValidator.validateSubMenu(items);
 		String[] item = items.split(",");
 		course = item[COURSE_INDEX].trim();
 		level = item[LEVEL_INDEX].trim();
