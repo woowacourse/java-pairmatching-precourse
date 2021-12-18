@@ -15,6 +15,9 @@ public class MainController {
             if (menu == 1) {
                 pairController.matching();
             }
+            if(menu==2){
+                pairController.select();
+            }
         } while (menu != 0);
     }
 }

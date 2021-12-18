@@ -23,6 +23,16 @@ public class PairController {
         OutputView.printPairs(result);
     }
 
+    public void select(){
+        getInput();
+        Matching result = MatchingRepository.getMatching(inputDTO);
+        if(result==null){
+            OutputView.printError("매칭 이력이 없습니다.");
+            return;
+        }
+        OutputView.printPairs(result);
+    }
+
     public void setInputDTO() {
         OutputView.printCourseAndMission();
         getInput();
