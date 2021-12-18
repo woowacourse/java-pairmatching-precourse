@@ -29,6 +29,7 @@ public class MainController {
     private void chooseMenu() {
 
         try {
+            OutputView.requestChooseMenu();
             MenuView.printMenu();
             menu = InputView.receiveInput();
             validator.isValidMenuChoice(menu);
