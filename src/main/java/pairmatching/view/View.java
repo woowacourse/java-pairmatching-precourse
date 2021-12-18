@@ -18,6 +18,8 @@ public class View {
 		+ "############################################";
 	public static final String SELECT_COURSE_LEVEL_MISSION_MESSAGE = "과정, 레벨, 미션을 선택하세요.\n"
 		+ "ex) 백엔드, 레벨1, 자동차경주";
+	public static final String RE_PAIR_MATCHING_MESSAGE = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
+		+ "네 | 아니오";
 
 	public void mainMenu() {
 		System.out.println(MAIN_MENU_MESSAGE);
@@ -26,5 +28,9 @@ public class View {
 	public void pairMatching() {
 		System.out.println(COURSE_LEVEL_MISSION_INFO_MESSAGE);
 		System.out.println(SELECT_COURSE_LEVEL_MISSION_MESSAGE);
+	}
+
+	public void rePairMatching() {
+		System.out.println(RE_PAIR_MATCHING_MESSAGE);
 	}
 }

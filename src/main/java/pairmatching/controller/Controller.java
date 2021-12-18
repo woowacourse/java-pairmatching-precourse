@@ -2,6 +2,7 @@ package pairmatching.controller;
 
 import pairmatching.model.receiver.PairMatchingReceiver;
 import pairmatching.model.receiver.MainMenuReceiver;
+import pairmatching.model.service.PairService;
 import pairmatching.view.View;
 
 public class Controller {
@@ -9,6 +10,7 @@ public class Controller {
 	View view = new View();
 	MainMenuReceiver mainMenuReceiver = new MainMenuReceiver();
 	PairMatchingReceiver pairMatchingReceiver = new PairMatchingReceiver();
+	PairService pairService = new PairService();
 
 	public void run() {
 		mainMenu();
@@ -29,5 +31,10 @@ public class Controller {
 
 		String pairMatchingInput = pairMatchingReceiver.receive();
 
+		if (pairService.isAlreadyPairMatching(pairMatchingInput)) {
+			view.rePairMatching();
+		}
+
+		pairService.makePairMatching(pairMatchingInput);
 	}
 }

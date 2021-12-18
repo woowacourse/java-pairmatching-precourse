@@ -23,6 +23,35 @@ public class PairService {
 		ifLengthTwo(split);
 	}
 
+	public boolean isAlreadyPairMatching(String pairMatchingInput) {
+		String[] split = pairMatchingInput.split(",");
+
+		for (PairMatching pairMatching : PairMatchingRepository.pairMatchingRepository) {
+			if (isEqualPairMatching(pairMatching, split)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	private boolean isEqualPairMatching(PairMatching pairMatching, String[] split) {
+		if (split.length == 3) {
+			if (pairMatching.getCourse().equals(split[0].trim()) && pairMatching.getLevel().equals(split[1].trim())
+				&& pairMatching.getMission().equals(split[2].trim())) {
+				return true;
+			}
+		}
+
+		if (split.length == 2) {
+			if (pairMatching.getCourse().equals(split[0].trim()) && pairMatching.getLevel().equals(split[1].trim())) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	private void ifLengthTwo(String[] split) {
 		if (split.length == 2) {
 			PairMatching pairMatching = new PairMatching(split[0].trim(), split[1].trim());
