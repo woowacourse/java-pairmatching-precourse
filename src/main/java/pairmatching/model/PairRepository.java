@@ -22,4 +22,8 @@ public class PairRepository {
 	public static List<Pair> findByMission(Mission mission) {
 		return pairs.stream().filter(p -> p.getMission().equals(mission)).collect(Collectors.toList());
 	}
+
+	public static boolean existsByMission(Mission mission) {
+		return pairs.stream().anyMatch(p -> p.getMission().equals(mission));
+	}
 }

@@ -45,6 +45,11 @@ public class OutputView {
 		printError(message);
 	}
 
+	public static void printRematchingMessage() {
+		printMessage("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
+		printMessage("네 | 아니오");
+	}
+
 	private static String courseListWithDelimiter(List<Course> courses) {
 		return courses.stream().map(Course::getName).collect(Collectors.joining(NAME_DELIMITER));
 	}

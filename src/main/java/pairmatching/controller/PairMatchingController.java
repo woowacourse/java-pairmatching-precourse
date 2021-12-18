@@ -8,7 +8,6 @@ import pairmatching.model.Course;
 import pairmatching.model.Level;
 import pairmatching.model.Mission;
 import pairmatching.model.MissionRepository;
-import pairmatching.model.Pair;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -16,20 +15,15 @@ public class PairMatchingController {
 	private PairMatchingService pairMatchingService = new PairMatchingService();
 
 	public void service() {
-		OutputView.printMain();
-		String option = retryInput(() -> InputView.inputOption("1", "2", "3", "Q"));
+		while (true) {
+			OutputView.printMain();
+			String option = retryInput(() -> InputView.inputOption("1", "2", "3", "Q"));
 
-		if (option.equals("1")) {
-			pairMatching();
-		}
-	}
-
-	public String retryInput(Supplier<String> supplier) {
-		try {
-			return supplier.get();
-		} catch (IllegalArgumentException e) {
-			OutputView.printErrorMessage(e.getMessage());
-			return retryInput(supplier);
+			if (option.equals("1")) {
+				pairMatching();
+			} else if(option.equals("Q")) {
+				break;
+			}
 		}
 	}
 
@@ -42,14 +36,37 @@ public class PairMatchingController {
 	private void handlePairMatching() {
 		try {
 			String information = retryInput(InputView::inputMatchingInformation);
-			List<Pair> matchingResult =
+			boolean wantToMatch = isWantToMatch(information);
+
+			if (wantToMatch) {
 				pairMatchingService.match(parseToCourse(information), parseToLevel(information),
 					parseToMission(information));
-			OutputView.printMatchingResult(matchingResult);
+			}
+
+			OutputView.printMatchingResult(pairMatchingService.findByMissionName(parseToMission(information)));
 		} catch (IllegalArgumentException e) {
 			OutputView.printErrorMessage(e.getMessage());
 			handlePairMatching();
 		}
+	}
+
+	private boolean isWantToMatch(String information) {
+		boolean wantToMatch = true;
+
+		if (pairMatchingService.hasMatched(parseToMission(information))) {
+			OutputView.printRematchingMessage();
+			String value = retryInput(() -> InputView.inputOption("네", "아니오"));
+			wantToMatch = parseToIsWantToMatch(value);
+		}
+
+		return wantToMatch;
+	}
+
+	private boolean parseToIsWantToMatch(String value) {
+		if (value.equals("아니오")) {
+			return false;
+		}
+		return true;
 	}
 
 	private String parseToCourse(String information) {
@@ -62,5 +79,14 @@ public class PairMatchingController {
 
 	private String parseToMission(String information) {
 		return information.split(",")[2].trim();
+	}
+
+	private String retryInput(Supplier<String> supplier) {
+		try {
+			return supplier.get();
+		} catch (IllegalArgumentException e) {
+			OutputView.printErrorMessage(e.getMessage());
+			return retryInput(supplier);
+		}
 	}
 }

@@ -12,6 +12,11 @@ import pairmatching.model.PairRepository;
 public class PairMatchingService {
 	private final PairGenerator pairGenerator = new PairGenerator();
 
+	public boolean hasMatched(String missionName) {
+		validateMissionName(missionName);
+		return PairRepository.existsByMission(parseToMission(missionName));
+	}
+
 	public List<Pair> match(String courseName, String levelName, String missionName) {
 		validate(courseName, levelName, missionName);
 		Mission mission = parseToMission(missionName);
@@ -20,18 +25,35 @@ public class PairMatchingService {
 		return pairList;
 	}
 
+	public List<Pair> findByMissionName(String missionName) {
+		validateMissionName(missionName);
+		return PairRepository.findByMission(parseToMission(missionName));
+	}
+
 	private void validate(String courseName, String levelName, String missionName) {
-		validateIsExistValue(courseName, levelName, missionName);
+		validateNames(courseName, levelName, missionName);
 		validateIsMatchedLevelAndMission(levelName, missionName);
 	}
 
-	private void validateIsExistValue(String courseName, String levelName, String missionName) {
+	private void validateNames(String courseName, String levelName, String missionName) {
+		validateCourseName(courseName);
+		validateLevelName(levelName);
+		validateMissionName(missionName);
+	}
+
+	private void validateCourseName(String courseName) {
 		if (!isValidCourse(courseName)) {
 			throw new IllegalArgumentException("과정 이름이 잘못되었습니다.");
 		}
+	}
+
+	private void validateLevelName(String levelName) {
 		if (!isValidLevel(levelName)){
 			throw new IllegalArgumentException("레벨 이름이 잘못되었습니다.");
 		}
+	}
+
+	private void validateMissionName(String missionName) {
 		if (!MissionRepository.existsByName(missionName)) {
 			throw new IllegalArgumentException("미션 이름이 잘못되었습니다.");
 		}
