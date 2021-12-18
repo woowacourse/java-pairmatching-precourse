@@ -31,10 +31,11 @@ public class PairService {
 	}
 
 	public Match look(String course, String level, String mission) {
-		return matchRepository.findBySource(course,level,mission);
+		return matchRepository.findBySource(course, level, mission);
 
 	}
 
 	public void init() {
+		matchRepository = new MatchRepository();
 	}
 }

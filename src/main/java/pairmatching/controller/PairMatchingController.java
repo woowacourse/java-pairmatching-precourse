@@ -28,8 +28,9 @@ public class PairMatchingController {
 
 	public void run() {
 		do {
+			String input = inputView.requestFunction();
 			try {
-				function = checkCorrectFunction(checkEmptyInput(inputView.requestFunction()));
+				function = checkCorrectFunction(checkEmptyInput(input));
 				proceedFunction(function);
 			} catch (Exception exception) {
 				outputView.reportException(exception.getMessage());
@@ -46,6 +47,7 @@ public class PairMatchingController {
 		}
 		if (function.equals("3")) {
 			pairService.init();
+			outputView.reportInit();
 		}
 	}
 

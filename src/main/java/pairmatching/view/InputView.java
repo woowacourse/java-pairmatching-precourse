@@ -15,7 +15,7 @@ public class InputView {
 		+ "  - 레벨5: \n"
 		+ "############################################\n"
 		+ "과정, 레벨, 미션을 선택하세요.";
-	static final String REQUEST_REMATCHING_MSG = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
+	static final String REQUEST_REMATCHING_MSG = "\n매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
 		+ "네 | 아니오";
 
 	public String requestFunction() {
