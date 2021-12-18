@@ -51,8 +51,7 @@ public class MatchingController {
             matchingService.hasAlreadyMatching(courseName);
             allMatched = tryMakingMatching(courseName);
         } catch (IllegalArgumentException e) {
-            String inputReMatching = MatchingInputView.duplicateMatchingResult();
-            if (inputReMatching.equals(REMATCH_NO)) {
+            if (!askAgainRematching()) {
                 return;
             }
             allMatched = matchingService.startMatching(courseName);
@@ -69,6 +68,22 @@ public class MatchingController {
             matchedList.clear();
         }
         return matchedList;
+    }
+
+    public boolean askAgainRematching() {
+        try {
+            String inputReMatching = MatchingInputView.duplicateMatchingResult();
+            if (inputReMatching.equals(REMATCH_YES)) {
+                return true;
+            }
+            if (inputReMatching.equals(REMATCH_NO)) {
+                return false;
+            }
+            throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            ValidatorMessage.printError(ValidatorMessage.ERROR_MESSAGE + ValidatorMessage.INVALID_REMATCH_ANSWER);
+            return askAgainRematching();
+        }
     }
 
     public void seeMatchingInfo(String courseName) {
