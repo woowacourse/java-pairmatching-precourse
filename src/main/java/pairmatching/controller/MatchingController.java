@@ -1,11 +1,15 @@
 package pairmatching.controller;
 
-import pairmatching.domain.*;
+import pairmatching.domain.Course;
+import pairmatching.domain.Level;
+import pairmatching.domain.Mission;
+import pairmatching.domain.Missions;
 import pairmatching.service.MatchingSercive;
 
-import static pairmatching.utils.ExceptionMessage.*;
-import static pairmatching.utils.Validator.*;
-import static pairmatching.view.InputViews.*;
+import static pairmatching.utils.Validator.checkInfoCount;
+import static pairmatching.utils.Validator.checkRematchAnswer;
+import static pairmatching.view.InputViews.getConfirmRematch;
+import static pairmatching.view.InputViews.getMatchingInfo;
 import static pairmatching.view.OutputViews.printMatchPair;
 import static pairmatching.view.OutputViews.printMissionInfo;
 
@@ -34,7 +38,7 @@ public class MatchingController {
         Level level = matchingService.checkLevel(infoArr[1]);
         Mission mission = matchingService.checkMission(infoArr[1], infoArr[2], missions);
 
-        if (matchingService.checkExistPair(course,level,mission)) {
+        if (matchingService.checkExistPair(course, level, mission)) {
             if (!getRematchAnswer()) {
                 return;
             }
@@ -59,6 +63,4 @@ public class MatchingController {
         }
         return true;
     }
-
-
 }

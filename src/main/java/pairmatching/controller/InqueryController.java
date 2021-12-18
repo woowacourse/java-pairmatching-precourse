@@ -1,13 +1,8 @@
 package pairmatching.controller;
 
-import pairmatching.domain.Course;
-import pairmatching.domain.Level;
-import pairmatching.domain.Mission;
 import pairmatching.service.InqueryService;
-import pairmatching.service.MatchingSercive;
 
 import static pairmatching.controller.MatchingController.missions;
-import static pairmatching.utils.Validator.checkInfoCount;
 import static pairmatching.view.InputViews.getInqueryInfo;
 import static pairmatching.view.OutputViews.printMatchPair;
 import static pairmatching.view.OutputViews.printMissionInfo;
@@ -31,6 +26,4 @@ public class InqueryController {
     public void printMatchInfo(String input) {
         printMatchPair(inqueryService.getMatchInfo(input));
     }
-
-
 }

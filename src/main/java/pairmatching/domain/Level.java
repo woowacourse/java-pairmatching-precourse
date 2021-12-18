@@ -2,7 +2,6 @@ package pairmatching.domain;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public enum Level {
@@ -35,7 +34,7 @@ public enum Level {
     }
 
     public static boolean isExist(String name) {
-        List<Level> result =  Arrays.stream(Level.values())
+        List<Level> result = Arrays.stream(Level.values())
                 .filter(level -> level.getName().equals(name))
                 .collect(Collectors.toList());
         if (result.size() == 1) {

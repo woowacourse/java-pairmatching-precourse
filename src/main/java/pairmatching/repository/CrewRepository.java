@@ -4,7 +4,6 @@ import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,15 +16,16 @@ import static pairmatching.utils.ExceptionMessage.ERROR_FILE_READ;
 
 public class CrewRepository {
     private static final CrewRepository instance = new CrewRepository();
-    private static final Map<Course,List<Crew>> crews = new HashMap<>();
+    private static final Map<Course, List<Crew>> crews = new HashMap<>();
 
-    private CrewRepository() {}
+    private CrewRepository() {
+    }
 
     public static CrewRepository getInstance() {
         return instance;
     }
 
-    public static void initCrewInfo()  {
+    public static void initCrewInfo() {
         try {
             readBackend();
             readFrontEnd();

@@ -1,10 +1,11 @@
 package pairmatching.repository;
 
-import pairmatching.domain.*;
+import pairmatching.domain.Course;
+import pairmatching.domain.Level;
+import pairmatching.domain.MatchInfo;
+import pairmatching.domain.Mission;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,6 +63,4 @@ public class MatchInfoRepository {
     public void initMatchInfo() {
         matchInfoList = new ArrayList<>();
     }
-
-
 }

@@ -10,13 +10,10 @@ import java.util.List;
 
 import static pairmatching.utils.ExceptionMessage.*;
 import static pairmatching.utils.Validator.checkEachInfo;
-import static pairmatching.utils.Validator.checkInfoCount;
 
 public class MatchingSercive {
     static final MatchInfoRepository matchingInfoRepository = MatchInfoRepository.getInstance();
     static final CrewRepository crewRepository = CrewRepository.getInstance();
-
-
 
     public Course checkCourse(String course) {
         checkEachInfo(course);
@@ -65,15 +62,11 @@ public class MatchingSercive {
             List<Crew> onePair = new ArrayList<>();
             onePair.add(crews.get(index++));
             onePair.add(crews.get(index++));
-            if (index == crews.size()-1) {
+            if (index == crews.size() - 1) {
                 onePair.add(crews.get(index++));
             }
             pair.add(onePair);
         }
         return new MatchInfo(course, level, mission, pair);
     }
-
-
-
-
 }

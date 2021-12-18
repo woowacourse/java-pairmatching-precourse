@@ -1,9 +1,7 @@
 package pairmatching.domain;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static pairmatching.utils.ExceptionMessage.ERROR_MISSION_NOT_EXIST;
 

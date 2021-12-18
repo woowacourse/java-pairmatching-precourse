@@ -44,6 +44,4 @@ public class Validator {
         }
         return input;
     }
-
-
 }

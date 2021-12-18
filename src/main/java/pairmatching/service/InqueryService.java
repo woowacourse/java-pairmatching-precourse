@@ -9,7 +9,6 @@ import pairmatching.repository.MatchInfoRepository;
 import static pairmatching.controller.MatchingController.missions;
 import static pairmatching.utils.ExceptionMessage.ERROR_NOT_EXIST_MATCH;
 import static pairmatching.utils.Validator.checkInfoCount;
-import static pairmatching.view.OutputViews.printMatchPair;
 
 public class InqueryService {
     private static final MatchInfoRepository matchingInfoRepository = MatchInfoRepository.getInstance();
@@ -26,7 +25,5 @@ public class InqueryService {
         } catch (IndexOutOfBoundsException e) {
             throw new IllegalArgumentException(ERROR_NOT_EXIST_MATCH);
         }
-
     }
-
 }
