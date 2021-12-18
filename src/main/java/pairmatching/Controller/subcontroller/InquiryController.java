@@ -16,7 +16,9 @@ public class InquiryController implements Controller {
 		outputView.printMessage(MatchingService.printCourseAndLevelInfo());
 		try{
 			Mission mission = Missions.findMission(inputView.enterCourseAndMissionInfo());
-			outputView.printMessage(mission.getPairMatchingResult());
+			if(mission.pairingComplete()){
+				outputView.printMessage(mission.getPairMatchingResult());
+			}
 		}catch (IllegalArgumentException e){
 			System.out.println(e.getMessage());
 		}

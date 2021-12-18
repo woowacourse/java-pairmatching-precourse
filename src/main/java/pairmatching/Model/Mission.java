@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.Factory;
+import pairmatching.util.ErrorMessage;
 import pairmatching.util.Symbol;
 
 public class Mission {
@@ -69,6 +70,17 @@ public class Mission {
 			}
 			pairList.add(new Pair(Arrays.asList(shuffledList.remove(0), shuffledList.remove(0))));
 		}
+	}
+
+	public boolean pairingComplete(){
+		if(pairList.size() == 0){
+			throw new IllegalArgumentException(ErrorMessage.NOT_MATCHING_MISSION.getMessage() + Symbol.NEW_LINE);
+		}
+		return true;
+	}
+
+	public void resetMission(){
+		this.pairList = new ArrayList<>();
 	}
 
 	public String getPairMatchingResult() {

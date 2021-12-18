@@ -3,6 +3,7 @@ package pairmatching.util;
 public enum ViewMessage {
 	SELECT_MENU_MSG("기능을 선택하세요."),
 	ENTER_COURSE_INFO_MSG("과정, 레벨, 미션을 선택하세요.\nex) 백엔드, 레벨1, 자동차경주"),
+	RESET_COMPLETE("초기화 되었습니다. "),
 	START_END_PRINT_INFO("#############################################");
 
 

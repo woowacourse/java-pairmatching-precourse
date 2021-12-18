@@ -27,6 +27,9 @@ public class Missions {
 			.findAny()
 			.orElseThrow(
 				() -> new IllegalArgumentException(ErrorMessage.NOT_MATCHING_MISSION.getMessage() + Symbol.NEW_LINE));
+	}
 
+	public static void resetMission(){
+		missions = new ArrayList<>();
 	}
 }

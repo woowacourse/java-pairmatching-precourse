@@ -1,6 +1,9 @@
 package pairmatching.Controller;
 
+import pairmatching.Model.Missions;
 import pairmatching.Model.menu.MainMenu;
+import pairmatching.util.Symbol;
+import pairmatching.util.ViewMessage;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -39,6 +42,7 @@ public class MainController implements Controller {
 
 
 	public static void resetPair() {
-		System.out.println("resetPair");
+		Missions.resetMission();
+		outputView.printMessage(ViewMessage.RESET_COMPLETE.getMessage() + Symbol.NEW_LINE);
 	}
 }
