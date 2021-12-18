@@ -15,9 +15,28 @@ public class MachingController {
 	private final Output output = new Output();
 
 	public void run() {
-		// findFeat();
+		findFeat();
 		//기능실행
 
+	}
+
+	private void findFeat() {
+		while (true) {
+			output.chooseFeat();
+			String feat = input.inputFeat();
+			if (feat.equals("1")) {
+				maching();
+			}
+			if (feat.equals("2")) {
+				finding();
+			}
+			if (feat.equals("3")) {
+				initMaching();
+			}
+			if (feat.equals("Q")) {
+				return;
+			}
+		}
 	}
 
 	public void maching() {

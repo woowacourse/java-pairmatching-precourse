@@ -31,25 +31,58 @@ public class MachingRepository {
 	}
 
 	public static boolean existByCourseLevelMission(Course course, Level level, String mission) {
-		int size = machingList.stream()
-			.filter(maching -> maching.getCourse().getName().equals(course.getName()))
-			.filter(maching -> maching.getLevel().getName().equals(level.getName()))
-			.filter(maching -> maching.getMission().equals(mission))
-			.collect(Collectors.toList())
-			.size();
-		if (size > 0) {
-			return true;
+
+		if (existByLevel(level) && existByCourse(course)) {
+			if (existByMission(mission)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static boolean existByCourse(Course course) {
+		for (Maching m : machingList) {
+			if (m.getCourse().getName().equals(course.getName())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static boolean existByMission(String mission) {
+		for (Maching m : machingList) {
+			if (m.getMission().equals(mission)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static boolean existByLevel(Level level) {
+		for (Maching m : machingList) {
+			if (m.getLevel().getName().equals(level.getName())) {
+				return true;
+			}
 		}
 		return false;
 	}
 
 	public static Maching findByCourseLevelMission(Course course, Level level, String mission) {
-		return machingList.stream()
-			.filter(maching -> maching.getCourse().getName().equals(course.getName()))
-			.filter(maching -> maching.getLevel().getName().equals(level.getName()))
-			.filter(maching -> maching.getMission().equals(mission))
-			.collect(Collectors.toList())
-			.get(0);
+		if (existByLevel(level) && existByCourse(course)) {
+			if (existByMission(mission)) {
+				return getmat(mission);
+			}
+		}
+		return null;
+	}
+
+	public static Maching getmat(String mission) {
+		for (Maching m : machingList) {
+			if (m.getMission().equals(mission)) {
+				return m;
+			}
+		}
+		return null;
 	}
 
 	public static void deleteAll() {
