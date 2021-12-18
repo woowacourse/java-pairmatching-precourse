@@ -10,4 +10,9 @@ public class MatchingRepository {
 	public MatchingRepository() {
 		this.matchings = new LinkedHashSet<>();
 	}
+
+	public void init() {
+		this.matchings.clear();
+	}
+
 }
