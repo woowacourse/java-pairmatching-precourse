@@ -22,4 +22,8 @@ public class Mission {
     public boolean isEqualsMission(Mission mission) {
         return this.course.equals(mission.course) && this.name.equals(mission.name);
     }
+
+    public boolean isAlreayMatch() {
+        return matches.size() != 0;
+    }
 }

@@ -30,4 +30,12 @@ public class Missions {
     public boolean isContainMission(Mission mission) {
         return missions.stream().anyMatch(mission1 -> mission1.isEqualsMission(mission));
     }
+
+    public boolean isAlreadyMatch(Mission mission) {
+        return missions.stream()
+            .filter(mission1 -> mission1.isEqualsMission(mission))
+            .findFirst()
+            .map(Mission::isAlreayMatch)
+            .orElse(false);
+    }
 }

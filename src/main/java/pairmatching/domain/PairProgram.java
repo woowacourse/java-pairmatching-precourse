@@ -10,9 +10,8 @@ public class PairProgram {
         this.levelMission = levelMission;
     }
 
-//    public List<Match> matchingPair(Level level, Course course, String mission) {
-//
-//    }
-
-
+    public boolean isAlreadyMatch(Level level, Mission mission) {
+        levelMission.checkExistMission(level, mission);
+        return levelMission.isAlreadyMatch(level, mission);
+    }
 }

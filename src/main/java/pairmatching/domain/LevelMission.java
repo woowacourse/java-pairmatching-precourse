@@ -23,4 +23,9 @@ public class LevelMission {
             throw new MissionNotFoundException();
         }
     }
+
+    public boolean isAlreadyMatch(Level level, Mission mission) {
+        checkExistMission(level, mission);
+        return levelmissions.get(level).isAlreadyMatch(mission);
+    }
 }
