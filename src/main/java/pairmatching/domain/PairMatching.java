@@ -23,7 +23,15 @@ public class PairMatching {
 		}
 	}
 
-
+	public List<List<Crew>> printMatching(Curriculum curriculum) {
+		if (isEmpty(curriculum)) {
+			throw new IllegalArgumentException();
+		}
+		return matchingLog.entrySet().stream()
+			.filter(cur -> cur.getKey().equals(curriculum))
+			.map(Map.Entry::getValue)
+			.collect(Collectors.toList());
+	}
 
 	public boolean isEmpty(Curriculum curriculum) {
 		Optional<Curriculum> curriculumOptional = matchingLog.keySet().stream()
