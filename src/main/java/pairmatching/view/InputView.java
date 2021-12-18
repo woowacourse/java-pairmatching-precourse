@@ -6,7 +6,7 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
-import pairmatching.domain.MatchCommand;
+import pairmatching.domain.command.MatchCommand;
 import pairmatching.domain.PairMission;
 import pairmatching.domain.command.MainCommand;
 
