@@ -114,16 +114,13 @@ public class MainController {
     }
 
     private void startMatch(Section section) {
-        List<List<String>> pairs = getPairs(section.getCourse());
-        PairMemory pairMemory = new PairMemory(section, pairs);
         try {
-            validatePairs(pairMemory);
+            PairMemory pairMemory = getPairMemory(section);
+            pairMemoryRepository.addPairMemory(pairMemory);
+            OutputView.printPairResult(pairMemory.getPairs());
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return;
         }
-        pairMemoryRepository.addPairMemory(pairMemory);
-        OutputView.printPairResult(pairs);
     }
 
     private List<List<String>> getPairs(Course course) {
@@ -133,16 +130,17 @@ public class MainController {
         return CrewRepository.makeFrontendPair();
     }
 
-    private void validatePairs(PairMemory pairMemory) {
+    private PairMemory getPairMemory(Section section) {
         for(int i = 0; i < InputConstants.MAX_RETRY; i++) {
+            List<List<String>> pairs = getPairs(section.getCourse());
+            PairMemory pairMemory = new PairMemory(section, pairs);
             try {
                 pairMemoryRepository.validatePairMemory(pairMemory);
-                return;
-            }catch (IllegalArgumentException e) {
+                return pairMemory;
+            } catch (IllegalArgumentException e) {
 
             }
         }
         throw new IllegalArgumentException("[ERROR] 경우의 수가 없습니다.");
     }
-
 }

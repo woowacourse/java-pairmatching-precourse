@@ -1,6 +1,5 @@
 package pairmatching.views;
 
-import java.util.Arrays;
 import java.util.List;
 import pairmatching.domain.LevelMisson;
 import pairmatching.domain.LevelMissonRepository;
@@ -8,6 +7,9 @@ import pairmatching.enums.Course;
 
 public class OutputView {
     private static final String HEADER_FOOTER = "#############################################";
+    private static final String SECTION_DELIMITER = " | ";
+    private static final String MATCHING_DELIMITER = " : ";
+
     public static void printSection() {
         printHeader();
         printCourse();
@@ -17,7 +19,7 @@ public class OutputView {
 
     public static void printCourse() {
         System.out.print("과정: ");
-        System.out.println(String.join(" | ", Course.getNames()));
+        System.out.println(String.join(SECTION_DELIMITER, Course.getNames()));
     }
 
     public static void printLevel() {
@@ -26,7 +28,7 @@ public class OutputView {
 
         for(LevelMisson levelMisson : levelMissonList) {
             System.out.print("  -" + levelMisson.getLevel().getName() + ": ");
-            System.out.println(String.join(" | ", levelMisson.getMissons()));
+            System.out.println(String.join(SECTION_DELIMITER, levelMisson.getMissons()));
         }
     }
 
@@ -41,7 +43,7 @@ public class OutputView {
     public static void printPairResult(List<List<String>> pairs) {
         System.out.println("\n페어 매칭 결과입니다.");
         for(List<String> pair : pairs) {
-            System.out.println(String.join(" : ", pair));
+            System.out.println(String.join(MATCHING_DELIMITER, pair));
         }
         System.out.println();
     }

@@ -68,14 +68,7 @@ public class PairMemoryRepository {
 
     private void validatePair(List<String> existPair, List<String> pair) {
         if(existPair.containsAll(pair)) {
-            System.out.println("because of : " + existPair + ", " + pair);
             throw new IllegalArgumentException("[ERROR] 이미 존재하는 조합입니다.");
-        }
-    }
-
-    private void print(List<List<String>> pairs) {
-        for(List<String> pair : pairs) {
-            System.out.println(pair);
         }
     }
 
