@@ -23,4 +23,12 @@ public class MatchingController {
     public static boolean existsDuplicatedPair(Mission mission) {
         return missionSet.findDuplicated(mission);
     }
+
+    public static void removeMission(MissionName missionName) {
+        missionSet.removeMission(missionName);
+    }
+
+    public static String getMissionResult(MissionName name) {
+        return missionSet.getMissionResult(name);
+    }
 }

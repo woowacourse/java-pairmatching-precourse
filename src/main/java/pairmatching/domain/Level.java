@@ -12,4 +12,12 @@ public enum Level {
     Level(String name) {
         this.name = name;
     }
+
+    public static boolean isNotValid(String input) {
+        return ! ("레벨1".equals(input) ||
+                "레벨2".equals(input) ||
+                "레벨3".equals(input) ||
+                "레벨4".equals(input) ||
+                "레벨5".equals(input));
+    }
 }

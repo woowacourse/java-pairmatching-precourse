@@ -27,4 +27,22 @@ public class MissionSet {
     public boolean findDuplicated(Mission target) {
         return missions.stream().anyMatch((mission) -> mission.hasSamePair(target));
     }
+
+    public void removeMission(MissionName missionName) {
+        Mission mission = missions.stream()
+                .filter((target) -> target.isName(missionName.getName()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 없는 미션"));
+
+        missions.remove(mission);
+    }
+
+    public String getMissionResult(MissionName name) {
+        Mission mission = missions.stream()
+                .filter((target) -> target.isName(name.getName()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 없는 미션"));
+
+        return mission.toString();
+    }
 }

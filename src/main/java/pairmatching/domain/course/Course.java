@@ -23,4 +23,8 @@ public enum Course {
     public List<String> getNameList() {
         return crewNames.getNameList();
     }
+
+    public boolean isNot(String input) {
+        return !this.name.equals(input);
+    }
 }

@@ -51,4 +51,15 @@ public class Pair {
 
         return target.hasCrewName(crewSet.get(0).getName()) && target.hasCrewName(crewSet.get(1).getName());
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(crewSet.get(0));
+
+        for(int i=1 ; i<crewSet.size(); i++) {
+            sb.append(" : "  + crewSet.get(i));
+        }
+        return sb.toString();
+    }
 }

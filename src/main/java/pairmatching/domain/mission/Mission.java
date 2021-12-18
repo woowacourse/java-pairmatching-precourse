@@ -60,4 +60,15 @@ public class Mission {
     private boolean hasPair(Pair target) {
         return pairSet.stream().anyMatch((pair) -> pair.equals(target));
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        pairSet.stream().forEach((pair) -> {
+            sb.append(pair.toString());
+            sb.append('\n');
+        });
+
+        return sb.toString();
+    }
 }
