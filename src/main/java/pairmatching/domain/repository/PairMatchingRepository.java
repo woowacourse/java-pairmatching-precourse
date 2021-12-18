@@ -59,5 +59,4 @@ public class PairMatchingRepository {
 	public static void reset() {
 		pairMatchingList.clear();
 	}
-
 }

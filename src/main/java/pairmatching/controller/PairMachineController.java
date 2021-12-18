@@ -3,12 +3,16 @@ package pairmatching.controller;
 import static pairmatching.view.InputView.*;
 import static pairmatching.view.OutputView.*;
 
-import pairmatching.domain.PairMachineFunction;
+import pairmatching.controller.function.PairMatchingFunction;
 
 public class PairMachineController {
 	public void run() {
 		printMainScreen();
-		PairMachineFunction pairMachineFunction = PairMachineFunction.findFunction(inputPairFunction());
-		pairMachineFunction.apply();
+		PairMatchingFunction pairMatchingFunction = PairMatchingFunction.findFunction(inputPairFunction());
+		pairMatchingFunction.apply();
+		if (pairMatchingFunction.isQuit()) {
+			return;
+		}
+		run();
 	}
 }
