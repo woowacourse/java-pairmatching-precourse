@@ -24,6 +24,11 @@ public class PairMatching {
         totalPairList.get(Integer.parseInt(level)).addPair(pair);
         return pair;
     }
+    public boolean checkIfPairResultAlreadyExist(String course, String level, String mission) {
+        // 이미 존재하는 경우 true 반환
+        return totalPairList.get(Integer.parseInt(level)).getPair(Course.getCourseByName(course),
+                Mission.existMission(Level.getLevelByName(level), mission)) != null;
+    }
 
     public void initialize() {
         totalPairList = new ArrayList<>();
