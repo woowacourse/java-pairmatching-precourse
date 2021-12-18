@@ -38,4 +38,14 @@ public class LoadFile {
             e.printStackTrace();
         }
     }
+
+    public List<String> getBackCrew() {
+        loadBackendCrew();
+        return CrewShuffle.getRandomCrews(backCrew);
+    }
+
+    public List<String> getFrontCrew() {
+        loadFrontendCrew();
+        return CrewShuffle.getRandomCrews(frontCrew);
+    }
 }
