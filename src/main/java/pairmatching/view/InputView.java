@@ -32,7 +32,10 @@ public class InputView {
             .append(getCourseMessage()).append("\n")
             .append("미션: ").append("\n")
             .append(getLevelByMission()).append("\n")
-            .append("#############################################").append("\n");
+            .append("#############################################").append("\n")
+            .append("과정, 레벨, 미션을 선택하세요.").append("\n")
+            .append("ex) 백엔드, 레벨1, 자동차경주");
+
         System.out.println(stringBuilder);
 
         return new PairMission(Console.readLine());
@@ -48,7 +51,7 @@ public class InputView {
         return Arrays.stream(Level.values())
             .map(level -> {
                 StringBuilder stringBuilder = new StringBuilder();
-                return stringBuilder.append("-")
+                return stringBuilder.append("  - ")
                     .append(level.getName())
                     .append(": ")
                     .append(String.join(" | ", level.getMissions()))

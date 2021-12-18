@@ -1,5 +1,6 @@
 package pairmatching.controller;
 
+import pairmatching.domain.PairMission;
 import pairmatching.domain.command.MainCommand;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
@@ -11,6 +12,8 @@ public class PairMatchingController {
         if (mainCommand == MainCommand.EXIT) {
             return;
         }
+
+        getPairMission();
     }
 
     private MainCommand getMainCommand() {
@@ -19,6 +22,15 @@ public class PairMatchingController {
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getMainCommand();
+        }
+    }
+
+    private PairMission getPairMission() {
+        try {
+            return InputView.pairMission();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getPairMission();
         }
     }
 }
