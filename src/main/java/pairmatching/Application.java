@@ -25,7 +25,7 @@ public class Application {
     }
 
     private static void createMission() {
-        missionRepository.createMissions();
+        missionController.createMissions();
     }
 
     private static void checkFunction(String functionKey) {
@@ -51,7 +51,7 @@ public class Application {
     }
 
     private static void matchPair(String[] pairInfoToPerformFunction) {
-
+        p
     }
 
 }
