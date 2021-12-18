@@ -43,7 +43,7 @@ public class Crews {
 
     public void readBackend() {
         try {
-            File backend = new File("C:\\Users\\woowahan\\Desktop\\java-pairmatching-precourse\\src\\main\\resources\\backend-crew.md");
+            File backend = new File(".\\src\\main\\java\\resources\\backend-crew.md");
             FileReader filereader = new FileReader(backend);
             BufferedReader bufReader = new BufferedReader(filereader);
             String line = "";
@@ -58,7 +58,7 @@ public class Crews {
 
     public void readFrontend() {
         try {
-            File frontend = new File("C:\\Users\\woowahan\\Desktop\\java-pairmatching-precourse\\src\\main\\resources\\frontend-crew.md");
+            File frontend = new File(".\\src\\main\\java\\resources\\frontend-crew.md");
             FileReader filereader = new FileReader(frontend);
             BufferedReader bufReader = new BufferedReader(filereader);
             String line = "";
