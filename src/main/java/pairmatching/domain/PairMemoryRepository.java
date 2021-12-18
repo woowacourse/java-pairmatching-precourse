@@ -16,7 +16,6 @@ public class PairMemoryRepository {
     }
 
     public PairMemory searchPairMemory(Section section) {
-        // TODO : 과정, 레벨, 미션으로 페어를 찾는다.
         for(PairMemory pairMemory : pairMemoryList) {
             if(pairMemory.getSection().compare(section)) {
                 return pairMemory;
@@ -26,7 +25,6 @@ public class PairMemoryRepository {
     }
 
     public void clear() {
-        // TODO : 모든 페어를 초기화한다.
         pairMemoryList.clear();
     }
 
@@ -69,10 +67,15 @@ public class PairMemoryRepository {
     }
 
     private void validatePair(List<String> existPair, List<String> pair) {
-//        System.out.println("compare with " + existPair + " and " + pair);
         if(existPair.containsAll(pair)) {
             System.out.println("because of : " + existPair + ", " + pair);
             throw new IllegalArgumentException("[ERROR] 이미 존재하는 조합입니다.");
+        }
+    }
+
+    private void print(List<List<String>> pairs) {
+        for(List<String> pair : pairs) {
+            System.out.println(pair);
         }
     }
 

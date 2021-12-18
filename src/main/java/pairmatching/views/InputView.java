@@ -54,7 +54,7 @@ public class InputView {
     }
 
     public static String getRematch() {
-        System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
+        System.out.println("\n매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
         System.out.println(InputConstants.REMATCH_YES + " | " + InputConstants.REMATCH_NO);
         String input = Console.readLine();
         validateRematch(input);

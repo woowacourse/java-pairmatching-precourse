@@ -43,5 +43,10 @@ public class OutputView {
         for(List<String> pair : pairs) {
             System.out.println(String.join(" : ", pair));
         }
+        System.out.println();
+    }
+
+    public static void printClearPairs() {
+        System.out.println("\n초기화 되었습니다.\n");
     }
 }

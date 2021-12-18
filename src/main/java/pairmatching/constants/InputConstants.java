@@ -14,4 +14,6 @@ public class InputConstants {
 
     public static final String REMATCH_YES = "네";
     public static final String REMATCH_NO = "아니오";
+
+    public static final int MAX_RETRY = 3;
 }

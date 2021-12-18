@@ -8,7 +8,6 @@ import pairmatching.domain.PairMemory;
 import pairmatching.domain.PairMemoryRepository;
 import pairmatching.domain.Section;
 import pairmatching.enums.Course;
-import pairmatching.enums.Level;
 import pairmatching.views.InputView;
 import pairmatching.views.OutputView;
 
@@ -27,7 +26,7 @@ public class MainController {
             try {
                 function = InputView.getFunction();
             }catch (IllegalArgumentException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
                 continue;
             }
             if(function.equals(InputConstants.PAIR_QUIT)) {
@@ -39,30 +38,48 @@ public class MainController {
 
     public void figureFunction(String function) {
         if(function.equals(InputConstants.PAIR_MATCHING)) {
-            pairMatching();
+            doPairMatching();
             return;
         }
         if(function.equals(InputConstants.PAIR_SEARCHING)) {
+            getPairMatching();
             return;
         }
         if(function.equals(InputConstants.PAIR_CLEAR)) {
+            clearPairMatching();
             return;
         }
     }
 
-    public void pairMatching() {
+    public void doPairMatching() {
+        Section section = getSectionForMatching();
+        startMatch(section);
+    }
+
+    public Section getSectionForMatching() {
         OutputView.printSection();
-        Section section = null;
         while(true) {
-            section = getSection();
-            if (!checkExistSection(section)) {
-                break;
-            }
-            if(getRematch()) {
-                break;
+            Section section = getSection();
+            if (!checkExistSection(section) || getRematch()) {
+                return section;
             }
         }
-        startMatch(section);
+    }
+
+    public void getPairMatching() {
+        OutputView.printSection();
+        Section section = getSection();
+        try {
+            PairMemory pairMemory = pairMemoryRepository.searchPairMemory(section);
+            OutputView.printPairResult(pairMemory.getPairs());
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void clearPairMatching() {
+        OutputView.printClearPairs();
+        pairMemoryRepository.clear();
     }
 
     private Section getSection() {
@@ -117,7 +134,7 @@ public class MainController {
     }
 
     private void validatePairs(PairMemory pairMemory) {
-        for(int i = 0; i < 3; i++) {
+        for(int i = 0; i < InputConstants.MAX_RETRY; i++) {
             try {
                 pairMemoryRepository.validatePairMemory(pairMemory);
                 return;
@@ -127,4 +144,5 @@ public class MainController {
         }
         throw new IllegalArgumentException("[ERROR] 경우의 수가 없습니다.");
     }
+
 }
