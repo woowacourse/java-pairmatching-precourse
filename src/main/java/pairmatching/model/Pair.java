@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pair {
-    private final static String SEPARATOR = " , ";
+    private final static String SEPARATOR = " : ";
     private List<String> members = new ArrayList<>();
 
     public Pair(String member1, String member2) {
