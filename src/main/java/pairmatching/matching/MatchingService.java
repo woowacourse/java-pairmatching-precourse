@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MatchingService {
+    private static final int MATCHING_MAX_SIZE = 3;
+
     private final String BACK_COURSE = "백엔드";
     private final String FRONT_COURSE = "프론트엔드";
 
@@ -32,14 +34,14 @@ public class MatchingService {
         frontendPeople = matchingFileInput.returnFrontendPeople();
     }
 
-    public void checkValidCourseName(String courseName){
-        if(!matching.checkRightCourseName(courseName)){
+    public void checkValidCourseName(String courseName) {
+        if (!matching.checkRightCourseName(courseName)) {
             throw new IllegalArgumentException();
         }
     }
 
     public boolean hasDistinctMatching(String courseName) {
-        return matching.HasDuplicateMatchingBySameLevel(matching.getSameLevelIndexList(courseName));
+        return matching.HasDuplicateMatchingBySameLevel(courseName);
     }
 
     public void hasAlreadyMatching(String courseName) {
@@ -48,33 +50,30 @@ public class MatchingService {
         }
     }
 
-    public List<String> returnMatching(String courseName){
+    public List<String> returnMatching(String courseName) {
         return matching.getMatching(courseName);
     }
 
     public List<String> startMatching(String courseName) {
         if (courseName.contains(BACK_COURSE)) {
             List<String> matchingBackList = makeMatchingList(backendPeople);
-            makeDistinctBackMatching(courseName, matchingBackList);
+            makeDistinctMatching(courseName, matchingBackList);
             return matchingBackList;
         }
         List<String> matchingFrontList = makeMatchingList(frontendPeople);
-        makeDistinctFrontMatching(courseName, matchingFrontList);
+        makeDistinctMatching(courseName, matchingFrontList);
         return matchingFrontList;
     }
 
-    public boolean makeDistinctBackMatching(String courseName, List<String> matched){
-        List<String> matchingList = makeMatchingList(backendPeople);
-        // 랜덤 안되는 경우 검증로직
-        matching.makeThisCourseMatching(courseName, matched);
-        return true;
-    }
-
-    public boolean makeDistinctFrontMatching(String courseName, List<String> matched){
-        List<String> matchingList = makeMatchingList(frontendPeople);
-        // 랜덤 안되는 경우 검증로직
-        matching.makeThisCourseMatching(courseName, matched);
-        return true;
+    public void makeDistinctMatching(String courseName, List<String> matched) {
+        for (int i = 0; i < MATCHING_MAX_SIZE; i++) {
+            matching.makeThisCourseMatching(courseName, matched);
+            if (!matching.HasDuplicateMatchingBySameLevel(courseName)) {
+                return;
+            }
+            matching.makeThisCourseMatching(courseName, new ArrayList<>());
+        }
+        throw new IllegalArgumentException();
     }
 
     public List<String> makeMatchingList(List<String> originalPeople) {
@@ -91,7 +90,7 @@ public class MatchingService {
         return matchingList;
     }
 
-    public void initAllMatching(){
+    public void initAllMatching() {
         matching.initCourseMatching();
     }
 }

@@ -59,18 +59,23 @@ public class Matching {
         return Arrays.asList(index / LEVEL_SIZE, index / LEVEL_SIZE + 1, index / LEVEL_SIZE + 2);
     }
 
-    public boolean HasDuplicateMatchingBySameLevel(List<Integer> sameLevelIndexList) {
+    public boolean HasDuplicateMatchingBySameLevel(String courseName) {
+        List<Integer> sameLevelIndexList = getSameLevelIndexList(courseName);
+        int hashMapIndex = hashMap.get(courseName);
         List<String> allMatched = new ArrayList<>();
-        for (Integer sameLevelIndex : sameLevelIndexList) {
-            for(String matching: course.get(sameLevelIndex)){
-                allMatched.add(matching);
+        for (int sameLevelIndex : sameLevelIndexList) {
+            if (hashMapIndex == sameLevelIndex) {
+                continue;
             }
-            //allMatched.addAll(course.get(sameLevelIndex));
+            allMatched.addAll(course.get(sameLevelIndex));
+//            for(String matching: course.get(sameLevelIndex)){
+//                allMatched.add(matching);
+//            }
         }
         return allMatched.stream().distinct().count() != allMatched.size();
     }
 
-    public void makeThisCourseMatching(String courseName, List<String> matched){
+    public void makeThisCourseMatching(String courseName, List<String> matched) {
         Integer courseIndex = hashMap.get(courseName);
         course.set(courseIndex, matched);
     }
