@@ -1,5 +1,7 @@
 package pairmatching.constant;
 
+import static pairmatching.constant.message.SystemMessage.*;
+
 import java.util.StringJoiner;
 
 public enum Level {
@@ -29,7 +31,7 @@ public enum Level {
 			stringBuffer.append(": ");
 			String missionNames = joinStringMissionNames(level);
 			stringBuffer.append(missionNames);
-			stringBuffer.append("\n");
+			stringBuffer.append(NEWLINE);
 		}
 		return stringBuffer.toString();
 	}
