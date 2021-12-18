@@ -88,5 +88,7 @@ public class PairMatching {
 	}
 
 	private void pairInitialize() {
+		pairMatchingService.init();
+		outputInitPair();
 	}
 }

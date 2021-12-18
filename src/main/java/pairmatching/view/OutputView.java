@@ -13,6 +13,7 @@ public class OutputView {
 	private static final String LEVEL_LIST_FORM = "  - %s: %s";
 	private static final String FAIR_RESULT_MESSAGE = "페어 매칭 결과입니다.";
 	private static final String FAIR_RESULT_SEPARATOR = " : ";
+	private static final String INIT_PAIR_MESSAGE = "초기화 되었습니다.";
 
 	public static void outputCourseAndLevel() {
 		System.out.println(HASH_SEPARATOR);
@@ -31,6 +32,10 @@ public class OutputView {
 			System.out.println(String.join(FAIR_RESULT_SEPARATOR, pair.getPair()));
 		}
 		System.out.println();
+	}
+
+	public static void outputInitPair() {
+		System.out.println(INIT_PAIR_MESSAGE);
 	}
 
 	public static void outputExceptionMessage(Exception e) {

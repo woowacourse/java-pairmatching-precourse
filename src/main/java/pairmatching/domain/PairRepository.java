@@ -29,4 +29,8 @@ public class PairRepository {
 	public void addPairsList(Pairs pairs) {
 		pairsList.add(pairs);
 	}
+
+	public void init() {
+		pairsList = new ArrayList<>();
+	}
 }

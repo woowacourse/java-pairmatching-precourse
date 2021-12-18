@@ -90,4 +90,8 @@ public class PairMatchingService {
 		}
 		throw new IllegalArgumentException(NO_HAS_MISSION_ERROR.get());
 	}
+
+	public void init() {
+		pairRepository.init();
+	}
 }
