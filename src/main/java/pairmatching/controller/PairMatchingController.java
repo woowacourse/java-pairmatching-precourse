@@ -2,6 +2,7 @@ package pairmatching.controller;
 
 import pairmatching.domain.CrewRepository;
 import pairmatching.domain.MatchResultRepository;
+import pairmatching.domain.MissionRepository;
 import pairmatching.service.PairMatchingService;
 
 import static pairmatching.constants.SystemConstants.*;
@@ -14,6 +15,8 @@ public class PairMatchingController {
 
     public void run() {
         CrewRepository.initCrewDatabase();
+        MissionRepository.initMissionDatabase();
+
         boolean isRunning = true;
 
         while (isRunning) {
