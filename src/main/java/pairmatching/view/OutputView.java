@@ -7,7 +7,10 @@ public class OutputView {
 		printOptionMenu("2", "페어 조회");
 		printOptionMenu("3", "페어 초기화");
 		printOptionMenu("Q", "종료");
-		printBlankLine();
+	}
+
+	public static void printErrorMessage(String message) {
+		printError(message);
 	}
 
 	private static void printHeader(String header) {
@@ -16,6 +19,10 @@ public class OutputView {
 
 	private static void printOptionMenu(String option, String name) {
 		System.out.println(option + ". " + name);
+	}
+
+	private static void printError(String message) {
+		System.out.println("[ERROR] " + message);
 	}
 
 	private static void printBlankLine() {
