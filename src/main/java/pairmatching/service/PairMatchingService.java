@@ -27,6 +27,13 @@ public class PairMatchingService {
         postNewMatchResult();
     }
 
+    public void readMatchResult() {
+        showBackgroundInfo();
+        String optionsInput = requestPairMatchingOptionsInput();
+        MatchResult matchResult = MatchResultRepository.getMatchResultByOptions(requestPairMatchingOptionsInput());
+        showMatchResult(matchResult);
+    }
+
     public void postNewMatchResult() {
         String optionsInput = requestPairMatchingOptionsInput();
         MatchResult existingResult = MatchResultRepository.getMatchResultByOptions(optionsInput);

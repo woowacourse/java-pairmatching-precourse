@@ -29,7 +29,7 @@ public class PairMatchingController {
             pairMatchingService.run();
         }
         if (userChoice.equals(TWO)) {
-            // GO TO PAIR READ SCREEN
+            pairMatchingService.readMatchResult();
         }
         if (userChoice.equals(THREE)) {
             MatchResultRepository.deleteAllMatchResults();

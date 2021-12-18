@@ -1,9 +1,7 @@
 package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import pairmatching.domain.Level;
 
-import static pairmatching.constants.FormatConstants.*;
 import static pairmatching.constants.InputMessages.*;
 
 public class InputView {
