@@ -20,4 +20,8 @@ public enum Course {
 		}
 		throw new IllegalArgumentException(ErrorMessageConstants.NO_SUCH_COURSE_EXCEPTION);
 	}
+
+	public String getName() {
+		return this.name;
+	}
 }

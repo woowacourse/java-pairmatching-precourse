@@ -17,11 +17,10 @@ public class Matching {
 		this.course = Course.of(matchingCondition[0]);
 		this.level = Level.of(matchingCondition[1]);
 		this.pairs = new ArrayList<>();
-		matchPairs(matchingCondition[0]);
 	}
 
-	private void matchPairs(String courseName) {
-		List<String> shuffledCrew = Randoms.shuffle(FileUtils.readFile(courseName));
+	public void matchPairs() {
+		List<String> shuffledCrew = Randoms.shuffle(FileUtils.readFile(course.getName()));
 		int index = 0;
 		while (index < shuffledCrew.size()) {
 			Pair pair = new Pair();

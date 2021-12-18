@@ -48,6 +48,7 @@ public class PairMatchingController {
 	private void match() {
 		String inputMatchingCondition = PairMatchingInputView.readCourseAndMission();
 		Matching matching = new Matching(inputMatchingCondition);
+		matching.matchPairs();
 		matches.add(matching);
 		PairMatchingOutputView.printMatchingResult(matching.toString());
 	}
