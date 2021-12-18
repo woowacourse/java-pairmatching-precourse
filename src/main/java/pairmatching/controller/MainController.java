@@ -1,6 +1,7 @@
 package pairmatching.controller;
 
 import pairmatching.util.InputValidator;
+import pairmatching.view.InputView;
 import pairmatching.view.MainView;
 import pairmatching.view.OutputView;
 
@@ -46,7 +47,7 @@ public class MainController {
 
     private String mainScreenInput() {
         try {
-            String input = MainView.getInput();
+            String input = InputView.getInput();
             InputValidator.validateMainScreenInput(input);
             return input;
         } catch (IllegalArgumentException e) {
