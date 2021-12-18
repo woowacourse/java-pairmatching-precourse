@@ -14,6 +14,11 @@ public class Validator {
         if(!information.matches(regex)) throw  new IllegalArgumentException(ExceptionMessage.INCORRECT_INFORMATION_FORMAT);
     }
 
+    public static void validateRematchFormat(String answer) {
+        if(!(answer.equals(CommonConstant.YES) || answer.equals(CommonConstant.NO))) throw new IllegalArgumentException(ExceptionMessage.INCORRECT_INFORMATION_FORMAT);
+    }
+
+
     public static void validateInformationContent(String[] information) {
         if(Course.getCourseByName(information[0]) == null) throw new IllegalArgumentException(ExceptionMessage.INVALID_INFORMATION_DATA + information[0]);
         if(Level.getLevelByName(information[1]) == null) throw new IllegalArgumentException(ExceptionMessage.INVALID_INFORMATION_DATA + information[1]);
