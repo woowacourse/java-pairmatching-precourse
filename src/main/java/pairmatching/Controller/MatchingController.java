@@ -80,7 +80,9 @@ public class MatchingController {
 			mission = findMission(splitRequestInfo.get(REQUEST_INFO_MISSION_NAME).trim());
 		} while (existPair(mission));
 		List<String> shuffleNameList = shuffleNameList(splitRequestInfo);
+		missionList.remove(mission);
 		mission.setPairList(shuffleNameList);
+		missionList.add(mission);
 		OutputView.printPairResult(shuffleNameList);
 	}
 
@@ -88,10 +90,12 @@ public class MatchingController {
 		OutputView.printProgramInfo(this.missionList);
 		String userReqeustInfo = InputView.requestMatchInfo();
 		List<String> splitRequestInfo = ParsingString.splitComma(userReqeustInfo);
+		Mission mission = findMission(splitRequestInfo.get(REQUEST_INFO_MISSION_NAME).trim());
+		OutputView.printPairResult(mission.getPairList());
 	}
 
 	public void resetMatchInfo() {
-
+		
 	}
 
 	public void matchExit() {

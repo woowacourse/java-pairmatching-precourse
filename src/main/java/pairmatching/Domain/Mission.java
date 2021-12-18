@@ -13,12 +13,17 @@ public class Mission {
 		this.name = name;
 	}
 
-	public boolean levelCheck(Level level) {
-		return this.level == level;
+	public List<String> getPairList() {
+		return this.pairList;
 	}
+
 
 	public String getName() {
 		return this.name;
+	}
+
+	public boolean levelCheck(Level level) {
+		return this.level == level;
 	}
 
 	public boolean existPair() {
