@@ -1,7 +1,6 @@
 package pairmatching.domain.mission;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class Missions {
@@ -15,10 +14,6 @@ public class Missions {
 
 	public static Missions of(String... missions) {
 		return new Missions(Arrays.asList(missions));
-	}
-
-	public List<String> getMissions() {
-		return Collections.unmodifiableList(missions);
 	}
 
 	public boolean contains(String mission) {
