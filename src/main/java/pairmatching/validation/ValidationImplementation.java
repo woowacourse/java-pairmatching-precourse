@@ -11,9 +11,11 @@ import java.util.regex.Pattern;
 public class ValidationImplementation implements Validation {
 
     private static final Pattern FUNCTION_SELECT_VALID_DIGIT_PATTERN = Pattern.compile("^[1-3]*$");
-    private static final int FUNCTION_LIST_INPUT_LIMITED_LENGTH = 1;
     private static final char EXIT_NOTATION = 'Q';
+    private static final int FUNCTION_LIST_INPUT_LIMITED_LENGTH = 1;
     private static final int PROPERTY_INPUT_FORMAT_LENGTH = 3;
+    private static final String YES = "네";
+    private static final String NO = "아니오";
 
     private final ConstantDataStore constantDataStore;
 
@@ -53,6 +55,14 @@ public class ValidationImplementation implements Validation {
         return true;
     }
 
+    @Override
+    public boolean isValidYesOrNo(String yesOrNoInput) {
+        if (yesOrNoInput.equals(YES) || yesOrNoInput.equals(NO)) {
+            return true;
+        }
+        throw new IllegalArgumentException();
+    }
+
     private boolean isContainCourse(String inputCourse) {
         for (Course course : Course.values()) {
             if (course.getCourse().equals(inputCourse)) {
@@ -63,7 +73,7 @@ public class ValidationImplementation implements Validation {
     }
 
     private boolean isContainLevel(String inputLevel) {
-        inputLevel=inputLevel.substring(1);
+        inputLevel = inputLevel.substring(1);
         for (Level course : Level.values()) {
             if (course.getLevel().equals(inputLevel)) {
                 return true;
@@ -73,7 +83,7 @@ public class ValidationImplementation implements Validation {
     }
 
     private boolean isContainLevelMission(String inputMission) {
-        inputMission=inputMission.substring(1);
+        inputMission = inputMission.substring(1);
         Map<Level, List<String>> missionByLevel = constantDataStore.getMissionByLevel();
         boolean isContainMission = false;
         for (Level level : missionByLevel.keySet()) {
