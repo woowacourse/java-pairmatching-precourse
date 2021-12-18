@@ -28,4 +28,8 @@ public class Validator {
     public static void ValidateMatchable(int count) {
         if(count > 2) throw new IllegalArgumentException(ExceptionMessage.NOT_MATCHABLE);
     }
+
+    public static void ValidateMatchingHistory(Pair pair) {
+        if(pair == null) throw new IllegalArgumentException(ExceptionMessage.NO_MATCHING_HISTORY);
+    }
 }
