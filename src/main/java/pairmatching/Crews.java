@@ -11,14 +11,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 public class Crews {
     final int COURSES = 16;
-    ArrayList<String> backendCrewNames = new ArrayList<>();
-    ArrayList<String> frontendCrewNames = new ArrayList<>();
-    ArrayList<ArrayList<String>> pairsBackend = new ArrayList<>();
-    ArrayList<ArrayList<String>> pairsFrontend = new ArrayList<>();
+    List<String> backendCrewNames = new ArrayList<>();
+    List<String> frontendCrewNames = new ArrayList<>();
+    ArrayList<List<String>> pairsBackend = new ArrayList<>();
+    ArrayList<List<String>> pairsFrontend = new ArrayList<>();
 
     int courseIndex;
+    String position;
     final int LEVEL1_CarRACING = 0;
     final int LEVEL1_LOTTO = 1;
     final int LEVEL1_BASEBALL = 2;
@@ -30,40 +33,40 @@ public class Crews {
 
 
     public void createCourses() {
-        for (int i = 0; i < COURSES/2; i++) {
+        for (int i = 0; i < COURSES / 2; i++) {
             pairsBackend.add(new ArrayList<>());
         }
-        for (int i = 0; i < COURSES/2; i++) {
+        for (int i = 0; i < COURSES / 2; i++) {
             pairsFrontend.add(new ArrayList<>());
         }
     }
 
     public void readBackend() {
-        try{
+        try {
             File backend = new File("C:\\Users\\woowahan\\Desktop\\java-pairmatching-precourse\\src\\main\\resources\\backend-crew.md");
             FileReader filereader = new FileReader(backend);
             BufferedReader bufReader = new BufferedReader(filereader);
             String line = "";
-            while((line = bufReader.readLine()) != null){
+            while ((line = bufReader.readLine()) != null) {
                 backendCrewNames.add(line);
             }
             bufReader.close();
-        } catch(IOException e){
+        } catch (IOException e) {
             System.out.println(e);
         }
     }
 
     public void readFrontend() {
-        try{
+        try {
             File frontend = new File("C:\\Users\\woowahan\\Desktop\\java-pairmatching-precourse\\src\\main\\resources\\frontend-crew.md");
             FileReader filereader = new FileReader(frontend);
             BufferedReader bufReader = new BufferedReader(filereader);
             String line = "";
-            while((line = bufReader.readLine()) != null){
+            while ((line = bufReader.readLine()) != null) {
                 frontendCrewNames.add(line);
             }
             bufReader.close();
-        } catch(IOException e){
+        } catch (IOException e) {
             System.out.println(e);
         }
     }
@@ -121,7 +124,44 @@ public class Crews {
         return false;
     }
 
-    public void matching() {
+    public void matching(String[] courses) {
+        if (courses[0].equals("백엔드")) {
+            matchingBackend();
+            return;
+        }
+        matchingFrontend();
+    }
+
+    private void matchingBackend() {
+        int check = 0;
+        while (check < 3) {
+            backendCrewNames = Randoms.shuffle(backendCrewNames);
+            break;
+        }
 
     }
+
+    private void matchingFrontend() {
+        int check = 0;
+        while (check < 3) {
+            frontendCrewNames = Randoms.shuffle(frontendCrewNames);
+            break;
+        }
+    }
+
+    private boolean checkBackendCrews() {
+        if (courseIndex <= LEVEL1_BASEBALL) {
+            if (courseIndex != LEVEL1_CarRACING) {
+                for (int i = 0; i < backendCrewNames.size(); i++) {
+                    int temp = pairsBackend.get(courseIndex).indexOf(backendCrewNames.get(i));
+                    if (temp % 2 == 0) {
+
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+
 }

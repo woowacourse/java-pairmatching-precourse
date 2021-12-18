@@ -32,6 +32,7 @@ public class Controller {
         if (input.charAt(0) == '1') {
             selectCourses();
         }
+        crews.matching(courses);
 
     }
 
@@ -71,7 +72,6 @@ public class Controller {
         if (crews.checkAlready(courses)) {
             selectAlready();
         }
-        crews.matching();
     }
 
     private void selectAlready() {
