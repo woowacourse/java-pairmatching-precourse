@@ -14,6 +14,6 @@ public class SearchOutputView implements OutputView {
 
 	@Override
 	public String output() {
-		return INTRODUCTION + message;
+		return INTRODUCTION + message + "\n";
 	}
 }

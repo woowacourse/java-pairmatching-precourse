@@ -4,6 +4,8 @@ import pairmatching.view.ErrorView;
 
 public class CommonErrorView implements ErrorView {
 
+	private static final String PREFIX = "[ERROR] ";
+
 	private final String message;
 
 	public CommonErrorView(String message) {
@@ -12,6 +14,6 @@ public class CommonErrorView implements ErrorView {
 
 	@Override
 	public String error() {
-		return message;
+		return PREFIX + message;
 	}
 }

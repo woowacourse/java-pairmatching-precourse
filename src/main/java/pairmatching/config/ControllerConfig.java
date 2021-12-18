@@ -10,7 +10,8 @@ public class ControllerConfig {
 		return new MatchController(
 			ViewManagerConfig.getViewManager(),
 			ServiceConfig.getParseService(),
-			ServiceConfig.getWoowaCourseService()
+			ServiceConfig.getWoowaCourseService(),
+			ServiceConfig.getPairMatchingService()
 		);
 	}
 
