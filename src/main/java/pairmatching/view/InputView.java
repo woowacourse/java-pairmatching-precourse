@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class InputView {
 	private List<String> backEndCrewNames = new ArrayList<>();
 	private List<String> frontEndCrewNames = new ArrayList<>();
@@ -16,6 +18,10 @@ public class InputView {
 
 	public InputView() {
 
+	}
+
+	public String inputMatchingInfo() {
+		return Console.readLine();
 	}
 
 	public List<String> getBackEndCrewNames() {

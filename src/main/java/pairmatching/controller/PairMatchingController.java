@@ -2,16 +2,21 @@ package pairmatching.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import pairmatching.model.Course;
+import pairmatching.model.Crew;
 import pairmatching.model.Level;
 import pairmatching.model.Levels;
+import pairmatching.model.MatchingInfo;
 import pairmatching.model.Mission;
 import pairmatching.view.InputView;
 
 public class PairMatchingController {
 	private static List<String> backEndCrewNames;
 	private static List<String> frontEndCrewNames;
+	private static List<Crew> backendCrews;
+	private static List<Crew> frontendCrews;
 	private InputView inputView;
 
 	public PairMatchingController() {
@@ -21,12 +26,20 @@ public class PairMatchingController {
 	public void init() {
 		backEndCrewNames = inputView.getBackEndCrewNames();
 		frontEndCrewNames = inputView.getFrontEndCrewNames();
+	}
 
+	public void matching() {
+		String matchingInfoString = inputView.inputMatchingInfo();
+		MatchingInfo matchingInfo = new MatchingInfo(matchingInfoString);
 	}
 
 	private void initCourse() {
-		Course backendCourse = Course.BACKEND;
-		Course frontendCourse = Course.FRONTEND;
+		backendCrews = backEndCrewNames.stream()
+			.map(crewString -> new Crew(Course.BACKEND, crewString.toString()))
+			.collect(Collectors.toList());
+		frontendCrews = frontEndCrewNames.stream()
+			.map(crewString -> new Crew(Course.FRONTEND, crewString.toString()))
+			.collect(Collectors.toList());
 	}
 
 	private void initLevelAndMission() {
