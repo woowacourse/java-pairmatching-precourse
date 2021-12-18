@@ -3,7 +3,6 @@ import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class CrewService {
 
         List<String> crewNameList = readCrewFromFile(courseName);
 
-        shuffle(crewNameList);
+        crewNameList = shuffle(crewNameList);
 
         for (String crewName : crewNameList) {
             Crew crew = new Crew(course, crewName);
