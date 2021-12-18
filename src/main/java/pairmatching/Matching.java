@@ -34,8 +34,11 @@ public class Matching {
 		CrewNames = Course.crewLoad(validList.getCourse());
 		shuffleCrew();
 		crewTotalNumber();
+		Output.resultPrint(CrewMatching);
+		
 		// 이미 페어를 맺은 크루가 있는 지 체크
 		PairList.add(validList);
+		
 	}
 	// 페어 조회 첫번째 화면
 	public static void searchingStart() {

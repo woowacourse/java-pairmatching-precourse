@@ -1,5 +1,7 @@
 package pairmatching;
 
+import java.util.List;
+
 public class Output {
 	public static void pairMatching() {
 		System.out.println("#############################################");
@@ -12,5 +14,11 @@ public class Output {
 		System.out.println("  - 레벨5:");
 		System.out.println("#############################################");
 	}
-
+	public static void resultPrint(List<Crew> CrewMatching) {
+		System.out.println("페어 매칭 결과입니다.");
+		for(Crew s : CrewMatching) {
+			System.out.println(s);
+		}
+		
+	}
 }
