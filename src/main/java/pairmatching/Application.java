@@ -7,6 +7,7 @@ import java.util.List;
 
 import pairmatching.model.Course;
 import pairmatching.model.Crew;
+import pairmatching.model.CrewRepository;
 import pairmatching.model.Level;
 import pairmatching.model.Mission;
 import pairmatching.utils.FileUtils;
@@ -40,7 +41,7 @@ public class Application {
 		List<String> frontendCrews = FileUtils.readList(filePath);
 
 		for (String frontendCrew : frontendCrews) {
-			crews.add(new Crew(Course.FRONTEND, frontendCrew));
+			CrewRepository.addCrew(new Crew(Course.FRONTEND, frontendCrew));
 		}
 	}
 
@@ -49,7 +50,7 @@ public class Application {
 		List<String> backendCrews = FileUtils.readList(filePath);
 
 		for (String backendCrew : backendCrews) {
-			crews.add(new Crew(Course.BACKEND, backendCrew));
+			CrewRepository.addCrew(new Crew(Course.BACKEND, backendCrew));
 		}
 	}
 }
