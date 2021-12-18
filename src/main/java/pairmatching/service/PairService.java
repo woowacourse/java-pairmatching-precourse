@@ -121,4 +121,8 @@ public class PairService {
         MatchInfo matchInfo = getMatchInfo(input);
         PairRepository.deletePairsByMatchInfo(matchInfo);
     }
+
+    public void deleteAll() {
+        PairRepository.deleteAll();
+    }
 }

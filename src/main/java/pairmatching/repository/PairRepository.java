@@ -61,4 +61,8 @@ public class PairRepository {
                 pair.getLevel().equals(matchInfo.getLevel()) &&
                 pair.getMission().equals(matchInfo.getMission()));
     }
+
+    public static void deleteAll() {
+        pairs.clear();
+    }
 }

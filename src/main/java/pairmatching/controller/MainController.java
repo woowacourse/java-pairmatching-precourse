@@ -1,5 +1,6 @@
 package pairmatching.controller;
 
+import pairmatching.service.PairService;
 import pairmatching.util.InputValidator;
 import pairmatching.view.InputView;
 import pairmatching.view.MainView;
@@ -11,10 +12,12 @@ public class MainController {
     private static final String CLEAR_MODE = "3";
     private static final String EXIT_MODE = "Q";
     public static MainController instance;
+    public static PairService pairService;
 
     public static MainController getInstance() {
         if (instance == null) {
             instance = new MainController();
+            pairService = PairService.getInstance();
         }
         return instance;
     }
@@ -39,7 +42,8 @@ public class MainController {
             ReferenceController.getInstance().run();
         }
         if (mode.equals(CLEAR_MODE)) {
-            System.out.println("3");
+            pairService.deleteAll();
+            OutputView.printClearMessage();
         }
         return !mode.equals(EXIT_MODE);
     }
