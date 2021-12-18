@@ -32,7 +32,7 @@ public class MatchingService {
             String[] nameArr =Path.BACKNAME.split(",");
 //            System.out.println(nameArr);
             List<String> tempnameList = new ArrayList<String>(Arrays.asList(nameArr));
-//            System.out.println(tempnameList.toString());
+            System.out.println(tempnameList.toString());
             this.nameList = tempnameList;
             return;
         }
@@ -55,7 +55,7 @@ public class MatchingService {
 
     public String getPath(){
         if(courseName.equals("백엔드")) {
-            return Path.BACKEND_PATH;
+            return "백엔드";
         }
         return Path.FRONTEND_PATH;
     }
