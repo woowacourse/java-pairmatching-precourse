@@ -1,5 +1,6 @@
 package pairmatching.matching;
 
+import pairmatching.crew.Course;
 import pairmatching.crew.Crew;
 import pairmatching.crew.CrewService;
 import pairmatching.crew.Level;
@@ -28,12 +29,12 @@ public class MatchingService {
         return InnerInstanceClazz.instance;
     }
 
-    private List<Pair> createBackEndPair(Level level, String mission) {
+    public List<Pair> createBackEndPair(Level level, String mission) {
         List<Crew> crews = crewService.findAllBackEndCrew();
         return backEndMatchingService.getPair(crews, level, mission); // Null 도 리턴됨
     }
 
-    private List<Pair> createFrontEndPair(Level level, String mission) {
+    public List<Pair> createFrontEndPair(Level level, String mission) {
         List<Crew> crews = crewService.findAllFrontEndCrew();
         return frontEndMatchingService.getPair(crews, level, mission);
     }

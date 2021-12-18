@@ -1,14 +1,21 @@
 package pairmatching;
 
+import pairmatching.matching.MatchingController;
 import pairmatching.matching.MatchingService;
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.matching.Pair;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class PairMatchingSystem {
 
-    private final MatchingService matchingService;
+    private static final String MATCHING_MENU_SPLIT_UNIT = ",";
+
+    private final MatchingController matchingController;
 
     private PairMatchingSystem() {
-        matchingService = MatchingService.getInstance();
+        matchingController = MatchingController.getInstance();
     }
 
     public void operate() {
@@ -31,9 +38,19 @@ public class PairMatchingSystem {
         }
     }
 
-    private void createMatching() {}
+    private void createMatching() {
+        String inputMatchingMenu = Console.readLine();
+        //TODO: 데이터 검증
+        List<String> data = separatedData(inputMatchingMenu);
+        List<Pair> pairs = matchingController.getPairMatching(data);
+        printPair(pairs);
+    }
 
-    private void printMatching() {}
+    private void printMatching() {
+        String inputMatchingMenu = Console.readLine();
+        //TODO: 데이터 검증
+        List<String> data = separatedData(inputMatchingMenu);
+    }
 
     private void initializeMatching() {}
 
@@ -66,5 +83,20 @@ public class PairMatchingSystem {
         System.out.println("############################################");
         System.out.println("과정, 레벨, 미션을 선택하세요.");
         System.out.println("ex) 백엔드, 레벨1, 자동차경주");
+    }
+
+    private List<String> separatedData(String data) {
+        return Arrays.asList(data.split(MATCHING_MENU_SPLIT_UNIT));
+    }
+
+    private void printPair(List<Pair> pairs) {
+        for(Pair pair : pairs) {
+            List<String> names = pair.getAllCrewName();
+            for(int i = 0; i < names.size(); ++i) {
+                System.out.print(names.get(i));
+                if(i != names.size() - 1)
+                    System.out.print(":");
+            }
+        }
     }
 }

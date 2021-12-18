@@ -12,4 +12,12 @@ public enum Level {
     Level(String name) {
         this.name = name;
     }
+
+    public static Level getLevelName(String name) {
+        for(Level level : Level.values()) {
+            if(level.name.equals(name))
+                return level;
+        }
+        return null;
+    }
 }
