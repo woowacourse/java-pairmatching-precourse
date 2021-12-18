@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static pairmatching.Constants.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,7 +30,7 @@ public class MatchRepository {
 		if (hasInformationLike(information)) {
 			return matchList.stream().filter(match -> match.hasInformation(information)).findFirst().get();
 		}
-		throw new IllegalArgumentException("페어 정보가 존재하지 않습니다.");
+		throw new IllegalArgumentException(NO_EXIST_PAIR);
 	}
 
 	public static void clearMatchList() {

@@ -1,9 +1,10 @@
 package pairmatching.domain;
 
+import static pairmatching.Constants.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class MatchingInformation {
 	private Course course;
@@ -18,14 +19,14 @@ public class MatchingInformation {
 
 	public static MatchingInformation of(String line) {
 		List<String> information = split(line);
-		Course course = Course.findByName(information.get(0));
-		Level level = Level.findByName(information.get(1));
-		Mission mission = Mission.findByName(information.get(2));
+		Course course = Course.findByName(information.get(COURSE_INDEX));
+		Level level = Level.findByName(information.get(LEVEL_INDEX));
+		Mission mission = Mission.findByName(information.get(MISSION_INDEX));
 		return new MatchingInformation(course, level, mission);
 	}
 
 	private static List<String> split(String line) {
-		List<String> information = Arrays.asList(line.split(","));
+		List<String> information = Arrays.asList(line.split(COMMA));
 		return information.stream().map(string -> string.trim()).collect(Collectors.toList());
 	}
 
@@ -45,10 +46,5 @@ public class MatchingInformation {
 			return false;
 		MatchingInformation that = (MatchingInformation)o;
 		return course == that.course && level == that.level && mission == that.mission;
-	}
-
-	@Override
-	public int hashCode() {
-		return 0;
 	}
 }

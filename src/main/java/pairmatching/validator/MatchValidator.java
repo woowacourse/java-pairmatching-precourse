@@ -1,12 +1,12 @@
 package pairmatching.validator;
 
-import static pairmatching.view.ViewConstants.*;
+import static pairmatching.Constants.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MatchValidator implements Validator {
-	private static Pattern pattern = Pattern.compile("^[가-힣a-zA-Z0-9]+,\\s[가-힣a-zA-Z0-9]+,\\s[가-힣a-zA-Z0-9]+");
+	private static Pattern pattern = Pattern.compile(PATTERN);
 
 	@Override
 	public void exceptionInvalid(String string) {

@@ -27,6 +27,7 @@ public class CrewRepository {
 	private static List<Crew> mapToCrew(List<String> names, List<Crew> crewList) {
 		return names.stream().map(name -> findCrew(name, crewList)).collect(Collectors.toList());
 	}
+
 	private static Crew findCrew(String name, List<Crew> crewList) {
 		return crewList.stream().filter(crew -> crew.toString().equals(name)).findFirst().get();
 	}

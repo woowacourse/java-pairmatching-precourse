@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static pairmatching.Constants.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -8,7 +10,7 @@ import java.util.stream.Collectors;
 public class Pair {
 	private List<Crew> crewList = new ArrayList<>();
 
-	public Pair(Crew ...crews) {
+	public Pair(Crew... crews) {
 		for (Crew crew : crews) {
 			crewList.add(crew);
 		}
@@ -16,7 +18,7 @@ public class Pair {
 
 	@Override
 	public String toString() {
-		return String.join(" : ", getCrewNameList());
+		return String.join(COLON, getCrewNameList());
 	}
 
 	private List<String> getCrewNameList() {

@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static pairmatching.Constants.*;
+
 import java.util.Arrays;
 
 public enum Course {
@@ -19,7 +21,7 @@ public enum Course {
 
 	private static void exceptionNotContain(String input) {
 		if (!Arrays.stream(Course.values()).anyMatch(course -> course.name.equals(input))) {
-			throw new IllegalArgumentException("존재하지 않는 과정입니다.");
+			throw new IllegalArgumentException(NO_EXIST_COURSE);
 		}
 	}
 }

@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static pairmatching.Constants.*;
+
 import java.util.Arrays;
 
 public enum Mission {
@@ -27,7 +29,7 @@ public enum Mission {
 
 	private static void exceptionNotContain(String input) {
 		if (!Arrays.stream(Mission.values()).anyMatch(mission -> mission.name.equals(input))) {
-			throw new IllegalArgumentException("존재하지 않는 과정입니다.");
+			throw new IllegalArgumentException(NO_EXIST_MISSION);
 		}
 	}
 }

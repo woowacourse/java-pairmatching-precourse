@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static pairmatching.Constants.*;
+
 import java.util.Arrays;
 
 public enum Level {
@@ -24,7 +26,7 @@ public enum Level {
 
 	private static void exceptionNotContain(String input) {
 		if (!Arrays.stream(Level.values()).anyMatch(level -> level.name.equals(input))) {
-			throw new IllegalArgumentException("존재하지 않는 레벨입니다.");
+			throw new IllegalArgumentException(NO_EXIST_LEVEL);
 		}
 	}
 }

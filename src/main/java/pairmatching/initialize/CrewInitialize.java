@@ -1,5 +1,7 @@
 package pairmatching.initialize;
 
+import static pairmatching.Constants.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -10,8 +12,8 @@ import pairmatching.domain.CrewRepository;
 
 public class CrewInitialize {
 	public static void readFiles() {
-		crewRead("./src/main/resources/backend-crew.md", Course.BACKEND);
-		crewRead("./src/main/resources/frontend-crew.md", Course.FRONTEND);
+		crewRead(BACKEND_PATH, Course.BACKEND);
+		crewRead(FRONTEND_PATH, Course.FRONTEND);
 	}
 
 	private static void crewRead(String path, Course course) {

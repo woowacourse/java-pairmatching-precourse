@@ -1,6 +1,6 @@
 package pairmatching.view;
 
-import static pairmatching.view.ViewConstants.*;
+import static pairmatching.Constants.*;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class OutputView {
 	}
 
 	public static void matchView(Match match) {
-		System.out.println("페어 매칭 결과입니다.");
+		System.out.println(MATCH_RESULT_MESSAGE);
 		List<Pair> pairList = match.getPairList();
 		for (Pair pair : pairList) {
 			System.out.println(pair);
@@ -21,6 +21,6 @@ public class OutputView {
 	}
 
 	public static void clearMatchView() {
-		System.out.println("초기화 되었습니다.");
+		System.out.println(CLEAR_MESSAGE);
 	}
 }

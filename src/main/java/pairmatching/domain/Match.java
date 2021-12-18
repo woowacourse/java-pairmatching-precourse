@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static pairmatching.Constants.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +23,9 @@ public class Match {
 		do {
 			pairList = getRandomPairs(information);
 			trial++;
-		} while (MatchService.isDuplicatedPair(information.getLevel()) && trial < 3);
-		if (trial >= 3) {
-			throw new IllegalArgumentException("3회 이상 매칭 실패.");
+		} while (MatchService.isDuplicatedPair(information.getLevel()) && trial < MAX_TRIAL);
+		if (trial >= MAX_TRIAL) {
+			throw new IllegalArgumentException(FAIL_UNTIL_MAX_TRIAL);
 		}
 		return new Match(information, pairList);
 	}
@@ -45,7 +47,7 @@ public class Match {
 		List<Pair> pairList = new ArrayList<>();
 		int size = crewList.size();
 		for (int i = 0; i < size - 1; i += 2) {
-			pairList.add(new Pair(crewList.get(i), crewList.get(i+1)));
+			pairList.add(new Pair(crewList.get(i), crewList.get(i + 1)));
 		}
 		return pairList;
 	}
@@ -54,9 +56,9 @@ public class Match {
 		List<Pair> pairList = new ArrayList<>();
 		int size = crewList.size();
 		for (int i = 0; i < size - 3; i += 2) {
-			pairList.add(new Pair(crewList.get(i), crewList.get(i+1)));
+			pairList.add(new Pair(crewList.get(i), crewList.get(i + 1)));
 		}
-		pairList.add(new Pair(crewList.get(size -3), crewList.get(size -2), crewList.get(size -1)));
+		pairList.add(new Pair(crewList.get(size - 3), crewList.get(size - 2), crewList.get(size - 1)));
 		return pairList;
 	}
 
@@ -66,10 +68,6 @@ public class Match {
 
 	public boolean isLevel(Level level) {
 		return level.equals(information.getLevel());
-	}
-
-	public boolean isDuplicated(Pair comparePair) {
-		return pairList.stream().anyMatch(pair -> pair.equals(comparePair));
 	}
 
 	public boolean hasInformation(MatchingInformation information) {
