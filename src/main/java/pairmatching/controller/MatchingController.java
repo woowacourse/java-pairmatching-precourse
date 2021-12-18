@@ -33,6 +33,7 @@ public class MatchingController {
 				inputController.scanCourseLevelMission();
 			} else if (inputNum.equals("3")) {
 				pairStorage.initPairStorage();
+				OutputView.printInit();
 			} else if (inputNum.equals("Q")) {
 				break;
 			}

@@ -27,7 +27,6 @@ public class InputController {
 			try {
 				InputView.askCourseLevelMission();
 				String courseLevelMission = Console.readLine();
-				// 예외
 				String[] eachInform = courseLevelMission.split(",");
 				eachInform[COURSE_INDEX] = InputValidator.isValidCourse(eachInform[COURSE_INDEX]);
 				eachInform[LEVEL_INDEX] = InputValidator.isValidLevel(eachInform[LEVEL_INDEX]);
