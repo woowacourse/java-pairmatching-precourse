@@ -32,13 +32,15 @@
    2. Level
    3. Crew
    4. MatchingHistory
-      1. level
+      1. Level
       2. List<Pair>
    5. MatchingInfo
       1. Map<String, List<Pair>
          1. String : ex)백엔드,레벨1,자동차경주
    6. Pair
       1. List<String>
+   7. Mission
+      1. Level
 
 ### view
    1. InputView

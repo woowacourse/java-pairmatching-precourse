@@ -10,4 +10,12 @@ public class UtilValidation {
 			throw (new IllegalArgumentException(ERROR_BE_NUMBER));
 		}
 	}
+
+	public static String[] isCourseInput(String input) {
+		String[] split = input.split(", ");
+		if (!(split.length == 3)) {
+			throw (new IllegalArgumentException(NOT_COUSE_FORM));
+		}
+		return split;
+	}
 }

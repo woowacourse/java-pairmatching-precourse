@@ -5,6 +5,7 @@ import static pairmatching.validation.PairMatchingValidation.*;
 import static pairmatching.validation.UtilValidation.*;
 import static pairmatching.view.ErrorView.*;
 import static pairmatching.view.InputView.*;
+import static pairmatching.view.OutputView.*;
 
 import pairmatching.model.MatchingHistory;
 import pairmatching.model.MatchingInfo;
@@ -23,6 +24,7 @@ public class PairMatchingController {
 			int selectFunc = requestSelectFunction();
 			if (selectFunc == MATCHING_NUMBER) {
 				System.out.println("매칭");
+				requestMatching();
 			}
 			if (selectFunc == LOOK_UP_NUMBER) {
 				System.out.println("조회");
@@ -49,5 +51,16 @@ public class PairMatchingController {
 			return requestSelectFunction();
 		}
 		return Integer.parseInt(selectNumber);
+	}
+
+	private void requestMatching() {
+		introCourse();
+		String input = selectCourse();
+		try {
+			String[] courseInput = isCourseInput(input);
+		} catch (IllegalArgumentException illegalArgumentException) {
+			printError(illegalArgumentException.getMessage());
+			requestMatching();
+		}
 	}
 }

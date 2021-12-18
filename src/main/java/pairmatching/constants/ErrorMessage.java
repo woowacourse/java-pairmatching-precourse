@@ -5,4 +5,5 @@ public class ErrorMessage {
 
 	public static final String ERROR_BE_NUMBER = "값은 숫자여야 합니다.";
 	public static final String NOT_INTO_RANGE = "선택지에 없는 번호입니다.";
+	public static final String NOT_COUSE_FORM = "양식에 맞지 않는 입력입니다.";
 }

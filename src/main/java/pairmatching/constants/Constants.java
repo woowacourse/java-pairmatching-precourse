@@ -8,4 +8,5 @@ public class Constants {
 	public static final int RESET_NUMBER = 3;
 	public static final int QUIT_NUMBER = 4;
 
+	public static final String JOIN_DELIMETER = " | ";
 }
