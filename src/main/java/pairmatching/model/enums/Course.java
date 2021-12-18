@@ -17,8 +17,8 @@ public enum Course {
     }
 
     public static boolean isContained(String name) {
-        return Arrays.stream(Level.values())
-                .anyMatch(level -> level.getName().equals(name));
+        return Arrays.stream(Course.values())
+                .anyMatch(course -> course.getName().equals(name));
     }
 
     public static Course findNameByValue(String value) {
