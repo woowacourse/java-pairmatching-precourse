@@ -8,14 +8,14 @@ import java.util.List;
 public class Matching {
     private static final int LEVEL_COUNTS = 5;
     private static final int COURSE_COUNTS = 2;
-    private static final int LEVEL_SIZE = 3;
+    private static final int EACH_LEVEL_COURSE_SIZE = 3;
 
     private final List<List<String>> course;
     private final HashMap<String, Integer> hashMap;
 
     public Matching() {
         course = new ArrayList<>();
-        for (int i = 0; i < LEVEL_COUNTS * LEVEL_SIZE * COURSE_COUNTS; i++) {
+        for (int i = 0; i < LEVEL_COUNTS * EACH_LEVEL_COURSE_SIZE * COURSE_COUNTS; i++) {
             course.add(new ArrayList<>());
         }
         hashMap = new HashMap<>();
@@ -54,9 +54,9 @@ public class Matching {
         checkRightCourseName(courseName);
         Integer index = hashMap.get(courseName);
         if (index == 6 || index == 7 || index == 15 || index == 16) {
-            return Arrays.asList(index / LEVEL_SIZE, index / LEVEL_SIZE + 1);
+            return Arrays.asList(index / EACH_LEVEL_COURSE_SIZE, index / EACH_LEVEL_COURSE_SIZE + 1);
         }
-        return Arrays.asList(index / LEVEL_SIZE, index / LEVEL_SIZE + 1, index / LEVEL_SIZE + 2);
+        return Arrays.asList(index / EACH_LEVEL_COURSE_SIZE, index / EACH_LEVEL_COURSE_SIZE + 1, index / EACH_LEVEL_COURSE_SIZE + 2);
     }
 
     public boolean HasDuplicateMatchingBySameLevel(String courseName) {
