@@ -19,7 +19,7 @@ public class FileUtility {
     public List<String> readToListFromREADME(String jobGroup) {
         List<String> names = new ArrayList<>();
         try {
-            File file = new File("C:\\Users\\USER\\IdeaProjects\\java-pairmatching-precourse\\src\\main\\resources\\" + jobGroup);
+            File file = new File("src\\main\\resources\\"+jobGroup);
             FileReader filereader = new FileReader(file);
             BufferedReader bufReader = new BufferedReader(filereader);
             String name = "";
