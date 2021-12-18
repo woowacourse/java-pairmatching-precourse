@@ -22,7 +22,7 @@ public class PlayView {
         try {
             Validation.checkInputForm(input);
         }catch (IllegalArgumentException e) {
-            System.out.println("1,2,3,Q 중 하나를 입력해주세요");
+            System.out.println("[ERROR] 1,2,3,Q 중 하나를 입력해주세요");
             checkInputNumAndPlay();
         }
         return input;
