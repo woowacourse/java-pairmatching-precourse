@@ -38,9 +38,9 @@ public class InputView {
 		System.out.println(LEVEL_THREE);
 		System.out.println(LEVEL_FOUR);
 		System.out.println(LEVEL_FIVE);
+		System.out.println(HASH_LINE);
 		System.out.println(ASK_MATCH_INFORMATION_INPUT);
 		System.out.println(ASK_MATCH_INFORMATION_EX);
-		System.out.println(HASH_LINE);
 		return Console.readLine();
 	}
 }
