@@ -11,12 +11,12 @@ import pairmatching.domain.validation.Text;
 public class Init {
     private List<String> backendCrewName;
     private List<String> frontendCrewName;
-    private List<Mission> missionInformation;
+    private List<Mission> missionList;
 
     public Init(){
         backendCrewName = new ArrayList<>();
         frontendCrewName = new ArrayList<>();
-        missionInformation = new ArrayList<>();
+        missionList = new ArrayList<>();
     }
 
     private void readCrewName() throws IOException {
@@ -39,7 +39,7 @@ public class Init {
         for (int i = 0; i < Text.MISSION_NAME.length; i++) {
 
             for (int j = 0; j < Text.MISSION_NAME[i].length; j++) {
-                missionInformation.add(new Mission(Level.valueOf("LEVEL" + (i + 1)), Text.MISSION_NAME[i][j]));
+                missionList.add(new Mission(Level.valueOf("LEVEL" + (i + 1)), Text.MISSION_NAME[i][j]));
             }
 
         }
@@ -52,14 +52,19 @@ public class Init {
     }
 
     public List<Mission> getMissionInformation() {
-        return missionInformation;
+        return missionList;
     }
 
-    public List<String> getBackendCrewName() {
-        return backendCrewName;
+    public List<String> getCrewNames(String course) {
+        if(course.equals(Text.BACKEND)) {
+            return backendCrewName;
+        }
+
+        if(course.equals(Text.FRONTEND)) {
+            return frontendCrewName;
+        }
+
+        return null;
     }
 
-    public List<String> getFrontendCrewName() {
-        return frontendCrewName;
-    }
 }
