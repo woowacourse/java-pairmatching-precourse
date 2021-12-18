@@ -34,10 +34,4 @@ public class CrewRepository {
     public static Crew getCrewByName(String name) {
         return crews.stream().filter(c -> c.isSameName(name)).findFirst().orElse(null);
     }
-
-    public static void print() {
-        for (Crew c : crews) {
-            System.out.println(c.toString());
-        }
-    }
 }

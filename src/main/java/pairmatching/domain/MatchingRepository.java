@@ -11,7 +11,7 @@ public class MatchingRepository {
         return matchings.stream().filter(m -> m.isSame(input)).findFirst().orElse(null) == null;
     }
 
-    public static Matching getMatching(InputDTO input){
+    public static Matching getMatching(InputDTO input) {
         return matchings.stream().filter(m -> m.isSame(input)).findFirst().orElse(null);
     }
 
@@ -23,13 +23,7 @@ public class MatchingRepository {
         matchings.add(m);
     }
 
-    public static void clearList(){
+    public static void clearList() {
         matchings.clear();
-    }
-
-    public static void print() {
-        for (Matching m : matchings) {
-            System.out.println(m.toString());
-        }
     }
 }
