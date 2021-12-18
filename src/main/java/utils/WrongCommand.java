@@ -1,7 +1,7 @@
 package utils;
 
-public class IsCommand implements Validator {
-	public boolean run(String input) {
+public class WrongCommand implements Validator {
+	public boolean check(String input) {
 		try {
 			Commands.getCommandByKey(input);
 		} catch (IllegalArgumentException error) {

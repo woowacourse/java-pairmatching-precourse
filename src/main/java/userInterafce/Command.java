@@ -1,7 +1,7 @@
 package userInterafce;
 
 import camp.nextstep.edu.missionutils.Console;
-import utils.IsCommand;
+import utils.WrongCommand;
 
 public class Command {
 	public void runMainInterface() {
@@ -11,7 +11,7 @@ public class Command {
 		do {
 			input = Console.readLine();
 			useKey(input);
-		} while (new IsCommand().run(input));
+		} while (new WrongCommand().check(input));
 	}
 
 	public void printMain() {

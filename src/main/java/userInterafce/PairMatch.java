@@ -5,12 +5,14 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.Course;
 import pairmatching.Crew;
 import pairmatching.Crews;
 import pairmatching.Level;
 import pairmatching.PairStorage;
+import utils.WrongTwoCommaWithLetter;
 
 public class PairMatch {
 	Crews crews = new Crews();
@@ -20,6 +22,22 @@ public class PairMatch {
 
 	public void run() {
 		new PrintInterface().printCourseAndMission();
+
+	}
+
+	private String getCourseAndLevelAndMission() {
+		String input = "";
+		try {
+			input = Console.readLine();
+			new WrongTwoCommaWithLetter().check(input);
+		} catch (IllegalArgumentException error) {
+			System.out.println(error.getMessage());
+		}
+		return input;
+	}
+
+	boolean isDone () {
+		return true;
 	}
 
 	public void matchOneByOne(String name) {
