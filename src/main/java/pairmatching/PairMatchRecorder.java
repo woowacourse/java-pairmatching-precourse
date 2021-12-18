@@ -17,6 +17,10 @@ public class PairMatchRecorder {
 		this.pairMatchHistory = pairMatchHistory;
 	}
 
+	public List<String> getPairMatchHistory(){
+		return pairMatchHistory;
+	}
+
 	public boolean checkDuplicatedPair(List<String> recentMatchedPair){
 		for(int i = 0; i < recentMatchedPair.size(); i++){
 			String recentMatchedPairName1 = new String();

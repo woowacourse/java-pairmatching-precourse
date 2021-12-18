@@ -8,6 +8,7 @@ public class ProgramManager {
 	public static boolean selectFunction(){
 		//ProgramPrinter.selectFunction();
 		String selection = Console.readLine();
+		ProgramPrinter.printSelectInfo();
 
 		if(selection == "1"){
 			String selectLine = Console.readLine();
@@ -36,7 +37,7 @@ public class ProgramManager {
 
 		for(PairMatchRecorder history : checkList){
 			if(!history.isMatchedMission(mission)){
-				//ProgramPrinter.printPair();
+				ProgramPrinter.printPairInfo(history.getPairMatchHistory());
 				return;
 			}
 		}
@@ -47,5 +48,6 @@ public class ProgramManager {
 
 	public static void initializePair(){
 		ProgramData.deleteMatchingHistory();
+		ProgramPrinter.printInitialize();
 	}
 }

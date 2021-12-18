@@ -13,6 +13,8 @@ public class PairMatcher {
 		List<String> shuffledNames = Randoms.shuffle(crewNames);
 		List<PairMatchRecorder> checkList = ProgramData.getMatchingHistory(course, level);
 		boolean match = true;
+		ProgramPrinter.printMission();
+		ProgramPrinter.printSelectLine();
 
 		for(PairMatchRecorder history : checkList){
 			if(!history.isMatchedMission(mission)){
@@ -23,12 +25,12 @@ public class PairMatcher {
 		if(match == true) {
 			validatePairMatch(checkList, shuffledNames);
 			ProgramData.setMatchingHistory(course, level, mission, shuffledNames);
-			//Printer.printPairInfo
+			ProgramPrinter.printPairInfo(shuffledNames);
 		}
 	}
 
 	private static boolean askToRematch(){
-		//print 매칭정보있음 다시하실?
+		ProgramPrinter.printAskToRematch();
 		String response = Console.readLine();
 
 		if(response == "아니오"){
