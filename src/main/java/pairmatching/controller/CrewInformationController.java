@@ -17,8 +17,7 @@ public class CrewInformationController {
 
             Stream<String> streamFrontend = Files.lines(Paths.get(frontendNames));
             streamFrontend.forEach(name -> pairmatching.inputFrontendCrew(name));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("[Error] An error occurred.");
             e.printStackTrace();
         }

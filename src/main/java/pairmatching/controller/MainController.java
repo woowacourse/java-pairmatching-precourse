@@ -98,27 +98,27 @@ public class MainController {
     private void setPair(String inputProcess) {
         String[] inputSplit = inputProcess.split(", ");
         List<List<String>> tempList = new ArrayList<>();
-        if (duplicateCheck.containsKey(inputProcess)){
+        if (duplicateCheck.containsKey(inputProcess)) {
             tempList.addAll(duplicateCheck.get(inputProcess));
         }
 
         if (inputSplit[0].equals(Course.BACKEND.getName())) {
             pairInfo.put(inputProcess, PairmatchingController.pairmatchingStart(pairmatching.getCrewBackendNames()));
             tempList.add(PairmatchingController.pairmatchingStart(pairmatching.getCrewBackendNames()));
-            if (duplicateCheck.containsKey(inputProcess)){
+            if (duplicateCheck.containsKey(inputProcess)) {
                 duplicateCheck.replace(inputProcess, tempList);
             }
-            if (!duplicateCheck.containsKey(inputProcess)){
+            if (!duplicateCheck.containsKey(inputProcess)) {
                 duplicateCheck.put(inputProcess, tempList);
             }
             return;
         }
         pairInfo.put(inputProcess, PairmatchingController.pairmatchingStart(pairmatching.getCrewFrontendNames()));
         tempList.add(PairmatchingController.pairmatchingStart(pairmatching.getCrewFrontendNames()));
-        if (duplicateCheck.containsKey(inputProcess)){
+        if (duplicateCheck.containsKey(inputProcess)) {
             duplicateCheck.replace(inputProcess, tempList);
         }
-        if (!duplicateCheck.containsKey(inputProcess)){
+        if (!duplicateCheck.containsKey(inputProcess)) {
             duplicateCheck.put(inputProcess, tempList);
         }
     }

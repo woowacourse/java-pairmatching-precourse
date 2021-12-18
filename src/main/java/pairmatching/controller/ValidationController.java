@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ValidationController {
     public static void chooseFunctionValidation(String input) {
-        if (!isNumValidation(input)){
+        if (!isNumValidation(input)) {
             throw new IllegalArgumentException("[ERROR] 잘못된 값 입력입니다");
         }
     }
@@ -17,17 +17,17 @@ public class ValidationController {
     private static boolean isNumValidation(String input) {
         try {
             int num = Integer.parseInt(input);
-            if (!(1 <= num && num <= 3)){
+            if (!(1 <= num && num <= 3)) {
                 return false;
             }
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
 
     public static boolean checkSpellQValidation(String input) {
-        if (input.equals("Q")){
+        if (input.equals("Q")) {
             return true;
         }
         return false;
@@ -44,7 +44,7 @@ public class ValidationController {
         Mission mission = new Mission();
         List<String> levelMission = mission.getLevelMission(level);
 
-        if (!levelMission.contains(checkMission)){
+        if (!levelMission.contains(checkMission)) {
             throw new IllegalArgumentException("[ERROR] 잘못된 미션 입력입니다.");
         }
     }
@@ -57,7 +57,7 @@ public class ValidationController {
         levelList.add(Level.LEVEL4.getName());
         levelList.add(Level.LEVEL5.getName());
 
-        if (!levelList.contains(level)){
+        if (!levelList.contains(level)) {
             throw new IllegalArgumentException("[ERROR] 잘못된 레벨 입력입니다.");
         }
     }
@@ -67,7 +67,7 @@ public class ValidationController {
         courseList.add(Course.BACKEND.getName());
         courseList.add(Course.FRONTEND.getName());
 
-        if (!courseList.contains(course)){
+        if (!courseList.contains(course)) {
             throw new IllegalArgumentException("[ERROR] 잘못된 과정 입력입니다.");
         }
     }
