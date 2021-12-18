@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.domain.Course;
 import pairmatching.domain.CourseRepository;
@@ -17,6 +18,7 @@ import pairmatching.domain.MatchParams;
 import pairmatching.domain.Mission;
 import pairmatching.domain.MissionRepository;
 import pairmatching.domain.PairRepository;
+import pairmatching.util.SystemMessage;
 import pairmatching.view.FunctionSelectView;
 import pairmatching.view.PairMatchingInputView;
 import pairmatching.view.PairMatchingResultView;
@@ -78,13 +80,19 @@ public class PairMatchingController {
 		pairRepository.addPair(lastMatchParams, pairs);
 	}
 
-	public void setMatchParams(List<String> params) {
+	public MatchParams setMatchParams(List<String> params) {
 		lastMatchParams = new MatchParams(Course.getInstance(params.get(0)),
 			Level.getInstance(params.get(1)),
 			Mission.getInstance(params.get(2)));
+
+		return lastMatchParams;
 	}
 
 	public String getMatchResult() {
 		return pairRepository.getMatchResultString(lastMatchParams);
+	}
+
+	public boolean isExistParam(MatchParams params) {
+		return pairRepository.isExistParam(params);
 	}
 }

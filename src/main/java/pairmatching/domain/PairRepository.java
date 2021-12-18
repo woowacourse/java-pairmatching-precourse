@@ -26,4 +26,13 @@ public class PairRepository {
 			.map(item -> String.join(" : ", item))
 			.collect(Collectors.joining("\n"));
 	}
+
+	public boolean isExistParam(MatchParams params) {
+		for(MatchParams matchParams : pairs.keySet()) {
+			if (matchParams.equals(params))
+				return true;
+		}
+
+		return false;
+	}
 }

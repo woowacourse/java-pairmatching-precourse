@@ -5,6 +5,7 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.Application;
 import pairmatching.controller.ViewMappingKey;
+import pairmatching.domain.MatchParams;
 import pairmatching.util.MissionInfoValidator;
 import pairmatching.util.SystemMessage;
 
@@ -13,7 +14,16 @@ public class PairMatchingInputView implements View {
 	public void flow() {
 		String missionInfo = readMissionInfo();
 		List<String> params = MissionInfoValidator.validate(missionInfo);
-		Application.controller.setMatchParams(params);
+		MatchParams matchParams = Application.controller.setMatchParams(params);
+		if(Application.controller.isExistParam(matchParams)) {
+			if(checkReMatch()) {
+				Application.controller.pairMatching();
+				Application.controller.view(ViewMappingKey.PAIR_MATCHING_RESULT);
+				return;
+			}
+			Application.controller.view(ViewMappingKey.FUNCTION_SELECT);
+			return;
+		}
 		Application.controller.pairMatching();
 		Application.controller.view(ViewMappingKey.PAIR_MATCHING_RESULT);
 	}
@@ -33,5 +43,16 @@ public class PairMatchingInputView implements View {
 
 	private String readMissionInfo() {
 		return Console.readLine();
+	}
+
+	public boolean checkReMatch() {
+		System.out.println(SystemMessage.CHECK_REMATCH);
+		String answer = Console.readLine();
+		if (answer.equals("네"))
+			return true;
+		if (answer.equals("아니오"))
+			return false;
+
+		throw new IllegalArgumentException();
 	}
 }
