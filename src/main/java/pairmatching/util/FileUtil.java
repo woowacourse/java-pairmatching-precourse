@@ -3,6 +3,7 @@ package pairmatching.util;
 import pairmatching.model.CrewPair;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -49,6 +50,20 @@ public class FileUtil {
 		} catch (Exception e) {
 		}
 	}
+
+	public List<String> getSavedMatch(String fileName) {
+		String names = "";
+		try {
+			FileInputStream fileInputStream = new FileInputStream(MATCH_RESULT_PATH + fileName);
+			byte[] readBuffer = new byte[fileInputStream.available()];
+			while (fileInputStream.read(readBuffer) != -1) {
+				names = new String(readBuffer);
+			}
+			fileInputStream.close();
+		} catch (Exception e) {
+		}
+		return Arrays.asList(names.split("\n"));
+	}
 	
 	public void deleteMatchFiles() {
 		File path = new File(MATCH_RESULT_PATH);
@@ -56,5 +71,10 @@ public class FileUtil {
 		for (int i = 0;  i < matchFiles.length; i++) {
 			matchFiles[i].delete();
 		}
+	}
+
+	public boolean isFileExist(String fileName) {
+		File path = new File(MATCH_RESULT_PATH + fileName);
+		return path.exists();
 	}
 }

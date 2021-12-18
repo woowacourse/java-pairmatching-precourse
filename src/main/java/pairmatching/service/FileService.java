@@ -45,4 +45,12 @@ public class FileService {
 	public void deleteMatchFiles() {
 		fileUtil.deleteMatchFiles();
 	}
+
+	public boolean checkFileExist(String fileName) {
+		return fileUtil.isFileExist(fileName);
+	}
+
+	private List<String> getMatchListFromFile(String fileName) {
+		return fileUtil.getSavedMatch(fileName);
+	}
 }
