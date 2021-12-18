@@ -35,7 +35,8 @@ public class PairService {
     public static boolean isMissionAlreadyHasPair(String[] input) {
         Course course = getCourse(input[ConstantMessages.COURSE_INDEX]);
         Mission mission = getMission(input[ConstantMessages.MISSION_INDEX]);
-        if(PairRepository.findByCategory(new Category(mission, course)) != null) {
+        Pairs findPairsByCategory = PairRepository.findByCategory(new Category(mission, course));
+        if(findPairsByCategory != null && !findPairsByCategory.getPairList().isEmpty()) {
             return true;
         }
         return false;
