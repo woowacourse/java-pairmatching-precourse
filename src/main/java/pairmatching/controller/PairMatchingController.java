@@ -16,21 +16,13 @@ public class PairMatchingController {
 
     private void registerCrews() {
         try {
-            backEndCrews = Initializer.registerBackEndCrews();//IOEEXCEPTION 날 수 있음.
+            backEndCrews = Initializer.registerBackEndCrews();
             frontEndCrews = Initializer.registerFrontEndCrews();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()); // IllegalArgument가 아니고 내가 예상 못한 예외니까 그냥 프로그램 터치는 게 맞다고 생각함.
         }
     }
 
     public void run() {
-        System.out.println("dd");
-        for (Crew backEndCrew : backEndCrews) {
-            System.out.println("backEndCrew = " + backEndCrew);
-        }
-        System.out.println("dad");
-        for (Crew frontEndCrew : frontEndCrews) {
-            System.out.println("frontEndCrew = " + frontEndCrew);
-        }
     }
 }
