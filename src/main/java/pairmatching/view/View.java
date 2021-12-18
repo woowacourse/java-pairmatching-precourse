@@ -11,6 +11,10 @@ public class View {
 
     private static final String PRETTY_BORDER = "#############################################";
     private static final String MENU_DELIMITER = " | ";
+    public static final String USER_REQUEST_DELIMITER = ",";
+    private static final int COURSE_INDEX = 0;
+    private static final int MISSION_INDEX = 1;
+    private static final int MISSION_NAME_INDEX = 2;
 
     public static Menu getMenu() {
         try {
@@ -37,6 +41,43 @@ public class View {
         printMissions();
 
         System.out.println(PRETTY_BORDER);
+    }
+
+    public static UserRequest getUserRequest() {
+        while (true) {
+            try {
+                System.out.println("과정, 레벨, 미션을 선택하세요");
+                String[] requests = getUserRequests();
+                return makeUserRequestFromRequests(requests);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                return getUserRequest();
+            }
+        }
+    }
+
+    private static String[] getUserRequests() {
+        String[] requests = Console.readLine().split(USER_REQUEST_DELIMITER);
+        for (int i = 0; i < requests.length; i++) {
+            requests[i] = requests[i].trim();
+        }
+        return requests;
+    }
+
+    private static UserRequest makeUserRequestFromRequests(String[] requests) {
+        Course course = getCourse(requests[COURSE_INDEX]);
+        Level level = getLevel(requests[MISSION_INDEX]);
+        String missionName = requests[MISSION_NAME_INDEX];
+        level.checkHasMission(missionName);
+        return new UserRequest(course, level, missionName);
+    }
+
+    private static Level getLevel(String name) {
+        return Level.of(name);
+    }
+
+    private static Course getCourse(String name) {
+        return Course.of(name);
     }
 
     private static void printCourses() {

@@ -2,6 +2,7 @@ package pairmatching;
 
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
+import pairmatching.view.UserRequest;
 import pairmatching.view.View;
 import pairmatching.view.Menu;
 
@@ -30,7 +31,7 @@ public class PairMatchingController {
         if (menu == Menu.PAIR_MATCHING) {
             // TODO: 2021/12/18 페어 매칭 기능 구현
             View.printBoard();
-
+            UserRequest userRequest = View.getUserRequest();
 
         }
         if (menu == Menu.PAIR_SEARCH) {
