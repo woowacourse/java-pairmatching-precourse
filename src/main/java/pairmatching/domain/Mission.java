@@ -1,5 +1,9 @@
 package pairmatching.domain;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public enum Mission {
 	RACING_CAR("자동차경주", Level.LEVEL1),
 	LOTTO("로또", Level.LEVEL1),
@@ -8,7 +12,7 @@ public enum Mission {
 	PAYMENT("결제", Level.LEVEL2),
 	SUBWAY_MAP("지하철노선도", Level.LEVEL2),
 	PERFORMANCE("성능개선", Level.LEVEL4),
-	RELEASE("배포", Level.LEVEL5);
+	RELEASE("배포", Level.LEVEL4);
 
 	private final String name;
 	private final Level level;
@@ -18,4 +22,10 @@ public enum Mission {
 		this.level = level;
 	}
 
+	public static List<String> nameListOf(Level level) {
+		return Arrays.stream(values())
+			.filter(m -> m.level == level)
+			.map(m -> m.name)
+			.collect(Collectors.toList());
+	}
 }

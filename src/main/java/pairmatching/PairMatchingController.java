@@ -10,12 +10,17 @@ public class PairMatchingController {
 	}
 
 	private Function requestFunctionSelect() {
-		return Input.requestFunctionSelect();
+		return Input.requestToSelectFunction();
 	}
 
 	private void run(Function function) {
 		if (function == Function.QUIT) {
 			return;
 		}
+		if (function == Function.RESET) {
+			return;
+		}
+
+		Input.requestToSelectMission();
 	}
 }
