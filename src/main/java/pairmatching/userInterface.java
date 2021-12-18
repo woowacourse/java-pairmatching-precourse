@@ -6,10 +6,12 @@ public class userInterface {
 
 	public void runMainInterface() {
 		printMain();
-		try { inputMain();
-		} catch (IllegalArgumentException error) {
-			System.out.println(error.getMessage());
-		}
+		String input;
+
+		do {
+			input = Console.readLine();
+			useKey(input);
+		} while (validator(input));
 	}
 
 	public void printMain() {
@@ -21,9 +23,17 @@ public class userInterface {
 			+ "Q. 종료");
 	}
 
-	public void inputMain() {
-		String input = Console.readLine();
+	private boolean validator(String input) {
+		try {
+			// 에러 체크.
+		} catch (IllegalArgumentException error) {
+			System.out.println(error.getMessage());
+			return true;
+		}
+		return false;
+	}
 
+	public void useKey(String input) {
 		if (input.equals("1")) {
 			// 매칭 실행
 		} else if (input.equals("2")) {
