@@ -25,14 +25,9 @@ public class FileService {
 		throw new IllegalArgumentException(WRONG_COURSE_NAME);
 	}
 
-	public void saveCrewMatchResult(String fileName, List<CrewPair> crewPairs) {
-		StringBuilder stringBuilder = new StringBuilder();
-		for (CrewPair crewPair : crewPairs) {
-			stringBuilder.append(crewPair.toString()).append("\n");
-		}
-		String list = stringBuilder.toString();
+	public void saveCrewMatchResult(String fileName, String result) {
 		try {
-			fileUtil.saveMatchResult(fileName, list);
+			fileUtil.saveMatchResult(fileName, result);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
