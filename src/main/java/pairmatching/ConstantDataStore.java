@@ -18,7 +18,7 @@ public class ConstantDataStore {
     private List<Crew> backendCrews;
     private List<Crew> frontedCrews;
 
-    public ConstantDataStore() {
+    private ConstantDataStore() {
         fileReadUtility = FileUtility.getInstance();
         injectMissionByLevelData();
         readCrewsFromFile();

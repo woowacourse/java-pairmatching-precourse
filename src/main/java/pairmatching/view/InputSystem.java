@@ -10,7 +10,7 @@ public class InputSystem {
 
     private final OutputSystem outputSystem;
     private final Validation validation;
-    public InputSystem() {
+    private InputSystem() {
         outputSystem = OutputSystem.getInstance();
         validation = ValidationImplementation.getInstance();
     }
