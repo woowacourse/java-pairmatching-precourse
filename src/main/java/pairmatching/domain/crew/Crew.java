@@ -19,4 +19,8 @@ public class Crew {
     public boolean isName(String comparison) {
         return this.name.equals(comparison);
     }
+
+    public String getName() {
+        return name;
+    }
 }

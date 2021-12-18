@@ -48,10 +48,7 @@ public class Pair {
     @Override
     public boolean equals(Object targetObj) {
         Pair target = (Pair) targetObj;
-        return target.hasCrew(crewSet.get(0)) && target.hasCrew(crewSet.get(1));
-    }
 
-    private boolean hasCrew(Crew targetCrew) {
-        return crewSet.contains(targetCrew);
+        return target.hasCrewName(crewSet.get(0).getName()) && target.hasCrewName(crewSet.get(1).getName());
     }
 }

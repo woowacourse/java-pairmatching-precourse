@@ -23,4 +23,8 @@ public class MissionSet {
     public boolean hasMissionInSameLevel(Level level, MissionName missionName) {
         return missions.stream().anyMatch((mission) -> mission.isSameMission(level, missionName));
     }
+
+    public boolean findDuplicated(Mission target) {
+        return missions.stream().anyMatch((mission) -> mission.hasSamePair(target));
+    }
 }

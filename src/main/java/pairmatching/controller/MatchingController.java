@@ -19,4 +19,8 @@ public class MatchingController {
     public static boolean hasMission(Level level, MissionName missionName) {
         return missionSet.hasMissionInSameLevel(level, missionName);
     }
+
+    public static boolean existsDuplicatedPair(Mission mission) {
+        return missionSet.findDuplicated(mission);
+    }
 }

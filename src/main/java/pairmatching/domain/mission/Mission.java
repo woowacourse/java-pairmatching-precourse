@@ -50,5 +50,14 @@ public class Mission {
         return this.level.equals(level);
     }
 
+    public boolean hasSamePair(Mission target) {
+        if(target.isSameLevel(level)) {
+            return pairSet.stream().anyMatch((pair) -> target.hasPair(pair));
+        }
+        return false;
+    }
 
+    private boolean hasPair(Pair target) {
+        return pairSet.stream().anyMatch((pair) -> pair.equals(target));
+    }
 }
