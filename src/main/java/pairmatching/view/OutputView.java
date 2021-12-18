@@ -3,8 +3,10 @@ package pairmatching.view;
 import java.util.List;
 import java.util.stream.Collectors;
 import pairmatching.model.Course;
+import pairmatching.model.Crew;
 import pairmatching.model.Level;
 import pairmatching.model.Mission;
+import pairmatching.model.Pair;
 
 public class OutputView {
 	private static final String NAME_DELIMITER = " | ";
@@ -29,6 +31,20 @@ public class OutputView {
 		printMessage("ex) 백엔드, 레벨1, 자동차경주");
 	}
 
+	public static void printMatchingResult(List<Pair> matchingResult) {
+		printMessage("페어 매칭 결과입니다.");
+		matchingResult.stream().forEach(p -> printPair(p));
+	}
+
+	private static void printPair(Pair p) {
+		String crewNames = p.getCrews().stream().map(Crew::getName).collect(Collectors.joining(" : "));
+		System.out.println(crewNames);
+	}
+
+	public static void printErrorMessage(String message) {
+		printError(message);
+	}
+
 	private static String courseListWithDelimiter(List<Course> courses) {
 		return courses.stream().map(Course::getName).collect(Collectors.joining(NAME_DELIMITER));
 	}
@@ -47,10 +63,6 @@ public class OutputView {
 
 	private static List<Mission> findMissionsByLevel(List<Mission> missions, Level level) {
 		return missions.stream().filter(m -> m.getLevel().equals(level)).collect(Collectors.toList());
-	}
-
-	public static void printErrorMessage(String message) {
-		printError(message);
 	}
 
 	private static void printMessage(String header) {

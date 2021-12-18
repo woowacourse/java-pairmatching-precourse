@@ -8,6 +8,7 @@ import pairmatching.model.Course;
 import pairmatching.model.Level;
 import pairmatching.model.Mission;
 import pairmatching.model.MissionRepository;
+import pairmatching.model.Pair;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -41,9 +42,10 @@ public class PairMatchingController {
 	private void handlePairMatching() {
 		try {
 			String information = retryInput(InputView::inputMatchingInformation);
-			List<String> matchingResult =
+			List<Pair> matchingResult =
 				pairMatchingService.match(parseToCourse(information), parseToLevel(information),
 					parseToMission(information));
+			OutputView.printMatchingResult(matchingResult);
 		} catch (IllegalArgumentException e) {
 			OutputView.printErrorMessage(e.getMessage());
 			handlePairMatching();

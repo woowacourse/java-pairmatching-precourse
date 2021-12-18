@@ -20,4 +20,8 @@ public class Crew {
 			", course=" + course +
 			'}';
 	}
+
+	public String getName() {
+		return name;
+	}
 }

@@ -6,11 +6,18 @@ import pairmatching.model.Course;
 import pairmatching.model.Level;
 import pairmatching.model.Mission;
 import pairmatching.model.MissionRepository;
+import pairmatching.model.Pair;
+import pairmatching.model.PairRepository;
 
 public class PairMatchingService {
-	public List<String> match(String course, String level, String mission) {
-		validate(course, level, mission);
-		return null;
+	private final PairGenerator pairGenerator = new PairGenerator();
+
+	public List<Pair> match(String courseName, String levelName, String missionName) {
+		validate(courseName, levelName, missionName);
+		Mission mission = parseToMission(missionName);
+		List<Pair> pairList = pairGenerator.generate(mission);
+		PairRepository.saveAll(pairList);
+		return pairList;
 	}
 
 	private void validate(String courseName, String levelName, String missionName) {
@@ -40,10 +47,14 @@ public class PairMatchingService {
 
 	private void validateIsMatchedLevelAndMission(String levelName, String missionName) {
 		Level level = Level.valueByName(levelName);
-		Mission mission = MissionRepository.findByName(missionName);
+		Mission mission = parseToMission(missionName);
 
 		if(!mission.getLevel().equals(level)) {
 			throw new IllegalArgumentException("레벨에 맞는 미션이 없습니다.");
 		}
+	}
+
+	private Mission parseToMission(String name) {
+		return MissionRepository.findByName(name);
 	}
 }
