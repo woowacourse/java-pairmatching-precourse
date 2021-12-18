@@ -2,10 +2,6 @@ package pairmatching.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,32 +14,28 @@ public class CrewList {
         this.frontEndCrewList = frontEndCrewList;
     }
 
-    public CrewList() {
-
-    }
-
     public void loadBackEndCrewList(String name) {
-        try{
+        try {
             File file = new File("C:\\Users\\sha11\\IdeaProjects\\java-pairmatching-precourse\\src\\main\\resources\\backend-crew.md");
-            //스캐너로 파일 읽기
+
             Scanner scan = new Scanner(file);
-            while(scan.hasNextLine()){
+            while (scan.hasNextLine()) {
                 System.out.println(scan.nextLine());
             }
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             loadBackEndCrewList(name);
         }
     }
 
     public void loadFrontEndCrewList(String name) {
-        try{
+        try {
             File file = new File("C:\\Users\\sha11\\IdeaProjects\\java-pairmatching-precourse\\src\\main\\resources\\frontend-crew.md");
-            //스캐너로 파일 읽기
+
             Scanner scan = new Scanner(file);
-            while(scan.hasNextLine()){
+            while (scan.hasNextLine()) {
                 System.out.println(scan.nextLine());
             }
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             loadFrontEndCrewList(name);
         }
     }

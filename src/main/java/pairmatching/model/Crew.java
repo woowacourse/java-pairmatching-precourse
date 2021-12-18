@@ -13,8 +13,8 @@ public class Crew {
         this.crewList = crewList;
     }
 
-    public Map<String, String> makeRandomPair(List<CrewList> crewList) {
-        CrewList crewList1 = new CrewList();
+    public Map<String, String> makeRandomPair(List<String> crewList) {
+        CrewList crewList1 = new CrewList(crewList, crewList);
 
         List<String> randomBackEndCrew = Randoms.shuffle(crewList1.getBackEndCrewList());
         List<String> randomFrontEndCrew = Randoms.shuffle(crewList1.getFrontEndCrewList());

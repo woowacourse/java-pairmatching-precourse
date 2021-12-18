@@ -1,13 +1,17 @@
 package pairmatching.controller;
 
-import pairmatching.model.Crew;
 import pairmatching.view.InputView;
+import pairmatching.view.OutputView;
+
+import java.util.List;
 
 public class PairMatchingController {
     public static void run() {
         String inputStart = InputView.startFunction();
-        String programInformation = InputView.chooseWhat(inputStart);
-        InputView.FindProgramList(programInformation);
+        String inputList = InputView.chooseWhat(inputStart);
+        List<String> information = InputView.splitInformation(inputList);
+        System.out.println(information);
+        OutputView.printRandomPairList();
 
 
     }

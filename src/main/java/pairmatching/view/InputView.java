@@ -1,9 +1,6 @@
 package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import pairmatching.model.Course;
-import pairmatching.model.Level;
-import pairmatching.model.Mission;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,7 +35,7 @@ public abstract class InputView {
 
     private static String validateStartFunction(String readLine) {
         if (!readLine.equals(CHOOSE_ONE) && !readLine.equals(CHOOSE_TWO) && !readLine.equals(CHOOSE_THREE) && !readLine.equals(CHOOSE_Q)) {
-           throw new IllegalArgumentException("[ERROR] 기능 목록 중 하나를 선택하세요.");
+            throw new IllegalArgumentException("[ERROR] 기능 목록 중 하나를 선택하세요.");
         }
 
         return readLine;
@@ -58,22 +55,22 @@ public abstract class InputView {
     }
 
     public static String chooseWhat(String readLine) {
-        if (readLine.equals(CHOOSE_ONE)) {
-            chooseNumberOne();
-        }
+//        if (readLine.equals(CHOOSE_ONE)) {
+//            chooseNumberOne();
+//        }
 //        if (readLine.equals(CHOOSE_TWO)) {
 //            chooseNumberTwo();
 //        }
 //        if (readLine.equals(CHOOSE_THREE)) {
-//            chooseNumberTwo();
+//            chooseNumberThree();
 //        }
 //        if (readLine.equals(CHOOSE_Q)) {
 //            quitProgram();
 //        }
-        return readLine;
+        return chooseNumberOne();
     }
 
-    public static List<String> FindProgramList(String userInput) {
+    public static List<String> splitInformation(String userInput) {
         String[] splitProgram = userInput.split(",");
 
         return new ArrayList<>(Arrays.asList(splitProgram));
