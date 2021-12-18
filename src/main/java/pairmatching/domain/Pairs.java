@@ -1,6 +1,5 @@
 package pairmatching.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Pairs {
@@ -8,5 +7,9 @@ public class Pairs {
 
 	public Pairs(List<Pair> paris) {
 		this.pairs = paris;
+	}
+
+	public List<Pair> getPairs() {
+		return pairs;
 	}
 }

@@ -15,10 +15,18 @@ public class Matching {
 
 
 	public boolean equalsCourse(Course course) {
-		return course.equals(course);
+		return this.course.equals(course);
 	}
 
 	public boolean equalsLevel(Level level) {
-		return level.equals(level);
+		return this.level.equals(level);
+	}
+
+	public Pairs getPairs() {
+		return pairs;
+	}
+
+	public boolean equalsMissionType(MissionType missionType) {
+		return this.missionType.equals(missionType);
 	}
 }
