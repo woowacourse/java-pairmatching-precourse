@@ -16,13 +16,14 @@ public class MatchingSercive {
     static final MatchInfoRepository matchingInfoRepository = MatchInfoRepository.getInstance();
     static final CrewRepository crewRepository = CrewRepository.getInstance();
 
-    public void checkMissionInfo(String input, Missions missions) {
+    public MatchInfo matchPair(String input, Missions missions) {
         String[] infoArr = input.split(", ");
         checkInfoCount(infoArr);
         Course course = checkCourse(infoArr[0]);
         Level level = checkLevel(infoArr[1]);
         Mission mission = checkMission(infoArr[1], infoArr[2], missions);
-        matchPair(course, level, mission);
+
+        return matchAndSavePair(course, level, mission);
     }
 
     private Course checkCourse(String course) {
@@ -49,7 +50,7 @@ public class MatchingSercive {
         return Mission.getEnumMission(mission);
     }
 
-    public void matchPair(Course course, Level level, Mission mission) {
+    private MatchInfo matchAndSavePair(Course course, Level level, Mission mission) {
         List<List<Crew>> pair = new ArrayList<>();
         List<Crew> crews = Randoms.shuffle(crewRepository.getCrew(course));
         int index = 0;
@@ -62,6 +63,6 @@ public class MatchingSercive {
             }
             pair.add(onePair);
         }
-        matchingInfoRepository.addMatchInfo(new MatchInfo(course, level, mission, pair));
+        return matchingInfoRepository.addMatchInfo(new MatchInfo(course, level, mission, pair));
     }
 }

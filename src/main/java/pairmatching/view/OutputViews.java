@@ -1,8 +1,8 @@
 package pairmatching.view;
 
-import pairmatching.domain.Course;
-import pairmatching.domain.Level;
-import pairmatching.domain.Missions;
+import pairmatching.domain.*;
+
+import java.util.List;
 
 public class OutputViews {
     public static void printMissionInfo(Missions missions) {
@@ -14,5 +14,15 @@ public class OutputViews {
             System.out.println(String.join(" | ", missions.getValue(level)));
         }
         System.out.println("#############################################");
+    }
+
+    public static void printMatchPair(MatchInfo matchInfo) {
+        System.out.println("\n페어 매칭 결과입니다.");
+        for (List<Crew> pair : matchInfo.getPairInfo()) {
+            for (int i=0; i<pair.size()-1; i++) {
+                System.out.print(pair.get(i) + " : ");
+            }
+            System.out.println(pair.get(pair.size()-1));
+        }
     }
 }

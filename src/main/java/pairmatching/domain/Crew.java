@@ -8,4 +8,9 @@ public class Crew {
         this.course = course;
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

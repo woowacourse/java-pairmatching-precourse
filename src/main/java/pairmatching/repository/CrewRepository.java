@@ -25,7 +25,7 @@ public class CrewRepository {
         return instance;
     }
 
-    public void init()  {
+    public static void initCrewInfo()  {
         try {
             readBackend();
             readFrontEnd();
@@ -35,7 +35,7 @@ public class CrewRepository {
 
     }
 
-    private void readBackend() throws IOException {
+    private static void readBackend() throws IOException {
         List<Crew> crewList = new ArrayList<>();
         BufferedReader reader = new BufferedReader(
                 new FileReader("src/main/resources/backend-crew.md")
@@ -48,7 +48,7 @@ public class CrewRepository {
         crews.put(Course.BACKEND, crewList);
     }
 
-    private void readFrontEnd() throws IOException {
+    private static void readFrontEnd() throws IOException {
         List<Crew> crewList = new ArrayList<>();
         BufferedReader reader = new BufferedReader(
                 new FileReader("src/main/resources/frontend-crew.md")
@@ -62,6 +62,6 @@ public class CrewRepository {
     }
 
     public List<Crew> getCrew(Course course) {
-        return crews.get(course);
+        return crews.get(course).stream().collect(Collectors.toList());
     }
 }

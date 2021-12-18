@@ -1,5 +1,6 @@
 package pairmatching.repository;
 
+import pairmatching.domain.Crew;
 import pairmatching.domain.MatchInfo;
 
 import java.util.ArrayList;
@@ -16,8 +17,9 @@ public class MatchInfoRepository {
         return instance;
     }
 
-    public void addMatchInfo(MatchInfo matchInfo) {
+    public MatchInfo addMatchInfo(MatchInfo matchInfo) {
         matchInfoList.add(matchInfo);
+        return matchInfo;
     }
 
 
