@@ -20,6 +20,11 @@ public class OutputView {
     private static ArrayList<String> crewNames;
     private static List<String> shuffledCrew;
 
+    public static void setInitialize() {
+        resultList = new ArrayList<String[]>();
+        System.out.println(Constant.PAIR_INITIALIZATION);
+        System.out.println();
+    }
 
     public static void resultPairLookUp(String input) {
         System.out.println(Constant.PAIR_MATCHING_RESULT);
@@ -30,9 +35,9 @@ public class OutputView {
                 inputString = inputString.replace(" ","");
                 String[] lookUpList = inputString.split(",");
                 pairListLookUp(Arrays.asList(lookUpList));
-                System.out.println();
             }
         }
+        System.out.println();
     }
 
     private static void pairListLookUp(List<String> shuffledCrew) {

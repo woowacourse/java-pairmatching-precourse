@@ -35,9 +35,5 @@ public class Constant {
             "과정, 레벨, 미션을 선택하세요.\n" +
             "ex) 백엔드, 레벨1, 자동차경주";
     public static final String PAIR_LOOKUP_ERROR = "[ERROR] 올바른 입력이 아닙니다.";
-    public static final String PAIR_INITIALIZATION = "";
-    public static final String QUIT = "";
-
-
-
+    public static final String PAIR_INITIALIZATION = "초기화 되었습니다.";
 }

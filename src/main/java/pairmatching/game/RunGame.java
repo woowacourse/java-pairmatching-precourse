@@ -22,9 +22,15 @@ public class RunGame {
             if (nextStep.equals("2")) {
                 pairLookUp();
             }
+            if (nextStep.equals("3")) {
+                pairInitialize();
+            }
         }
     }
 
+    private static void pairInitialize() {
+        OutputView.setInitialize();
+    }
     private static void pairLookUp() {
         try {
             setPairLoopUp();
