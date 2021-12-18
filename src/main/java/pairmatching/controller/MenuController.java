@@ -21,8 +21,6 @@ public class MenuController {
 		} else if (input.equals(QUIT)) {
 			return;
 		}
-
-		// TODO: 해당하는 입력이 없으면 오류 출력
 		inputMainMenu();
 	}
 }
