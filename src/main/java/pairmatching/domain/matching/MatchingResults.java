@@ -11,11 +11,5 @@ public class MatchingResults {
     private Map<MatchingCondition, List<Pair>> matchingResults = new HashMap<>();
 
     public void match(MatchingCondition matchingCondition) {
-        List<Pair> pairs = getMatchResult(matchingCondition);
-        matchingResults.put(matchingCondition, pairs);
-    }
-
-    private List<Pair> getMatchResult(MatchingCondition matchingCondition) {
-        return new ArrayList<>();
     }
 }

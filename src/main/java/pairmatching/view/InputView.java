@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import pairmatching.domain.course.Course;
 import pairmatching.domain.course.enums.CourseEnum;
 import pairmatching.domain.crew.Crew;
 import pairmatching.domain.crew.Crews;

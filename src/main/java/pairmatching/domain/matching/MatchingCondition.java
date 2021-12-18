@@ -3,6 +3,7 @@ package pairmatching.domain.matching;
 import java.util.Objects;
 
 import pairmatching.domain.course.Course;
+import pairmatching.domain.course.enums.CourseEnum;
 import pairmatching.domain.level.Level;
 import pairmatching.domain.mission.Mission;
 
@@ -27,6 +28,10 @@ public class MatchingCondition {
         this.course = new Course(rawMatchingConditions[COURSE_INDEX]);
         this.level = new Level(rawMatchingConditions[LEVEL_INDEX].trim());
         this.mission = new Mission(rawMatchingConditions[MISSION_INDEX].trim());
+    }
+
+    public Course getCourse() {
+        return course;
     }
 
     @Override

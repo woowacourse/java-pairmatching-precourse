@@ -50,7 +50,7 @@ public class PairmatchingController {
     private void executePairMatching() {
         OutputView.showCoursesAndMissions();
         MatchingCondition matchingCondition = InputView.requestMatchingCondition();
-        matchingResults.match(matchingCondition);
+        crews.match(matchingCondition);
     }
 
     private void executeReadPair() {

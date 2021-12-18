@@ -15,12 +15,12 @@ public class Course {
     }
 
     private void validateCourseName(String courseName) {
-        if (!existCourse()) {
+        if (!existCourse(courseName)) {
             throw new IllegalArgumentException(NON_EXIST_EXCEPTION);
         }
     }
 
-    private boolean existCourse() {
+    private boolean existCourse(String courseName) {
         return Arrays.stream(CourseEnum.values()).anyMatch(course -> course.getName().equals(courseName));
     }
 
@@ -37,5 +37,12 @@ public class Course {
     @Override
     public int hashCode() {
         return Objects.hash(courseName);
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+            "courseName='" + courseName + '\'' +
+            '}';
     }
 }

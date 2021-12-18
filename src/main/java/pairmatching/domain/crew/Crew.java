@@ -2,6 +2,7 @@ package pairmatching.domain.crew;
 
 import java.util.Objects;
 
+import pairmatching.domain.course.Course;
 import pairmatching.domain.course.enums.CourseEnum;
 
 public class Crew {
@@ -26,5 +27,13 @@ public class Crew {
     @Override
     public int hashCode() {
         return Objects.hash(course, name);
+    }
+
+    @Override
+    public String toString() {
+        return "Crew{" +
+            "course=" + course +
+            ", name='" + name + '\'' +
+            '}';
     }
 }
