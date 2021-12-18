@@ -56,7 +56,7 @@ public class InputView {
 		try {
 			String inputValue = InputView.getInput();
 			inputValue = removeSpace(inputValue);
-			checkMatchingInfoValidation(inputValue, FUNCTION_MENU_DELIMITER); // split은 체크할때마다 매번 한다.
+			checkMatchingInfoValidation(inputValue, FUNCTION_MENU_DELIMITER);
 			return Arrays.asList(inputValue.split(FUNCTION_MENU_DELIMITER));
 		} catch (IllegalArgumentException e) {
 			OutputView.printError(e.getMessage());
@@ -72,7 +72,6 @@ public class InputView {
 		checkNullOrEmpty(inputValue);
 		checkValidFirstValue(inputValue, delimeter);
 		checkValidCountOfMatchingInfo(inputValue, delimeter);
-		//TODO 각 단어가 isContains되는지 검사
 	}
 
 	private static void checkIncludeInternalSpace(String inputValue) {

@@ -19,7 +19,6 @@ public class FileManager {
 		try {
 			FileReader reader = new FileReader(file);
 			BufferedReader br = new BufferedReader(reader);
-			// String line = br.readLine();
 
 			while (true) {
 				String currentLine = br.readLine();
@@ -33,10 +32,7 @@ public class FileManager {
 				if (filePath.contains("front")) {
 					crews.add(new Crew(Course.FRONTEND, currentLine));
 				}
-				// line += br.readLine();
 			}
-
-			// System.out.println(line);
 
 			br.close();
 			reader.close();
