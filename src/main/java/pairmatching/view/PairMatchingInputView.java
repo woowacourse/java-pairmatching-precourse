@@ -10,4 +10,9 @@ public class PairMatchingInputView {
 		PairMatchingOutputView.printFunctionInputMessage();
 		return Console.readLine();
 	}
+
+	public static String readCourseAndMission() {
+		PairMatchingOutputView.printCourseAndMissionInputMessage();
+		return Console.readLine();
+	}
 }
