@@ -8,13 +8,17 @@ public class PairMatchingService {
 
 	private Pair pair;
 
+	public PairMatchingService() {
+		this.pair = new Pair();
+	}
+
 	public boolean selectFunction(String input) {
 		//TODO: validation
 
 		if(input.equals("Q")) {
 			return false;
 		}
-		pair = new Pair(Integer.parseInt(input));
+		pair.initNumber(Integer.parseInt(input));
 
 		return true;
 	}

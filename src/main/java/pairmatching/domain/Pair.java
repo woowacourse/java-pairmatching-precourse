@@ -14,9 +14,13 @@ public class Pair {
 	public Function function;
 	// 과정, 레벨, 미션
 
-	public Pair(int num) {
-		function = new Function(num);
+	public Pair() {
+		function = new Function();
+	}
+
+	public void initNumber(int number) {
 		OutputView.printProcessMissionLevel();
+		function.initNumber(number);
 	}
 
 	public boolean takeInformation(String[] information) throws IOException {

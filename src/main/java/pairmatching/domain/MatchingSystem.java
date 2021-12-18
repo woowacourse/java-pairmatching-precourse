@@ -9,22 +9,25 @@ import pairmatching.view.OutputView;
 public class MatchingSystem {
 	private static final String NOT_FOUNT_ERROR =  "매칭 리스트에 없는 정보 입니다.";
 
-	private List<Matching> matchingList;
+	private List<Matching> matchingList = new ArrayList<>();
 
 	public MatchingSystem() {
-		this.matchingList = new ArrayList<>();
+		if(matchingList.size() == 0) {
+			this.matchingList = new ArrayList<>();
+		}
 	}
 
 	public boolean save(Matching newMatching) {
 
-		if (!matchingList.contains(newMatching)) {
+		if (matchingList.contains(newMatching)) {
 			OutputView.printReMatchingQuery();
 
-			if (Console.readLine().equals("아니요")) {
+			if (Console.readLine().equals("아니오")) {
 				return false;
 			}
 		}
 
+		OutputView.printMatchingResult(newMatching.getNames());
 		matchingList.add(newMatching);
 		return true;
 	}

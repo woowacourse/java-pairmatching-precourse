@@ -20,9 +20,12 @@ public class Function {
 	private int number;
 	private MatchingSystem matchingSystem;
 
-	public Function(int number) {
-		this.number = number;
+	public Function() {
 		this.matchingSystem = new MatchingSystem();
+	}
+
+	public void initNumber(int number) {
+		this.number = number;
 	}
 
 	public boolean handleFunction(String[] information) throws IOException {
@@ -54,8 +57,6 @@ public class Function {
 			filePath = "frontend-crew.md";
 		}
 		List<String> matchingResult = Randoms.shuffle(getCrewNames(filePath));
-
-		OutputView.printMatchingResult(matchingResult);
 
 		return matchingSystem.save(new Matching(Course.mapToCourse(course), Level.mapToLevel(level), Mission
 			.mapToLevel(mission), matchingResult));

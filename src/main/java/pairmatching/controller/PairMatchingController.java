@@ -6,7 +6,6 @@ import camp.nextstep.edu.missionutils.Console;
 import pairmatching.exception.dto.ResponseError;
 import pairmatching.service.PairMatchingService;
 import pairmatching.view.InputView;
-import pairmatching.view.OutputView;
 
 public class PairMatchingController {
 
