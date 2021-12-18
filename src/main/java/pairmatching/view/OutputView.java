@@ -15,6 +15,8 @@ public class OutputView {
 	private static final String COURSE_MSG = "과정: ";
 	private static final String MISSION_MSG = "미션: ";
 
+	private static final String MATCHING_RESULT_MSG = "페어 매칭 결과입니다.";
+
 	public static void displayMainView() {
 		String mainViewMsg = MAIN_OPTION_MATCHING + NEW_LINE
 			+ MAIN_OPTION_GET_INFO + NEW_LINE
@@ -50,5 +52,12 @@ public class OutputView {
 				.append(mission.get(i)).append(NEW_LINE);
 		}
 		return stringBuilder;
+	}
+
+	public static void displayMatchingResult(List<String> result) {
+		System.out.println(MATCHING_RESULT_MSG);
+		for (String pair : result) {
+			System.out.println(pair);
+		}
 	}
 }
