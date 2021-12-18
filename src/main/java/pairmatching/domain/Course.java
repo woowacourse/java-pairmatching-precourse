@@ -15,4 +15,14 @@ public enum Course {
 	public String getName() {
 		return name;
 	}
+
+	public static Course getInstance(String name) {
+		if (name.equals(Course.BACKEND.getName()))
+			return Course.BACKEND;
+
+		if (name.equals(Course.FRONTEND.getName()))
+			return Course.FRONTEND;
+
+		return null;
+	}
 }

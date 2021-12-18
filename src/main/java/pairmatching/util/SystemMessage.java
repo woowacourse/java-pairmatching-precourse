@@ -13,4 +13,5 @@ public class SystemMessage {
 	public static final String MISSION_LIST = "  - ";
 	public static final String INPUT_MISSION_INFO = "과정, 레벨, 미션을 선택하세요.";
 	public static final String MISSION_INFO_EX = "ex) 백엔드, 레벨1, 자동차경주";
+	public static final String MATCHING_RESULT = "페어 매칭 결과입니다.";
 }

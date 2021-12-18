@@ -17,4 +17,19 @@ public enum Level {
 	public String getName() {
 		return name;
 	}
+
+	public static Level getInstance(String name) {
+		if (name.equals(Level.LEVEL1.getName()))
+			return Level.LEVEL1;
+		if (name.equals(Level.LEVEL2.getName()))
+			return Level.LEVEL2;
+		if (name.equals(Level.LEVEL3.getName()))
+			return Level.LEVEL3;
+		if (name.equals(Level.LEVEL4.getName()))
+			return Level.LEVEL4;
+		if (name.equals(Level.LEVEL5.getName()))
+			return Level.LEVEL5;
+
+		return null;
+	}
 }

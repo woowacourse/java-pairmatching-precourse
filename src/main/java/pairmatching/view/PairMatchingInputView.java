@@ -13,7 +13,8 @@ public class PairMatchingInputView implements View {
 	public void flow() {
 		String missionInfo = readMissionInfo();
 		List<String> params = MissionInfoValidator.validate(missionInfo);
-		Application.controller.setParams(params);
+		Application.controller.setMatchParams(params);
+		Application.controller.pairMatching();
 		Application.controller.view(ViewMappingKey.PAIR_MATCHING_RESULT);
 	}
 
