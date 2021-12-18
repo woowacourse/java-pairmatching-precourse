@@ -1,6 +1,7 @@
 package pairmatching.controller;
 
 import pairmatching.exception.QuitProgramException;
+import pairmatching.service.MatchingService;
 import pairmatching.utils.Validator;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
@@ -26,6 +27,7 @@ public class MatchingController {
 
 	private void chooseFunction(int number) {
 		if (number == FIRST_FUNCTION_NUMBER) {
+			matching();
 			return;
 		}
 		if (number == SECOND_FUNCTION_NUMBER) {
@@ -36,6 +38,12 @@ public class MatchingController {
 	}
 
 	private void matching() {
-		String input = InputView.printProgramInformation();
+		try {
+			String[] input = InputView.printProgramInformation().split(",");
+			Validator.validateCourseLevelMission(input);
+		} catch (IllegalArgumentException e) {
+			OutputView.printError(e.getMessage());
+			matching();
+		}
 	}
 }
