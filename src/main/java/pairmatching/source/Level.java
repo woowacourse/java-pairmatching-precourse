@@ -60,7 +60,7 @@ public enum Level {
     private boolean checkRematchMissionPair(){
         System.out.println(REMATCH_REQUEST);
 
-        if(Console.readLine() == "네"){
+        if(Console.readLine().equals("네")){
             return true;
         }
 
