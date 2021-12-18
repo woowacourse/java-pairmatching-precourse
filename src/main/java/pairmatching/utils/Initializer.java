@@ -31,6 +31,6 @@ public class Initializer {
 		mission.put(Level.LEVEL3, Arrays.asList());
 		mission.put(Level.LEVEL4, Arrays.asList("성능 개선", "배포"));
 		mission.put(Level.LEVEL5, Arrays.asList());
-		MissionRepository.setMission(mission);
+		MissionRepository.setMissions(mission);
 	}
 }

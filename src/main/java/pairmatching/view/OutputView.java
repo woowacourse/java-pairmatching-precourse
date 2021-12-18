@@ -19,8 +19,8 @@ public class OutputView {
 	public static final String PAIR_COURSE = "과정: ";
 	public static final String PAIR_MISSION = "미션: ";
 
-	public static final String MISSION_DASH = "  - ";
-	public static final String MISSION_DELIMITER = ": ";
+	public static final String SCREEN_MISSION_DASH = "  - ";
+	public static final String SCREEN_MISSION_DELIMITER = ": ";
 	public static final String SCREEN_DELIMITER = " | ";
 
 
@@ -54,7 +54,7 @@ public class OutputView {
 	private static String getMissionList() {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (Level level : Level.values()) {
-			stringBuilder.append(MISSION_DASH).append(level.getName() + MISSION_DELIMITER)
+			stringBuilder.append(SCREEN_MISSION_DASH).append(level.getName() + SCREEN_MISSION_DELIMITER)
 				.append(getMissionByLevel(level)).append("\n");
 		}
 		return stringBuilder.toString();

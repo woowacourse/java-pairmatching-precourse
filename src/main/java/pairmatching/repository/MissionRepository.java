@@ -6,13 +6,21 @@ import java.util.List;
 import pairmatching.domain.Level;
 
 public class MissionRepository {
-	public static LinkedHashMap<Level, List<String>> mission;
+	public static LinkedHashMap<Level, List<String>> missions;
 
-	public static void setMission(LinkedHashMap<Level, List<String>> mission) {
-		MissionRepository.mission = mission;
+	public static void setMissions(LinkedHashMap<Level, List<String>> missions) {
+		MissionRepository.missions = missions;
 	}
 
 	public static List<String> getMissionByLevel(Level level) {
-		return mission.get(level);
+		return missions.get(level);
+	}
+
+	public static boolean existLevel(String level) {
+		return missions.keySet().contains(level);
+	}
+
+	public static boolean existMission(String level, String mission) {
+		return missions.get(level).contains(mission);
 	}
 }

@@ -10,4 +10,8 @@ public class CourseRepository {
 	public static void setCourses(List<Course> courses) {
 		CourseRepository.courses = courses;
 	}
+
+	public static boolean contains(String course) {
+		return course.contains(course);
+	}
 }
