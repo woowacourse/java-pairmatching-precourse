@@ -6,6 +6,7 @@ import java.util.List;
 
 import pairmatching.models.Course;
 import pairmatching.models.Mission;
+import pairmatching.utils.DataValidation;
 import pairmatching.utils.MissionList;
 import pairmatching.utils.NameList;
 import pairmatching.utils.PairMatchingMessage;
@@ -20,6 +21,5 @@ public class Application {
 		List<Mission> m = (new MissionList()).initMissionList();
 		PairMachineInput in = new PairMachineInput();
 
-		System.out.println(in.selectRematchPairOrNot());
     }
 }
