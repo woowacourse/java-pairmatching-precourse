@@ -13,7 +13,14 @@ public class PairMatchingInputView implements View {
 	@Override
 	public void flow() {
 		String missionInfo = readMissionInfo();
-		List<String> params = MissionInfoValidator.validate(missionInfo);
+		List<String> params;
+		try {
+			params = MissionInfoValidator.validate(missionInfo);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			Application.controller.view(ViewMappingKey.PAIR_MATCHING_INPUT);
+			return;
+		}
 		MatchParams matchParams = Application.controller.setMatchParams(params);
 		if(Application.controller.isExistParam(matchParams)) {
 			if(checkReMatch()) {

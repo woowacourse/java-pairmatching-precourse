@@ -17,4 +17,8 @@ public class SystemMessage {
 	public static final String CHECK_REMATCH = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
 		+ "네 | 아니오";
 	public static final String RESET = "초기화 되었습니다.";
+	private static final String ERROR = "[ERROR] ";
+	public static final String ERROR_NOT_COURSE = ERROR + "존재하는 코스를 입력해주세요.";
+	public static final String ERROR_NOT_LEVEL = ERROR + "존재하는 레벨을 입력해주세요.";
+	public static final String ERROR_NOT_MISSION = ERROR + "존재하는 미션을 입력해주세요.";
 }
