@@ -32,7 +32,7 @@ public class MatchingService {
             String[] nameArr =Path.BACKNAME.split(",");
 //            System.out.println(nameArr);
             List<String> tempnameList = new ArrayList<String>(Arrays.asList(nameArr));
-            System.out.println(tempnameList.toString());
+//            System.out.println(tempnameList.toString());
             this.nameList = tempnameList;
             return;
         }
