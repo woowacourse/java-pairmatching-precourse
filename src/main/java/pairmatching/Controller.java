@@ -3,6 +3,7 @@ package pairmatching;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Controller {
     private View view;
@@ -47,6 +48,12 @@ public class Controller {
         crewList.add(crew);
     }
 
+    public static void shuffle() {
+        List<String> shuffled = Randoms.shuffle(crewList.get(0).getStudentList());
+        View.printMatchingResult(shuffled);
+        crewList.get(0).setStudentList(shuffled);
+    }
+
     public static void start() throws IOException {
         String menu = inputMenu();
         String[] course = View.selectCourse().split(", ");
@@ -54,6 +61,7 @@ public class Controller {
         System.out.println(crewList.get(0).getCourse().getName());
         System.out.println(crewList.get(0).getName());
         System.out.println(crewList.get(0).getLevel().getName());
+        shuffle();
     }
 
 }

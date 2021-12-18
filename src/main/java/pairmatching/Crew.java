@@ -3,16 +3,18 @@ package pairmatching;
 import java.io.IOException;
 import java.util.List;
 
+
 public class Crew {
     private Course course;
     private String name;
-    private List<String> stringList;
+    private List<String> studentList;
     private Level level;
 
-    public Crew(Course course, String name, List<String> stringList, Level level){
+
+    public Crew(Course course, String name, List<String> studentList, Level level){
         this.course = course;
         this.name = name;
-        this.stringList = stringList;
+        this.studentList = studentList;
         this.level = level;
     }
 
@@ -25,10 +27,14 @@ public class Crew {
     }
 
     public List<String> getStudentList() {
-        return stringList;
+        return studentList;
     }
 
     public Level getLevel() {
         return level;
+    }
+
+    public void setStudentList(List<String> studentList) {
+        this.studentList = studentList;
     }
 }
