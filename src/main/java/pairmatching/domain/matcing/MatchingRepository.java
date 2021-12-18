@@ -15,6 +15,10 @@ public class MatchingRepository {
 		this.matchings = new LinkedHashSet<>();
 	}
 
+	public void addMatching(Matching matching) {
+		matchings.add(matching);
+	}
+
 	public Matching findMatching(Course course, Level level, Mission mission) {
 		return matchings.stream()
 			.filter(matching -> matching.isSameCourse(course))
