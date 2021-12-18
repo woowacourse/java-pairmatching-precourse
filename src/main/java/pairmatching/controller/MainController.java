@@ -55,6 +55,19 @@ public class MainController {
         }
     }
 
+    private void printMisionsAvailable() {
+        userView.printMessage("#############################################");
+        userView.printMessage("과정: 백엔드 | 프론트엔드");
+        userView.printMessage("미션:");
+        userView.printMessage("  - 레벨1: 자동차경주 | 로또 | 숫자야구게임");
+        userView.printMessage("  - 레벨2: 장바구니 | 결제 | 지하철노선도");
+        userView.printMessage("  - 레벨3: ");
+        userView.printMessage("  - 레벨4: 성능개선 | 배포");
+        userView.printMessage("  - 레벨5: \n");
+        userView.printMessage("#############################################");
+    }
+
+
     private void initializeCrews() {
         initializeBackEndCrews();
         initializeFrontEndCrews();
