@@ -53,10 +53,8 @@ public class MatchingMachine {
 		Set<List> pairsCrew = new HashSet<>();
 		List<String> crewNames = new ArrayList<>();
 		List<String> matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
-		System.out.println(matchInformation.get(0));
-		System.out.println(Course.getCourse(matchInformation.get(0)));
 		Mission mission = missions.getMission(Course.getCourse(matchInformation.get(0)), Level.getLevel(matchInformation.get(1)), matchInformation.get(2));
-		crewNames = crews.getCrews(mission.getCourse());
+		crewNames = crews.getCrews(Course.getCourse(matchInformation.get(0)).getName());
 		if(mission.getPairCrews() == null) {
 			pairsCrew = matching.matching(crewNames);
 			OutputView.printPairCrews(pairsCrew);

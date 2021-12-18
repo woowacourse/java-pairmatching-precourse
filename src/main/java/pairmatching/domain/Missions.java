@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Missions {
@@ -20,6 +21,7 @@ public class Missions {
 		missions.add(new Mission(Course.FRONTEND, Level.LEVEL1, "로또"));
 		missions.add(new Mission(Course.BACKEND, Level.LEVEL1, "숫자야구"));
 		missions.add(new Mission(Course.FRONTEND, Level.LEVEL1, "숫자야구"));
+
 	}
 
 	public void makeLevelTwoMission(){
@@ -38,7 +40,14 @@ public class Missions {
 		missions.add(new Mission(Course.FRONTEND, Level.LEVEL4, "배포"));
 	}
 
-	public List<Mission> getMissions() {
-		return missions;
+	public Mission getMission(Course course, Level level, String name) {
+		for(int i = 0; i < missions.size(); i++){
+			if(missions.get(i).getCourse() == course && missions.get(i).getLevel() == level && missions.get(i).getName() == name){
+				System.out.println(missions.get(i).getName());
+				return missions.get(i);
+			}
+		}
+		return null;
 	}
+
 }

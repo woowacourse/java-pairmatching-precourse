@@ -11,8 +11,6 @@ public class Crews {
 	private List<String> backEndCrews;
 	private List<String> FrontEndCrews;
 
-
-
 	public Crews() {
 		backEndCrews = new ArrayList<>();
 		FrontEndCrews = new ArrayList<>();
@@ -63,11 +61,13 @@ public class Crews {
 		}
 	}
 
-	public List<String> getBackEndCrews() {
-		return backEndCrews;
-	}
-
-	public List<String> getFrontEndCrews() {
-		return FrontEndCrews;
+	public List<String> getCrews(String courseName) {
+		if (Course.BACKEND.getName() == courseName) {
+			return backEndCrews;
+		}
+		if (Course.FRONTEND.getName() == courseName){
+			return FrontEndCrews;
+		}
+		return null;
 	}
 }
