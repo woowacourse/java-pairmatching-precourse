@@ -8,6 +8,7 @@ import pairmatching.service.MatchService;
 import pairmatching.view.Viewer;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static pairmatching.input.UserInput.*;
 
@@ -22,16 +23,21 @@ public class Pairmatching {
 	public void run() {
 		LevelMissionsMap levelMissionsMap = courseDataService.initLevelAndMissions();
 		Function function = getFunction();
-		if (function == Function.MATCH) {
-			runMatch(levelMissionsMap);
+		while (function != Function.QUIT) {
+			if (function == Function.MATCH) {
+				runMatch(levelMissionsMap);
+			}
+			if (function == Function.SEARCH) {
+				runSearch(levelMissionsMap);
+			}
+			function = getFunction();
 		}
-		if (function == Function.SEARCH) {
-			runSearch(levelMissionsMap);
-		}
+		return;
 	}
 
-	private void saveMatchResult(String fileName, List<CrewPair> crewPairs) {
-		fileService.saveCrewMatchResult(fileName, crewPairs);
+	private void saveMatchResult(String fileName, List<String> crewPairs) {
+		String result = crewPairs.stream().collect(Collectors.joining("\n"));
+		fileService.saveCrewMatchResult(fileName, result);
 	}
 
 	private Function getFunction() {
@@ -56,6 +62,7 @@ public class Pairmatching {
 			List<String> crewNames = fileService.readCrewNamesFromFile(Course.BACKEND);
 			List<String > randomMatch = matchService.getRandomMatch(crewNames);
 			viewer.showCrewPairs(randomMatch);
+			saveMatchResult(course.toString() + "_" + level.toString() + "_" + mission.toString() + ".md", randomMatch);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			runMatch(levelMissionsMap);
