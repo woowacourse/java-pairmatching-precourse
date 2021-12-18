@@ -12,7 +12,13 @@ public class PairMatchingController {
 
 	public void start() {
 		outputView.showCourseInfo();
-		pairMatchingService.start(inputView.getCourseInfo());
+		while (true) {
+			try {
+				pairMatchingService.start(inputView.getCourseInfo());
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 
 }
