@@ -1,5 +1,6 @@
 package pairmatching.domain.pairMatcher;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.constant.ErrorMessage;
 import pairmatching.domain.pairMatcher.enums.Course;
 import pairmatching.domain.pairMatcher.enums.Level;
@@ -15,6 +16,8 @@ public class CrewList {
     final static int MISSION_INDEX = 2;
 
     private List<String> crewList;
+    private List<String> shuffledCrewList;
+
     private String course;
     private String level;
     private String mission;
@@ -93,7 +96,11 @@ public class CrewList {
         }
     }
 
-    public ArrayList<String> getCrewList() {
-        return (ArrayList<String>) crewList;
+    public void shuffleCrewList() {
+        shuffledCrewList = Randoms.shuffle(crewList);
+    }
+
+    public List<String> getShuffledCrewList() {
+        return shuffledCrewList;
     }
 }
