@@ -60,11 +60,7 @@ public class PairManager {
                 && crews.get(2).checkCrew(crews.get(0), level);
     }
 
-    public void addPair(ArrayList<Crew> crews, ArrayList<Pair> pairs) {
-        pairs.add(new Pair(crews.get(0), crews.get(1)));
-        pairs.add(new Pair(crews.get(1), crews.get(2)));
-        pairs.add(new Pair(crews.get(2), crews.get(0)));
-    }
+
 
     public boolean pushPair(ArrayList<Crew> crews, ArrayList<Pair> pairs, int level) {
         if (crews.size() == 2) {
@@ -75,7 +71,7 @@ public class PairManager {
         }
         if (crews.size() == 3) {
             if (compareCrew(crews, level)) {
-                addPair(crews, pairs);
+                pairs.add(new Pair(crews.get(0), crews.get(1), crews.get(2)));
                 return true;
             }
         }
