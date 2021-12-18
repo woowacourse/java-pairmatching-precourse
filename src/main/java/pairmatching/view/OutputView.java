@@ -7,6 +7,8 @@ import pairmatching.domain.Pair;
 public class OutputView {
 
 	private static final String ERROR_FORM = "[ERROR] ";
+	private static final String INIT_MESSAGE = "초기화 되었습니다.\n";
+	private static final String MATCHING_RESULT_MESSAGE = "페어 매칭 결과입니다.\n";
 	private static final String MENU_LIST = "#############################################\n"
 		+ "과정: 백엔드 | 프론트엔드\n"
 		+ "미션:\n"
@@ -22,12 +24,12 @@ public class OutputView {
 	}
 
 	public static void printInitMessage() {
-		System.out.println("초기화 되었습니다.\n");
+		System.out.println(INIT_MESSAGE);
 	}
 
 	public static void printMatching(List<Pair> pairs) {
 		StringBuilder builder = new StringBuilder();
-		builder.append("페어 매칭 결과입니다.\n");
+		builder.append(MATCHING_RESULT_MESSAGE);
 		for (Pair pair : pairs) {
 			builder.append(pair.toString())
 				.append("\n");
