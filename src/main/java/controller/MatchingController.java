@@ -12,12 +12,17 @@ public class MatchingController {
 	public static void runMatchingProgram() {
 		PairMatcher pairMatcher = new PairMatcher();
 		InputDisplay.askInputFunctionSelectionNumber();
+
 		String functionSelectionNumber = InputController.inputFunctionSelectionNumber();
 
 		if (functionSelectionNumber.equals("1")) {
-			OutputDisplay.showProcessAndLevelAndMission();
-			InputDisplay.askInputProcessAndLevelAndMission();
-			InputController.inputProcessAndLevelAndMission();
+			operateMatchingFunction(pairMatcher);
 		}
+	}
+
+	private static void operateMatchingFunction(PairMatcher pairMatcher) {
+		OutputDisplay.showProcessAndLevelAndMission();
+		InputDisplay.askInputProcessAndLevelAndMission();
+		OutputDisplay.showMatchedPairs(pairMatcher.matchingPairs(InputController.inputProcessAndLevelAndMission()));
 	}
 }

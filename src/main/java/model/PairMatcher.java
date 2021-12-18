@@ -1,23 +1,37 @@
 package model;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import utils.CrewFileReader;
 
 public class PairMatcher {
-	private List<Crew> backEndCrewNames;
-	private List<Crew> frontEndCrewNames;
+	private List<String> backEndCrewNames;
+	private List<String> frontEndCrewNames;
+	private List<String> shuffledBackEndCrew;
+	private List<String> shuffledFrontEndCrew;
 
 	public PairMatcher() {
-		backEndCrewNames = CrewFileReader.readBackEndCrewFile()
-			.stream()
-			.map(crewName -> new Crew(crewName, "백엔드"))
-			.collect(Collectors.toList());
-		frontEndCrewNames = CrewFileReader.readFrontEndCrewFile()
-			.stream()
-			.map(crewName -> new Crew(crewName, "프론트엔드"))
-			.collect(Collectors.toList());
+		backEndCrewNames = CrewFileReader.readBackEndCrewFile();
+		frontEndCrewNames = CrewFileReader.readFrontEndCrewFile();
+	}
+
+	public List<String> matchingPairs(List<String> processInformation) {
+		if (processInformation.get(0).equals("백엔드")) {
+			return matchingBackEndPairs(processInformation);
+		} else if (processInformation.get(0).equals("프론트엔드")) {
+			return matchingFrontEndPairs(processInformation);
+		}
+		throw new IllegalArgumentException();
+	}
+
+	private List<String> matchingBackEndPairs(List<String> processInformation) {
+		shuffledBackEndCrew = Randoms.shuffle(backEndCrewNames);
+		return shuffledBackEndCrew;
+	}
+
+	private List<String> matchingFrontEndPairs(List<String> processInformation) {
+		shuffledFrontEndCrew = Randoms.shuffle(frontEndCrewNames);
+		return shuffledFrontEndCrew;
 	}
 }

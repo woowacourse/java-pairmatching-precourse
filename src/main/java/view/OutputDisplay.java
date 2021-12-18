@@ -1,5 +1,7 @@
 package view;
 
+import java.util.List;
+
 public class OutputDisplay {
 
 	private OutputDisplay() {
@@ -16,5 +18,19 @@ public class OutputDisplay {
 		System.out.println("	- 레벨4: 성능개선 | 배포");
 		System.out.println("	- 레벨5:");
 		System.out.println("############################################");
+	}
+
+	public static void showMatchedPairs(List<String> matchedPairs) {
+		System.out.println();
+		System.out.println("페어 매칭 결과입니다.");
+		for (int index = 0; index < matchedPairs.size(); index += 2) {
+			if (matchedPairs.size() - index == 3) {
+				System.out.println(
+					matchedPairs.get(index) + " : " + matchedPairs.get(index + 1) + " : " + matchedPairs.get(
+						index + 2));
+				break;
+			}
+			System.out.println(matchedPairs.get(index) + " : " + matchedPairs.get(index + 1));
+		}
 	}
 }
