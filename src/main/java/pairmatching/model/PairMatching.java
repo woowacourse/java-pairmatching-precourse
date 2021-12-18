@@ -47,12 +47,8 @@ public class PairMatching {
 
 		for (int i = 0; i < missionInfoSet.size(); i++) {
 
-			if (missionInfoSet.get(i).find(CourseLevelMission)) {
-
-				if (!UserView.reMatch()) {
-					return;
-				}
-
+			if (!rematch(CourseLevelMission, i)) {
+				return;
 			}
 
 		}
@@ -78,5 +74,17 @@ public class PairMatching {
 
 		}
 		throw new IllegalArgumentException("\n해당 매칭이 없습니다.\n");
+	}
+
+	public boolean rematch(String CourseLevelMission, int i) {
+		if (missionInfoSet.get(i).find(CourseLevelMission)) {
+
+			if (!UserView.reMatch()) {
+				return false;
+			}
+
+		}
+
+		return true;
 	}
 }
