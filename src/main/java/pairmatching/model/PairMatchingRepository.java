@@ -17,4 +17,11 @@ public class PairMatchingRepository {
 		return repository.get(level);
 	}
 
+	public static boolean isAlreadyPaired(Pair pair, Level level, Course course) {
+		Map<Course, Pairs> pairsByLevel = findByLevel(level);
+		Pairs pairsByCourse = pairsByLevel.get(course);
+
+		return pairsByCourse.has(pair);
+	}
+
 }

@@ -17,6 +17,14 @@ public class Pairs {
 		return new Pairs(crews);
 	}
 
+	public List<Pair> get() {
+		return pairs;
+	}
+
+	public boolean has(Pair pair) {
+		return pairs.stream().anyMatch(savedPair -> savedPair.is(pair));
+	}
+
 	private List<Pair> addPairToPairs(Crews crews) {
 		if (isCrewSizeOdd(crews)) {
 			return getPairsWhenCrewSizeOdd(crews);

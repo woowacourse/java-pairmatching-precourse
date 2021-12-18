@@ -11,7 +11,16 @@ public class Pair {
 		Collections.addAll(this.crews, crews);
 	}
 
+	public List<Crew> get() {
+		return crews;
+	}
+
 	public static Pair create(Crew... crews) {
 		return new Pair(crews);
 	}
+
+	public boolean is(Pair pair) {
+		return pair.get().containsAll(crews);
+	}
+
 }
