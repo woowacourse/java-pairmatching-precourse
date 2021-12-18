@@ -16,7 +16,6 @@ public class PairMatchingController {
 
     public void run() {
         inputView.determineMainFunction(); // TODO : 기능 선택은 나중에 하자.
-
         matchPairs(); //1. 페어 매칭 선택했을 때 사용할 메서드.
     }
 

@@ -1,5 +1,6 @@
 package pairmatching.service;
 
+import static pairmatching.Constant.*;
 import static pairmatching.ErrorMessage.*;
 
 import java.io.IOException;
@@ -10,9 +11,11 @@ import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 import pairmatching.domain.ProgramInfo;
+import pairmatching.repository.ProgramInfoRepository;
 import pairmatching.util.Initializer;
 
 public class PairMatchingService {
+    ProgramInfoRepository programInfoRepository = new ProgramInfoRepository();
     ArrayList<Crew> backEndCrews;
     ArrayList<Crew> frontEndCrews;
 
@@ -31,17 +34,48 @@ public class PairMatchingService {
 
     public void matchPairs(ProgramInfo programInfo) {
         int repeatCntBecauseAlreadyMeet = 0;
-        ArrayList<Crew> chosenCrews = getCrewsUsingCourse(programInfo);
+        boolean alreadyMatch;
+        List<Crew> shuffledCrews;
+        do {
+            ArrayList<Crew> chosenCrews = getCrewsUsingCourse(programInfo);
+            shuffledCrews = Randoms.shuffle(chosenCrews);
+            alreadyMatch = isAlreadyMatch(shuffledCrews, programInfo);
+            repeatCntBecauseAlreadyMeet += 1;
+        } while (alreadyMatch & repeatCntBecauseAlreadyMeet <= MATCHING_TRY_CNT);
+        validateCanMakePair(repeatCntBecauseAlreadyMeet);
+        programInfo.savePairs(shuffledCrews);
+        programInfoRepository.add(programInfo);
+    }
 
-        List<Crew> shuffledCrews = Randoms.shuffle(chosenCrews);
-        for (int i = 0; i <shuffledCrews.size()/2; i++) {
-            // shuffledCrews.get(i), shuffledCrews.get(i+1) 가 pair가 된 적 있는지 비교한다.
+    private void validateCanMakePair(int repeatCntBecauseAlreadyMeet) {
+        if (repeatCntBecauseAlreadyMeet > MATCHING_TRY_CNT) {
+            throw new IllegalArgumentException(CANT_MAKE_PAIR_ERROR);
         }
-        // 홀수였다면 -> shuffledCrews.get(끝), (끝-1) // (끝),(끝-2) // (끝-1), (끝-2)((사실 애는 이미 비교가됨.) 를 각각 비교해준다.
+    }
 
-        // 만약 3회 이상 반복이 되면 예외를 반환한다. -> 만드는 걸 실패했습니다.
+    private boolean isAlreadyMatch(List<Crew> shuffledCrews, ProgramInfo programInfo) {
+        boolean alreadyMatch = false;
+        int crewsCnt = shuffledCrews.size();
+        for (int i = 0; i < crewsCnt / 2; i++) {
+            alreadyMatch = programInfoRepository.checkTwoCrewsAlreadyMatch(programInfo, shuffledCrews.get(i),
+                shuffledCrews.get(i + 1));
+            if (alreadyMatch) {
+                return alreadyMatch;
+            }
+        }
+        if (!alreadyMatch & crewsCnt % 2 == 1) {
+            alreadyMatch = isAlreadyMatchOnLastThreeCrew(programInfo, shuffledCrews, crewsCnt);
+        }
+        return alreadyMatch;
+    }
 
-        // 3번 전에 제대로 만들어지면 -> 저 리스트를 2개씩 짝지어 pair라는 이름으로 반환해준다.
+    private boolean isAlreadyMatchOnLastThreeCrew(ProgramInfo programInfo, List<Crew> shuffledCrews, int crewsCnt) {
+        boolean alreadyMatch;
+        alreadyMatch = programInfoRepository.checkTwoCrewsAlreadyMatch(programInfo, shuffledCrews.get(crewsCnt - 1),
+            shuffledCrews.get(crewsCnt - 2)) | programInfoRepository.checkTwoCrewsAlreadyMatch(programInfo,
+            shuffledCrews.get(crewsCnt - 1),
+            shuffledCrews.get(crewsCnt - 3));
+        return alreadyMatch;
     }
 
     private ArrayList<Crew> getCrewsUsingCourse(ProgramInfo programInfo) {
