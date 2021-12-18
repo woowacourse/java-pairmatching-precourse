@@ -14,6 +14,7 @@ public class Validator {
     private final static String NO = "아니오";
     private final static String SEPARATOR = ",";
     private final static int INPUT_DETAIL_CNT = 3;
+    private final static int NEGATIVE_NUMBER = -1;
 
     public Validator() {
     }
@@ -29,7 +30,7 @@ public class Validator {
     }
 
     public boolean isValidDetails(String input) {
-        String[] details = input.split(SEPARATOR);
+        String[] details = input.split(SEPARATOR, NEGATIVE_NUMBER);
         if (details.length == INPUT_DETAIL_CNT
                 && isValidPrecourse(details[0].trim())
                 && isValidLevel(details[1].trim())
