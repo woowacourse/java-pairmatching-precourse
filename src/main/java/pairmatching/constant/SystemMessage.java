@@ -26,5 +26,6 @@ public class SystemMessage {
     public static final Integer SECOND = 2;
     public static final Integer THIRD = 3;
     public static final Integer LIMIT_CHANCE = 3;
+    public static final Integer INIT_CHANCE = 1;
 
 }

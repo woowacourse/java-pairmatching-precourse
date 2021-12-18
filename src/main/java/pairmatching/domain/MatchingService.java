@@ -22,7 +22,7 @@ public class MatchingService {
     }
 
     public CrewList match(String processName, String levelName, String missionName) {
-        int count = 1;
+        int count = INIT_CHANCE;
         Level level = Level.getLevel(levelName);
         while (shuffledCrewList.isMatched(level)) {
             List<String> shuffledCrewListString = crewList.shuffle();

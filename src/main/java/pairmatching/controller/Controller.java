@@ -1,8 +1,10 @@
 package pairmatching.controller;
 
 import pairmatching.domain.CrewList;
+import pairmatching.domain.Level;
 import pairmatching.domain.MatchingService;
 import pairmatching.validator.InputViewValidator;
+import pairmatching.validator.LevelMissionValidator;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -23,6 +25,7 @@ public class Controller {
                 String processLevelMission = InputView.getProcessLevelMission();
                 InputViewValidator.checkProcessLevelMission(processLevelMission);
                 String[] split = processLevelMission.split(SPLIT_DELIMITER);
+                LevelMissionValidator.checkProperLevelMission(Level.getLevel(split[LEVEL]), split[MISSION]);
                 choicePairMatching(split[PROCESS], split[LEVEL], split[MISSION]);
             }
         }
