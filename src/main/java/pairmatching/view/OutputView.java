@@ -3,6 +3,9 @@ package pairmatching.view;
 import java.util.List;
 
 public class OutputView {
+	private static final String ERROR = "[ERROR]";
+	private static final String SPACE = " ";
+
 	public static void printCourseLevelMissionInformation() {
 		System.out.println("\n#############################################\n"
 			+ "과정: 백엔드 | 프론트엔드\n"
@@ -20,4 +23,9 @@ public class OutputView {
 		crewPairs.forEach(System.out::println);
 		System.out.println();
 	}
+
+	public static void printErrorMessage(String message) {
+		System.out.println(ERROR + SPACE + message);
+	}
+
 }

@@ -1,5 +1,6 @@
 package pairmatching.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
@@ -57,7 +58,7 @@ public class CourseRepository {
 		resetPairOfMission(courseName, levelName, mission);
 		List<Mission> missions = findMissions(courseName, levelName);
 		for (int i = 0; i < 3; i++) {
-			List<CrewPair> crewPairs = PairMaker.makeBackendCrewPair(missions);
+			List<CrewPair> crewPairs = getCrewPairList(courseName, missions);
 			if (!crewPairs.isEmpty()) {
 				setCrewPairToMission(courseName, levelName, mission, crewPairs);
 				return crewPairs;
@@ -69,5 +70,16 @@ public class CourseRepository {
 	public static List<String> getMatchingList(String courseName, String levelName, String missionName) {
 		Mission mission = findMission(courseName, levelName, missionName);
 		return mission.getCrewPairNameList();
+	}
+
+	public static List<CrewPair> getCrewPairList(String courseName, List<Mission> missions) {
+		List<CrewPair> crewPairs = new ArrayList<>();
+		if (Course.from(courseName) == Course.BACKEND) {
+			crewPairs = PairMaker.makeBackendCrewPair(missions);
+		}
+		if (Course.from(courseName) == Course.FRONTEND) {
+			crewPairs = PairMaker.makeFrontendCrewPair(missions);
+		}
+		return crewPairs;
 	}
 }

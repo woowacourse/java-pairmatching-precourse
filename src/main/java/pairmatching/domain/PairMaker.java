@@ -24,6 +24,25 @@ public class PairMaker {
 		return crewPairs;
 	}
 
+	public static List<CrewPair> makeFrontendCrewPair(List<Mission> missions) {
+		List<CrewPair> crewPairs = new ArrayList<>();
+		List<Crew> crews = CrewRepository.getBackEndCrews();
+		for (int i = 0; i < crews.size() / 2; i++) {
+			List<Crew> crewsOfPair = new ArrayList<>();
+			crewsOfPair.add(crews.get(i));
+			crewsOfPair.add(crews.get(i + 1));
+			if (crews.size() % 2 != 0 && i == ((crews.size() / 2) - 1)) {
+				crewsOfPair.add(crews.get(i + 2));
+			}
+			if (checkHasSameCrew(missions, crewsOfPair)) {
+				crewPairs.clear();
+				break;
+			}
+			crewPairs.add(CrewPair.from(crewsOfPair));
+		}
+		return crewPairs;
+	}
+
 	public static boolean checkHasSameCrew(List<Mission> missions, List<Crew> crews) {
 		for (Mission mission : missions) {
 			if (mission.hasSameCrewPair(crews)) {
@@ -32,5 +51,6 @@ public class PairMaker {
 		}
 		return true;
 	}
+
 
 }

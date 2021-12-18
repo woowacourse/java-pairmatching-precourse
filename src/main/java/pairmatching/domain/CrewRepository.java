@@ -26,4 +26,13 @@ public class CrewRepository {
 			.map(name -> Crew.from(Course.BACKEND, name))
 			.collect(Collectors.toList());
 	}
+
+	public static List<Crew> getFrontEndCrews() {
+		List<String> names = frontEndCrews.stream()
+			.map(crew -> crew.getName())
+			.collect(Collectors.toList());
+		return Randoms.shuffle(names).stream()
+			.map(name -> Crew.from(Course.FRONTEND, name))
+			.collect(Collectors.toList());
+	}
 }
