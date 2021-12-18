@@ -1,5 +1,10 @@
 package pairmatching.view;
 
+import java.util.ArrayList;
+
+import pairmatching.model.PairMatching;
+import pairmatching.model.repository.PairMatchingRepository;
+
 public class View {
 
 	public static final String MAIN_MENU_MESSAGE = "기능을 선택하세요.\n"
@@ -20,6 +25,7 @@ public class View {
 		+ "ex) 백엔드, 레벨1, 자동차경주";
 	public static final String RE_PAIR_MATCHING_MESSAGE = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
 		+ "네 | 아니오";
+	public static final String PAIR_MATCHING_RESULT_MESSAGE = "페어 매칭 결과입니다.";
 
 	public void mainMenu() {
 		System.out.println(MAIN_MENU_MESSAGE);
@@ -35,5 +41,37 @@ public class View {
 
 	public void rePairMatching() {
 		System.out.println(RE_PAIR_MATCHING_MESSAGE);
+	}
+
+	public void pairMatchingResult() {
+		System.out.println(PAIR_MATCHING_RESULT_MESSAGE);
+
+		ArrayList<PairMatching> repo = PairMatchingRepository.repo;
+		PairMatching pairMatching = repo.get(repo.size() - 1);
+		ArrayList<String> pairList = pairMatching.getPairList();
+
+		StringBuilder stringBuilder = new StringBuilder();
+
+		if (pairList.size() % 2 == 0) {
+			for (int i = 0; i < pairList.size(); i += 2) {
+				stringBuilder.append(pairList.get(i));
+				stringBuilder.append(" : ").append(pairList.get(i + 1)).append("\n");
+			}
+		}
+
+		if (pairList.size() % 2 != 0) {
+			for (int i = 0; i < pairList.size() - 3; i += 2) {
+				stringBuilder.append(pairList.get(i));
+				stringBuilder.append(" : ").append(pairList.get(i + 1)).append("\n");
+			}
+			stringBuilder.append(pairList.get(pairList.size() - 3))
+				.append(" : ")
+				.append(pairList.get(pairList.size() - 2))
+				.append(" : ")
+				.append(pairList.get(pairList.size() - 1))
+				.append("\n");
+		}
+
+		System.out.println(stringBuilder.toString());
 	}
 }

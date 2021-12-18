@@ -26,7 +26,7 @@ public class PairService {
 	public boolean isAlreadyPairMatching(String pairMatchingInput) {
 		String[] split = pairMatchingInput.split(",");
 
-		for (PairMatching pairMatching : PairMatchingRepository.pairMatchingRepository) {
+		for (PairMatching pairMatching : PairMatchingRepository.repo) {
 			if (isEqualPairMatching(pairMatching, split)) {
 				return true;
 			}
@@ -63,7 +63,7 @@ public class PairService {
 				pairMatching.setPairList(makePairList(frontCrewList));
 			}
 
-			PairMatchingRepository.pairMatchingRepository.add(pairMatching);
+			PairMatchingRepository.repo.add(pairMatching);
 		}
 	}
 
@@ -78,7 +78,7 @@ public class PairService {
 				pairMatching.setPairList(makePairList(frontCrewList));
 			}
 
-			PairMatchingRepository.pairMatchingRepository.add(pairMatching);
+			PairMatchingRepository.repo.add(pairMatching);
 		}
 	}
 

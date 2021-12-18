@@ -52,5 +52,7 @@ public class Controller {
 			pairService.makePairMatching(pairMatchingInput);
 			break;
 		}
+
+		view.pairMatchingResult();
 	}
 }

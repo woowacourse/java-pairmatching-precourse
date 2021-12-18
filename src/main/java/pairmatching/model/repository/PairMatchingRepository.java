@@ -6,5 +6,5 @@ import pairmatching.model.PairMatching;
 
 public class PairMatchingRepository {
 
-	public static final ArrayList<PairMatching> pairMatchingRepository = new ArrayList<>();
+	public static final ArrayList<PairMatching> repo = new ArrayList<>();
 }
