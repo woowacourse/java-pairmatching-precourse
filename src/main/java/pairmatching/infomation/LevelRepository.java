@@ -12,4 +12,8 @@ public class LevelRepository {
         levels.add(4);
         levels.add(5);
     }
+
+    public static ArrayList<Integer> getLevels() {
+        return levels;
+    }
 }

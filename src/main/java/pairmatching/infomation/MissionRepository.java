@@ -21,4 +21,8 @@ public class MissionRepository {
 
         missions.add(new Mission(5, ""));
     }
+
+    public static ArrayList<Mission> getMissions() {
+        return missions;
+    }
 }

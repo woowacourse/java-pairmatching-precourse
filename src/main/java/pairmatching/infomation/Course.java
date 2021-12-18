@@ -9,4 +9,8 @@ public class Course {
         courses.add("백엔드");
         courses.add("프론트엔드");
     }
+
+    public static ArrayList<String> getCourses() {
+        return courses;
+    }
 }
