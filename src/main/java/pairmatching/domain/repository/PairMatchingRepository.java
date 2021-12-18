@@ -1,6 +1,7 @@
 package pairmatching.domain.repository;
 
 import static pairmatching.utils.Constants.*;
+import static pairmatching.utils.ExceptionMessage.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -32,7 +33,7 @@ public class PairMatchingRepository {
 		return pairMatchingList.stream()
 			.filter(pairMatching -> pairMatching.isSame(course, level, mission))
 			.findFirst()
-			.orElseThrow(() -> new IllegalArgumentException(ERROR_MESSAGE + "올바른 페어 매칭 값이 아닙니다."));
+			.orElseThrow(() -> new IllegalArgumentException(EXCEPTION_INPUT_PAIR_MATCHING));
 	}
 
 	public static boolean isExistPairMatching(String course, String level, String mission) {
@@ -63,10 +64,10 @@ public class PairMatchingRepository {
 	}
 
 	public static List<Crew> getCrewList(String course) {
-		if (course.equals("백엔드")) {
+		if (course.equals(BACK_END)) {
 			return createCrewListForBackEnd(CrewRepository.getBackEndCrewList());
 		}
-		if (course.equals("프론트엔드")) {
+		if (course.equals(FRONT_END)) {
 			return createCrewListForFrontEnd(CrewRepository.getFrontEndCrewList());
 		}
 		throw new IllegalArgumentException(ERROR_MESSAGE + "올바르지 않은 과정 입력 값 입니다.");

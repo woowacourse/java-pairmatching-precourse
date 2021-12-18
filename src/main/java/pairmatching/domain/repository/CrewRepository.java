@@ -10,8 +10,10 @@ import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 
 public class CrewRepository {
-	static List<String> backEndCrewList = new ArrayList<>();
-	static List<String> frontEndCrewList = new ArrayList<>();
+	public static List<String> backEndCrewList = new ArrayList<>();
+	public static List<String> frontEndCrewList = new ArrayList<>();
+	public static final String backEndListFileURL = "/Users/jochungbeom/finalCote/java-pairmatching-precourse/src/main/resources/backend-crew.md";
+	public static final String FrontEndListFileURL = "/Users/jochungbeom/finalCote/java-pairmatching-precourse/src/main/resources/frontend-crew.md";
 
 	static {
 		try {
@@ -23,9 +25,7 @@ public class CrewRepository {
 	}
 
 	public static void insertCrewInBackEnd() throws IOException {
-		BufferedReader reader = new BufferedReader(
-			new FileReader("/Users/jochungbeom/finalCote/java-pairmatching-precourse/src/main/resources/backend-crew.md")
-		);
+		BufferedReader reader = new BufferedReader(new FileReader(backEndListFileURL));
 		String crew;
 		while ((crew = reader.readLine()) != null) {
 			backEndCrewList.add(crew);
@@ -34,9 +34,7 @@ public class CrewRepository {
 	}
 
 	public static void insertCrewInFrontEnd() throws IOException {
-		BufferedReader reader = new BufferedReader(
-			new FileReader("/Users/jochungbeom/finalCote/java-pairmatching-precourse/src/main/resources/frontend-crew.md")
-		);
+		BufferedReader reader = new BufferedReader(new FileReader(FrontEndListFileURL));
 		String crew;
 		while ((crew = reader.readLine()) != null) {
 			frontEndCrewList.add(crew);

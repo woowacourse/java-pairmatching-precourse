@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static pairmatching.utils.Constants.*;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +26,7 @@ public class PairMatching {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (MatchingCrew matchingCrew : crewList) {
 			stringBuilder.append(matchingCrew.toString());
-			stringBuilder.append("\n");
+			stringBuilder.append(BREAK_LINE);
 		}
 		return stringBuilder.toString();
 	}
