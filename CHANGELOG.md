@@ -25,4 +25,11 @@
    frontend와 backend crew의 명단을 읽어, crews에 분리하여 저장함.
    ```
 
-4. 
+4. ```
+   2021/12/18
+   feat : 주어진 mission에 대한 정보를 입력하고, missions로 저장
+   
+   mission종류를 일급 컬렉션으로 저장함
+   ```
+
+5. 

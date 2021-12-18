@@ -19,5 +19,6 @@ public class PairController {
 	public void initiate() {
 		frontendCrews.setFrontendCrews();
 		backendCrews.setBackendCrews();
+		missions.loadMission();
 	}
 }
