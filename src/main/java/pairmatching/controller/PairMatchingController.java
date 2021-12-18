@@ -17,6 +17,7 @@ public class PairMatchingController {
                 OutputView.functionInfo();
                 pairMatching();
             } else if (selectNum.equals("2")) {
+                OutputView.functionInfo();
                 pairSearch();
             } else if (selectNum.equals("3")) {
                 pairReset();
@@ -47,7 +48,7 @@ public class PairMatchingController {
         try{
             info = ProcessLevelMissionValidation.isValidation(input);
             PairMatching.createPairPerson(info[0], info[1], info[2]);
-            PairMatchingList.printPairMatching();
+            PairMatchingList.printPairMatching(info[0], info[1], info[2]);
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
             pairMatching();
@@ -55,11 +56,19 @@ public class PairMatchingController {
     }
 
     private void pairSearch(){
+        String input = InputView.inputCourseLevelMissionSelect();
+        try{
+            info = ProcessLevelMissionValidation.isValidation(input);
+            PairMatchingList.printPairMatching(info[0], info[1], info[2]);
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            pairSearch();
+        }
 
     }
 
     private void pairReset(){
-
+        PairMatchingList.removeList(info[0], info[1], info[2]);
     }
 
 }

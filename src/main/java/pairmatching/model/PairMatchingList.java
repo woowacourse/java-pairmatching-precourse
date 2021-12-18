@@ -29,7 +29,12 @@ public class PairMatchingList {
     public static void newPairMatching(String course, String level, String mission){
 
     }
-    public static void printPairMatching(){
-        OutputView.outputMatchingResult(pairMatchingList.get(0));
+    public static void printPairMatching(String course, String level, String mission){
+        for(PairMatching pairMatching : pairMatchingList){
+            if(pairMatching.getCourse() == course && pairMatching.getLevel() == level && pairMatching.getMission() == mission){
+                OutputView.outputMatchingResult(pairMatching);
+                break;
+            }
+        }
     }
 }
