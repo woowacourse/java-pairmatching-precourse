@@ -67,4 +67,11 @@ public class PairMatchingService {
 		String mission = requestCourseAndLevelAndMissionDto.getMission();
 		return new ResponsePairsDto(pairRepository.getPairs(level, course, mission));
 	}
+
+	public boolean hasPairs(RequestCourseAndLevelAndMissionDto requestCourseAndLevelAndMissionDto) {
+		Level level = requestCourseAndLevelAndMissionDto.getLevel();
+		Course course = requestCourseAndLevelAndMissionDto.getCourse();
+		String mission = requestCourseAndLevelAndMissionDto.getMission();
+		return pairRepository.hasPairs(level, course, mission);
+	}
 }

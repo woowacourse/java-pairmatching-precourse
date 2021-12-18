@@ -18,9 +18,14 @@ public class InputView {
 	private static final String INPUT_COURSE_LEVEL_MISSION_MESSAGE = "과정, 레벨, 미션을 선택하세요."
 		+ System.lineSeparator()
 		+ "ex) 백엔드, 레벨1, 자동차경주";
+	private static final String ALREADY_HAS_PAIRS_MESSAGE = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?"
+		+ System.lineSeparator()
+		+ "네 | 아니오";
 	private static final int COURSE_INDEX = 0;
 	private static final int LEVEL_INDEX = 1;
 	private static final int MISSION_INDEX = 2;
+	private static final String YES = "네";
+	private static final String NO = "아니오";
 
 	public static RequestExecuteFeatureDto inputExecuteFeature() {
 		System.out.println(EXECUTE_FEATURE_MESSAGE);
@@ -34,5 +39,11 @@ public class InputView {
 		String[] inputs = readLine().split(COURSE_LEVEL_MISSION_SEPARATOR);
 		return new RequestCourseAndLevelAndMissionDto(
 			Course.getByValue(inputs[COURSE_INDEX]), Level.getByValue(inputs[LEVEL_INDEX]), inputs[MISSION_INDEX]);
+	}
+
+	public static boolean inputRematching() {
+		System.out.println(ALREADY_HAS_PAIRS_MESSAGE);
+		String answer = readLine();
+		return answer.equals(NO);
 	}
 }

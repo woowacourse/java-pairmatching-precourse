@@ -36,7 +36,19 @@ public class PairMatching {
 
 	private void pairMatching() {
 		outputCourseAndLevel();
-		RequestCourseAndLevelAndMissionDto requestCourseAndLevelAndMissionDto = inputCourseAndLevelAndMission();
+		while (true) {
+			RequestCourseAndLevelAndMissionDto requestCourseAndLevelAndMissionDto = inputCourseAndLevelAndMission();
+			if (pairMatchingService.hasPairs(requestCourseAndLevelAndMissionDto)) {
+				if (inputRematching()) {
+					continue;
+				}
+			}
+			matching(requestCourseAndLevelAndMissionDto);
+			return;
+		}
+	}
+
+	private void matching(RequestCourseAndLevelAndMissionDto requestCourseAndLevelAndMissionDto) {
 		pairMatchingService.matching(requestCourseAndLevelAndMissionDto);
 		ResponsePairsDto responsePairsDto = pairMatchingService.getPairs(requestCourseAndLevelAndMissionDto);
 		outputPairsResult(responsePairsDto);
