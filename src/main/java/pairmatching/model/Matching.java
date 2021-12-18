@@ -2,7 +2,7 @@ package pairmatching.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.utils.FileUtils;
@@ -41,5 +41,18 @@ public class Matching {
 			pairStringBuilder.append(pair.toString()).append("\n");
 		}
 		return pairStringBuilder.toString();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Matching matching = (Matching)o;
+		return course == matching.course && level == matching.level;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(course, level);
 	}
 }
