@@ -36,17 +36,22 @@ public class PairProgrammings {
     }
 
     public Map<String, Set<String>> getPairInfo(String targetCourse, String targetLevel, String targetMission) {
-        PairProgramming pairProgramming1 = pairProgrammings.stream()
-            .filter(pairProgramming -> Objects.equals(pairProgramming.getCourse(), targetCourse))
-            .filter(pairProgramming -> Objects.equals(pairProgramming.getLevel(), targetLevel))
-            .findFirst().get();
+        Map<String, Set<String>> pairInfos;
+        try {
+            pairInfos = pairProgrammings.stream()
+                .filter(pairProgramming -> Objects.equals(pairProgramming.getCourse(), targetCourse))
+                .filter(pairProgramming -> Objects.equals(pairProgramming.getLevel(), targetLevel))
+                .map(pairProgramming -> pairProgramming.crewPairInfo())
+                .findFirst()
+                .get()
+                .get(targetMission);
+        } catch (Exception exception) {
+            throw new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.");
+        }
 
-        return pairProgrammings.stream()
-            .filter(pairProgramming -> Objects.equals(pairProgramming.getCourse(), targetCourse))
-            .filter(pairProgramming -> Objects.equals(pairProgramming.getLevel(), targetLevel))
-            .map(pairProgramming -> pairProgramming.crewPairInfo())
-            .findFirst()
-            .get()
-            .get(targetMission);
+        if (Objects.isNull(pairInfos) || pairInfos.keySet().size() == 0) {
+            throw new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.");
+        }
+        return pairInfos;
     }
 }
