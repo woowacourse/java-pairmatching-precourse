@@ -19,4 +19,8 @@ public class InputView {
         }
         return menu;
     }
+
+    public String inputMission(){
+        return Console.readLine();
+    }
 }

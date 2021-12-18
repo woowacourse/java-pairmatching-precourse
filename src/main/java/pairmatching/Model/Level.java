@@ -13,5 +13,9 @@ public enum Level {
         this.name = name;
     }
 
+    public String getName(){
+        return this.name;
+    }
+
     // 추가 기능 구현
 }

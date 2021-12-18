@@ -1,15 +1,16 @@
 package pairmatching;
 
+import pairmatching.Service.PairMatching;
 import pairmatching.View.InputView;
 import pairmatching.View.OutputView;
 
-public class Menu{
+public class Menu {
     public static final String PAIR_MATCHING_SEL = "1";
     public static final String PAIR_SEARCHING_SEL = "2";
     public static final String PAIR_INITIALIZING_SEL = "3";
     public static final String QUIT_MENU_SEL = "Q";
     private InputView inputView;
-    private OutputView outputView=new OutputView();
+    private OutputView outputView = new OutputView();
 
     public Menu(InputView inputView) {
         this.inputView = inputView;
@@ -28,7 +29,8 @@ public class Menu{
         String selMenu = inputMenu();
 
         if (selMenu.equals(PAIR_MATCHING_SEL)) {
-            System.out.println("1");
+            PairMatching pairMatching = new PairMatching();
+            pairMatching.run();
         }
         if (selMenu.equals(PAIR_SEARCHING_SEL)) {
             System.out.println("2");
