@@ -34,12 +34,17 @@ public class PairMatchingController {
     }
 
     private String[] inputInformationForMatch() {
-        String[] information;
+        String[] information = null;
         boolean rematch = false;
         do{
-            information = PairMatchingInput.choiceMatchingInformation();
-            if(getPairResultIfExist(information)!= null){
-                rematch = PairMatchingInput.inputForRematch();
+            try{
+                information = PairMatchingInput.choiceMatchingInformation();
+                if(getPairResultIfExist(information)!= null){
+                    rematch = PairMatchingInput.inputForRematch();
+                }
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+                rematch = true;
             }
         } while (rematch);
 
