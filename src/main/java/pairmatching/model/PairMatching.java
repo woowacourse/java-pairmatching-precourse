@@ -59,10 +59,10 @@ public class PairMatching {
 			crew = frontendCrew;
 		}
 
-		crew = checkReduplication(crew, str[0], str[1]);
+		//crew = checkReduplication(crew, str[0], str[1]);
 
-		missionInfo = new MissionInfo(str[0], str[1], str[2]);
-		missionInfo.missionList = crew;
+		missionInfo = new MissionInfo(str[0], str[1], str[2], crew);
+		//missionInfo.missionList = crew;
 		missionInfoSet.add(missionInfo);
 		MakingShuffleList.printPairList(missionInfo.missionList);
 	}
@@ -92,7 +92,7 @@ public class PairMatching {
 		return true;
 	}
 
-	public List<String> checkReduplication(List<String> crew, String course, String level) {
+	/*public List<String> checkReduplication(List<String> crew, String course, String level) {
 		for (int i = 0; i < 3; i++) {
 			int j;
 			for (j = 0; j < missionInfoSet.size(); j++) {
@@ -106,6 +106,6 @@ public class PairMatching {
 		}
 
 		throw new IllegalArgumentException("[ERROR] 적절한 페어 만들기 실패");
-	}
+	}*/
 
 }
