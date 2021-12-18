@@ -1,5 +1,7 @@
 package pairmatching.pair;
 
+import java.util.List;
+
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.Answer;
 import pairmatching.Menu;
@@ -8,6 +10,8 @@ import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class PairMatchingController {
+	private static final int ZERO = 0;
+
 	private PairMatching pairMatching;
 	private Menu menu;
 
@@ -53,13 +57,6 @@ public class PairMatchingController {
 		}
 	}
 
-	private PairTarget requestPairTarget() {
-		PairTarget pairTarget = new PairTarget();
-		InputView.printSelectPairTarget();
-		requestPairTarget(pairTarget);
-		return pairTarget;
-	}
-
 	private void runRandomPairMatching() {
 		PairTarget pairTarget = new PairTarget();
 		InputView.printSelectPairTarget();
@@ -95,6 +92,13 @@ public class PairMatchingController {
 		PairTarget pairTarget = new PairTarget();
 		InputView.printSelectPairTarget();
 		requestPairTarget(pairTarget);
+		try {
+			List<Pair> pairs = pairMatching.findPairsByPairTarget(pairTarget);
+			OutputView.printMatchingResult(pairs);
+		} catch (IllegalArgumentException illegalArgumentException) {
+			ErrorView.print(illegalArgumentException.getMessage());
+			runFindPair();
+		}
 	}
 
 	private void runResetPair() {

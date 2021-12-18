@@ -10,6 +10,7 @@ import pairmatching.crew.CrewRepository;
 
 public class PairMatching {
 	private static final String ERROR_NOT_MATCHING = "매칭 할 수 없습니다.";
+	private static final String ERROR_NOT_FOUND_MATCHING = "매칭 이력이 없습니다.";
 	private static final int MAXIMUM_TIME = 3;
 	private static final int ZERO = 0;
 	private static final int LAST_ONE = 1;
@@ -54,7 +55,13 @@ public class PairMatching {
 	}
 
 	public List<Pair> findPairsByPairTarget(PairTarget pairTarget) {
-		return pairs.stream().filter(pair -> pair.isSamePairTarget(pairTarget)).collect(Collectors.toList());
+		List<Pair> pairs = this.pairs.stream()
+			.filter(pair -> pair.isSamePairTarget(pairTarget))
+			.collect(Collectors.toList());
+		if (pairs.size() == ZERO) {
+			throw new IllegalArgumentException(ERROR_NOT_FOUND_MATCHING);
+		}
+		return pairs;
 	}
 
 	public void repeatMatching(PairTarget pairTarget) {
