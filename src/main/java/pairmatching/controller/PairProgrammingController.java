@@ -2,11 +2,14 @@ package pairmatching.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import pairmatching.domain.Course;
+import pairmatching.domain.Courses;
 import pairmatching.view.InputView;
 
 public class PairProgrammingController {
     private List<String> backEndCrew;
     private List<String> frontEndCrew;
+    private Courses courses = new Courses();
 
     public PairProgrammingController() {
         backEndCrew = Arrays
@@ -20,7 +23,10 @@ public class PairProgrammingController {
     public void run() {
         String mainFunction = InputView.mainFunction();
 
-        String detailedFunction = InputView.detailedFunction();
-        detailedFunction.split(", ");
+        if (mainFunction.equals("1")) {
+
+            String detailedFunction = InputView.detailedFunction();
+            detailedFunction.split(", ");
+        }
     }
 }
