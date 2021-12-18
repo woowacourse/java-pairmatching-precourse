@@ -67,7 +67,7 @@ public class TechCourse {
 		return null;
 	}
 
-	public List<CrewList> getCrewTable() {
-		return crewTable;
+	public void resetPair() {
+		crewTable = new ArrayList<>();
 	}
 }
