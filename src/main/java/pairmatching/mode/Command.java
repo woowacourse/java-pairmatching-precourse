@@ -4,7 +4,7 @@ import java.util.Arrays;
 import pairmatching.exception.ErrorMessage;
 
 public enum Command {
-    MODE_1("1", new PairMatchingMatching()),
+    MODE_1("1", new PairMatching()),
     MODE_2("2", new PairMatchingReference()),
     MODE_3("3", new PairMatchingInitializer());
 
