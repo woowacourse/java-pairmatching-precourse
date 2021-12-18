@@ -23,7 +23,6 @@ public class FileScanner {
         return crewNames;
     }
 
-
     private File courseToFile(Course course) {
         if (course == Course.BACKEND) {
             return new File(Constant.BACK_COURSE_SRC);

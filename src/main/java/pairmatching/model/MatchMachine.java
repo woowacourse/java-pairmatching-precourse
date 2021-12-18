@@ -14,6 +14,4 @@ public class MatchMachine {
     public History createPair(Options options) {
         return new History(options, generator.createPairs(options, new FileScanner()));
     }
-
-
 }

@@ -10,6 +10,7 @@ public class Constant {
     public static final int ODD_NUMBER_LIMIT = 3;
     public static final int EVEN_NUMBER_LIMIT = 2;
     public static final int MATCH_INCREASE_VALUE = 1;
+    public static final int INCREASE_VALUE = 2;
     public static final int EMPTY = 0;
     public static final int OPTION_ARRAY_SIZE = 3;
     public static final int OPTION_COURSE_ARRAY_INDEX = 0;

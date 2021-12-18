@@ -25,7 +25,7 @@ public class MatchGenerator {
             pair.addPair(new Crew(options.getCourse(), names.get(index)));
             pair.addPair(new Crew(options.getCourse(), names.get(index + Constant.MATCH_INCREASE_VALUE)));
             pairs.add(pair);
-            index = index + 2;
+            index = index + Constant.INCREASE_VALUE;
         }
         Pair pair = createPair();
         pair.addPair(new Crew(options.getCourse(), names.get(index)));
@@ -42,7 +42,7 @@ public class MatchGenerator {
             pair.addPair(new Crew(options.getCourse(), names.get(index)));
             pair.addPair(new Crew(options.getCourse(), names.get(index + Constant.MATCH_INCREASE_VALUE)));
             pairs.add(pair);
-            index = index + 2;
+            index = index + Constant.INCREASE_VALUE;
         }
         return pairs;
     }
