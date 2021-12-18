@@ -5,10 +5,12 @@ import pairmatching.utils.CommonConstant;
 import pairmatching.utils.Validator;
 
 public class PairMatchingInput{
+    private static final String QUIT = "Q";
 
     public static int inputNumberToExecute() {
         PairMatchingOutput.functionInstruction();
         String functionNumber = Console.readLine();
+        if (functionNumber.equals(QUIT)) return -1;
         Validator.validateNumber(functionNumber);
         return Integer.parseInt(functionNumber);
     }
