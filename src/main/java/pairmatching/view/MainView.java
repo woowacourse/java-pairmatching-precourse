@@ -28,6 +28,18 @@ public class MainView {
     private static final String REMATCH_TRUE = "네";
     private static final String REMATCH_FALSE = "아니오";
     private static final String ERR_INALID_INPUT_REMATCH = "네 아니오로 입력해쥇요.";
+    private static final String MISSION_BOARD = "#############################################\n"
+        + "과정: 백엔드 | 프론트엔드\n"
+        + "미션:\n"
+        + "  - 레벨1: 자동차경주 | 로또 | 숫자야구게임\n"
+        + "  - 레벨2: 장바구니 | 결제 | 지하철노선도\n"
+        + "  - 레벨3: \n"
+        + "  - 레벨4: 성능개선 | 배포\n"
+        + "  - 레벨5: \n"
+        + "############################################\n"
+        + "과정, 레벨, 미션을 선택하세요.\n"
+        + "ex) 백엔드, 레벨1, 자동차경주\n"
+        + "프론트엔드, 레벨1, 자동차경주";
     private final String menuBoard;
     private final PairMatchingController controller;
     private boolean exited = false;
@@ -78,6 +90,7 @@ public class MainView {
     public void showResult() {
         action(
             () -> {
+                ConsolePrinter.print(MISSION_BOARD);
                 String input = InputView.getLineWithPrompt(MISSION_SELECT_PROMPT);
                 String[] inputs = input.split(INPUT_DELIMITER);
                 showResult(inputs[MISSION_INDEX], inputs[POSITION_INDEX], inputs[LEVEL_INDEX]);
@@ -94,6 +107,7 @@ public class MainView {
     private void matchPair() {
         action(
             () -> {
+                ConsolePrinter.print(MISSION_BOARD);
                 String input = InputView.getLineWithPrompt(MISSION_SELECT_PROMPT);
                 String[] inputs = input.split(INPUT_DELIMITER);
                 String mission = inputs[MISSION_INDEX];
