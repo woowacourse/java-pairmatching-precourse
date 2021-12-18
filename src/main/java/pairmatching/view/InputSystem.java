@@ -2,10 +2,9 @@ package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.Configuration.DependencyInjection;
-import pairmatching.System.SystemErrorMessage;
-import pairmatching.System.SystemInputMessage;
+import pairmatching.message.SystemErrorMessage;
+import pairmatching.message.SystemInputMessage;
 import pairmatching.validation.Validation;
-import pairmatching.validation.ValidationImplementation;
 
 public class InputSystem {
 

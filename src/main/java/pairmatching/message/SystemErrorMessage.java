@@ -1,4 +1,4 @@
-package pairmatching.System;
+package pairmatching.message;
 
 public enum SystemErrorMessage {
     NOT_MATCHING_HISTORY("[ERROR] 매칭 이력이 없습니다."),

@@ -1,4 +1,4 @@
-package pairmatching.System;
+package pairmatching.message;
 
 public enum SystemInputMessage {
     SELECT_FUNCTION_INPUT("기능을 선택하세요.\n" +

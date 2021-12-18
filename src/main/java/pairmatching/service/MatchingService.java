@@ -3,7 +3,7 @@ package pairmatching.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import pairmatching.System.SystemErrorMessage;
+import pairmatching.message.SystemErrorMessage;
 import pairmatching.domain.Crew;
 import pairmatching.domain.Level;
 import pairmatching.dto.CourseLevelMissionDto;

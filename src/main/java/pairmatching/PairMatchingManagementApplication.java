@@ -3,8 +3,8 @@ package pairmatching;
 import java.util.*;
 
 import pairmatching.Configuration.DependencyInjection;
-import pairmatching.System.SystemErrorMessage;
-import pairmatching.System.SystemInputMessage;
+import pairmatching.message.SystemErrorMessage;
+import pairmatching.message.SystemInputMessage;
 import pairmatching.domain.Crew;
 import pairmatching.dto.CourseLevelMissionDto;
 import pairmatching.service.MatchingService;
