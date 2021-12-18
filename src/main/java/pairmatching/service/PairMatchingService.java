@@ -5,6 +5,8 @@ import pairmatching.domain.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static pairmatching.domain.Course.*;
+import static pairmatching.domain.Level.getLevelFromInput;
 import static pairmatching.domain.Mission.getMissionFromNameAndLevel;
 import static pairmatching.utils.VerificationUtil.validateExistPairInput;
 import static pairmatching.view.OutputView.*;
@@ -65,8 +67,8 @@ public class PairMatchingService {
 
                 String[] splitStrings = input.split(", ");
 
-                Course course = Course.getCourseFromInput(splitStrings[0]);
-                Level level = Level.getLevelFromInput(splitStrings[1]);
+                Course course = getCourseFromInput(splitStrings[0]);
+                Level level = getLevelFromInput(splitStrings[1]);
                 Mission mission = getMissionFromNameAndLevel(splitStrings[2], level);
 
                 List<Crew> crewList = crewService.createCrewList(course);
@@ -89,8 +91,8 @@ public class PairMatchingService {
 
                 String[] splitStrings = input.split(", ");
 
-                Course course = Course.getCourseFromInput(splitStrings[0]);
-                Level level = Level.getLevelFromInput(splitStrings[1]);
+                Course course = getCourseFromInput(splitStrings[0]);
+                Level level = getLevelFromInput(splitStrings[1]);
                 Mission mission = getMissionFromNameAndLevel(splitStrings[2], level);
 
 
