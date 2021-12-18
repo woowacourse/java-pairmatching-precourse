@@ -40,4 +40,11 @@ public enum Level {
                 .getMissions()
                 .contains(mission);
     }
+
+    public static Level findNameByValue(String value) {
+        return Arrays.stream(Level.values())
+                .filter(level -> level.getName().equals(value))
+                .findFirst()
+                .orElse(null);
+    }
 }
