@@ -4,6 +4,7 @@ import pairmatching.model.PairMatching;
 import pairmatching.model.receiver.PairMatchingReceiver;
 import pairmatching.model.receiver.MainMenuReceiver;
 import pairmatching.model.receiver.RePairMatchingAskReceiver;
+import pairmatching.model.repository.PairMatchingRepository;
 import pairmatching.model.service.PairService;
 import pairmatching.view.View;
 
@@ -26,6 +27,16 @@ public class Controller {
 
 		if (mainMenuInput.equals("1")) {
 			pairMatching();
+		}
+
+		if (mainMenuInput.equals("2")) {
+
+		}
+
+		if (mainMenuInput.equals("3")) {
+			view.renewal();
+
+			PairMatchingRepository.repo.clear();
 		}
 
 		if (mainMenuInput.equals("Q")) {

@@ -26,6 +26,7 @@ public class View {
 	public static final String RE_PAIR_MATCHING_MESSAGE = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
 		+ "네 | 아니오";
 	public static final String PAIR_MATCHING_RESULT_MESSAGE = "페어 매칭 결과입니다.";
+	public static final String RENEWAL_MESSAGE = "초기화 되었습니다.";
 
 	public void mainMenu() {
 		System.out.println(MAIN_MENU_MESSAGE);
@@ -73,5 +74,9 @@ public class View {
 		}
 
 		System.out.println(stringBuilder.toString());
+	}
+
+	public void renewal() {
+		System.out.println(RENEWAL_MESSAGE);
 	}
 }
