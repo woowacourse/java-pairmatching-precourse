@@ -21,4 +21,9 @@ public class Crew {
 	public void initPairCrewLog() {
 		pairCrewLog = new ArrayList<Crew>();
 	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }
