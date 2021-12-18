@@ -4,10 +4,7 @@ import pairmatching.domain.Crew;
 import pairmatching.domain.Level;
 import pairmatching.utils.FileUtility;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ConstantDataStore {
@@ -32,11 +29,11 @@ public class ConstantDataStore {
     }
 
     private static class LazyHolder {
-
         public static final ConstantDataStore INSTANCE = new ConstantDataStore();
     }
 
     private void injectMissionByLevelData() {
+        missionByLevel=new HashMap<>();
         List<String> level1 = Arrays.asList("자동차경주", "로또", "숫자야구게임");
         missionByLevel.put(Level.LEVEL1, level1);
         List<String> level2 = Arrays.asList("장바구니", "결제");
