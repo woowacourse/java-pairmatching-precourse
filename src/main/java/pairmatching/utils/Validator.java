@@ -3,7 +3,7 @@ package pairmatching.utils;
 import java.util.Arrays;
 import java.util.List;
 
-import static pairmatching.utils.ExceptionMessage.ERROR_INVALID_SELECT;
+import static pairmatching.utils.ExceptionMessage.*;
 
 public class Validator {
     public static String checkAvailableSelect(String input) {
@@ -13,4 +13,29 @@ public class Validator {
         }
         return input;
     }
+
+    public static void checkEachInfo(String input) {
+        checkEmptyValue(input);
+        checkFrontBlank(input);
+    }
+
+    private static void checkEmptyValue(String input) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException(ERROR_EMPTY_INPUT);
+        }
+    }
+
+    private static void checkFrontBlank(String input) {
+        if (input.charAt(0) == ' ') {
+            throw new IllegalArgumentException(ERROR_FRONT_BLANK);
+        }
+    }
+
+    public static void checkInfoCount(String[] input) {
+        if (input.length != 3) {
+            throw new IllegalArgumentException(ERROR_LESS_INFO);
+        }
+    }
+
+
 }

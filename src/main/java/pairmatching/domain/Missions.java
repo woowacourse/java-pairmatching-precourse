@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Missions {
     static Map<Level, List<String>> missionMap;
@@ -33,4 +34,10 @@ public class Missions {
         return Collections.unmodifiableList(missionMap.get(level));
     }
 
+    public boolean isExist(String level, String mission) {
+        if (missionMap.get(Level.getEnumLevel(level)).contains(mission)) {
+            return true;
+        }
+        return false;
+    }
 }
