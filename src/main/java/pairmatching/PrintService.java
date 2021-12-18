@@ -27,9 +27,9 @@ public class PrintService {
         for (int i = 0; i < 5; i++) {
             result += "  - " + levelList.get(i) + ": ";
             for (int j = 0; j < missionList[i].size(); j++) {
-                result += missionList[i].get(j) + " |";
+                result += missionList[i].get(j) + " | ";
             }
-            result.substring(0, result.length() - 1);
+            result.substring(0, result.length() - 2);
             result += "\n";
         }
         result += DIVIDE_LINE;
