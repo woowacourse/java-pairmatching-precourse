@@ -1,8 +1,8 @@
-package pairmatching;
+package userInterafce;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class userInterface {
+public class Command {
 
 	public void runMainInterface() {
 		printMain();
