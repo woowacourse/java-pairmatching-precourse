@@ -17,10 +17,9 @@ public class PairMatchingManagementApplication {
         constantDataStore = ConstantDataStore.getInstance();
     }
 
-
     public void start() {
-        char inputFunctionNumber = inputSystem.inputFunctionList();
-        behaveFunction(inputFunctionNumber);
+//        char inputFunctionNumber = inputSystem.inputFunctionList();
+//        behaveFunction(inputFunctionNumber);
         String courseAndLevelAndMission = inputSystem.inputPropertyInput();
     }
 

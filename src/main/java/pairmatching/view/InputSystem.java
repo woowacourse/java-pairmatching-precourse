@@ -24,7 +24,7 @@ public class InputSystem {
         String functionNumber = "";
         do {
             try {
-                outputSystem.printConsoleMessage(SystemInputMessage.SELECT_FUNCTION.getMessage());
+                outputSystem.printConsoleMessage(SystemInputMessage.SELECT_FUNCTION_INPUT.getMessage());
                 functionNumber = Console.readLine();
                 isValidInput = validation.isValidFunctionListInput(functionNumber);
             } catch (IllegalArgumentException e) {
@@ -35,7 +35,28 @@ public class InputSystem {
         return functionNumber.charAt(0);
     }
 
+    public String inputPropertyInput() {
+        boolean isValidInput = false;
+        String courseAndLevelAndMission = "";
+        do {
+            try {
+                outputSystem.printConsoleMessage(combinateCustomPropertyMessage());
+                courseAndLevelAndMission = Console.readLine();
+                isValidInput = validation.isValidPropertySelectionInput(courseAndLevelAndMission);
+            } catch (IllegalArgumentException e) {
+                outputSystem.printConsoleMessage(SystemErrorMessage.NOT_VALID_INPUT.getMessage());
+                isValidInput = false;
+            }
+        } while (!isValidInput);
+        return courseAndLevelAndMission;
+    }
+
     private static class LazyHolder {
         public static final InputSystem INSTANCE = new InputSystem();
+    }
+
+    private String combinateCustomPropertyMessage() {
+        return "#############################################" + SystemInputMessage.SELECT_PROPERTY_INFORMATION.getMessage()
+                + "#############################################" + SystemInputMessage.SELECT_PROPERTY_INPUT.getMessage();
     }
 }
