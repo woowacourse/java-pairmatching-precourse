@@ -21,6 +21,10 @@ public class Constant {
     public static final String COLON = ": ";
     public static final String AND = " : ";
     public static final String OR = " | ";
+    public static final String TAP = "  - ";
+
+    public static final String COURSE = "과정: ";
+    public static final String MISSION = "미션:";
 
     public static final String ASK_PAIR = "과정, 레벨, 미션을 선택하세요.";
     public static final String EX = "ex) 백엔드, 레벨1, 자동차경주";

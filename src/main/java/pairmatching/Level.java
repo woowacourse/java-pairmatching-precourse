@@ -17,6 +17,11 @@ public enum Level {
         this.missions = missions;
     }
 
-    // 추가 기능 구현
+    public String getName() {
+        return name;
+    }
 
+    public String getMissions() {
+        return missions.getMission();
+    }
 }

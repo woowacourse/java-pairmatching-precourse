@@ -1,5 +1,7 @@
 package pairmatching;
 
+import pairmatching.view.Constant;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,4 +19,8 @@ public enum Mission {
         this.missions = missions;
     }
 
+    public String getMission() {
+        String s = String.join(Constant.OR, missions);
+        return s;
+    }
 }
