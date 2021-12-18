@@ -110,7 +110,6 @@ public class PairMatchingController {
 			OutputView.printMatchingResult(pairs);
 		} catch (IllegalArgumentException illegalArgumentException) {
 			ErrorView.print(illegalArgumentException.getMessage());
-			runFindPair();
 		}
 	}
 
