@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 public class MatchingInfo {
     private static final String SEPARATOR = "\n";
     private List<Pair> matchingPairs;
-    private Course course;
-    private Level level;
-    private String mission;
+    private final Course course;
+    private final Level level;
+    private final String mission;
 
     public MatchingInfo(String course, String level, String mission) {
         this.course = Course.findNameByValue(course);
