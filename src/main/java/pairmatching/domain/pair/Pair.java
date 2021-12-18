@@ -3,19 +3,19 @@ package pairmatching.domain.pair;
 import pairmatching.domain.course.Course;
 import pairmatching.domain.crew.Crew;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pair {
-    private final Set<Crew> crewSet;
+    private final List<Crew> crewSet;
 
     public Pair(String crew1, String crew2, Course course) {
-        crewSet = new HashSet<>();
+        crewSet = new ArrayList<>();
         makeSet(Crew.of(crew1, course), Crew.of(crew2, course));
     }
 
     public Pair(String crew1, String crew2, String crew3, Course course) {
-        crewSet = new HashSet<>();
+        crewSet = new ArrayList<>();
         makeSet(Crew.of(crew1, course), Crew.of(crew2, course), Crew.of(crew3, course));
     }
     public static Pair of(String crew1, String crew2, Course course) {
@@ -43,5 +43,15 @@ public class Pair {
 
     public boolean hasCrewNames(String name1, String name2) {
         return hasCrewName(name1) && hasCrewName(name2);
+    }
+
+    @Override
+    public boolean equals(Object targetObj) {
+        Pair target = (Pair) targetObj;
+        return target.hasCrew(crewSet.get(0)) && target.hasCrew(crewSet.get(1));
+    }
+
+    private boolean hasCrew(Crew targetCrew) {
+        return crewSet.contains(targetCrew);
     }
 }
