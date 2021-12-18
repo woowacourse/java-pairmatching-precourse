@@ -8,4 +8,12 @@ public class Mission {
 		this.level = level;
 		this.name = name;
 	}
+
+	public Boolean isLevel(Level level) {
+		return this.level == level;
+	}
+
+	public String getName() {
+		return name;
+	}
 }
