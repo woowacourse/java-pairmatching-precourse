@@ -36,6 +36,7 @@ public class OutputView {
 
 	public static void outputInitPair() {
 		System.out.println(INIT_PAIR_MESSAGE);
+		System.out.println();
 	}
 
 	public static void outputExceptionMessage(Exception e) {
