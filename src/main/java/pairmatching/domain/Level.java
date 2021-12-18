@@ -25,6 +25,6 @@ public enum Level {
         return Arrays.stream(Level.values())
                 .filter(value -> value.getName().equals(name))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.INVALID_INFORMATION_DATA));
+                .orElse(null);
     }
 }

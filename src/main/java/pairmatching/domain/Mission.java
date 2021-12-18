@@ -32,7 +32,7 @@ public enum Mission {
                 .filter(value -> value.getLevel() == level
                         && Arrays.asList(value.getMissions()).contains(mission))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.INVALID_INFORMATION_DATA));
+                .orElse(null);
 
 
     }
