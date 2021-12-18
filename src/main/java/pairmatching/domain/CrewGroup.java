@@ -28,13 +28,13 @@ public class CrewGroup {
 
 	private void bringFrontEndCrews() {
 		for (String name : InputView.getCrew(frontEndCrewDirPath)) {
-			crews.add(new Crew(Course.FRONTEND, name));
+			crews.add(new Crew("FRONTEND", name));
 		}
 	}
 
 	private void bringBackEndCrews() {
 		for (String name : InputView.getCrew(backEndCrewDirPath)) {
-			crews.add(new Crew(Course.BACKEND, name));
+			crews.add(new Crew("BACKEND", name));
 		}
 	}
 
