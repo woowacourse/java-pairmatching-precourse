@@ -1,11 +1,13 @@
 package pairmatching.view;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import pairmatching.model.Course;
 import pairmatching.model.Crew;
 import pairmatching.model.Level;
 import pairmatching.model.Mission;
+import pairmatching.model.MissionRepository;
 import pairmatching.model.Pair;
 
 public class OutputView {
@@ -22,11 +24,11 @@ public class OutputView {
 		printOptionMenu("Q", "종료");
 	}
 
-	public static void printMissionInformation(List<Course> courses, List<Level> levels, List<Mission> missions) {
+	public static void printMissionInformation() {
 		printMessage("#############################################");
-		printMessage("과정: " + courseListWithDelimiter(courses));
+		printMessage("과정: " + courseListWithDelimiter(Arrays.asList(Course.values())));
 		printMessage("미션: ");
-		printMissions(levels, missions);
+		printMissionList(Arrays.asList(Level.values()), MissionRepository.findAll());
 		printMessage("#############################################");
 		printMessage("과정, 레벨, 미션을 선택하세요.");
 		printMessage("ex) 백엔드, 레벨1, 자동차경주");
@@ -63,7 +65,7 @@ public class OutputView {
 		return courses.stream().map(Course::getName).collect(Collectors.joining(NAME_DELIMITER));
 	}
 
-	private static void printMissions(List<Level> levels, List<Mission> missions) {
+	private static void printMissionList(List<Level> levels, List<Mission> missions) {
 		for (Level level : levels) {
 			String message =
 				MISSION_PREFIX + level.getName() + MISSION_DELIMITER + missionListWithDelimiter(missions, level);

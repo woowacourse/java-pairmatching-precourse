@@ -1,13 +1,8 @@
 package pairmatching.controller;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 import pairmatching.application.PairMatchingService;
-import pairmatching.model.Course;
-import pairmatching.model.Level;
-import pairmatching.model.Mission;
-import pairmatching.model.MissionRepository;
 import pairmatching.model.Pair;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
@@ -22,31 +17,27 @@ public class PairMatchingController {
 			OutputView.printMain();
 			String option = retryInput(() -> InputView.inputOption("1", "2", "3", "Q"));
 
-			if (option.equals("1")) {
-				pairMatching();
-			} else if (option.equals("2")) {
-				printMatchedResult();
-			} else if (option.equals("3")) {
-				initializeMatchedPair();
-			} else if (option.equals("Q")) {
+			if (option.equals("Q")) {
 				break;
 			}
+
+			handleMainPage(option);
+		}
+	}
+
+	private void handleMainPage(String option) {
+		if (option.equals("1")) {
+			pairMatching();
+		} else if (option.equals("2")) {
+			printMatchedResult();
+		} else if (option.equals("3")) {
+			initializeMatchedPair();
 		}
 	}
 
 	private void pairMatching() {
-		printCourseLevelMission();
+		OutputView.printMissionInformation();
 		handlePairMatching();
-	}
-
-	private void initializeMatchedPair() {
-		pairMatchingService.initializeMatchedPair();
-		OutputView.printInitializeMessage();
-	}
-
-	private void printCourseLevelMission() {
-		List<Mission> missions = MissionRepository.findAll();
-		OutputView.printMissionInformation(Arrays.asList(Course.values()), Arrays.asList(Level.values()), missions);
 	}
 
 	private void handlePairMatching() {
@@ -58,7 +49,7 @@ public class PairMatchingController {
 			}
 			OutputView.printMatchingResult(
 				pairMatchingService.findByCourseAndMission(parseToCourse(information), parseToMission(information)));
-		} catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException | IllegalStateException e) {
 			OutputView.printErrorMessage(e.getMessage());
 			handlePairMatching();
 		}
@@ -77,7 +68,7 @@ public class PairMatchingController {
 	}
 
 	private void printMatchedResult() {
-		printCourseLevelMission();
+		OutputView.printMissionInformation();
 		handlePrintMatchedResult();
 	}
 
