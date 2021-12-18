@@ -1,15 +1,12 @@
 package pairmatching.view;
 
-import static java.util.stream.Collectors.*;
-
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
-import pairmatching.domain.Level;
+import pairmatching.domain.MatchCommand;
 import pairmatching.domain.PairMission;
 import pairmatching.domain.command.MainCommand;
 
@@ -29,42 +26,25 @@ public class InputView {
         return mainCommand;
     }
 
-    public static PairMission pairMission() {
-        StringBuilder stringBuilder = new StringBuilder("#############################################\n");
-        stringBuilder.append("과정: ")
-            .append(getCourseMessage()).append("\n")
-            .append("미션: ").append("\n")
-            .append(getLevelByMission()).append("\n")
-            .append("#############################################").append("\n")
-            .append("과정, 레벨, 미션을 선택하세요.").append("\n")
-            .append("ex) 백엔드, 레벨1, 자동차경주");
+    public static PairMission inputPairMission() {
+        System.out.println("과정, 레벨, 미션을 선택하세요.");
+        System.out.println("ex) 백엔드, 레벨1, 자동차경주");
 
-        System.out.println(stringBuilder);
         PairMission pairMission = new PairMission(Console.readLine());
         System.out.println();
 
         return pairMission;
     }
 
-    private static String getCourseMessage() {
-        return Arrays.stream(Course.values())
-            .map(Course::getName)
-            .collect(joining(" | "));
-    }
-
-    private static String getLevelByMission() {
-        return Arrays.stream(Level.values())
-            .map(level -> {
-                StringBuilder stringBuilder = new StringBuilder();
-                return stringBuilder.append("  - ")
-                    .append(level.getName())
-                    .append(": ")
-                    .append(String.join(" | ", level.getMissions()))
-                    .toString();
-            }).collect(joining("\n"));
-    }
-
     public static List<Crew> crews(Course course) throws IOException {
         return course.getCrewsByCourse(course);
+    }
+
+    public static MatchCommand matchingInformation() {
+        System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
+        System.out.println("네 | 아니오");
+        MatchCommand matchCommand = MatchCommand.parseMatchCommand(Console.readLine());
+        System.out.println();
+        return matchCommand;
     }
 }
