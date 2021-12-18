@@ -17,9 +17,9 @@
 
 - [ ] 크루(Crew)
 
-- [ ] 미션 리스트(MissionList)
+- [x] 미션 리스트(MissionList)
 
-  - [ ] 프론트
+  - [x] 초기 정보를 불러오는 기능ㅁ
 
 - [ ] 미션 (Mission)
 
@@ -27,7 +27,7 @@
 
   - [x] 미션 레벨
 
-  - [x] ㅁ미션 크루 멤버
+  - [x] 미션 크루 멤버
 
   - [ ] 페어를 매칭하는 기능
 
@@ -398,4 +398,18 @@ public class Crew {
 - **기능을 구현하기 전에 java-pairmatching-precourse/docs/README.md 파일에 구현할 기능 목록을 정리**해 추가한다.
 - **Git의 커밋 단위는 앞 단계에서 README.md 파일에 정리한 기능 목록 단위**로 추가한다.
     - [AngularJS Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 참고해 commit log를 남긴다.
-- 과제 진행 및 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고한다.
+- 과제 진행 및 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고한다.\
+
+
+
+
+
+벡엔드 프론트엔드 인스턴스 분리?
+
+
+
+합체 -> 
+
+
+
+벡엔드 -> 벡엔드 크루 네임, 
