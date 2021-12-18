@@ -20,6 +20,7 @@ public enum Level {
 	}
 
 	public static Level find(String name) {
+		System.out.println(name);
 		return Arrays.stream(values())
 			.filter(course -> course.name.equals(name))
 			.findFirst()

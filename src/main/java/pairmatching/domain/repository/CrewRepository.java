@@ -44,11 +44,11 @@ public class CrewRepository {
 		reader.close();
 	}
 
-	public static List<Crew> getBackEndCrewList() {
-		return backEndCrewList;
+	public static ArrayList<Crew> getBackEndCrewList() {
+		return (ArrayList<Crew>)backEndCrewList;
 	}
 
-	public static List<Crew> getFrontEndCrewList() {
-		return frontEndCrewList;
+	public static ArrayList<Crew> getFrontEndCrewList() {
+		return (ArrayList<Crew>)frontEndCrewList;
 	}
 }

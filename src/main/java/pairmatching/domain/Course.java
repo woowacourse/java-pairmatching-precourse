@@ -19,6 +19,10 @@ public enum Course {
 			.orElseThrow(() -> new IllegalArgumentException("올바르지 않은 코스 입력 값 입니다."));
 	}
 
+	public boolean isSame(String name) {
+		return this.name.equals(name);
+	}
+
 	@Override
 	public String toString() {
 		return "백엔드 | 프론트엔드";

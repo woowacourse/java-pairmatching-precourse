@@ -11,9 +11,6 @@ public class Crew {
 
 	@Override
 	public String toString() {
-		return "Crew{" +
-			"course=" + course.name() +
-			", name='" + name + '\'' +
-			'}';
+		return name;
 	}
 }
