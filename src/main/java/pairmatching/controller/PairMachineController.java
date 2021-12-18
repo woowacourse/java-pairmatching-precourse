@@ -3,11 +3,11 @@ package pairmatching.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import pairmatching.model.History;
+import pairmatching.model.domain.History;
 import pairmatching.model.MatchGenerator;
 import pairmatching.model.MatchMachine;
-import pairmatching.model.Menu;
-import pairmatching.model.Options;
+import pairmatching.model.domain.Menu;
+import pairmatching.model.domain.Options;
 import pairmatching.view.Input;
 import pairmatching.view.Output;
 

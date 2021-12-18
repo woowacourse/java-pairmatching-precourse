@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import pairmatching.model.domain.Course;
 import pairmatching.util.Constant;
 
 public class FileScanner {

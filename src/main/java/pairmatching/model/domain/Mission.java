@@ -1,4 +1,4 @@
-package pairmatching.model;
+package pairmatching.model.domain;
 
 public class Mission {
     private final String name;

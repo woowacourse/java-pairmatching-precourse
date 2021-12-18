@@ -2,7 +2,7 @@ package pairmatching.view;
 
 import java.util.List;
 
-import pairmatching.model.Pair;
+import pairmatching.model.domain.Pair;
 import pairmatching.util.Constant;
 import pairmatching.util.Message;
 

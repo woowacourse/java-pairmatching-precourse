@@ -1,8 +1,8 @@
 package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import pairmatching.model.Menu;
-import pairmatching.model.Options;
+import pairmatching.model.domain.Menu;
+import pairmatching.model.domain.Options;
 import pairmatching.util.Message;
 
 public class Input {

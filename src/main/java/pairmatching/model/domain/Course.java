@@ -1,4 +1,4 @@
-package pairmatching.model;
+package pairmatching.model.domain;
 
 import java.util.Arrays;
 

@@ -1,4 +1,6 @@
-package pairmatching.model;
+package pairmatching.model.domain;
+
+import pairmatching.model.domain.Course;
 
 public class Crew {
     private final Course course;

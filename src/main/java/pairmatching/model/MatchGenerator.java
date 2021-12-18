@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import pairmatching.model.domain.Crew;
+import pairmatching.model.domain.Options;
+import pairmatching.model.domain.Pair;
 import pairmatching.util.Constant;
 
 public class MatchGenerator {
