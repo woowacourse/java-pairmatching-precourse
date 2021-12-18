@@ -15,7 +15,12 @@ public class PairMatchingSearchView implements View {
 		String missionInfo = readMissionInfo();
 		List<String> params = MissionInfoValidator.validate(missionInfo);
 		MatchParams matchParams = Application.controller.setMatchParams(params);
-		
+		if(Application.controller.isExistParam(matchParams)) {
+			Application.controller.view(ViewMappingKey.PAIR_MATCHING_RESULT);
+			return;
+		}
+
+		Application.controller.view(ViewMappingKey.FUNCTION_SELECT);
 	}
 
 	@Override
