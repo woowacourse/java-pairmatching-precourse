@@ -1,5 +1,35 @@
 # 미션 - 페어매칭관리 애플리케이션
 
+## :file_folder: 디렉토리 트리 (lymchgmk@gmail.com)
+
+
+
+```
+
+```
+
+
+
+
+
+## :black_nib: 기능 구현 목록 (lymchgmk@gmail.com)
+
+- [x] 파일 입출력
+  - [x] md 파일 읽기
+- [ ] 기능 선택
+  - [ ] 페어 매칭
+- [ ] 에러 처리
+
+
+
+
+
+## :hammer_and_wrench: 테스트 목록 (lymchgmk@gmail.com)
+
+
+
+
+
 ## 🔍 진행방식
 
 - 미션은 **기능 요구사항, 프로그래밍 요구사항, 과제 진행 요구사항** 세 가지로 구성되어 있다.
@@ -82,7 +112,7 @@ List<String> shuffledCrew = Randoms.shuffle(crewNames); // 섞인 크루 이름 
 ## 💾 사전 제공 정보
 - 크루 정보는 src/resources 하위에 md 파일로 제공되며 변경이 가능하다.
 - 과정, 레벨, 미션 정보는 아래에 제공하는 그대로 사용해야 한다.
- 
+
 ```
 ## 과정
 - 백엔드
