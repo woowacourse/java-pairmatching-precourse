@@ -6,6 +6,7 @@ import pairmatching.domain.matching.MatchingCondition;
 import pairmatching.domain.matching.MatchingResults;
 import pairmatching.domain.menu.Menu;
 import pairmatching.domain.pair.Pairs;
+import pairmatching.domain.rematch.RematchInput;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -47,6 +48,12 @@ public class PairmatchingController {
     private void executePairMatching() {
         OutputView.showCoursesAndMissions();
         MatchingCondition matchingCondition = InputView.requestMatchingCondition();
+        if (matchingResults.cotains(matchingCondition)) {
+            RematchInput answer = InputView.requestRematch();
+            if (answer.noRematch()) {
+                return;
+            }
+        }
         Pairs pairs = crews.getMatchResult(matchingCondition);
         OutputView.showPairs(pairs);
         matchingResults.add(matchingCondition, pairs);
