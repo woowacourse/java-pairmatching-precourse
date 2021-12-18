@@ -23,7 +23,7 @@ public enum Level {
 		return null;
 	}
 
-	private String getName() {
+	public String getName() {
 		return name;
 	}
 }

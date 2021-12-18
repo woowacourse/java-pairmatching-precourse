@@ -26,7 +26,7 @@ public enum Mission {
 		return null;
 	}
 
-	private String getName() {
+	public String getName() {
 		return name;
 	}
 }

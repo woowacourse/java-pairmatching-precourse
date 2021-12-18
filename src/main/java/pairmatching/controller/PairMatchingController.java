@@ -1,7 +1,5 @@
 package pairmatching.controller;
 
-import java.util.List;
-
 import pairmatching.domain.TechCourse;
 import pairmatching.util.InputValidator;
 import pairmatching.view.InputView;
@@ -12,6 +10,7 @@ public class PairMatchingController {
 	private static final String LOOKUP_PAIR = "2";
 	private static final String RESET_PAIR = "3";
 	private static final String TERMINATION = "Q";
+	private static final String NO = "아니오";
 
 	public void run() {
 		TechCourse techCourse = new TechCourse();
@@ -19,11 +18,13 @@ public class PairMatchingController {
 		while (true) {
 			String mainCommend = getMainCommend();
 			if (mainCommend.equals(MATCH_PAIR)) {
-				List<String> crewList = matchPair(techCourse);
-				OutputView.showCrewList(crewList);
+				OutputView.printMission();
+				getPairList(techCourse);
 			}
 			if (mainCommend.equals(LOOKUP_PAIR)) {
-				// lookUpPair();
+				OutputView.printMission();
+				String mission = matchPair();
+				OutputView.showCrewList(techCourse.getCrewList(mission));
 			}
 			if (mainCommend.equals(RESET_PAIR)) {
 				// resetPair();
@@ -34,13 +35,39 @@ public class PairMatchingController {
 		}
 	}
 
-	private List<String> matchPair(TechCourse techCourse) {
+	private void getPairList(TechCourse techCourse) {
+		String mission = matchPair();
+		seeIfShuffled(techCourse, mission);
+		OutputView.showCrewList(techCourse.matchPair(mission));
+	}
+
+	private void seeIfShuffled(TechCourse techCourse, String mission) {
+		if (techCourse.isShuffled(mission)) {
+			String rematchCommend = getRematch();
+			if (rematchCommend.equals(NO)) {
+				getPairList(techCourse);
+			}
+		}
+	}
+
+	private String matchPair() {
 		String mission = InputView.inputMission();
 		try {
-			return techCourse.matchPair(mission);
+			return mission;
 		} catch (IllegalArgumentException e) {
 			OutputView.showError(e.getMessage());
-			return matchPair(techCourse);
+			return matchPair();
+		}
+	}
+
+	private String getRematch() {
+		String rematch = InputView.inputRematch();
+		try {
+			InputValidator.rematch(rematch);
+			return rematch;
+		} catch (IllegalArgumentException e) {
+			OutputView.showError(e.getMessage());
+			return getRematch();
 		}
 	}
 

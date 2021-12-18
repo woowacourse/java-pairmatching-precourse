@@ -20,7 +20,7 @@ public enum Course {
 		return null;
 	}
 
-	private String getName() {
+	public String getName() {
 		return name;
 	}
 }

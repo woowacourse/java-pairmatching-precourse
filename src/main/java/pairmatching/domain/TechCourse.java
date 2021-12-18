@@ -1,34 +1,67 @@
 package pairmatching.domain;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import pairmatching.util.InputValidator;
 
 public class TechCourse {
+	private List<CrewList> crewTable;
 	private static final String BACK_END = "C:\\Users\\admin\\IdeaProjects\\java-pairmatching-precourse\\src\\main\\resources\\backend-crew.md";
 	private static final String FRONT_END = "C:\\Users\\admin\\IdeaProjects\\java-pairmatching-precourse\\src\\main\\resources\\frontend-crew.md";
-
-	private final CrewList backEndCrewList;
-	private final CrewList frontEndCrewList;
+	private static final int COURSE_INDEX = 0;
 
 	public TechCourse() {
-		try {
-			this.backEndCrewList = new CrewList(Course.BACKEND, BACK_END);
-			this.frontEndCrewList = new CrewList(Course.FRONTEND, FRONT_END);
-		} catch (IOException e) {
-			throw new IllegalArgumentException("[ERROR] 파일을 읽어올 수 없습니다.");
-		}
-
+		this.crewTable = new ArrayList<>();
 	}
 
 	public List<String> matchPair(String mission) {
 		List<String> missionInfo = InputValidator.isValidFormat(mission);
-		if (missionInfo.get(0).equals("백엔드")) {
+		for (CrewList crewList : crewTable) {
+			if (crewList.mission().equals(mission)) {
+				return crewList.getShuffledCrew();
+			}
+		}
+		if (missionInfo.get(COURSE_INDEX).equals(Course.BACKEND.getName())) {
+			CrewList backEndCrewList = null;
+			try {
+				backEndCrewList = new CrewList(missionInfo, BACK_END);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			crewTable.add(backEndCrewList);
+			assert backEndCrewList != null;
 			return backEndCrewList.getShuffledCrew();
 		}
-		if (missionInfo.get(0).equals("프론트엔드")) {
+		if (missionInfo.get(COURSE_INDEX).equals(Course.FRONTEND.getName())) {
+			CrewList frontEndCrewList = null;
+			try {
+				frontEndCrewList = new CrewList(missionInfo, FRONT_END);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			crewTable.add(frontEndCrewList);
+			assert frontEndCrewList != null;
 			return frontEndCrewList.getShuffledCrew();
+		}
+		return null;
+	}
+
+	public boolean isShuffled(String mission) {
+		for (CrewList crewList : crewTable) {
+			if (crewList.mission().equals(mission)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public List<String> getCrewList(String mission) {
+		for (CrewList crewList : crewTable) {
+			if (crewList.mission().equals(mission)) {
+				return crewList.getCrewNames();
+			}
 		}
 		return null;
 	}
