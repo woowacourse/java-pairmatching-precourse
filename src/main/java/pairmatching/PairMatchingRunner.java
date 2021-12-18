@@ -7,8 +7,6 @@ import pairmatching.mode.PairMatchingService;
 import pairmatching.util.CrewNameFIleReader;
 
 public class PairMatchingRunner implements Runnable {
-    private static final String EXIT = "Q";
-
     static {
         List<String> backendNames = CrewNameFIleReader.createBackendNames();
         List<String> frontendNames = CrewNameFIleReader.createFrontendNames();
@@ -32,7 +30,7 @@ public class PairMatchingRunner implements Runnable {
                     + "3. 페어 초기화\n"
                     + "Q. 종료");
                 String inputCommand = Console.readLine();
-                if (inputCommand.equals(EXIT)) {
+                if (Answer.isExit(inputCommand)) {
                     break;
                 }
                 PairMatchingService service = Command.findServiceByCommand(inputCommand);
