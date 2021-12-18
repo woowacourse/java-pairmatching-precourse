@@ -42,6 +42,9 @@ public class PairMatcher {
 	}
 
 	public void validateMatchingTarget(String matchingTarget) {
+		if (!matchingTarget.matches("[^,]+,\\s[^,]+,\\s[^,]+")) {
+			throw new IllegalArgumentException("잘못된 입력 형식입니다.");
+		}
 
 	}
 

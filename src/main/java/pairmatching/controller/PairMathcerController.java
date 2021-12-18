@@ -25,7 +25,6 @@ public class PairMathcerController {
 	public void init() {
 		initLevelAndMissionInfo();
 		selectFunctionOptions();
-		String matchingTarget = InputView.getMatchingTarget(levelMissionInfo);
 	}
 
 	private void initLevelAndMissionInfo() {
@@ -59,6 +58,7 @@ public class PairMathcerController {
 		FunctionType functionType = FunctionType.fromFunctionNumber(inputFunctionNumber);
 
 		if (functionType == FunctionType.MATCH) {
+			matchPairs();
 			return;
 		}
 		if (functionType == FunctionType.VIEW) {
@@ -74,8 +74,15 @@ public class PairMathcerController {
 		}
 	}
 
-	private void matchPairs(String matchingTarget) {
-		pairMatcher.matchPairs(matchingTarget);
+	private void matchPairs() {
+		try {
+			String matchingTarget = InputView.getMatchingTarget(levelMissionInfo);
+			pairMatcher.matchPairs(matchingTarget);
+		} catch (IllegalArgumentException e) {
+			ErrorView.printErrorMesasge(e.getMessage());
+			matchPairs();
+		}
+
 	}
 
 	private void viewPairs() {}
