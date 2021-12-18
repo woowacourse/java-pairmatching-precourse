@@ -44,4 +44,10 @@ public class MatchInfo {
 		return pairList;
 	}
 
+	public boolean isSameThing(String course, String level, String mission) {
+		if (this.course.equals(course) && this.level.equals(level) && this.mission.equals(mission)) {
+			return true;
+		}
+		return false;
+	}
 }

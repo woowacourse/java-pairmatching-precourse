@@ -16,7 +16,7 @@ public class PairMatchingView {
 		return Console.readLine();
 	}
 
-	public String selectDetail() {
+	public void printInfo() {
 		System.out.println("#############################################");
 		System.out.println("과정: 백엔드 | 프론트엔드");
 		System.out.println("미션:");
@@ -26,6 +26,9 @@ public class PairMatchingView {
 		System.out.println("  - 레벨4: 성능개선 | 배포");
 		System.out.println("  - 레벨5: ");
 		System.out.println("############################################");
+	}
+
+	public String selectDetail() {
 		System.out.println("과정, 레벨, 미션을 선택하세요.");
 		System.out.println("ex) 백엔드, 레벨1, 자동차경주");
 		return Console.readLine();
@@ -35,5 +38,11 @@ public class PairMatchingView {
 		for (Pair pair : pairs) {
 			System.out.println(pair.toString());
 		}
+	}
+
+	public String selectRematching() {
+		System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
+			+ "네 | 아니오");
+		return Console.readLine();
 	}
 }
