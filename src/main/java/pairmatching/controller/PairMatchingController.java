@@ -13,7 +13,7 @@ public class PairMatchingController {
             return;
         }
 
-        getPairMission();
+        PairMission pairMission = getPairMission();
     }
 
     private MainCommand getMainCommand() {
