@@ -4,19 +4,17 @@ import static pairmatching.constant.message.SystemMessage.*;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.function.Supplier;
 
-import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.PairMatch;
 import pairmatching.dto.ChoiceDto;
 import pairmatching.service.PairmatchingService;
-import pairmatching.validator.InputValidator;
+import pairmatching.util.Voider;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class PairmatchingController {
 
-	private Map<String, Supplier<String>> mainChoiceMap = new LinkedHashMap<>();
+	private Map<String, Voider> mainChoiceMap = new LinkedHashMap<>();
 	private static PairmatchingService pairmatchingService = new PairmatchingService() ;
 
 	{
@@ -29,26 +27,23 @@ public class PairmatchingController {
 		String input = "";
 		do {
 			input = InputView.chooseEntryMenu();
-			mainChoiceMap.get(input).get();
+			mainChoiceMap.get(input).execute();
 		} while (!input.equals(QUIT));
 	}
 
-	private static String toMatching() {
+	private static void toMatching() {
 		String input = InputView.inputMatching();
 		ChoiceDto choiceDto = new ChoiceDto(input);
 		PairMatch lastPairMatch = pairmatchingService.makePairs(choiceDto);
 		OutputView.outputPairMatchingResult(lastPairMatch);
-		return "";
 	}
 
-	private static String toRetrieve() {
+	private static void toRetrieve() {
 		String input = InputView.inputRetrieve();
 		ChoiceDto choiceDto = new ChoiceDto(input);
-		return "";
 	}
 
-	private static String toClear() {
+	private static void toClear() {
 		System.out.println("초기화 되었습니다. ");
-		return CHOICE_CLEAR;
 	}
 }

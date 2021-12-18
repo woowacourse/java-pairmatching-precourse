@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import java.util.Objects;
+
 import pairmatching.constant.Course;
 import pairmatching.dto.ChoiceDto;
 
@@ -30,5 +32,21 @@ public class Match {
 
 	public String getMission() {
 		return mission;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (!(o instanceof Match))
+			return false;
+		Match match = (Match)o;
+		return getCourse() == match.getCourse() && Objects.equals(getLevel(), match.getLevel())
+			&& Objects.equals(getMission(), match.getMission());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getCourse(), getLevel(), getMission());
 	}
 }

@@ -23,7 +23,6 @@ public class SystemMessage {
 			+ "ex) 백엔드, 레벨1, 자동차경주";
 
 	public static final String QUIT = "Q";
-	public static final String CHOICE_CLEAR = "3";
 
 	public static final String INVALID_COURSE = "존재하지 않는 과정입니다.";
 }
