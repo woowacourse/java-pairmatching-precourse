@@ -9,7 +9,7 @@ import pairmatching.domain.Crew;
 
 public class CrewMembers {
 
-	private static Map<Course, List<Crew>> crewMembers = new HashMap<>();
+	private static final Map<Course, List<Crew>> crewMembers = new HashMap<>();
 
 	public static void add(Course course, List<Crew> crews) {
 		crewMembers.put(course, crews);
