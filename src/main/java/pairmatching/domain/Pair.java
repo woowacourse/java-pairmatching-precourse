@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Pair {
@@ -29,4 +31,16 @@ public class Pair {
         crewNames = Randoms.shuffle(crewNames);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pair pair = (Pair) o;
+        return course == pair.course && Objects.equals(mission, pair.mission);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(course, mission);
+    }
 }
