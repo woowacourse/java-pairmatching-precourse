@@ -15,13 +15,16 @@ public enum Course {
 	Course(String name) {
 		this.name = name;
 	}
+
 	public static Course fineCourse(String courseName) {
 		return Arrays.stream(Course.values())
-			.filter(c ->c.name.equals(courseName))
+			.filter(c -> c.name.equals(courseName))
 			.findAny()
-			.orElseThrow(() -> new IllegalArgumentException(ErrorMessage.INVALID_COURSE_NAME.getMessage()+ Symbol.NEW_LINE));
+			.orElseThrow(
+				() -> new IllegalArgumentException(ErrorMessage.INVALID_COURSE_NAME.getMessage() + Symbol.NEW_LINE));
 	}
-	public static String getCourseInfo(){
+
+	public static String getCourseInfo() {
 		return String.format("과정: %s | %s", BACKEND.name, FRONTEND.name);
 	}
 }

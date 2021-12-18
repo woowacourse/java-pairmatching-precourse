@@ -15,4 +15,7 @@ public abstract class Service {
 			.append(ViewMessage.START_END_PRINT_INFO.getMessage()).toString();
 	}
 
+	public static void enterInformation(){
+
+	}
 }

@@ -23,6 +23,8 @@ public class MatchingController implements Controller {
 	public void run() {
 		outputView.printMessage(matchingService.printCourseAndLevelInfo());
 		Mission mission = Missions.addMission(inputView.enterCourseAndMissionInfo());
+		mission.pairMatching();
+		outputView.printMessage(mission.getPairMatchingResult());
 
 	}
 }
