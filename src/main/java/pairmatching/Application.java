@@ -1,9 +1,14 @@
 package pairmatching;
 
+import java.util.List;
 import pairmatching.domain.Command;
+import pairmatching.domain.Course;
 import pairmatching.domain.Crews;
 import pairmatching.domain.Level;
+import pairmatching.domain.Match;
+import pairmatching.domain.Mission;
 import pairmatching.domain.PairProgram;
+import pairmatching.exception.OverMatchingException;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -32,10 +37,11 @@ public class Application {
             return;
         }
         if (command.isMatching()) {
-
+            InputView.printCurrentBoard(pairProgram.coures(), pairProgram.missions());
+            OutputView.printMatchResult(matching(pairProgram));
         }
         if (command.isSelect()) {
-            OutputView.printCurrentBoard(pairProgram.coures(), pairProgram.missions());
+            InputView.printCurrentBoard(pairProgram.coures(), pairProgram.missions());
         }
         if (command.isInit()) {
 
@@ -49,6 +55,23 @@ public class Application {
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return inputCommand();
+        }
+    }
+
+    private static List<Match> matching(PairProgram pairProgram) {
+        try {
+            List<String> matchingInformation = InputView.inputCourseAndLevelAndMission();
+            Course course = Course.getCourse(matchingInformation.get(0));
+            Level level = Level.getLevel(matchingInformation.get(1));
+            String missionName = matchingInformation.get(2);
+            Mission mission = Mission.createEmptyMission(missionName, course);
+            if (pairProgram.isMatched(level, mission) && InputView.inputAlreadyMatching().equals("아니오")) {
+                matching(pairProgram);
+            }
+            return pairProgram.matching(level, mission);
+        } catch (IllegalArgumentException | OverMatchingException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return matching(pairProgram);
         }
     }
 }

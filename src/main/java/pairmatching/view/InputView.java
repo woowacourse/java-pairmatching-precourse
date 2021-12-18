@@ -23,6 +23,8 @@ public class InputView {
 
     private static final String INPUT_COURSE_LEVEL_MISSION = "과정, 레벨, 미션을 선택하세요.\nex) 백엔드, 레벨1, 자동차경주";
 
+    private static final String INPUT_ALREADY_MATCH = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n네 | 아니오";
+
     private static final String PRINT_DELEMITER = "############################################";
     private static final String LIST_DELEMITER = " | ";
     private static final String DELEMITER = ",";
@@ -170,5 +172,10 @@ public class InputView {
         return Arrays.stream(Console.readLine().split(DELEMITER))
             .map(String::trim)
             .collect(Collectors.toList());
+    }
+
+    public static String inputAlreadyMatching() {
+        System.out.println(INPUT_ALREADY_MATCH);
+        return Console.readLine();
     }
 }

@@ -33,7 +33,7 @@ public class LevelMission {
     }
 
     public void checkExistMission(Level level, Mission mission) {
-        if (!levelmissions.containsKey(level) || levelmissions.get(level).isContainMission(mission)) {
+        if (!levelmissions.containsKey(level) || !levelmissions.get(level).isContainMission(mission)) {
             throw new MissionNotFoundException();
         }
     }
