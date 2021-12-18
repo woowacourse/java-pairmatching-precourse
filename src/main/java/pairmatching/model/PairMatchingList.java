@@ -16,16 +16,12 @@ public class PairMatchingList {
         pairMatchingList.add(pairMatching);
     }
 
-    public static void existList(String course, String level, String mission){
-
+    public static boolean existList(String course, String level, String mission, List<List<Crew>> pairPerson){
+        return true;
     }
 
     public static void removeList(){
         pairMatchingList = new ArrayList<>();
-    }
-
-    public static void newPairMatching(String course, String level, String mission){
-
     }
 
     public static void printPairMatching(String course, String level, String mission){

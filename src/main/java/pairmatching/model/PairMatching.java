@@ -1,6 +1,5 @@
 package pairmatching.model;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -35,7 +34,7 @@ public class PairMatching {
         return mission;
     }
 
-    public static void createPairPerson(String course, String level, String mission){
+    public static boolean createPairPerson(String course, String level, String mission){
         pairPerson = new ArrayList<>();
         List<Crew> shuffleList = null;
         if(course.equals("백엔드")){
@@ -45,6 +44,17 @@ public class PairMatching {
         }
         shuffleList = Randoms.shuffle(shuffleList);
 
+        pairPerson = createPersonAdd(shuffleList);
+
+        if(!PairMatchingList.existList(course, level, mission, pairPerson)){
+            return false;
+        }
+
+        PairMatchingList.addList(course, level, mission, pairPerson);
+        return true;
+    }
+
+    private static List<List<Crew>> createPersonAdd(List<Crew> shuffleList){
         for(int i=0; i<shuffleList.size()/2; i++){
             List<Crew> pair = new ArrayList<>();
             pair.add(shuffleList.get(i*2));
@@ -54,8 +64,7 @@ public class PairMatching {
             }
             pairPerson.add(pair);
         }
-
-        PairMatchingList.addList(course, level, mission, pairPerson);
+        return pairPerson;
     }
 
 }

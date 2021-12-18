@@ -9,6 +9,8 @@ import pairmatching.view.OutputView;
 public class PairMatchingController {
     String selectNum;
     String[] info;
+    int duplication = 0;
+
     public void run(){
         init();
         PairMatchingList.initPairMatchingList();
