@@ -18,6 +18,13 @@ public class PairMatchingSystem {
         matchingController = MatchingController.getInstance();
     }
 
+    private static class InnerInstanceClazz {
+        private static final PairMatchingSystem instance = new PairMatchingSystem();
+    }
+
+    public static PairMatchingSystem getInstance() {
+        return InnerInstanceClazz.instance;
+    }
     public void operate() {
         while(true) {
             Integer menu = inputMenu();
