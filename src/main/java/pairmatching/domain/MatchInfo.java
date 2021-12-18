@@ -29,25 +29,19 @@ public class MatchInfo {
 
 	public void match(List<MatchInfo> matchInfos) {
 		storeCrewNames();
-		while (crewNames.size() != 0) {
-			if (crewNames.size() == 3) {
-				Pair pair = new Pair(crewNames.get(0), crewNames.get(1));
-				if (isExistPair(matchInfos, pair)) {
-					storeCrewNames();
-					continue;
-				}
-				pair.add(crewNames.get(2));
-				pairList.add(pair);
-				crewNames.clear();
+		int index=0;
+		while (index<crewNames.size()-1) {
+			if (index==crewNames.size()-1) {
+				pairList.get(pairList.size()-1).add(crewNames.get(index));
 				return;
 			}
-			Pair pair = new Pair(crewNames.get(0), crewNames.get(1));
+			Pair pair = new Pair(crewNames.get(index), crewNames.get(index+1));
 			if (isExistPair(matchInfos, pair)) {
 				storeCrewNames();
+				continue;
 			}
 			pairList.add(pair);
-			crewNames.remove(0);
-			crewNames.remove(0);
+			index+=2;
 		}
 	}
 
