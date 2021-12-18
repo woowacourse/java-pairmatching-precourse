@@ -20,4 +20,10 @@ public enum Course {
 			.toArray(String[]::new);
 		return String.join(DELIMITER, names);
 	}
+
+	public static boolean isContains(String str) {
+		return Arrays.stream(values())
+			.map(f -> f.name)
+			.anyMatch(k -> k.equals(str));
+	}
 }

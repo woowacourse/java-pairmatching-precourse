@@ -28,4 +28,21 @@ public enum Mission {
 			.map(m -> m.name)
 			.collect(Collectors.toList());
 	}
+
+	public static boolean isContains(String str) {
+		return Arrays.stream(values())
+			.map(f -> f.name)
+			.anyMatch(k -> k.equals(str));
+	}
+
+	public static Mission byName(String name) {
+		return Arrays.stream(values())
+			.filter(f -> f.name.equals(name))
+			.findFirst()
+			.orElse(null);
+	}
+
+	public boolean isInLevel(Level level) {
+		return level == this.level;
+	}
 }

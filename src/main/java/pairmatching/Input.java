@@ -30,6 +30,7 @@ public class Input {
 		try {
 			String input = Console.readLine();
 			InputValidator.validateMissionInputContainsThreeElements(input);
+			InputValidator.validateAllowedOption(input);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			readMissionSelected();
