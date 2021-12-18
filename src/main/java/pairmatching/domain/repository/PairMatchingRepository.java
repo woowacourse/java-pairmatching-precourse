@@ -14,7 +14,7 @@ import pairmatching.domain.Mission;
 import pairmatching.domain.PairMatching;
 
 public class PairMatchingRepository {
-	static List<PairMatching> pairMatchingList;
+	public static List<PairMatching> pairMatchingList = new ArrayList<>();
 
 	public static void add(String course, String level, String mission) {
 		List<MatchingCrew> crewList = createMatchingCrews(course);
@@ -32,12 +32,12 @@ public class PairMatchingRepository {
 		List<MatchingCrew> matchingCrewList =  new ArrayList<>();
 		List<Crew> crewList = Randoms.shuffle(getCrewList(course));
 		if ((crewList.size() % 2) == 0) {
-			for (int i = 0; i < crewList.size()-1; i++) {
+			for (int i = 0; i < crewList.size()-1; i+=2) {
 				matchingCrewList.add(new MatchingCrew(crewList.get(i), crewList.get(i+1)));
 			}
 			return matchingCrewList;
 		}
-		for (int i = 0; i < crewList.size() - 3; i++) {
+		for (int i = 0; i < crewList.size() - 3; i+=2) {
 			matchingCrewList.add(new MatchingCrew(crewList.get(i), crewList.get(i+1)));
 		}
 		int crewListSize = crewList.size();
@@ -46,7 +46,7 @@ public class PairMatchingRepository {
 	}
 
 
-	private static List<Crew> getCrewList(String course) {
+	public static List<Crew> getCrewList(String course) {
 		if (course.equals("백엔드")) {
 			return getBackEndCrewList();
 		}
@@ -54,6 +54,10 @@ public class PairMatchingRepository {
 			return getFrontEndCrewList();
 		}
 		throw new IllegalArgumentException("올바르지 않은 과정 입력 값 입니다.");
+	}
+
+	public static void reset() {
+		pairMatchingList.clear();
 	}
 
 }
