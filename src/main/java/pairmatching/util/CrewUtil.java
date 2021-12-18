@@ -14,4 +14,19 @@ public class CrewUtil {
 		}
 		return crewList;
 	}
+
+	public static List<List<Crew>> generatePairList(List<Crew> crewList) {
+		List<List<Crew>> pairList = new ArrayList<List<Crew>>();
+		for(int i=0;i<crewList.size();i = i+2) {
+			List<Crew> pair = new ArrayList<>();
+			pair.add(crewList.get(i));
+			try {
+				pair.add(crewList.get(i+1));
+				pairList.add(pair);
+			} catch (IndexOutOfBoundsException exception) {
+				pairList.get(pairList.size()-1).addAll(pair);
+			}
+		}
+		return pairList;
+	}
 }

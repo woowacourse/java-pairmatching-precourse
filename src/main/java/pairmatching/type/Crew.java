@@ -1,12 +1,14 @@
 package pairmatching.type;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Crew {
 	private Course course;
 	private String name;
-	private List<Crew> pairCrewLog;
+	private Map<Level, List<Crew>> pairCrewLog;
 
 	public Crew(Course course, String name) {
 		this.name = name;
@@ -14,12 +16,13 @@ public class Crew {
 		initPairCrewLog();
 	}
 
-	public boolean checkAlreadyPair(Crew crew) {
-		return pairCrewLog.contains(crew);
+	public boolean checkAlreadyPair(Level level, Crew crew) {
+		List<Crew> crewList = pairCrewLog.get(level);
+		return crewList.contains(crew);
 	}
 
 	public void initPairCrewLog() {
-		pairCrewLog = new ArrayList<Crew>();
+		pairCrewLog = new HashMap<Level, List<Crew>>();
 	}
 
 	@Override
