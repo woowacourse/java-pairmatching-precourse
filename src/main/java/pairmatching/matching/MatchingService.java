@@ -32,6 +32,12 @@ public class MatchingService {
         frontendPeople = matchingFileInput.returnFrontendPeople();
     }
 
+    public void checkValidCourseName(String courseName){
+        if(!matching.checkRightCourseName(courseName)){
+            throw new IllegalArgumentException();
+        }
+    }
+
     public boolean hasDistinctMatching(String courseName) {
         return matching.HasDuplicateMatchingBySameLevel(matching.getSameLevelIndexList(courseName));
     }
