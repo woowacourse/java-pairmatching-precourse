@@ -15,7 +15,7 @@ public class Converter {
             BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/backend-crew.md"));
             String name;
             while ((name = reader.readLine()) != null) {
-                crews.add(new Crew(Course.BACKEND, name));
+                crews.add(new Crew(name));
             }
 
             reader.close();
@@ -33,7 +33,7 @@ public class Converter {
             BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/frontend-crew.md"));
             String name;
             while ((name = reader.readLine()) != null) {
-                crews.add(new Crew(Course.FRONTEND, name));
+                crews.add(new Crew(name));
             }
 
             reader.close();
