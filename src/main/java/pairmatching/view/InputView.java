@@ -3,6 +3,7 @@ package pairmatching.view;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
+	private static final String SELECT_FUNCTION_ALARM = "기능을 선택하세요.";
 	private static final String SPLIT_LINE = "#############################################";
 	private static final String MISSION_LIST = "과정: 백엔드 | 프론트엔드\n"
 		+ "미션:\n"
@@ -19,13 +20,17 @@ public class InputView {
 	}
 
 	public static String selectFunction() {
+		System.out.println();
+		System.out.println(SELECT_FUNCTION_ALARM);
 		System.out.println("1. 페어 매칭\n2. 페어 조회\n3. 페어 초기화\nQ. 종료");
 		return inputString();
 	}
 
 	public static String inputMission() {
 		System.out.println();
+		System.out.println(SPLIT_LINE);
 		System.out.println(MISSION_LIST);
+		System.out.println(SPLIT_LINE);
 		System.out.println(MISSION_INPUT_MESSAGE);
 		System.out.println(MISSION_INPUT_EXAMPLE);
 		return inputString();
