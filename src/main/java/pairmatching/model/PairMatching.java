@@ -8,11 +8,17 @@ import java.util.Set;
 public class PairMatching {
 	public List<String> backendCrew;
 	public List<String> frontendCrew;
-	public Set<Pair> pairSet;
+	public Set<MissionInfo> missionInfoSet;
 
 	public PairMatching() {
 		backendCrew = new ArrayList<String>();
 		frontendCrew = new ArrayList<String>();
-		pairSet = new HashSet<Pair>();
+		missionInfoSet = new HashSet<MissionInfo>();
+	}
+
+	public void makePair(String CourseLevelMission) {
+		String[] str = CourseLevelMission.split(", ", -1);
+		MissionInfo missionInfo = new MissionInfo(str[0], str[1], str[2], backendCrew);
+		missionInfoSet.add(missionInfo);
 	}
 }
