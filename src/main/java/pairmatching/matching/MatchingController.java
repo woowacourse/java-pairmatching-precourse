@@ -66,6 +66,7 @@ public class MatchingController {
             matchedList = matchingService.startMatching(courseName);
         } catch (IllegalArgumentException e) {
             ValidatorMessage.printError(ValidatorMessage.ERROR_MESSAGE + ValidatorMessage.DUPLICATE_MATCHING);
+            matchedList.clear();
         }
         return matchedList;
     }
