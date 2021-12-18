@@ -27,4 +27,5 @@ public class Message {
     public static final String LEVEL_ERROR = "레벨 종류에 있는 것만 선택 가능합니다.";
     public static final String COURSE_ERROR = "코스 종류에 있는 것만 선택 가능합니다.";
     public static final String MISSION_ERROR = "미션 종류에 있는 것만 선택 가능합니다.";
+    public static final String RESULT_PRINT = "페어 매칭 결과입니다.";
 }

@@ -18,6 +18,10 @@ public class Pair {
 
     @Override
     public String toString() {
-        return String.join(Constant.PAIR_FORMAT, pair.toArray().toString());
+        ArrayList<String> names = new ArrayList<>();
+        for (Crew crew : pair) {
+            names.add(crew.toString());
+        }
+        return String.join(Constant.PAIR_FORMAT, names);
     }
 }
