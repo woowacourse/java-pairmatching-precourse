@@ -44,4 +44,8 @@ public class Match {
 		pairList.add(new Pair(crewList.get(size -3), crewList.get(size -2), crewList.get(size -1)));
 		return pairList;
 	}
+
+	public List<Pair> getPairList() {
+		return pairList;
+	}
 }

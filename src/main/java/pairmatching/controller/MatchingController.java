@@ -25,6 +25,6 @@ public class MatchingController {
 	}
 
 	private void makeMatch(MatchingInformation matchingInformation) {
-		Match.of(matchingInformation);
+		OutputView.matchView(Match.of(matchingInformation));
 	}
 }

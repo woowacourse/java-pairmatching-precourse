@@ -16,4 +16,9 @@ public class Crew {
 	public Course getCourse() {
 		return this.course;
 	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }
