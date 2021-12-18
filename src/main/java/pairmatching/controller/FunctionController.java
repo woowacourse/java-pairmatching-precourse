@@ -34,6 +34,7 @@ public class FunctionController {
 		OutputView.printAdvanceInformation();
 		String inputCourseAndLevelAndMission = InputView.InputCourseAndLevelAndMission();
 		Matching matching = matchingService.generateRandomMatching(inputCourseAndLevelAndMission);
+		OutputView.printMatchingInfo(matching);
 
 	}
 }

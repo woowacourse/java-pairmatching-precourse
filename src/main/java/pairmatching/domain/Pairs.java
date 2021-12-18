@@ -29,5 +29,4 @@ public class Pairs {
 		return (crew1.getName() + " : " + crew2.getName());
 
 	}
-
 }
