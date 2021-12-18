@@ -22,7 +22,7 @@ public class ProgramData {
 
 	}
 
-	public List<PairMatchRecorder> getMatchingHistory(Course course, Level level, String mission, HashMap<String, String> pairMap){
+	public static List<PairMatchRecorder> getMatchingHistory(Course course, Level level){
 		List<PairMatchRecorder> checkList = new ArrayList<>();
 
 		if(course == Course.BACKEND){
@@ -44,6 +44,11 @@ public class ProgramData {
 		}
 
 		return checkList;
+	}
+
+	public static void setMatchingHistory(Course course, Level level, String mission, List<String> pairNames){
+		List<PairMatchRecorder> history = getMatchingHistory(course, level);
+		history.add(new PairMatchRecorder(course,level,mission,pairNames));
 	}
 
 	public static List<String> getCrewNames(Course course){

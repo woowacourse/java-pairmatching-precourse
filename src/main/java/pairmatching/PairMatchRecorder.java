@@ -10,13 +10,14 @@ public class PairMatchRecorder {
 	private String mission;
 	private List<String> pairMatchHistory;
 
-	PairMatchRecorder(Course course, Level level, String mission){
+	PairMatchRecorder(Course course, Level level, String mission, List<String> pairMatchHistory){
 		this.course=course;
 		this.level = level;
 		this.mission = mission;
+		this.pairMatchHistory = pairMatchHistory;
 	}
 
-	private boolean checkDuplicatedPair(List<String> recentMatchedPair){
+	public boolean checkDuplicatedPair(List<String> recentMatchedPair){
 		for(int i = 0; i < recentMatchedPair.size(); i++){
 			String recentMatchedPairName1 = new String();
 			String recentMatchedPairName2 = new String();
