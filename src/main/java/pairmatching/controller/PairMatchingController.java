@@ -28,6 +28,14 @@ public class PairMatchingController {
 			}
 			run();
 		}
+		if (menuKey.equals("2")) {
+			outputView.printPairMatchingInfo();
+			String inputMatchingCondition = InputView.inputRollLevelAndMission();
+			List<String> conditions = Arrays.asList(inputMatchingCondition.split(", "));
+			String roll = conditions.get(0);
+			String level = conditions.get(1);
+			outputView.printMatchingResult(roll, level);
+		}
 		if (menuKey.equals("Q")) {
 			return;
 		}
