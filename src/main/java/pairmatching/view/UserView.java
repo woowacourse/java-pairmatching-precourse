@@ -10,7 +10,7 @@ public class UserView {
 
 	public String selectCourseLevelMission() {
 		System.out.println("과정, 레벨, 미션을 선택하세요.");
-		System.out.println("ex) 백엔드, 레벨, 자동차경주");
+		System.out.println("ex) 백엔드, 레벨1, 자동차경주");
 		String selection = Console.readLine();
 		return selection;
 	}

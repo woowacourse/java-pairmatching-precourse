@@ -9,15 +9,19 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import pairmatching.util.MissionException;
+
 public class PairMatching {
 	public List<String> backendCrew;
 	public List<String> frontendCrew;
 	public List<MissionInfo> missionInfoSet;
+	public MissionException missionException;
 
 	public PairMatching() {
 		backendCrew = makeInitList("backend-crew.md");
 		frontendCrew = makeInitList("frontend-crew.md");
 		missionInfoSet = new ArrayList<MissionInfo>();
+		missionException = new MissionException();
 	}
 
 	public List<String> makeInitList(String str) {
@@ -37,6 +41,7 @@ public class PairMatching {
 	public List<String> makePair(String CourseLevelMission) {
 		String[] str = CourseLevelMission.split(", ", -1);
 		MissionInfo missionInfo;
+		str[2] = missionException.checkMissionNameIsInLevel(str[1], str[2]);
 
 		if (str[0].equals("백엔드")) {
 			missionInfo = new MissionInfo(str[0], str[1], str[2], backendCrew);

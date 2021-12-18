@@ -29,7 +29,11 @@ public class PairMatchingController {
 
 			if (option.equals("1")) {
 				pairMatchingView.selectCourseLevelMission();
-				MakingShuffleList.printPairList(pairMatching.makePair(userView.selectCourseLevelMission()));
+				try {
+					MakingShuffleList.printPairList(pairMatching.makePair(userView.selectCourseLevelMission()));
+				} catch (IllegalArgumentException e) {
+					System.out.println(e.getMessage());
+				}
 			}
 
 			if (option.equals("2")) {
