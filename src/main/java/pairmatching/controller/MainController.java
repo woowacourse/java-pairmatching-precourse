@@ -2,7 +2,6 @@ package pairmatching.controller;
 
 import pairmatching.Initialize.Initializer;
 import pairmatching.service.MainService;
-import pairmatching.service.PairService;
 import pairmatching.validation.MenuValidation;
 import pairmatching.view.InputView;
 import pairmatching.view.Message.ErrorMessage;

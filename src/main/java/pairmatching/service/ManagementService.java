@@ -19,11 +19,11 @@ import static camp.nextstep.edu.missionutils.Randoms.shuffle;
 import static pairmatching.view.Message.QuestionMessage.printQuestionRematch;
 import static pairmatching.view.Message.ResetMessage.printReset;
 
-public class PairService {
+public class ManagementService {
 
     private MatchService matchService;
 
-    public PairService() {
+    public ManagementService() {
         this.matchService = new MatchService();
     }
 
