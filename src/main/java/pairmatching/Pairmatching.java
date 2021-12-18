@@ -3,7 +3,7 @@ package pairmatching;
 import pairmatching.model.LevelMissionsMap;
 import pairmatching.service.CourseDataService;
 
-public class pairmatching {
+public class Pairmatching {
 
 	private CourseDataService courseDataService = new CourseDataService();
 
