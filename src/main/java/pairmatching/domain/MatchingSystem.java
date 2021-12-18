@@ -7,7 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
 import pairmatching.view.OutputView;
 
 public class MatchingSystem {
-	private static final String NOT_FOUNT_ERROR =  "매칭 리스트에 없는 정보 입니다.";
+	private static final String NOT_FOUNT_ERROR =  "매칭 이력이 없습니다.";
 
 	private List<Matching> matchingList = new ArrayList<>();
 
@@ -26,6 +26,9 @@ public class MatchingSystem {
 				return false;
 			}
 		}
+
+		//TODO:  같은 레벨에서 이미 페어로 만난적 있는 크루끼리 다시 페어로 매청 된다면
+			// 다시 매칭 시도 -> 3회 매칭 후 실패하면 error
 
 		OutputView.printMatchingResult(newMatching.getNames());
 		matchingList.add(newMatching);
