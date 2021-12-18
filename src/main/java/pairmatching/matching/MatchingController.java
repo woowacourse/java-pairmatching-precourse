@@ -3,7 +3,6 @@ package pairmatching.matching;
 import pairmatching.GeneralInputView;
 import pairmatching.ValidatorMessage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MatchingController {
@@ -19,10 +18,12 @@ public class MatchingController {
         String choice;
         try {
             String input = GeneralInputView.inputFunctionByClient();
-            // 검증로직
+            if (!input.equals("1") && !input.equals("2") && !input.equals("3") && !input.equals("Q")) {
+                throw new IllegalArgumentException();
+            }
             choice = input;
-
         } catch (IllegalArgumentException e) {
+            ValidatorMessage.printError(ValidatorMessage.ERROR_MESSAGE + ValidatorMessage.INVALID_FUNCTION);
             choice = inputFunctionByUser();
         }
         return choice;
