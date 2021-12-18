@@ -1,6 +1,7 @@
 package pairmatching.utils;
 
 import pairmatching.model.MatchingInfo;
+import pairmatching.model.Pair;
 import pairmatching.model.enums.Course;
 import pairmatching.model.enums.Level;
 
@@ -19,23 +20,23 @@ public class Validator {
     public Validator() {
     }
 
-    public boolean isValidOption(String input) {
+    public void checkValidOption(String input) {
         if (MATCH_PAIR.getValue().equals(input)
                 || SELECT_PAIR.getValue().equals(input)
                 || INITIAL_PAIR.getValue().equals(input)
                 || QUIT.getValue().equalsIgnoreCase(input)) {
-            return true;
+            return;
         }
         throw new IllegalArgumentException(ERROR_INPUT_OPTION);
     }
 
-    public boolean isValidDetails(String input) {
+    public void checkValidDetails(String input) {
         String[] details = input.split(SEPARATOR, NEGATIVE_NUMBER);
         if (details.length == INPUT_DETAIL_CNT
                 && isValidPrecourse(details[0].trim())
                 && isValidLevel(details[1].trim())
                 && isValidMission(details[1].trim(), details[2].trim())) {
-            return true;
+            return;
         }
         throw new IllegalArgumentException(ERROR_INPUT_DETAILS);
     }
@@ -52,11 +53,20 @@ public class Validator {
         return false;
     }
 
-    public boolean isReMatch(String input) {
+    public void checkReMatch(String input) {
         if (YES.equals(input) || NO.equals(input)) {
-            return true;
+            return;
         }
         throw new IllegalArgumentException(ERROR_INPUT_REMATCH);
+    }
+
+    public boolean isContainedPair(List<Pair> pairs, Pair nowPair) {
+        for (Pair pair : pairs) {
+            if (pair.isEquals(nowPair)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean isValidPrecourse(String input) {

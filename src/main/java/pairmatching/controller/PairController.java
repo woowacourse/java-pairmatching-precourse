@@ -105,7 +105,7 @@ public class PairController {
         int size = members.size();
         for (int i = 0; i < size; i += PAIR_CNT) {
             Pair pair = new Pair(members.get(i), members.get(i + 1));
-            if (isContainedPair(pairHistory, pair)) {
+            if (validator.isContainedPair(pairHistory, pair)) {
                 return null;
             }
             pairs.add(pair);
@@ -114,15 +114,6 @@ public class PairController {
             pairs.get(pairs.size() - 1).addMember(members.get(size - 1));
         }
         return pairs;
-    }
-
-    private boolean isContainedPair(List<Pair> pairs, Pair nowPair) {
-        for (Pair pair : pairs) {
-            if (pair.isEquals(nowPair)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private List<Pair> getPairHistory(Course course, Level level) {

@@ -14,7 +14,7 @@ public class InputView {
         try {
             System.out.println(OPTIONS);
             String input = Console.readLine();
-            validator.isValidOption(input);
+            validator.checkValidOption(input);
             return findNameByValue(input);
 
         } catch (IllegalArgumentException e) {
@@ -27,7 +27,7 @@ public class InputView {
         try {
             System.out.println(PRECOURSE_AND_MISSIONS);
             String input = Console.readLine();
-            validator.isValidDetails(input);
+            validator.checkValidDetails(input);
             return input;
 
         } catch (IllegalArgumentException e) {
@@ -40,7 +40,7 @@ public class InputView {
         try {
             System.out.println(RE_MATCHING);
             String input = Console.readLine();
-            validator.isReMatch(input);
+            validator.checkReMatch(input);
             return input;
 
         } catch (IllegalArgumentException e) {
