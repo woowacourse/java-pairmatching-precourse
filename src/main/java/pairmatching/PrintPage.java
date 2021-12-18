@@ -20,9 +20,8 @@ public class PrintPage {
         System.out.println("- 레벨4: 성능개선 | 배포");
         System.out.println("- 레벨5: ");
         System.out.println("#############################################");
-        if (Utils.InputPairMatching()) {
-            PrintPage.StartPage();
-        }
+        Utils.InputPairMatching();
+        PrintPage.StartPage();
     }
 
     public static void PrintMatching() {
@@ -35,8 +34,7 @@ public class PrintPage {
         System.out.println("- 레벨4: 성능개선 | 배포");
         System.out.println("- 레벨5: ");
         System.out.println("#############################################");
-        if (Utils.InputPairMatching()) {
-            PrintPage.StartPage();
-        }
+        Utils.InputPrintPair();
+        PrintPage.StartPage();
     }
 }

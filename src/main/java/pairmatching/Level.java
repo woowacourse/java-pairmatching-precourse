@@ -29,4 +29,13 @@ public enum Level {
         }
         return false;
     }
+
+    public static Boolean JudgeLevel(String inputLevel) {
+        for (Level level : Level.values()) {
+            if (level.name.equals(inputLevel)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
