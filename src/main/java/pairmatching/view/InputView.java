@@ -7,4 +7,9 @@ public class InputView {
 		OutputView.printMainMenu();
 		return Console.readLine();
 	}
+
+	public static String inputCourseLevelMission() {
+		OutputView.printInputCourseLevelMission();
+		return Console.readLine();
+	}
 }

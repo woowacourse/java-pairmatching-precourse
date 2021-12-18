@@ -6,14 +6,28 @@ import java.util.stream.Collectors;
 
 import pairmatching.domain.course.Course;
 import pairmatching.domain.level.Level;
+import pairmatching.exception.InvalidFormatException;
 import pairmatching.repository.MissionRepository;
+import pairmatching.util.FormatChecker;
+import pairmatching.util.InputParser;
+import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class PairController {
 	private static final String LEVEL_MISSIONS_FORMAT = "%s: %s";
 
+	private static final int COURSE_INDEX = 0;
+	private static final int LEVEL_INDEX = 1;
+	private static final int MISSION_INDEX = 2;
+
 	public void startMatching() {
-		showOverview();
+		try {
+			showOverview();
+			List<String> courseLevelMission = getCourseLevelMission();
+		} catch (IllegalArgumentException e) {
+			OutputView.printError(e);
+			startMatching();
+		}
 	}
 
 	private void showOverview() {
@@ -25,6 +39,39 @@ public class PairController {
 			.collect(Collectors.toList());
 
 		OutputView.printOverview(courses, levelMissions);
+	}
+
+	private List<String> getCourseLevelMission() {
+		String input = InputView.inputCourseLevelMission();
+		validateCourseLevelMissionFormat(input);
+
+		List<String> courseLevelMission = InputParser.parseCourseLevelMission(input);
+		validateCourseLevelMission(courseLevelMission);
+
+		return courseLevelMission;
+	}
+
+	private void validateCourseLevelMissionFormat(String input) {
+		boolean isFormatValid = FormatChecker.validateCourseLevelMissionInputFormat(input);
+		if (!isFormatValid) {
+			throw new InvalidFormatException();
+		}
+	}
+
+	private void validateCourseLevelMission(List<String> courseLevelMission) {
+		// TODO: 검증 해야함
+		// if (!Course.containsName(courseLevelMission.get(COURSE_INDEX))) {
+		// 	throw new NoCourseException();
+		// }
+		//
+		// if (!Level.containsName(courseLevelMission.get(LEVEL_INDEX))) {
+		// 	throw new NoLevelException();
+		// }
+		//
+		// Level level = Level.getByName(courseLevelMission.get(MISSION_INDEX));
+		// if (MissionRepository.contains(level, courseLevelMission.get(MISSION_INDEX))) {
+		// 	throw new NoMissionException();
+		// }
 	}
 
 	public void startView() {

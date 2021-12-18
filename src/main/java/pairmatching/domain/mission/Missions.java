@@ -21,6 +21,10 @@ public class Missions {
 		return Collections.unmodifiableList(missions);
 	}
 
+	public boolean contains(String mission) {
+		return missions.contains(mission);
+	}
+
 	@Override
 	public String toString() {
 		if (missions != null) {

@@ -20,4 +20,10 @@ public class MissionRepository {
 		// 존재안할 시 빈 Missions 객체 반환
 		return levels.getOrDefault(level, Missions.of());
 	}
+
+	// TODO: mission 도 객체로 wrapping 필요
+	public static boolean contains(Level level, String mission) {
+		System.out.println(level + mission + levels.get(level));
+		return levels.get(level).contains(mission);
+	}
 }
