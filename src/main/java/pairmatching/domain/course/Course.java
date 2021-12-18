@@ -1,14 +1,24 @@
 package pairmatching.domain.course;
 
-public enum Course {
-    BACKEND("백엔드"),
-    FRONTEND("프론트엔드");
+import java.util.Arrays;
 
-    private String name;
+import pairmatching.domain.course.enums.CourseEnum;
 
-    Course(String name) {
-        this.name = name;
+public class Course {
+    private String courseName;
+
+    public Course(String courseName) {
+        validateCourseName(courseName);
+        this.courseName = courseName;
     }
 
-    // 추가 기능 구현
+    private void validateCourseName(String courseName) {
+        if (!existCourse()) {
+            throw new IllegalArgumentException("존재하지 않는 코스입니다");
+        }
+    }
+
+    private boolean existCourse() {
+        return Arrays.stream(CourseEnum.values()).anyMatch(course -> course.getName().equals(courseName));
+    }
 }

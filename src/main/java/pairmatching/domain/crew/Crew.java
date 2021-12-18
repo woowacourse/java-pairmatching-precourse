@@ -1,12 +1,12 @@
 package pairmatching.domain.crew;
 
-import pairmatching.domain.course.Course;
+import pairmatching.domain.course.enums.CourseEnum;
 
 public class Crew {
-    private Course course;
+    private CourseEnum course;
     private String name;
 
-    public Crew(Course course, String name) {
+    public Crew(CourseEnum course, String name) {
         this.course = course;
         this.name = name;
     }
