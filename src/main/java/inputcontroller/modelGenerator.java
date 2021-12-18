@@ -31,6 +31,17 @@ public class modelGenerator {
         while ((line = reader.readLine()) != null) {
             frontends.add(line);
         }
-        Crew.generateBackend(frontends);
+        Crew.generateFrontend(frontends);
+    }
+
+    public static boolean readFromDisk() {
+        try {
+            readBackendCrewFromDisk();
+            readFrontendCrewFromDisk();
+        } catch (IOException exception) {
+            System.out.println("no files");
+            return false;
+        }
+        return true;
     }
 }
