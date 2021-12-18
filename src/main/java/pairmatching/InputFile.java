@@ -7,11 +7,11 @@ public class InputFile {
     private static final String BACKEND_PATH = "src/main/resources/backend-crew.md";
     private static final String FRONTEND_PATH = "src/main/resources/frontend-crew.md";
     private static final String INVALID_PATH_ERROR = "잘못된 경로입니다.";
-    private InputFile inputFile = null;
+    private static InputFile inputFile = null;
 
     private InputFile() {}
 
-    public InputFile getInstance() {
+    public static InputFile getInstance() {
         if (inputFile == null) {
             inputFile = new InputFile();
         }
