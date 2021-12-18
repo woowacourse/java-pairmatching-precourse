@@ -24,4 +24,8 @@ public class ProgramData {
 	public static final List<String> LEVEL4_MISSION = Arrays.asList("성능개선", "배포");
 	public static final List<String> LEVEL5_MISSION = Arrays.asList();
 
+	public static final List<String> SELECT_LIST = Arrays.asList("1", "2", "3", "Q");
+
+	public static final String INVALID_SELECT_ERROR = "[ERROR] 유효하지 않은 선택입니다.";
+
 }
