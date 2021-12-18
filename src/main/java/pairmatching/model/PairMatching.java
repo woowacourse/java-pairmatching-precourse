@@ -1,6 +1,6 @@
 package pairmatching.model;
 
-public class PairProgram {
+public class PairMatching {
     private Course course;
     private Level level;
     private Mission mission;
