@@ -47,19 +47,12 @@ public class PairService {
 
     private List<Pair> matchPairs(PairTag pairTag) {
         List<Pair> result = new ArrayList<>();
-        List<String> shuffledNames;
         List<Crew> shuffledCrew = null;
         if (pairTag.getCourse() == Course.BACKEND) {
-            shuffledNames = Randoms.shuffle(backend);
-            shuffledCrew = shuffledNames.stream()
-                    .map(name -> new Crew(Course.BACKEND, name))
-                    .collect(Collectors.toList());
+            shuffledCrew = mapNamesToCrews(backend, Course.BACKEND);
         }
         if (pairTag.getCourse() == Course.FRONTEND) {
-            shuffledNames = Randoms.shuffle(frontend);
-            shuffledCrew = shuffledNames.stream()
-                    .map(name -> new Crew(Course.FRONTEND, name))
-                    .collect(Collectors.toList());
+            shuffledCrew = mapNamesToCrews(frontend, Course.FRONTEND);
         }
 
         int i = 0;
@@ -78,6 +71,13 @@ public class PairService {
         }
 
         return result;
+    }
+
+    private List<Crew> mapNamesToCrews(List<String> names, Course course) {
+        List<String> shuffledNames = Randoms.shuffle(names);
+        return shuffledNames.stream()
+                .map(name -> new Crew(course, name))
+                .collect(Collectors.toList());
     }
 
 
