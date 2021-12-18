@@ -4,6 +4,7 @@ import pairmatching.domain.MatchResult;
 import pairmatching.domain.MatchResultRepository;
 
 import static pairmatching.constants.SystemConstants.*;
+import static pairmatching.utils.UserChoiceValidator.*;
 import static pairmatching.view.InputView.*;
 
 public class PairMatchingService {
@@ -25,9 +26,14 @@ public class PairMatchingService {
     public boolean confirmPostNewMatchResult(MatchResult existingResult) {
         if (existingResult != null) return true;
         while(true) {
-            String userChoice = requestNewMatchInput();
-            if (userChoice.equals(YES)) return true;
-            if (userChoice.equals(NO)) return false;
+            try {
+                String userChoice = requestNewMatchInput();
+                validateYesNoInput(userChoice);
+                if (userChoice.equals(YES)) return true;
+                if (userChoice.equals(NO)) return false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }

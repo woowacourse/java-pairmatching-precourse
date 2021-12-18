@@ -16,4 +16,12 @@ public class UserChoiceValidator {
             throw new IllegalArgumentException(INVALID_CHOICE_EXCEPTION);
         }
     }
+
+    public static void validateYesNoInput(String input) {
+        List<String> validateInputs = Stream.of(YES, NO)
+                .collect(Collectors.toList());
+        if (!validateInputs.contains(input)) {
+            throw new IllegalArgumentException(INVALID_YES_NO_EXCEPTION);
+        }
+    }
 }
