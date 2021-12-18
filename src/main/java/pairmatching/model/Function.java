@@ -2,6 +2,9 @@ package pairmatching.model;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static pairmatching.model.Error.WRONG_FUNCTION_INPUT_ERROR;
 
 public enum Function {
 	MATCH("1", "페어 매칭"),
@@ -19,6 +22,19 @@ public enum Function {
 
 	public static List<Function> getFunctions() {
 		return Arrays.asList(values());
+	}
+
+	public static Function getFunctionByKey(String key) {
+		return Arrays.stream(Function.values())
+				.filter(function -> function.key.equals(key))
+				.findAny()
+				.orElseThrow(() -> new IllegalArgumentException(WRONG_FUNCTION_INPUT_ERROR));
+	}
+
+	public static List<String> getFunctionKeys() {
+		return Arrays.stream(Function.values())
+				.map(function -> function.key)
+				.collect(Collectors.toList());
 	}
 
 	@Override
