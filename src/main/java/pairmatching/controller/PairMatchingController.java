@@ -17,6 +17,7 @@ import pairmatching.domain.MatchParams;
 import pairmatching.domain.Mission;
 import pairmatching.domain.MissionRepository;
 import pairmatching.domain.PairRepository;
+import pairmatching.util.SystemMessage;
 import pairmatching.view.FunctionSelectView;
 import pairmatching.view.PairMatchingInputView;
 import pairmatching.view.PairMatchingResultView;
@@ -25,6 +26,8 @@ import pairmatching.view.PairResetView;
 import pairmatching.view.View;
 
 public class PairMatchingController {
+	private static final String PAIR_DELIMITER = " : ";
+
 	MissionRepository missionRepository = new MissionRepository();
 	CourseRepository courseRepository = new CourseRepository();
 	CrewRepository crewRepository = new CrewRepository();
@@ -54,7 +57,7 @@ public class PairMatchingController {
 		return courseRepository.getCourseListString();
 	}
 
-	public void pairMatching() {
+	public boolean pairMatching() {
 		List<List<String>> pairs = new ArrayList<>();
 		List<String> crewNames = crewRepository.getCrews().stream()
 			.filter(item -> item.getCourse().equals(lastMatchParams.getCourse()))
@@ -62,8 +65,38 @@ public class PairMatchingController {
 			.collect(Collectors.toList());
 
 		shuffleAndPair(pairs, crewNames);
-
+		if(!testPairs(pairs, crewNames)) {
+			System.out.println(SystemMessage.ERROR_CANT_SHUFFLE);
+			return false;
+		}
 		pairRepository.addPair(lastMatchParams, pairs);
+		return true;
+	}
+
+	private boolean hasSamePairInThisLevel(List<List<String>> pairs) {
+		List<String> pairListByCourseAndLevel = pairRepository.getPairsByCourseAndLevel(lastMatchParams.getCourse(), lastMatchParams.getLevel());
+		List<String> pairStringList = pairs.stream()
+			.map(item -> String.join(PAIR_DELIMITER, item))
+			.collect(Collectors.toList());
+
+		for (String pairString : pairStringList) {
+			if(pairListByCourseAndLevel.contains(pairString))
+				return true;
+		}
+
+		return false;
+	}
+
+	private boolean testPairs(List<List<String>> pairs, List<String> crewNames) {
+		int i;
+		for (i = 0; i < 3; i++) {
+			if(hasSamePairInThisLevel(pairs)) {
+				shuffleAndPair(pairs, crewNames);
+				continue;
+			}
+			break;
+		}
+		return i != 3;
 	}
 
 	private void shuffleAndPair(List<List<String>> pairs, List<String> crewNames) {

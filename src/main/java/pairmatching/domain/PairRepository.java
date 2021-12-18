@@ -42,4 +42,18 @@ public class PairRepository {
 	public void resetPairs() {
 		pairs.clear();
 	}
+
+	public List<String> getPairsByCourseAndLevel(Course course, Level level) {
+		List<String> result = new ArrayList<>();
+		for (MatchParams params : pairs.keySet()) {
+			if(params.getCourse().equals(course) && params.getLevel().equals(level)) {
+				List<List<String>> pairNameList = pairs.get(params);
+				result.addAll((pairNameList.stream()
+					.map(item -> String.join(PAIR_DELIMITER, item))
+					.collect(Collectors.toList())));
+			}
+		}
+
+		return result;
+	}
 }

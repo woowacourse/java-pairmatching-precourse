@@ -66,8 +66,11 @@ public class PairMatchingInputView implements View {
 	}
 
 	private void pairMatchAndShowResult() {
-		Application.controller.pairMatching();
-		Application.controller.view(ViewMappingKey.PAIR_MATCHING_RESULT);
+		if (Application.controller.pairMatching()) {
+			Application.controller.view(ViewMappingKey.PAIR_MATCHING_RESULT);
+			return;
+		}
+		Application.controller.view(ViewMappingKey.FUNCTION_SELECT);
 	}
 
 	private void goFunctionSelect() {

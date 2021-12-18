@@ -23,4 +23,5 @@ public class SystemMessage {
 	public static final String ERROR_NOT_MISSION = ERROR + "존재하는 미션을 입력해주세요.";
 	public static final String EXIT = "프로그램을 종료합니다.";
 	public static final String NOT_EXIST_PAIR = "아직 페어를 생성하지 않았습니다.";
+	public static final String ERROR_CANT_SHUFFLE = ERROR + " 같은 레벨에서 같은 페어가 겹칩니다.";
 }

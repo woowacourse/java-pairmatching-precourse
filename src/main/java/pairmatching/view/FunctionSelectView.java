@@ -19,6 +19,7 @@ public class FunctionSelectView implements View {
 
 	@Override
 	public void printViewMessage() {
+		System.out.println();
 		System.out.println(SystemMessage.FUNCTION_SELECT);
 	}
 
