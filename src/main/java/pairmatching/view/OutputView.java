@@ -7,6 +7,7 @@ import pairmatching.domain.ProgramInfo;
 
 public class OutputView {
     public static void showThisProgramPair(ProgramInfo programInfo) { // TODO 홀수 짝수 나눠서 해주기.
+        System.out.println("\n페어 매칭 결과입니다.");
         LinkedHashMap<Crew, Crew> pairs = programInfo.getPairs();
 
         if (pairs.size() % 2 == 0) {
@@ -26,6 +27,7 @@ public class OutputView {
             System.out.println(crew + " : " + pairs.get(crew));
             i += 1;
         }
+        System.out.println("\n");
     }
 
     public static void showErrorMessage(IllegalArgumentException e) {

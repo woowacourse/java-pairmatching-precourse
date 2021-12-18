@@ -25,10 +25,6 @@ public class ProgramInfoRepository {
     }
 
     public boolean checkTwoCrewsAlreadyMatch(ProgramInfo nowProgramInfo, Crew crew1, Crew crew2) {
-        Course course = nowProgramInfo.getCourse(); //백인지 프론트인지
-        Level level = nowProgramInfo.getLevel(); // 몇 단계 미션인지
-        //프로그램 info에게 course가 같냐? level이 같냐? 물어봄.
-        // 같은 녀석을 찾으면 -> crew1과 crew2가 매칭된 적 있냐고 물어본다. true or false
         return programInfos.stream()
             .filter(programInfo -> programInfo.getCourse() == nowProgramInfo.getCourse())
             .filter(programInfo -> programInfo.getLevel() == nowProgramInfo.getLevel())
