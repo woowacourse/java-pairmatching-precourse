@@ -1,5 +1,7 @@
 package pairmatching.controller;
 
+import static pairmatching.exception.EmptyException.*;
+
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -17,7 +19,7 @@ public class PairMatchingController {
 	public void run() {
 		try {
 			do {
-				function = inputView.requestFunction();
+				function = checkEmptyInput(inputView.requestFunction());
 			} while (function.equals("Q"));
 		}catch (Exception exception){
 			outputView.reportException(exception.getMessage());
