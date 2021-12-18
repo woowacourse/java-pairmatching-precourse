@@ -1,6 +1,5 @@
 package pairmatching;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.game.RunGame;
 
 public class Application {

@@ -6,6 +6,8 @@ import pairmatching.util.Constant;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
+import java.io.IOException;
+
 public class RunGame {
     private static String nextStep;
     public static void run() {
@@ -20,8 +22,21 @@ public class RunGame {
         }
     }
     private static void pairMatching() {
-        OutputView.askPairMatching();
+        try {
+            setPairMatching();
+        } catch (IllegalArgumentException | IOException e) {
+            System.out.println(Constant.PAIR_MATCHING_ERROR);
+            pairMatching();
+        }
     }
+
+    private static void setPairMatching() throws IOException {
+        OutputView.askPairMatching();
+        String input = Console.readLine();
+        String[] pariMatchingInfo = InputView.splitString(input);
+        OutputView.resultPairMatching(pariMatchingInfo);
+    }
+
     private static void selectFunction() {
         try {
             setFunction();

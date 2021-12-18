@@ -6,6 +6,8 @@ public class Constant {
             "2. 페어 조회\n" +
             "3. 페어 초기화\n" +
             "Q. 종료";
+    public static final String SELECT_FUNCTION_ERROR = "[ERROR] 올바른 선택이 아닙니다.";
+
     public static final String PAIR_MATCHING = "#############################################\n" +
             "과정: 백엔드 | 프론트엔드\n" +
             "미션:\n" +
@@ -17,10 +19,13 @@ public class Constant {
             "############################################\n" +
             "과정, 레벨, 미션을 선택하세요.\n" +
             "ex) 백엔드, 레벨1, 자동차경주";
+    public static final String PAIR_MATCHING_ERROR = "[ERROR] 올바른 입력이 아닙니다.";
+    public static final String PAIR_MATCHING_RESULT = "페어 매칭 결과입니다.";
+
     public static final String PAIR_LOOKUP = "";
     public static final String PAIR_INITIALIZATION = "";
     public static final String QUIT = "";
 
-    public static final String SELECT_FUNCTION_ERROR = "[ERROR] 올바른 선택이 아닙니다.";
+
 
 }
