@@ -46,7 +46,6 @@ public class MatchingController {
 
 
     public void startMatching(String courseName) {
-        matchingService.hasDistinctMatching(courseName);
         List<String> allMatched;
         try {
             matchingService.hasAlreadyMatching(courseName);

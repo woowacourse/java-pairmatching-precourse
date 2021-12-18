@@ -43,10 +43,6 @@ public class MatchingService {
         }
     }
 
-    public boolean hasDistinctMatching(String courseName) {
-        return matching.HasDuplicateMatchingBySameLevel(courseName);
-    }
-
     public void hasAlreadyMatching(String courseName) {
         if (matching.alreadyHasMatching(courseName)) {
             throw new IllegalArgumentException();
