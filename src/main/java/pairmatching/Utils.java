@@ -28,5 +28,6 @@ public class Utils {
         if (false) { // 예외처리판정이 들어갈 곳
             Except.PairMatchingInputError();
         }
+        PrintPage.StartPage();
     }
 }

@@ -10,5 +10,12 @@ public enum Course {
         this.name = name;
     }
 
-    // 추가 기능 구현
+    public static Boolean JudgeCourse(String end) {
+        for (Course course : Course.values()) {
+            if (course.name.equals(end)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
