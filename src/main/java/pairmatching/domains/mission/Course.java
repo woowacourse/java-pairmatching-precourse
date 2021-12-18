@@ -1,5 +1,10 @@
 package pairmatching.domains.mission;
 
+import static pairmatching.constant.ViewMessage.*;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public enum Course {
 	BACKEND("백엔드"),
 	FRONTEND("프론트엔드");
@@ -8,5 +13,13 @@ public enum Course {
 
 	Course(String name) {
 		this.name = name;
+	}
+
+	public static String getCourseView() {
+		String form = COURSE_PREFIX;
+		return form +
+			Arrays.stream(Course.values())
+			.map(c -> c.name)
+			.collect(Collectors.joining(STATE_DIVIDER));
 	}
 }

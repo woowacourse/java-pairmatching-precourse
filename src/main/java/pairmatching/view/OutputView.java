@@ -2,6 +2,8 @@ package pairmatching.view;
 
 import static pairmatching.constant.ViewMessage.*;
 
+import pairmatching.domains.mission.Course;
+import pairmatching.domains.mission.Level;
 import pairmatching.domains.programfunc.ProgramSelection;
 
 public class OutputView {
@@ -14,7 +16,17 @@ public class OutputView {
 		}
 	}
 
-	public static void breakLine() {
-		System.out.println();
+	public static void printTechCourseState() {
+		System.out.println(STATE_MESSAGE_WRAPPER + LINE_BREAK
+			+ Course.getCourseView() + LINE_BREAK
+			+ MISSION_PREFIX + LINE_BREAK
+			+ Level.getLevelView()
+			+ STATE_MESSAGE_WRAPPER
+		);
+		printInputExample();
+	}
+	private static void printInputExample() {
+		System.out.println(MISSION_SELECT_MESSAGE);
+		System.out.println(MISSION_SELECT_EXAMPLE);
 	}
 }

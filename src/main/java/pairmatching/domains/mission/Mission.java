@@ -1,6 +1,10 @@
 package pairmatching.domains.mission;
 
+import static pairmatching.constant.ViewMessage.*;
 import static pairmatching.domains.mission.Level.*;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public enum Mission {
 	RACING_CAR(LEVEL1, "자동차경주"),
@@ -18,6 +22,13 @@ public enum Mission {
 	Mission(Level level, String korean) {
 		this.level = level;
 		this.korean = korean;
+	}
+
+	public static String getMissionViewByLevel(Level level) {
+		 return Arrays.stream(Mission.values())
+			 .filter(m -> m.level == level)
+			 .map(m -> m.korean)
+			 .collect(Collectors.joining(STATE_DIVIDER));
 	}
 
 }

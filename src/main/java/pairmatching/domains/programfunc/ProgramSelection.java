@@ -22,18 +22,15 @@ public enum ProgramSelection {
 
 	public static ProgramSelection findBySelection(String selection) {
 		return Arrays.stream(ProgramSelection.values())
-			.filter(s -> s.getSelection().equals(selection))
+			.filter(s -> s.selection.equals(selection))
 			.findAny()
 			.orElseThrow(() -> new IllegalArgumentException(
-				ERROR_PREFIX + SELECTION_NULL
+				ERROR_PREFIX + SELECTION_NULL + LINE_BREAK
 			));
-	}
-
-	public String getSelection() {
-		return selection;
 	}
 
 	public String getSelectForm() {
 		return selection + SELECTION_DOT + info;
+
 	}
 }
