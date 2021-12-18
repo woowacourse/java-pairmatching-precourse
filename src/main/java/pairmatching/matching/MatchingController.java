@@ -2,10 +2,11 @@ package pairmatching.matching;
 
 import pairmatching.GeneralInputView;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class MatchingController {
+    private static final String REMATCH_YES = "네";
+    private static final String REMATCH_NO = "아니오";
     private final MatchingService matchingService;
 
     public MatchingController() {
@@ -40,14 +41,22 @@ public class MatchingController {
 
     public void startMatching(String courseName) {
         matchingService.hasDistinctMatching(courseName);
-        // 매칭 로직
-        // 결과보여주기
-        MatchingOutputView.seeMatchingResult();
+        List<String> allMatched = matchingService.startMatching(courseName);
+        try {
+            matchingService.hasAlreadyMatching(courseName);
+        } catch (IllegalArgumentException e) {
+            String inputReMatching = MatchingInputView.duplicateMatchingResult();
+            // 검증로직
+            if (inputReMatching.equals(REMATCH_NO)){
+                return;
+            }
+        }
+        MatchingOutputView.seeMatchingResult(allMatched);
     }
 
     public void seeMatchingInfo(String courseName) {
         // 결과 보여주기
-        MatchingOutputView.seeMatchingResult();
+        // MatchingOutputView.seeMatchingResult();
     }
 
     public void resetMatching() {
