@@ -12,7 +12,7 @@ public class OutputView {
     }
 
     public void printErrorMessage(RuntimeException e) {
-        System.out.printf("[ERROR] "+ e.getMessage());
+        System.out.printf(e.getMessage());
     }
 
     public void printSelectionNotice(){

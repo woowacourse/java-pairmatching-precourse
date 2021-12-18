@@ -18,6 +18,7 @@ public class InputView {
             }
         } catch (NotValidMenuInputException e) {
             outputView.printErrorMessage(e);
+            inputMenu();
         }
         return menu;
     }
@@ -35,6 +36,7 @@ public class InputView {
             }
         } catch (NotValidMenuInputException e) {
             outputView.printErrorMessage(e);
+            inputRematching();
         }
         return isRematch;
     }

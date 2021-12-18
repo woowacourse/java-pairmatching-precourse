@@ -9,6 +9,7 @@ import pairmatching.View.OutputView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PairMatching {
     private InputView inputView;
@@ -78,7 +79,17 @@ public class PairMatching {
     }
 
     private List<Pair> tryMatching(Course course) {
-        List<Crew> crews = Randoms.shuffle(getCrews(course));
+        List<String> crewNames=getCrews(course).stream()
+                .map(crew->crew.getName())
+                .collect(Collectors.toList());
+        crewNames = Randoms.shuffle(crewNames);
+        List<Crew> crews=new ArrayList<>();
+        for(String name : crewNames){
+            getCrews(course).stream()
+                    .filter(x->name.equals(x.getName()))
+                    .forEach(x->crews.add(new Crew(course, name)));
+        }
+
         List<Pair> matching = new ArrayList<>();
 
         int count = 0;

@@ -1,6 +1,5 @@
 package pairmatching.Model;
 
-import pairmatching.Controller.MatchingController;
 import pairmatching.View.OutputView;
 
 import java.util.LinkedHashMap;
