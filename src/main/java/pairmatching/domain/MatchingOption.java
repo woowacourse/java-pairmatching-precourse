@@ -9,6 +9,10 @@ public class MatchingOption {
 		this.mission = mission;
 	}
 
+	public Course getCourse() {
+		return course;
+	}
+
 	@Override
 	public String toString() {
 		return "MatchingOption{" +

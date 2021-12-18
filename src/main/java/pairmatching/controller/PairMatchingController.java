@@ -8,14 +8,17 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.Application;
 import pairmatching.constant.PairMatchingConst;
 import pairmatching.domain.Course;
+import pairmatching.domain.Crew;
 import pairmatching.domain.Crews;
 import pairmatching.domain.Level;
 import pairmatching.domain.MatchingOption;
 import pairmatching.domain.Mission;
 import pairmatching.domain.Missions;
+import pairmatching.domain.Pair;
 import pairmatching.utils.Converter;
 import pairmatching.utils.Validator;
 import pairmatching.view.InputView;
@@ -32,15 +35,8 @@ public class PairMatchingController {
 		// 기능 선택 기능
 		String select = enterSelectOption();
 		if (select.equals(PairMatchingConst.SELECT_PAIR_MATCHING)) { // 페어 매칭
-			try {
-				OutputView.printCourseAndMissionStatus(missions);
-				String matchingOptionInput = InputView.enterString();
-				MatchingOption matchingOption = Converter.toMatchingOption(matchingOptionInput, missions);
-				System.out.println(matchingOption.toString());
-			} catch (IllegalArgumentException ex) {
-				OutputView.printError(ex.getMessage());
-			}
-
+			List<Pair> pairs = matchingPair(missions, crews);
+			// pairs 검증
 		}
 		if (select.equals(PairMatchingConst.SELECT_PAIR_READ)) { // 페어 조회
 		}
@@ -48,6 +44,31 @@ public class PairMatchingController {
 		}
 		if (select.equals(PairMatchingConst.SELECT_EXIT)) { // 종료
 			return;
+		}
+	}
+
+	private List<Pair> matchingPair(Missions missions, Crews crews) {
+		try {
+			OutputView.printCourseAndMissionStatus(missions);
+			String matchingOptionInput = InputView.enterString();
+			MatchingOption matchingOption = Converter.toMatchingOption(matchingOptionInput, missions);
+
+			// 페어 매칭 구현
+			Course nowCourse = matchingOption.getCourse();
+			List<Crew> crewsByCourse = crews.getCrewsByCourse(nowCourse);
+
+			List<Crew> shuffledCrew = Randoms.shuffle(crewsByCourse);
+			List<Pair> pairs = new ArrayList<>();
+			for (int i = 0; i < shuffledCrew.size() / 2; i += 2) {
+				Pair pair = new Pair(crewsByCourse.get(i), crewsByCourse.get(i + 1));
+				pairs.add(pair);
+			}
+			if (shuffledCrew.size() % 2 == 1) { // 홀수인 경우 마지막 페어에 삽입
+				pairs.get(pairs.size() - 1).add(shuffledCrew.get(shuffledCrew.size() - 1));
+			}
+			return pairs;
+		} catch (IllegalArgumentException ex) {
+			OutputView.printError(ex.getMessage());
 		}
 	}
 

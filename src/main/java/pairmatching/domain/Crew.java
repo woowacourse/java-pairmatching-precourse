@@ -8,4 +8,8 @@ public class Crew {
 		this.course = course;
 		this.name = name;
 	}
+
+	public boolean isCourse(Course course) {
+		return this.course == course;
+	}
 }
