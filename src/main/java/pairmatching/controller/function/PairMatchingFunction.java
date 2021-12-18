@@ -38,19 +38,25 @@ public enum PairMatchingFunction {
 	PAIR_FIND("2") {
 		@Override
 		void function() {
-			printPairMatchingScreen();
-			String[] splitPairMatching = inputPairMatching().split(",");
-			String course = splitPairMatching[0].trim();
-			String level = splitPairMatching[1].trim();
-			String mission = splitPairMatching[2].trim();
-			PairMatching pairMatching = PairMatchingRepository.find(course, level, mission);
-			printPairMatchingResult(pairMatching.getPairMatchingResult());
+			try{
+				printPairMatchingScreen();
+				String[] splitPairMatching = inputPairMatching().split(",");
+				String course = splitPairMatching[0].trim();
+				String level = splitPairMatching[1].trim();
+				String mission = splitPairMatching[2].trim();
+				PairMatching pairMatching = PairMatchingRepository.find(course, level, mission);
+				printPairMatchingResult(pairMatching.getPairMatchingResult());
+			} catch (IllegalArgumentException illegalArgumentException){
+				System.out.println(illegalArgumentException.getMessage());
+				function();
+			}
 		}
 	},
 	PAIR_RESET("3") {
 		@Override
 		void function() {
 			PairMatchingRepository.reset();
+			printFinishPairMatchingRepositoryReset();
 		}
 	},
 	QUIT("Q") {
