@@ -2,6 +2,7 @@ package pairmatching.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.utils.FileUtils;
@@ -31,5 +32,14 @@ public class Matching {
 			}
 			pairs.add(pair);
 		}
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder pairStringBuilder = new StringBuilder();
+		for (Pair pair : pairs) {
+			pairStringBuilder.append(pair.toString()).append("\n");
+		}
+		return pairStringBuilder.toString();
 	}
 }

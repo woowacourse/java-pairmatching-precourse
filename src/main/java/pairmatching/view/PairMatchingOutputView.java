@@ -18,6 +18,7 @@ public class PairMatchingOutputView {
 	private static final String LEVEL_FOUR = "- 레벨4: 성능개선 | 배포";
 	private static final String LEVEL_FIVE = "- 레벨5: ";
 	private static final String LINE_HASH = "#############################################";
+	private static final String MATCHING_RESULT_OUTPUT = "페어 매칭 결과입니다.";
 	private static final String DELIMITER = " | ";
 	private static final String COLON = ":";
 	private static final String WHITESPACE = " ";
@@ -79,5 +80,11 @@ public class PairMatchingOutputView {
 			.append(LEVEL_FOUR + LINE_WRAPPING)
 			.append(LEVEL_FIVE + LINE_WRAPPING)
 			.toString();
+	}
+
+	public static void printMatchingResult(String matchingResult) {
+		System.out.println(LINE_WRAPPING);
+		System.out.println(MATCHING_RESULT_OUTPUT);
+		System.out.println(matchingResult);
 	}
 }

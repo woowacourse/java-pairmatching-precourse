@@ -4,6 +4,7 @@ import java.util.List;
 
 import pairmatching.model.Matching;
 import pairmatching.view.PairMatchingInputView;
+import pairmatching.view.PairMatchingOutputView;
 
 public class PairMatchingController {
 	private List<String> crewNames; // 역대 매칭된 페어정보만
@@ -26,5 +27,6 @@ public class PairMatchingController {
 	private void match() {
 		String inputMatchingCondition = PairMatchingInputView.readCourseAndMission();
 		Matching matching = new Matching(inputMatchingCondition);
+		PairMatchingOutputView.printMatchingResult(matching.toString());
 	}
 }
