@@ -34,24 +34,15 @@ public class PairMatchingController {
 				break;
 			}
 			if (matchingFunction == MatchingFunction.INITIALIZATION) {
-				pairMatchings.initialization();
+				functionInitialization(pairMatchings);
 				continue;
 			}
-			PairMatching pairMatching = getMatchingInfo();
-			Optional<PairMatching> findPairMatching = pairMatchings.find(pairMatching);
-
+			OutputView.printCourseAndMission();
 			if (matchingFunction == MatchingFunction.MATCHING) {
-				if (!possiblePairMatching(findPairMatching)) {
-					continue;
-				}
-				pairMatching.makeMatching(crews);
-				pairMatchings.addPairMatching(pairMatching);
-				OutputView.printPairResult(pairMatching);
+				pairMatchings.addPairMatching(functionMatching(pairMatchings, crews));
 			}
 			if (matchingFunction == MatchingFunction.LOOKUP) {
-				if (containsPairMatching(findPairMatching)) {
-					OutputView.printPairResult(findPairMatching.get());
-				}
+				functionLookUp(pairMatchings);
 			}
 		}
 	}
@@ -72,9 +63,34 @@ public class PairMatchingController {
 		}
 	}
 
+	public void functionInitialization(PairMatchings pairMatchings) {
+		pairMatchings.initialization();
+	}
+
+	public PairMatching functionMatching(PairMatchings pairMatchings, Crews crews) {
+		PairMatching pairMatching;
+		Optional<PairMatching> findPairMatching;
+		do {
+			pairMatching = getMatchingInfo();
+			findPairMatching = pairMatchings.find(pairMatching);
+		} while (!possiblePairMatching(findPairMatching));
+
+		pairMatching.makeMatching(crews);
+		OutputView.printPairResult(pairMatching);
+		return pairMatching;
+	}
+
+	public void functionLookUp(PairMatchings pairMatchings) {
+		PairMatching pairMatching = getMatchingInfo();
+		Optional<PairMatching> findPairMatching = pairMatchings.find(pairMatching);
+
+		if (containsPairMatching(findPairMatching)) {
+			OutputView.printPairResult(findPairMatching.get());
+		}
+	}
+
 	public PairMatching getMatchingInfo() {
 		try {
-			OutputView.printCourseAndMission();
 			String matchingInfo = InputView.getPairMathing();
 			Validation.matchingInfoLength(matchingInfo);
 			List<String> pairMatching = Arrays.stream(matchingInfo.split(Constant.SPLIT))
@@ -113,5 +129,4 @@ public class PairMatchingController {
 		}
 		return true;
 	}
-
 }
