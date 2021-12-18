@@ -24,9 +24,7 @@ public class InputValidator {
 		}
 	}
 
-	public static void validateAllowedOption(String input) {
-		String[] elements = input.split(COMMA);
-
+	public static void validateAllowedOption(String[] elements) {
 		if (!Course.isContains(elements[0])
 		|| !Level.isContains(elements[1])
 		|| !Mission.isContains(elements[2])

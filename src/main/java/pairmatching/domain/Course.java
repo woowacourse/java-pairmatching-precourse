@@ -26,4 +26,11 @@ public enum Course {
 			.map(f -> f.name)
 			.anyMatch(k -> k.equals(str));
 	}
+
+	public static Course byName(String name) {
+		return Arrays.stream(values())
+			.filter(f -> f.name.equals(name))
+			.findFirst()
+			.orElse(null);
+	}
 }

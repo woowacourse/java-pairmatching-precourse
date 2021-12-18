@@ -1,7 +1,13 @@
 package pairmatching;
 
+import static pairmatching.Constant.*;
+
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.domain.Course;
 import pairmatching.domain.Function;
+import pairmatching.domain.Level;
+import pairmatching.domain.Mission;
+import pairmatching.domain.SelectedMission;
 
 public class Input {
 	public static Function requestToSelectFunction() {
@@ -20,20 +26,23 @@ public class Input {
 		}
 	}
 
-	public static void requestToSelectMission() {
+	public static SelectedMission requestToSelectMission() {
 		Printer.printMissions();
 		Printer.printMissionInputRequest();
-		readMissionSelected();
+		return readMissionSelected();
 	}
 
-	private static void readMissionSelected() {
+	private static SelectedMission readMissionSelected() {
 		try {
 			String input = Console.readLine();
+			String[] elements = input.split(COMMA);
+
 			InputValidator.validateMissionInputContainsThreeElements(input);
-			InputValidator.validateAllowedOption(input);
+			InputValidator.validateAllowedOption(elements);
+			return new SelectedMission(Course.byName(elements[0]), Level.byName(elements[1]), Mission.byName(elements[2]));
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			readMissionSelected();
+			return readMissionSelected();
 		}
 	}
 }
