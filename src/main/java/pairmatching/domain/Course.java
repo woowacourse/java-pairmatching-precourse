@@ -13,4 +13,5 @@ public enum Course {
 	public String getName() {
 		return name;
 	}
+	
 }

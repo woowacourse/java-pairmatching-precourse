@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import pairmatching.domain.Course;
-import pairmatching.domain.Level;
+import pairmatching.domain.LevelGroup;
 import pairmatching.domain.Mission;
 
 public class OutputView {
@@ -33,7 +33,7 @@ public class OutputView {
 
 	public static void printMission() {
 		System.out.println("미션:");
-		Stream.of(Level.values())
+		Stream.of(LevelGroup.values())
 			.map(e -> String.join("\n", "  - " + e.getName() + ": "
 					+ Arrays.stream(e.getMissions()).map(Mission::getName).collect(Collectors.joining(" | "))
 				)

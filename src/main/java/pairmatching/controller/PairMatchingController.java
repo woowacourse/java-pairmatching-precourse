@@ -1,11 +1,16 @@
 package pairmatching.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 import pairmatching.domain.Crews;
+import pairmatching.domain.Level;
+import pairmatching.domain.Mission;
+import pairmatching.domain.PairMatching;
 import pairmatching.domain.PairMatchings;
 import pairmatching.util.Constant;
 import pairmatching.util.CrewParse;
@@ -52,10 +57,10 @@ public class PairMatchingController {
 
 	public boolean selectFunction(String function, PairMatchings pairMatchings) {
 		if (function.equals(Constant.FUNCTION_PAIR_MATCHING)) {
-			OutputView.printCourseAndMission();
+			makePairMatching();
 		}
 		if (function.equals(Constant.FUNCTION_PAIR_LOOKUP)) {
-			OutputView.printCourseAndMission();
+			makePairMatching();
 		}
 		if (function.equals(Constant.FUNCTION_PAIR_INITIALIZATION)) {
 			OutputView.printInitialization();
@@ -63,4 +68,41 @@ public class PairMatchingController {
 		}
 		return !function.equals(Constant.FUNCTION_EXIT);
 	}
+
+	public PairMatching makePairMatching() {
+		List<String> pairMatching = runPairMatching();
+
+		return new PairMatching(Course.valueOf(pairMatching.get(0)), Level.valueOf(pairMatching.get(1)),
+			Mission.valueOf(pairMatching.get(2)));
+	}
+
+	public List<String> runPairMatching() {
+		try {
+			OutputView.printCourseAndMission();
+			return getPairMatching();
+		} catch (IllegalArgumentException e) {
+			OutputView.printErrorMessage(e.getMessage());
+			return runPairMatching();
+		}
+	}
+
+	public List<String> getPairMatching() {
+		List<String> pairMatching = Arrays.stream(InputView.getPairMathing().split(Constant.SPLIT))
+			.collect(Collectors.toList());
+		if (pairMatching.size() != Constant.INPUT_SIZE) {
+			throw new IllegalArgumentException(ErrorMessage.ERROR + ErrorMessage.INPUT_COURSE_AND_MISSION);
+		}
+		if (!Arrays.stream(Course.values()).anyMatch(e -> e.name().equals(pairMatching.get(Constant.COURSE_INDEX)))) {
+
+		}
+		if (!Arrays.stream(Level.values()).anyMatch(e -> e.name().equals(pairMatching.get(Constant.LEVEL_INDEX)))) {
+
+		}
+		if (!Arrays.stream(Mission.values()).anyMatch(e -> e.name().equals(pairMatching.get(Constant.MISSION_INDEX)))) {
+
+		}
+
+		return pairMatching;
+	}
+
 }
