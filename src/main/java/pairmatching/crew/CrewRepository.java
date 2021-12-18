@@ -16,10 +16,17 @@ public class CrewRepository {
     public static boolean checkDuplicated(Level level, List<String> crew) {
         List<List<String>> pairs = crews.get(level);
         for (List<String> pair : pairs) {
-            if (pair.containsAll(crew)) {
+            if (pair.contains(crew.get(0)) && pair.contains(crew.get(1))) {
                 return true;
             }
         }
         return false;
+    }
+
+    public static boolean checkExist(Level level, List<String> crew) {
+        if (crews.containsKey(level)) {
+            return checkDuplicated(level, crew);
+        }
+        return true;
     }
 }
