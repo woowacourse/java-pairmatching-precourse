@@ -25,4 +25,8 @@ public enum Course {
 		return this.name;
 	}
 
+	public boolean isEquals(Course course) {
+		return name.equals(course.getName());
+	}
+
 }

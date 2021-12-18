@@ -36,4 +36,16 @@ public enum Level {
 		return String.format(" - %s: %s", level, String.join(" | ", missions));
 	}
 
+	public String getLevel() {
+		return level;
+	}
+
+	public boolean isEquals(Level others) {
+		return level.equals(others.getLevel());
+	}
+
+	public List<String> getMissions() {
+		return missions;
+	}
+
 }

@@ -3,6 +3,7 @@ package pairmatching.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.stream.Collectors;
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 
@@ -34,13 +35,9 @@ public class CrewRepositoryImpl implements CrewRepository {
 	}
 
 	@Override
-	public Crew findOne(String name) {
-		return null;
-	}
-
-	@Override
-	public List<Crew> getAll() {
-		return null;
+	public List<Crew> findAll(Course course) {
+		return crews.stream()
+			.filter(crew -> crew.isCourseEquals(course)).collect(Collectors.toList());
 	}
 
 }
