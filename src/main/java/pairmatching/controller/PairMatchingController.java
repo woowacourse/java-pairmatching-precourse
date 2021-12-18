@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import pairmatching.constant.Course;
+import pairmatching.constant.Menu;
+import pairmatching.domain.Matching;
 import pairmatching.domain.PairMatching;
 import pairmatching.view.InputView;
 
@@ -29,9 +31,8 @@ public class PairMatchingController {
 
 	private void ready() {
 		pairMatching.setCrews(Course.BACKEND, readBackEndCrewFile());
-		System.out.println(pairMatching.getCrewNames(Course.BACKEND));
 		pairMatching.setCrews(Course.FRONTEND, readFrontEndCrewFile());
-		System.out.println(pairMatching.getCrewNames(Course.FRONTEND));
+		pairMatching.setMatchings();
 	}
 
 	private List<String> readBackEndCrewFile() {
@@ -64,6 +65,24 @@ public class PairMatchingController {
 
 	private void selectFunction() {
 		String functionNumber = inputView.getInputFunction();
-		System.out.println(functionNumber);
+		if (functionNumber.equals(Menu.MATCHING.getFunctionNumber())) {
+			matching();
+		}
 	}
+
+	private void matching() {
+		String inputMatching = inputView.getInputMatching();
+		Matching selectedMatching = findMatching(inputMatching);
+
+	}
+
+	private Matching findMatching(String inputMatching) {
+		for (Matching matching : pairMatching.getMatchings()) {
+			if (matching.isRight(inputMatching)) {
+				return matching;
+			}
+		}
+		return null;
+	}
+
 }
