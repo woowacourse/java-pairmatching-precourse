@@ -3,10 +3,7 @@ package pairmatching.domain;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -14,7 +11,7 @@ public class Pair {
     Course course;
     String mission;
     List<String> crewNames;
-    HashMap<String, String> alreadyMatched;
+    HashMap<String, String[]> alreadyMatched;
 
     public Pair(Course course, String mission) throws IOException {
         this.course = course;
@@ -39,8 +36,8 @@ public class Pair {
 
         for (int crewNumber = 0; crewNumber < totalSize;) {
             // TODO: 중복 검사
-            alreadyMatched.put(crewNames.get(crewNumber), crewNames.get(crewNumber+1));
-            alreadyMatched.put(crewNames.get(crewNumber+1), crewNames.get(crewNumber));
+            alreadyMatched.put(crewNames.get(crewNumber), new String[] {crewNames.get(crewNumber+1)});
+            alreadyMatched.put(crewNames.get(crewNumber+1), new String[] {crewNames.get(crewNumber)});
             crewNumber = crewNumber + 2;
         }
         insertRestCrew(totalSize);
@@ -57,9 +54,13 @@ public class Pair {
         int[] left = {2, 1, -1};
 
         for (int index = 0; index < 3; index++) {
-            alreadyMatched.put(crewNames.get(crewNames.size()-3+index), crewNames.get(crewNames.size()-3+right[index]));
-            alreadyMatched.put(crewNames.get(crewNames.size()-3+index), crewNames.get(crewNames.size()-3+left[index]));
+            alreadyMatched.put(crewNames.get(crewNames.size()-3+index),
+                    new String[] {crewNames.get(crewNames.size()-3+right[index]), crewNames.get(crewNames.size()-3+left[index])});
         }
+    }
+
+    public boolean validateMatchable(String firstCrewName, String secondCrewName) {
+        return Arrays.asList(alreadyMatched.get(firstCrewName)).contains(secondCrewName);
     }
 
     @Override
