@@ -1,7 +1,9 @@
 package pairmatching.Controller;
 
+import pairmatching.Menu;
 import pairmatching.Model.Level;
 import pairmatching.Model.Mission;
+import pairmatching.View.InputView;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -14,8 +16,12 @@ import java.util.List;
 
 public class MatchingController {
     private static List<Mission> missions;
+    private InputView inputView;
+    private static Menu menu;
     public MatchingController() {
         missions = new ArrayList<>();
+        inputView=new InputView();
+        menu=new Menu(inputView);
     }
 
     public static void run() {
@@ -25,7 +31,10 @@ public class MatchingController {
             System.out.println(e.getMessage());
         }
         missionInit();
-
+        boolean flag=true;
+        while(flag){
+            flag=menu.runMenu();
+        }
     }
 
     private static void missionInit() {
