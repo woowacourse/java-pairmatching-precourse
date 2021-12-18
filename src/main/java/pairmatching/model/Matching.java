@@ -1,6 +1,7 @@
 package pairmatching.model;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -54,11 +55,11 @@ public class Matching {
 
 	private Set<Set<String>> getCombinationBy(List<String> crew) {
 		if (crew.size() < 2) {
-			combination.add(new HashSet<>(crew));
+			combination.add(new LinkedHashSet<>(crew));
 			return combination;
 		}
 		for (int index = 0; index < crew.size(); index += 2) {
-			HashSet<String> pair = new HashSet<>();
+			HashSet<String> pair = new LinkedHashSet<>();
 			pair.add(crew.get(index));
 			pair.add(crew.get(index + 1));
 			combination.add(pair);
@@ -69,14 +70,10 @@ public class Matching {
 
 	private void addLast(List<String> crew) {
 		if (crew.size() % 2 == 1) {
-			HashSet<String> last = new HashSet<>();
+			HashSet<String> last = new LinkedHashSet<>();
 			last.add(crew.get(crew.size() - 1));
 			combination.add(last);
 		}
-	}
-
-	public Set<Set<String>> getCombination() {
-		return combination;
 	}
 
 	public Level getLevel() {

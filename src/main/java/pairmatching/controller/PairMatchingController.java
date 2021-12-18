@@ -43,6 +43,7 @@ public class PairMatchingController {
 			newMatching = selectOriginOrNew(newMatching);
 			String newMatchingCombination = getMatchingCombination(newMatching);
 			OutputView.printCombination(newMatchingCombination);
+			selectMenu();
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
 			matchPair();

@@ -9,8 +9,9 @@ public class InputView {
 		+ "3. 페어 초기화\n"
 		+ "Q. 종료";
 	private static final String MENU_REGEX = "^[123Q]$";
+	private static final String REMATCH_REGEX = "(네|아니오)";
 	private static final String ASKING_MATCHING = "과정, 레벨, 미션을 선택하세요.";
-	private static final String ASKING_REMATCHING = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
+	private static final String ASKING_REMATCHING = "\n매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
 		+ "네 | 아니오";
 
 	public static String getMenu() {
@@ -35,7 +36,7 @@ public class InputView {
 		try {
 			System.out.println(ASKING_REMATCHING);
 			String input = Console.readLine();
-			if (!input.matches(MENU_REGEX)) {
+			if (!input.matches(REMATCH_REGEX)) {
 				throw new IllegalArgumentException("[ERROR] 네, 아니오 둘 중 하나를 입력하세요.");
 			}
 			return input;
