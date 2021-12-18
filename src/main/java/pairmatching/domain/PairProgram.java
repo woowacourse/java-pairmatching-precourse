@@ -44,7 +44,6 @@ public class PairProgram {
 
     public List<Match> matching(Level level, Mission mission) {
         levelMission.checkExistMission(level, mission);
-        Mission originMission = levelMission.getMission(level, mission);
         for (int i = 1; i <= 3; i++) {
             List<Match> matches = createMatch(crews.crews(mission.course()), mission.course());
             if (!levelMission.isAlreadyMatchCrew(level, matches)) {
