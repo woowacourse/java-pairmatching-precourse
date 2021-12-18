@@ -38,7 +38,12 @@ public class MatchingController {
 		HashMap<String, Pairs> missionPair = new HashMap<>();
 		Pairs pairs = shuffleCrew(eachInform[COURSE_INDEX]);
 		missionPair.put(eachInform[MISSION_INDEX], pairs);
-		pairStorage.backEndPair.put(Level.getLevelByName(eachInform[LEVEL_INDEX]), missionPair);
+		if (eachInform[COURSE_INDEX].equals(Course.BACKEND.getName())) {
+			pairStorage.backEndPair.put(Level.getLevelByName(eachInform[LEVEL_INDEX]), missionPair);
+		}
+		if (eachInform[COURSE_INDEX].equals(Course.FRONTEND.getName())) {
+			pairStorage.frontEndPair.put(Level.getLevelByName(eachInform[LEVEL_INDEX]), missionPair);
+		}
 		OutputView.printPairResult(pairs);
 	}
 
@@ -46,7 +51,7 @@ public class MatchingController {
 		try {
 			String[] eachInform = inputController.scanCourseLevelMission();
 			Pairs pairs = pairStorage.getPairs(Level.getLevelByName(eachInform[LEVEL_INDEX]),
-				eachInform[MISSION_INDEX]);
+				eachInform[MISSION_INDEX], eachInform[COURSE_INDEX]);
 			OutputView.printPairResult(pairs);
 		} catch (IllegalArgumentException e) {
 			OutputView.printNoExistError();

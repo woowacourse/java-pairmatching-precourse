@@ -11,9 +11,12 @@ public class PairStorage {
 		frontEndPair = new HashMap<>();
 	}
 
-	public Pairs getPairs(Level level, String mission) {
+	public Pairs getPairs(Level level, String mission, String course) {
 		try {
-			return backEndPair.get(level).get(mission);
+			if (course.equals(Course.BACKEND.getName())) {
+				return backEndPair.get(level).get(mission);
+			}
+			return frontEndPair.get(level).get(mission);
 		} catch (NullPointerException e) {
 			throw new IllegalArgumentException();
 		}
