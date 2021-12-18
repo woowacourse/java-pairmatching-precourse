@@ -4,12 +4,11 @@
 
 ## 기능 구현 목록
 
-- [ ] 우테코에서 운영하는 과정에 따른 Enum 작성하기
-    - [ ] 2과정 -> 각 5레벨로 나누어 작성하기
-- [ ] 파일 입출력
-    - [ ] 페어 매칭에 필요한 크루들의 이름을 파일 입출력을 통해 불러온다.
-        - [ ] `src/main/resources/backend-crew.md`과 `src/main/resources/frontend-crew.md` 파일을 이용하기
-            - 두 파일의 내용은 수정이 가능하다. 수정 시 크루들의 이름은 중복될 수 없다.
+- [x] 우테코에서 운영하는 과정에 따른 Enum 작성하기
+    - [x] 2과정 -> 각 5레벨 -> 각 미션들로 나누어 작성하기 Course#, Level#
+- [x] 페어 매칭에 필요한 크루들의 이름을 파일 입출력을 통해 불러오는 기능 구현 FileManager#loadCrewFromFile
+    - [x] `src/main/resources/backend-crew.md`과 `src/main/resources/frontend-crew.md` 파일을 이용하기
+        - 두 파일의 내용은 수정이 가능하다. 수정 시 크루들의 이름은 중복될 수 없다.
 - [ ] 기능선택
     - [ ] 기능의 종류를 출력하고 그 중 하나의 입력을 받기
 - [ ] 페어 매칭 조건
