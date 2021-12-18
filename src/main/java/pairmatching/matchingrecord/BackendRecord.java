@@ -12,8 +12,13 @@ public class BackendRecord {
 	public void saveResult(String[] courseInfo, ArrayList<ArrayList<String>> matchResult) {
 		if (courseInfo[1].equals("레벨1")) {
 			level1Record.setMission(courseInfo[2], matchResult);
+			return;
 		}
-		System.out.println("저장완료");
+		if (courseInfo[1].equals("레벨2")) {
+			level2Record.setMission(courseInfo[2], matchResult);
+			return;
+		}
+		level4Record.setMission(courseInfo[2], matchResult);
 	}
 
 	public boolean checkDuplicate(String[] courseInfo, ArrayList<ArrayList<String>> matchResult) {

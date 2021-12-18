@@ -7,14 +7,23 @@ public class Leve1Record {
 	ArrayList<ArrayList<String>> lotto = null;
 	ArrayList<ArrayList<String>> baseballGame = null;
 
-	private static boolean isRacingCarRecord = false;
-	private static boolean isLottoRecord = false;
-	private static boolean isBaseballGameRecord = false;
+	public static boolean isRacingCarRecord = false;
+	public static boolean isLottoRecord = false;
+	public static boolean isBaseballGameRecord = false;
 
 	public void setMission(String mission, ArrayList<ArrayList<String>> matchResult) {
 		if (mission.equals("자동차경주")) {
 			setRacingCar(matchResult);
+			return;
 		}
+		if (mission.equals("로또")) {
+			setLotto(matchResult);
+			return;
+		}
+		if (mission.equals("숫자야구게임")) {
+			setBaseballGame(matchResult);
+		}
+
 	}
 
 	public void setRacingCar(ArrayList<ArrayList<String>> matchResult) {
