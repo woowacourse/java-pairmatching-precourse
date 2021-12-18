@@ -14,5 +14,14 @@ public class CrewRepository {
         pairs.add(crew);
         crews.put(level, pairs);
     }
-    
+
+    public static boolean checkDuplicated(Level level, List<String> crew) {
+        List<List<String>> pairs = crews.get(level);
+        for (List<String> pair : pairs) {
+            if (pair.containsAll(crew)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
