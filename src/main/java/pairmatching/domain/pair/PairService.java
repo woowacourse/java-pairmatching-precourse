@@ -78,15 +78,12 @@ public class PairService {
 
 
     private boolean isDuplicatePair(List<Pair> pairs, PairTag pairTag) {
-
-        List<Pair> registeredPairInSameLevel = PairRepository.getPairsIn(pairTag.getCourse(), pairTag.getLevel());
-        // TODO: 2021/12/18 한 페어에 세명의 크루가 존재할 경우 분기처리
+        List<Pair> registeredPairs = PairRepository.getPairsIn(pairTag.getCourse(), pairTag.getLevel());
         for (Pair pair : pairs) {
-            if (isAlreadyPairedInSameLevel(registeredPairInSameLevel, pair)) {
+            if (isAlreadyPairedInSameLevel(registeredPairs, pair)) {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -97,8 +94,25 @@ public class PairService {
                 return true;
             }
         }
+        if (testPair.hasThreeCrewMembers()) {
+            return isAlreadyPairedInSameLevel(pairs, crews);
+        }
         return false;
     }
+
+    // 한 페어의 크루원이 3명인 경우
+    private boolean isAlreadyPairedInSameLevel(List<Pair> pairs, List<Crew> crews) {
+        for (Pair pair : pairs) {
+            if (pair.hasCrew(crews.get(0)) && pair.hasCrew(crews.get(2))) {
+                return true;
+            }
+            if (pair.hasCrew(crews.get(1)) && pair.hasCrew(crews.get(2))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 
     public boolean isRegistered(PairTag pairTag) {
