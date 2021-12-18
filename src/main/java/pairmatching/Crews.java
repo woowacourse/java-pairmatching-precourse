@@ -12,6 +12,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class Crews {
 	private static final String DELIMITER = " : ";
 	private static final String MATCHING_RESULT = "페어 매칭 결과입니다.";
+	private static final String CLEAR = "초기화 되었습니다.\n";
 	private static final int ODD_FINAL_INDEX = 3;
 	private static final int ODD_FINAL_NAME_1 = 2;
 	private static final int ODD_FINAL_NAME_2 = 3;
@@ -26,6 +27,12 @@ public class Crews {
 
 	public static List<List> frontEndmatchResult = new ArrayList<List>();
 	public static List<List> backEndmatchResult = new ArrayList<List>();
+
+	public static void clear() {
+		frontEndmatchResult = new ArrayList<List>();
+		backEndmatchResult = new ArrayList<List>();
+		System.out.println(CLEAR);
+	}
 
 	public static boolean crewMatch(String name1, String name2, Course course) {
 		List<String> match = new ArrayList<>();
@@ -82,7 +89,7 @@ public class Crews {
 		return shuffledFrontEndCrewNames;
 	}
 
-	public static void makeCrews() throws IOException {
+	public static void matchCrews() throws IOException {
 		Course backEndCourse = Course.BACKEND;
 		Course frontEndCourse = Course.FRONTEND;
 
@@ -96,29 +103,27 @@ public class Crews {
 		List<String> shuffledBackEndCrewNames = randomShuffleBackEnd(backEndCrewList);
 
 
-		System.out.println(Arrays.toString(frontEndCrews));
-		System.out.println(Arrays.toString(backEndCrews));
+		// System.out.println(Arrays.toString(frontEndCrews));
+		// System.out.println(Arrays.toString(backEndCrews));
 
 		System.out.println();
 
 
 		matchingEven(shuffledBackEndCrewNames, backEndCourse);
-		System.out.println(backEndmatchResult);
+		System.out.println("\n" + backEndmatchResult);
 		matchingOdd(shuffledFrontEndCrewNames, frontEndCourse);
-		System.out.println(frontEndmatchResult);
+		System.out.println("\n" + frontEndmatchResult);
 
 	}
 
 	public static List<String> backEndCrewList() throws IOException {
 		backEndCrewNames = Files.readAllLines(Paths.get("./src/main/resources/backend-crew.md"));
-		System.out.println(backEndCrewNames);
 
 		return backEndCrewNames;
 	}
 
 	private static List<String> frontEndCrewList() throws IOException {
 		frontEndCrewNames = Files.readAllLines(Paths.get("./src/main/resources/frontend-crew.md"));
-		System.out.println(frontEndCrews);
 
 		return frontEndCrewNames;
 	}
