@@ -50,7 +50,7 @@ public class PairMatchingValidator {
 	private void isProperCourse(String input) throws IllegalArgumentException {
 		String[] split = input.split(",");
 
-		if (!courseNameList.contains(split[0])) {
+		if (!courseNameList.contains(split[0].trim())) {
 			System.out.println(IS_PROPER_COURSE_ERROR_MESSAGE);
 			throw new IllegalArgumentException();
 		}
@@ -59,7 +59,7 @@ public class PairMatchingValidator {
 	private void isProperLevel(String input) throws IllegalArgumentException {
 		String[] split = input.split(",");
 
-		if (!levelNameList.contains(split[1])) {
+		if (!levelNameList.contains(split[1].trim())) {
 			System.out.println(IS_PROPER_LEVEL_ERROR_MESSAGE);
 			throw new IllegalArgumentException();
 		}
@@ -76,9 +76,9 @@ public class PairMatchingValidator {
 	}
 
 	private void checkLevelFourMission(String[] split) throws IllegalArgumentException {
-		if (split[1].equals("레벨4")) {
+		if (split[1].trim().equals("레벨4")) {
 			ArrayList<String> levelFourMissionList = new ArrayList<>(Arrays.asList(levelFourMissionArr));
-			if (!levelFourMissionList.contains(split[2])) {
+			if (!levelFourMissionList.contains(split[2].trim())) {
 				System.out.println(IS_PROPER_MISSION_ERROR_MESSAGE);
 				throw new IllegalArgumentException();
 			}
@@ -86,9 +86,9 @@ public class PairMatchingValidator {
 	}
 
 	private void checkLevelTwoMission(String[] split) throws IllegalArgumentException {
-		if (split[1].equals("레벨2")) {
+		if (split[1].trim().equals("레벨2")) {
 			ArrayList<String> levelTwoMissionList = new ArrayList<>(Arrays.asList(levelTwoMissionArr));
-			if (!levelTwoMissionList.contains(split[2])) {
+			if (!levelTwoMissionList.contains(split[2].trim())) {
 				System.out.println(IS_PROPER_MISSION_ERROR_MESSAGE);
 				throw new IllegalArgumentException();
 			}
@@ -96,9 +96,9 @@ public class PairMatchingValidator {
 	}
 
 	private void checkLevelOneMission(String[] split) throws IllegalArgumentException {
-		if (split[1].equals("레벨1")) {
+		if (split[1].trim().equals("레벨1")) {
 			ArrayList<String> levelOneMissionList = new ArrayList<>(Arrays.asList(levelOneMissionArr));
-			if (!levelOneMissionList.contains(split[2])) {
+			if (!levelOneMissionList.contains(split[2].trim())) {
 				System.out.println(IS_PROPER_MISSION_ERROR_MESSAGE);
 				throw new IllegalArgumentException();
 			}
