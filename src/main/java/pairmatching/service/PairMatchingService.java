@@ -22,7 +22,7 @@ public class PairMatchingService {
 	public void selectProcessLevelMission(String input) throws IOException {
 		//TODO: validation
 
-		pair.shuffleCrew(
+		pair.takeInformation(
 			input.replaceAll(" ","").split(","));
 	}
 }
