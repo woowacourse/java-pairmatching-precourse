@@ -14,7 +14,6 @@ public class ProgramManager {
 		if(selection.equals("1")){
 			String selectLine = Console.readLine();
 			String[] selectedComponent = parseLine(selectLine);
-			System.out.println(selectedComponent[0]);
 			PairMatcher.pairMatch(Course.getCourse(selectedComponent[0]), Level.getLevel(selectedComponent[1]), selectedComponent[2]);
 			return false;
 		} else if(selection.equals("2")){

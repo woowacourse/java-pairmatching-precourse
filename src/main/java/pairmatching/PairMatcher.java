@@ -16,9 +16,11 @@ public class PairMatcher {
 
 		List<PairMatchRecorder> checkList = ProgramData.getMatchingHistory(course, level);
 
-		for(PairMatchRecorder history : checkList){
-			if(!history.isMatchedMission(mission)){
-				match = askToRematch();
+		if(checkList!=null){
+			for(PairMatchRecorder history : checkList){
+				if(!history.isMatchedMission(mission)){
+					match = askToRematch();
+				}
 			}
 		}
 
@@ -47,9 +49,13 @@ public class PairMatcher {
 		boolean validate = false;
 
 		while(numberOfAttempt < MAX_NUMBER_OF_ATTEMPT || validate == true){
-			for(PairMatchRecorder history : checkList){
-				validate = history.checkDuplicatedPair(shuffledNames);
-				numberOfAttempt++;
+			if(checkList != null){
+				for(PairMatchRecorder history : checkList){
+					validate = history.checkDuplicatedPair(shuffledNames);
+					numberOfAttempt++;
+				}
+			} else if(checkList == null){
+				break;
 			}
 		}
 

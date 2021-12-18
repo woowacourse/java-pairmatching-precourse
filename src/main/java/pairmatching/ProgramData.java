@@ -9,12 +9,12 @@ import java.util.Map;
 public class ProgramData {
 	private static List<String> backEndCrewNames;
 	private static List<String> frontEndCrewNames;
-	private static List<PairMatchRecorder> backEndLevel1History;
-	private static List<PairMatchRecorder> backEndLevel3History;
-	private static List<PairMatchRecorder> backEndLevel4History;
-	private static List<PairMatchRecorder> frontEndLevel1History;
-	private static List<PairMatchRecorder> frontEndLevel3History;
-	private static List<PairMatchRecorder> frontEndLevel4History;
+	private static List<PairMatchRecorder> backEndLevel1History = new ArrayList<>();
+	private static List<PairMatchRecorder> backEndLevel3History = new ArrayList<>();
+	private static List<PairMatchRecorder> backEndLevel4History = new ArrayList<>();
+	private static List<PairMatchRecorder> frontEndLevel1History = new ArrayList<>();
+	private static List<PairMatchRecorder> frontEndLevel3History = new ArrayList<>();
+	private static List<PairMatchRecorder> frontEndLevel4History = new ArrayList<>();
 
 	ProgramData() throws IOException {
 		backEndCrewNames = Crew.getCrewNames(Course.BACKEND);
@@ -48,6 +48,8 @@ public class ProgramData {
 
 	public static void setMatchingHistory(Course course, Level level, String mission, List<String> pairNames){
 		List<PairMatchRecorder> history = getMatchingHistory(course, level);
+
+
 		history.add(new PairMatchRecorder(course,level,mission,pairNames));
 	}
 	public static void deleteMatchingHistory(){
