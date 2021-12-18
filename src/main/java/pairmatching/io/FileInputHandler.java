@@ -8,12 +8,15 @@ import java.util.Scanner;
 
 public class FileInputHandler {
 
-	public List<String> readCrewMember(String location) throws FileNotFoundException {
-		Scanner fileIn = openFile(location);
+	public List<String> readCrewMember(String location) {
 		List<String> crewList = new ArrayList<String>();
-		while(fileIn.hasNext()) {
-			crewList.add(fileIn.nextLine());
-		}
+		try {
+			Scanner fileIn = openFile(location);
+			while (fileIn.hasNext()) {
+				crewList.add(fileIn.nextLine());
+			}
+			fileIn.close();
+		} catch (FileNotFoundException fnfe) { }
 		return crewList;
 	}
 
