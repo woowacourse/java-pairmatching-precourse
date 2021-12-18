@@ -49,7 +49,7 @@ public class OutputView {
 	private static StringBuilder getMissionInfo(List<String> mission) {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (int i = 0; i < mission.size(); i++) {
-			stringBuilder.append("레벨").append(i + 1).append(": ")
+			stringBuilder.append("	- 레벨").append(i + 1).append(": ")
 				.append(mission.get(i)).append(NEW_LINE);
 		}
 		return stringBuilder;
