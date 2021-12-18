@@ -17,7 +17,9 @@ public class PairProgramming {
 
     private static final List<String> LEVEL1MISSION = Arrays.asList("자동차경주", "로또", "숫자야구게임");
     private static final List<String> LEVEL2MISSION = Arrays.asList("장바구니", "결제", "지하철노선도");
-    private static final List<String> LEVEL3MISSION = Arrays.asList("성능개선", "배포");
+    private static final List<String> LEVEL3MISSION = Arrays.asList();
+    private static final List<String> LEVEL4MISSION = Arrays.asList("성능개선", "배포");
+    private static final List<String> LEVEL5MISSION = Arrays.asList();
 
     // 미션, 페어1, 페어2
     private Map<String, Map<String, Set<String>>> crewPairInfo = new LinkedHashMap();
@@ -36,8 +38,28 @@ public class PairProgramming {
     }
 
     private void validMission() {
-        if (level.equals("1")) {
+        if (level.equals("레벨1")) {
+            extracted(LEVEL1MISSION);
+        }
+        if (level.equals("레벨2")) {
+            extracted(LEVEL2MISSION);
+        }
+        if (level.equals("레벨3")) {
+            extracted(LEVEL3MISSION);
+        }
+        if (level.equals("레벨4")) {
+            extracted(LEVEL4MISSION);
+        }
+        if (level.equals("레벨5")) {
+            extracted(LEVEL5MISSION);
+        }
+    }
 
+    private void extracted(List<String> MISSION) {
+        System.out.println(MISSION);
+        System.out.println(mission);
+        if (!MISSION.contains(mission)) {
+            throw new IllegalArgumentException("[ERROR] 존재하지 않는 미션입니다.");
         }
     }
 

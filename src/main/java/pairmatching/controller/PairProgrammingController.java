@@ -8,6 +8,11 @@ import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class PairProgrammingController {
+
+    private String targetCourse;
+    private String targetLevel;
+    private String targetMission;
+
     private List<String> backEndCrew = Arrays
         .asList("백호", "태웅", "치수", "태섭", "대만", "준호", "대협", "덕규", "태산", "경태", "수겸", "현준", "준섭",
             "한나", "소연", "호열", "대남", "용팔", "구식", "달재");
@@ -23,25 +28,39 @@ public class PairProgrammingController {
         while (true) {
             String mainFunction = InputView.mainFunction();
             if (mainFunction.equals("1")) {
-                String detailedFunction = InputView.detailedFunction();
-                String[] detailedFunctions = detailedFunction.split(", ");
-                String targetCourse = detailedFunctions[0];
-                String targetLevel = detailedFunctions[1];
-                String targetMission = detailedFunctions[2];
-
-                if (targetCourse.equals("백엔드")) {
-                    shuffledCrew = Randoms.shuffle(backEndCrew);
-                }
-
-                pairProgrammings.enrollNewProgram(targetCourse, targetLevel, targetMission, shuffledCrew);
-//                Map<String, Set<String>> pairInfo = pairProgrammings.getPairInfo(detailedFunction);
-
+                enrollNewProgram();
                 OutputView.printPairInfo(pairProgrammings.getPairInfo(targetCourse, targetLevel, targetMission), shuffledCrew);
             }
             if (mainFunction.equals("Q")) {
                 break;
             }
 
+        }
+    }
+
+    private void enrollNewProgram() {
+        while (true) {
+            try {
+                String detailedFunction = InputView.detailedFunction();
+                String[] detailedFunctions = detailedFunction.split(", ");
+                this.targetCourse = detailedFunctions[0];
+                this.targetLevel = detailedFunctions[1];
+                this.targetMission = detailedFunctions[2];
+                if (targetCourse.equals("백엔드")) {
+                    shuffledCrew = Randoms.shuffle(backEndCrew);
+                }
+
+                if (targetCourse.equals("백엔드")) {
+                    shuffledCrew = Randoms.shuffle(frontEndCrew);
+                }
+
+                pairProgrammings
+                    .enrollNewProgram(targetCourse, targetLevel, targetMission, shuffledCrew);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+                continue;
+            }
+            break;
         }
     }
 }
