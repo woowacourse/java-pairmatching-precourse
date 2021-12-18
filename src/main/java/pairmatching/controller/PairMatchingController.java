@@ -33,8 +33,8 @@ public class PairMatchingController {
     private void searchProgramsPair() {
         ProgramInfo programInfo = ProgramInfoTransformer.makeProgramInfo(inputView.determineProgramInfo());
         if (pairMatchingService.hasProgramInfo(programInfo)) {
-            System.out.println(programInfo);
-            // OutputView.
+            programInfo = pairMatchingService.getThisProgramInfo(programInfo);
+            OutputView.showThisProgramPair(programInfo);
             return;
         }
         System.out.println("해당되는 미션은 아직 매칭되지 않았습니다.");

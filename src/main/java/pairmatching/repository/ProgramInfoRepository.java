@@ -1,5 +1,7 @@
 package pairmatching.repository;
 
+import static pairmatching.ErrorMessage.*;
+
 import java.util.ArrayList;
 
 import pairmatching.domain.Course;
@@ -42,5 +44,12 @@ public class ProgramInfoRepository {
     public void clearAllProgramInfo() {
         clearAllMatchingInfo();
         programInfos.clear();
+    }
+
+    public ProgramInfo getSameProgramInfo(ProgramInfo notProgramInfo) {
+        return programInfos.stream()
+            .filter(eachProgramInfo -> eachProgramInfo.equals(notProgramInfo))
+            .findAny()
+            .orElseThrow(() -> new IllegalArgumentException(NO_OBJECT_ERROR));
     }
 }

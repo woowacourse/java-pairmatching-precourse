@@ -3,6 +3,7 @@ package pairmatching.domain;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -70,5 +71,10 @@ public class ProgramInfo {
     @Override
     public int hashCode() {
         return Objects.hash(getCourse(), getLevel(), mission);
+    }
+
+    public LinkedHashMap<Crew, Crew> getPairs() {
+        //한쌍으로 만들어서 보내줘야함.
+        return pairs;
     }
 }

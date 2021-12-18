@@ -100,4 +100,8 @@ public class PairMatchingService {
     public void clearAllMatchingInfo() {
         programInfoRepository.clearAllProgramInfo();
     }
+
+    public ProgramInfo getThisProgramInfo(ProgramInfo programInfo) {
+        return programInfoRepository.getSameProgramInfo(programInfo);
+    }
 }
