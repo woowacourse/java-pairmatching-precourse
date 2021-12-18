@@ -2,10 +2,13 @@ package pairmatching.util;
 
 import pairmatching.model.Course;
 import pairmatching.model.Level;
+import pairmatching.model.LevelAndMission;
 import pairmatching.model.Mission;
+import pairmatching.repository.LevelAndMissionRepository;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputValidator {
     private static final String NEW_LINE = "\n";
@@ -20,6 +23,8 @@ public class InputValidator {
     private static final String INVALID_COURSE_NAME = "존재하지 않는 과정입니다.";
     private static final String INVALID_LEVEL_NAME = "존재하지 않는 레벨입니다.";
     private static final String INVALID_MISSION_NAME = "존재하지 않는 미션입니다.";
+    private static final String INVALID_LEVEL_AND_MISSION = "해당 레벨에 존재하는 미션이 아닙니다.";
+    private static final String NO_MISSIONS_IN_CURRENT_LEVEL_MESSAGE = "해당 레벨에 존재하는 미션이 없습니다.";
 
     public static void validateMainScreenInput(String input) {
         if (!input.matches(MAIN_SCREEN_INPUT_FORMAT)) {
@@ -33,6 +38,19 @@ public class InputValidator {
         validateCourse(conditions.get(COURSE_INDEX));
         validateLevel(conditions.get(LEVEL_INDEX));
         validateMission(conditions.get(MISSION_INDEX));
+        validateLevelAndMissions(conditions.get(LEVEL_INDEX), conditions.get(MISSION_INDEX));
+    }
+
+    private static void validateLevelAndMissions(String levelName, String missionName) {
+        List<Mission> missions = LevelAndMissionRepository.getMissionsByLevelName(levelName).get().getMissions();
+        if (missions.isEmpty()) {
+            throw new IllegalArgumentException(NO_MISSIONS_IN_CURRENT_LEVEL_MESSAGE);
+        }
+        if (missions.stream()
+                .map(Mission::getMissionName)
+                .noneMatch(name -> name.equals(missionName))) {
+            throw new IllegalArgumentException(INVALID_LEVEL_AND_MISSION);
+        }
     }
 
     private static void validateCourse(String courseName) {
