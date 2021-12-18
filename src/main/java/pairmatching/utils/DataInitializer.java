@@ -6,20 +6,15 @@ import java.io.IOException;
 
 import pairmatching.domain.Course;
 import pairmatching.domain.CrewRepository;
-import pairmatching.view.OutputView;
 
 public class DataInitializer {
 	private final static String FILE_PATH = "./src/main/resources";
 	private final static String FILE_NAME_BACK = "/backend-crew.md";
 	private final static String FILE_NAME_FRONT = "/frontend-crew.md";
 
-	public void initializeCrew() {
-		try {
-			initializeBackendCrew();
-			initializeFrontendCrew();
-		} catch (IOException e) {
-			OutputView.printError(e);
-		}
+	public void initializeCrew() throws IOException {
+		initializeBackendCrew();
+		initializeFrontendCrew();
 	}
 
 	private void initializeBackendCrew() throws IOException {
