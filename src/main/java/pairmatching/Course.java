@@ -1,8 +1,11 @@
 package pairmatching;
 
+import java.util.Arrays;
+
 public enum Course {
     BACKEND("백엔드"),
     FRONTEND("프론트엔드");
+
 
     private String name;
 
@@ -10,7 +13,10 @@ public enum Course {
         this.name = name;
     }
 
-    public void printCourse(){
-        System.out.print(name);
+    public static Course of(String courseName){
+        return Arrays.stream(values())
+            .filter(v->courseName.equals(v.name))
+            .findFirst()
+            .orElseThrow(()->new IllegalArgumentException());
     }
 }

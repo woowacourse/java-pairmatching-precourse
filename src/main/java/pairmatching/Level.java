@@ -16,13 +16,26 @@ public enum Level {
         this.name = name;
     }
 
+    public void checkMissionLevel(String missionName){
+        if(missionList.contains(missionName)){
+            return;
+        }
+        throw new IllegalArgumentException();
+    }
+
     public void addMission(String missionName){
         this.missionList.add(missionName);
     }
 
     public void printLevel(){
         System.out.print("  - "+name+": ");
-        ArrayList<String> missionList=new ArrayList<>();
         System.out.println(String.join(" | ",missionList));
+    }
+
+    public static Level of(String levelName){
+        return Arrays.stream(values())
+            .filter(v->levelName.equals(v.name))
+            .findFirst()
+            .orElseThrow(()->new IllegalArgumentException());
     }
 }

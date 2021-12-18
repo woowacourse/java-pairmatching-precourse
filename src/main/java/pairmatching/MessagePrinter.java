@@ -23,11 +23,7 @@ public class MessagePrinter {
 
     private static void printCourses(){
         System.out.print("과정: ");
-        ArrayList<String> courseList=new ArrayList<>();
-        for(Course c:Course.values()){
-            courseList.add(c.name());
-        }
-        System.out.println(String.join(" | ",courseList));
+        System.out.println("백엔드 | 프론트엔드");
     }
 
     private static void printLevelAndMissions(){
