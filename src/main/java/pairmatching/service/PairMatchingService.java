@@ -16,37 +16,39 @@ public class PairMatchingService {
 	}
 
 	public void matching(RequestCourseAndLevelAndMissionDto requestCourseAndLevelAndMissionDto) {
-		Course course = Course.getByValue(requestCourseAndLevelAndMissionDto.getCourse());
-		List<String> shuffledCrew = course.getCrewNames();
-		Pairs pairs = pairMatching(shuffledCrew, requestCourseAndLevelAndMissionDto.getMission());
 		Level level = Level.getByValue(requestCourseAndLevelAndMissionDto.getLevel());
-		pairRepository.setPair(level, pairs);
+		Course course = Course.getByValue(requestCourseAndLevelAndMissionDto.getCourse());
+		String mission = requestCourseAndLevelAndMissionDto.getMission();
+		Pairs pairs = pairRepository.getPairs(level, course, mission);
+		List<String> shuffledCrew = course.getCrewNames();
+		pairMatching(shuffledCrew, pairs);
+		if (pairRepository.hasPairs(level, course, mission)) {
+			return;
+		}
+		pairRepository.addPairsList(pairs);
 	}
 
-	private Pairs pairMatching(List<String> shuffledCrew, String Mission) {
-		Pairs pairs = new Pairs(Mission);
+	private void pairMatching(List<String> shuffledCrew, Pairs pairs) {
 		if (isEven(shuffledCrew.size())) {
 			makePairsEven(pairs, shuffledCrew);
-			return pairs;
+			return;
 		}
 		makePairsOdd(pairs, shuffledCrew);
-		return pairs;
 	}
 
 	private boolean isEven(int number) {
 		return number % 2 == 0;
 	}
 
-	private Pairs makePairsEven(Pairs pairs, List<String> shuffledCrew) {
+	private void makePairsEven(Pairs pairs, List<String> shuffledCrew) {
 		for (int i = 0; i < shuffledCrew.size(); i += 2) {
 			String name1 = shuffledCrew.get(i);
 			String name2 = shuffledCrew.get(i + 1);
 			pairs.addPair(name1, name2);
 		}
-		return pairs;
 	}
 
-	private Pairs makePairsOdd(Pairs pairs, List<String> shuffledCrew) {
+	private void makePairsOdd(Pairs pairs, List<String> shuffledCrew) {
 		for (int i = 0; i < shuffledCrew.size() - 3; i += 2) {
 			String name1 = shuffledCrew.get(i);
 			String name2 = shuffledCrew.get(i + 1);
@@ -56,6 +58,5 @@ public class PairMatchingService {
 		String name2 = shuffledCrew.get(shuffledCrew.size() - 2);
 		String name3 = shuffledCrew.get(shuffledCrew.size() - 1);
 		pairs.addPair(name1, name2, name3);
-		return pairs;
 	}
 }

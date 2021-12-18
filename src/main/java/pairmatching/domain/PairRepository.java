@@ -1,22 +1,34 @@
 package pairmatching.domain;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import pairmatching.enums.Course;
 import pairmatching.enums.Level;
 
 public class PairRepository {
-	private Map<Level, List<Pairs>> pairsMap = new HashMap<>();
+	private List<Pairs> pairsList = new ArrayList<>();
 
 	public PairRepository() {
-		for (Level level : Level.values()) {
-			pairsMap.put(level, new ArrayList<>());
-		}
 	}
 
-	public void setPair(Level level, Pairs pairs) {
-		pairsMap.get(level).add(pairs);
+	public boolean hasPairs(Level level, Course course, String mission) {
+		return pairsList.stream()
+			.anyMatch(p -> p.find(level, course, mission));
+	}
+
+	public Pairs getPairs(Level level, Course course, String mission) {
+		return pairsList.stream()
+			.filter(p -> p.find(level, course, mission))
+			.findFirst()
+			.orElse(new Pairs(level, course, mission));
+	}
+
+	public void addPairsList(Pairs pairs) {
+		pairsList.add(pairs);
+	}
+
+	public void test() {
+		System.out.println();
 	}
 }
