@@ -73,9 +73,11 @@ public abstract class InputView {
     public static String[] inputCourseInformation() {
         try {
             System.out.println(createCourseInformationPrintFormat());
+            String inputCourseInformation = inputValue();
+            String[] splitInputCourseInformation = inputCourseInformation.split(COMMA);
 
 
-            return ;
+            return splitInputCourseInformation;
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
 
