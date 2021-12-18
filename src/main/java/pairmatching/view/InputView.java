@@ -9,6 +9,7 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.model.Course;
 import pairmatching.model.Levels;
+import pairmatching.model.Missions;
 import pairmatching.model.ProgramFunction;
 
 public abstract class InputView {
@@ -32,15 +33,16 @@ public abstract class InputView {
     private static final int COURSE_INDEX = 0;
     private static final int LEVEL_INDEX = 1;
     private static final int MISSION_INDEX = 2;
-    private static final String ERROR_MESSAGE_NOT_CONTAINS_COURSES = "[ERROR] 해당 과정이 존재하지 않습니다.";
-    private static final String ERROR_MESSAGE_NOT_CONTAINS_LEVELS = "[ERROR] 해당 레벨이 존재하지 않습니다.";
+    private static final String ERROR_MESSAGE_NOT_CONTAINS_COURSE = "[ERROR] 해당 과정이 존재하지 않습니다.";
+    private static final String ERROR_MESSAGE_NOT_CONTAINS_LEVEL = "[ERROR] 해당 레벨이 존재하지 않습니다.";
+    private static final String ERROR_MESSAGE_NOT_CONTAINS_MISSION = "[ERROR] 해당 미션이 존재하지 않습니다.";
 
     public static List<String> readFrontendCrew() {
         try {
             final List<String> crewNames = new ArrayList<>();
             BufferedReader bufferedReader = new BufferedReader(new FileReader(FRONTEND_FILE_PATH));
-
             String line = null;
+
             while ((line = bufferedReader.readLine()) != null) {
                 crewNames.add(line);
             }
@@ -57,8 +59,8 @@ public abstract class InputView {
         try {
             final List<String> crewNames = new ArrayList<>();
             BufferedReader bufferedReader = new BufferedReader(new FileReader(BACKEND_FILE_PATH));
-
             String line = null;
+
             while ((line = bufferedReader.readLine()) != null) {
                 crewNames.add(line);
             }
@@ -89,6 +91,22 @@ public abstract class InputView {
     private static void validateCourseInformation(final String[] splitInputCourseInformation) {
         validateCourse(splitInputCourseInformation[COURSE_INDEX]);
         validateLevel(splitInputCourseInformation[LEVEL_INDEX]);
+        validateMission(splitInputCourseInformation[MISSION_INDEX]);
+    }
+
+    private static void validateMission(final String MissionName) {
+        boolean isContainsInputMission = true;
+
+        for (Missions mission: Missions.values()) {
+            if (mission.getMission().equals(MissionName.trim())) {
+                isContainsInputMission = false;
+                break;
+            }
+        }
+
+        if(isContainsInputMission){
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_CONTAINS_MISSION);
+        }
     }
 
     private static void validateLevel(final String inputLevel) {
@@ -102,7 +120,7 @@ public abstract class InputView {
         }
 
         if(isContainsInputLevel){
-            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_CONTAINS_LEVELS);
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_CONTAINS_LEVEL);
         }
     }
 
@@ -117,7 +135,7 @@ public abstract class InputView {
         }
 
         if(isContainsInputCourseName){
-            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_CONTAINS_COURSES);
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_CONTAINS_COURSE);
         }
     }
 
