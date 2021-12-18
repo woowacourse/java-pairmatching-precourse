@@ -2,6 +2,7 @@ package pairmatching.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MissionRepository {
 	static final String ERROR_NOT_EXIST_MISSION = "존재하지 않는 미션입니다.";
@@ -26,5 +27,12 @@ public class MissionRepository {
 			.filter((mission) -> mission.isMatchMission(missionInput))
 			.findFirst()
 			.orElseThrow(() -> new IllegalArgumentException(ERROR_NOT_EXIST_MISSION));
+	}
+
+	public static List<Mission> getMissionsOfSameGroup(Course course, Level level) {
+		return missions.stream()
+			.filter(mission -> mission.isSameCourse(course))
+			.filter(mission -> mission.isSameLevel(level))
+			.collect(Collectors.toList());
 	}
 }
