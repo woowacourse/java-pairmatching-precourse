@@ -2,6 +2,14 @@ package pairmatching;
 
 import static pairmatching.Constant.*;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.Course;
 import pairmatching.domain.Function;
@@ -59,5 +67,53 @@ public class Input {
 			System.out.println(e.getMessage());
 			return readMatchingAgain();
 		}
+	}
+
+	public static List<String> readBackendCrewName() {
+		List<String> result = new ArrayList<>();
+
+		try {
+			BufferedReader bufReader = getBackendReader();
+			String line;
+			while ((line = bufReader.readLine()) != null) {
+				result.add(line);
+			}
+			bufReader.close();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+
+		return result;
+	}
+
+	public static List<String> readFrontendCrewName() {
+		List<String> result = new ArrayList<>();
+
+		try {
+			BufferedReader bufReader = getFrontendReader();
+			String line;
+			while ((line = bufReader.readLine()) != null) {
+				result.add(line);
+			}
+			bufReader.close();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+
+		return result;
+	}
+
+	private static BufferedReader getBackendReader() throws FileNotFoundException {
+		File file = new File("src/main/resources/backend-crew.md");
+		FileReader filereader = new FileReader(file);
+		BufferedReader bufReader = new BufferedReader(filereader);
+		return bufReader;
+	}
+
+	private static BufferedReader getFrontendReader() throws FileNotFoundException {
+		File file = new File("src/main/resources/backend-crew.md");
+		FileReader filereader = new FileReader(file);
+		BufferedReader bufReader = new BufferedReader(filereader);
+		return bufReader;
 	}
 }

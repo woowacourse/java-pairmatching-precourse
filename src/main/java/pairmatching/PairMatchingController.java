@@ -44,7 +44,8 @@ public class PairMatchingController {
 				matchingList.remove(mission);
 			}
 		}
-
+		List<String> backendCrew = Input.readBackendCrewName();
+		List<String> frontendCrew = Input.readFrontendCrewName();
 	}
 
 	public boolean isMatchingExist(SelectedMission mission) {
