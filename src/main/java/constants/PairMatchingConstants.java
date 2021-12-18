@@ -12,6 +12,7 @@ public class PairMatchingConstants {
 	public static final String DUPLICATE_MESSAGE = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
 	public static final String DUPLICATE_OPTIONS = "네 | 아니오";
 	public static final String WRONG_INPUT_ERROR = "잘못된 입력입니다.";
+	public static final String CAN_NOT_FIND_PAIR_ERROR = "해당 조건에 맞는 페어를 찾을 수 없습니다.";
 
 
 	public static String FEATURE_MENU_MESSAGE = "기능을 선택하세요.";

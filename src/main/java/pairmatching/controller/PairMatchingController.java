@@ -72,14 +72,22 @@ public class PairMatchingController {
 		if (pairs.isExist(info) && InputView.getTryMore().equals(NO)) {
 			return;
 		}
+		addNewPair(info);
+		try {
+			OutputView.printPairResult(pairs.getPair(info));
+		} catch (IllegalArgumentException e) {
+			OutputView.printError(e.getMessage());
+			pairMatching();
+		}
+	}
 
+	private void addNewPair(Pair<Course, Mission> info) {
 		if (info.getKey() == Course.BACKEND) {
 			pairs.addPair(info, backendCrewName.getShuffledCrewName());
 		}
 		if (info.getKey() == Course.FRONTEND) {
 			pairs.addPair(info, frontendCrewName.getShuffledCrewName());
 		}
-		OutputView.printPairResult(pairs.getPair(info));
 	}
 
 	private Pair<Course, Mission> getPairInfo() {
@@ -90,8 +98,13 @@ public class PairMatchingController {
 	}
 
 	private void pairLookUp() {
-		pairBackgroundInfo = InputView.getPairBackgroundInfo();
-
+		Pair<Course, Mission> info = getPairInfo();
+		try {
+			OutputView.printPairResult(pairs.getPair(info));
+		} catch (IllegalArgumentException e) {
+			OutputView.printError(e.getMessage());
+			pairLookUp();
+		}
 	}
 
 	private void pairReset() {

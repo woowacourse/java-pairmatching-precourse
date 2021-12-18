@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static constants.PairMatchingConstants.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +24,9 @@ public class CrewPair {
 	}
 
 	public List<String> getPair(Pair<Course, Mission> info) {
+		if (pairs.get(info) == null) {
+			throw new IllegalArgumentException(CAN_NOT_FIND_PAIR_ERROR);
+		}
 		return pairs.get(info);
 	}
 }
