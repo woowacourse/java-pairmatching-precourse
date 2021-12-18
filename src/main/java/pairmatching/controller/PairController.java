@@ -103,8 +103,8 @@ public class PairController {
     private List<Pair> getPairList(List<String> members, List<Pair> pairHistory) {
         List<Pair> pairs = new ArrayList<>();
         int size = members.size();
-        for (int i = 0; i < size; i += PAIR_CNT) {
-            Pair pair = new Pair(members.get(i), members.get(i + 1));
+        for (int i = 1; i < size; i += PAIR_CNT) {
+            Pair pair = new Pair(members.get(i - 1), members.get(i));
             if (validator.isContainedPair(pairHistory, pair)) {
                 return null;
             }
