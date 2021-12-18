@@ -61,7 +61,6 @@ public class PairProgramming {
 
     private void createPairInfo(List<String> shuffledCrew, String mission) {
         createPairInfoBySize(shuffledCrew, mission);
-
     }
 
     private void createPairInfoBySize(List<String> shuffledCrew, String mission) {
@@ -71,6 +70,9 @@ public class PairProgramming {
             for (int i = 0; i < shuffledCrew.size(); i+=2) {
                 String crew1 = shuffledCrew.get(i);
                 String crew2 = shuffledCrew.get(i + 1);
+
+
+
                 crewPairInfo.get(mission).get(crew1).add(crew2);
                 crewPairInfo.get(mission).get(crew2).add(crew1);
                 crewPairInfoHistory.get(crew1).add(crew2);
@@ -83,6 +85,7 @@ public class PairProgramming {
             for (int i = 0; i < shuffledCrew.size() - 3; i+=2) {
                 String crew1 = shuffledCrew.get(i);
                 String crew2 = shuffledCrew.get(i + 1);
+
                 crewPairInfo.get(mission).get(crew1).add(crew2);
                 crewPairInfo.get(mission).get(crew2).add(crew1);
                 crewPairInfoHistory.get(crew1).add(crew2);
@@ -92,6 +95,7 @@ public class PairProgramming {
             String crew1 = shuffledCrew.get(totalCrew - 3);
             String crew2 = shuffledCrew.get(totalCrew - 2);
             String crew3 = shuffledCrew.get(totalCrew - 1);
+
             crewPairInfo.get(mission).get(crew1).add(crew2);
             crewPairInfo.get(mission).get(crew1).add(crew3);
             crewPairInfo.get(mission).get(crew2).add(crew1);
@@ -137,6 +141,7 @@ public class PairProgramming {
             for (int i = 0; i < shuffledCrew.size(); i+=2) {
                 String crew1 = shuffledCrew.get(i);
                 String crew2 = shuffledCrew.get(i + 1);
+
                 crewPairInfo.get(mission).get(crew1).add(crew2);
                 crewPairInfo.get(mission).get(crew2).add(crew1);
                 crewPairInfoHistory.get(crew1).add(crew2);
@@ -151,6 +156,7 @@ public class PairProgramming {
                 String crew2 = shuffledCrew.get(i + 1);
                 crewPairInfo.get(mission).get(crew1).add(crew2);
                 crewPairInfo.get(mission).get(crew2).add(crew1);
+
                 crewPairInfoHistory.get(crew1).add(crew2);
                 crewPairInfoHistory.get(crew2).add(crew1);
             }
@@ -158,6 +164,7 @@ public class PairProgramming {
             String crew1 = shuffledCrew.get(totalCrew - 3);
             String crew2 = shuffledCrew.get(totalCrew - 2);
             String crew3 = shuffledCrew.get(totalCrew - 1);
+
             crewPairInfo.get(mission).get(crew1).add(crew2);
             crewPairInfo.get(mission).get(crew1).add(crew3);
             crewPairInfo.get(mission).get(crew2).add(crew1);
@@ -172,5 +179,14 @@ public class PairProgramming {
             crewPairInfoHistory.get(crew3).add(crew2);
         }
 
+
+    }
+
+    public boolean hasMission(String targetMission) {
+        return crewPairInfo.keySet().contains(targetMission);
+    }
+
+    public Map<String, Map<String, Set<String>>> getCrewPairInfo() {
+        return crewPairInfo;
     }
 }

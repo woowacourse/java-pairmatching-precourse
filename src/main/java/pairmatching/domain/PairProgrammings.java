@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import pairmatching.view.InputView;
 
 
 public class PairProgrammings {
@@ -20,6 +21,9 @@ public class PairProgrammings {
         }
 
         pairProgrammings.add(new PairProgramming(targetCourse, targetLevel, targetMission, shuffledCrew));
+        Set<String> strings = pairProgrammings.get(0).getCrewPairInfo().keySet();
+        System.out.println(strings);
+
     }
 
     private boolean enrollNewMissionByLevel(
@@ -31,11 +35,26 @@ public class PairProgrammings {
     ) {
         if (pairProgramming.getCourse().equals(targetCourse)) {
             if (pairProgramming.getLevel().equals(targetLevel)) {
+                if (pairProgramming.hasMission(targetMission)) {
+
+                    duplicateMissionCheck(targetMission, shuffledCrew, pairProgramming);
+                    return true;
+                }
                 pairProgramming.addMission(shuffledCrew, targetMission);
                 return true;
             }
         }
         return false;
+    }
+
+    private void duplicateMissionCheck(String targetMission, List<String> shuffledCrew,
+        PairProgramming pairProgramming) {
+
+
+        String isContinue = InputView.requireContinue();
+        if (isContinue.equals("네")) {
+            pairProgramming.addMission(shuffledCrew, targetMission);
+        }
     }
 
     public Map<String, Set<String>> getPairInfo(String targetCourse, String targetLevel, String targetMission) {

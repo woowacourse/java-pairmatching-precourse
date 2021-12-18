@@ -66,16 +66,8 @@ public class PairProgrammingController {
     }
 
     private void enrollNewProgram() {
-        while (true) {
-            try {
-                pairProgrammings
-                    .enrollNewProgram(targetCourse, targetLevel, targetMission, shuffledCrew);
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-                continue;
-            }
-            break;
-        }
+        pairProgrammings.enrollNewProgram(targetCourse, targetLevel, targetMission, shuffledCrew);
+
     }
 
     private void requirePairProgrammingInfos() {
