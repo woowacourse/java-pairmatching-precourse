@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.model.Course;
+import pairmatching.model.Levels;
+import pairmatching.model.Missions;
 import pairmatching.model.ProgramFunction;
 
 public abstract class InputView {
@@ -18,14 +21,23 @@ public abstract class InputView {
     private static final String BOUNDARY = "#############################################";
     private static final String COLON = ":";
     private static final String MISSION = "미션";
-    private static final String DASH = "-";
-    private static final String SPACE = " ";
-    private static final String VERTICAL_LINE = "|";
+    private static final String BACKEND_FILE_PATH = "./src/main/resources/backend-crew.md";
+    private static final String FRONTEND_FILE_PATH = "./src/main/resources/frontend-crew.md";
+    private static final String INPUT_MESSAGE_CHOOSE_COURSE_INFORMATION = "과정, 레벨, 미션을 선택하세요.";
+    private static final String LEVEL1_COURSE_INFORMATION = "  - 레벨1: 자동차경주 | 로또 | 숫자야구게임";
+    private static final String LEVEL2_COURSE_INFORMATION = "  - 레벨2: 장바구니 | 결제 | 지하철노선도";
+    private static final String LEVEL5_COURSE_INFORMATION = "  - 레벨5: ";
+    private static final String LEVEL3_COURSE_INFORMATION = "  - 레벨3: ";
+    private static final String LEVEL4_COURSE_INFORMATION = "  - 레벨4: 성능개선 | 배포";
+    private static final String INPUT_COURSE_INFORMATION_EXAMINATION = "ex) 백엔드, 레벨1, 자동차경주";
+    private static final int COURSE_INDEX = 0;
+    private static final int LEVEL_INDEX = 1;
+    private static final int MISSION_INDEX = 2;
 
     public static List<String> readFrontendCrew() {
         try {
             final List<String> crewNames = new ArrayList<>();
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("./src/main/resources/frontend-crew.md"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(FRONTEND_FILE_PATH));
 
             String line = null;
             while ((line = bufferedReader.readLine()) != null) {
@@ -43,7 +55,7 @@ public abstract class InputView {
     public static List<String> readBackendCrew() {
         try {
             final List<String> crewNames = new ArrayList<>();
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("./src/main/resources/backend-crew.md"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(BACKEND_FILE_PATH));
 
             String line = null;
             while ((line = bufferedReader.readLine()) != null) {
@@ -60,27 +72,29 @@ public abstract class InputView {
 
     public static String[] inputCourseInformation() {
         try {
-//            System.out.println(createCourseInformationPrintFormat());
-            String inputCourseInformation = inputValue();
+            System.out.println(createCourseInformationPrintFormat());
 
-            return inputCourseInformation.split(COMMA);
+
+            return ;
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
 
             return inputCourseInformation();
         }
     }
-//
-//    private static boolean createCourseInformationPrintFormat() {
-//        final StringBuilder stringBuilder = new StringBuilder();
-//        stringBuilder.append(BOUNDARY).append(NEW_LINE).append(MISSION).append(COLON).append(NEW_LINE)
-//                .append(DASH).append(SPACE).append(Levels.LEVEL1.getName()).append(Missions.CAR_RACING).append(SPACE).append(VERTICAL_LINE).append(Missions.LOTTO).append(Missions.NUMBER_BASEBALL_GAME)
-//
-//                .append(BOUNDARY).append(NEW_LINE);
-//
-//
-//        return stringBuilder.toString();
-//    }
+
+
+    private static String createCourseInformationPrintFormat() {
+        return NEW_LINE + BOUNDARY + NEW_LINE + MISSION + COLON + NEW_LINE
+                + LEVEL1_COURSE_INFORMATION + NEW_LINE
+                + LEVEL2_COURSE_INFORMATION + NEW_LINE
+                + LEVEL3_COURSE_INFORMATION + NEW_LINE
+                + LEVEL4_COURSE_INFORMATION + NEW_LINE
+                + LEVEL5_COURSE_INFORMATION + NEW_LINE
+                + BOUNDARY + NEW_LINE
+                + INPUT_MESSAGE_CHOOSE_COURSE_INFORMATION + NEW_LINE
+                + INPUT_COURSE_INFORMATION_EXAMINATION;
+    }
 
 
     public static String inputPairMatchingFunction() {
