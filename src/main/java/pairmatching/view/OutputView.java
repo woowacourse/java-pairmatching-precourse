@@ -23,6 +23,7 @@ public class OutputView {
 	}
 
 	public void printMainMenu() {
+		System.out.println();
 		System.out.println("기능을 선택하세요.");
 		pairMatching.getMainMenu().printMainMenus();
 	}

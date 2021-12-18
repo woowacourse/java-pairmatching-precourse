@@ -38,14 +38,13 @@ public class PairMatching {
 
 	public void makeRandomMatching(String roll, String level) {
 		if (roll.equals("백엔드")) {
-			doesExistMatchingInfo(level);
 			getCrew().createBackendMatching(getLevel().getLevelMap(), level);
 
 		}
 
 	}
 
-	public boolean doesExistMatchingInfo(String level) {
+	public boolean doesNotExistMatchingInfo(String level) {
 		return getCrew().getBackendCrewMapByLevel().get(level).isEmpty();
 	}
 }

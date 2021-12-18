@@ -17,53 +17,50 @@ public class PairMatchingController {
 	}
 
 	public void run() {
-		while (true) {
-			inputMainMenu();
-		}
-
-	}
-
-	public boolean inputMainMenu() {
-		outputView.printMainMenu();
+		initMainMenu();
 		String menuKey = InputView.inputMainMenu();
 		if (menuKey.equals("1")) {
 			outputView.printPairMatchingInfo();
-			ifChoiceIsPairMatching();
-			return true;
-		}
-		if (menuKey.equals("2")) {
-			outputView.printPairMatchingInfo();
-			String inputMatchingCondition = InputView.inputRollLevelAndMission();
-			List<String> conditions = Arrays.asList(inputMatchingCondition.split(", "));
-
-			return true;
-		}
-
-	}
-
-	public void ifChoiceIsPairMatching() {
-		String inputMatchingCondition = InputView.inputRollLevelAndMission();
-		List<String> conditions = Arrays.asList(inputMatchingCondition.split(", "));
-		createPairMatching(conditions);
-	}
-
-	public void createPairMatching(List<String> matchingConditions) {
-		String roll = matchingConditions.get(0);
-		String level = matchingConditions.get(1);
-		String mission = matchingConditions.get(2);
-		if (pairMatching.doesExistMatchingInfo(level)) {
-			String answer = InputView.alreadyInformationExist();
-			if (answer.equals("네")) {
-				pairMatching.makeRandomMatching(roll, level);
-				outputView.printMatchingResult(roll, level);
-				return;
+			while (true) {
+				if (createPairMatching()) {
+					break;
+				}
 			}
-			System.out.println();
-			ifChoiceIsPairMatching();
-
+			run();
 		}
+		if (menuKey.equals("Q")) {
+			return;
+		}
+	}
+
+	private boolean createPairMatching() {
+		List<String> infoForMatching = Arrays.asList(InputView.inputRollLevelAndMission().split(", "));
+		String roll = infoForMatching.get(0);
+		String level = infoForMatching.get(1);
+
+		if (pairMatching.doesNotExistMatchingInfo(level)) {
+			makePair(roll, level);
+			return true;
+		}
+		String answer = InputView.alreadyInformationExist();
+		if (answer.equals("네")) {
+			makePair(roll, level);
+			return true;
+		}
+		System.out.println();
+		return false;
+	}
+
+	public void makePair(String roll, String level) {
 		pairMatching.makeRandomMatching(roll, level);
 		outputView.printMatchingResult(roll, level);
-
 	}
+
+
+	public void initMainMenu() {
+		outputView.printMainMenu();
+	}
+
+
+
 }
