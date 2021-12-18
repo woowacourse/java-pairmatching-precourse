@@ -3,7 +3,7 @@ package pairmatching.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pairmatching {
+public class Crews {
     List<String> crewBackendNames = new ArrayList<>();
     List<String> crewFrontendNames = new ArrayList<>();
 
