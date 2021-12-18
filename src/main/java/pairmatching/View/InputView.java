@@ -5,7 +5,7 @@ import pairmatching.Exception.NotValidMenuInputException;
 import pairmatching.Menu;
 
 public class InputView {
-    private OutputView outputView;
+    private OutputView outputView=new OutputView();
     private final String CHOICE_YES="네";
     private final String CHOICE_NO="아니오";
 
@@ -18,7 +18,6 @@ public class InputView {
             }
         } catch (NotValidMenuInputException e) {
             outputView.printErrorMessage(e);
-            inputMenu();
         }
         return menu;
     }
@@ -36,7 +35,6 @@ public class InputView {
             }
         } catch (NotValidMenuInputException e) {
             outputView.printErrorMessage(e);
-            inputRematching();
         }
         return isRematch;
     }

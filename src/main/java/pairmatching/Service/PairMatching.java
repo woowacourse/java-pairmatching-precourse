@@ -16,6 +16,7 @@ public class PairMatching {
     private OutputView outputView;
 
     private static final String WRONG_INPUT_MESSAGE = "[ERROR] 잘못된 입력입니다.";
+    private final String CHOICE_YES="네";
 
     public PairMatching() {
         inputView = new InputView();
@@ -68,7 +69,7 @@ public class PairMatching {
     private void alreadyExist(Mission mission, Course course) {
         try {
             outputView.printAskRematching();
-            if (inputRematching().equals("네")) {
+            if (inputRematching().equals(CHOICE_YES)) {
                 MatchingController.matchingData.put(mission, tryMatching(course));
             }
         } catch (IllegalArgumentException e) {
@@ -91,7 +92,9 @@ public class PairMatching {
                     .filter(x -> name.equals(x.getName()))
                     .forEach(x -> crews.add(new Crew(course, name)));
         }
-        return matchingBuilder(crews);
+        List<Pair> resultMatching=matchingBuilder(crews);
+
+        return resultMatching;
     }
 
     private List<Pair> matchingBuilder(List<Crew> crews) {
