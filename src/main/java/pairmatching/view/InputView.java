@@ -13,6 +13,9 @@ public class InputView {
 	public static List<String> getCrewNameByFile(String fileName) {
 		List<String> backCrewNames = null;
 		URL resource = Application.class.getClassLoader().getResource(fileName);
+		if (resource == null) {
+			throw new IllegalArgumentException("[ERROR] 파일 경로를 잘못입력했습니다.");
+		}
 		Path path = new File(resource.getPath()).toPath();
 		try {
 			backCrewNames = Files.readAllLines(path);
