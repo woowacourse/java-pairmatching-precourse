@@ -7,6 +7,9 @@ public class SystemMessage {
     public static final String FRONT_END = "프론트엔드";
     public static final String BACK_END = "백엔드";
     public static final String PAIR_MATCHING_NUMBER = "1";
+    public static final String PAIR_SHOW_NUMBER = "2";
+    public static final String PAIR_INIT_NUMBER = "3";
+    public static final String QUIT_SIGN = "Q";
 
     public static final String NEW_LINE = "\n";
     public static final String MATCHING_JOIN_DELIMITER = " : ";

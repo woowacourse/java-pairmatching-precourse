@@ -2,6 +2,7 @@ package pairmatching.controller;
 
 import pairmatching.domain.CrewList;
 import pairmatching.domain.MatchingService;
+import pairmatching.validator.InputViewValidator;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -16,8 +17,11 @@ public class Controller {
     public void run() {
         while (true) {
             String userChoice = InputView.getUserChoice();
+            InputViewValidator.checkUserChoice(userChoice);
             if (userChoice.equals(PAIR_MATCHING_NUMBER)) {
+                OutputView.printProcess();
                 String processLevelMission = InputView.getProcessLevelMission();
+                InputViewValidator.checkProcessLevelMission(processLevelMission);
                 String[] split = processLevelMission.split(SPLIT_DELIMITER);
                 choicePairMatching(split[PROCESS], split[LEVEL], split[MISSION]);
             }
@@ -25,13 +29,8 @@ public class Controller {
     }
 
     public void choicePairMatching(String processName, String levelName, String missionName) {
-        try {
-            CrewList match = frontMatchingService.match(processName, levelName, missionName);
-            OutputView.printProcess();
-            OutputView.printMatchingResult(match);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        CrewList match = frontMatchingService.match(processName, levelName, missionName);
+        OutputView.printMatchingResult(match);
 
     }
 }
