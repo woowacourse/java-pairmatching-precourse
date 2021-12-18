@@ -19,4 +19,8 @@ public class OutputView {
 		System.out.println("- 레벨5:");
 		System.out.println("#############################################");
 	}
+
+	public static void printPairMatchingResult(String pairMatchingResult) {
+		System.out.println(pairMatchingResult);
+	}
 }
