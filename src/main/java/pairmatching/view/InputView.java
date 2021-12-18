@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.Crews;
+import pairmatching.domain.Menu;
 
 public class InputView {
 
@@ -18,5 +20,13 @@ public class InputView {
 		BufferedReader backendCrewData = new BufferedReader(new FileReader(backendPath));
 		BufferedReader frontendCrewData = new BufferedReader(new FileReader(frontendPath));
 		return new Crews(backendCrewData, frontendCrewData);
+	}
+
+	public static Menu inputMenu() {
+		return new Menu(input());
+	}
+
+	private static String input() {
+		return Console.readLine();
 	}
 }
