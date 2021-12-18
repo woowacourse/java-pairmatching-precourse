@@ -1,10 +1,12 @@
-package pairmatching;
+package pairmatching.domain.crew;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import pairmatching.domain.input.Course;
 
 public class Crews {
 	private final List<Crew> crewList;

@@ -1,4 +1,6 @@
-package pairmatching;
+package pairmatching.domain.crew;
+
+import pairmatching.domain.input.Course;
 
 public class Crew {
 	private Course course;
