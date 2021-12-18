@@ -32,4 +32,8 @@ public class PairRepository {
     public static void clear(PairTag pairTag) {
         store.remove(pairTag);
     }
+
+    public static void clear() {
+        store.clear();
+    }
 }

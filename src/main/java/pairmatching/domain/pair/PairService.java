@@ -103,4 +103,8 @@ public class PairService {
     public boolean isRegistered(PairTag pairTag) {
         return PairRepository.hasPairs(pairTag);
     }
+
+    public void clear() {
+        PairRepository.clear();
+    }
 }

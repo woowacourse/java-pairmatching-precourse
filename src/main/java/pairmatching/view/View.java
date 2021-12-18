@@ -124,4 +124,8 @@ public class View {
             return getClearOrContinue();
         }
     }
+
+    public static void printClearResult() {
+        System.out.println("초기화 되었습니다.");
+    }
 }

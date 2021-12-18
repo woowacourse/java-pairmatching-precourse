@@ -56,9 +56,13 @@ public class PairMatchingController {
         }
         if (menu == Menu.PAIR_SEARCH) {
             // TODO: 2021/12/18 페어 조회 기능 구현
+
+
         }
         if (menu == Menu.PAIR_CLEAR) {
             // TODO: 2021/12/18 페어 초기화 기능 구현
+            pairService.clear();
+            View.printClearResult();
         }
     }
 
