@@ -42,12 +42,10 @@ public class Missions {
 
 	public Mission getMission(Course course, Level level, String name) {
 		for(int i = 0; i < missions.size(); i++){
-			if(missions.get(i).getCourse() == course && missions.get(i).getLevel() == level && missions.get(i).getName() == name){
-				System.out.println(missions.get(i).getName());
+			if(missions.get(i).getCourse().equals(course) && missions.get(i).getLevel().equals(level) && missions.get(i).getName().equals(name)){
 				return missions.get(i);
 			}
 		}
 		return null;
 	}
-
 }
