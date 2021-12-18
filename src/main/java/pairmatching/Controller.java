@@ -31,8 +31,9 @@ public class Controller {
         }
         if (input.charAt(0) == '1') {
             selectCourses();
+            crews.matching(courses);
         }
-        crews.matching(courses);
+
 
     }
 
@@ -97,7 +98,7 @@ public class Controller {
     }
 
     private boolean checkCourses() {
-        if (courses.length != 3 && !(courses[0].equals("벡엔드") || courses.equals("프론트엔드"))) {
+        if (courses.length != 3 && !(courses[0].equals("백엔드") || courses.equals("프론트엔드"))) {
             return false;
         }
         if (courses[1].equals("레벨1") && (courses[2].equals("자동차경주") || courses[2].equals("로또") || courses[2].equals("숫자야구게임"))) {

@@ -113,12 +113,12 @@ public class Crews {
 
     public boolean checkAlready(String[] courses) {
         if (courses[0].equals("백엔드")) {
-            if (pairsBackend.get(courseIndex).size() == 0) {
+            if (pairsBackend.get(courseIndex).size() != 0) {
                 return true;
             }
         }
-        if (courses[1].equals("백엔드")) {
-            if (pairsFrontend.get(courseIndex).size() == 0) {
+        if (courses[0].equals("프론트엔드")) {
+            if (pairsFrontend.get(courseIndex).size() != 0) {
                 return true;
             }
         }
@@ -130,13 +130,17 @@ public class Crews {
             matchingBackend();
             return;
         }
-        matchingFrontend();
+        if (courses[0].equals("프론트엔드")) {
+            matchingFrontend();
+        }
+
     }
 
     private void matchingBackend() {
         int check = 0;
         while (check < 3) {
             backendCrewNames = Randoms.shuffle(backendCrewNames);
+            pairsBackend.set(courseIndex, new ArrayList<> (backendCrewNames));
             break;
         }
         result(0);
@@ -147,6 +151,7 @@ public class Crews {
         int check = 0;
         while (check < 3) {
             frontendCrewNames = Randoms.shuffle(frontendCrewNames);
+            pairsFrontend.set(courseIndex, new ArrayList<> (frontendCrewNames));
             break;
         }
         result(1);
@@ -173,7 +178,7 @@ public class Crews {
             System.out.println(temp.get(i) + " : " + temp.get(i+1));
         }
         System.out.print(temp.get(temp.size()- 2) + " : " + temp.get(temp.size()- 1));
-        if (temp.size() % 2 == 1) {
+        if (temp.size() % 2 == 0) {
             System.out.println(" : " + temp.get(temp.size() - 1));
             return;
         }
@@ -185,7 +190,10 @@ public class Crews {
             temp = pairsBackend.get(courseIndex);
             return;
         }
-        temp = pairsFrontend.get(courseIndex);
+        if (type == 1) {
+            temp = pairsFrontend.get(courseIndex);
+            return;
+        }
     }
 
 }
