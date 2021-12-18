@@ -1,6 +1,10 @@
 package pairmatching;
 
+import java.util.Arrays;
+
 public class Application {
+    private static final String SPLIT_REGEX = ",";
+
     public boolean process(String command) {
         if (command.equals("1")) {
             executePairMatching();
@@ -19,7 +23,14 @@ public class Application {
 
     private void executePairMatching() {
         CoursesOutput.printCourseInformation();
-        String command = CommandInput.getMatchingCommand();
+        String[] command = CommandInput.getMatchingCommand().split(SPLIT_REGEX);
+        PairManager.getInstance().executePairMatching(
+                command[0].trim(),
+                command[1].trim().substring(2),
+                command[2].trim()
+        );
+
+
     }
 
     public boolean processCommand() {

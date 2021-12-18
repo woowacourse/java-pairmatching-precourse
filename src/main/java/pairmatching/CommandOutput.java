@@ -10,4 +10,5 @@ public class CommandOutput {
     public static void printGuide() {
         System.out.println(GUIDE);
     }
+
 }
