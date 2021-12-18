@@ -9,19 +9,23 @@ import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class MainController {
+	public static final String PAIR_MATCHING = "1";
+	public static final String PAIR_SEARCHING = "2";
+	public static final String PAIR_RESET = "3";
+	public static final String EXIT = "Q";
+
 	public void run() {
 		String function = InputView.requestFunction();
-		if (function.equals("1")) {
+		if (function.equals(PAIR_MATCHING)) {
 			makePair();
 		}
-		if (function.equals("2")) {
+		if (function.equals(PAIR_SEARCHING)) {
 			searchPair();
 		}
-		if (function.equals("3")) {
+		if (function.equals(PAIR_RESET)) {
 			resetPair();
 		}
-		if (function.equals("4")) {
-
+		if (function.equals(EXIT)) {
 		}
 	}
 
@@ -76,10 +80,12 @@ public class MainController {
 		String mission = stringTokenizer.nextToken();
 
 		if (course.equals(Course.BACKEND.getName())) {
-			PairService.getBackPairs(mission);
+			Pairs backPairs = PairService.getBackPairs(mission);
+			System.out.println(OutputView.getPrintPairs(backPairs));
 		}
 		if (course.equals(Course.FRONTEND.getName())) {
-			PairService.getFrontPairs(mission);
+			Pairs frontPairs = PairService.getFrontPairs(mission);
+			System.out.println(OutputView.getPrintPairs(frontPairs));
 		}
 		run();
 	}

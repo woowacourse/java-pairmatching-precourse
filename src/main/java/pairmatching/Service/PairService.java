@@ -77,11 +77,22 @@ public class PairService {
 		return pairs;
 	}
 
-	public static void getBackPairs(String mission) {
-
+	public static Pairs getBackPairs(String mission) {
+		List<Pairs> pairs = PairRepository.backPairs.get(mission);
+		if (pairs == null) {
+			return null;
+		}
+		Pairs lastPairs = pairs.get(pairs.size() - 1);
+		return lastPairs;
 	}
 
-	public static void getFrontPairs(String mission) {
+	public static Pairs getFrontPairs(String mission) {
+		List<Pairs> pairs = PairRepository.frontPairs.get(mission);
+		if (pairs.isEmpty()) {
+			return null;
+		}
+		Pairs lastPairs = pairs.get(pairs.size() - 1);
+		return lastPairs;
 
 	}
 }

@@ -22,10 +22,12 @@ public class OutputView {
 	public static final String PAIR_REQUEST_INFO = "과정, 레벨, 미션을 선택하세요.";
 
 	public static final String RESET_PAIRS = "초기화 되었습니다.";
+	public static final String ERROR_NO_MATCHING_HISTORY = "[ERROR] 매칭 이력이 없습니다.";
 
 	public static final String SCREEN_MISSION_DASH = "  - ";
 	public static final String SCREEN_MISSION_DELIMITER = ": ";
 	public static final String SCREEN_DELIMITER = " | ";
+
 
 	static void printMainScreen() {
 		StringBuilder stringBuilder = new StringBuilder();
@@ -73,7 +75,10 @@ public class OutputView {
 		System.out.println("\n" + RESET_PAIRS + "\n");
 	}
 
-	public static void printPairs(Pairs pairs) {
-
+	public static String getPrintPairs(Pairs pairs) {
+		if (pairs == null) {
+			return ERROR_NO_MATCHING_HISTORY;
+		}
+		return pairs.toString();
 	}
 }
