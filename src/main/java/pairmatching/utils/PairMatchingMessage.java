@@ -50,6 +50,9 @@ public class PairMatchingMessage {
 
 	private static final String WRONG_SHOW_MATCHING_INFORMATION = "매칭 정보 재매칭 여부는 네 또는 아니요만으로 선택해 주세요";
 
+	/* output message */
+	public static final String MATCHING_RESULT = "페어 매칭 결과입니다.";
+
 	public static void printInputFunction() {
 		System.out.println(CHOOSE_FUNCTION);
 		System.out.println(FUNCTION1);
