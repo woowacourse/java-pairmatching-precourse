@@ -1,10 +1,9 @@
 package pairmatching.controller;
 import pairmatching.domain.Pair;
 import pairmatching.domain.PairMatching;
+import pairmatching.utils.ExceptionMessage;
 import pairmatching.view.PairMatchingInput;
 import pairmatching.view.PairMatchingOutput;
-
-import java.io.IOException;
 
 public class PairMatchingController {
     private PairMatching pairMatching = new PairMatching();
@@ -15,7 +14,7 @@ public class PairMatchingController {
 
     public void match(){
         PairMatchingOutput.matchInstruction();
-        String[] information = inputInformation();
+        String[] information = inputInformationForMatch();
         try {
             Pair pair = pairMatching.addPairInPairListOfLevel(information[0], information[1], information[2]);
             PairMatchingOutput.printPair(pair);
@@ -24,12 +23,12 @@ public class PairMatchingController {
         }
     }
 
-    public String[] inputInformation() {
+    private String[] inputInformationForMatch() {
         String[] information;
         boolean rematch = false;
         do{
             information = PairMatchingInput.choiceMatchingInformation();
-            if(pairMatching.checkIfPairResultAlreadyExist(information[0], information[1], information[2])){
+            if(getPairResultIfExist(information)!= null){
                 rematch = PairMatchingInput.inputForRematch();
             }
         } while (rematch);
@@ -38,7 +37,19 @@ public class PairMatchingController {
     }
 
     public void search() {
+        PairMatchingOutput.matchInstruction();
+        String[] information = PairMatchingInput.choiceMatchingInformation();
+        Pair pair = getPairResultIfExist(information);
+        if(pair == null) {
+            System.out.println(ExceptionMessage.NO_MATCHING_HISTORY);
+            return;
+        }
+        PairMatchingOutput.printPair(pair);
+    }
 
+
+    private Pair getPairResultIfExist(String[] information) {
+        return pairMatching.getPairResult(information[0], information[1], information[2]);
     }
 
     public void initialize() {
