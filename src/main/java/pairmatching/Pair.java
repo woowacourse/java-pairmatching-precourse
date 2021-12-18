@@ -17,6 +17,12 @@ public class Pair {
         return pairMemberMap.get(name);
     }
 
+    public Pair(){};
+
+    public void addCrew(Crew crew) {
+        pairMemberMap.put(crew.getName(), crew);
+    }
+
     public boolean isPair(String name1, String name2) {
         return pairMemberMap.containsKey(name1) && pairMemberMap.containsKey(name2);
     }

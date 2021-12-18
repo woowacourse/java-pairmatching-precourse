@@ -32,7 +32,13 @@ public class Mission {
         return pairList;
     }
 
+    public void setPairList(List<Pair> pairList) {
+        this.pairList = pairList;
+    }
+
     public boolean isMatched() {
         return pairList.size() != 0;
     }
+
+
 }

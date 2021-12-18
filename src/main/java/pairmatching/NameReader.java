@@ -14,8 +14,8 @@ public class NameReader {
 
     private NameReader(){};
 
-    public static List<String> readBackEndCrewName() throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(FRONTEND_CREW_FILE_LOCATION));
+    public static List<String> readCrewName(String location) throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File(location));
         List<String> crewNameList = new ArrayList<>();
         while (scanner.hasNext()) {
             crewNameList.add(scanner.next().trim());
@@ -25,13 +25,10 @@ public class NameReader {
 
     }
 
-    public static List<String> readFrontEndCrewName() throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(BACKEND_CREW_FILE_LOCATION));
-        List<String> crewNameList = new ArrayList<>();
-        while (scanner.hasNext()) {
-            crewNameList.add(scanner.next().trim());
+    public static String getFileLocation(Course course) {
+        if (course == Course.BACKEND) {
+            return BACKEND_CREW_FILE_LOCATION;
         }
-
-        return crewNameList;
+        return FRONTEND_CREW_FILE_LOCATION;
     }
 }
