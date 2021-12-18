@@ -34,6 +34,7 @@ public class PairMatchingController {
 	public void matching() {
 		String matchingInfoString = inputView.inputMatchingInfo();
 		MatchingInfo matchingInfo = new MatchingInfo(matchingInfoString, levels);
+
 	}
 
 	private void initCourse() {

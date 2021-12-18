@@ -21,6 +21,7 @@ public class MatchingInfo {
 			List<String> infoStringList = Arrays.asList(matchingInfoString.split(", "));
 			isValidCourseInfo(infoStringList);
 			isValidLevelInfo(infoStringList, levels);
+			isValidMissionInfo(infoStringList, levels);
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
 		}
@@ -37,6 +38,13 @@ public class MatchingInfo {
 		String levelString = matchingInfoString.get(1);
 		if (!levels.isValidLevel(levelString)) {
 			throw new IllegalArgumentException(Exceptions.ERROR_PREFIX + "레벨은 1~5까지만 있습니다.");
+		}
+	}
+
+	private void isValidMissionInfo(List<String> matchingInfoString, Levels levels) {
+		String missionString = matchingInfoString.get(2);
+		if (!levels.isValidMission(missionString)) {
+			throw new IllegalArgumentException(Exceptions.ERROR_PREFIX + "잘못된 미션 입력입니다.");
 		}
 	}
 

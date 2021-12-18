@@ -22,6 +22,10 @@ public enum Level {
 		return name;
 	}
 
+	public List<Mission> getMissions() {
+		return missions;
+	}
+
 	public void missionInit(List<Mission> missions) {
 		this.missions = missions;
 	}
