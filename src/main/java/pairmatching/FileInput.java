@@ -3,17 +3,17 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class InputFile {
+public class FileInput {
     private static final String BACKEND_PATH = "src/main/resources/backend-crew.md";
     private static final String FRONTEND_PATH = "src/main/resources/frontend-crew.md";
     private static final String INVALID_PATH_ERROR = "잘못된 경로입니다.";
-    private static InputFile inputFile = null;
+    private static FileInput inputFile = null;
 
-    private InputFile() {}
+    private FileInput() {}
 
-    public static InputFile getInstance() {
+    public static FileInput getInstance() {
         if (inputFile == null) {
-            inputFile = new InputFile();
+            inputFile = new FileInput();
         }
         return inputFile;
     }

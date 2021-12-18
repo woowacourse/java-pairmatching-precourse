@@ -1,7 +1,5 @@
 package pairmatching;
 
-import java.util.ArrayList;
-
 public class Application {
     public boolean process(String command) {
         if (command.equals("1")) {
@@ -21,13 +19,13 @@ public class Application {
 
     private void executePairMatching() {
         CoursesOutput.printCourseInformation();
-        String command = InputCommand.getMatchingCommand();
+        String command = CommandInput.getMatchingCommand();
     }
 
     public boolean processCommand() {
-        OutputCommand.printGuide();
+        CommandOutput.printGuide();
         try {
-            String command = InputCommand.getCommand();
+            String command = CommandInput.getCommand();
             if (!process(command)) {
                 return false;
             }
@@ -39,8 +37,7 @@ public class Application {
     }
 
     public void run() {
-        BackEndManager backendManager = new BackEndManager();
-        FrontEndManager frontEndManager = new FrontEndManager();
+        CrewManager crewManager = new CrewManager();
         while (processCommand()) {
         }
     }

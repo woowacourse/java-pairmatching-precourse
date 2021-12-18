@@ -1,7 +1,7 @@
 package pairmatching;
 import camp.nextstep.edu.missionutils.Console;
 
-public class InputCommand {
+public class CommandInput {
     private static final String COMMAND_REGEX = "[123Q]";
     private static final String SPLIT_REGEX = ",";
     private static final String LEVEL_REGEX = "레벨[1-5]";
