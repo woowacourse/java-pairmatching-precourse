@@ -8,13 +8,18 @@ import pairmatching.domain.Course;
 import pairmatching.domain.Level;
 import pairmatching.dto.CourseDto;
 import pairmatching.dto.LevelDto;
+import pairmatching.dto.PairDto;
 import pairmatching.dto.RequestDto;
+import pairmatching.service.PairService;
+import pairmatching.view.OutputView;
 
 public class PairMatchingController {
     private static final PairMatchingController pairMatchingController = new PairMatchingController();
 
-    private PairMatchingController(){
+    private final PairService pairService;
 
+    private PairMatchingController(){
+        pairService = new PairService();
     }
 
     public static PairMatchingController getInstance() {
@@ -30,6 +35,7 @@ public class PairMatchingController {
     }
 
     public void match(RequestDto requestDto) {
-        
+        List<PairDto> pairDtos = pairService.match(requestDto);
+        OutputView.printMatchingResult(pairDtos);
     }
 }

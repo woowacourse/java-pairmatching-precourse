@@ -18,6 +18,14 @@ public enum Level {
         this.missions = missions;
     }
 
+    public static Level findBy(String name) {
+        return Arrays.stream(Level.values()).filter(level -> level.isSame(name)).findFirst().get();
+    }
+
+    private boolean isSame(String name) {
+        return this.name.equals(name);
+    }
+
     @Override
     public String toString() {
         return name;

@@ -20,5 +20,7 @@ public class FrontCrews {
         }
     }
 
-
+    public static List<Crew> crews() {
+        return crews;
+    }
 }

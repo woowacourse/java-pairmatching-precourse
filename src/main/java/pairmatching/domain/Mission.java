@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import java.util.Arrays;
+
 public enum Mission {
     RACING_CAR("자동차경주"),
     LOTTO("로또"),
@@ -15,6 +17,14 @@ public enum Mission {
 
     Mission(String name) {
         this.name = name;
+    }
+
+    public static Mission findBy(String name) {
+        return Arrays.stream(Mission.values()).filter(mission -> mission.isSameName(name)).findFirst().get();
+    }
+
+    private boolean isSameName(String name) {
+        return this.name.equals(name);
     }
 
     @Override

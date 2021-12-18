@@ -21,4 +21,7 @@ public class BackCrews {
         }
     }
 
+    public static List<Crew> crews() {
+        return crews;
+    }
 }

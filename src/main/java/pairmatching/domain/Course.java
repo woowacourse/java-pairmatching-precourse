@@ -10,6 +10,10 @@ public enum Course {
         this.name = name;
     }
 
+    public static boolean isBackend(String course) {
+        return BACKEND.name.equals(course);
+    }
+
     @Override
     public String toString() {
         return name;
