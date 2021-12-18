@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static pairmatching.domain.Mission.getMissionFromNameAndLevel;
-import static pairmatching.view.OutputView.printCourseAndMission;
+import static pairmatching.view.OutputView.*;
 
 public class PairMatchingService {
 
@@ -14,6 +14,8 @@ public class PairMatchingService {
     private CrewService crewService = new CrewService();
 
     public void pairMatching() {
+        printCourseAndMission();
+
         Pair pair = getPairFromInput();
 
         pairList.add(pair);
@@ -47,7 +49,7 @@ public class PairMatchingService {
     }
 
     private Pair getPairFromInput() {
-        String input = printCourseAndMission();
+        String input = printInputCourseAndMission();
 
         String[] splitStrings = input.split(", ");
 
@@ -59,6 +61,25 @@ public class PairMatchingService {
 
         Pair pair = new Pair(crewList, mission);
 
+        checkPairExist(pair);
+
         return pair;
+    }
+
+    private void checkPairExist(Pair pair) {
+        boolean contains = pairList.contains(pair);
+        String input = "";
+
+        if (contains) {
+            input = printExistPair();
+        }
+
+        if (input.equals("아니오")) {
+            getPairFromInput();
+        }
+
+        if (input.equals("네")) {
+            pairList.remove(pair);
+        }
     }
 }
