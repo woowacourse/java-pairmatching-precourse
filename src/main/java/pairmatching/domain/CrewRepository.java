@@ -18,6 +18,14 @@ public class CrewRepository {
         crews.add(crew);
     }
 
+    public static Crew getCrewByName(String name) {
+        for (Crew crew : crews) {
+            if(!crew.getName().equals(name)) continue;
+            return crew;
+        }
+        return null;
+    }
+
     public static void initCrewDatabase() {
         for (String crewName : Objects.requireNonNull(readCrewNames("frontend-crew.md"))) {
             addCrew(new Crew(crewName, Course.FRONTEND));

@@ -18,6 +18,18 @@ public class Crew {
         }
     }
 
+    public Course getCourse() {
+        return course;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public HashMap<Level, List<Crew>> getPartnerHistory() {
+        return partnerHistory;
+    }
+
     public void addPartnerHistory(Level level, Crew partner) {
         partnerHistory.get(level).add(partner);
     }

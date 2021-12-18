@@ -4,10 +4,10 @@ import java.util.List;
 
 public class MatchResult {
 
-    private Course course;
-    private Level level;
-    private Mission mission;
-    private List<Pair> pairs;
+    private final Course course;
+    private final Level level;
+    private final Mission mission;
+    private final List<Pair> pairs;
 
     public MatchResult(Course course, Level level, Mission mission, List<Pair> pairs) {
         this.course = course;
