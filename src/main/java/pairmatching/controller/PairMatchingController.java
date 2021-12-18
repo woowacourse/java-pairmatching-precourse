@@ -13,6 +13,7 @@ import pairmatching.view.OutputView;
 public class PairMatchingController {
 	private static final String PAIR_MATCHING = "1";
 	private static final String PAIR_CHECK = "2";
+	private static final String RESET_PAIR = "3";
 	private static final String ORIGIN = "아니오";
 	private static final int COMBINATION_COUNT = 3;
 
@@ -35,6 +36,9 @@ public class PairMatchingController {
 		}
 		if (menu.equals(PAIR_CHECK)) {
 			checkPair();
+		}
+		if (menu.equals(RESET_PAIR)) {
+			resetPair();
 		}
 	}
 
@@ -84,5 +88,34 @@ public class PairMatchingController {
 
 	private void checkPair() {
 		OutputView.printProcessAndMission(Process.getProcessMessage(), Mission.getMissionMessage());
+		String matchingInput = InputView.getMatchingInput();
+		MatchingService matchingService = new MatchingService();
+		Matching searchMatching = matchingService.getMatching(matchingInput);
+		printMatching(searchMatching);
+	}
+
+	private void printMatching(Matching searchMatching) {
+		try {
+			findMatching(searchMatching);
+		} catch (IllegalArgumentException exception) {
+			System.out.println(exception.getMessage());
+			checkPair();
+		}
+	}
+
+	private void findMatching(Matching searchMatching) {
+		if (!matchingHistory.has(searchMatching)) {
+			throw new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.");
+		}
+		searchMatching = matchingHistory.getSameMatch(searchMatching);
+		String searchMatchingCombination = getMatchingCombination(searchMatching);
+		OutputView.printCombination(searchMatchingCombination);
+		selectMenu();
+	}
+
+	private void resetPair() {
+		matchingHistory.resetPair();
+		OutputView.printResetPair();
+		selectMenu();
 	}
 }

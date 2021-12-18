@@ -27,4 +27,8 @@ public class MatchingHistory {
 			.filter(matching -> matching.getLevel() == newMatching.getLevel())
 			.anyMatch(matching -> matching.hasSameCombination(newMatching));
 	}
+
+	public void resetPair() {
+		history = new HashSet<>();
+	}
 }

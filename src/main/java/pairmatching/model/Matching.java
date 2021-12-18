@@ -82,7 +82,7 @@ public class Matching {
 
 	public boolean hasSameCombination(Matching newMatching) {
 		for (Set<String> set : combination) {
-			if (newMatching.combination.contains(set)) {
+			if (newMatching.combination.containsAll(set)) {
 				return true;
 			}
 		}
