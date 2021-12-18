@@ -3,8 +3,13 @@ package pairmatching.view;
 public class InputView {
     public static void splitString(String input) {
         isValidNumPoint(input);
-        String[] result = input.split(",");
-//        isValidPairMatching(result);
+
+        input = input.replace("]","");
+        input = input.replace("[","");
+        input = input.replace(" ","");
+        String[] inputList = input.split(",");
+
+        isValidPairMatching(inputList);
     }
 
     private static void isValidPairMatching(String[] result) {
@@ -14,6 +19,8 @@ public class InputView {
         if (!(result[1].equals("레벨1") || result[1].equals("레벨2") || result[1].equals("레벨3") || result[1].equals("레벨4") || result[1].equals("레벨5"))) {
             throw new IllegalArgumentException();
         }
+        System.out.println("no");
+
         if (result[1].equals("레벨1")) {
             if (!(result[2].equals("자동차경주") || result[2].equals("로또") || result[2].equals("숫자야구게임"))) {
                 throw new IllegalArgumentException();
