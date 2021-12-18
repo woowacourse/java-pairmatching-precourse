@@ -1,8 +1,12 @@
 package pairmatching.domain;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import pairmatching.config.DomainConfig;
 
@@ -18,24 +22,23 @@ public class WoowaCourse {
 		this.mission = mission;
 	}
 
-	public List<Crew> load() {
-		List<Crew> crews = new ArrayList<>();
+	public List<String> load() {
 		try {
-			crews.addAll(DomainConfig.readCrews("backend-crew.md"));
-		} catch (Exception e) {
+			return DomainConfig.readCrews(course.getFileName()).collect(Collectors.toList());
+		} catch (IOException e) {
+			throw new IllegalArgumentException("파일을 읽는도중 에러가 발생했습니다.");
 		}
-		return crews;
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
+	public boolean equals(Object other) {
+		if (this == other) {
 			return true;
 		}
-		if (o == null || getClass() != o.getClass()) {
+		if (other == null || getClass() != other.getClass()) {
 			return false;
 		}
-		WoowaCourse that = (WoowaCourse)o;
+		WoowaCourse that = (WoowaCourse)other;
 		return course == that.course && level == that.level && Objects.equals(mission, that.mission);
 	}
 
