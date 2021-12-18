@@ -1,24 +1,64 @@
 package pairmatching.view;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import pairmatching.model.Course;
+import pairmatching.model.Level;
+import pairmatching.model.Mission;
+
 public class OutputView {
+	private static final String NAME_DELIMITER = " | ";
+	private static final String MISSION_DELIMITER = ": ";
+	private static final String MISSION_PREFIX = "  - ";
+	private static final String OPTION_DELIMITER = ". ";
 	public static void printMain() {
-		printHeader("기능을 선택하세요.");
+		printMessage("기능을 선택하세요.");
 		printOptionMenu("1", "페어 매칭");
 		printOptionMenu("2", "페어 조회");
 		printOptionMenu("3", "페어 초기화");
 		printOptionMenu("Q", "종료");
 	}
 
+	public static void printMissionInformation(List<Course> courses, List<Level> levels, List<Mission> missions) {
+		printMessage("#############################################");
+		printMessage("과정: " + courseListWithDelimiter(courses));
+		printMessage("미션: ");
+		printMissions(levels, missions);
+		printMessage("#############################################");
+		printMessage("과정, 레벨, 미션을 선택하세요.");
+		printMessage("ex) 백엔드, 레벨1, 자동차경주");
+	}
+
+	private static String courseListWithDelimiter(List<Course> courses) {
+		return courses.stream().map(Course::getName).collect(Collectors.joining(NAME_DELIMITER));
+	}
+
+	private static void printMissions(List<Level> levels, List<Mission> missions) {
+		for (Level level : levels) {
+			String message = MISSION_PREFIX + level.getName() + MISSION_DELIMITER + missionListWithDelimiter(missions, level);
+			printMessage(message);
+		}
+	}
+
+	private static String missionListWithDelimiter(List<Mission> missions, Level level) {
+		return findMissionsByLevel(missions, level).stream().map(Mission::getName).collect(Collectors.joining(
+			NAME_DELIMITER));
+	}
+
+	private static List<Mission> findMissionsByLevel(List<Mission> missions, Level level) {
+		return missions.stream().filter(m -> m.getLevel().equals(level)).collect(Collectors.toList());
+	}
+
 	public static void printErrorMessage(String message) {
 		printError(message);
 	}
 
-	private static void printHeader(String header) {
+	private static void printMessage(String header) {
 		System.out.println(header);
 	}
 
 	private static void printOptionMenu(String option, String name) {
-		System.out.println(option + ". " + name);
+		System.out.println(option + OPTION_DELIMITER + name);
 	}
 
 	private static void printError(String message) {

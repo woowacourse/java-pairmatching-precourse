@@ -1,6 +1,12 @@
 package pairmatching.controller;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Supplier;
+import pairmatching.model.Course;
+import pairmatching.model.Level;
+import pairmatching.model.Mission;
+import pairmatching.model.MissionRepository;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -8,6 +14,10 @@ public class PairMatchingController {
 	public void service() {
 		OutputView.printMain();
 		String option = retryInput(() -> InputView.inputOption("1", "2", "3", "Q"));
+
+		if (option.equals("1")) {
+			pairMatching();
+		}
 	}
 
 	public String retryInput(Supplier<String> supplier) {
@@ -17,5 +27,10 @@ public class PairMatchingController {
 			OutputView.printErrorMessage(e.getMessage());
 			return retryInput(supplier);
 		}
+	}
+
+	private void pairMatching() {
+		List<Mission> missions = MissionRepository.findAll();
+		OutputView.printMissionInformation(Arrays.asList(Course.values()), Arrays.asList(Level.values()), missions);
 	}
 }

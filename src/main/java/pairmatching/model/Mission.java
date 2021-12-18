@@ -20,4 +20,12 @@ public class Mission {
 			", name='" + name + '\'' +
 			'}';
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Level getLevel() {
+		return level;
+	}
 }
