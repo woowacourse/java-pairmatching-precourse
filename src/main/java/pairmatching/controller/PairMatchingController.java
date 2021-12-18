@@ -8,6 +8,7 @@ import pairmatching.domain.Course;
 import pairmatching.domain.Level;
 import pairmatching.dto.CourseDto;
 import pairmatching.dto.LevelDto;
+import pairmatching.dto.RequestDto;
 
 public class PairMatchingController {
     private static final PairMatchingController pairMatchingController = new PairMatchingController();
@@ -26,5 +27,9 @@ public class PairMatchingController {
 
     public List<LevelDto> requestMission() {
         return Arrays.stream(Level.values()).map(LevelDto::new).collect(Collectors.toList());
+    }
+
+    public void match(RequestDto requestDto) {
+        
     }
 }

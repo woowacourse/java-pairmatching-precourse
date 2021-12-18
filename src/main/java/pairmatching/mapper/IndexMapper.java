@@ -3,6 +3,7 @@ package pairmatching.mapper;
 import java.util.Arrays;
 
 import pairmatching.controller.PairMatchingController;
+import pairmatching.dto.RequestDto;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -34,6 +35,7 @@ public enum IndexMapper {
         OutputView.printProcess(pairMatchingController.requestProcess());
         OutputView.printMission(pairMatchingController.requestMission());
         String request = InputView.printProcessLevelMissionSelection();
+        pairMatchingController.match(new RequestDto(request));
     }
 
     public static void map(String request) {
