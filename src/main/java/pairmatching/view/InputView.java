@@ -1,5 +1,7 @@
 package pairmatching.view;
 
+import static camp.nextstep.edu.missionutils.Console.*;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.LinkedList;
@@ -27,6 +29,10 @@ public class InputView {
 
 	private static void logError(Exception error) {
 		System.out.println(error.getMessage());
+	}
+
+	public static String readString() {
+		return readLine();
 	}
 
 }
