@@ -1,35 +1,89 @@
 package pairmatching;
 
 
+import static camp.nextstep.edu.missionutils.Console.*;
 import static pairmatching.domain.Course.*;
 import static pairmatching.domain.Level.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.assertj.core.util.Lists;
 
+import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 import pairmatching.domain.CrewInfoReader;
+import pairmatching.domain.Level;
+import pairmatching.domain.Matching;
 import pairmatching.domain.Mission;
 import pairmatching.domain.Pair;
 
 public class Application {
     static Pair pair = new Pair();
     static Mission mission = new Mission();
+    static String input;
     public static void main(String[] args) {
 
-        // inputMissionByLevel();
-        //
-        // printChooseFunction();
-        //
-        // System.out.println("#############################################");
-        // System.out.print(Course.toOutputString());
-        // System.out.print(mission.toString());
-        // System.out.println("#############################################");
+        inputMissionByLevel();
 
-        pairMatching(BACKEND);
-        // pairMatching(FRONTEND);
+        Set<Matching> matchingSet = new HashSet<>();
+        while(true) {
+            printChooseFunction();
+            input = readLine();
+
+            if (input.equalsIgnoreCase("Q")) { //종료
+                System.out.println("종료");
+                break;
+            }
+
+            printCourseAndMission();
+
+
+            int op = Integer.parseInt(input);
+            if (op == 1) { // 페어 매칭
+                input = readLine(); // 프론트엔드, 레벨1, 자동차경주
+                String[] data = input.split(", ");
+                String courseName = data[0];
+                String level = data[1];
+                String mission = data[2];
+                Matching matching = new Matching(Course.findByName(courseName), Level.findByName(level), mission);
+                System.out.println(courseName + ", " + level + ", " + mission);
+
+                // 매칭 정보가 이미 있을 경우
+                if (!matchingSet.add(matching)) {
+                    System.out.println("이미 매칭 정보가 있습니다.");
+                    continue;
+                }
+                List<String> pairList = null;
+                // 없을 경우
+                if (courseName.equalsIgnoreCase(BACKEND.getName())) {
+                    matching.insertMatchingList(BACKEND);
+                } else if (courseName.equalsIgnoreCase(FRONTEND.getName())) {
+                    matching.insertMatchingList(FRONTEND);
+                }
+
+                System.out.println(matching);
+
+            } else if (op == 2) { // 페어 조회
+
+            } else if (op == 3) { // 페어 초기
+
+            }
+            // pairMatching(BACKEND);
+            // pairMatching(FRONTEND);
+        }
+    }
+
+    private static void printCourseAndMission() {
+        System.out.println("#############################################");
+        System.out.print(Course.toOutputString());
+        System.out.print(mission.toString());
+        System.out.println("#############################################");
+        System.out.println("과정, 레벨, 미션을 선택하세요.\n"
+            + "ex) 백엔드, 레벨1, 자동차경주");
     }
 
     private static void printChooseFunction() {
@@ -49,34 +103,7 @@ public class Application {
         mission_4.stream().forEach(name -> mission.insertMissionByLevel(LEVEL_4, name));
     }
 
-    static void pairMatching(Course course){
-        String fileName = "";
-        if(course.equals(BACKEND)){
-            fileName = "backend";
-        }else if(course.equals(FRONTEND)){
-            fileName = "frontend";
-        }
-        List<String> backendList = CrewInfoReader.readCrewListByType(fileName+"-crew");
-        Crew crewList = new Crew(course, backendList);
 
-        List<String> shuffle = crewList.shuffleCrewList(course);
-        randomMatching(shuffle);
 
-        pair.printPair();
 
-    }
-
-    static void randomMatching(List<String> list){
-        int size = list.size();
-        int idx = 0;
-        while(size > idx){
-            if((size-idx)/2==1 && (size-idx)%2 == 1){
-                pair.getPair(list.get(idx),list.get(idx+1), list.get(idx+2));
-                idx+= 3;
-            }else{
-                pair.getPair(list.get(idx),list.get(idx+1));
-                idx += 2;
-            }
-        }
-    }
 }

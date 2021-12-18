@@ -18,6 +18,15 @@ public enum Course {
 		return name;
 	}
 
+	public static Course findByName(String name){
+		if(name.equalsIgnoreCase("백엔드")){
+			return BACKEND;
+		}else if(name.equalsIgnoreCase("프론트엔드")){
+			return FRONTEND;
+		}
+		throw new RuntimeException("해당 코스는 없습니다.");
+	}
+
 	public static List<String> getCourseList(){
 		return Stream.of(Course.values()).map(s -> s.getName()).collect(Collectors.toList());
 	}

@@ -19,6 +19,21 @@ public enum Level {
 		this.level = level;
 	}
 
+	public static Level findByName(String name){
+		if(name.equalsIgnoreCase("레벨1")){
+			return LEVEL_1;
+		}else if(name.equalsIgnoreCase("레벨2")){
+			return LEVEL_2;
+		}else if(name.equalsIgnoreCase("레벨3")){
+			return LEVEL_3;
+		}else if(name.equalsIgnoreCase("레벨4")){
+			return LEVEL_4;
+		}else if(name.equalsIgnoreCase("레벨5")){
+			return LEVEL_5;
+		}
+		throw new RuntimeException("해당 레벨은 없습니다.");
+	}
+
 	public String getName() {
 		return name;
 	}

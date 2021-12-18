@@ -15,13 +15,6 @@ public class Mission {
 	}
 
 	public void insertMissionByLevel(Level level, String missionName){
-		// if(!missionMap.containsKey(level)){
-		// 	List<String> list = new ArrayList<>();
-		// 	list.add(missionName);
-		// 	missionMap.put(level, list);
-		// 	return;
-		// }
-
 		missionMap.get(level).add(missionName);
 	}
 
