@@ -30,5 +30,8 @@ public class ProgramData {
 	public static final String YES = "네";
 
 	public static final String INVALID_SELECT_ERROR = "[ERROR] 유효하지 않은 선택입니다.";
+	public static final String PAIR_MATCH_FAIL_ERROR = "[ERROR] 크루 페어 매칭에 실패했습니다.";
+
+	public static final int PAIR_MATCH_REPEAT = 3;
 
 }
