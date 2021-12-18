@@ -35,4 +35,12 @@ public class MissionRepository {
     public static void clear() {
         missions.clear();
     }
+
+    public static boolean existPair(String name) {
+        return !missions.stream()
+            .filter(mission -> mission.getName().equals(name))
+            .findAny()
+            .get()
+            .getPairs().isEmpty();
+    }
 }

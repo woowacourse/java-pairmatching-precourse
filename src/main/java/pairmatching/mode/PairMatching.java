@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
+import pairmatching.Check;
 import pairmatching.Course;
 import pairmatching.Crew;
 import pairmatching.CrewRepository;
@@ -19,20 +20,40 @@ public class PairMatching implements PairMatchingService {
     public void run() {
         while (true) {
             try {
-                System.out.println(GuidanceMessage.GUIDE);
-                String[] split = Console.readLine().split(INPUT_DELIMITER);
-
-                List<String> findCrewsName = CrewRepository.findAllByCourse(Course.findByCourse(getCourse(split)));
-                List<String> shuffleNames = Randoms.shuffle(findCrewsName);
-
-                Mission mission = MissionRepository.findByMission(getMission(split));
-                mission.addPairs(CrewRepository.matchingCrews(shuffleNames, Level.findByLevel(getLevel(split))));
-                printPair();
+                progressMatching();
                 break;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
         }
+    }
+
+    private void progressMatching() {
+        System.out.println(GuidanceMessage.GUIDE);
+        String[] split = Console.readLine().split(INPUT_DELIMITER);
+
+        List<String> findCrewsName = CrewRepository.findAllByCourse(Course.findByCourse(getCourse(split)));
+        List<String> shuffleNames = Randoms.shuffle(findCrewsName);
+        Mission mission = MissionRepository.findByMission(getMission(split));
+        if (isExistedPairs(split, shuffleNames, mission)) {
+            return;
+        }
+        mission.addPairs(CrewRepository.matchingCrews(shuffleNames, Level.findByLevel(getLevel(split))));
+        printPair();
+        return;
+    }
+
+    private boolean isExistedPairs(String[] split, List<String> shuffleNames, Mission mission) {
+        if (MissionRepository.existPair(mission.getName())) {
+            System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
+                + "네 | 아니오");
+            if (Check.isYes(Console.readLine())) {
+                mission.addPairs(CrewRepository.matchingCrews(shuffleNames, Level.findByLevel(getLevel(split))));
+                printPair();
+                return true;
+            }
+        }
+        return false;
     }
 
     private String getCourse(String[] split) {
