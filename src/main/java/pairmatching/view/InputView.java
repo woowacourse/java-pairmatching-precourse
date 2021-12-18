@@ -2,6 +2,7 @@ package pairmatching.view;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -49,32 +50,30 @@ public class InputView {
     }
 
     public static List<Crew> requestBackendCrews() {
-        List<Crew> crews = new ArrayList<>();
         try {
+            List<Crew> crews = new ArrayList<>();
             Scanner scanner = new Scanner(new File(BACKEND_CREW_RESOURCE_PATH));
-            while (scanner.hasNext()) {
-                String crewName = scanner.next();
+            while (scanner.hasNextLine()) {
+                String crewName = scanner.nextLine();
                 crews.add(new Crew(CourseEnum.BACKEND, crewName));
             }
             return crews;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return requestBackendCrews();
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
         }
     }
 
     public static List<Crew> requestFrontendCrews() {
-        List<Crew> crews = new ArrayList<>();
         try {
+            List<Crew> crews = new ArrayList<>();
             Scanner scanner = new Scanner(new File(FRONTEND_CREW_RESOURCE_PATH));
-            while (scanner.hasNext()) {
-                String crewName = scanner.next();
+            while (scanner.hasNextLine()) {
+                String crewName = scanner.nextLine();
                 crews.add(new Crew(CourseEnum.FRONTEND, crewName));
             }
             return crews;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return requestBackendCrews();
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
         }
     }
 

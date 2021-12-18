@@ -8,7 +8,9 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
+
 import pairmatching.Application;
 
 class ApplicationTest extends NsTest {
@@ -38,10 +40,6 @@ class ApplicationTest extends NsTest {
 
     @Override
     public void runMain() {
-        try {
-            Application.main(new String[]{});
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        Application.main(new String[] {});
     }
 }
