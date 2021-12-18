@@ -19,9 +19,7 @@ public class ConsoleInputView {
         OutputView.printCourseLevelMissionInfo();
         OutputView.printMessage(INPUT_MATCHING_INFO_REQUEST_MESSAGE);
 
-        String input = camp.nextstep.edu.missionutils.Console.readLine();
+        return camp.nextstep.edu.missionutils.Console.readLine();
 
-        OutputView.printNewLine();
-        return input;
     }
 }

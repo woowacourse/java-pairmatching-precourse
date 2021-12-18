@@ -56,4 +56,10 @@ public class System {
             .findFirst()
             .orElseThrow(IllegalAccessError::new);
     }
+
+    public void initializeMatchingInfos() {
+        while (!matchingInfos.isEmpty()) {
+            matchingInfos.remove(0);
+        }
+    }
 }

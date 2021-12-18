@@ -34,17 +34,26 @@ public class Controller {
             inputFunction = getInputFunction();
 
             if (inputFunction.equals(PAIR_MATCHING_SIGN)) {
+                pushMatchingInfo();
+            }
+            
+            if (inputFunction.equals(PAIR_INITIALIZATION_SIGN)) {
                 initializeMatchingInfo();
             }
         } while (!inputFunction.equals(TERMINATING_SIGN));
     }
 
-    private void initializeMatchingInfo() {
+    private void pushMatchingInfo() {
         List<String> matchInfoList = Arrays.asList(ConsoleInputView.inputMatchingInfo().split(COMMA_SEPARATION));
         randomMatch(matchInfoList.get(COURSE_INDEX).trim(),
             matchInfoList.get(LEVEL_INDEX).trim(),
             matchInfoList.get(MISSION_INDEX).trim());
+        OutputView.printNewLine();
+    }
 
+    private void initializeMatchingInfo() {
+        system.initializeMatchingInfos();
+        OutputView.printInitializationInfo();
     }
 
     private void randomMatch(final String courseName, final String level, final String mission) {

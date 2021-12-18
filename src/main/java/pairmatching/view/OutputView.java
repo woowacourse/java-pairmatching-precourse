@@ -19,6 +19,7 @@ public class OutputView {
         + "  - 레벨5: \n"
         + "############################################";
     private static final String MATCHING_RESULT_INFO_MESSAGE = "페어 매칭 결과입니다.";
+    private static final String INITIALIZATION_INFO_MESSAGE = "초기화 되었습니다.";
 
     public static void printMessage(final String message) {
         System.out.println(message);
@@ -37,6 +38,12 @@ public class OutputView {
         for (List<String> pair : matchingInfo.getPairList()) {
             System.out.println(String.join(COLON_DELIMITER, pair));
         }
+        printNewLine();
+    }
+
+    public static void printInitializationInfo() {
+        printNewLine();
+        System.out.println(INITIALIZATION_INFO_MESSAGE);
         printNewLine();
     }
 
