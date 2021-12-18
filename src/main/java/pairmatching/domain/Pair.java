@@ -16,6 +16,10 @@ public class Pair {
 		return crews;
 	}
 
+	public Mission getMission() {
+		return mission;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)

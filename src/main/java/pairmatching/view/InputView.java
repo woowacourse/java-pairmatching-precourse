@@ -14,6 +14,8 @@ public class InputView {
 		+ "  - 레벨5: ";
 	private static final String MISSION_INPUT_MESSAGE = "과정, 레벨, 미션을 선택하세요.";
 	private static final String MISSION_INPUT_EXAMPLE = "ex) 백엔드, 레벨1, 자동차경주";
+	private static final String PAIR_REMATCH_MESSAGE = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
+	private static final String YES_OR_NO = "네 | 아니오";
 
 	public static String inputString() {
 		return Console.readLine().trim();
@@ -33,6 +35,13 @@ public class InputView {
 		System.out.println(SPLIT_LINE);
 		System.out.println(MISSION_INPUT_MESSAGE);
 		System.out.println(MISSION_INPUT_EXAMPLE);
+		return inputString();
+	}
+
+	public static String inputPairRematching() {
+		System.out.println();
+		System.out.println(PAIR_REMATCH_MESSAGE);
+		System.out.println(YES_OR_NO);
 		return inputString();
 	}
 }

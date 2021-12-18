@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Crews {
 	private static Map<Course, List<Crew>> crewListMap = new HashMap<>();
@@ -29,6 +30,12 @@ public class Crews {
 
 	public static List<Crew> getCrewList(Course course) {
 		return crewListMap.get(course);
+	}
+
+	public static List<String> getCrewNames(List<Crew> crewList) {
+		return crewList.stream()
+			.map(Crew::getName)
+			.collect(Collectors.toList());
 	}
 
 }
