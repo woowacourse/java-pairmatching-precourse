@@ -7,11 +7,14 @@ import pairmatching.utils.BasicInformationFactory;
 import pairmatching.utils.FunctionFactory;
 import pairmatching.utils.PairFactory;
 import pairmatching.view.InputView;
+import pairmatching.view.OutputView;
 
 public class MatchingController {
 
 	private static final String QUIT_NUMBER = "Q";
 	private static final String PAIR_MATCHING_NUMBER = "1";
+	private static final String PAIR_SEARCH_NUMBER = "2";
+	private static final String PAIR_RESET = "3";
 
 	private MatchingController() {
 	}
@@ -34,6 +37,14 @@ public class MatchingController {
 				if (!information.isPaired()) {
 					Pairs pairs = PairFactory.checkRePair(information);
 				}
+			}
+			if (functionNumber.equals(PAIR_SEARCH_NUMBER)) {
+				// 조회하기
+				Information information = MatchingController.controlInformationSelect();
+				OutputView.printPair(PairFactory.checkRePair(information));
+			}
+			if (functionNumber.equals(PAIR_RESET)) {
+				// 초기화하기
 			}
 		}
 	}
