@@ -32,7 +32,23 @@ public class PairMatchingController {
 
         OutputView.printPairMission();
         PairMission pairMission = getPairMission(pairMatchingMachine);
-        share(pairMission, pairMatchingMachine);
+
+        if (mainCommand == MainCommand.MATCHING) {
+            share(pairMission, pairMatchingMachine);
+        }
+
+        if (mainCommand == MainCommand.FIND) {
+            find(pairMission, pairMatchingMachine);
+        }
+    }
+
+    private MainCommand getMainCommand() {
+        try {
+            return InputView.mainCommand();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getMainCommand();
+        }
     }
 
     private PairMission getPairMission(PairMatchingMachine pairMatchingMachine) {
@@ -55,12 +71,13 @@ public class PairMatchingController {
         pairMatching(pairMatchingMachine);
     }
 
-    private MainCommand getMainCommand() {
+    private void find(PairMission pairMission, PairMatchingMachine pairMatchingMachine) {
         try {
-            return InputView.mainCommand();
+            PairInformation pairInformation = pairMatchingMachine.findPairInformation(pairMission);
+            OutputView.printPairMatchingResult(pairInformation);
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return getMainCommand();
+            System.out.println(e.getMessage());
+            pairMatching(pairMatchingMachine);
         }
     }
 
