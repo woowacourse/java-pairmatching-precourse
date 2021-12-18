@@ -34,12 +34,14 @@ public class Pair {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o)
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (object == null || getClass() != object.getClass()) {
 			return false;
-		Pair pair1 = (Pair)o;
+		}
+		Pair pair1 = (Pair)object;
 		return pair.equals(pair1.pair);
 	}
 
