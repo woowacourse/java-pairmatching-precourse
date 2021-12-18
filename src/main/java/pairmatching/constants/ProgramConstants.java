@@ -25,6 +25,5 @@ public final class ProgramConstants {
 	public static final String PAIR_MACH_SELECT = FUNCTION_OPTIONS.get(0);
 	public static final String PAIR_CHECK_SELECT = FUNCTION_OPTIONS.get(1);
 	public static final String RESET_SELECT = FUNCTION_OPTIONS.get(2);
-	public static final String QUIT_SELECT = FUNCTION_OPTIONS.get(3);
 
 }
