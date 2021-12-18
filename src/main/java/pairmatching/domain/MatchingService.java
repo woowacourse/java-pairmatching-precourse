@@ -15,9 +15,9 @@ import static pairmatching.constant.SystemMessage.FRONT_END_PROCESS_FILE_PATH;
 
 public class MatchingService {
     private CrewList crewList = new CrewList();
-    List<String> shuffledCrewList;
+    private CrewList shuffledCrewList = new CrewList();
 
-    public void match(String processName) throws IOException {
+    public void match(String processName, String level, String mission) throws IOException {
         String filePath = makeFilePath(processName);
         readCrewList(filePath);
         shuffleCrewList();
@@ -34,7 +34,12 @@ public class MatchingService {
     }
 
     private void shuffleCrewList() {
-        shuffledCrewList = crewList.shuffle();
+        List<String> shuffledCrewListString = crewList.shuffle();
+        shuffledCrewList.toCrewListBy(shuffledCrewListString);
+    }
+
+    private void checkMatch() {
+
     }
 
     private String makeFilePath(String processName) {
