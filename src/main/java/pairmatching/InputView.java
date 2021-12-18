@@ -1,28 +1,34 @@
 package pairmatching;
 
-import java.util.Arrays;
-import java.util.ConcurrentModificationException;
-import java.util.HashSet;
-import java.util.Set;
+import static pairmatching.StringConstants.*;
+
+import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.domain.Course;
+import pairmatching.domain.Level;
 
 public class InputView {
-    private static final String REQUEST_MESSAGE_ABOUT_FUNCTION_SELECTION = "기능을 선택하세요.";
-    private static final String PAIR_MATCHING_FUNCTION = "1. 페어 매칭";
-    private static final String PAIR_CHECK_FUNCTION = "2. 페어 조회";
-    private static final String PAIR_INITIALIZATION_FUNCTION = "3. 페어 초기화";
-    private static final String END_FUNCTION = "Q. 종료";
-    private static final String PAIR_MATCHING_FUNCTION_KEY = "1";
-    private static final String PAIR_CHECK_FUNCTION_KEY = "2";
-    private static final String PAIR_INITIALIZATION_FUNCTION_KEY = "3";
-    private static final String END_FUNCTION_KEY = "Q";
-    private static final Set<String> function_keys = new HashSet<>(Arrays.asList(PAIR_MATCHING_FUNCTION_KEY, PAIR_CHECK_FUNCTION_KEY, PAIR_INITIALIZATION_FUNCTION_KEY, END_FUNCTION_KEY));
-
     public static String inputFunctionKey() {
         printRequestMessageAboutFunctionSelection();
         return inputUntilSucceed( () -> checkFunctionKey(input()));
+    }
+
+    public static String[] inputPairInfoToPerformFunction(List<String> allMissionNames, Map<Level, List<String>> missionNamesByLevel) {
+        printPriorKnowledge(missionNamesByLevel);
+        printRequestMessageAboutPairInfo();
+        String[] PairInfoToPerformFunction = input().split(",");
+        checkCourseName(PairInfoToPerformFunction[0]);
+        checkLevelName(PairInfoToPerformFunction[1]);
+        checkMissionName(PairInfoToPerformFunction[2], allMissionNames);
+        return PairInfoToPerformFunction;
+    }
+
+    private static void printRequestMessageAboutPairInfo() {
+        System.out.println(REQUEST_MESSAGE_ABOUT_PAIR_INFO);
+        System.out.println(EXAMPLE_MESSAGE_ABOUT_PAIR_INFO);
     }
 
     private static String input() {
@@ -30,18 +36,66 @@ public class InputView {
     }
 
     private static String checkFunctionKey(String input) {
-        if(!function_keys.contains(input)) {
-            throw new IllegalArgumentException("제시된 기능목록에서 선택해주세요");
+        if(!FUNCTION_KEYS.contains(input)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_ABOUT_FUNCTION_INPUT);
         }
         return input;
     }
 
     private static void printRequestMessageAboutFunctionSelection() {
+        System.out.println();
         System.out.println(REQUEST_MESSAGE_ABOUT_FUNCTION_SELECTION);
         System.out.println(PAIR_MATCHING_FUNCTION);
         System.out.println(PAIR_CHECK_FUNCTION);
         System.out.println(PAIR_INITIALIZATION_FUNCTION);
         System.out.println(END_FUNCTION);
+    }
+
+    private static void printPriorKnowledge(Map<Level, List<String>> missionNamesByLevel) {
+        System.out.println(DIVIDING_LINE);
+        printCourseKnowledge();
+        printMissionKnowledge(missionNamesByLevel);
+        System.out.println(DIVIDING_LINE);
+    }
+
+    private static void printCourseKnowledge() {
+        System.out.print(COURSE);
+        System.out.print(DELIMITER);
+        System.out.print(Course.BACKEND.name());
+        System.out.print(DELIMITER_BETWEEN_ITEM);
+        System.out.println(Course.FRONTEND.name());
+    }
+    private static void printMissionKnowledge(Map<Level, List<String>> missionNamesByLevel) {
+        System.out.print(MISSION);
+        System.out.println(DELIMITER);
+        for (Level level : Level.values()) {
+            printMissionKnowledgeByLevel(level, missionNamesByLevel.get(level));
+        }
+    }
+
+    private static void printMissionKnowledgeByLevel(Level level, List<String> missionNames) {
+        System.out.print(DELIMITER_FOR_LIST_ITEM);
+        System.out.print(level.name());
+        System.out.print(DELIMITER);
+        System.out.println(String.join(DELIMITER_BETWEEN_ITEM, missionNames));
+    }
+
+    private static void checkCourseName(String nameInput) {
+        if(!Course.isCourseName(nameInput)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_ABOUT_COURSE_INPUT);
+        }
+    }
+
+    private static void checkLevelName(String nameInput) {
+        if(!Level.isLevelName(nameInput)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_ABOUT_LEVEL_INPUT);
+        }
+    }
+
+    private static void checkMissionName(String nameInput, List<String> allMissionNames) {
+        if(!allMissionNames.contains(nameInput)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_ABOUT_MISSION_INPUT);
+        }
     }
 
     private static String inputUntilSucceed(Supplier<String> input) {
@@ -58,7 +112,7 @@ public class InputView {
     }
 
     private static void printErrorMessage(String errorMessage) {
+        System.out.print(PREFIX_OF_ERROR_MESSAGE);
         System.out.println(errorMessage);
     }
-
 }

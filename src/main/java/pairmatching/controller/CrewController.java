@@ -2,7 +2,7 @@ package pairmatching.controller;
 
 import java.util.List;
 
-import pairmatching.crewService.CrewRepository;
+import pairmatching.domain.crew.CrewRepository;
 import pairmatching.domain.Course;
 
 public class CrewController {

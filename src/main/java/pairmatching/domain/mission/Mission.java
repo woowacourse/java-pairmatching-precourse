@@ -11,11 +11,11 @@ public class Mission {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Mission{" +
-                "level=" + level +
-                ", name='" + name + '\'' +
-                '}';
+    public String getName() {
+        return name;
+    }
+
+    public Level getLevel() {
+        return level;
     }
 }

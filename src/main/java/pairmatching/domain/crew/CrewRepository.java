@@ -1,11 +1,11 @@
-package pairmatching.crewService;
+package pairmatching.domain.crew;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import pairmatching.domain.Course;
-import pairmatching.domain.Crew;
+import pairmatching.domain.crew.Crew;
 
 public class CrewRepository {
     private final Map<String, Crew> backendCrew = new HashMap<>();

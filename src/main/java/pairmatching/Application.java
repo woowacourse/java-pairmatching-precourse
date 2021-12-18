@@ -1,7 +1,6 @@
 package pairmatching;
 
-import static pairmatching.StringConstants.END_FUNCTION;
-import static pairmatching.StringConstants.PAIR_MATCHING_FUNCTION_KEY;
+import static pairmatching.StringConstants.*;
 
 import pairmatching.controller.CrewController;
 import pairmatching.controller.MissionController;
@@ -17,7 +16,7 @@ public class Application {
     public static void main(String[] args) {
         createCrew();
         createMission();
-        String functionKey = InputView.inputFunctionKey();
+        checkFunction(InputView.inputFunctionKey());
     }
 
     private static void createCrew() {
@@ -30,14 +29,14 @@ public class Application {
     }
 
     private static void checkFunction(String functionKey) {
-        if(functionKey.equals(END_FUNCTION)) {
+        if(functionKey.equals(END_FUNCTION_KEY)) {
             return;
         }
-        InputView.inputInfoAboutPairOfFunction();
-        callFunction(functionKey);
+        String[] pairInfoToPerformFunction = InputView.inputPairInfoToPerformFunction(missionController.findAllMissionNames(), missionController.findMissionNamesByLevel());
+        callFunction(functionKey, pairInfoToPerformFunction);
     }
 
-    private static void callFunction(String functionKey) {
+    private static void callFunction(String functionKey, String[] pairInfoToPerformFunction) {
         if(functionKey.equals(PAIR_MATCHING_FUNCTION_KEY)) {
             matchPair();
         }
