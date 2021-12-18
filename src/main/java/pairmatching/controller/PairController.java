@@ -11,7 +11,7 @@ import pairmatching.utils.Validator;
 import java.util.ArrayList;
 import java.util.List;
 
-import static pairmatching.utils.InputConstants.MATCHING_RESULT_GUIDE;
+import static pairmatching.utils.constants.InputConstants.MATCHING_RESULT_GUIDE;
 import static pairmatching.view.InputView.inputDetails;
 import static pairmatching.view.InputView.inputReMatch;
 

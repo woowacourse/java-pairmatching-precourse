@@ -1,4 +1,4 @@
-package pairmatching.utils;
+package pairmatching.utils.constants;
 
 public class InputConstants {
     public static final String OPTIONS = "\n기능을 선택하세요.\n" +
