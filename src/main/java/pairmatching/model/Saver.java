@@ -30,4 +30,8 @@ public class Saver {
 	public void setMatch(ArrayList<CrewPair> matchResult, int levelIndex) {
 		this.savedResult.set(levelIndex, matchResult);
 	}
+
+	public ArrayList<CrewPair> getMatch(int levelIndex) {
+		return this.savedResult.get(levelIndex);
+	}
 }
