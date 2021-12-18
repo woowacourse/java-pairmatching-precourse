@@ -1,6 +1,7 @@
 package pairmatching.model.matching;
 
 import java.util.*;
+import java.util.concurrent.CountDownLatch;
 
 import pairmatching.model.crew.*;
 
@@ -9,30 +10,27 @@ import static camp.nextstep.edu.missionutils.Randoms.shuffle;
 public class MatchingSystem {
     private Set<MatchingHistory> matchingHistories = new HashSet<>();
 
-    public boolean isMatchedBefore(List<String> courseAndLevelAndMission) {
-        Course course = Course.of(courseAndLevelAndMission.get(0));
-        Level level = Level.of(courseAndLevelAndMission.get(1));
-        Mission mission = Mission.of(courseAndLevelAndMission.get(1), courseAndLevelAndMission.get(2));
+    public boolean isMatchedBefore(Course course, Level level, Mission mission) {
         return matchingHistories.stream()
                 .anyMatch(matchingHistory -> matchingHistory.isSameWith(course, level, mission));
     }
 
-    public List<CrewPair> match(final List<String> crewNames, List<String> courseAndLevelAndMission) {
+    public List<CrewPair> match(final List<String> crewNames, Course course, Level level, Mission mission) {
         List<CrewPair> matchedCrews;
         int shuffleCount = 0;
         while (true) {
-            matchedCrews = match(crewNames, courseAndLevelAndMission.get(0));
+            matchedCrews = match(crewNames, course);
             shuffleCount++;
-            if (!hasPairMatchedBeforeInSameLevel(matchedCrews, Level.of(courseAndLevelAndMission.get(1)))) {
+            if (!hasPairMatchedBeforeInSameLevel(matchedCrews, level)) {
                 break;
             }
             checkThreeTrial(shuffleCount);
         }
-        addToHistory(matchedCrews, courseAndLevelAndMission);
+        addToHistory(matchedCrews, course, level, mission);
         return matchedCrews;
     }
 
-    private List<CrewPair> match(final List<String> crewNames, final String course) {
+    private List<CrewPair> match(final List<String> crewNames, final Course course) {
         List<String> shuffledNames = shuffle(crewNames);
         if (crewNames.size() % 2 == 0) {
             return matchCrewsOfEvenNumber(shuffledNames, course);
@@ -40,7 +38,7 @@ public class MatchingSystem {
         return matchCrewsOfOddNumber(shuffledNames, course);
     }
 
-    private List<CrewPair> matchCrewsOfEvenNumber(List<String> shuffledNames, final String course) {
+    private List<CrewPair> matchCrewsOfEvenNumber(List<String> shuffledNames, final Course course) {
         List<CrewPair> matchedPairs = new ArrayList<>();
         for (int i = 0; i < shuffledNames.size(); i += 2) {
             Crew first = Crew.of(shuffledNames.get(i), course);
@@ -50,7 +48,7 @@ public class MatchingSystem {
         return matchedPairs;
     }
 
-    private List<CrewPair> matchCrewsOfOddNumber(List<String> shuffledNames, final String course) {
+    private List<CrewPair> matchCrewsOfOddNumber(List<String> shuffledNames, final Course course) {
         List<CrewPair> matchedPairs = new ArrayList<>();
         for (int i = 0; i < shuffledNames.size(); i += 2) {
             if (i == shuffledNames.size() - 3) {
@@ -78,17 +76,11 @@ public class MatchingSystem {
         }
     }
 
-    private void addToHistory(List<CrewPair> matchedCrews, List<String> courseAndLevelAndMission) {
-        Course course = Course.of(courseAndLevelAndMission.get(0));
-        Level level = Level.of(courseAndLevelAndMission.get(1));
-        Mission mission = Mission.of(courseAndLevelAndMission.get(1), courseAndLevelAndMission.get(2));
+    private void addToHistory(List<CrewPair> matchedCrews, Course course, Level level, Mission mission) {
         matchingHistories.add(new MatchingHistory(course, level, mission, matchedCrews));
     }
 
-    public List<CrewPair> getMatchingHistoryOf(List<String> courseAndLevelAndMission) {
-        Course course = Course.of(courseAndLevelAndMission.get(0));
-        Level level = Level.of(courseAndLevelAndMission.get(1));
-        Mission mission = Mission.of(courseAndLevelAndMission.get(1), courseAndLevelAndMission.get(2));
+    public List<CrewPair> getMatchingHistoryOf(Course course, Level level, Mission mission) {
         MatchingHistory matchingHistory = matchingHistories.stream()
                 .filter(history -> history.isSameWith(course, level, mission))
                 .findAny()

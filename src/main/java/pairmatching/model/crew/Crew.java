@@ -6,9 +6,8 @@ public class Crew {
     private final Course course;
     private final String name;
 
-    public static Crew of(final String name, final String course) {
-        Course actualCourse = Course.of(course);
-        return new Crew(name, actualCourse);
+    public static Crew of(final String name, final Course course) {
+        return new Crew(name, course);
     }
 
     private Crew(final String name, Course course) {

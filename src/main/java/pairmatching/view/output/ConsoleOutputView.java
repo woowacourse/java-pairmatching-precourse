@@ -5,7 +5,7 @@ import pairmatching.model.crew.CrewPair;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class ConsoleOutputView {
+public class ConsoleOutputView implements OutputView{
     private static final String PAIR_RESULT_MESSAGE = "페어 매칭 결과입니다.";
     private static final String CREW_DELIMITER = " : ";
     private static final String NEW_LINE = "\n";
