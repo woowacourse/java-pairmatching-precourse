@@ -11,6 +11,10 @@ public class Matching {
 		this.matchingOption = matchingOption;
 	}
 
+	public List<Pair> getPairs() {
+		return pairs;
+	}
+
 	public boolean isMatched(MatchingOption matchingOption) {
 		if (this.matchingOption.getCourse().equals(matchingOption.getCourse())
 			&& this.matchingOption.getMission() == matchingOption.getMission()) {

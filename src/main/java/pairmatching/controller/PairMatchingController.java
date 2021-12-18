@@ -45,19 +45,10 @@ public class PairMatchingController {
 	private boolean selectOption(Missions missions, Crews crews) {
 		String select = enterSelectOption();
 		if (select.equals(PairMatchingConst.SELECT_PAIR_MATCHING)) { // 페어 매칭
-			MatchingOption matchingOption = enterMatchingOption(missions);
-			PairMatcher pairMatcher = new PairMatcher();
-			if (pairMatcher.existMatching(matchingOption)) { // 재매칭 판단
-				OutputView.printReMatching();
-				// TODO 재시도 선택
-			}
-			List<Pair> pairs = makePair(crews, matchingOption);
-			Matching matching = new Matching(pairs, matchingOption);
-			OutputView.printPair(pairs);
-			pairMatcher.addMatching(matching);
+			matchingPair(missions, crews);
 		}
 		if (select.equals(PairMatchingConst.SELECT_PAIR_READ)) { // 페어 조회
-
+			readPair(missions);
 		}
 		if (select.equals(PairMatchingConst.SELECT_PAIR_RESET)) { // 페어 초기화
 		}
@@ -65,6 +56,30 @@ public class PairMatchingController {
 			return true;
 		}
 		return false;
+	}
+
+	private void readPair(Missions missions) {
+		MatchingOption matchingOption = enterMatchingOption(missions);
+		try {
+			List<Pair> pairByMatchingOption = pairMatcher.getPairByMatchingOption(matchingOption);
+			OutputView.printPair(pairByMatchingOption);
+
+		} catch (IllegalArgumentException ex) {
+			OutputView.printError(ex.getMessage());
+		}
+
+	}
+
+	private void matchingPair(Missions missions, Crews crews) {
+		MatchingOption matchingOption = enterMatchingOption(missions);
+		if (pairMatcher.existMatching(matchingOption)) { // 재매칭 판단
+			OutputView.printReMatching();
+			// TODO 재시도 선택
+		}
+		List<Pair> pairs = makePair(crews, matchingOption);
+		Matching matching = new Matching(pairs, matchingOption);
+		OutputView.printPair(pairs);
+		pairMatcher.addMatching(matching);
 	}
 
 	private List<Pair> makePair(Crews crews, MatchingOption matchingOption) {
