@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -15,18 +16,7 @@ public class Crews {
 	private final String mission;
 	List<String> crewNames;
 	List<String> shuffledCrew;
-
-	public Crews() {
-		try {
-			this.crewNames = loadCrewsFromFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		this.shuffledCrew = Randoms.shuffle(crewNames);
-		mission = null;
-		course = null;
-		level = null;
-	}
+	private List<Pair> pairList;
 
 	public Crews(List<String> matchingStatus) {
 		this.course = matchingStatus.get(0);
@@ -38,6 +28,7 @@ public class Crews {
 			e.printStackTrace();
 		}
 		this.shuffledCrew = Randoms.shuffle(crewNames);
+		this.pairList = new ArrayList<>();
 	}
 
 	public static List<String> loadCrewsFromFile() throws IOException {
@@ -55,7 +46,8 @@ public class Crews {
 	}
 
 	public static void main(String[] args) {
-		Crews backEnd = new Crews();
+		List<String> matchingStatus = new ArrayList<>();
+		Crews backEnd = new Crews(matchingStatus);
 		backEnd.crewNames.forEach(System.out::println);
 		System.out.println();
 		backEnd.shuffledCrew.forEach(System.out::println);
@@ -66,18 +58,17 @@ public class Crews {
 	}
 
 	public List<Pair> makePairs() {
-		List<Pair> pairList = new ArrayList<>();
 		int index = 0;
 		for (String crew : this.shuffledCrew) {
 			if (index % 2 == 1) {
-				pairList.get((index - 1) / 2).addCrew(crew);
+				this.pairList.get((index - 1) / 2).addCrew(crew);
 				index += 1;
 				continue;
 			}
-			pairList.add(new Pair(crew));
+			this.pairList.add(new Pair(crew));
 			index += 1;
 		}
-		return pairList;
+		return this.pairList;
 	}
 
 	public boolean isReShuffle(List<Pair> originalPairs, List<Pair> shuffledPairs) {
@@ -87,5 +78,25 @@ public class Crews {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Crews crews = (Crews)o;
+		return Objects.equals(course, crews.course) && Objects.equals(level, crews.level)
+			&& Objects.equals(mission, crews.mission);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(course, level, mission);
+	}
+
+	public List<Pair> getPairs() {
+		return this.pairList;
 	}
 }

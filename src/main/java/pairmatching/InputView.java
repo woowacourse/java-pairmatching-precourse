@@ -12,9 +12,8 @@ public class InputView {
 		+ "  - 레벨3: \n"
 		+ "  - 레벨4: 성능개선 | 배포\n"
 		+ "  - 레벨5: \n"
-		+ "############################################\n"
-		+ "과정, 레벨, 미션을 선택하세요.\n"
-		+ "ex) 백엔드, 레벨1, 자동차경주";
+		+ "############################################\n";
+	private static final String INPUT_MATCHING_STATUS = "과정, 레벨, 미션을 선택하세요.\nex) 백엔드, 레벨1, 자동차경주";
 
 	public static void printChooseOperation() {
 		System.out.println(OPERATIONS_TO_CHOOSE);
@@ -28,6 +27,7 @@ public class InputView {
 	}
 
 	public static String getInputToMatch() {
+		System.out.println(INPUT_MATCHING_STATUS);
 		return Console.readLine();
 	}
 }

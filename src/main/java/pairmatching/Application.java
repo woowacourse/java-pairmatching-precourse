@@ -5,9 +5,13 @@ public class Application {
 
 	public static void main(String[] args) {
 		while (!isEnd()) {
-			InputView.printChooseOperation();
-			PairMatcher matcher = new PairMatcher();
-			chooseOperation(matcher);
+			try {
+				InputView.printChooseOperation();
+				PairMatcher matcher = new PairMatcher();
+				chooseOperation(matcher);
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 
