@@ -17,4 +17,8 @@ public enum Missions {
         this.mission = mission;
     }
 
+    public String getMission() {
+        return mission;
+    }
+
 }

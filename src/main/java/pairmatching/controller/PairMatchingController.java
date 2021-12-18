@@ -12,7 +12,6 @@ public abstract class PairMatchingController {
         List<String> FrontendCrewNames = InputView.readFrontendCrew();
         List<String> BackendCrewNames = InputView.readBackendCrew();
 
-
     }
 
 }
