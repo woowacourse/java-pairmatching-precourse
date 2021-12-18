@@ -3,13 +3,19 @@ package pairmatching.model.enums;
 import java.util.Arrays;
 
 public enum Course {
-    BACKEND("백엔드"),
-    FRONTEND("프론트엔드");
+    BACKEND("백엔드", "backend-crew.md"),
+    FRONTEND("프론트엔드", "frontend-crew.md");
 
-    private String name;
+    private final String name;
+    private final String fileName;
 
-    Course(String name) {
+    Course(String name, String fileName) {
         this.name = name;
+        this.fileName = fileName;
+    }
+
+    public String getFileName() {
+        return fileName;
     }
 
     public String getName() {
