@@ -14,6 +14,16 @@ import pairmatching.domain.Level;
 
 public class InputView {
 
+    private static final String FILE_INPUT_ERROR_MESSAGE = "파일 입력이 에러가 발생했습니다.";
+    private static final String BACKEND_CREW_FILE_NAME = "src/main/resources/backend-crew.md";
+    private static final String FRONTEND_CREW_FILE_NAME = "src/main/resources/frontend-crew.md";
+
+    private static final String FIRST_MISSION = "src/main/resources/level-one.md";
+    private static final String SECOND_MISSION = "src/main/resources/level-two.md";
+    private static final String THIRD_MISSION = "src/main/resources/level-three.md";
+    private static final String FOURTH_MISSION = "src/main/resources/level-four.md";
+    private static final String FIFTH_MISSION = "src/main/resources/level-five.md";
+
     private static final String SELECT_COMMAND = "기능을 선택하세요.";
     private static final String COMMAND_LIST = "%s. %s\n";
 
@@ -34,7 +44,7 @@ public class InputView {
 
     public static List<String> inputBackEndCrews() {
         try {
-            File file = new File("src/main/resources/backend-crew.md");
+            File file = new File(BACKEND_CREW_FILE_NAME);
             Scanner scanner = new Scanner(file);
             List<String> crews = new ArrayList<>();
             while(scanner.hasNextLine()) {
@@ -42,14 +52,14 @@ public class InputView {
             }
             return crews;
         } catch (FileNotFoundException e) {
-            System.out.println("파일 입력이 에러가 발생했습니다.");
+            System.out.println(FILE_INPUT_ERROR_MESSAGE);
             throw new RuntimeException(e.getMessage());
         }
     }
 
     public static List<String> inputFrondEndCrews() {
         try {
-            File file = new File("src/main/resources/backend-crew.md");
+            File file = new File(FRONTEND_CREW_FILE_NAME);
             Scanner scanner = new Scanner(file);
             List<String> crews = new ArrayList<>();
             while(scanner.hasNextLine()) {
@@ -57,14 +67,14 @@ public class InputView {
             }
             return crews;
         } catch (FileNotFoundException e) {
-            System.out.println("파일 입력이 에러가 발생했습니다.");
+            System.out.println(FILE_INPUT_ERROR_MESSAGE);
             throw new RuntimeException(e.getMessage());
         }
     }
 
     public static List<String> inputFirstLevelMission() {
         try {
-            File file = new File("src/main/resources/level-one.md");
+            File file = new File(FIRST_MISSION);
             Scanner scanner = new Scanner(file);
             List<String> missionNames = new ArrayList<>();
             while(scanner.hasNextLine()) {
@@ -72,14 +82,14 @@ public class InputView {
             }
             return missionNames;
         } catch (FileNotFoundException e) {
-            System.out.println("파일 입력이 에러가 발생했습니다.");
+            System.out.println(FILE_INPUT_ERROR_MESSAGE);
             throw new RuntimeException(e.getMessage());
         }
     }
 
     public static List<String> inputSecondLevelMission() {
         try {
-            File file = new File("src/main/resources/level-two.md");
+            File file = new File(SECOND_MISSION);
             Scanner scanner = new Scanner(file);
             List<String> missionNames = new ArrayList<>();
             while(scanner.hasNextLine()) {
@@ -87,14 +97,14 @@ public class InputView {
             }
             return missionNames;
         } catch (FileNotFoundException e) {
-            System.out.println("파일 입력이 에러가 발생했습니다.");
+            System.out.println(FILE_INPUT_ERROR_MESSAGE);
             throw new RuntimeException(e.getMessage());
         }
     }
 
     public static List<String> inputThirdLevelMission() {
         try {
-            File file = new File("src/main/resources/level-three.md");
+            File file = new File(THIRD_MISSION);
             Scanner scanner = new Scanner(file);
             List<String> missionNames = new ArrayList<>();
             while(scanner.hasNextLine()) {
@@ -102,14 +112,14 @@ public class InputView {
             }
             return missionNames;
         } catch (FileNotFoundException e) {
-            System.out.println("파일 입력이 에러가 발생했습니다.");
+            System.out.println(FILE_INPUT_ERROR_MESSAGE);
             throw new RuntimeException(e.getMessage());
         }
     }
 
     public static List<String> inputFourthLevelMission() {
         try {
-            File file = new File("src/main/resources/level-four.md");
+            File file = new File(FOURTH_MISSION);
             Scanner scanner = new Scanner(file);
             List<String> missionNames = new ArrayList<>();
             while(scanner.hasNextLine()) {
@@ -117,14 +127,14 @@ public class InputView {
             }
             return missionNames;
         } catch (FileNotFoundException e) {
-            System.out.println("파일 입력이 에러가 발생했습니다.");
+            System.out.println(FILE_INPUT_ERROR_MESSAGE);
             throw new RuntimeException(e.getMessage());
         }
     }
 
     public static List<String> inputFifthLevelMission() {
         try {
-            File file = new File("src/main/resources/level-five.md");
+            File file = new File(FIFTH_MISSION);
             Scanner scanner = new Scanner(file);
             List<String> missionNames = new ArrayList<>();
             while(scanner.hasNextLine()) {
@@ -132,7 +142,7 @@ public class InputView {
             }
             return missionNames;
         } catch (FileNotFoundException e) {
-            System.out.println("파일 입력이 에러가 발생했습니다.");
+            System.out.println(FILE_INPUT_ERROR_MESSAGE);
             throw new RuntimeException(e.getMessage());
         }
     }
