@@ -11,6 +11,8 @@ import pairmatching.domain.PairMission;
 import pairmatching.domain.command.MainCommand;
 
 public class InputView {
+    private static final String INPUT_PAIR_MISSION_MESSAGE = "과정, 레벨, 미션을 선택하세요.\nex) 백엔드, 레벨1, 자동차경주";
+    private static final String INPUT_MATCHING_INFORMATION_MESSAGE = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n네 | 아니오";
 
     private InputView() {
     }
@@ -22,12 +24,9 @@ public class InputView {
     }
 
     public static PairMission inputPairMission() {
-        System.out.println("과정, 레벨, 미션을 선택하세요.");
-        System.out.println("ex) 백엔드, 레벨1, 자동차경주");
-
+        System.out.println(INPUT_PAIR_MISSION_MESSAGE);
         PairMission pairMission = new PairMission(Console.readLine());
         System.out.println();
-
         return pairMission;
     }
 
@@ -36,8 +35,7 @@ public class InputView {
     }
 
     public static MatchCommand matchingInformation() {
-        System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
-        System.out.println("네 | 아니오");
+        System.out.println(INPUT_MATCHING_INFORMATION_MESSAGE);
         MatchCommand matchCommand = MatchCommand.parseMatchCommand(Console.readLine());
         System.out.println();
         return matchCommand;

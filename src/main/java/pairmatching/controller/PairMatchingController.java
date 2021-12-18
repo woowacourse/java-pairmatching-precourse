@@ -34,11 +34,14 @@ public class PairMatchingController {
     }
 
     private void otherCommand(PairMatchingMachine pairMatchingMachine, MainCommand mainCommand) {
-        PairMission pairMission = printPairMission(pairMatchingMachine);
         if (mainCommand == MainCommand.MATCHING) {
+            OutputView.printPairMission();
+            PairMission pairMission = getPairMission(pairMatchingMachine);
             share(pairMission, pairMatchingMachine);
         }
         if (mainCommand == MainCommand.FIND) {
+            OutputView.printPairMission();
+            PairMission pairMission = getNormalPairMission();
             find(pairMission, pairMatchingMachine);
         }
         if (mainCommand == MainCommand.INIT) {
@@ -56,11 +59,6 @@ public class PairMatchingController {
         }
     }
 
-    private PairMission printPairMission(PairMatchingMachine pairMatchingMachine) {
-        OutputView.printPairMission();
-        return getPairMission(pairMatchingMachine);
-    }
-
     private PairMission getPairMission(PairMatchingMachine pairMatchingMachine) {
         PairMission pairMission = InputView.inputPairMission();
         if (pairMatchingMachine.isPairMission(pairMission)) {
@@ -70,6 +68,10 @@ public class PairMatchingController {
             }
         }
         return pairMission;
+    }
+
+    private PairMission getNormalPairMission() {
+        return InputView.inputPairMission();
     }
 
     private void share(PairMission pairMission, PairMatchingMachine pairMatchingMachine) {
@@ -89,6 +91,8 @@ public class PairMatchingController {
         try {
             PairInformation pairInformation = pairMatchingMachine.findPairInformation(pairMission);
             OutputView.printPairMatchingResult(pairInformation);
+
+            pairMatching(pairMatchingMachine);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             pairMatching(pairMatchingMachine);
@@ -97,6 +101,9 @@ public class PairMatchingController {
 
     private void remove(PairMatchingMachine pairMatchingMachine) {
         pairMatchingMachine.removePairInformations();
+        OutputView.printInit();
+
+        pairMatching(pairMatchingMachine);
     }
 
     private List<Crew> getCrews(PairMission pairMission) {

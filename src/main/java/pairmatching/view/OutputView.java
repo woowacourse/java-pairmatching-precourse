@@ -69,4 +69,8 @@ public class OutputView {
                     .toString();
             }).collect(joining("\n"));
     }
+
+    public static void printInit() {
+        System.out.println("초기화 되었습니다.\n");
+    }
 }
