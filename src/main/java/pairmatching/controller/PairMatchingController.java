@@ -57,7 +57,7 @@ public class PairMatchingController {
 	private void pairMatching() {
 		printWoowaCourseInfo();
 
-		String input = inputFunction();
+		String input = inputSetPairMatching();
 		HashMap<String, String> pairMatchingMap = setPairMatchingIntoHashMap(input);
 		if (pairMatching.isExistMatch(pairMatchingMap)) {
 			checkRematch(pairMatchingMap);
@@ -83,7 +83,7 @@ public class PairMatchingController {
 	private void viewPairMatching() {
 		printWoowaCourseInfo();
 
-		String input = inputFunction();
+		String input = inputViewPairMatching();
 		HashMap<String, String> pairMatchingMap = setPairMatchingIntoHashMap(input);
 		if (pairMatching.isExistMatch(pairMatchingMap)) {
 			pairMatching.show(pairMatchingMap);

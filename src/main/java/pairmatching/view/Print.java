@@ -1,10 +1,8 @@
 package pairmatching.view;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import pairmatching.model.Missions;
-import pairmatching.serivce.PairMatching;
 import pairmatching.type.Notice;
 import pairmatching.type.Course;
 import pairmatching.type.Level;
@@ -19,6 +17,10 @@ public class Print {
 			courses.add(course.getName());
 		}
 		return courses;
+	}
+
+	public static void printErrorMessage(Exception e) {
+		System.out.println(e.getMessage());
 	}
 
 	public static void printSelectFunction() {
