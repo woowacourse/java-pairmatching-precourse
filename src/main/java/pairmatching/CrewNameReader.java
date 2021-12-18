@@ -6,14 +6,15 @@ import java.util.List;
 
 public class CrewNameReader {
 
-    public static void getBackendCrewNames() {
-        List<String> crewNames = getCrewNames("backend-crew.md");
+    public static List<String> getBackendCrewNames() {
+       return getCrewNames("backend-crew.md");
     }
 
-    public static void getFrontendCrewNames() {
+    public static List<String> getFrontendCrewNames() {
         List<String> crewNames = getCrewNames("frontend-crew.md");
+        System.out.println(crewNames);
+        return crewNames;
     }
-
 
     private static List<String> getCrewNames(String fileName) {
         List<String> crewNames = new ArrayList<>();
@@ -21,7 +22,7 @@ public class CrewNameReader {
         BufferedReader br = null;
 
         try {
-            br = new BufferedReader(new InputStreamReader(new FileInputStream(CrewNameReader.class.getClassLoader().getResource("backend-crew.md").getFile())));
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(CrewNameReader.class.getClassLoader().getResource(fileName).getFile())));
             String str;
             while ((str = br.readLine()) != null) {
                 crewNames.add(str);
