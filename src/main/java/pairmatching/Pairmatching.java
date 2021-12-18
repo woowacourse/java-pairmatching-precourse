@@ -26,9 +26,10 @@ public class Pairmatching {
 		while (function != Function.QUIT) {
 			if (function == Function.MATCH) {
 				runMatch(levelMissionsMap);
-			}
-			if (function == Function.SEARCH) {
+			} else if (function == Function.SEARCH) {
 				runSearch(levelMissionsMap);
+			} else if (function == Function.RESET) {
+				resetMatch();
 			}
 			function = getFunction();
 		}
@@ -81,5 +82,9 @@ public class Pairmatching {
 			System.out.println(e.getMessage());
 			runSearch(levelMissionsMap);
 		}
+	}
+
+	private void resetMatch() {
+		fileService.deleteMatchFiles();
 	}
 }

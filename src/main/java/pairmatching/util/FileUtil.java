@@ -2,10 +2,7 @@ package pairmatching.util;
 
 import pairmatching.model.CrewPair;
 
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,7 +38,7 @@ public class FileUtil {
 		}
 	}
 
-	public void readSavedMatch(String path) {
+	public void readSavedMatch(String path) throws FileNotFoundException {
 		try {
 			FileInputStream fileInputStream = new FileInputStream(MATCH_RESULT_PATH + path);
 			byte[] readBuffer = new byte[fileInputStream.available()];
@@ -50,7 +47,14 @@ public class FileUtil {
 			}
 			fileInputStream.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+		}
+	}
+	
+	public void deleteMatchFiles() {
+		File path = new File(MATCH_RESULT_PATH);
+		File[] matchFiles = path.listFiles();
+		for (int i = 0;  i < matchFiles.length; i++) {
+			matchFiles[i].delete();
 		}
 	}
 }

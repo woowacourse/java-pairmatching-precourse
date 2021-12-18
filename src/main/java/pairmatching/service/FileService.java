@@ -1,12 +1,13 @@
 package pairmatching.service;
 
 import pairmatching.model.Course;
-import pairmatching.model.CrewPair;
 import pairmatching.util.FileUtil;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+import static pairmatching.model.Error.NOT_MATCHED_YET;
 import static pairmatching.model.Error.WRONG_COURSE_NAME;
 
 public class FileService {
@@ -34,6 +35,14 @@ public class FileService {
 	}
 
 	public void readMatch(String path) {
-		fileUtil.readSavedMatch(path);
+		try {
+			fileUtil.readSavedMatch(path);
+		} catch (FileNotFoundException e) {
+			throw new IllegalArgumentException(NOT_MATCHED_YET);
+		}
+	}
+
+	public void deleteMatchFiles() {
+		fileUtil.deleteMatchFiles();
 	}
 }
