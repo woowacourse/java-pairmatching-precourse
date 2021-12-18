@@ -23,6 +23,8 @@ import pairmatching.domain.Crew;
 
 public class PairMatchingController {
 	private static final int ONE = 1;
+	private static final int TWO = 2;
+	private static final int THREE = 3;
 	private static final String DELIMITER = ",";
 	private static final String FRONTEND_COURSE = "프론트엔드";
 	private static final String BACKEND_COURSE = "백엔드";
@@ -42,7 +44,7 @@ public class PairMatchingController {
 	public void matchFunction(int functionNumber) {
 		if (functionNumber == ONE) {
 			String[] courseAndLevelAndMission = inputView.scanCourseAndLevelAndMission().trim().split(DELIMITER);
-			String course = courseAndLevelAndMission[0];
+
 			if (pairHistory.contains(courseAndLevelAndMission[0] + courseAndLevelAndMission[1])
 				&& !isRematch(courseAndLevelAndMission)) {
 				OutputView.printPairResult(pair);
@@ -50,6 +52,7 @@ public class PairMatchingController {
 			}
 
 			pairHistory.add(courseAndLevelAndMission[0] + courseAndLevelAndMission[1]);
+			String course = courseAndLevelAndMission[0];
 			if (course.equals(FRONTEND_COURSE)) {
 				matchPair(Course.FRONTEND);
 			}
@@ -57,6 +60,15 @@ public class PairMatchingController {
 				matchPair(Course.BACKEND);
 			}
 			OutputView.printPairResult(pair);
+		}
+
+		if (functionNumber == TWO) {
+			String[] courseAndLevelAndMission = inputView.scanCourseAndLevelAndMission().trim().split(DELIMITER);
+			if (pairHistory.contains(courseAndLevelAndMission[0] + courseAndLevelAndMission[1])) {
+				OutputView.printPairResult(pair);
+				return;
+			}
+			OutputView.printErrorNotMathcingHistory();
 		}
 	}
 
