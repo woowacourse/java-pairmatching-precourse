@@ -1,5 +1,7 @@
 package pairmatching.view;
 
+import pairmatching.domain.Pair;
+import pairmatching.domain.PairRepository;
 import pairmatching.infomation.Course;
 import pairmatching.infomation.LevelRepository;
 import pairmatching.infomation.Mission;
@@ -59,5 +61,28 @@ public class OutputView {
             levelNames = levelNames.substring(0, levelNames.length()-2);
         }
         System.out.println(levelNames);
+    }
+
+    public void outputMatching(String course, String level, String mission) {
+        System.out.println("");
+        System.out.println("페어 매칭 결과입니다.");
+        ArrayList<Pair> pairInformation = PairRepository.getPairInformation();
+        for (Pair pair : pairInformation) {
+            if (pair.getCourse().equals(course) && pair.getLevel().equals(level) && pair.getMission().equals(mission)) {
+                printPair(pair);
+            }
+        }
+    }
+
+    private void printPair(Pair pair) {
+        ArrayList<String> crews = pair.getCrews();
+        for (int idx = 0; idx < crews.size(); idx++) {
+            if (idx == crews.size() - 1) {
+                System.out.print(crews.get(idx));
+                System.out.println();
+                return;
+            }
+            System.out.print(crews.get(idx) + " : ");
+        }
     }
 }

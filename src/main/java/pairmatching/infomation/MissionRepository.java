@@ -6,7 +6,7 @@ public class MissionRepository {
     private static final ArrayList<Mission> missions = new ArrayList<>();
 
     static {
-        missions.add(new Mission(1, "자동차 경주"));
+        missions.add(new Mission(1, "자동차경주"));
         missions.add(new Mission(1, "로또"));
         missions.add(new Mission(1, "숫자야구게임"));
 

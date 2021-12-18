@@ -23,4 +23,8 @@ public class FrontendCrewRepository {
         }
         br.close();
     }
+
+    public static ArrayList<Crew> getFrontendCrews() {
+        return frontendCrews;
+    }
 }

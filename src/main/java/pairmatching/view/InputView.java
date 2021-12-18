@@ -3,6 +3,8 @@ package pairmatching.view;
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.PairMatching;
 
+import java.io.IOException;
+
 public class InputView {
     private static final String FUNCTION_GUIDE_MESSAGE = "기능을 선택하세요.\n" + "1. 페어 매칭\n" +
             "2. 페어 조회\n" +
@@ -15,7 +17,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public void inputFunction() {
+    public void inputFunction() throws IOException {
         while(true) {
             String function = init();
             if (function.equals("1")){
