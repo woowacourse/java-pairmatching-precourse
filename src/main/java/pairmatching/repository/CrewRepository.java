@@ -44,4 +44,12 @@ public class CrewRepository {
 		}
 		reader.close();
 	}
+
+	public List<Crew> getByCourse(Course course) {
+		if (course == Course.BACKEND) {
+			return backendCrewList;
+		}
+
+		return frontEndCrewList;
+	}
 }
