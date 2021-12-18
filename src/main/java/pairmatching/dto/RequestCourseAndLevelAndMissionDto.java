@@ -1,21 +1,24 @@
 package pairmatching.dto;
 
+ import pairmatching.enums.Course;
+import pairmatching.enums.Level;
+
 public class RequestCourseAndLevelAndMissionDto {
-	private String course;
-	private String level;
+	private Course course;
+	private Level level;
 	private String mission;
 
-	public RequestCourseAndLevelAndMissionDto(String course, String level, String mission) {
+	public RequestCourseAndLevelAndMissionDto(Course course, Level level, String mission) {
 		this.course = course;
 		this.level = level;
 		this.mission = mission;
 	}
 
-	public String getCourse() {
+	public Course getCourse() {
 		return course;
 	}
 
-	public String getLevel() {
+	public Level getLevel() {
 		return level;
 	}
 

@@ -4,6 +4,8 @@ import static camp.nextstep.edu.missionutils.Console.*;
 
 import pairmatching.dto.RequestCourseAndLevelAndMissionDto;
 import pairmatching.dto.RequestExecuteFeatureDto;
+import pairmatching.enums.Course;
+import pairmatching.enums.Level;
 
 public class InputView {
 	private static final String COURSE_LEVEL_MISSION_SEPARATOR = ", ";
@@ -31,6 +33,6 @@ public class InputView {
 		System.out.println(INPUT_COURSE_LEVEL_MISSION_MESSAGE);
 		String[] inputs = readLine().split(COURSE_LEVEL_MISSION_SEPARATOR);
 		return new RequestCourseAndLevelAndMissionDto(
-			inputs[COURSE_INDEX], inputs[LEVEL_INDEX], inputs[MISSION_INDEX]);
+			Course.getByValue(inputs[COURSE_INDEX]), Level.getByValue(inputs[LEVEL_INDEX]), inputs[MISSION_INDEX]);
 	}
 }

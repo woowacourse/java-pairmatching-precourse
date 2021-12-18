@@ -16,8 +16,8 @@ public class PairMatchingService {
 	}
 
 	public void matching(RequestCourseAndLevelAndMissionDto requestCourseAndLevelAndMissionDto) {
-		Level level = Level.getByValue(requestCourseAndLevelAndMissionDto.getLevel());
-		Course course = Course.getByValue(requestCourseAndLevelAndMissionDto.getCourse());
+		Level level = requestCourseAndLevelAndMissionDto.getLevel();
+		Course course = requestCourseAndLevelAndMissionDto.getCourse();
 		String mission = requestCourseAndLevelAndMissionDto.getMission();
 		Pairs pairs = pairRepository.getPairs(level, course, mission);
 		List<String> shuffledCrew = course.getCrewNames();
