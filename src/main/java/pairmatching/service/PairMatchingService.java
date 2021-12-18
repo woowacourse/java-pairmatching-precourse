@@ -12,6 +12,7 @@ import java.util.List;
 import static pairmatching.constants.ExceptionMessages.NO_MATCHING_RESULT_EXCEPTION;
 import static pairmatching.constants.SystemConstants.*;
 import static pairmatching.utils.PairMatchUtils.returnMatchResult;
+import static pairmatching.utils.PairMatchUtils.validateNoDuplicateHistory;
 import static pairmatching.utils.UserChoiceValidator.*;
 import static pairmatching.view.InputView.*;
 import static pairmatching.view.OutputView.*;
@@ -41,8 +42,11 @@ public class PairMatchingService {
             return;
         }
 
+
         List<Pair> pairs = returnMatchResult();
         MatchResult matchResult = new MatchResult(optionsInput, pairs);
+        boolean isValid = validateNoDuplicateHistory(pairs, matchResult.getLevel());
+
         MatchResultRepository.addMatchResult(matchResult);
         saveAllPairHistory(matchResult.getPairs(), matchResult.getLevel());
         showMatchResult(matchResult);

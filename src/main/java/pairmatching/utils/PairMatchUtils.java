@@ -3,10 +3,15 @@ package pairmatching.utils;
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.domain.Crew;
 import pairmatching.domain.CrewRepository;
+import pairmatching.domain.Level;
 import pairmatching.domain.Pair;
+import pairmatching.domain.PairHistory;
+import pairmatching.domain.PairHistoryRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static pairmatching.constants.SystemConstants.NO;
 import static pairmatching.constants.SystemConstants.YES;
@@ -49,9 +54,30 @@ public class PairMatchUtils {
         return pairs;
     }
 
-//    public static void validateNoDuplicateHistory(List<Pair> pairs) {
-//        for (Pair pair : pairs) {
-//
-//        }
-//    }
+    public static boolean validateNoDuplicateHistory(List<Pair> pairs, Level level) {
+        for (Pair pair : pairs) {
+            PairHistory history = PairHistoryRepository.findPairHistoryByCrewsAndLevel(pair.getCrews(), level);
+            if (history != null) {
+                return false;
+            }
+        }
+        Pair lastPair = pairs.get(pairs.size()-1);
+        if (lastPair.getCrews().size() != 3) return true;
+        return validateNoDuplicateHistoryInThreePartners(lastPair, level);
+    }
+
+    public static boolean validateNoDuplicateHistoryInThreePartners(Pair pair, Level level) {
+        List<List<Crew>> miniPairs = new ArrayList<>();
+        miniPairs.add(Stream.of(pair.getCrews().get(0), pair.getCrews().get(1)).collect(Collectors.toList()));
+        miniPairs.add(Stream.of(pair.getCrews().get(0), pair.getCrews().get(2)).collect(Collectors.toList()));
+        miniPairs.add(Stream.of(pair.getCrews().get(1), pair.getCrews().get(2)).collect(Collectors.toList()));
+
+        for (List<Crew> miniPair : miniPairs) {
+            PairHistory history = PairHistoryRepository.findPairHistoryByCrewsAndLevel(miniPair, level);
+            if (history != null) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

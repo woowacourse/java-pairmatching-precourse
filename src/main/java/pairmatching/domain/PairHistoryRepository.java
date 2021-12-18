@@ -22,7 +22,7 @@ public class PairHistoryRepository {
         histories.add(pairHistory);
     }
 
-    public static PairHistory findPairHistoryByPairsAndLevel(List<Crew> partners, Level level) {
+    public static PairHistory findPairHistoryByCrewsAndLevel(List<Crew> partners, Level level) {
         for (PairHistory pairHistory : getHistoriesByLevel(level)) {
             if(!pairHistory.getPairs().containsAll(partners)) continue;
             return pairHistory;
