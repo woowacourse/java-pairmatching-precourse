@@ -7,9 +7,9 @@ import pairmatching.exception.MissionNotFoundMatchException;
 
 public class Mission {
 
-    private List<Match> matches;
     private final String name;
     private final Course course;
+    private List<Match> matches;
 
     public Mission(List<Match> matches, String name, Course course) {
         this.matches = matches;

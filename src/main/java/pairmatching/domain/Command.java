@@ -12,8 +12,8 @@ public enum Command {
     COMMAND_3("페어 초기화", "3"),
     COMMAND_Q("종료", "Q");
 
-    private String name;
-    private String request;
+    private final String name;
+    private final String request;
 
     Command(String name, String request) {
         this.name = name;

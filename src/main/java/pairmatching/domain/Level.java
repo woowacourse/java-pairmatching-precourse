@@ -11,7 +11,7 @@ public enum Level {
     LEVEL4("레벨4"),
     LEVEL5("레벨5");
 
-    private String name;
+    private final String name;
 
     Level(String name) {
         this.name = name;
@@ -21,14 +21,14 @@ public enum Level {
         return Arrays.asList(values().clone());
     }
 
-    public String getName() {
-        return name;
-    }
-
     public static Level getLevel(String name) {
         return Arrays.stream(values())
             .filter(level -> level.name.equals(name))
             .findFirst()
             .orElseThrow(LevelNotFoundException::new);
+    }
+
+    public String getName() {
+        return name;
     }
 }

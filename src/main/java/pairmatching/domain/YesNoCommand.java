@@ -8,7 +8,7 @@ public enum YesNoCommand {
     YES("네"),
     NO("아니오");
 
-    private String name;
+    private final String name;
 
     YesNoCommand(String name) {
         this.name = name;
