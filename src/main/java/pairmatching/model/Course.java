@@ -1,18 +1,29 @@
 package pairmatching.model;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import pairmatching.validator.CourseValidator;
 
 public enum Course {
-	BACKEND("백엔드"),
-	FRONTEND("프론트엔드");
+	BACKEND("백엔드", Arrays.asList(Level.values())),
+	FRONTEND("프론트엔드", Arrays.asList(Level.values()));
 
 	private String name;
+	private List<Level> levelList;
 
-	Course(String name) {
+	Course(String name, List<Level> levelList) {
 		this.name = name;
+		this.levelList = levelList;
+	}
+
+	public List<Level> getLevelList() {
+		return this.levelList;
+	}
+
+	public Level getLevel(String levelName) {
+		return this.levelList.stream().filter(level -> levelName.equals(level.getName())).findFirst().get();
 	}
 
 	public static String getAllCourse() {

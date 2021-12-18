@@ -26,4 +26,8 @@ public class Missions {
 	public boolean contains(String name) {
 		return missionList.stream().map(Mission::getName).collect(Collectors.toList()).contains(name);
 	}
+
+	public Mission getMission(String missionName) {
+		return this.missionList.stream().filter(mission -> missionName.equals(mission.getName())).findFirst().get();
+	}
 }

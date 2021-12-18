@@ -26,6 +26,14 @@ public enum Level {
 		return "- " + name + ": " + missions.toString();
 	}
 
+	public String getName() {
+		return this.name;
+	}
+
+	public Mission getMission(String missionName) {
+		return this.missions.getMission(missionName);
+	}
+
 	public static String getAllLevel() {
 		return Arrays.stream(values())
 			.map(Level::toString)

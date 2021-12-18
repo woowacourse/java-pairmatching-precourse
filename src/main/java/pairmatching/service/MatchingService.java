@@ -13,8 +13,9 @@ import pairmatching.model.Pair;
 
 public class MatchingService {
 	public void match(CourseLevelMission courseLevelMission, List<Crew> backendCrews, List<Crew> frontEndCrews) {
-		Level level = courseLevelMission.getLevel();
-		Mission mission = courseLevelMission.getMission();
+		Course course = courseLevelMission.getCourse();
+		Level level = course.getLevel(courseLevelMission.getLevel().getName());
+		Mission mission = level.getMission(courseLevelMission.getMission().getName());
 		if (courseLevelMission.getCourse().equals(Course.BACKEND)) {
 			matching(level, mission, backendCrews);
 			return;

@@ -7,13 +7,14 @@ import pairmatching.model.Course;
 import pairmatching.model.CourseLevelMission;
 import pairmatching.model.Crew;
 import pairmatching.model.Role;
+import pairmatching.service.InquiringService;
 import pairmatching.service.MatchingService;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class PairMatchingController {
-	InputView inputView = new InputView();
-	OutputView outputView = new OutputView();
+	private static final InputView inputView = new InputView();
+	private static final OutputView outputView = new OutputView();
 	private static final List<Crew> backendCrews = FileUtils.read("src/main/resources/backend-crew.md", Course.BACKEND);
 	private static final List<Crew> frontendCrews = FileUtils.read("src/main/resources/frontend-crew.md", Course.FRONTEND);
 
@@ -28,18 +29,23 @@ public class PairMatchingController {
 	}
 
 	public static void match() {
-		InputView inputView = new InputView();
-		OutputView outputView = new OutputView();
 		MatchingService matchingService = new MatchingService();
+
 		outputView.printCourseAndMission();
 		String courseLevelMissionStr = inputView.enterCourseLevelMission();
 		CourseLevelMission courseLevelMission = new CourseLevelMission();
 		courseLevelMission.init(courseLevelMissionStr);
 		matchingService.match(courseLevelMission, backendCrews, frontendCrews);
+		//TODO 매칭 결과 체크
 	}
 
 	public void inquire() {
+		InquiringService inquiringService = new InquiringService();
 
+		String courseLevelMissionStr = inputView.enterCourseLevelMission();
+		CourseLevelMission courseLevelMission = new CourseLevelMission();
+		courseLevelMission.init(courseLevelMissionStr);
+		inquiringService.inquire(courseLevelMission);
 	}
 
 	public void initialize() {
