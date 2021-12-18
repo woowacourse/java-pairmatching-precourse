@@ -13,6 +13,15 @@ public class OutputView {
 		this.pairMatching = pairMatching;
 	}
 
+	public void printMatchingResult(String roll, String level) {
+		if (roll.equals("백엔드")) {
+			System.out.println();
+			System.out.println("페어 매칭 결과입니다.");
+			pairMatching.getCrew().printCrews(level);
+		}
+
+	}
+
 	public void printMainMenu() {
 		System.out.println("기능을 선택하세요.");
 		pairMatching.getMainMenu().printMainMenus();

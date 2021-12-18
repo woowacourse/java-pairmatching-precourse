@@ -18,7 +18,7 @@ public class Crew {
 	private List<String> frontendCrew = new ArrayList<>();
 
 	private Map<String, ArrayList<String>> backendCrewMapByLevel = new LinkedHashMap<>();
-	private Map<String, ArrayList<String>> frontendCrewMapByLevel = new LinkedHashMap<>();
+	public Map<String, ArrayList<String>> frontendCrewMapByLevel = new LinkedHashMap<>();
 
 	private BufferedReader bufferedReaderBackend = new BufferedReader(
 		new FileReader("src/main/resources/backend-crew.md"), 16 * 1024
@@ -31,6 +31,14 @@ public class Crew {
 		initBackendCrew();
 		initFrontendCrew();
 		initCrewMapByLevel();
+	}
+
+	public Map<String, ArrayList<String>> getBackendCrewMapByLevel() {
+		return backendCrewMapByLevel;
+	}
+
+	public BufferedReader getBufferedReaderFrontend() {
+		return bufferedReaderFrontend;
 	}
 
 	private void initCrewMapByLevel() {
@@ -80,7 +88,6 @@ public class Crew {
 	}
 
 	public void createBackendMatching(Map<String, List<String>> levelMap, String level) {
-		System.out.println(level);
 		List<String> shuffledCrewNames = Randoms.shuffle(backendCrew);
 		List<String> newList = new ArrayList<>();
 		while (shuffledCrewNames.size() > 1) {
@@ -99,9 +106,6 @@ public class Crew {
 			Randoms.shuffle(shuffledCrewNames);
 		}
 		backendCrewMapByLevel.put(level, (ArrayList<String>)newList);
-		for (String key: backendCrewMapByLevel.keySet()) {
-			System.out.println(key + " 이기 " + backendCrewMapByLevel.get(key));
-		}
 	}
 
 	public boolean isNotDuplicateInOtherLevel( Map<String, List<String>> levelMap, String level, String joinedNames) {
@@ -115,6 +119,12 @@ public class Crew {
 			}
 		}
 		return true;
+	}
+
+	public void printCrews(String level) {
+		for (String pair : backendCrewMapByLevel.get(level)) {
+			System.out.println(pair);
+		}
 	}
 
 }
