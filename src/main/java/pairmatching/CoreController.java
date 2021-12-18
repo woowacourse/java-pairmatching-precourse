@@ -23,6 +23,7 @@ public class CoreController {
 	private static final String PAIR_MATCH = "1";
 	private static final String PAIR_SEARCH = "2";
 	private static final String PAIR_INIT = "3";
+	private static final String NAME_IN_PAIR_SEPARATOR = " : ";
 
 	private UiLogic uiLogic;
 	private Map<String, List<String>> missionInLevel;
@@ -137,7 +138,23 @@ public class CoreController {
 		return peopleName;
 	}
 
-	private boolean checkRematch() {
+	private void eraseRecordInPair(String level, List<String> pairMembers) {
+		for (String name : pairMembers) {
+			for (String partnerName : pairMembers) {
+				members.get(name).removeRecord(partnerName, level);
+			}
+		}
+	}
+
+	private void erasePeoPleWorkAlreadyRecord(String course, String level, String mission) {
+		List<String> pairs = pairInMission.get(course).get(mission);
+		for (String pair : pairs) {
+			List<String> pairMembers = new ArrayList<>(Arrays.asList(pair.split(NAME_IN_PAIR_SEPARATOR)));
+			eraseRecordInPair(level, pairMembers);
+		}
+	}
+
+	private boolean checkRematch(String course, String level, String mission) {
 		boolean isRematch = false;
 		while (true) {
 			try {
@@ -146,6 +163,9 @@ public class CoreController {
 			} catch (IllegalArgumentException e) {
 				uiLogic.printRematchQuestionErrorMessage();
 			}
+		}
+		if (isRematch) {
+			erasePeoPleWorkAlreadyRecord(course, level, mission);
 		}
 		return isRematch;
 	}
@@ -175,10 +195,11 @@ public class CoreController {
 			if (Boolean.FALSE.equals(checkAvailableMakePair(level, shuffledPeople.get(i - 1), shuffledPeople.get(i)))) {
 				return null;
 			}
-			pair.add(shuffledPeople.get(i - 1) + " : " + shuffledPeople.get(i));
+			pair.add(shuffledPeople.get(i - 1) + NAME_IN_PAIR_SEPARATOR + shuffledPeople.get(i));
 		}
 		if (shuffledPeople.size() % 2 == 1) {
-			String threePeoplePair = pair.get(pair.size() - 1) + " : " + shuffledPeople.get(pair.size() - 1);
+			String threePeoplePair =
+				pair.get(pair.size() - 1) + NAME_IN_PAIR_SEPARATOR + shuffledPeople.get(pair.size() - 1);
 			pair.set(pair.size() - 1, threePeoplePair);
 		}
 		return pair;
@@ -197,7 +218,8 @@ public class CoreController {
 
 	private void matchPair(String course, String level, String mission) {
 		ArrayList<String> peopleNames = getPeopleInCourse(course);
-		if (pairInMission.get(course).containsKey(mission) && Boolean.FALSE.equals(checkRematch())) {
+		if (pairInMission.get(course).containsKey(mission) && Boolean.FALSE.equals(
+			checkRematch(course, level, mission))) {
 			return;
 		}
 		List<String> pair = makePair(level, peopleNames);

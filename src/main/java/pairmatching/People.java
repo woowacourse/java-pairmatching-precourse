@@ -37,4 +37,15 @@ public class People {
 		}
 		peopleWorkWithLevelRecord.get(partnerName).add(level);
 	}
+
+	protected void removeRecord(String partnerName, String level) {
+		if (Boolean.FALSE.equals(peopleWorkWithLevelRecord.containsKey(partnerName))) {
+			return;
+		}
+		List<String> workWithLevelRecord = peopleWorkWithLevelRecord.get(partnerName);
+		if (workWithLevelRecord.contains(level)) {
+			workWithLevelRecord.remove(level);
+			peopleWorkWithLevelRecord.put(partnerName, workWithLevelRecord);
+		}
+	}
 }
