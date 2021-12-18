@@ -21,6 +21,7 @@ public class PairmatchingController {
 		mainChoiceMap.put("1", PairmatchingController::toMatching);
 		mainChoiceMap.put("2", PairmatchingController::toRetrieve);
 		mainChoiceMap.put("3", PairmatchingController::toClear);
+		mainChoiceMap.put("Q", PairmatchingController::toExit);
 	}
 
 	public void run() {
@@ -48,5 +49,12 @@ public class PairmatchingController {
 	private static void toClear() {
 		pairmatchingService.clearAllPairs();
 		OutputView.printClearMessage();
+	}
+
+	/**
+	 * 종료: 아무것도 하지 않습니다
+	 */
+	private static void toExit() {
+		
 	}
 }

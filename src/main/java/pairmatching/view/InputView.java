@@ -1,5 +1,6 @@
 package pairmatching.view;
 
+import static java.lang.System.*;
 import static pairmatching.constant.message.SystemMessage.*;
 
 import java.util.LinkedHashMap;
@@ -19,14 +20,22 @@ import pairmatching.validator.InputValidator;
 public class InputView {
 
 	public static String chooseEntryMenu() {
-		System.out.println(INPUT_ENTRY_MENU);
-		String input = Console.readLine();
-		System.out.println();
-		InputValidator.validateEntryMenu(input);
-		if (input.equals(QUIT)) {
-			return QUIT;
+		out.println(INPUT_ENTRY_MENU);
+		String input;
+		out.println();
+		while (true) {
+			try {
+				input = Console.readLine();
+				InputValidator.validateEntryMenu(input);
+			} catch (Exception e) {
+				out.println(e.getMessage());
+				continue;
+			}
+			if (input.equals(QUIT)) {
+				return QUIT;
+			}
+			return input;
 		}
-		return input;
 	}
 
 	public static String inputMatching() {
@@ -38,9 +47,9 @@ public class InputView {
 	}
 
 	public static String commonSubMenuInput() {
-		System.out.println(INPUT_COURSE_MENU);
+		out.println(INPUT_COURSE_MENU);
 		String input = Console.readLine();
-		System.out.println();
+		out.println();
 		return input;
 	}
 }
