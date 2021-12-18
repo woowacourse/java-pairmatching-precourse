@@ -7,13 +7,12 @@ import pairmatching.model.enums.Level;
 import java.util.List;
 
 import static pairmatching.model.enums.Option.*;
+import static pairmatching.utils.constants.ErrorConstants.*;
 
 public class Validator {
-    private final static String ERROR_INPUT_OPTION = "[ERROR] 잘못된 번호를 선택하셨습니다.";
-    private final static String ERROR_INPUT_DETAILS = "[ERROR] 올바른 과정, 레벨, 미션을 작성해주세요.";
-    private final static String ERROR_INPUT_REMATCH = "[ERROR] 네 | 아니오만 입력 가능합니다.";
     private final static String YES = "네";
     private final static String NO = "아니오";
+    private final static String SEPARATOR = ",";
     private final static int INPUT_DETAIL_CNT = 3;
 
     public Validator() {
@@ -30,7 +29,7 @@ public class Validator {
     }
 
     public boolean isValidDetails(String input) {
-        String[] details = input.split(",");
+        String[] details = input.split(SEPARATOR);
         if (details.length == INPUT_DETAIL_CNT
                 && isValidPrecourse(details[0].trim())
                 && isValidLevel(details[1].trim())

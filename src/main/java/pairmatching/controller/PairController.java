@@ -11,12 +11,12 @@ import pairmatching.utils.Validator;
 import java.util.ArrayList;
 import java.util.List;
 
+import static pairmatching.utils.constants.ErrorConstants.ERROR_OVER_TRY_CNT;
 import static pairmatching.utils.constants.InputConstants.MATCHING_RESULT_GUIDE;
 import static pairmatching.view.InputView.inputDetails;
 import static pairmatching.view.InputView.inputReMatch;
 
 public class PairController {
-    private final static String ERROR_OVER_TRY_CNT = "[ERROR] 매칭 시도 최대 횟수 초과";
     private final static String INITIAL_COMPLETE = "초기화 되었습니다.";
     private final static String SEPARATOR = ",";
     private final static String ANSWER_YES = "네";
