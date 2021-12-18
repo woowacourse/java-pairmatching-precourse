@@ -1,11 +1,14 @@
 package pairmatching.domains.mission;
 
+import java.util.Optional;
+
 import pairmatching.domains.crew.CrewPair;
 
 public class Mission {
 	private MissionModel missionModel;
 	private Course course;
-	private CrewPair crewPair;
+	private Optional<CrewPair> crewPair;
+	private boolean isShuffled = false;
 
 	public Mission(MissionModel missionModel, Course course) {
 		this.missionModel = missionModel;
@@ -21,7 +24,7 @@ public class Mission {
 	}
 
 	public boolean isShuffled() {
-		return crewPair == null;
+		return isShuffled;
 	}
 
 	public void shufflePairs() {

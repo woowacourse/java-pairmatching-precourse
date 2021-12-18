@@ -21,6 +21,8 @@ public class ViewMessage {
 	public static final String YES_MESSAGE = "네";
 	public static final String NO_MESSAGE = "아니오";
 
+	public static final String NOT_MATCHED_YET = "해당 코스는 아직 페어 매칭이 이루어지지 않았습니다.";
+
 
 
 

@@ -4,7 +4,10 @@ import static pairmatching.constant.ErrorMessages.*;
 import static pairmatching.constant.ViewMessage.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
+
+import pairmatching.domains.crew.Crew;
 
 public enum Course {
 	BACKEND("백엔드"),

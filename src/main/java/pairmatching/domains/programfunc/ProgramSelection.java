@@ -9,7 +9,7 @@ import pairmatching.exceptions.UserInputException;
 
 public enum ProgramSelection {
 	MATCHING("1", "페어 매칭"),
-	FIND_ALL("2", "페어 조회"),
+	FIND_PAIR("2", "페어 조회"),
 	CLEAR("3", "페어 초기화"),
 	QUIT("Q", "종료"),
 	;

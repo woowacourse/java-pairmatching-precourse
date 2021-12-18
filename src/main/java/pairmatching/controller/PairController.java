@@ -3,7 +3,10 @@ package pairmatching.controller;
 import static pairmatching.constant.ErrorMessages.*;
 import static pairmatching.constant.ViewMessage.*;
 
+import java.util.Optional;
+
 import pairmatching.domains.crew.BackendCrews;
+import pairmatching.domains.crew.CrewPair;
 import pairmatching.domains.crew.FrontendCrews;
 import pairmatching.domains.mission.Mission;
 import pairmatching.domains.mission.Missions;
@@ -46,8 +49,8 @@ public class PairController {
 	private void doSelection(ProgramSelection selection) {
 		if (selection == ProgramSelection.MATCHING) {
 			matching();
-		} else if (selection == ProgramSelection.FIND_ALL) {
-
+		} else if (selection == ProgramSelection.FIND_PAIR) {
+			findPair();
 		} else if (selection == ProgramSelection.CLEAR) {
 
 		} else if (selection == ProgramSelection.QUIT) {
@@ -78,8 +81,15 @@ public class PairController {
 		mission.shufflePairs();
 	}
 
-	private Mission getUserMission() {
+	private void findPair() {
+		Mission userMission = getUserMission();
+		if (!userMission.isShuffled()) {
+			OutputView.printMatchedYet();
+			return;
+		}
+	}
 
+	private Mission getUserMission() {
 		try {
 			OutputView.printTechCourseState();
 			return InputView.getUserMission(missions);
@@ -89,4 +99,6 @@ public class PairController {
 		}
 		return null;
 	}
+
+
 }

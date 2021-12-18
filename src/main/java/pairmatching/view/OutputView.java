@@ -32,5 +32,9 @@ public class OutputView {
 		System.out.println(MISSION_SELECT_EXAMPLE);
 	}
 
+	public static void printMatchedYet() {
+		System.out.println(NOT_MATCHED_YET + LINE_BREAK);
+	}
+
 
 }
