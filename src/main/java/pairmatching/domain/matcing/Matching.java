@@ -22,4 +22,19 @@ public class Matching {
 		this.pairs = new ArrayList<>();
 	}
 
+	public List<Pair> getPairs() {
+		return pairs;
+	}
+
+	public boolean isSameCourse(Course course) {
+		return this.course == course;
+	}
+
+	public boolean isSameLevel(Level level) {
+		return this.level == level;
+	}
+
+	public boolean isSameMission(Mission mission) {
+		return this.mission == mission;
+	}
 }
