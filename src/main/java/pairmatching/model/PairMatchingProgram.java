@@ -14,8 +14,5 @@ public class PairMatchingProgram {
         this.mission = mission;
     }
 
-    public List<String> FindProgramList(String userInput) {
-        return Arrays.asList(userInput.split(","));
 
-    }
 }

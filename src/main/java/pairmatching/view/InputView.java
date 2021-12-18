@@ -1,6 +1,13 @@
 package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.model.Course;
+import pairmatching.model.Level;
+import pairmatching.model.Mission;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public abstract class InputView {
 
@@ -16,6 +23,9 @@ public abstract class InputView {
     public static final String DIVIDING_LINE = "\n#############################################";
     public static final String INDENT_NEW_LINE = "  \n";
     public static final String NEW_LINE = "\n";
+    private Course course;
+    private Level level;
+    private Mission mission;
 
     public static String startFunction() {
         try {
@@ -37,7 +47,7 @@ public abstract class InputView {
         return readLine;
     }
 
-    private static String chooseNumberOne() {
+    public static String chooseNumberOne() {
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(DIVIDING_LINE).append("\n과정: 백엔드 | 프론트엔드").append("\n미션:")
@@ -50,7 +60,7 @@ public abstract class InputView {
         return Console.readLine();
     }
 
-    public static void chooseWhat(String readLine) {
+    public static String chooseWhat(String readLine) {
         if (readLine.equals(CHOOSE_ONE)) {
             chooseNumberOne();
         }
@@ -63,5 +73,13 @@ public abstract class InputView {
 //        if (readLine.equals(CHOOSE_Q)) {
 //            quitProgram();
 //        }
+        return readLine;
+    }
+
+    public static List<String> FindProgramList(String userInput) {
+        String[] splitProgram = userInput.split(",");
+
+        return new ArrayList<>(Arrays.asList(splitProgram));
+
     }
 }
