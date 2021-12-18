@@ -12,18 +12,30 @@ public class PairProgrammings {
     private List<PairProgramming> pairProgrammings = new ArrayList<>();
 
     public void enrollNewProgram(String targetCourse, String targetLevel, String targetMission, List<String> shuffledCrew) {
+
         for (PairProgramming pairProgramming : pairProgrammings) {
-            if (pairProgramming.getCourse().equals(targetCourse)) {
-                System.out.println(pairProgramming.getLevel());
-                System.out.println(targetLevel);
-                if (pairProgramming.getLevel().equals(targetLevel)) {
-                    pairProgramming.addMission(shuffledCrew, targetMission);
-                    return;
-                }
+            if (enrollNewMissionByLevel(targetCourse, targetLevel, targetMission, shuffledCrew, pairProgramming)) {
+                return;
             }
         }
 
         pairProgrammings.add(new PairProgramming(targetCourse, targetLevel, targetMission, shuffledCrew));
+    }
+
+    private boolean enrollNewMissionByLevel(
+        String targetCourse,
+        String targetLevel,
+        String targetMission,
+        List<String> shuffledCrew,
+        PairProgramming pairProgramming
+    ) {
+        if (pairProgramming.getCourse().equals(targetCourse)) {
+            if (pairProgramming.getLevel().equals(targetLevel)) {
+                pairProgramming.addMission(shuffledCrew, targetMission);
+                return true;
+            }
+        }
+        return false;
     }
 
     public Map<String, Set<String>> getPairInfo(String targetCourse, String targetLevel, String targetMission) {
