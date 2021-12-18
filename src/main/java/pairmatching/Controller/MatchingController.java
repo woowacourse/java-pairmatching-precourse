@@ -1,6 +1,7 @@
 package pairmatching.Controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -95,7 +96,12 @@ public class MatchingController {
 	}
 
 	public void resetMatchInfo() {
-		
+		for (int i = 0; i< missionList.size(); i++){
+			Mission mission = missionList.get(i);
+			missionList.remove(mission);
+			mission.setPairList(new ArrayList<>());
+			missionList.add(mission);
+		}
 	}
 
 	public void matchExit() {
