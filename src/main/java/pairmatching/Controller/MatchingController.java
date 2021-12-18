@@ -1,13 +1,13 @@
 package pairmatching.Controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import pairmatching.Domain.Crew;
 import pairmatching.Domain.Mission;
 import pairmatching.Domain.MissionRepository;
 import pairmatching.Util.CrewInfoReader;
+import pairmatching.Util.ParsingString;
 import pairmatching.View.InputView;
 import pairmatching.View.OutputView;
 
@@ -61,10 +61,14 @@ public class MatchingController {
 
 	public void pairMatch() {
 		OutputView.printProgramInfo(this.missionList);
+		String userReqeustInfo = InputView.requestMatchInfo();
+		List<String> splitRequestInfo = ParsingString.splitComma(userReqeustInfo);
 	}
 
 	public void inquireMatchInfo() {
 		OutputView.printProgramInfo(this.missionList);
+		String userReqeustInfo = InputView.requestMatchInfo();
+		List<String> splitRequestInfo = ParsingString.splitComma(userReqeustInfo);
 	}
 
 	public void resetMatchInfo() {
