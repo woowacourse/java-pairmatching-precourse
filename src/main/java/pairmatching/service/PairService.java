@@ -29,6 +29,7 @@ public class PairService {
 
     private List<PairDto> createPairs(String mission, String level, String course, List<String> shuffledCrews) {
         int limit = 2;
+
         if (Course.isBackend(course)) {
             BackPairs backPairs = new BackPairs(level, mission);
             if (shuffledCrews.size() % 2 == 0) {
@@ -64,6 +65,7 @@ public class PairService {
                 if (i == shuffledCrews.size() - 3) {
                     List<String> names = shuffledCrews.subList(i, shuffledCrews.size());
                     frontPairs.addPair(new PairDto(names));
+                    break;
                 }
                 List<String> names = shuffledCrews.subList(i, i + limit);
                 frontPairs.addPair(new PairDto(names));
@@ -78,5 +80,14 @@ public class PairService {
             return backPairsList.stream().anyMatch(backPairs -> backPairs.isSame(requestDto));
         }
         return frontPairsList.stream().anyMatch(frontPairs -> frontPairs.isSame(requestDto));
+    }
+
+    public List<PairDto> getPair(RequestDto requestDto) {
+        if (Course.isBackend(requestDto.getCourse())) {
+            BackPairs backPairs = backPairsList.stream().filter(pairs -> pairs.isSame(requestDto)).findFirst().get();
+            return backPairs.pairs().stream().map(PairDto::new).collect(Collectors.toList());
+        }
+        FrontPairs frontPairs = frontPairsList.stream().filter(pairs -> pairs.isSame(requestDto)).findFirst().get();
+        return frontPairs.pairs().stream().map(PairDto::new).collect(Collectors.toList());
     }
 }

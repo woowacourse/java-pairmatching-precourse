@@ -42,4 +42,8 @@ public class PairMatchingController {
     public boolean hasAlreadyMatching(RequestDto requestDto) {
         return pairService.hasAlreadyMatching(requestDto);
     }
+
+    public void requestPairMatching(RequestDto requestDto) {
+        OutputView.printMatchingResult(pairService.getPair(requestDto));
+    }
 }

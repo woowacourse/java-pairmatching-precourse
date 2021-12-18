@@ -29,7 +29,10 @@ public enum IndexMapper {
     }
 
     private static void mapToInquiry() {
-
+        OutputView.printProcess(pairMatchingController.requestProcess());
+        OutputView.printMission(pairMatchingController.requestMission());
+        String request = InputView.printProcessLevelMissionSelection();
+        pairMatchingController.requestPairMatching(new RequestDto(request));
     }
 
     private static void mapToMatch() {
