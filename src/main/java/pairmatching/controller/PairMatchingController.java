@@ -5,10 +5,12 @@ import java.util.ArrayList;
 
 import pairmatching.domain.Crew;
 import pairmatching.util.Initializer;
+import pairmatching.view.InputView;
 
 public class PairMatchingController {
     ArrayList<Crew> backEndCrews;
     ArrayList<Crew> frontEndCrews;
+    InputView inputView = new InputView();
 
     public PairMatchingController() {
         registerCrews();
@@ -24,5 +26,7 @@ public class PairMatchingController {
     }
 
     public void run() {
+        inputView.determineMainFunction(); // TODO : 기능 선택은 나중에 하자.
+        inputView.determineProgramInfo();
     }
 }
