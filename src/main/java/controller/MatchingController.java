@@ -9,5 +9,6 @@ public class MatchingController {
 
 	public static void runMatchingProgram() {
 		InputDisplay.askInputFunctionSelectionNumber();
+		InputController.inputFunctionSelectionNumber();
 	}
 }
