@@ -1,4 +1,4 @@
-package pairmatching.view.Menu;
+package pairmatching.view.Main;
 
 public class MainMenu {
     private static String MAIN_MENU = "기능을 선택하세요.\n" +

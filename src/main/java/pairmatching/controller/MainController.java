@@ -1,27 +1,31 @@
 package pairmatching.controller;
 
 import pairmatching.Initialize.Initializer;
+import pairmatching.service.PairService;
 import pairmatching.validation.MenuValidation;
-import pairmatching.view.Menu.InputView;
+import pairmatching.view.InputView;
 import pairmatching.view.Message.ErrorMessage;
 
 import java.io.IOException;
 
-import static pairmatching.view.Menu.MainMenu.printMainMenu;
+import static pairmatching.view.Main.MainMenu.printMainMenu;
 
 public class MainController {
     private final Initializer initializer;
     private final MenuValidation menuValidation;
+    private final PairService pairService;
 
 
     public MainController() {
         this.initializer = new Initializer();
         this.menuValidation = new MenuValidation();
+        this.pairService = new PairService();
     }
 
     public void set() throws IOException {
         initializer.setBackCrew();
         initializer.setFrontCrew();
+        initializer.setMissions();
     }
 
     public void run(){
@@ -40,6 +44,7 @@ public class MainController {
 
     public boolean selectMenu(String input){
         if(input.equals("1")){
+            pairService.match();
             return true;
         }
         if(input.equals("2")){

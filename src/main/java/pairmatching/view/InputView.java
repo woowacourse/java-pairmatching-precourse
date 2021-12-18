@@ -1,4 +1,4 @@
-package pairmatching.view.Menu;
+package pairmatching.view;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
