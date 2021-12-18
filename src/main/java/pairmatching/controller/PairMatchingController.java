@@ -52,12 +52,13 @@ public class PairMatchingController {
 
 	public boolean selectFunction(String function, PairMatchings pairMatchings) {
 		if (function.equals(Constant.FUNCTION_PAIR_MATCHING)) {
-
+			OutputView.printCourseAndMission();
 		}
 		if (function.equals(Constant.FUNCTION_PAIR_LOOKUP)) {
-
+			OutputView.printCourseAndMission();
 		}
 		if (function.equals(Constant.FUNCTION_PAIR_INITIALIZATION)) {
+			OutputView.printInitialization();
 			pairMatchings.initialization();
 		}
 		return !function.equals(Constant.FUNCTION_EXIT);
