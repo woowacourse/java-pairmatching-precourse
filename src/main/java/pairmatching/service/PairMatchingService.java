@@ -1,12 +1,15 @@
 package pairmatching.service;
 
 import pairmatching.domain.Course;
+import pairmatching.domain.Crew;
 import pairmatching.domain.Level;
 import pairmatching.domain.MatchResult;
 import pairmatching.domain.MatchResultRepository;
 import pairmatching.domain.Mission;
 import pairmatching.domain.MissionRepository;
 import pairmatching.domain.Pair;
+import pairmatching.domain.PairHistory;
+import pairmatching.domain.PairHistoryRepository;
 import pairmatching.utils.OptionInputUtils;
 
 import java.util.List;
@@ -36,8 +39,8 @@ public class PairMatchingService {
         Mission mission = MissionRepository.getMissionByName(optionInfos[2]);
 
         List<Pair> pairs = returnMatchResult();
-
         MatchResultRepository.addMatchResult(new MatchResult(course, level, mission, pairs));
+        saveAllPairHistory(pairs, level);
     }
 
     public boolean confirmPostNewMatchResult(MatchResult existingResult) {
@@ -51,6 +54,12 @@ public class PairMatchingService {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    public void saveAllPairHistory(List<Pair> pairs, Level level) {
+        for (Pair pair : pairs) {
+            PairHistoryRepository.addPairHistory(new PairHistory(pair.getCrews(), level));
         }
     }
 }

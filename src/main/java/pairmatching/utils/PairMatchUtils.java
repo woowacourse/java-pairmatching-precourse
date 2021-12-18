@@ -8,6 +8,11 @@ import pairmatching.domain.Pair;
 import java.util.ArrayList;
 import java.util.List;
 
+import static pairmatching.constants.SystemConstants.NO;
+import static pairmatching.constants.SystemConstants.YES;
+import static pairmatching.utils.UserChoiceValidator.validateYesNoInput;
+import static pairmatching.view.InputView.requestNewMatchInput;
+
 public class PairMatchUtils {
 
     public static List<Pair> returnMatchResult() {
@@ -43,4 +48,10 @@ public class PairMatchUtils {
         }
         return pairs;
     }
+
+//    public static void validateNoDuplicateHistory(List<Pair> pairs) {
+//        for (Pair pair : pairs) {
+//
+//        }
+//    }
 }
