@@ -1,6 +1,7 @@
 package pairmatching.repository;
 
 import pairmatching.domain.Crew;
+import pairmatching.view.Message.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,6 @@ public class CrewRepository {
         return crews.stream()
                 .filter(crew -> crew.isEqual(name))
                 .findAny()
-                .orElseThrow(()->new IllegalArgumentException("존재하지 않는 멤버입니다."));
+                .orElseThrow(()->new IllegalArgumentException(ErrorMessage.ERROR + ErrorMessage.NO_MEMBER));
     }
 }

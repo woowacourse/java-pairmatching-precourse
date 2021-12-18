@@ -16,7 +16,7 @@ public class Mission {
     }
 
     public boolean isEqual(Course course, Level level, String name) {
-        if(course == this.course && level == this.level && name.equals(name)){
+        if(course == this.course && level == this.level && this.name.equals(name)){
             return true;
         }
         return false;
