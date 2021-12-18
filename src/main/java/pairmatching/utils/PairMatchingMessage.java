@@ -35,6 +35,19 @@ public class PairMatchingMessage {
 
 	private static final String NO = "아니요";
 
+	/* error message */
+	private static final String ERROR_PREFIX = "[ERROR]: ";
+
+	private static final String FUNCTION_SELECTION_ERROR = " 기능 선택은 1, 2, 3, Q 중 하나만 입력되야 합니다";
+
+	private static final String WRONG_COURSE = " 존재하지 않는 과정입니다";
+
+	private static final String WRONG_LEVEL = " 존재하지 않는 레벨입니다";
+
+	private static final String WRONG_MISSION = " 존재하지 않는 미션입니다";
+
+	private static final String WRONG_SHOW_MATCHING_INFORMATION = "매칭 정보 재매칭 여부는 네 또는 아니요만으로 선택해 주세요";
+
 	public static void printInputFunction() {
 		System.out.println(CHOOSE_FUNCTION);
 		System.out.println(FUNCTION1);
@@ -92,5 +105,25 @@ public class PairMatchingMessage {
 	public static void printRematchingPair() {
 		System.out.println(RESHUFFLE_PAIR_OR_NOT);
 		System.out.println(YES + DISTINGUISH + NO);
+	}
+
+	public static String wrongFunctionError(final String functionNumber) {
+		return ERROR_PREFIX + functionNumber + FUNCTION_SELECTION_ERROR;
+	}
+
+	public static String wrongCourseError(final String courseName) {
+		return ERROR_PREFIX + courseName + WRONG_COURSE;
+	}
+
+	public static String wrongLevelError(final String level) {
+		return ERROR_PREFIX + level + WRONG_LEVEL;
+	}
+
+	public static String wrongMissionError(final String mission) {
+		return ERROR_PREFIX + mission + WRONG_MISSION;
+	}
+
+	public static String resetMatchingInformationError(final String selected) {
+		return ERROR_PREFIX + selected + WRONG_SHOW_MATCHING_INFORMATION;
 	}
 }
