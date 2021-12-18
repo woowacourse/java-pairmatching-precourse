@@ -30,6 +30,7 @@ public class MainHandler {
 			matchingProcessJudge(course, level, missionType);
 			OutputView.printMatchingResult(MatchingRepository.selectMatchings(course, level, missionType));
 		} catch (IllegalArgumentException | IOException e) {
+			OutputView.printErrorMessage(e);
 			matchingManager();
 		}
 	}
