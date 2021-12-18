@@ -177,12 +177,11 @@ public class Crews {
         for (int i = 0; i < temp.size() - 2; i = i + 2) {
             System.out.println(temp.get(i) + " : " + temp.get(i+1));
         }
-        System.out.print(temp.get(temp.size()- 2) + " : " + temp.get(temp.size()- 1));
         if (temp.size() % 2 == 0) {
-            System.out.println(" : " + temp.get(temp.size() - 1));
+            System.out.println(temp.get(temp.size()- 2) + " : " + temp.get(temp.size()- 1));
             return;
         }
-        System.out.println();
+        System.out.println(": " + temp.get(temp.size() - 1));
     }
 
     private void createInfo(int type) {
