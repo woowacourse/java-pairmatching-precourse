@@ -13,6 +13,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class Crews {
 	private static final String BACkEND_CREW_PATH = "src/main/resources/backend-crew.md";
 	private static final String FRONTEND_CREW_PATH = "src/main/resources/frontend-crew.md";
+	private static final int EXPECTED_MATCHING_STATUS_SIZE = 3;
+	private static final String ERROR_INVAILD_MATCHING_STATUS = "[ERROR] 잘못된 매칭 정보 입력입니다.";
 	private final String course;
 	private final String level;
 	private final String mission;
@@ -21,6 +23,9 @@ public class Crews {
 	private List<Pair> pairList;
 
 	public Crews(List<String> matchingStatus) {
+		if (matchingStatus.size() != EXPECTED_MATCHING_STATUS_SIZE) {
+			throw new IllegalArgumentException(ERROR_INVAILD_MATCHING_STATUS);
+		}
 		this.course = matchingStatus.get(0);
 		this.level = matchingStatus.get(1);
 		this.mission = matchingStatus.get(2);

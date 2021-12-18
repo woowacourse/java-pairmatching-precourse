@@ -14,6 +14,7 @@ public class InputView {
 		+ "  - 레벨5: \n"
 		+ "############################################\n";
 	private static final String INPUT_MATCHING_STATUS = "과정, 레벨, 미션을 선택하세요.\nex) 백엔드, 레벨1, 자동차경주";
+	private static final String ASK_REMATCHING = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n네 | 아니오";
 
 	public static void printChooseOperation() {
 		System.out.println(OPERATIONS_TO_CHOOSE);
@@ -28,6 +29,15 @@ public class InputView {
 
 	public static String getInputToMatch() {
 		System.out.println(INPUT_MATCHING_STATUS);
+		return Console.readLine();
+	}
+
+	public static String getReMatching() {
+		System.out.println(ASK_REMATCHING);
+		return getRematchingResponse();
+	}
+
+	private static String getRematchingResponse() {
 		return Console.readLine();
 	}
 }
