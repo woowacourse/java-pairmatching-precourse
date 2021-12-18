@@ -19,6 +19,10 @@ public class CoreController {
 	private static final String BACKEND_FILE_NAME = "backend-crew.md";
 	private static final String FRONTEND_FILE_NAME = "frontend-crew.md";
 	private static final String BASE_DIRECTORY = "src/main/resources/";
+	private static final String TERMINATE = "Q";
+	private static final String PAIR_MATCH = "1";
+	private static final String PAIR_SEARCH = "2";
+	private static final String PAIR_INIT = "3";
 
 	private UiLogic uiLogic;
 	private Map<String, List<String>> missionInLevel;
@@ -91,7 +95,7 @@ public class CoreController {
 		checkMissionValid(courseLevelMission.get(LEVEL_INDEX), courseLevelMission.get(MISSION_INDEX));
 	}
 
-	protected ArrayList<String> getCourseLevelMission() {
+	private ArrayList<String> getCourseLevelMission() {
 		boolean endCondition = false;
 		ArrayList<String> courseLevelMission = null;
 		while (Boolean.FALSE.equals(endCondition)) {
@@ -113,7 +117,7 @@ public class CoreController {
 		return FRONTEND_FILE_NAME;
 	}
 
-	protected ArrayList<String> getPeopleInCourse(String course) {
+	private ArrayList<String> getPeopleInCourse(String course) {
 		ArrayList<String> peopleName = new ArrayList<>();
 		String path = BASE_DIRECTORY + getFileName(course);
 
@@ -189,7 +193,7 @@ public class CoreController {
 		return null;
 	}
 
-	protected void matchPair(String course, String level, String mission) {
+	private void matchPair(String course, String level, String mission) {
 		ArrayList<String> peopleNames = getPeopleInCourse(course);
 		if (pairInMission.containsKey(mission) && Boolean.FALSE.equals(checkRematch())) {
 			return;
@@ -203,11 +207,31 @@ public class CoreController {
 		showPair(mission);
 	}
 
-	protected void searchPair(String course, String level, String mission) {
+	private void searchPair(String course, String mission) {
 		showPair(mission);
 	}
 
-	protected void initAllPair() {
+	private void initAllPair() {
 		init();
+	}
+
+	protected void run() {
+		String menuIndex = "";
+		while (Boolean.FALSE.equals(menuIndex.equals(TERMINATE))) {
+			menuIndex = uiLogic.printMenu();
+
+			if (menuIndex.equals(PAIR_MATCH)) {
+				ArrayList<String> courseLevelMission = getCourseLevelMission();
+				matchPair(courseLevelMission.get(COURSE_INDEX), courseLevelMission.get(LEVEL_INDEX),
+					courseLevelMission.get(MISSION_INDEX));
+			}
+			if (menuIndex.equals(PAIR_SEARCH)) {
+				ArrayList<String> courseLevelMission = getCourseLevelMission();
+				searchPair(courseLevelMission.get(COURSE_INDEX), courseLevelMission.get(MISSION_INDEX));
+			}
+			if (menuIndex.equals(PAIR_INIT)) {
+				initAllPair();
+			}
+		}
 	}
 }

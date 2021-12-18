@@ -20,6 +20,12 @@ public class UiLogic {
 	private static final String QUESTION_REMATCH
 		= "\n매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
 		+ "네 | 아니오\n";
+	private static final String QUESTION_MENU
+		= "\n기능을 선택하세요.\n"
+		+ "1. 페어 매칭\n"
+		+ "2. 페어 조회\n"
+		+ "3. 페어 초기화\n"
+		+ "Q. 종료\n";
 	private static final String MESSAGE_PAIR_RESULT
 		= "\n페어 매칭 결과입니다.\n";
 	private static final String MESSAGE_NOTHING_IN_PAIR
@@ -32,6 +38,8 @@ public class UiLogic {
 		= "[ERROR] 네, 아니오 중 하나로 답해주세요\n";
 	private static final String ERROR_MESSAGE_FAIL_PAIR
 		= "[ERROR] 페어 생성 불가\n";
+	private static final String ERROR_MESSAGE_MENU
+		= "[ERROR] 1,2,3,Q 중 하나를 입력하세요\n";
 	private static final String REGULAR_EXPRESSION_COURSE_LEVEL_MISSION
 		= "^[가-힣]+, [가-힣0-9]+, [a-zA-Z가-힣0-9]+$";
 	private static final String COURSE_LEVEL_MISSION_SEPARATOR
@@ -42,6 +50,10 @@ public class UiLogic {
 		= "네";
 	private static final String NEGATIVE
 		= "아니오";
+	private static final String TERMINATE = "Q";
+	private static final String PAIR_MATCH = "1";
+	private static final String PAIR_SEARCH = "2";
+	private static final String PAIR_INIT = "3";
 
 	private Ui ui;
 
@@ -115,6 +127,34 @@ public class UiLogic {
 		for (String pair : pairBucket) {
 			List<String> names = new ArrayList<>(Arrays.asList(pair.split(NAME_IN_PAIR_SEPARATOR)));
 			ui.printMessage(getPairMessage(names));
+		}
+	}
+
+	private void checkMenuFormat(String userInput) throws IllegalArgumentException {
+		if (userInput.equals(PAIR_MATCH)) {
+			return;
+		}
+		if (userInput.equals(PAIR_SEARCH)) {
+			return;
+		}
+		if (userInput.equals(PAIR_INIT)) {
+			return;
+		}
+		if (userInput.equals(TERMINATE)) {
+			return;
+		}
+		throw new IllegalArgumentException();
+	}
+
+	protected String printMenu() {
+		while (true) {
+			try {
+				String userInput = ui.printQuestion(QUESTION_MENU);
+				checkMenuFormat(userInput);
+				return userInput;
+			} catch (IllegalArgumentException e) {
+				ui.printMessage(ERROR_MESSAGE_MENU);
+			}
 		}
 	}
 }
