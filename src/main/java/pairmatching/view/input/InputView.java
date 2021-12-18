@@ -1,4 +1,4 @@
-package pairmatching.view;
+package pairmatching.view.input;
 
 import java.util.List;
 
