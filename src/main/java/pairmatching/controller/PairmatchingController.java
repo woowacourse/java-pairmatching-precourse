@@ -8,12 +8,14 @@ import java.util.function.Supplier;
 
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.dto.ChoiceDto;
+import pairmatching.service.PairmatchingService;
 import pairmatching.validator.InputValidator;
 import pairmatching.view.InputView;
 
 public class PairmatchingController {
 
-	public Map<String, Supplier<String>> mainChoiceMap = new LinkedHashMap<>();
+	private Map<String, Supplier<String>> mainChoiceMap = new LinkedHashMap<>();
+	private static PairmatchingService pairmatchingService = new PairmatchingService() ;
 
 	{
 		mainChoiceMap.put("1", PairmatchingController::toMatching);
@@ -32,6 +34,7 @@ public class PairmatchingController {
 	private static String toMatching() {
 		String input = InputView.inputMatching();
 		ChoiceDto choiceDto = new ChoiceDto(input);
+		pairmatchingService.makePairs(choiceDto);
 		return "";
 	}
 
