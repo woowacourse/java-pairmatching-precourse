@@ -5,6 +5,7 @@ import pairmatching.mode.Command;
 import pairmatching.mode.PairMatchingService;
 
 public class PairMatchingRunner implements Runnable {
+    private static final String EXIT = "Q";
     @Override
     public void run() {
         inputMode();
@@ -18,7 +19,11 @@ public class PairMatchingRunner implements Runnable {
                     + "2. 페어 조회\n"
                     + "3. 페어 초기화\n"
                     + "Q. 종료");
-                PairMatchingService service = Command.findServiceByCommand(Console.readLine());
+                String inputCommand = Console.readLine();
+                if (inputCommand.equals(EXIT)) {
+                    break;
+                }
+                PairMatchingService service = Command.findServiceByCommand(inputCommand);
                 service.run();
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
