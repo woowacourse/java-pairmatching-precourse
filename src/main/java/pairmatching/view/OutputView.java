@@ -13,6 +13,10 @@ public class OutputView {
         + "  - 레벨5: \n"
         + "############################################";
 
+    public static void printMessage(final String message) {
+        System.out.println(message);
+    }
+
     public static void printErrorMessage(final String errorMessage) {
         System.out.println(ERROR_SYMBOL + errorMessage);
     }
