@@ -56,11 +56,8 @@ public class PairMatchingController {
 		outputView.printMatchingResult(roll, level);
 	}
 
-
 	public void initMainMenu() {
 		outputView.printMainMenu();
 	}
-
-
 
 }

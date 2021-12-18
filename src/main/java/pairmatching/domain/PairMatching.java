@@ -2,6 +2,7 @@ package pairmatching.domain;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class PairMatching {
@@ -11,7 +12,6 @@ public class PairMatching {
 	private MainMenu mainMenu;
 	private Level level;
 	private Crew crew;
-
 
 	public PairMatching() throws IOException {
 		this.mainMenu = new MainMenu();
@@ -37,11 +37,7 @@ public class PairMatching {
 	}
 
 	public void makeRandomMatching(String roll, String level) {
-		if (roll.equals("백엔드")) {
-			getCrew().createBackendMatching(getLevel().getLevelMap(), level);
-
-		}
-
+		getCrew().createRandomMatching(roll, getLevel().getLevelMap(),level);
 	}
 
 	public boolean doesNotExistMatchingInfo(String level) {

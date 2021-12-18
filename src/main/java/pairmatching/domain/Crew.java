@@ -37,9 +37,6 @@ public class Crew {
 		return backendCrewMapByLevel;
 	}
 
-	public BufferedReader getBufferedReaderFrontend() {
-		return bufferedReaderFrontend;
-	}
 
 	private void initCrewMapByLevel() {
 		ArrayList<String> defaultList = new ArrayList<>();
@@ -54,7 +51,6 @@ public class Crew {
 		frontendCrewMapByLevel.put("레벨3", defaultList);
 		frontendCrewMapByLevel.put("레벨4", defaultList);
 		frontendCrewMapByLevel.put("레벨5", defaultList);
-
 
 	}
 
@@ -80,23 +76,26 @@ public class Crew {
 		}
 	}
 
-	public Map<String, ArrayList<String>> createRandomMatching(String roll) {
-		if (roll == "백엔드") {
-			return backendCrewMapByLevel;
+	public void createRandomMatching(String roll, Map<String, List<String>> levelMap,
+		String level) {
+		if (roll.equals("백엔드")) {
+			createMatching(backendCrew, levelMap, level, roll);
+			return;
 		}
-		return frontendCrewMapByLevel;
+		createMatching(frontendCrew, levelMap, level, roll);
 	}
 
-	public void createBackendMatching(Map<String, List<String>> levelMap, String level) {
-		List<String> shuffledCrewNames = Randoms.shuffle(backendCrew);
+	public void createMatching( List<String> crewList, Map<String, List<String>> levelMap, String level, String roll) {
+		List<String> shuffledCrewNames = Randoms.shuffle(crewList);
 		List<String> newList = new ArrayList<>();
+
 		while (shuffledCrewNames.size() > 1) {
 			List<String> tempList = new ArrayList<>();
 			tempList.add(shuffledCrewNames.get(0));
 			tempList.add(shuffledCrewNames.get(1));
 			Collections.sort(tempList);
 			String joinedNames = String.join(" : ", tempList);
-			// 다른 레벨에서 만났는지 체크
+
 			if (isNotDuplicateInOtherLevel(levelMap, level, joinedNames)) {
 				newList.add(joinedNames);
 				shuffledCrewNames.remove(shuffledCrewNames.get(0));
@@ -105,10 +104,14 @@ public class Crew {
 			}
 			Randoms.shuffle(shuffledCrewNames);
 		}
-		backendCrewMapByLevel.put(level, (ArrayList<String>)newList);
+		if (roll.equals("백엔드")) {
+			backendCrewMapByLevel.put(level, (ArrayList<String>)newList);
+			return;
+		}
+		frontendCrewMapByLevel.put(level, (ArrayList<String>)newList);
 	}
 
-	public boolean isNotDuplicateInOtherLevel( Map<String, List<String>> levelMap, String level, String joinedNames) {
+	public boolean isNotDuplicateInOtherLevel(Map<String, List<String>> levelMap, String level, String joinedNames) {
 
 		for (String levelName : levelMap.keySet()) {
 			if (levelName.equals(level)) {
@@ -121,9 +124,16 @@ public class Crew {
 		return true;
 	}
 
-	public void printCrews(String level) {
-		for (String pair : backendCrewMapByLevel.get(level)) {
-			System.out.println(pair);
+	public void printCrews(String roll, String level) {
+		if (roll.equals("백엔드")) {
+			for (String pair : backendCrewMapByLevel.get(level)) {
+				System.out.println(pair);
+			}
+		}
+		if (roll.equals("프론트엔드")) {
+			for (String pair : frontendCrewMapByLevel.get(level)) {
+				System.out.println(pair);
+			}
 		}
 	}
 

@@ -14,11 +14,9 @@ public class OutputView {
 	}
 
 	public void printMatchingResult(String roll, String level) {
-		if (roll.equals("백엔드")) {
-			System.out.println();
-			System.out.println("페어 매칭 결과입니다.");
-			pairMatching.getCrew().printCrews(level);
-		}
+		System.out.println();
+		System.out.println("페어 매칭 결과입니다.");
+		pairMatching.getCrew().printCrews(roll, level);
 
 	}
 
@@ -36,7 +34,7 @@ public class OutputView {
 		System.out.println("미션: ");
 		Map<String, List<String>> levelMap = pairMatching.getLevel().getLevelMap();
 		for (String levelName : levelMap.keySet()) {
-			System.out.println("  - "+ levelName + ": " + String.join(" | ", levelMap.get(levelName)));
+			System.out.println("  - " + levelName + ": " + String.join(" | ", levelMap.get(levelName)));
 		}
 		System.out.println("#############################################");
 	}
