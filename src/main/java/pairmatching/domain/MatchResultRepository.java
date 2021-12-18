@@ -30,5 +30,5 @@ public class MatchResultRepository {
         matchResults.add(matchResult);
     }
 
-    public static void deleteMatchResults() { matchResults.clear(); }
+    public static void deleteAllMatchResults() { matchResults.clear(); }
 }

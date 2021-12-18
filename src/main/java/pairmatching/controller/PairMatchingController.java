@@ -1,6 +1,7 @@
 package pairmatching.controller;
 
 import pairmatching.domain.CrewRepository;
+import pairmatching.domain.MatchResultRepository;
 import pairmatching.service.PairMatchingService;
 
 import static pairmatching.constants.SystemConstants.*;
@@ -31,7 +32,7 @@ public class PairMatchingController {
             // GO TO PAIR READ SCREEN
         }
         if (userChoice.equals(THREE)) {
-            // 초기화
+            MatchResultRepository.deleteAllMatchResults();
         }
         return true;
     }
