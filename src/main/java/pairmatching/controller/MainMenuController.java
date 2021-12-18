@@ -24,7 +24,7 @@ public class MainMenuController {
 		} else if (input.equals(Menu.PAIR_SHOW.toString())) {
 			PairController.showPairByInput();
 		} else if (input.equals(Menu.PAIR_INIT.toString())) {
-
+			InitializationController.initialize();
 		}
 	}
 

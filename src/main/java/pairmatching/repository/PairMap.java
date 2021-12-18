@@ -25,4 +25,8 @@ public class PairMap {
 	public static List<Crew> getCrewsByKey(PairKey key) {
 		return pairs.get(key);
 	}
+
+	public static void initialize() {
+		pairs.clear();
+	}
 }

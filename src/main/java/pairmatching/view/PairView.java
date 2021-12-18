@@ -23,6 +23,7 @@ public class PairView {
 		+ "네 | 아니오";
 	private static final String PAIR_FORMAT_TWO = "%s : %s\n";
 	private static final String PAIR_FORMAT_THREE = "%s : %s : %s\n";
+	private static final String INIT_MESSAGE = "\n초기화 되었습니다.\n";
 
 	public static void printGuideMessage() {
 		System.out.println(GUIDE_MESSAGE);
@@ -57,5 +58,9 @@ public class PairView {
 		}
 		System.out.println();
 
+	}
+
+	public static void printInitMessage() {
+		System.out.println(INIT_MESSAGE);
 	}
 }
