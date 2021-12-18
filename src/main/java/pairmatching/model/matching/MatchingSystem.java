@@ -7,7 +7,7 @@ import pairmatching.model.crew.*;
 import static camp.nextstep.edu.missionutils.Randoms.shuffle;
 
 public class MatchingSystem {
-    private final Set<MatchingHistory> matchingHistories = new HashSet<>();
+    private Set<MatchingHistory> matchingHistories = new HashSet<>();
 
     public boolean isMatchedBefore(List<String> courseAndLevelAndMission) {
         Course course = Course.of(courseAndLevelAndMission.get(0));
@@ -70,5 +70,9 @@ public class MatchingSystem {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("매칭 이력이 없습니다."));
         return matchingHistory.getMatchedCrews();
+    }
+
+    public void reset() {
+        matchingHistories = new HashSet<>();
     }
 }
