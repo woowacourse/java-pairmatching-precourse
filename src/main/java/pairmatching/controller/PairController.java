@@ -42,8 +42,15 @@ public class PairController {
     }
 
     public void pairMatch() {
-        outputView.printInformation();
-        inputView.inputInformation();
+        try {
+            outputView.printInformation();
+            inputView.inputInformation();
+            String inputInformation = Console.readLine();
+            validator.validateInputInformation(inputInformation);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            pairMatch();
+        }
     }
 
     public void getPair() {

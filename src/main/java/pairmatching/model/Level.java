@@ -28,7 +28,12 @@ public enum Level {
         return this.name;
     }
 
-    public void getMission() {
-
+    public Level existLevel(String name) {
+        for (Level level : Level.values()) {
+            if (level.getName().equals(name)) {
+                return level;
+            }
+        }
+        return null;
     }
 }
