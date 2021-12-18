@@ -75,7 +75,7 @@ public class OutputView {
     }
 
     private void printPair(Pair pair) {
-        ArrayList<String> crews = pair.getCrews();
+        ArrayList<String> crews = pair.getCrews();;
         for (int idx = 0; idx < crews.size(); idx++) {
             if (idx == crews.size() - 1) {
                 System.out.print(crews.get(idx));

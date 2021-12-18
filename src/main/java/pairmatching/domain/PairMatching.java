@@ -12,11 +12,13 @@ import pairmatching.view.OutputView;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class PairMatching {
-    static ArrayList<String> pair = new ArrayList<>();
     private static final String BACKEND = "백엔드";
     private static final int COURSE_IDX = 0;
     private static final int LEVEL_IDX = 1;
     private static final int MISSION_IDX = 2;
+
+    static ArrayList<String> pair = new ArrayList<>();
+    static ArrayList<String> oddPair = new ArrayList<>();
 
     public static void matching(String[] information) throws IOException {
         OutputView outputView = new OutputView();
@@ -29,9 +31,14 @@ public class PairMatching {
             outputView.outputMatching(information[COURSE_IDX], information[LEVEL_IDX], information[MISSION_IDX]);
             return;
         }
+        System.out.println(information[COURSE_IDX]+information[LEVEL_IDX]+information[MISSION_IDX]);
+        FrontendCrewRepository.initFrontCrew();
         ArrayList<Crew> crews = FrontendCrewRepository.getFrontendCrews();
         matching(crews, information[COURSE_IDX], information[LEVEL_IDX], information[MISSION_IDX]);
+        System.out.println("PairRepository.getPairInformation().size()" + PairRepository.getPairInformation().size());
         outputView.outputMatching(information[COURSE_IDX], information[LEVEL_IDX], information[MISSION_IDX]);
+        System.out.println(information[COURSE_IDX]+information[LEVEL_IDX]+information[MISSION_IDX]);
+        return;
     }
 
     private static void matching(ArrayList<Crew> crews, String course, String level, String mission) {
@@ -42,6 +49,7 @@ public class PairMatching {
         if (crews.size() % 2 == 0) {
             evenMatching(crewsNames, crews, course, level, mission);
         }
+
         if (crews.size() % 2 == 1) {
             oddMatching(crewsNames, crews, course, level, mission);
         }
@@ -65,6 +73,55 @@ public class PairMatching {
 
     private static void oddMatching(List<String> crewsNames,
                                     ArrayList<Crew> crews, String course, String level, String mission) {
+        int shuffleCount = 0;
+        while (true) {
+            if (shuffleCount > 3) {
+                System.out.println("[ERROR] 매칭 시도가 3회 이상을 넘어갔습니다.");
+                break;
+            }
+            List<String> shuffleCrews = Randoms.shuffle(crewsNames);
+            if (isOddPass(course, level, mission, shuffleCrews)) {
+                break;
+            }
+            shuffleCount ++;
+        }
+    }
+
+    private static boolean isOddPass(String course, String level, String mission, List<String> shuffleCrews) {
+        ArrayList<Pair> pairOddRepositoryTemp = new ArrayList<>();
+
+        for (int idx = 0; idx < shuffleCrews.size()-1; idx++) {
+            if (!isPassOddPair(shuffleCrews, idx, mission, level)) {
+                return false;
+            }
+            if (idx % 2 == 1) {
+                pairOddRepositoryTemp.add(new Pair(course, level, mission, oddPair));
+            }
+        }
+        storePair(pairOddRepositoryTemp);
+        return true;
+    }
+
+    private static boolean isPassOddPair(List<String> shuffleCrews, int idx, String mission, String level) {
+        if (idx == shuffleCrews.size()-2) {
+            oddPair.add(shuffleCrews.get(idx));
+            oddPair.add(shuffleCrews.get(shuffleCrews.size()-1));
+            if (!isPair(oddPair, level)) {
+                return false;
+            }
+            return true;
+        }
+        if (idx % 2 == 0) {
+            oddPair = new ArrayList<>();
+        }
+        oddPair.add(shuffleCrews.get(idx));
+        if (idx % 2 == 1) {
+            if (!isPair(oddPair, level)) {
+                return false;
+            }
+        }
+        System.out.println("oddPair = " + oddPair.size());
+        return true;
     }
 
     private static boolean isPass(String course, String level, String mission, List<String> shuffleCrews) {
