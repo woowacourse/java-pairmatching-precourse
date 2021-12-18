@@ -16,12 +16,15 @@ import pairmatching.domain.Level;
 import pairmatching.domain.Matching;
 import pairmatching.domain.Pairs;
 import pairmatching.validator.MatchingValidator;
+import pairmatching.view.InputView;
+import pairmatching.view.OutputView;
 
 public class MatchingService {
 
 	private static final int COURSE_INDEX = 0;
 	private static final int LEVEL_INDEX = 1;
 	private static final int MISSION_INDEX = 2;
+	private Matching matching = new Matching();
 
 	public Matching generateRandomMatching(String input) {
 		String[] split = input.split(",");
@@ -40,8 +43,17 @@ public class MatchingService {
 		return makeMatching(level, course, shuffledCrew);
 	}
 
+	public void getMatchingList() {
+		OutputView.printAdvanceInformation();
+		String courseAndLevelAndMission = InputView.inputCourseAndLevelAndMission();
+		String[] split = courseAndLevelAndMission.split(",");
+		Level level = Level.getLevel(split[LEVEL_INDEX].trim());
+		MatchingValidator.isExistMatching(level, matching);
+		OutputView.printMatchingInfo(matching);
+
+	}
+
 	private Matching makeMatching(Level level, Course course, List<String> shuffledCrew) {
-		Matching matching = new Matching();
 		List<Pairs> pairsList = new ArrayList<>();
 		for (int i = 0; i < shuffledCrew.size() - 1; i += 2) {
 			Pairs pairs = new Pairs(Crew.generateCrew(course, shuffledCrew.get(i)),

@@ -11,13 +11,10 @@ public class FunctionController {
 
 	public void choiceFunction(String functionNumber) {
 		if ("1".equals(functionNumber)) {
-			//TODO: 페어 매칭 함수 구현
-			// return ~
 			pairMatching();
 		}
 		if ("2".equals(functionNumber)) {
-			//TODO: 페어 조회 함수 구현
-			// return ~
+			getPairMatching();
 		}
 		if ("3".equals(functionNumber)) {
 			//TODO: 페어 초기화 함수 구현
@@ -30,6 +27,9 @@ public class FunctionController {
 		String inputCourseAndLevelAndMission = InputView.inputCourseAndLevelAndMission();
 		Matching matching = matchingService.generateRandomMatching(inputCourseAndLevelAndMission);
 		OutputView.printMatchingInfo(matching);
+	}
 
+	private void getPairMatching() {
+		matchingService.getMatchingList();
 	}
 }
