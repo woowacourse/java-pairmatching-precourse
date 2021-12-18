@@ -24,3 +24,33 @@
 9. 과정과 미션 출력 기능
 10. 매칭 후, 결과 안내 기능
 11. 잘못된 입력에 대한 유효성 검사 기능
+
+## 클래스
+
+### model
+   1. Course
+   2. Level
+   3. Crew
+   4. MatchingHistory
+      1. level
+      2. List<Pair>
+   5. MatchingInfo
+      1. Map<String, List<Pair>
+         1. String : ex)백엔드,레벨1,자동차경주
+   6. Pair
+      1. List<String>
+
+### view
+   1. InputView
+   2. OutputView
+
+### controller
+   1. PairMatchingController
+      1. MatchingHistory
+      2. MatchingInfo
+
+### validation
+   1. UtilValidation
+      1. 코스, 레벨, 미션 입력 유효성 검사
+
+### constants
