@@ -27,13 +27,13 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 홀수_인원_페어_매칭() {
+    void 인원_페어_매칭() {
         assertShuffleTest(
                 () -> {
-                    run("1", "백엔드, 레벨1, 자동차경주", "Q");
-                    assertThat(output()).contains("태웅 : 백호", "치수 : 태섭", "한나 : 수겸 : 경태");
+                    run("1", "백엔드, 레벨1, 자동차경주","1", "백엔드, 레벨1, 자동차경주", "Q");
+                    assertThat(output()).contains("태웅 : 백호", "치수 : 태섭");
                 },
-                Arrays.asList("태웅", "백호", "치수", "태섭","한나","수겸","경태")
+                Arrays.asList("태웅", "백호", "치수", "태섭")
         );
     }
 

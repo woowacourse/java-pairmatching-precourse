@@ -30,26 +30,25 @@ public class PairService {
         List<String> crewNameList = matchService.makeCrewNameList(course);
         int count = 0;
         while(count < 3) {
-            count += 1;
             crewNameList = shuffle(crewNameList);
-        }
-        try{
-            if(matchService.isEven(crewNameList)){
-                Mission matchedMission = matchService.evenMatch(crewNameList,level,mission);
-                OutputView.printMatching(matchedMission);
-            }
+            try {
+                if (matchService.isEven(crewNameList)) {
+                    Mission matchedMission = matchService.evenMatch(crewNameList, level, mission);
+                    OutputView.printMatching(matchedMission);
+                }
 
-            if(!matchService.isEven(crewNameList)){
-                Mission  matchedMission =matchService.oddMatch(crewNameList,level,mission);
-                OutputView.printMatching(matchedMission);
+                if (!matchService.isEven(crewNameList)) {
+                    Mission matchedMission = matchService.oddMatch(crewNameList, level, mission);
+                    OutputView.printMatching(matchedMission);
+                }
+            } catch (IllegalArgumentException e) {
+                count += 1;
+                if (count == 3) {
+                    System.out.println(e.getMessage());
+                    return false;
+                }
             }
-            return false;
-
-        } catch(IllegalArgumentException e){
-            if(count == 3){
-                System.out.println(e.getMessage());
-                return false;
-            }
+            count += 1;
         }
         return false;
     }

@@ -68,21 +68,25 @@ public class MatchService {
                 mission.addMatch(Arrays.asList(crew1, crew2));
                 continue;
             }
+        }
+        mission = makeLastPair(crewNameList, level, mission);
+        return mission;
+    }
 
-            Crew last1 = CrewRepository.findByName(crewNameList.get(crewNameList.size() - 3));
-            Crew last2 = CrewRepository.findByName(crewNameList.get(crewNameList.size() - 2));
-            Crew last3 = CrewRepository.findByName(crewNameList.get(crewNameList.size() - 1));
-            if (!last1.checkAlreadyPair(level, last2) && !last1.checkAlreadyPair(level, last3)) {
-                if (!last2.checkAlreadyPair(level, last1) && !last2.checkAlreadyPair(level, last3)) {
-                    if (!last3.checkAlreadyPair(level, last1) && !last3.checkAlreadyPair(level, last2)) {
-                        last1.addAlreadyPair(level, last2);
-                        last1.addAlreadyPair(level, last3);
-                        last2.addAlreadyPair(level, last1);
-                        last2.addAlreadyPair(level, last3);
-                        last3.addAlreadyPair(level, last1);
-                        last3.addAlreadyPair(level, last2);
-                        mission.addMatch(Arrays.asList(last1, last2, last3));
-                    }
+    private Mission makeLastPair(List<String> crewNameList,Level level, Mission mission) {
+        Crew last1 = CrewRepository.findByName(crewNameList.get(crewNameList.size() - 3));
+        Crew last2 = CrewRepository.findByName(crewNameList.get(crewNameList.size() - 2));
+        Crew last3 = CrewRepository.findByName(crewNameList.get(crewNameList.size() - 1));
+        if (!last1.checkAlreadyPair(level, last2) && !last1.checkAlreadyPair(level, last3)) {
+            if (!last2.checkAlreadyPair(level, last1) && !last2.checkAlreadyPair(level, last3)) {
+                if (!last3.checkAlreadyPair(level, last1) && !last3.checkAlreadyPair(level, last2)) {
+                    last1.addAlreadyPair(level, last2);
+                    last1.addAlreadyPair(level, last3);
+                    last2.addAlreadyPair(level, last1);
+                    last2.addAlreadyPair(level, last3);
+                    last3.addAlreadyPair(level, last1);
+                    last3.addAlreadyPair(level, last2);
+                    mission.addMatch(Arrays.asList(last1, last2, last3));
                 }
             }
         }
