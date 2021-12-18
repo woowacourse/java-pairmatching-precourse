@@ -21,11 +21,11 @@ public class Message {
         + "############################################\n"
         + "과정, 레벨, 미션을 선택하세요.\n"
         + "ex) 백엔드, 레벨1, 자동차경주";
-    public static final String ERROR = "[ERROR]";
+    public static final String ERROR = "\n[ERROR]";
     public static final String OPTIONS_ERROR = "코스, 레벨, 미션 모두 정확하게 입력 해야합니다. ";
     public static final String MENU_ERROR = "기능 선택 종류에 있는 것만 선택 가능합니다.";
     public static final String LEVEL_ERROR = "레벨 종류에 있는 것만 선택 가능합니다.";
     public static final String COURSE_ERROR = "코스 종류에 있는 것만 선택 가능합니다.";
     public static final String MISSION_ERROR = "미션 종류에 있는 것만 선택 가능합니다.";
-    public static final String RESULT_PRINT = "페어 매칭 결과입니다.";
+    public static final String RESULT_PRINT = "\n페어 매칭 결과입니다.";
 }
