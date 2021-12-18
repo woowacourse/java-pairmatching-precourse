@@ -1,13 +1,10 @@
 package pairmatching.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Mission {
     Level level;
     MissionName name;
-    List<Pair> pairs;
 
     public Mission(String name, int level) {
         this.name = Arrays.stream(MissionName.values())
@@ -18,7 +15,14 @@ public class Mission {
                 .filter(l -> l.isSameLevel(level))
                 .findFirst()
                 .orElse(null);
-        pairs = new ArrayList<>();
+    }
+
+    public String getName() {
+        return this.name.getName();
+    }
+
+    public boolean isSameName(String name) {
+        return this.name.isSameName(name);
     }
 
     @Override
@@ -26,7 +30,6 @@ public class Mission {
         return "Mission{" +
                 "level=" + level +
                 ", name=" + name +
-                ", pairs=" + pairs +
                 '}';
     }
 }
