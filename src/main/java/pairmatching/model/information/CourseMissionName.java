@@ -1,10 +1,10 @@
 package pairmatching.model.information;
 
-public class CourseMission {
+public class CourseMissionName {
 
     private final String missionName;
 
-    public CourseMission(final String missionName) {
+    public CourseMissionName(final String missionName) {
         this.missionName = missionName;
     }
 

@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
-import pairmatching.model.Course;
-import pairmatching.model.Levels;
-import pairmatching.model.Missions;
-import pairmatching.model.ProgramFunction;
+import pairmatching.model.information.Courses;
+import pairmatching.model.information.Levels;
+import pairmatching.model.information.Missions;
+import pairmatching.model.information.ProgramFunction;
 
 public abstract class InputView {
 
@@ -29,6 +29,7 @@ public abstract class InputView {
     private static final String LEVEL5_INFORMATION = "  - 레벨5: ";
     private static final String LEVEL3_INFORMATION = "  - 레벨3: ";
     private static final String LEVEL4_INFORMATION = "  - 레벨4: 성능개선 | 배포";
+    private static final String COURSE_INFORMATION = "과정: 백엔드 | 프론트엔드";
     private static final String INPUT_COURSE_INFORMATION_EXAMINATION = "ex) 백엔드, 레벨1, 자동차경주";
     private static final int COURSE_INDEX = 0;
     private static final int LEVEL_INDEX = 1;
@@ -36,7 +37,6 @@ public abstract class InputView {
     private static final String ERROR_MESSAGE_NOT_CONTAINS_COURSE = "[ERROR] 해당 과정이 존재하지 않습니다.";
     private static final String ERROR_MESSAGE_NOT_CONTAINS_LEVEL = "[ERROR] 해당 레벨이 존재하지 않습니다.";
     private static final String ERROR_MESSAGE_NOT_CONTAINS_MISSION = "[ERROR] 해당 미션이 존재하지 않습니다.";
-    private static final String COURSE_INFORMATION = "과정: 백엔드 | 프론트엔드";
 
     public static List<String> readFrontendCrew() {
         try {
@@ -128,8 +128,8 @@ public abstract class InputView {
     private static void validateCourse(final String inputCourseName) {
         boolean isContainsInputCourseName = true;
 
-        for (Course course:Course.values()) {
-            if (course.getName().equals(inputCourseName.trim())) {
+        for (Courses courses : Courses.values()) {
+            if (courses.getName().equals(inputCourseName.trim())) {
                 isContainsInputCourseName = false;
                 break;
             }

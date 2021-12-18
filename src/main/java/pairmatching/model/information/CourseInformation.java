@@ -1,2 +1,2 @@
-package pairmatching.model.information;public class CourseInformation {
+package pairmatching.model;public class CourseInformation {
 }
