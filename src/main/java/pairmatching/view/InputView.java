@@ -21,6 +21,7 @@ public class InputView {
 	public static String chooseEntryMenu() {
 		System.out.println(INPUT_ENTRY_MENU);
 		String input = Console.readLine();
+		System.out.println();
 		InputValidator.validateEntryMenu(input);
 		if (input.equals(QUIT)) {
 			return QUIT;
@@ -38,6 +39,8 @@ public class InputView {
 
 	public static String commonSubMenuInput() {
 		System.out.println(INPUT_COURSE_MENU);
-		return Console.readLine();
+		String input = Console.readLine();
+		System.out.println();
+		return input;
 	}
 }

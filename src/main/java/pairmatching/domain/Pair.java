@@ -23,6 +23,7 @@ public class Pair {
 		stringBuffer.append(" : ");
 		stringBuffer.append(crewAnother);
 		if (crewThird != null) {
+			stringBuffer.append(" : ");
 			stringBuffer.append(crewThird);
 		}
 		return stringBuffer.toString();

@@ -23,7 +23,6 @@ public class PairMatchRepository {
 
 	public static PairMatch addPairMatches(Match match, List<Crew> crews) {
 		List<Pair> pairs = makePairs(crews);
-		pairs.forEach(System.out::println);
 		PairMatch pairMatch = new PairMatch(match, pairs);
 		pairMatches.add(pairMatch);
 		return pairMatch;

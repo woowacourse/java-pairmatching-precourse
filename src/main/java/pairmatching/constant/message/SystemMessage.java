@@ -20,7 +20,7 @@ public class SystemMessage {
 			+ Level.getSelfDescription()
 			+ SHARP_LINE
 			+ "과정, 레벨, 미션을 선택하세요." + NEWLINE
-			+ "ex) 백엔드, 레벨1, 자동차경주" + NEWLINE;
+			+ "ex) 백엔드, 레벨1, 자동차경주";
 
 	public static final String QUIT = "Q";
 	public static final String CHOICE_CLEAR = "3";
