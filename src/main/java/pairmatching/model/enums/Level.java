@@ -33,12 +33,12 @@ public enum Level {
     }
 
     public static boolean isContainedMission(String name, String mission) {
-        return Objects.requireNonNull(Arrays.stream(Level.values())
+        List<String> findMissions = Objects.requireNonNull(Arrays.stream(Level.values())
                         .filter(level -> level.getName().equals(name))
                         .findFirst()
                         .orElse(null))
-                .getMissions()
-                .contains(mission);
+                .getMissions();
+        return findMissions != null && findMissions.contains(mission);
     }
 
     public static Level findNameByValue(String value) {
