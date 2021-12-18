@@ -3,6 +3,7 @@ package pairmatching.view;
 import java.util.List;
 import pairmatching.model.Mission;
 import pairmatching.model.Pair;
+import pairmatching.model.Pairs;
 
 public class OutputView {
 
@@ -18,6 +19,8 @@ public class OutputView {
 	private static final String SELECT_INFORMATION = "과정, 레벨, 미션을 선택하세요.";
 	private static final String EXAMPLE_INFORMATION = "ex) 백엔드, 레벨1, 자동차경주";
 	private static final String PAIR_MATCHING_RESULT = "페어 매칭 결과입니다.";
+	private static final String ASK_RE_PAIRING = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
+	private static final String YES_OR_NO = "네 | 아니오";
 
 	private OutputView() {
 	}
@@ -46,14 +49,19 @@ public class OutputView {
 		System.out.println(EXAMPLE_INFORMATION);
 	}
 
-	public static void printPair(List<Pair> pairs) {
+	public static void printPair(Pairs pairs) {
 		printNewLine();
 		System.out.println(PAIR_MATCHING_RESULT);
-		for (Pair pair : pairs) {
+		for (Pair pair : pairs.getPairs()) {
 			System.out.print(pair.getCrews().get(0) + PAIR_DELIMITER + pair.getCrews().get(1));
 			printLastPairForOdd(pair);
 			printNewLine();
 		}
+	}
+
+	public static void askRePairing() {
+		System.out.println(ASK_RE_PAIRING);
+		System.out.println(YES_OR_NO);
 	}
 
 	private static void printLastPairForOdd(Pair pair) {

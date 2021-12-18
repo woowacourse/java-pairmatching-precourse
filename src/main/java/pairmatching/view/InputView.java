@@ -37,4 +37,15 @@ public class InputView {
 			return selectInformation();
 		}
 	}
+
+	public static String askRePair() {
+		try {
+			String answer = Console.readLine();
+			InputException.validateYesOrNo(answer);
+			return answer;
+		} catch (IllegalArgumentException IAE) {
+			OutputView.printError(IAE);
+			return askRePair();
+		}
+	}
 }

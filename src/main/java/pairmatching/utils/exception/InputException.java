@@ -12,10 +12,11 @@ public class InputException {
 	private static final String SPACE = " ";
 	private static final String CONTAIN_SPACE = "공백이 입력되었습니다.";
 	private static final String INVALID_NUMBER = "번호가 잘못 입력되었습니다.";
-	private static final String INFORMATION_DELIMITER = ", ";
 	private static final String INVALID_COURSE = "과정이 잘못 입력되었습니다.";
 	private static final String INVALID_LEVEL = "레벨이 잘못 입력되었습니다.";
 	private static final String INVALID_MISSION = "미션이 잘못 입력되었습니다.";
+	private static final String YES = "네";
+	private static final String NO = "아니오";
 
 	private InputException() {
 	}
@@ -41,6 +42,12 @@ public class InputException {
 		}
 		if (!checkMission(filteredInformation)) {
 			throw new IllegalArgumentException(INVALID_MISSION);
+		}
+	}
+
+	public static void validateYesOrNo(String answer) {
+		if (!(answer.equals(YES) || answer.equals(NO))) {
+			throw new IllegalArgumentException();
 		}
 	}
 

@@ -1,7 +1,8 @@
 package pairmatching.controller;
 
 import java.util.List;
-import pairmatching.model.Pair;
+import pairmatching.model.Information;
+import pairmatching.model.Pairs;
 import pairmatching.utils.BasicInformationFactory;
 import pairmatching.utils.FunctionFactory;
 import pairmatching.utils.PairFactory;
@@ -26,14 +27,27 @@ public class MatchingController {
 				break;
 			}
 			if (functionNumber.equals(PAIR_MATCHING_NUMBER)) {
-				List<Pair> pairs = PairFactory.makePairs();
+				Information information = MatchingController.controlInformationSelect();
+				if (information.isPaired()) {
+					checkRepair();
+				}
+				if (!information.isPaired()) {
+					Pairs pairs = PairFactory.checkRePair(information);
+				}
 			}
 		}
 	}
 
-	public static List<String> controlInformationSelect() {
+	private static void checkRepair() {
+		if (InputView.askRePair().equals("아니오")) {
+			controlInformationSelect();
+		}
+	}
+
+	public static Information controlInformationSelect() {
 		BasicInformationFactory.noticeBasicInformation();
-		return InputView.selectInformation();
+		List<String> information = InputView.selectInformation();
+		return new Information(information.get(0), information.get(1), information.get(2));
 	}
 
 	private static boolean isTerminateCondition(String functionNumber) {
