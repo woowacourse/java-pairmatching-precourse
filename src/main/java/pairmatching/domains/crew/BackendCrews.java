@@ -12,4 +12,8 @@ public class BackendCrews extends Crews{
 	public void setBackendCrews() {
 		super.loadCrews(BACKEND_DATA_PATH, Course.BACKEND, backendCrews);
 	}
+
+	public List<Crew> getBackendCrews() {
+		return backendCrews;
+	}
 }

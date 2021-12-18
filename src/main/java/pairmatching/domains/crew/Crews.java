@@ -3,8 +3,10 @@ package pairmatching.domains.crew;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.domains.mission.Course;
 
 public class Crews {
@@ -21,5 +23,9 @@ public class Crews {
 			bufReader.close();
 		} catch (Exception e) {
 		}
+	}
+
+	protected void shuffleCrews(List<Crew> crews) {
+		List<Crew> shuffledList = Randoms.shuffle(crews);
 	}
 }
