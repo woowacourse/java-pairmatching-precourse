@@ -63,7 +63,7 @@ public class PairMatchingService {
                 return alreadyMatch;
             }
         }
-        if (!alreadyMatch & crewsCnt % 2 == 1) {
+        if (crewsCnt % 2 == 1) {
             alreadyMatch = isAlreadyMatchOnLastThreeCrew(programInfo, shuffledCrews, crewsCnt);
         }
         return alreadyMatch;

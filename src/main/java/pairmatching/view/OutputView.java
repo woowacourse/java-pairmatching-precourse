@@ -42,4 +42,8 @@ public class OutputView {
     public static void showErrorMessage(IllegalArgumentException e) {
         System.out.println("[ERROR] " + e.getMessage());
     }
+
+    public static void showThisMissionIsNotMatchingMessage() {
+        System.out.println("해당되는 미션은 아직 매칭되지 않았습니다.");
+    }
 }

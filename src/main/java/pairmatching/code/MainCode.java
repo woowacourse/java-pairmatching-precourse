@@ -4,8 +4,6 @@ import static pairmatching.ErrorMessage.*;
 
 import java.util.Arrays;
 
-import pairmatching.domain.Level;
-
 public enum MainCode {
     MATCHING("1"), SEARCH("2"), INITIALIZE("3"), QUIT("Q");
     private String code;

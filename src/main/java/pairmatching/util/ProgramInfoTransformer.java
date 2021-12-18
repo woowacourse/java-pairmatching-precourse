@@ -7,7 +7,6 @@ import pairmatching.domain.Course;
 import pairmatching.domain.Level;
 import pairmatching.domain.Mission;
 import pairmatching.domain.ProgramInfo;
-import pairmatching.repository.ProgramInfoRepository;
 
 public class ProgramInfoTransformer {
 

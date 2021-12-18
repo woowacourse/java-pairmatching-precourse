@@ -4,8 +4,6 @@ import static pairmatching.ErrorMessage.*;
 
 import java.util.Arrays;
 
-import com.sun.org.apache.xpath.internal.objects.XString;
-
 public enum Mission {
     CAR_RACING("자동차경주"),
     LOTTO("로또"),

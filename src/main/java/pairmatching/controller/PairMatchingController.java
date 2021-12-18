@@ -13,6 +13,7 @@ public class PairMatchingController {
     PairMatchingService pairMatchingService = new PairMatchingService();
     InputView inputView = new InputView();
     MainCode mainCode = MainCode.MATCHING;
+
     public void run() {
         try {
             executeFunction();
@@ -68,7 +69,7 @@ public class PairMatchingController {
             OutputView.showThisProgramPair(programInfo);
             return;
         }
-        System.out.println("해당되는 미션은 아직 매칭되지 않았습니다.");
+        OutputView.showThisMissionIsNotMatchingMessage();
     }
 
     private ProgramInfo matchPairs() {
