@@ -3,16 +3,18 @@ package pairmatching.model;
 import java.util.Objects;
 
 public class Mission {
+	private Course course;
 	private Level level;
 	private String name;
 
-	private Mission(Level level, String name) {
+	private Mission(Course course, Level level, String name) {
+		this.course = course;
 		this.level = level;
 		this.name = name;
 	}
 
-	public static Mission of(Level level, String name) {
-		return new Mission(level, name);
+	public static Mission of(Course course, Level level, String name) {
+		return new Mission(course, level, name);
 	}
 
 	@Override
@@ -32,12 +34,12 @@ public class Mission {
 			return false;
 		}
 		Mission mission = (Mission) o;
-		return level == mission.level && Objects.equals(name, mission.name);
+		return course == mission.course && level == mission.level && Objects.equals(name, mission.name);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(level, name);
+		return Objects.hash(course, level, name);
 	}
 
 	public String getName() {
@@ -46,5 +48,9 @@ public class Mission {
 
 	public Level getLevel() {
 		return level;
+	}
+
+	public Course getCourse() {
+		return course;
 	}
 }

@@ -1,9 +1,10 @@
 package pairmatching.application;
 
+import static java.util.stream.Collectors.toList;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import pairmatching.model.Course;
 import pairmatching.model.Crew;
 import pairmatching.model.CrewRepository;
 import pairmatching.model.Mission;
@@ -30,7 +31,7 @@ public class PairGenerator {
 
 	private List<Pair> generatePairList(Mission mission) {
 		List<Pair> result = new ArrayList<>();
-		List<Crew> shuffledCrew = getShuffledCrew();
+		List<Crew> shuffledCrew = getShuffledCrewByCourse(mission.getCourse());
 
 		for (int index = 0; index < shuffledCrew.size(); index += 2) {
 			result.add(createPair(mission, shuffledCrew, index));
@@ -42,23 +43,22 @@ public class PairGenerator {
 		return result;
 	}
 
-	private List<Crew> getShuffledCrew() {
-		return getShuffledCrewNames().stream().map(CrewRepository::findByName).collect(Collectors.toList());
+	private List<Crew> getShuffledCrewByCourse(Course course) {
+		return getShuffledCrewNamesByCourse(course).stream().map(CrewRepository::findByName).collect(toList());
 	}
 
-	private List<String> getShuffledCrewNames() {
-		return Randoms.shuffle(CrewRepository.findAll().stream().map(Crew::getName).collect(
-			Collectors.toList()));
+	private List<String> getShuffledCrewNamesByCourse(Course course) {
+		return Randoms.shuffle(CrewRepository.findAllByCourse(course).stream().map(Crew::getName).collect(toList()));
 	}
 
 	private boolean isValidPairList(Mission mission, List<Pair> pairList) {
-		List<Mission> sameLevelMissions = MissionRepository.findByLevel(mission.getLevel());
+		List<Mission> sameLevelMissions = MissionRepository.findByLevelAndCourse(mission.getLevel(), mission.getCourse());
 		return !sameLevelMissions.stream()
 			.anyMatch(m -> isDuplicatedPairByOtherMission(pairList, m));
 	}
 
 	private boolean isDuplicatedPairByOtherMission(List<Pair> pairList, Mission otherMission) {
-		List<Pair> otherPairList = PairRepository.findByMission(otherMission);
+		List<Pair> otherPairList = PairRepository.findByCourseAndMission(otherMission);
 		return otherPairList.stream().anyMatch(p -> isDuplicatedByOtherPairList(pairList, p));
 	}
 

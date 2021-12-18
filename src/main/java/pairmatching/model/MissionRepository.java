@@ -23,11 +23,17 @@ public class MissionRepository {
 		return missions.stream().anyMatch(m -> m.getName().equals(name));
 	}
 
-	public static Mission findByName(String name) {
-		return missions.stream().filter(m -> m.getName().equals(name)).findFirst().get();
+	public static Mission findByNameAndCourse(String name, Course course) {
+		return missions.stream()
+			.filter(m -> m.getName().equals(name))
+			.filter(m -> m.getCourse().equals(course))
+			.findFirst().get();
 	}
 
-	public static List<Mission> findByLevel(Level level) {
-		return missions.stream().filter(m -> m.getLevel().equals(level)).collect(Collectors.toList());
+	public static List<Mission> findByLevelAndCourse(Level level, Course course) {
+		return missions.stream()
+			.filter(m -> m.getLevel().equals(level))
+			.filter(m -> m.getCourse().equals(course))
+			.collect(Collectors.toList());
 	}
 }

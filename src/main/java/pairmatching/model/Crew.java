@@ -24,4 +24,8 @@ public class Crew {
 	public String getName() {
 		return name;
 	}
+
+	public Course getCourse() {
+		return course;
+	}
 }

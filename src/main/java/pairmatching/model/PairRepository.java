@@ -19,7 +19,7 @@ public class PairRepository {
 		return pairs;
 	}
 
-	public static List<Pair> findByMission(Mission mission) {
+	public static List<Pair> findByCourseAndMission(Mission mission) {
 		return pairs.stream().filter(p -> p.getMission().equals(mission)).collect(Collectors.toList());
 	}
 

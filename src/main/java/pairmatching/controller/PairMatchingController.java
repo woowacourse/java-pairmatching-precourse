@@ -21,7 +21,7 @@ public class PairMatchingController {
 
 			if (option.equals("1")) {
 				pairMatching();
-			} else if(option.equals("Q")) {
+			} else if (option.equals("Q")) {
 				break;
 			}
 		}
@@ -36,14 +36,14 @@ public class PairMatchingController {
 	private void handlePairMatching() {
 		try {
 			String information = retryInput(InputView::inputMatchingInformation);
-			boolean wantToMatch = isWantToMatch(information);
 
-			if (wantToMatch) {
+			if (isWantToMatch(information)) {
 				pairMatchingService.match(parseToCourse(information), parseToLevel(information),
 					parseToMission(information));
 			}
 
-			OutputView.printMatchingResult(pairMatchingService.findByMissionName(parseToMission(information)));
+			OutputView.printMatchingResult(
+				pairMatchingService.findByCourseAndMission(parseToCourse(information), parseToMission(information)));
 		} catch (IllegalArgumentException e) {
 			OutputView.printErrorMessage(e.getMessage());
 			handlePairMatching();
@@ -53,7 +53,7 @@ public class PairMatchingController {
 	private boolean isWantToMatch(String information) {
 		boolean wantToMatch = true;
 
-		if (pairMatchingService.hasMatched(parseToMission(information))) {
+		if (pairMatchingService.hasMatched(parseToCourse(information), parseToMission(information))) {
 			OutputView.printRematchingMessage();
 			String value = retryInput(() -> InputView.inputOption("네", "아니오"));
 			wantToMatch = parseToIsWantToMatch(value);

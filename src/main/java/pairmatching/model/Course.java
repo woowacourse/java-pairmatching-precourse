@@ -9,6 +9,13 @@ public enum Course {
 		this.name = name;
 	}
 
+	public static Course valueByName(String name) {
+		if (name.equals("백엔드")) {
+			return BACKEND;
+		}
+		return FRONTEND;
+	}
+
 	public String getName() {
 		return name;
 	}

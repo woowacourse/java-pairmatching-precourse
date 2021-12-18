@@ -23,11 +23,6 @@ public class Application {
 		saveCrews();
 	}
 
-	private static void saveCrews() {
-		saveBackendCrews();
-		saveFrontendCrews();
-	}
-
 	private static void saveMissions() {
 		saveMissionsWithLevel(Level.LEVEL_1, "자동차경주", "로또", "숫자야구게임");
 		saveMissionsWithLevel(Level.LEVEL_2, "장바구니", "결제", "지하철노선도");
@@ -35,9 +30,19 @@ public class Application {
 	}
 
 	private static void saveMissionsWithLevel(Level level, String... missionNames) {
+		saveMissionsByCourse(Course.BACKEND, level, missionNames);
+		saveMissionsByCourse(Course.FRONTEND, level, missionNames);
+	}
+
+	private static void saveMissionsByCourse(Course course, Level level, String[] missionNames) {
 		Arrays.stream(missionNames)
-			.map(name -> Mission.of(level, name))
+			.map(name -> Mission.of(course, level, name))
 			.forEach(MissionRepository::save);
+	}
+
+	private static void saveCrews() {
+		saveBackendCrews();
+		saveFrontendCrews();
 	}
 
 	private static void saveBackendCrews() {
