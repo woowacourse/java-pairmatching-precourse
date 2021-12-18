@@ -57,8 +57,8 @@ public class PairController {
             String input = InputView.getInfo().replaceAll(" ", "");
             inputDTO = inputService.parseInput(input);
         } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
             getInput();
-            OutputView.printError("입력형식에 맞춰 입력해주세요.");
         }
     }
 }
