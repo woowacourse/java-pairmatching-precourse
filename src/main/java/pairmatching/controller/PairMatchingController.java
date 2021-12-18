@@ -70,7 +70,7 @@ public class PairMatchingController {
 		if (pairMap.containsKey(matchingInformation)) {
 			String yesOrNot = selectReMatchingOrPrint();
 			if (yesOrNot.equals(NO)) {
-				pairMatching();
+				return;
 			}
 		}
 		List<Crew> shuffledCrews = Randoms.shuffle(crews.findCrews(matchingInformation.getCourse()));

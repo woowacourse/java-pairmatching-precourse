@@ -1,9 +1,6 @@
 package pairmatching.view;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
-import org.omg.CORBA.INITIALIZE;
 
 import pairmatching.domain.Crew;
 
@@ -67,9 +64,13 @@ public class OutputView {
 	}
 
 	public static void printPair(List<Crew> pair) {
-		System.out.println(pair.stream()
-			.map(Crew::getName)
-			.collect(Collectors.joining(DELIMITER)));
+		for (int i = 0; i < pair.size(); i++) {
+			System.out.print(pair.get(i));
+			if (i < pair.size() - 1) {
+				System.out.print(DELIMITER);
+			}
+		}
+		System.out.println();
 	}
 
 	public static void printFindPairByInputMenu() {
