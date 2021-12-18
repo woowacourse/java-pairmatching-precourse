@@ -88,13 +88,23 @@ public class Crews {
 		return this.pairList;
 	}
 
-	public boolean isReShuffle(List<Pair> originalPairs, List<Pair> shuffledPairs) {
-		for (Pair pair : shuffledPairs) {
-			if (originalPairs.contains(pair)) {
-				return true;
+	public boolean isReShuffle(Crews crews) {
+		if (isSameLevel(crews)) {
+			for (Pair pair : crews.getPairs()) {
+				if (this.pairList.contains(pair)) {
+					return true;
+				}
 			}
 		}
 		return false;
+	}
+
+	public boolean isSameLevel(Crews crews) {
+		return this.level.equals(crews.getLevel());
+	}
+
+	private String getLevel() {
+		return this.level;
 	}
 
 	@Override
