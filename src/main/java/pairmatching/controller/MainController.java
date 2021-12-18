@@ -48,6 +48,7 @@ public class MainController {
             return true;
         }
         if(input.equals("2")){
+            pairService.getPairList();
             return true;
         }
         if(input.equals("3")){

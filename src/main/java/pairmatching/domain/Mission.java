@@ -1,7 +1,6 @@
 package pairmatching.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Mission {
@@ -23,8 +22,18 @@ public class Mission {
         return false;
     }
 
+    public void removeMatching(){
+        matchingCrews.clear();
+    }
     public void addMatch(List<Crew> pair) {
         matchingCrews.add(pair);
+    }
+
+    public boolean isExistMatchingCrews(){
+        if(matchingCrews.size() == 0){
+            return false;
+        }
+        return true;
     }
 
     public void printPair() {

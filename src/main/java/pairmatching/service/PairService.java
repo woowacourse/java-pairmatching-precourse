@@ -19,7 +19,7 @@ import static pairmatching.service.FileRead.fileRead;
 import static pairmatching.view.Main.MainInfo.printMainInfo;
 
 public class PairService {
-    
+
     public void match() {
         boolean runStatus = true;
         while(runStatus){
@@ -27,23 +27,18 @@ public class PairService {
                 printMainInfo();
                 String input = InputView.input();
                 // Validation
-                runStatus = findMission(input);
+                String[] info = input.split(",");
+                Course course = Course.ofName(info[0].trim());
+                Level level = Level.of(info[1].trim());
+                String missionName = info[2].trim();
+                Mission mission = MissionRepository.findMissionByInfo(course,level,missionName);
+                runStatus = makeMatching(course,level,mission);
             }catch (IllegalArgumentException | IOException e){
-                
+
             }
         }
     }
 
-    private boolean findMission(String input) throws IOException {
-        String[] info = input.split(",");
-        Course course = Course.ofName(info[0].trim());
-        Level level = Level.of(info[1].trim());
-        String missionName = info[2].trim();
-        Mission mission = MissionRepository.findMissionByInfo(course,level,missionName);
-
-        makeMatching(course,level,mission);
-        return false;
-    }
 
     private List<String> makeCrewNameList(Course course) throws IOException {
         String file = null;
@@ -124,7 +119,7 @@ public class PairService {
         }
     }
 
-    private void makeMatching(Course course, Level level, Mission mission) throws IOException {
+    private boolean makeMatching(Course course, Level level, Mission mission) throws IOException {
         List<String> crewNameList = makeCrewNameList(course);
             crewNameList = shuffle(crewNameList);
             if(isEven(crewNameList)){
@@ -134,6 +129,7 @@ public class PairService {
             if(!isEven(crewNameList)){
                 oddMatch(crewNameList,level,mission);
             }
+        return false;
     }
 
 
@@ -142,5 +138,41 @@ public class PairService {
             return true;
         }
         return false;
+    }
+
+
+    public void getPairList(){
+        boolean runStatus = true;
+        while(runStatus){
+            try{
+                printMainInfo();
+                String input = InputView.input();
+                // Validation
+                String[] info = input.split(",");
+                Course course = Course.ofName(info[0].trim());
+                Level level = Level.of(info[1].trim());
+                String missionName = info[2].trim();
+                Mission mission = MissionRepository.findMissionByInfo(course,level,missionName);
+                runStatus = getPair(course,level,mission);
+            }catch (IllegalArgumentException | IOException e){
+
+            }
+        }
+    }
+
+    private boolean getPair(Course course, Level level, Mission mission) throws IOException {
+        if (mission.isExistMatchingCrews()) {
+            System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n" +
+                    "네 | 아니오");
+            String input = InputView.input();
+            if (input.equals("네")) {
+                mission.removeMatching();
+                makeMatching(course, level, mission);
+                return false;
+            }
+            mission.printPair();
+            return false;
+        }
+        throw new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.");
     }
 }
