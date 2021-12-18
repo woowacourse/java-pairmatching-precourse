@@ -12,4 +12,9 @@ public class Input {
         String inputProcess = Console.readLine();
         return inputProcess;
     }
+
+    public static String InputYesOrNo() {
+        String input = Console.readLine();
+        return input;
+    }
 }
