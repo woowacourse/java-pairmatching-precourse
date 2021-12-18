@@ -57,7 +57,7 @@ public class PairController {
     }
 
     private void matchPair(MatchingInfo matchingInfo) {
-        FileReader fileReader = new FileReader(matchingInfo.getCourse().getName());
+        FileReader fileReader = new FileReader(matchingInfo.getCourse().getFileName());
         List<String> members = fileReader.getNameList();
         List<Pair> pairHistory = getPairHistory(matchingInfo.getCourse(), matchingInfo.getLevel());
 
@@ -99,6 +99,9 @@ public class PairController {
 
     private List<Pair> getPairHistory(Course course, Level level) {
         List<Pair> history = new ArrayList<>();
+        if (matchingInfos == null) {
+            return history;
+        }
         for (MatchingInfo matchingInfo : matchingInfos) {
             if (!matchingInfo.isSameCourseAndLevel(course, level)) {
                 continue;
