@@ -14,6 +14,7 @@ public class OutputView {
 	}
 
 	public static void printMatchingResult(List<String> matchingResult) {
+		matchingResult.forEach(name -> System.out.println(name));
 		System.out.println();
 		System.out.println(Message.PRINT_MATCHING_RESULT);
 		int index = 0;
@@ -21,19 +22,19 @@ public class OutputView {
 		while(index < matchingResult.size()) {
 
 			System.out.print(matchingResult.get(index) + NAME_DIVISOR);
-
-			if(index + 2 < matchingResult.size()-1) {
-				System.out.println(matchingResult.get(index+1));
-			}
+			System.out.print(matchingResult.get(index+1));
 
 			if(index + 2 == matchingResult.size()-1) {
-				System.out.print(matchingResult.get(index+1));
 				System.out.println(NAME_DIVISOR + matchingResult.get(index+2));
 				break;
 			}
 
+			System.out.println();
+
 			index+=2;
 		}
+
+		System.out.println();
 		System.out.println();
 	}
 

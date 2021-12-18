@@ -71,13 +71,22 @@ public class Function {
 		BufferedReader bufferedReader = new BufferedReader(
 			new FileReader("src/main/resources/"+filePath));
 
-		while(true) {
-			String line = bufferedReader.readLine();
-			crewName.add(line);
-			if(line == null) break;
-		}
-		bufferedReader.close();
+		String line = "";
+		boolean check = true;
+		while(check) {
+			line = bufferedReader.readLine();
+			System.out.println(line);
+			if(line == null){
+				check = false;
+			}
 
+			if(line != null) {
+				crewName.add(line);
+			}
+		}
+
+		bufferedReader.close();
+		crewName.remove(null);
 		return crewName;
 	}
 
