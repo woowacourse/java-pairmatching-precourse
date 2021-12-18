@@ -19,6 +19,10 @@ public class Pair {
         crews.add(new Crew(crew));
     }
 
+    public void add(String shuffledCrew) {
+        crews.add(new Crew(shuffledCrew));
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

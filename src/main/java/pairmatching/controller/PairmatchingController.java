@@ -52,6 +52,7 @@ public class PairmatchingController {
             return;
         }
         Pairs pairs = crews.getMatchResult(matchingCondition);
+
         OutputView.showPairs(pairs);
         matchingResults.add(matchingCondition, pairs);
     }

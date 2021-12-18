@@ -26,7 +26,10 @@ public class Crews {
         List<String> shuffledCrews = getShuffledCrews(matchingCondition);
         while (!shuffledCrews.isEmpty()) {
             if (shuffledCrews.size() <= 3) {
-                Pair pair = new Pair(shuffledCrews);
+                Pair pair = new Pair();
+                for (String shuffledCrew : shuffledCrews) {
+                    pair.add(shuffledCrew);
+                }
                 pairs.add(pair);
                 break;
             }
