@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CrewRepository {
+	private static final String BACKEND_CREW_PATH = "./src/main/resources/backend-crew.md";
+	private static final String FRONTEND_CREW_PATH = "./src/main/resources/frontend-crew.md";
 	private final List<Crew> crews = new ArrayList<>();
 
 	public CrewRepository() throws IOException {
@@ -16,7 +18,7 @@ public class CrewRepository {
 	}
 
 	private void readBackEnd() throws IOException {
-		File backendFile = new File("./src/main/resources/backend-crew.md");
+		File backendFile = new File(BACKEND_CREW_PATH);
 		if (backendFile.exists()) {
 			BufferedReader inFile = new BufferedReader(new FileReader(backendFile));
 			String sLine;
@@ -26,7 +28,7 @@ public class CrewRepository {
 	}
 
 	private void readFrontEnd() throws IOException {
-		File frontendFile = new File("./src/main/resources/frontend-crew.md");
+		File frontendFile = new File(FRONTEND_CREW_PATH);
 		if (frontendFile.exists()) {
 			BufferedReader inFile = new BufferedReader(new FileReader(frontendFile));
 			String sLine;

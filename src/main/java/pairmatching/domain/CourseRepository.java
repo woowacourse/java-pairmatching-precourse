@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CourseRepository {
+	private static final String COURSE_DELIMITER = " | ";
+
 	private final List<Course> courses = new ArrayList<Course>() {
 		{
 			add(Course.BACKEND);
@@ -19,6 +21,6 @@ public class CourseRepository {
 	public String getCourseListString() {
 		return courses.stream()
 			.map(Course::getName)
-			.collect(Collectors.joining(" | "));
+			.collect(Collectors.joining(COURSE_DELIMITER));
 	}
 }

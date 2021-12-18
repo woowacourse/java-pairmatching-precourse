@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.domain.Course;
 import pairmatching.domain.CourseRepository;
@@ -18,7 +17,6 @@ import pairmatching.domain.MatchParams;
 import pairmatching.domain.Mission;
 import pairmatching.domain.MissionRepository;
 import pairmatching.domain.PairRepository;
-import pairmatching.util.SystemMessage;
 import pairmatching.view.FunctionSelectView;
 import pairmatching.view.PairMatchingInputView;
 import pairmatching.view.PairMatchingResultView;

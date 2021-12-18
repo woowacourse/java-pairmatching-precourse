@@ -11,6 +11,10 @@ import java.util.stream.Collectors;
 import pairmatching.util.SystemMessage;
 
 public class MissionRepository {
+	private static final String MISSION_DELIMITER = " | ";
+	private static final String NEW_LINE = "\n";
+	private static final String LEVEL_SEPARATOR = ": ";
+
 	private final Map<Level, List<Mission>> missions = new LinkedHashMap<Level, List<Mission>>() {
 		{
 			put(Level.LEVEL1, Arrays.asList(Mission.RACING_CAR, Mission.LOTTO, Mission.BASEBALL));
@@ -24,15 +28,15 @@ public class MissionRepository {
 	public String getMissionListString() {
 		List<String> missionStrings = new ArrayList<>();
 		for (Level level : missions.keySet()) {
-			String missionString = SystemMessage.MISSION_LIST + level.getName() + ": ";
+			String missionString = SystemMessage.MISSION_LIST + level.getName() + LEVEL_SEPARATOR;
 			List<Mission> missionListByLevel = missions.get(level);
 			String missionListString = missionListByLevel.stream()
 				.map(Mission::getName)
-				.collect(Collectors.joining(" | "));
+				.collect(Collectors.joining(MISSION_DELIMITER));
 			missionString += missionListString;
 			missionStrings.add(missionString);
 		}
 
-		return String.join("\n", missionStrings);
+		return String.join(NEW_LINE, missionStrings);
 	}
 }

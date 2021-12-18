@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class PairRepository {
+	private static final String NEW_LINE = "\n";
+	private static final String PAIR_DELIMITER = " : ";
+
 	private final Map<MatchParams, List<List<String>>> pairs = new HashMap<>();
 
 	public void addPair(MatchParams params, List<List<String>> crews) {
@@ -23,8 +26,8 @@ public class PairRepository {
 		}
 
 		return pairList.stream()
-			.map(item -> String.join(" : ", item))
-			.collect(Collectors.joining("\n"));
+			.map(item -> String.join(PAIR_DELIMITER, item))
+			.collect(Collectors.joining(NEW_LINE));
 	}
 
 	public boolean isExistParam(MatchParams params) {
