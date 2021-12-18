@@ -16,6 +16,10 @@ public class PairProgram {
         this.levelMission = levelMission;
     }
 
+    public void addMissions(Level level, List<String> missionNames) {
+        levelMission.addMission(level, missionNames);
+    }
+
     public boolean isMatched(Level level, Mission mission) {
         levelMission.checkExistMission(level, mission);
         return levelMission.isMatched(level, mission);

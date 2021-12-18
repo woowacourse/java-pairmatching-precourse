@@ -17,6 +17,11 @@ public class Missions {
         return new Missions(new ArrayList<>());
     }
 
+    public void addWithMissionName(String name) {
+        addMission(Mission.createEmptyMission(name, Course.BACKEND));
+        addMission(Mission.createEmptyMission(name, Course.FRONTEND));
+    }
+
     public void addMission(Mission mission) {
         checkSameMissionName(mission);
         missions.add(mission);

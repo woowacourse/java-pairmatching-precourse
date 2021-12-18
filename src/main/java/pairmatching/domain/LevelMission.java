@@ -19,6 +19,11 @@ public class LevelMission {
         return new LevelMission(levelMissions);
     }
 
+    public void addMission(Level level, List<String> missionNames) {
+        Missions missions = levelmissions.get(level);
+        missionNames.forEach(missions::addWithMissionName);
+    }
+
     public void checkExistMission(Level level, Mission mission) {
         if (!levelmissions.containsKey(level) || levelmissions.get(level).isContainMission(mission)) {
             throw new MissionNotFoundException();
