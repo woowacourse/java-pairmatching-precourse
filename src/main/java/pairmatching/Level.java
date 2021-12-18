@@ -10,7 +10,7 @@ public enum Level {
     LEVEL5("레벨5");
 
     private String name;
-    private List<Mission> missionList=new List<>;
+    private List<Mission> missionList=new ArrayList<>();
 
     Level(String name) {
         this.name = name;
