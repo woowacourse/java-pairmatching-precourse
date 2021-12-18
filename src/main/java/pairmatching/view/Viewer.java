@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Viewer {
 
 	public void showFunctions() {
-		System.out.println("기능을 선택하세요.");
+		System.out.println("\n기능을 선택하세요.");
 		List<Function> functions = Function.getFunctions();
 		for (Function function : functions) {
 			System.out.println(function.toString());
@@ -28,6 +28,7 @@ public class Viewer {
 	}
 
 	public void showCrewPairs(List<String> crewPairs) {
+		System.out.println("\n페어 매칭 결과입니다.");
 		String result = crewPairs.stream().collect(Collectors.joining("\n"));
 		System.out.println(result);
 	}
