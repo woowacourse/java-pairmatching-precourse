@@ -1,5 +1,6 @@
 package pairmatching.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PairResult {
@@ -13,5 +14,21 @@ public class PairResult {
 		this.level = level;
 		this.mission = mission;
 		this.pairs = pairs;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public Level getLevel() {
+		return level;
+	}
+
+	public String getMission() {
+		return mission;
+	}
+
+	public List<String> getPairs() {
+		return pairs;
 	}
 }

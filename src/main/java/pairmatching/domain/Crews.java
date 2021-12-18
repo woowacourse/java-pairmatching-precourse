@@ -10,7 +10,9 @@ public class Crews {
 		crews = new ArrayList<>();
 	}
 
-	public void addCrew(Crew crew) {
-		crews.add(crew);
+	public void addCrewsByNameList(Course course, List<String> nameList) {
+		for (String name : nameList) {
+			crews.add(new Crew(course, name));
+		}
 	}
 }

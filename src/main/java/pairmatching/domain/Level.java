@@ -18,4 +18,17 @@ public enum Level {
 		this.name = name;
 		this.mission = mission;
 	}
+
+	public static Level matchValue(String name) {
+		for (Level level : Level.values()) {
+			if (level.name.equals(name)) {
+				return level;
+			}
+		}
+		return null;
+	}
+
+	public List<String> getMission() {
+		return mission;
+	}
 }
