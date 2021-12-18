@@ -11,6 +11,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.domain.Course;
 import pairmatching.domain.Menu;
 import pairmatching.domain.Pair;
+import pairmatching.domain.crew.CrewRepository;
 import pairmatching.domain.matcing.Matching;
 import pairmatching.domain.matcing.MatchingRepository;
 import pairmatching.view.OutputView;
@@ -18,9 +19,11 @@ import pairmatching.view.OutputView;
 public class MatchingController {
 
 	private final MatchingRepository matchingRepository;
+	private final CrewRepository crewRepository;
 
 	public MatchingController(MatchingRepository matchingRepository) {
 		this.matchingRepository = matchingRepository;
+		this.crewRepository = new CrewRepository();
 	}
 
 	public void matching(Menu menu) {
@@ -59,4 +62,8 @@ public class MatchingController {
 		return crewNames;
 	}
 
+	public void init() {
+		matchingRepository.init();
+		crewRepository.init();
+	}
 }

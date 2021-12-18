@@ -46,7 +46,7 @@ public class MainController {
 		}
 
 		if (order.isInit()) {
-			matchingRepository.init();
+			matchingController.init();
 			OutputView.printInitMessage();
 		}
 	}
