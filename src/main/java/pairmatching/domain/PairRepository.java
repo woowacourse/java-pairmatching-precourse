@@ -12,4 +12,8 @@ public class PairRepository {
     public static void addPair(Pair pair) {
         pairInformation.add(pair);
     }
+
+    public static void initialization() {
+        pairInformation.clear();
+    }
 }

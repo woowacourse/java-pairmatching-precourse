@@ -2,6 +2,7 @@ package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.PairMatching;
+import pairmatching.domain.PairRepository;
 
 import java.io.IOException;
 
@@ -25,7 +26,7 @@ public class InputView {
         }
     }
 
-    private boolean selectFunction(OutputView outputView, String function) throws IOException {
+    private void selectFunction(OutputView outputView, String function) throws IOException {
         if (function.equals("1")) {
             outputView.outputInformation();
             String[] info = inputInformation();
@@ -34,6 +35,9 @@ public class InputView {
         if (function.equals("2")) {
             String[] info = inputInformation();
             outputView.outputMatching(info[0], info[1], info[2]);
+        }
+        if (function.equals("3")) {
+            PairRepository.initialization();
         }
     }
 
