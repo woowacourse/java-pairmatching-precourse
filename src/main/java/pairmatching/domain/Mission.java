@@ -1,8 +1,8 @@
 package pairmatching.domain;
 
 public class Mission {
-    private Level level;
-    private String name;
+    private final Level level;
+    private final String name;
 
     public Mission(Level level, String name) {
         this.level = level;

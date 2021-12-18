@@ -15,10 +15,10 @@ public class MissionRepository {
     public static List<Mission> getMissionsByLevel(Level level) {
         List<Mission> missionList = new ArrayList<>();
         for (Mission mission : missions) {
-           if(mission.getLevel() != level) continue;
-            missionList.add(mission);
+           if (!mission.getLevel().equals(level)) continue;
+           missionList.add(mission);
         }
-        return missions;
+        return missionList;
     }
 
     public static Mission getMissionByName(String name) {
