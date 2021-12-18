@@ -1,6 +1,7 @@
 package pairmatching.source;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.constants.StringConstant;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -17,7 +18,7 @@ public enum Level {
     private static final String MISSION_DELIMITER = " | ";
 
     private static final String REMATCH_REQUEST   = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n네 | 아니오 ";
-
+    private static final String NOT_FOUND_ERROR= "존재하지 않는 레벨입니다.";
 
     private String name;
     private HashMap<String, Mission> missionsMap = new HashMap<>();
@@ -69,6 +70,18 @@ public enum Level {
 
     public String getName(){
         return name;
+    }
+
+    public static void checkExistLevel(String name) throws IllegalArgumentException{
+        Level[] levels = Level.values();
+
+        for(Level level : levels){
+            if(level.name == name){
+                return;
+            }
+        }
+
+        throw new IllegalArgumentException(StringConstant.ERROR_MESSAGE_PREFIX +NOT_FOUND_ERROR);
     }
 
     @Override
