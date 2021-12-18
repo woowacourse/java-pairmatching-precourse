@@ -19,6 +19,15 @@ public class Except {
         }
     }
 
+    public static void PrintPairInputError() {
+        try {
+            throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] : 입력 양식이 잘못됐어요!");
+            Utils.InputPrintPair();
+        }
+    }
+
     public static void MatchingTryThreeTime() {
         try {
             throw new IllegalArgumentException();
