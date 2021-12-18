@@ -24,7 +24,12 @@ public enum PairFunction {
 	SEARCH("2") {
 		@Override
 		public void operate() {
-
+			OutputView.printCourseLevelMissionInformation();
+			try {
+				List<String> informationList = getCourseLevelMissionInput();
+			} catch (IllegalArgumentException exception) {
+				OutputView.printErrorMessage(exception.getMessage());
+			}
 		}
 	},
 	RESET("3") {
