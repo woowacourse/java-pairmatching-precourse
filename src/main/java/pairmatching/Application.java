@@ -1,5 +1,6 @@
 package pairmatching;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Application {
@@ -10,7 +11,7 @@ public class Application {
             executePairMatching();
         }
         if (command.equals("2")) {
-
+            executeInquirePairData();
         }
         if (command.equals("3")) {
 
@@ -19,6 +20,17 @@ public class Application {
             return false;
         }
         return true;
+    }
+
+    private void executeInquirePairData() {
+        CoursesOutput.printCourseInformation();
+        String[] command = CommandInput.getMatchingCommand().split(SPLIT_REGEX);
+        ArrayList<Pair> PairData = PairManager.getInstance().getPairData(
+                command[0].trim(),
+                command[1].trim().substring(2),
+                command[2].trim()
+        );
+        PairOutput.printPairResult(PairData);
     }
 
     private void executePairMatching() {

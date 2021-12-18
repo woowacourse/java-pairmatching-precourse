@@ -12,6 +12,7 @@ public class PairManager {
     private static final String ERROR_NOT_MATCH = "[ERROR] 매칭이 되지 않았습니다.";
     private static final String FRONTEND = "프론트엔드";
     private static final String BACKEND = "백엔드";
+    private static final String NOT_CONTAINED_ERROR = "[ERROR] 존재하지 않는 내역입니다.";
 
     HashMap<PairKey, ArrayList<Pair>> pairLog = new HashMap<>();
     CrewManager crewManager = new CrewManager();
@@ -49,7 +50,7 @@ public class PairManager {
             throw new IllegalArgumentException(ERROR_NOT_MATCH);
         }
         updateCrewData(pairList, level);
-        pairLog.put(new PairKey(mission, level), pairList);
+        pairLog.put(new PairKey(course, mission, level), pairList);
         PairOutput.printPairResult(pairList);
     }
 
@@ -105,5 +106,13 @@ public class PairManager {
         for (Pair pair : pairList) {
             pair.update(level);
         }
+    }
+
+    public ArrayList<Pair> getPairData(String course, String level, String mission) {
+        ArrayList<Pair> pairDatas = pairLog.get(new PairKey(course, mission, Integer.parseInt(level)));
+        if (pairDatas == null) {
+            throw new IllegalArgumentException(NOT_CONTAINED_ERROR);
+        }
+        return pairDatas;
     }
 }
