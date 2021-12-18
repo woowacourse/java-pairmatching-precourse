@@ -6,6 +6,7 @@ import pairmatching.utils.Path;
 import pairmatching.utils.ReadFile;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MatchingService {
@@ -27,6 +28,13 @@ public class MatchingService {
 //    파일을 읽어온다
     public void getFileName(){
         String path = getPath();
+        if(path.equals("BACKEND_PATH")){
+            String[] nameArr =Path.BACKNAME.split(",");
+            List<String> tempnameList = new ArrayList<String>(Arrays.asList(nameArr));
+            this.nameList = tempnameList;
+
+            return;
+        }
         this.nameList = ReadFile.readFile(path);
         return;
     }
