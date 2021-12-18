@@ -5,10 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     public static String startFunction() {
         try {
-            StringBuilder stringBuilder = new StringBuilder();
-
-            stringBuilder.append("기능을 선택하세요.").append("\n1. 페어 매칭").append("\n2. 페어 조회").append("\n3. 페어 초기화").append("\nQ. 종료");
-            System.out.println(stringBuilder);
+            System.out.println("기능을 선택하세요." + "\n1. 페어 매칭" + "\n2. 페어 조회" + "\n3. 페어 초기화" + "\nQ. 종료");
 
             return validateStartFunction(Console.readLine());
         } catch (IllegalArgumentException exception) {
@@ -24,5 +21,18 @@ public class InputView {
         }
 
         return readLine;
+    }
+
+    public static String chooseNumberOne() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append("#############################################").append("\n과정: 백엔드 | 프론트엔드").append("\n미션:")
+                .append("\n").append("\t").append("- 레벨1: 자동차경주 | 로또 | 숫자야구게임").append("\n").append("\t")
+                .append("- 레벨2: 장바구니 | 결제 | 지하철노선도").append("\n").append("\t").append("- 레벨3: ").append("\n").append("\t")
+                .append("- 레벨4: 성능개선 | 배포").append("\n").append("\t").append("- 레벨5: ").append("\n############################################")
+                .append("\n과정, 레벨, 미션을 선택하세요.");
+        System.out.println(stringBuilder);
+
+        return Console.readLine();
     }
 }
