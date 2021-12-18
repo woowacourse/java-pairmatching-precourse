@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pairmatching.Application;
+import pairmatching.constant.PairMatchingConst;
 import pairmatching.domain.Course;
 import pairmatching.domain.Crews;
 import pairmatching.domain.Level;
@@ -19,6 +20,7 @@ import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class PairMatchingController {
+
 	public void run() {
 		// List<String> backCrewNames = getCrewNameByFile("backend-crew.md");
 		// List<String> frontCrewNames = getCrewNameByFile("frontend-crew.md");
@@ -29,17 +31,13 @@ public class PairMatchingController {
 
 		// 기능 선택 기능
 		String select = enterSelectOption();
-		if (select.equals("1")) {
-			System.out.println("1");
+		if (select.equals(PairMatchingConst.SELECT_PAIR_MATCHING)) { // 페어 매칭
 		}
-		if (select.equals("2")) {
-			System.out.println("2");
+		if (select.equals(PairMatchingConst.SELECT_PAIR_READ)) { // 페어 조회
 		}
-		if (select.equals("3")) {
-			System.out.println("3");
+		if (select.equals(PairMatchingConst.SELECT_PAIR_RESET)) { // 페어 초기화
 		}
-		if (select.equals("Q")) {
-			System.out.println("Q");
+		if (select.equals(PairMatchingConst.SELECT_EXIT)) { // 종료
 			return;
 		}
 	}
