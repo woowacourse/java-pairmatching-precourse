@@ -21,7 +21,8 @@ public class PairMatchingController {
 			String mainCommend = getMainCommend();
 			if (mainCommend.equals(MATCH_PAIR)) {
 				OutputView.printMission();
-				getPairList(techCourse);
+				List<String> pairList = getPairList(techCourse);
+				OutputView.showCrewList(pairList);
 			}
 			if (mainCommend.equals(LOOKUP_PAIR)) {
 				lookupPairList(techCourse);
@@ -47,20 +48,20 @@ public class PairMatchingController {
 		}
 	}
 
-	private void getPairList(TechCourse techCourse) {
+	private List<String> getPairList(TechCourse techCourse) {
 		String missionName = missionName();
-		seeIfShuffled(techCourse, missionName);
-		List<String> pairList = techCourse.matchPair(missionName);
-		OutputView.showCrewList(pairList);
+		List<String> match = seeIfShuffled(techCourse, missionName);
+		return techCourse.matchPair(missionName);
 	}
 
-	private void seeIfShuffled(TechCourse techCourse, String mission) {
+	private List<String> seeIfShuffled(TechCourse techCourse, String mission) {
 		if (techCourse.isShuffled(mission)) {
 			String rematchCommend = getRematch();
 			if (rematchCommend.equals(NO)) {
-				getPairList(techCourse);
+				return getPairList(techCourse);
 			}
 		}
+		return techCourse.matchPair(mission);
 	}
 
 	private String missionName() {
