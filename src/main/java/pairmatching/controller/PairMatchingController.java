@@ -7,12 +7,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.View.InputView;
+import pairmatching.View.OutputView;
+import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 
 public class PairMatchingController {
@@ -20,6 +24,7 @@ public class PairMatchingController {
 	private static final String DELIMITER = ",";
 	private static final String FRONTEND_COURSE = "프론트엔드";
 	private static final String BACKEND_COURSE = "백엔드";
+	private static Map<Crew, ArrayList<Crew>> pair;
 
 	private final InputView inputView;
 
@@ -36,61 +41,53 @@ public class PairMatchingController {
 			String[] courseAndLevelAndMission = inputView.scanCourseAndLevelAndMission().trim().split(DELIMITER);
 			String course = courseAndLevelAndMission[0];
 			if (course.equals(FRONTEND_COURSE)) {
-				frontendMatchPair(course);
+				matchPair(Course.FRONTEND);
 			}
 			if (course.equals(BACKEND_COURSE)) {
-				backendMatchPair(course);
+				matchPair(Course.BACKEND);
+			}
+			OutputView.printPairResult(pair);
+		}
+	}
+
+	public void matchPair(Course course) {
+		List<String> crewNames = readCrewNames(course);
+		List<String> shuffledCrew = Randoms.shuffle(crewNames);
+		int crewSize = shuffledCrew.size();
+
+		// 페어 매칭
+		pair = new LinkedHashMap<>();
+		for (int i = 0; i < crewSize - 1; i += 2) {
+			Crew crew1 = new Crew(course, crewNames.get(i));
+			Crew crew2 = new Crew(course, crewNames.get(i + 1));
+			if (!pair.containsKey(crew1)) {
+				pair.put(crew1, new ArrayList<>());
+				pair.get(crew1).add(crew2);
+			}
+			if ((crewSize % 2 == 1) && (i == crewSize - 3)) {
+				pair.get(crew1).add(new Crew(course, crewNames.get(crewSize - 1)));
 			}
 		}
 	}
 
-	public void frontendMatchPair(String course) {
-		List<String> crewNames = readFrontendCrewNames();
-		List<String> shuffledCrew = Randoms.shuffle(crewNames);
-
-		// 페어 매칭 & 검증
-
-	}
-
-	public void backendMatchPair(String course) {
-		List<String> crewNames = readBackendCrewNames();
-		List<String> shuffledCrew = Randoms.shuffle(crewNames);
-
-		// 페어 매칭 & 검증
-
-	}
-
-	public List<String> readBackendCrewNames() {
-		List<String> backendCrewNames = new ArrayList<>();
+	public List<String> readCrewNames(Course course) {
+		List<String> crewNames = new ArrayList<>();
 		try {
-			File file = new File(getClass().getResource("/backend-crew.md").toURI());
+			File file = null;
+			if (course == Course.FRONTEND) {
+				file = new File(getClass().getResource("/frontend-crew.md").toURI());
+			}
+			if (course == Course.BACKEND) {
+				file = new File(getClass().getResource("/backend-crew.md").toURI());
+			}
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String crewName;
 			while ((crewName = br.readLine()) != null) {
-				backendCrewNames.add(crewName);
+				crewNames.add(crewName);
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return backendCrewNames;
-	}
-
-	public List<String> readFrontendCrewNames() {
-		List<String> frontendCrewNames = new ArrayList<>();
-		try {
-			File file = new File(getClass().getResource("/frontend-crew.md").toURI());
-			BufferedReader br = new BufferedReader(new FileReader(file));
-			String crewName;
-			while ((crewName = br.readLine()) != null) {
-				frontendCrewNames.add(crewName);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-		return frontendCrewNames;
+		return crewNames;
 	}
 }

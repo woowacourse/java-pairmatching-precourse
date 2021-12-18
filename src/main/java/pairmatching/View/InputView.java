@@ -12,7 +12,9 @@ public class InputView {
 			+ "  - 레벨2: 장바구니 | 결제 | 지하철노선도\n"
 			+ "  - 레벨3: \n" + "  - 레벨4: 성능개선 | 배포\n"
 			+ "  - 레벨5: \n"
-			+ "############################################";
+			+ "############################################\n"
+			+ "과정, 레벨, 미션을 선택하세요.\n"
+			+ "ex) 백엔드, 레벨1, 자동차경주";
 
 	private final Scanner scanner;
 
@@ -26,6 +28,7 @@ public class InputView {
 	}
 
 	public String scanCourseAndLevelAndMission() {
+		System.out.println();
 		System.out.println(COURSE_LEVEL_MISSION_GUIDE_MESSEAGE);
 		return scanner.nextLine();
 	}
