@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.model.Course;
 import pairmatching.model.Mission;
@@ -21,17 +22,38 @@ public class MatchingController {
 
 	public static void doMatching(String[] matchingInfo) {
 		getCrew(matchingInfo[0]);
-		Boolean b = false;
+		replyMatching(matchingInfo[1]);
+		for (Mission mission : ServiceController.missions) {
+			String level = String.valueOf(mission.getLevel());
+			String name = mission.getName();
+			if (matchingInfo[0].equals(level) && matchingInfo[1].equals(name)) {
+				mission.pairs = (ArrayList<String>)pairs;
+			}
+		}
+	}
+
+	public static void replyMatching(String level) {
 		int count = 1;
-		while (b.equals(false) && count < 3) {
+		while (count < 3) {
 			shuffledCrew = Randoms.shuffle(crewNames);
 			generatePairs(shuffledCrew);
-			b = isAllNewPair(matchingInfo[1]);
+			if (isAllNewPair(level)) {
+				break;
+			}
+			if (askRestart().equals("아니오")) {
+				break;
+			}
 			count++;
 		}
 		if (count == 3) {
 			throw new IllegalArgumentException(ErrorMessage.NO_MORE_COMBINATION);
 		}
+	}
+
+	private static String askRestart() {
+		System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
+		System.out.println("네 | 아니오");
+		return Console.readLine();
 	}
 
 	private static void generatePairs(List<String> shuffledCrew) {
