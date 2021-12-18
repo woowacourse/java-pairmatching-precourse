@@ -39,23 +39,18 @@ public class PairMatchingController {
 
 	private void pairMatching() {
 		OutputView.printMissionInformation();
-		handlePairMatching();
+		runWithIsRetry(this::handlePairMatching, true);
 	}
 
 	private void handlePairMatching() {
-		try {
-			String information = inputInformationWithValidation();
-			if (isWantToMatch(information)) {
-				pairMatchingService.match(parser.parseToCourse(information), parser.parseToLevel(information),
-					parser.parseToMission(information));
-			}
-			OutputView.printMatchingResult(
-				pairMatchingService.findByCourseAndMission(parser.parseToCourse(information),
-					parser.parseToMission(information)));
-		} catch (IllegalArgumentException | IllegalStateException e) {
-			OutputView.printErrorMessage(e.getMessage());
-			handlePairMatching();
+		String information = inputInformationWithValidation();
+		if (isWantToMatch(information)) {
+			pairMatchingService.match(parser.parseToCourse(information), parser.parseToLevel(information),
+				parser.parseToMission(information));
 		}
+		OutputView.printMatchingResult(
+			pairMatchingService.findByCourseAndMission(parser.parseToCourse(information),
+				parser.parseToMission(information)));
 	}
 
 	private boolean isWantToMatch(String information) {
@@ -72,19 +67,14 @@ public class PairMatchingController {
 
 	private void printMatchedResult() {
 		OutputView.printMissionInformation();
-		handlePrintMatchedResult();
+		runWithIsRetry(this::handlePrintMatchedResult, false);
 	}
 
 	private void handlePrintMatchedResult() {
-		try {
-			String information = inputInformationWithValidation();
-			List<Pair> pairList =
-				pairMatchingService.findByCourseAndMission(parser.parseToCourse(information),
-					parser.parseToMission(information));
-			OutputView.printMatchingResult(pairList);
-		} catch (IllegalArgumentException e) {
-			OutputView.printErrorMessage(e.getMessage());
-		}
+		String information = inputInformationWithValidation();
+		List<Pair> pairList = pairMatchingService.findByCourseAndMission(parser.parseToCourse(information),
+				parser.parseToMission(information));
+		OutputView.printMatchingResult(pairList);
 	}
 
 	private void initializeMatchedPair() {
@@ -105,6 +95,17 @@ public class PairMatchingController {
 		} catch (IllegalArgumentException e) {
 			OutputView.printErrorMessage(e.getMessage());
 			return retryInput(supplier);
+		}
+	}
+
+	private void runWithIsRetry(Runnable runnable, boolean isRetry) {
+		try {
+			runnable.run();
+		} catch (IllegalArgumentException | IllegalStateException e) {
+			OutputView.printErrorMessage(e.getMessage());
+			if (isRetry) {
+				runnable.run();
+			}
 		}
 	}
 }
