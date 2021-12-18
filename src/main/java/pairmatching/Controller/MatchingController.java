@@ -3,6 +3,8 @@ package pairmatching.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import pairmatching.Domain.Course;
 import pairmatching.Domain.Crew;
 import pairmatching.Domain.Mission;
 import pairmatching.Domain.MissionRepository;
@@ -66,11 +68,13 @@ public class MatchingController {
 	public void pairMatch() {
 		OutputView.printProgramInfo(this.missionList);
 		Mission mission;
+		List<String> splitRequestInfo;
 		do {
 			String userReqeustInfo = InputView.requestMatchInfo();
-			List<String> splitRequestInfo = ParsingString.splitComma(userReqeustInfo);
+			splitRequestInfo = ParsingString.splitComma(userReqeustInfo);
 			mission = findMission(splitRequestInfo.get(REQUEST_INFO_MISSION_NAME));
-		} while(!existPair(mission));
+		} while (!existPair(mission));
+		List<String> shuffleNameList = shuffleNameList(splitRequestInfo.get(REQUEST_INFO_COURSE));
 	}
 
 	public void inquireMatchInfo() {
@@ -101,4 +105,10 @@ public class MatchingController {
 		return false;
 	}
 
+	public List<String> shuffleNameList(String input) {
+		if (input.equals(Course.BACKEND.getName())) {
+			return Randoms.shuffle(this.backendCrewNameList);
+		}
+		return Randoms.shuffle(this.frontendCrewNameList);
+	}
 }
