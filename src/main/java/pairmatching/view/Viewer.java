@@ -1,9 +1,6 @@
 package pairmatching.view;
 
-import pairmatching.model.Course;
-import pairmatching.model.Function;
-import pairmatching.model.Level;
-import pairmatching.model.LevelMissionsMap;
+import pairmatching.model.*;
 
 import java.util.List;
 
@@ -27,5 +24,11 @@ public class Viewer {
 		}
 		System.out.println("############################################");
 		System.out.println("과정, 레벨, 미션을 선택하세요.");
+	}
+
+	public void showCrewPairs(List<CrewPair> crewPairs) {
+		for (CrewPair pair : crewPairs) {
+			System.out.println(pair.toString());
+		}
 	}
 }

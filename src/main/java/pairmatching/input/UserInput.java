@@ -22,12 +22,12 @@ public class UserInput {
 		return Function.getFunctionByKey(inputKey);
 	}
 
-	public String getCourseLevelMission() {
+	public List<String> getCourseLevelMission() {
 		String input = readLine();
 		List<String> names = Arrays.asList(input.replace(" ", "").split(DELIM));
 		Course.getCourseByName(names.get(COURSE_INDEX));
 		Level.getLevelByName(names.get(LEVEL_INDEX));
 		Mission.getMissionByName(names.get(MISSION_INDEX));
-		return input;
+		return names;
 	}
 }

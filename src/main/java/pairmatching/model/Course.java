@@ -28,4 +28,8 @@ public enum Course {
 				.findAny()
 				.orElseThrow(() -> new IllegalArgumentException(WRONG_COURSE_NAME));
 	}
+
+	public String getName() {
+		return name;
+	}
 }
