@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 
 class PariMatchingControllerTest {
 
-    PariMatchingController controller;
+    PairMatchingController controller;
 
     @BeforeEach
     void setUp() {
-        controller = new PariMatchingController();
+        controller = new PairMatchingController();
     }
 
     @Test

@@ -1,5 +1,8 @@
 package pairmatching.view;
 
+import pairmatching.controller.PairMatchingController;
+import pairmatching.utils.ErrorPrinter;
+
 public class MainView {
 
     private static final String VIEW_HEADER = "기능을 선택하세요.";
@@ -15,9 +18,18 @@ public class MainView {
 
     private static final String DELIMITER = ". ";
     private static final String LINE_BREAK = "\n";
+    private static final String INPUT_DELIMITER = ", ";
+    private static final int LEVEL_INDEX = 1;
+    private static final int MISSION_INDEX = 2;
+    private static final int POSITION_INDEX = 0;
+    private static final String MISSION_SELECT_PROMPT = "";
+    private static final String ERR_INALID_MENU = "없는 기능입니다.";
     private final String menuBoard;
+    private final PairMatchingController controller;
+    private boolean exited = false;
 
-    public MainView() {
+    public MainView(PairMatchingController controller) {
+        this.controller = controller;
         menuBoard = String.join(LINE_BREAK,
             VIEW_HEADER,
             menu(SELECTOR_MATCH, NAME_MATCH),
@@ -32,24 +44,71 @@ public class MainView {
     }
 
     public void select() {
-        String input = InputView.getLineWithPrompt(menuBoard);
-        if (input.equals(SELECTOR_QUIT)) {
-            return;
-        }
-        select(input);
+        action(() -> {
+            String input = InputView.getLineWithPrompt(menuBoard);
+            if (input.equals(SELECTOR_QUIT)) {
+                exited = true;
+                return;
+            }
+            select(input);
+        });
     }
 
     private void select(String input) {
         if (input.equals(SELECTOR_MATCH)) {
-            // MATCH
+            action(this::matchPair);
+            return;
         }
-
         if (input.equals(SELECTOR_QUERY)) {
-            // show
+            showResult();
+            return;
         }
 
         if (input.equals(SELECTOR_INIT)) {
             // init
+            return;
         }
+        throw new IllegalArgumentException(ERR_INALID_MENU);
+    }
+
+    public void showResult() {
+        action(
+            () -> {
+                String input = InputView.getLineWithPrompt(MISSION_SELECT_PROMPT);
+                String[] inputs = input.split(INPUT_DELIMITER);
+                showResult(inputs[MISSION_INDEX], inputs[POSITION_INDEX], inputs[LEVEL_INDEX]);
+            }
+        );
+    }
+
+    private void showResult(String mission, String position, String level) {
+        action(
+            () -> ConsolePrinter.print(controller.getResult(mission, position, level))
+        );
+    }
+
+    private void matchPair() {
+        action(
+            () -> {
+                String input = InputView.getLineWithPrompt(MISSION_SELECT_PROMPT);
+                String[] inputs = input.split(INPUT_DELIMITER);
+                controller.matchPair(inputs[MISSION_INDEX], inputs[POSITION_INDEX],
+                    inputs[LEVEL_INDEX]);
+                showResult(inputs[MISSION_INDEX], inputs[POSITION_INDEX], inputs[LEVEL_INDEX]);
+            }
+        );
+    }
+
+    private void action(Task task) {
+        try {
+            task.execute();
+        } catch (IllegalArgumentException e) {
+            ErrorPrinter.print(e);
+            action(task);
+        }
+    }
+
+    public boolean exited() {
+        return this.exited;
     }
 }

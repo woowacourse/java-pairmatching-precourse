@@ -7,7 +7,7 @@ import pairmatching.mission.Level;
 import pairmatching.mission.Mission;
 import pairmatching.mission.MissionRepository;
 
-public class PariMatchingController {
+public class PairMatchingController {
 
     private static final String ERR_INVALID_LEVEL = "레벨이 일치하지 않습니다.";
     private final PairMatcher pairMatcher = new PairMatcher();
