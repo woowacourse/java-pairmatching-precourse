@@ -15,6 +15,10 @@ public class PairController {
     private InitialSetting initialSetting = new InitialSetting();
     private OutputView outputView = new OutputView();
     private Validator validator = new Validator();
+    private static final String MENU_ONE = "1";
+    private static final String MENU_TWO = "2";
+    private static final String MENU_THREE = "3";
+    private static final String MENU_QUIT = "Q";
 
     public void run() {
         initialSetting.initialInformation();
@@ -28,16 +32,16 @@ public class PairController {
             inputView.printSelectMenu();
             String selectMenu = Console.readLine();
             validator.validateSelectMenu(selectMenu);
-            if (selectMenu.equals("1")) {
+            if (selectMenu.equals(MENU_ONE)) {
                 pairMatch();
             }
-            if (selectMenu.equals("2")) {
+            if (selectMenu.equals(MENU_TWO)) {
                 getPair();
             }
-            if (selectMenu.equals("3")) {
+            if (selectMenu.equals(MENU_THREE)) {
                 initialPair();
             }
-            if (selectMenu.equals("Q")) {
+            if (selectMenu.equals(MENU_QUIT)) {
                 return false;
             }
         } catch (IllegalArgumentException exception) {
@@ -101,5 +105,11 @@ public class PairController {
 
     private List<String> shuffleStringCrew(Course course) {
         return Randoms.shuffle(course.getStringCrewList());
+    }
+
+    private void isExistPairList(Course course, Mission mission) {
+        if (mission.getPairList(course) != null) {
+
+        }
     }
 }
