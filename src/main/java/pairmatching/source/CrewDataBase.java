@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CrewDataBase {
-    public HashMap<String, Crew> backEndCrewMap = new HashMap<>();
-    public HashMap<String, Crew> frontEndCrewMap = new HashMap<>();
+    private HashMap<String, Crew> backEndCrewMap = new HashMap<>();
+    private HashMap<String, Crew> frontEndCrewMap = new HashMap<>();
 
     public CrewDataBase(){
         BackEndInit();
@@ -28,5 +28,12 @@ public class CrewDataBase {
         }
     }
 
+    public HashMap<String, Crew> getCrewMapByCourse(Course course){
 
+        if(course == Course.BACKEND){
+            return backEndCrewMap;
+        }
+
+        return frontEndCrewMap;
+    }
 }
