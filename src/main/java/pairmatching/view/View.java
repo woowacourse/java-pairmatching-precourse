@@ -31,6 +31,7 @@ public class View {
     }
 
     private static void printMenu() {
+        feedLine();
         System.out.println("기능을 선택하세요");
         Arrays.stream(Menu.values())
                 .forEach(menu -> System.out.println(
@@ -39,11 +40,15 @@ public class View {
     }
 
     public static void printBoard() {
+        feedLine();
         System.out.println(PRETTY_BORDER);
         printCourses();
         printMissions();
-
         System.out.println(PRETTY_BORDER);
+    }
+
+    private static void feedLine() {
+        System.out.println();
     }
 
     public static PairTag getPairTag() {
@@ -101,7 +106,7 @@ public class View {
     }
 
     public static void printParis(List<Pair> pairs) {
-
+        feedLine();
         if (pairs.isEmpty()) {
             System.out.println("[ERROR] 매칭 이력이 없습니다.");
             return;
