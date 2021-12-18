@@ -33,6 +33,7 @@
 
 - 모든 페어 초기화 기능
 
+
 ## 기능별 클래스 할당
 
 - Crew Class
@@ -55,3 +56,18 @@
     - 홀, 짝에 따라 매칭 분리
   - 매칭된 여부를 저장
   
+- Level class
+  - 미션과 레벨의 CrewDataBase를 관리하는 클래스
+    - 미션 리스트 map으로 저장
+    - CrewDataBase 필드 멤버로 저장
+  - 레벨의 미션의 매칭 여부 관리, 매칭 진행
+  - 레벨의 미션 출력 기능
+
+- FunctionInputChecker class
+  - 올바른 기능 심볼을 입력받아 반환, 예외처리
+  
+- PairingInputChecker class
+  - 과정, 레벨, 미션을 입력받고 예외 확인 클래스
+
+- PairMatchingSystem class
+  - 전체 페어 시스템을 관리, 실행
