@@ -11,7 +11,7 @@ public class PairMatching {
 	private final Level level;
 	private final List<MatchingCrew> crewList;
 
-	public PairMatching(Course course, Mission mission,Level level, List<MatchingCrew> crewList) {
+	public PairMatching(Course course, Mission mission, Level level, List<MatchingCrew> crewList) {
 		this.course = course;
 		this.mission = mission;
 		this.level = level;

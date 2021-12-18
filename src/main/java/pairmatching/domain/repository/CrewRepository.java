@@ -6,9 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import pairmatching.domain.Course;
-import pairmatching.domain.Crew;
-
 public class CrewRepository {
 	public static List<String> backEndCrewList = new ArrayList<>();
 	public static List<String> frontEndCrewList = new ArrayList<>();

@@ -20,10 +20,10 @@ public class InputView {
 		System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
 		System.out.println("네 | 아니오");
 		String input = Console.readLine();
-		try{
+		try {
 			validateInputRequestRematching(input);
 			return input;
-		}catch (IllegalArgumentException illegalArgumentException) {
+		} catch (IllegalArgumentException illegalArgumentException) {
 			System.out.println(illegalArgumentException.getMessage());
 			return inputRequestRematching();
 		}

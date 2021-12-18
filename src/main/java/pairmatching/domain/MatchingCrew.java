@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MatchingCrew {
-	private List<Crew> crewList =  new ArrayList<>();
+	private List<Crew> crewList = new ArrayList<>();
 
 	public MatchingCrew(Crew crew1, Crew crew2) {
 		crewList.add(crew1);

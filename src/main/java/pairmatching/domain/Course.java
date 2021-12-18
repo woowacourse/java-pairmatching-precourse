@@ -1,6 +1,5 @@
 package pairmatching.domain;
 
-
 import static pairmatching.utils.Constants.*;
 
 import java.util.Arrays;

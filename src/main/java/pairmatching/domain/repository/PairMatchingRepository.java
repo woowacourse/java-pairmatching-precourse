@@ -75,7 +75,7 @@ public class PairMatchingRepository {
 
 	public static List<Crew> createCrewListForBackEnd(List<String> crewNameList) {
 		List<Crew> crewList = new ArrayList<>();
-		for (String crewName: Randoms.shuffle(crewNameList)) {
+		for (String crewName : Randoms.shuffle(crewNameList)) {
 			crewList.add(new Crew(Course.BACKEND, crewName));
 		}
 		return crewList;
@@ -83,7 +83,7 @@ public class PairMatchingRepository {
 
 	public static List<Crew> createCrewListForFrontEnd(List<String> crewNameList) {
 		List<Crew> crewList = new ArrayList<>();
-		for (String crewName: Randoms.shuffle(crewNameList)) {
+		for (String crewName : Randoms.shuffle(crewNameList)) {
 			crewList.add(new Crew(Course.FRONTEND, crewName));
 		}
 		return crewList;

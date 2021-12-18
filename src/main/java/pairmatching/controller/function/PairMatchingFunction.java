@@ -15,7 +15,7 @@ public enum PairMatchingFunction {
 	PAIR_MATCHING("1") {
 		@Override
 		void function() {
-			try{
+			try {
 				printPairMatchingScreen();
 				String[] splitPairMatching = inputPairMatching().split(",");
 				String course = splitPairMatching[0].trim();
@@ -29,7 +29,7 @@ public enum PairMatchingFunction {
 					return;
 				}
 				PairMatchingService.pairMatching(course, level, mission);
-			}catch (IllegalArgumentException illegalArgumentException) {
+			} catch (IllegalArgumentException illegalArgumentException) {
 				System.out.println(illegalArgumentException.getMessage());
 				function();
 			}
@@ -38,7 +38,7 @@ public enum PairMatchingFunction {
 	PAIR_FIND("2") {
 		@Override
 		void function() {
-			try{
+			try {
 				printPairMatchingScreen();
 				String[] splitPairMatching = inputPairMatching().split(",");
 				String course = splitPairMatching[0].trim();
@@ -46,7 +46,7 @@ public enum PairMatchingFunction {
 				String mission = splitPairMatching[2].trim();
 				PairMatching pairMatching = PairMatchingRepository.find(course, level, mission);
 				printPairMatchingResult(pairMatching.getPairMatchingResult());
-			} catch (IllegalArgumentException illegalArgumentException){
+			} catch (IllegalArgumentException illegalArgumentException) {
 				System.out.println(illegalArgumentException.getMessage());
 				function();
 			}
