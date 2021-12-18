@@ -1,16 +1,48 @@
 package pairmatching.domain;
 
-public class Crew {
-    private final String name;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-    public Crew(String name) {
+public class Crew {
+    private String course;
+    private String name;
+    private Map<Level, ArrayList<Crew>> alreadyPair = new HashMap<>();
+
+    public Crew(String name, String course) {
         this.name = name;
+        this.course = course;
     }
 
-    @Override
-    public String toString() {
-        return "Crew{" +
-                "name='" + name + '\'' +
-                '}';
+    public String getName() {
+        return name;
+    }
+
+    public void printName() {
+        System.out.printf(this.name);
+    }
+
+    public boolean isEqual(String name) {
+        if (this.name.equals(name)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkAlreadyPair(Level level, Crew crew) {
+        if (alreadyPair.size() == 0) {
+            return false;
+        }
+        if (alreadyPair.get(level).contains(crew)) {
+            throw new IllegalArgumentException("페어가 취소되었습니다");
+        }
+        return false;
+    }
+
+    public void addAlreadyPair(Level level, Crew crew) {
+        if (!alreadyPair.containsKey(level)) {
+            this.alreadyPair.put(level, new ArrayList<Crew>());
+        }
+        this.alreadyPair.get(level).add(crew);
     }
 }
