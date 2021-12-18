@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Matching {
+    private static final int LEVEL_COUNTS = 5;
+    private static final int COURSE_COUNTS = 2;
     private static final int LEVEL_SIZE = 3;
 
     private final List<List<String>> course;
@@ -13,6 +15,9 @@ public class Matching {
 
     public Matching() {
         course = new ArrayList<>();
+        for (int i = 0; i < LEVEL_COUNTS * LEVEL_SIZE * COURSE_COUNTS; i++) {
+            course.add(new ArrayList<>());
+        }
         hashMap = new HashMap<>();
         initBackendHashMap();
         initFrontendHashMap();
@@ -57,7 +62,10 @@ public class Matching {
     public boolean HasDuplicateMatchingBySameLevel(List<Integer> sameLevelIndexList) {
         List<String> allMatched = new ArrayList<>();
         for (Integer sameLevelIndex : sameLevelIndexList) {
-            course.get(sameLevelIndex).forEach(matching -> allMatched.add(matching));
+            for(String matching: course.get(sameLevelIndex)){
+                allMatched.add(matching);
+            }
+            //allMatched.addAll(course.get(sameLevelIndex));
         }
         return allMatched.stream().distinct().count() != allMatched.size();
     }
