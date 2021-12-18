@@ -6,33 +6,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import pairmatching.util.Constant;
+
 public class FileScanner {
 
-    public List<String> backendCrewFileScanner() {
-        List<String> crewNames = new ArrayList<>();
+    public List<Crew> crewFileScanner(Course course) {
+        List<Crew> crewNames = new ArrayList<>();
         try {
-            File file = new File("src/main/resources/backend-crew.md");
+            File file = courseToFile(course);
             Scanner scan = new Scanner(file);
             while (scan.hasNextLine()) {
-                crewNames.add(scan.nextLine());
+                crewNames.add(new Crew(course, scan.nextLine()));
             }
         } catch (FileNotFoundException e) {
-            // TODO: handle exception
         }
         return crewNames;
     }
 
-    public List<String> frontendCrewFileScanner() {
-        List<String> crewNames = new ArrayList<>();
-        try {
-            File file = new File("src/main/resources/frontend-crew.md");
-            Scanner scan = new Scanner(file);
-            while (scan.hasNextLine()) {
-                crewNames.add(scan.nextLine());
-            }
-        } catch (FileNotFoundException e) {
-            // TODO: handle exception
+    private File courseToFile(Course course) {
+        if (course == Course.BACKEND) {
+            return new File(Constant.BACK_COURSE_SRC);
         }
-        return crewNames;
+        return new File(Constant.FRONT_COURSE_SRC);
     }
 }
