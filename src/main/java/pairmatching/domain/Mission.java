@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import pairmatching.utils.ExceptionMessage;
+
 import java.util.Arrays;
 
 public enum Mission {
@@ -28,9 +30,9 @@ public enum Mission {
     public static Mission existMission(Level level, String mission) {
         return Arrays.stream(Mission.values())
                 .filter(value -> value.getLevel() == level
-                        && Arrays.stream(value.getMissions()).anyMatch(mission :: equals))
-                .findFirst()
-                .orElseThrow(() -> null);
+                        && Arrays.asList(value.getMissions()).contains(mission))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.INVALID_INFORMATION_DATA));
 
 
     }

@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import pairmatching.utils.ExceptionMessage;
+
 import java.util.Arrays;
 
 public enum Level {
@@ -22,7 +24,7 @@ public enum Level {
     public static Level getLevelByName(String name){
         return Arrays.stream(Level.values())
                 .filter(value -> value.getName().equals(name))
-                .findFirst()
-                .orElseThrow(() -> null);
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.INVALID_INFORMATION_DATA));
     }
 }
