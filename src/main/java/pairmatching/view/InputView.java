@@ -29,6 +29,7 @@ public class InputView {
         System.out.println(FUNCTION_1);
         System.out.println(FUNCTION_2);
         System.out.println(FUNCTION_3);
+        System.out.println(FUNCTION_Q);
         return Console.readLine();
     }
 

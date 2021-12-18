@@ -4,7 +4,6 @@ import static pairmatching.util.Constants.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -29,7 +28,7 @@ public class Controller {
             selectFunctions();
             printSelectedFunction();
         }
-
+        OutputView.printExitMsg();
     }
 
     private static void selectFunctions() {
@@ -128,5 +127,4 @@ public class Controller {
         OutputView.printfairInitMsg();
         fairMatch = new HashMap<>();
     }
-
 }

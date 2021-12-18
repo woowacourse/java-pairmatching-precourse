@@ -12,8 +12,11 @@ public class OutputView {
 
     public static void printFairMatchingResult(List<String> fairs) {
         System.out.println(FAIR_MATCHING_RESULT_MSG);
-        for (int i=0; i<fairs.size(); i+=2) {
-            System.out.println(fairs.get(i) + " : " + fairs.get(i+1));
+        for (int i=0; i<fairs.size(); i++) {
+            if (i % 2 == 0) {
+                String resultMsg = fairs.get(i) + " : " + fairs.get(i+1);
+                System.out.println(resultMsg);
+            }
         }
     }
 
@@ -23,5 +26,9 @@ public class OutputView {
 
     public static void printfairInitMsg() {
         System.out.println(FAIR_INIT_MSG);
+    }
+
+    public static void printExitMsg() {
+        System.out.println(EXIT_MSG);
     }
 }
