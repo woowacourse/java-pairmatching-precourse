@@ -3,6 +3,7 @@ package userInterafce;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -18,6 +19,8 @@ import utils.WrongTwoCommaWithLetter;
 public class PairMatch {
 	Crews crews = new Crews();
 	PrintInterface printer = new PrintInterface();
+	HashMap<Crew,Crew> missionMap;
+	Course course;
 
 	public PairMatch() {
 	}
@@ -25,7 +28,11 @@ public class PairMatch {
 	public void run() {
 		printer.printCourseAndMission();
 		printer.printInputCourseLevelMission();
-		getArrWithSplitCommaBlank(getCourseAndLevelAndMission());
+		boolean passed = false;
+		while (!passed) {
+			getArrWithSplitCommaBlank(getCourseAndLevelAndMission());
+			passed = true;
+		}
 	}
 
 	private String getCourseAndLevelAndMission() {
@@ -41,10 +48,12 @@ public class PairMatch {
 
 	private String[] getArrWithSplitCommaBlank(String input) {
 		String[] stringArrOfCourseLevelMission = input.split(", ");
-		if (checkEachOfCourseLevelMission(stringArrOfCourseLevelMission)) {
-			return stringArrOfCourseLevelMission;
+		try {
+			checkEachOfCourseLevelMission(stringArrOfCourseLevelMission);
+		} catch (IllegalArgumentException error) {
+			System.out.println(error.getMessage());
 		}
-		throw new IllegalArgumentException("[ERROR] 올바른 과정,레벨,미션 입력이 아닙니다.");
+		return stringArrOfCourseLevelMission;
 	}
 
 	private boolean checkEachOfCourseLevelMission(String[] stringArrOfCourseLevelMission) {
@@ -60,6 +69,7 @@ public class PairMatch {
 	private boolean isCourseName(String courseName) {
 		for (Course course : Course.values()) {
 			if (course.toString().equals(courseName)) {
+				this.course = course;
 				return true;
 			}
 		}
@@ -92,13 +102,52 @@ public class PairMatch {
 		throw new IllegalArgumentException("[ERROR] 미션과 레벨이 잘못 매치되었습니다.");
 	}
 
+	private void makeNewPairs(Course course, Level level, Mission mission) {
+		if (isNotExist(course,mission)) {
+			List<String> crewArr = getShuffledCrewList(course);
+			Iterator<String> crewNameIterator = crewArr.iterator();
+		}
+	}
+
+	boolean isNotExist(Course course, Mission mission) {
+		HashMap<Course, HashMap> pairMap = PairStorage.getPairMap();
+		HashMap<Mission, HashMap> pairMapWithCourse = pairMap.get(course);
+		missionMap = pairMapWithCourse.get(mission);
+
+		return missionMap.isEmpty();
+	}
+
 	boolean isDone () {
 		return true;
 	}
 
-	public void matchOneByOne(String name) {
 
+	Crew crew1;
+	Crew crew2;
+	Crew crew3;
 
+	public void matchOneByOne(Iterator<String> crewNameIterator) {
+		while(crewNameIterator.hasNext()) {
+			String name1 = crewNameIterator.next();
+			crew1 =  crews.getCrewByCourseAndName(course, name1);
+			if ((crewNameIterator.hasNext())) {
+				String name2 = crewNameIterator.next();
+				crew2 =  crews.getCrewByCourseAndName(course, name1);
+				missionMap.put(crew1,crew2);
+				missionMap.put(crew2,crew1);
+				crew3 = crew1;
+				return;
+			} else if (!crewNameIterator.hasNext()) {
+				setOddCrew();
+			}
+		}
+	}
+
+	public void setOddCrew() {
+		missionMap.put(crew1,crew3);
+		missionMap.put(crew3,crew1);
+		missionMap.put(crew2,crew3);
+		missionMap.put(crew3,crew2);
 	}
 
 	public HashSet<Crew> getSetOfCrewLevel(Crew crew, Level level) {
@@ -126,5 +175,4 @@ public class PairMatch {
 
 		return crewNameList;
 	}
-
 }
