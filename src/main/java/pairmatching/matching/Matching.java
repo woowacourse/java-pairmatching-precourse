@@ -64,13 +64,7 @@ public class Matching {
         int hashMapIndex = hashMap.get(courseName);
         List<String> allMatched = new ArrayList<>();
         for (int sameLevelIndex : sameLevelIndexList) {
-            if (hashMapIndex == sameLevelIndex) {
-                continue;
-            }
             allMatched.addAll(course.get(sameLevelIndex));
-//            for(String matching: course.get(sameLevelIndex)){
-//                allMatched.add(matching);
-//            }
         }
         return allMatched.stream().distinct().count() != allMatched.size();
     }
