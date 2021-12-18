@@ -72,6 +72,7 @@ public class MachingController {
 	}
 
 	public void initMaching() {
+		System.out.println("\n초기화 되었습니다.");
 		machingService.initMaching();
 	}
 

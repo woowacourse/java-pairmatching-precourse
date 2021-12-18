@@ -39,12 +39,12 @@ public class Output {
 	}
 
 	private void printCourse() {
-		System.out.print("과정: ");
+		System.out.print("\n과정: ");
 		System.out.println(Course.toStringAllNameSplit(" | "));
 	}
 
 	private void printMission() {
-		System.out.println("미션:");
+		System.out.println("\n미션:");
 		Arrays.stream(Level.values())
 			.forEach(level -> {
 				System.out.print("  - " + level.getName() + ": ");
@@ -53,6 +53,7 @@ public class Output {
 	}
 
 	public void printExistMaching() {
+		System.out.println();
 		System.out.println(MACHING_EXIST);
 		System.out.println("네 | 아니오");
 	}
