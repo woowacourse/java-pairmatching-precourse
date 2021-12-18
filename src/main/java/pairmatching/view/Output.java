@@ -26,6 +26,7 @@ public class Output {
 		+ "ex) 백엔드, 레벨1, 자동차경주";
 	static final String ENTER_REMATCHING = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
 	static final String MATCHING_RESULT = "페어 매칭 결과입니다.";
+	static final String DONE_INIT = "초기화 되었습니다.";
 
 	public static void printError(String errorMessage) {
 		System.out.println(ERROR_PREFIX + errorMessage);
@@ -52,6 +53,11 @@ public class Output {
 				.map(Object::toString)
 				.collect(Collectors.joining(" : ")));
 		}
+		System.out.println();
+	}
+
+	public static void doneInit() {
+		System.out.println(DONE_INIT);
 		System.out.println();
 	}
 }

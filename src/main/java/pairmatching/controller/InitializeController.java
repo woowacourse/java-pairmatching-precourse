@@ -9,7 +9,7 @@ import pairmatching.domain.crew.Crew;
 import pairmatching.view.Input;
 
 public class InitializeController {
-	public static void initCrews() {
+	public static void run() {
 		initBackendCrews();
 		initFrontendCrews();
 		MissionRepository.initMission();

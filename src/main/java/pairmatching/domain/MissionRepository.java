@@ -7,9 +7,10 @@ import java.util.stream.Collectors;
 public class MissionRepository {
 	static final String ERROR_NOT_EXIST_MISSION = "존재하지 않는 미션입니다.";
 
-	private static final List<Mission> missions = new ArrayList<>();
+	private static List<Mission> missions;
 
 	public static void initMission() {
+		missions = new ArrayList<>();
 		for(Course course: Course.values()) {
 			missions.add(new Mission(course, Level.LEVEL1, "자동차경주"));
 			missions.add(new Mission(course, Level.LEVEL1, "로또"));

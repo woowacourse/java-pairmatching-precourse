@@ -16,7 +16,7 @@ public class MainController {
 	static final String ERROR_NOT_EXIST_MATCHING = "매칭 이력이 없습니다.";
 
 	public MainController() {
-		InitializeController.initCrews();
+		InitializeController.run();
 	}
 
 	public void run() {
@@ -63,7 +63,8 @@ public class MainController {
 			printMatching(mission);
 		}
 		if (option.equals(Option.INIT)) {
-
+			InitializeController.run();
+			Output.doneInit();
 		}
 	}
 
