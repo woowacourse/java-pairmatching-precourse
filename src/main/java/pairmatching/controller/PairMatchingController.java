@@ -48,6 +48,7 @@ public class PairMatchingController {
 
     private MainCommand getMainCommand() {
         try {
+            OutputView.printMainCommand();
             return InputView.mainCommand();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
