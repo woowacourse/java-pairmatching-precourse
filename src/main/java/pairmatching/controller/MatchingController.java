@@ -13,8 +13,7 @@ public class MatchingController {
     public static MatchingController getInstance() {
         if (instance == null) {
             instance = new MatchingController();
-            pairService = new PairService();
-
+            pairService = PairService.getInstance();
         }
         return instance;
     }
@@ -27,6 +26,7 @@ public class MatchingController {
             MatchingView.printShouldRematch();
             String answer = InputView.getInput();
             if (!answer.equals("네")) {
+                run();
                 return;
             }
             pairService.deletePairs(input);
@@ -35,7 +35,7 @@ public class MatchingController {
         OutputView.printMatchingResult(pairService.getMatching(input));
     }
 
-    private String inputMatchingCondition() {
+    public static String inputMatchingCondition() {
         try {
             MatchingView.printSelectPrompt();
             String input = InputView.getInput();

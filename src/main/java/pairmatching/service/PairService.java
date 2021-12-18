@@ -20,6 +20,16 @@ public class PairService {
     private static final String INVALID_LEVEL_NAME = "존재하지 않는 레벨입니다.";
     private static final String INVALID_MISSION_NAME = "존재하지 않는 미션입니다.";
     private static final int NOT_EXIST = 0;
+    private static final String PAIRS_NOT_EXIST_MESSAGE = "매칭 이력이 없습니다.";
+
+    private static PairService instance;
+
+    public static PairService getInstance() {
+        if (instance == null) {
+            instance = new PairService();
+        }
+        return instance;
+    }
 
     public boolean matchPairs(String input) {
         boolean canMatch = true;
@@ -100,7 +110,11 @@ public class PairService {
 
     public List<Pair> getMatching(String input) {
         MatchInfo matchInfo = getMatchInfo(input);
-        return PairRepository.findPairsByMatchInfo(matchInfo);
+        List<Pair> pairs = PairRepository.findPairsByMatchInfo(matchInfo);
+        if (pairs.isEmpty()) {
+            throw new IllegalArgumentException(PAIRS_NOT_EXIST_MESSAGE);
+        }
+        return pairs;
     }
 
     public void deletePairs(String input) {
