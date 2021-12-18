@@ -14,14 +14,14 @@ public class CrewRepository {
         if (backendCrews.isEmpty()) {
             init();
         }
-        return Collections.unmodifiableList(backendCrews);
+        return new ArrayList<>(backendCrews);
     }
 
     public static List<Crew> getFrontendCrews() {
         if (frontendCrews.isEmpty()) {
             init();
         }
-        return Collections.unmodifiableList(frontendCrews);
+        return new ArrayList<>(frontendCrews);
     }
 
     private static void init() {

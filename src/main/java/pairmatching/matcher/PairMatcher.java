@@ -22,35 +22,35 @@ public class PairMatcher {
     public void matchPairs(Mission mission, List<Crew> crews, Position position) {
         List<Mission> missions = MissionRepository.findByLevel(mission.getLevel());
         missions.removeIf(m -> m.getName().equals(mission.getName()));
-        crews.forEach(c -> System.out.println(c.getName()));
-        List<Crew> copied = new ArrayList<>(crews);
-        copied.forEach(c -> System.out.println(c.getName()));
-        while (!copied.isEmpty()) {
-            if (!match(missions, mission, copied, position)) {
+        List<String> copied = crews.stream().map(Crew::getName).collect(Collectors.toList());
+        List<String> shuffled = new ArrayList<>(Randoms.shuffle(copied));
+        while (!shuffled.isEmpty()) {
+            if (!match(missions, mission, shuffled, position)) {
                 throw new IllegalArgumentException(ERR_MATCH_UNAVAILABLE);
             }
         }
     }
 
-    private boolean match(List<Mission> missions, Mission mission, List<Crew> crews,
+    private boolean match(List<Mission> missions, Mission mission, List<String> names,
         Position position) {
         for (int i = 0; i < MAX_TRY; i++) {
-            List<Crew> picked = pickCrew(crews);
+            List<String> picked = pickCrew(names);
             try {
-                Pair pair = new Pair(position, picked);
+                Pair pair = new Pair(position, picked.stream()
+                    .map(s -> new Crew(s, position)).collect(Collectors.toList()));
                 validateNeverMatched(pair, missions);
                 mission.registerPair(pair);
                 return true;
             } catch (IllegalArgumentException ignore) {
-                crews.addAll(picked);
-                Randoms.shuffle(crews);
+                names.addAll(picked);
+                names = new ArrayList<>(Randoms.shuffle(names));
             }
         }
         return false;
     }
 
-    private List<Crew> pickCrew(List<Crew> crews) {
-        List<Crew> picked = new ArrayList<>();
+    private List<String> pickCrew(List<String> crews) {
+        List<String> picked = new ArrayList<>();
         int count = PAIR_COUNT;
         if (isOdd(crews.size())) {
             count = ODD_PAIR_COUNT;
