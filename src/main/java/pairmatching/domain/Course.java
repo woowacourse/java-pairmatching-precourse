@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import java.util.Arrays;
+
 public enum Course {
     BACKEND("백엔드"),
     FRONTEND("프론트엔드"),
@@ -19,5 +21,12 @@ public enum Course {
     public String getFileName() {
         if (BACKEND.name.equals(this.name)) return BACKEND_FILENAME.name;
         return FRONTEND_FILENAME.name;
+    }
+
+    public static Course getCourseByName(String name){
+        return Arrays.stream(Course.values())
+                .filter(value -> value.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> null);
     }
 }
