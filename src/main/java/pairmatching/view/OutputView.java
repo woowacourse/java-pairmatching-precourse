@@ -7,7 +7,7 @@ public class OutputView {
 			+ "1. 페어 매칭\n"
 			+ "2. 페어 조회\n"
 			+ "3. 페어 초기화\n"
-			+ "Q. 종료");
+			+ "Q. 종료\n");
 	}
 
 	public static void MatchingOutput() {
@@ -20,7 +20,7 @@ public class OutputView {
 			+ "  - 레벨4: 성능개선 | 배포\n"
 			+ "  - 레벨5: \n"
 			+ "############################################\n"
-		    + "과정, 레벨, 미션을 선택하세요.\nex) 백엔드, 레벨1, 자동차경주");
+		    + "과정, 레벨, 미션을 선택하세요.\nex) 백엔드, 레벨1, 자동차경주\n");
 	}
 
 	public static void ReMatchOutput() {
@@ -29,5 +29,9 @@ public class OutputView {
 
 	public static void InitOutput() {
 		System.out.print("초기화 되었습니다.\n");
+	}
+
+	public static void ResultOutput() {
+		System.out.print("페어 매칭 결과입니다.\n");
 	}
 }

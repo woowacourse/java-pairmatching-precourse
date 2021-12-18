@@ -2,13 +2,13 @@ package pairmatching.model;
 
 import java.util.ArrayList;
 
-public class Saver {
+public class LevelSaver {
 
-	public static final Saver saver = new Saver();
+	public static final LevelSaver LEVEL_SAVER = new LevelSaver();
 	private final int SIZE = 5;
 	private ArrayList<ArrayList<CrewPair>> savedResult;
 
-	private Saver() {
+	private LevelSaver() {
 		this.savedResult = new ArrayList<>();
 		for (int nowSize = 0; nowSize < SIZE; nowSize++) {
 			this.savedResult.add(new ArrayList<CrewPair>());
@@ -28,10 +28,18 @@ public class Saver {
 	}
 
 	public void setMatch(ArrayList<CrewPair> matchResult, int levelIndex) {
-		this.savedResult.set(levelIndex, matchResult);
+		for (CrewPair nowPair : matchResult) {
+			this.savedResult.get(levelIndex).add(nowPair);
+		}
 	}
 
 	public ArrayList<CrewPair> getMatch(int levelIndex) {
 		return this.savedResult.get(levelIndex);
+	}
+
+	public void initPair() {
+		for (int index = 0; index < SIZE; index++) {
+			this.savedResult.set(index, new ArrayList<>());
+		}
 	}
 }

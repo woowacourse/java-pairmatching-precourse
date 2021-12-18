@@ -8,7 +8,8 @@ public enum ErrorMessage {
 	ERROR_NOT_IN_COURSE_MSG("[ERROR] 해당 과정은 없는 과정입니다."),
 	ERROR_NOT_IN_LEVEL_MSG("[ERROR] 해당 레벨은 없는 레벨입니다."),
 	ERROR_NOT_IN_MISSION_MSG("[ERROR] 해당 미션은 없는 미션입니다."),
-	ERROR_YES_OR_NO_MSG("[ERROR] 재매치 입력은 항상 예 혹은 아니오로 입력해야 합니다.");
+	ERROR_YES_OR_NO_MSG("[ERROR] 재매치 입력은 항상 예 혹은 아니오로 입력해야 합니다."),
+	ERROR_MENU_INPUT_MSG("[ERROR] 입력은 1,2,3,Q 중 하나여야 합니다.");
 
 
 	private final String message;

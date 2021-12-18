@@ -30,7 +30,7 @@ public class Validator {
 	}
 
 	public static void checkMenuInput(String input) throws IllegalArgumentException {
-		if (!(input == MATCH_STRING || input == SEEK_STRING || input == INIT_STRING || input == END_STRING)) {
+		if (!(input.equals(MATCH_STRING) || input.equals(SEEK_STRING) || input.equals(INIT_STRING) || input.equals(END_STRING))) {
 			throw new IllegalArgumentException();
 		}
 	}
