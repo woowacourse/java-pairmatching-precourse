@@ -7,11 +7,16 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class BackendRepository {
-    private static List<String> backendCrews;
+    private List<String> backendCrews;
     
-    private static List<String> readAllLines​(Path path) throws IOException {
-        backendCrews = Files.readAllLines(Paths.get("C:\\dev\fileSearch\\backend-crew.md")); 
-        return backendCrews;
+    public void addCrewNames() {
+        try {
+            backendCrews = Files.readAllLines(Paths.get("C:\\dev\fileSearch\\backend-crew.md"));
+        } catch (IOException e) {
+            System.out.println(e.getStackTrace());
+        }
+       
+        
     }
     
 
