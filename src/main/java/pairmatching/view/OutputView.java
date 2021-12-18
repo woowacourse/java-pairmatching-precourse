@@ -26,7 +26,9 @@ public class OutputView {
     }
 
     public static void printErrorMessage(final String errorMessage) {
+        printNewLine();
         System.out.println(ERROR_SYMBOL + errorMessage);
+        printNewLine();
     }
 
     public static void printCourseLevelMissionInfo() {
