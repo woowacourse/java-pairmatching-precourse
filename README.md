@@ -1,4 +1,21 @@
 # 미션 - 페어매칭관리 애플리케이션
+## 기능 구현 목록
+* 메인 메뉴를 출력하고 입력을 받는다.
+  * 메뉴에 없는 문자를 입력하면 예외를 출력한다.
+1. 패어 매칭
+  * 과정, 레벨, 미션을 입력 받는다.
+  * src/resources에 있는 크루 정보를 읽어와 리스트로 저장한다.
+  * 리스트를 셔플하여 앞에서부터 두명씩 짝 짓는다.
+  * 매칭 정보가 이미 있을 경우, 재매칭 실행여부를 묻는 메세지를 출력하고 입력을 받는다.
+    * 아니오를 입력받으면 코스, 레벨, 미션을 다시 선택한다.
+    * 네, 아니오외에 다른 문자열이 들어온다면 예외를 출력한다.
+  * 같은 레벨에서 이미 페어가 되었던 크루가 다시 페어가 된다면, 크루 목록을 다시 섞어서 매칭한다. 이때, 3회 시도까지 매칭이 되지 않거나, 매칭을 할 수 있는 경우의 수가 없다면 에러를 출력한다.
+2. 페어 조회
+   *​ 과정, 레벨, 미션을 입력받는다.
+  * 해당 미션의 페어 매칭 결과를 출력한다.
+  * 만약 매칭된 이력이 없는 미션이라면, 매칭된 이력이 없다는 메시지를 출력한다.
+3. 페어 초기화
+  * 매칭된 모든 페어를 초기화 한다.
 
 ## 🔍 진행방식
 
@@ -9,10 +26,10 @@
 ## ✉️ 미션 제출 방법
 
 - 미션 구현을 완료한 후 GitHub을 통해 제출해야 한다.
-    - GitHub을 활용한 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고해 제출한다.
+  - GitHub을 활용한 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고해 제출한다.
 - GitHub에 미션을 제출한 후 [우아한테크코스 지원 플랫폼](https://apply.techcourse.co.kr) 에 접속하여 프리코스 과제를 제출한다.
-    - 자세한 방법은 [링크](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드) 를 참고한다.
-    - **Pull Request만 보내고, 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
+  - 자세한 방법은 [링크](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드) 를 참고한다.
+  - **Pull Request만 보내고, 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
 
 ## ✔️ 과제 제출 전 체크리스트 - 0점 방지
 
@@ -82,7 +99,7 @@ List<String> shuffledCrew = Randoms.shuffle(crewNames); // 섞인 크루 이름 
 ## 💾 사전 제공 정보
 - 크루 정보는 src/resources 하위에 md 파일로 제공되며 변경이 가능하다.
 - 과정, 레벨, 미션 정보는 아래에 제공하는 그대로 사용해야 한다.
- 
+
 ```
 ## 과정
 - 백엔드
@@ -295,16 +312,16 @@ Q
 - 프로그램을 실행하는 시작점은 `Application`의 `main()`이다.
 - JDK 8 버전에서 실행 가능해야 한다. **JDK 8에서 정상 동작하지 않을 경우 0점 처리**한다.
 - 자바 코드 컨벤션을 지키면서 프로그래밍한다.
-    - https://naver.github.io/hackday-conventions-java
+  - https://naver.github.io/hackday-conventions-java
 - indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
-    - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
-    - 힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메소드)를 분리하면 된다.
+  - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
+  - 힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메소드)를 분리하면 된다.
 - 3항 연산자를 쓰지 않는다.
 - 함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-    - 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.
+  - 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.
 - else 예약어를 쓰지 않는다.
-    - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
-    - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
+  - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
+  - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
 - build.gradle 파일을 변경할 수 없고, 외부 라이브러리를 사용하지 않는다.
 - 프로그램 종료 시 `System.exit()`를 호출하지 않는다.
 - 프로그래밍 요구사항에서 별도로 변경 불가 안내가 없는 경우 파일 수정과 패키지 이동을 자유롭게 할 수 있다.
@@ -372,5 +389,5 @@ public class Crew {
 - 미션은 [java-pairmatching-precourse](https://github.com/woowacourse/java-pairmatching-precourse) 저장소를 Fork/Clone해 시작한다.
 - **기능을 구현하기 전에 java-pairmatching-precourse/docs/README.md 파일에 구현할 기능 목록을 정리**해 추가한다.
 - **Git의 커밋 단위는 앞 단계에서 README.md 파일에 정리한 기능 목록 단위**로 추가한다.
-    - [AngularJS Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 참고해 commit log를 남긴다.
+  - [AngularJS Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 참고해 commit log를 남긴다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고한다.
