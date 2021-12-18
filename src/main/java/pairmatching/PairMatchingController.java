@@ -39,32 +39,53 @@ public class PairMatchingController {
 
     private void execute(Menu menu) {
         if (menu == Menu.PAIR_MATCHING) {
-            View.printBoard();
-            PairTag pairTag = View.getPairTag();
-
-            if (pairService.isRegistered(pairTag)) {
-                RematchMenu rematchMenu = View.getClearOrContinue();
-                if (rematchMenu == RematchMenu.NO_OP) {
-                    return;
-                }
+            PairTag pairTag = getPairTag();
+            if (isRematch(pairTag)) {
+                return;
             }
-
-            List<Pair> pairs = pairService.makePairs(pairTag);
-            View.printParis(pairs);
-
-
+            matchPairs(pairTag);
         }
-        if (menu == Menu.PAIR_SEARCH) {
-            PairTag pairTag = View.getPairTag();
-            List<Pair> pairs = pairService.getPairs(pairTag);
-            View.printParis(pairs);
 
+        if (menu == Menu.PAIR_SEARCH) {
+            searchPairs();
 
         }
         if (menu == Menu.PAIR_CLEAR) {
-            pairService.clear();
-            View.printClearResult();
+            clearPairs();
         }
+    }
+
+    private PairTag getPairTag() {
+        View.printBoard();
+        PairTag pairTag = View.getPairTag();
+        return pairTag;
+    }
+
+    private boolean isRematch(PairTag pairTag) {
+        if (pairService.isRegistered(pairTag)) {
+            RematchMenu rematchMenu = View.getClearOrContinue();
+            if (rematchMenu == RematchMenu.NO_OP) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void matchPairs(PairTag pairTag) {
+        List<Pair> pairs = pairService.makePairs(pairTag);
+        View.printParis(pairs);
+    }
+
+
+    private void searchPairs() {
+        PairTag pairTag = View.getPairTag();
+        List<Pair> pairs = pairService.getPairs(pairTag);
+        View.printParis(pairs);
+    }
+
+    private void clearPairs() {
+        pairService.clear();
+        View.printClearResult();
     }
 
 
