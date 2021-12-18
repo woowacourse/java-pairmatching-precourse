@@ -1,5 +1,8 @@
 package pairmatching.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum Level {
     LEVEL1("레벨1"),
     LEVEL2("레벨2"),

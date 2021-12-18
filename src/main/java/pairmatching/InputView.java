@@ -4,14 +4,12 @@ package pairmatching;
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
-import sun.text.resources.ext.FormatData_es_UY;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
