@@ -28,22 +28,43 @@ public class MainController {
             if (inputChoice == 1) {
                 pairStart();
             }
+            if (inputChoice == 2) {
+                pairInquiry();
+            }
+            if (inputChoice == 3) {
+                pairInquiry();
+            }
+        }
+    }
+
+    private void pairInquiry() {
+        Output.printMissionAndProcess();
+        String inputProcess = Input.inputProcess();
+        if (pairInfo.containsKey(inputProcess)) {
+            printPairResult(pairInfo.get(inputProcess));
         }
     }
 
     private void pairStart() {
         Output.printMissionAndProcess();
         String inputProcess = Input.inputProcess();
+        String inputData = "";
         if (pairInfo.containsKey(inputProcess)) {
             System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
             System.out.println("네 | 아니오");
-            String inputData = Input.InputYesOrNo();
+            inputData = Input.InputYesOrNo();
             selectMatchingRestart(inputData, inputProcess);
         } else if (!pairInfo.containsKey(inputProcess)) {
             setPair(inputProcess);
         }
+        if (!inputData.equals("아니오")){
+            printPairResult(pairInfo.get(inputProcess));
+        }
+    }
+
+    private void printPairResult(List<String> result) {
         System.out.println("\n페어 매칭 결과입니다.");
-        printMatchingList(pairInfo.get(inputProcess));
+        printMatchingList(result);
         System.out.println();
     }
 
