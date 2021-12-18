@@ -6,6 +6,7 @@ import java.util.List;
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 import pairmatching.domain.Crews;
+import pairmatching.domain.PairMatchings;
 import pairmatching.util.Constant;
 import pairmatching.util.CrewParse;
 import pairmatching.util.ErrorMessage;
@@ -20,21 +21,22 @@ public class PairMatchingController {
 		crewList.addAll(CrewParse.make(Course.BACKEND, FileInput.input(Constant.backendCrewFileName)));
 		crewList.addAll(CrewParse.make(Course.FRONTEND, FileInput.input(Constant.frontendCrewFileName)));
 		Crews crews = new Crews(crewList);
+		PairMatchings pairMatchings = new PairMatchings();
 
-		while (runFunction()) {
+		while (runFunction(pairMatchings)) {
 
 		}
 	}
 
-	public boolean runFunction() {
+	public boolean runFunction(PairMatchings pairMatchings) {
 		String function = "";
 		try {
 			function = getFunction();
 		} catch (IllegalArgumentException e) {
 			OutputView.printErrorMessage(e.getMessage());
-			runFunction();
+			runFunction(pairMatchings);
 		}
-		return selectFunction(function);
+		return selectFunction(function, pairMatchings);
 	}
 
 	public String getFunction() {
@@ -48,7 +50,7 @@ public class PairMatchingController {
 		throw new IllegalArgumentException(ErrorMessage.ERROR + ErrorMessage.INPUT_FUNCTION_NONE);
 	}
 
-	public boolean selectFunction(String function) {
+	public boolean selectFunction(String function, PairMatchings pairMatchings) {
 		if (function.equals(Constant.FUNCTION_PAIR_MATCHING)) {
 
 		}
@@ -56,7 +58,7 @@ public class PairMatchingController {
 
 		}
 		if (function.equals(Constant.FUNCTION_PAIR_INITIALIZATION)) {
-
+			pairMatchings.initialization();
 		}
 		return !function.equals(Constant.FUNCTION_EXIT);
 	}
