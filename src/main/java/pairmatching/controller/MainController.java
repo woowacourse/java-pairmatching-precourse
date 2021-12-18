@@ -1,7 +1,7 @@
 package pairmatching.controller;
 
 import pairmatching.util.InputValidator;
-import pairmatching.view.InputView;
+import pairmatching.view.MainView;
 import pairmatching.view.OutputView;
 
 public class MainController {
@@ -25,14 +25,14 @@ public class MainController {
     private void initMain() {
         String mode;
         do {
-            InputView.printSelectMode();
+            MainView.printSelectMode();
             mode = mainScreenInput();
         } while(moveController(mode));
     }
 
     private boolean moveController(String mode) {
         if (mode.equals(MATCHING_MODE)) {
-            System.out.println("1");
+            MatchingController.getInstance().run();
         }
         if (mode.equals(REFERENCE_MODE)) {
             System.out.println("2");
@@ -46,7 +46,7 @@ public class MainController {
 
     private String mainScreenInput() {
         try {
-            String input = InputView.getInput();
+            String input = MainView.getInput();
             InputValidator.validateMainScreenInput(input);
             return input;
         } catch (IllegalArgumentException e) {
