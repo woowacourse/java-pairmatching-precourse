@@ -21,6 +21,9 @@ public class InputView {
     public void inputFunction() throws IOException {
         while(true) {
             String function = init();
+            if (function.equals("Q")) {
+                break;
+            }
             OutputView outputView = new OutputView();
             selectFunction(outputView, function);
         }
