@@ -1,5 +1,6 @@
 package pairmatching.service;
 
+import pairmatching.domain.Category;
 import pairmatching.domain.Crew;
 import pairmatching.domain.Pair;
 import pairmatching.domain.enumeration.Course;
@@ -11,7 +12,6 @@ import pairmatching.repository.PairRepository;
 import pairmatching.utils.ConstantMessages;
 import pairmatching.utils.validator.InputValidator;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class PairService {
@@ -22,30 +22,73 @@ public class PairService {
         this.pairRepository = pairRepository;
     }
 
-    public Pairs matchPairs(String input) {
-        String[] validInput = validateInput(input);
-        Course course = Course.findCourseByInput(validInput[ConstantMessages.COURSE_INDEX]);
-        Level level = Level.findLevelByInput(validInput[ConstantMessages.LEVEL_INDEX]
-                .substring(ConstantMessages.SPACING));
-        Mission mission = Mission.findMissionByInput(validInput[ConstantMessages.MISSION_INDEX]
-                .substring(ConstantMessages.SPACING));
+    public String[] validateInput(String input) {
+        String[] inputArr = input.split(ConstantMessages.DELIMITER);
+        InputValidator.validateCourseLevelMissionInput(inputArr);
+        return inputArr;
+    }
+
+    public Pairs createPairs(String[] input) {
+        Course course = getCourse(input[ConstantMessages.COURSE_INDEX]);
+        Level level = getLevel(input[ConstantMessages.LEVEL_INDEX]);
+        Mission mission = getMission(input[ConstantMessages.MISSION_INDEX]);
         int count = ConstantMessages.COUNT_DEFAULT;
         List<Crew> crews = null;
+        crews = matchPair(course, level, mission, count);
+        return addLastCrew(course, mission, crews);
+    }
+
+    public boolean isMissionAlreadyHasPair(String[] input) {
+        Course course = getCourse(input[ConstantMessages.COURSE_INDEX]);
+        Mission mission = getMission(input[ConstantMessages.MISSION_INDEX]);
+        if(pairRepository.findByCategory(new Category(mission, course)) != null) {
+            return true;
+        }
+        return false;
+    }
+
+//    public Pairs findPairs(String[] input) {
+//        Course course = getCourse(input[ConstantMessages.COURSE_INDEX]);
+//        Level level = getLevel(input[ConstantMessages.LEVEL_INDEX]);
+//        Mission mission = getMission(input[ConstantMessages.MISSION_INDEX]);
+//    }
+
+    private List<Crew> matchPair(Course course, Level level, Mission mission, int count) {
+        List<Crew> crews;
         while(true) {
             crews = CrewRepository.shuffleCrew(course);
             Pairs pairs = new Pairs();
-            if(isCreatePairsSuccess(level, crews, pairs)){
-                pairRepository.createPairs(mission, pairs);
+            if(isCreatePairsSuccess(level, course, crews, pairs)){
+                pairRepository.createPairs(new Category(mission, course), pairs);
                 break;
             }
-            count++;
-            validateCount(count);
+            count = checkCount(count);
         }
-        return addLastCrew(mission, crews);
+        return crews;
     }
 
-    private Pairs addLastCrew(Mission mission, List<Crew> crews) {
-        Pairs findPairs = pairRepository.findByMission(mission);
+    private int checkCount(int count) {
+        count++;
+        validateCount(count);
+        return count;
+    }
+
+    private Mission getMission(String s) {
+        return Mission.findMissionByInput(s
+                    .substring(ConstantMessages.SPACING));
+    }
+
+    private Level getLevel(String s) {
+        return Level.findLevelByInput(s
+                    .substring(ConstantMessages.SPACING));
+    }
+
+    private Course getCourse(String input1) {
+        return Course.findCourseByInput(input1);
+    }
+
+    private Pairs addLastCrew(Course course, Mission mission, List<Crew> crews) {
+        Pairs findPairs = pairRepository.findByCategory(new Category(mission, course));
         if(isCrewSizeOddNumber(crews)) {
             int lastCrewIndex = crews.size() - 1;
             Crew crew = crews.get(lastCrewIndex);
@@ -60,13 +103,11 @@ public class PairService {
         }
     }
 
-    private boolean isCreatePairsSuccess(Level level, List<Crew> crews, Pairs pairs) {
+    private boolean isCreatePairsSuccess(Level level, Course course, List<Crew> crews, Pairs pairs) {
         for (int i = 0; i < crews.size() - 1; i = i+2) {
             Pair pair = Pair.createPair(crews.get(i), crews.get(i+1));
-
             List<Mission> missionListByLevel = level.getMissionList();
-
-            if (isLevelAlreadyHasPair(pair, missionListByLevel)) {
+            if (isLevelAlreadyHasPair(pair, course, missionListByLevel)) {
                 return false;
             }
             pairs.addPair(pair);
@@ -74,9 +115,9 @@ public class PairService {
         return true;
     }
 
-    private boolean isLevelAlreadyHasPair(Pair pair, List<Mission> missionListByLevel) {
+    private boolean isLevelAlreadyHasPair(Pair pair, Course course, List<Mission> missionListByLevel) {
         for (int j = 0; j < missionListByLevel.size(); j++) {
-            Pairs findPairs = pairRepository.findByMission(missionListByLevel.get(j));
+            Pairs findPairs = pairRepository.findByCategory(new Category(missionListByLevel.get(j), course));
             if(findPairs == null) {
                 continue;
             }
@@ -101,9 +142,4 @@ public class PairService {
         return false;
     }
 
-    private String[] validateInput(String input) {
-        String[] inputArr = input.split(ConstantMessages.DELIMITER);
-        InputValidator.validateCourseLevelMissionInput(inputArr);
-        return inputArr;
-    }
 }
