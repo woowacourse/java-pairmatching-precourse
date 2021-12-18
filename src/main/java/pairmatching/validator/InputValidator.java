@@ -16,6 +16,6 @@ public class InputValidator {
 	}
 
 	public static void validateCourseMenu(String input) {
-
+		// TODO
 	}
 }

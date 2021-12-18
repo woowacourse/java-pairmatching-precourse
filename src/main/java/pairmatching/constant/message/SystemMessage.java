@@ -22,4 +22,7 @@ public class SystemMessage {
 			+ Level.getSelfDescription()
 			+ LINE
 			+ "과정, 레벨, 미션을 선택하세요.";
+
+	public static final String QUIT = "Q";
+	public static final String CHOICE_CLEAR = "3";
 }

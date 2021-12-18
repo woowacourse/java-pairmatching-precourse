@@ -26,6 +26,9 @@ public class InputView {
 		System.out.println(INPUT_ENTRY_MENU);
 		String input = Console.readLine();
 		InputValidator.validateEntryMenu(input);
+		if (input.equals(QUIT)) {
+			return QUIT;
+		}
 		String courseInput = mainChoiceMap.get(input).get();
 		return courseInput;
 	}
@@ -38,10 +41,13 @@ public class InputView {
 	}
 
 	private static String toRetrieve() {
-		return null;
+		System.out.println(INPUT_COURSE_MENU);
+		String input = Console.readLine();
+		InputValidator.validateCourseMenu(input);
+		return input;
 	}
 
 	private static String toClear() {
-		return null;
+		return CHOICE_CLEAR;
 	}
 }
