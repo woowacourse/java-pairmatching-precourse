@@ -215,6 +215,7 @@ public class CoreController {
 
 	private void initAllPair() {
 		init();
+		uiLogic.printInitMessage();
 	}
 
 	protected void run() {

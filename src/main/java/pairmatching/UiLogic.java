@@ -30,6 +30,8 @@ public class UiLogic {
 		= "\n페어 매칭 결과입니다.\n";
 	private static final String MESSAGE_NOTHING_IN_PAIR
 		= "\n해당 미션에 페어가 아직 없습니다.\n";
+	private static final String MESSAGE_INIT
+		= "\n초기화 되었습니다.\n";
 	private static final String ERROR_MESSAGE_COURSE_LEVEL_MISSION
 		= "[ERROR] <과정>, <레벨>, <미션> 형태로 입력해 주세요. 과정, 레벨, 미션이 존재하는 값인지 확인해 주세요\n";
 	private static final String ERROR_MESSAGE_FILE_READ
@@ -156,5 +158,9 @@ public class UiLogic {
 				ui.printMessage(ERROR_MESSAGE_MENU);
 			}
 		}
+	}
+
+	protected void printInitMessage() {
+		ui.printMessage(MESSAGE_INIT);
 	}
 }
