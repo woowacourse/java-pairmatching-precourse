@@ -39,6 +39,9 @@ public class Validator {
     }
 
     public boolean isDuplicatedInfo(List<MatchingInfo> matchingInfoList, MatchingInfo nowMatchingInfo) {
+        if (matchingInfoList == null) {
+            return false;
+        }
         for (MatchingInfo matchingInfo : matchingInfoList) {
             if (matchingInfo.isSameMatching(nowMatchingInfo)) {
                 return true;
