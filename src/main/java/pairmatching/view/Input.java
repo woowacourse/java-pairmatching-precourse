@@ -10,9 +10,9 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Input {
 	static final String BACKEND_CREW_FILE_PATH
-		= "C:\\Users\\summrluna\\Desktop\\final\\java-pairmatching-precourse\\src\\main\\resources\\backend-crew.md";
+		= "src/main/resources/backend-crew.md";
 	static final String FRONTEND_CREW_FILE_PATH
-		= "C:\\Users\\summrluna\\Desktop\\final\\java-pairmatching-precourse\\src\\main\\resources\\frontend-crew.md";
+		= "src/main/resources/frontend-crew.md";
 
 	public static String readLine() {
 		String input = Console.readLine().trim();
