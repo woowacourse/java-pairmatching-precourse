@@ -10,6 +10,7 @@ import pairmatching.model.Crew;
 import pairmatching.model.CrewRepository;
 import pairmatching.model.Level;
 import pairmatching.model.Mission;
+import pairmatching.model.MissionRepository;
 import pairmatching.utils.FileUtils;
 
 public class Application {
@@ -24,16 +25,16 @@ public class Application {
 	}
 
 	private static void initMissions() {
-		missions.add(new Mission(Level.LEVEL1, "자동차경주"));
-		missions.add(new Mission(Level.LEVEL1, "로또"));
-		missions.add(new Mission(Level.LEVEL1, "숫자야구게임"));
+		MissionRepository.addMission(new Mission(Level.LEVEL1, "자동차경주"));
+		MissionRepository.addMission(new Mission(Level.LEVEL1, "로또"));
+		MissionRepository.addMission(new Mission(Level.LEVEL1, "숫자야구게임"));
 
-		missions.add(new Mission(Level.LEVEL2, "장바구니"));
-		missions.add(new Mission(Level.LEVEL2, "결제"));
-		missions.add(new Mission(Level.LEVEL2, "지하철 노선도"));
+		MissionRepository.addMission(new Mission(Level.LEVEL2, "장바구니"));
+		MissionRepository.addMission(new Mission(Level.LEVEL2, "결제"));
+		MissionRepository.addMission(new Mission(Level.LEVEL2, "지하철 노선도"));
 
-		missions.add(new Mission(Level.LEVEL4, "성능개선"));
-		missions.add(new Mission(Level.LEVEL4, "배포"));
+		MissionRepository.addMission(new Mission(Level.LEVEL4, "성능개선"));
+		MissionRepository.addMission(new Mission(Level.LEVEL4, "배포"));
 	}
 
 	private static void initFrontendCrews() {
