@@ -8,10 +8,10 @@ import java.util.*;
 public class Mission {
     private final String missonName;
     private final Level missionLevel;
-    private List<Crew> crews;
-    private List<Set<Crew>> pairs;
+    private List<String> crews;
+    private List<Set<String>> pairs;
 
-    public Mission(String missonName, Level missionLevel, List<Crew> crews) {
+    public Mission(String missonName, Level missionLevel, List<String> crews) {
         this.missonName = missonName;
         this.missionLevel = missionLevel;
         this.crews = crews;
@@ -19,14 +19,20 @@ public class Mission {
     }
 
     public void pairMatching() {
-        Randoms.shuffle(crews);
+        List<String> suffledCrew = Randoms.shuffle(crews);
+    }
 
+    public boolean checkMatchingHistory() {
+        if (pairs.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     private void findPair() {
         int listLength = this.crews.size();
         for (int i = 0; i < listLength; i += 2) {
-            Set<Crew> crews = new HashSet<>();
+            Set<String> crews = new HashSet<>();
             if (listLength % 2 != 0 && i + 3 == listLength) {
                 createOddCrew(crews, i);
                 break;
@@ -35,21 +41,18 @@ public class Mission {
         }
     }
 
-    private void createOddCrew(Set<Crew> crews, int i) {
+    private void createOddCrew(Set<String> crews, int i) {
         crews.add(this.crews.get(i));
         crews.add(this.crews.get(i+1));
         crews.add(this.crews.get(i+2));
         pairs.add(crews);
     }
 
-    private void createEvenCrew(Set<Crew> crews, int i) {
+    private void createEvenCrew(Set<String> crews, int i) {
         crews.add(this.crews.get(i));
         crews.add(this.crews.get(i + 1));
         pairs.add(crews);
     }
 
-    private void checkDuplicatePair() {
-
-    }
 
 }
