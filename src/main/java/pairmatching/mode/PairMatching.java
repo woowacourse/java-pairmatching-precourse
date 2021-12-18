@@ -33,8 +33,8 @@ public class PairMatching implements PairMatchingService {
                 System.out.println(exception.getMessage());
             }
         }
-
     }
+
     private String getCourse(String[] split) {
         return split[0].trim();
     }

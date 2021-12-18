@@ -23,4 +23,12 @@ public class MissionRepository {
     public static List<Mission> getMissions() {
         return Collections.unmodifiableList(missions);
     }
+
+    public static Mission getPairList(Course course, String mission, Level level) {
+        return missions.stream()
+            .filter(thisMissions -> thisMissions.equalTo(mission, level))
+            .findAny()
+            .filter(findMission -> findMission.getPairs().get(0).getCrews().get(0).isEqualToCourse(course))
+            .orElseThrow(ErrorMessage.NOT_FOUND_MISSION::getException);
+    }
 }
