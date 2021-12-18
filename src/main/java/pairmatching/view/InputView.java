@@ -13,18 +13,6 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static void showBackgroundInfo() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(DIVIDER);
-        sb.append(COURSES);
-        sb.append(MISSION);
-        for (Level level : Level.values()) {
-            sb.append(MISSION_FORMAT(level));
-        }
-        sb.append(DIVIDER);
-        System.out.println(sb);
-    }
-
     public static String requestPairMatchingOptionsInput() {
         System.out.println(REQUEST_PAIR_MATCHING_OPTIONS_INPUT);
         return Console.readLine();

@@ -18,6 +18,7 @@ import static pairmatching.constants.SystemConstants.*;
 import static pairmatching.utils.PairMatchUtils.returnMatchResult;
 import static pairmatching.utils.UserChoiceValidator.*;
 import static pairmatching.view.InputView.*;
+import static pairmatching.view.OutputView.*;
 
 public class PairMatchingService {
 
