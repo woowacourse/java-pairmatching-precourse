@@ -3,6 +3,7 @@ package pairmatching.domain;
 import static java.util.stream.Collectors.*;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,6 +12,10 @@ import org.apache.commons.io.IOUtils;
 public enum Course {
     BACKEND("백엔드", "/backend-crew.md"),
     FRONTEND("프론트엔드", "/frontend-crew.md");
+
+    private static final String VALID_NOT_EXIST_COURSE = "[ERROR] 존재하지 않는 코스입니다.";
+    private static final String SPLIT_REGEX = "\n";
+    private static final int SPLIT_LIMIT = -1;
 
     private final String name;
     private final String path;
@@ -24,13 +29,13 @@ public enum Course {
         return Arrays.stream(values())
             .filter(course -> course.getName().equals(inputCourse))
             .findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 코스입니다."));
+            .orElseThrow(() -> new IllegalArgumentException(VALID_NOT_EXIST_COURSE));
     }
 
     public List<Crew> getCrewsByCourse(Course inputCourse) throws IOException {
         Course course = findCourse(inputCourse);
 
-        String input = IOUtils.toString(getClass().getResourceAsStream(course.path), "UTF-8");
+        String input = IOUtils.toString(getClass().getResourceAsStream(course.path), StandardCharsets.UTF_8);
         List<String> names = getNames(input);
 
         return names.stream()
@@ -42,11 +47,11 @@ public enum Course {
        return Arrays.stream(values())
             .filter(c -> c == inputCourse)
             .findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 코스입니다."));
+            .orElseThrow(() -> new IllegalArgumentException(VALID_NOT_EXIST_COURSE));
     }
 
     private List<String> getNames(String input) {
-        return Arrays.stream(input.split("\n", -1))
+        return Arrays.stream(input.split(SPLIT_REGEX, SPLIT_LIMIT))
             .collect(toList());
     }
 
