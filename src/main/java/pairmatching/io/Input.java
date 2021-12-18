@@ -111,18 +111,15 @@ public class Input {
 			}
 			System.out.println(MatchingFactory.getMatching(matchingType));
 		}
-
-
 	}
 
 	/*******************매칭 타입 입력*******************************/
 
 	public MatchingType inputMatchingType() {
 		// 프론트엔드, 레벨1, 자동차경주
-		// while(!validateMatchingFormat(input = readLine())){
+		while(!validateMatchingFormat(input = readLine())){
 			// validateMatchingFormat, validateMatchingType
-		// }
-		input = readLine();
+		}
 		inputData = input.split(", ");
 		String courseName = inputData[0];
 		String levelName = inputData[1];
@@ -143,18 +140,15 @@ public class Input {
 	private void isMatchingTypeExisted(String types){
 		String[] matchingType = types.split(", ");
 		String course = matchingType[0];
-		// System.out.println(getCourseList().stream().anyMatch(s -> s.equalsIgnoreCase(course)));
 		if(!getCourseList().stream().anyMatch(s -> s.equalsIgnoreCase(course))){
 			throw new MatchingTypeInputException();
 		}
 		String level = matchingType[1];
-		// System.out.println(getLevelNameList().stream().anyMatch(s -> s.equals(level)));
 		if(!getLevelNameList().stream().anyMatch(s -> s.equals(level))){
 			throw new MatchingTypeInputException();
 		}
 
 		String missionName = matchingType[2];
-		// System.out.println(mission.getMissionListByLevel(Level.findByName(level)).stream().anyMatch(s -> s.equalsIgnoreCase(missionName)));
 		if(!mission.getMissionListByLevel(Level.findByName(level)).stream().anyMatch(s -> s.equalsIgnoreCase(missionName))){
 			throw new MatchingTypeInputException();
 		}
