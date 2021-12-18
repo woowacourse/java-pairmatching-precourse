@@ -17,7 +17,8 @@ public class OutputView {
 	}
 
 	public static void printTechCourseState() {
-		System.out.println(STATE_MESSAGE_WRAPPER + LINE_BREAK
+		System.out.println(LINE_BREAK
+			+ STATE_MESSAGE_WRAPPER + LINE_BREAK
 			+ Course.getCourseView() + LINE_BREAK
 			+ MISSION_PREFIX + LINE_BREAK
 			+ Level.getLevelView()
@@ -25,6 +26,7 @@ public class OutputView {
 		);
 		printInputExample();
 	}
+
 	private static void printInputExample() {
 		System.out.println(MISSION_SELECT_MESSAGE);
 		System.out.println(MISSION_SELECT_EXAMPLE);

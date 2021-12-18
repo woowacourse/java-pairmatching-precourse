@@ -4,6 +4,7 @@ public class ViewMessage {
 
 	public static final String SELECTION_MESSAGE = "기능을 선택하세요.";
 	public static final String SELECTION_DOT = ". ";
+	public static final String MISSION_DETAIL_DIVIDER = ", ";
 
 	public static final String STATE_MESSAGE_WRAPPER = "#############################################";
 	public static final String COURSE_PREFIX = "과정: ";

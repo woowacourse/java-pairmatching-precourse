@@ -19,10 +19,13 @@ public enum Level {
 		String form = "";
 		for (Level level : Level.values()) {
 			String inlineForm = LEVEL_PREFIX + level.name + LEVEL_MISSION_CONNECTOR;
-			inlineForm += Mission.getMissionViewByLevel(level) + LINE_BREAK;
+			inlineForm += MissionModel.getMissionViewByLevel(level) + LINE_BREAK;
 			form += inlineForm;
 		}
 		return form;
 	}
 
+	public String getName() {
+		return name;
+	}
 }

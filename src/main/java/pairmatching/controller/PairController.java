@@ -1,7 +1,10 @@
 package pairmatching.controller;
 
+import static pairmatching.constant.ErrorMessages.*;
+
 import pairmatching.domains.crew.BackendCrews;
 import pairmatching.domains.crew.FrontendCrews;
+import pairmatching.domains.mission.Mission;
 import pairmatching.domains.mission.Missions;
 import pairmatching.domains.programfunc.ProgramSelection;
 import pairmatching.view.InputView;
@@ -33,7 +36,7 @@ public class PairController {
 			ProgramSelection userSelect = InputView.getUserSelect();
 			doSelection(userSelect);
 		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
+			System.out.println(ERROR_PREFIX + e.getMessage());
 			run();
 		}
 	}
@@ -52,6 +55,18 @@ public class PairController {
 	}
 
 	private void matching() {
-		OutputView.printTechCourseState();
+		Mission userMission = getUserMission();
+	}
+
+	private Mission getUserMission() {
+
+		try {
+			OutputView.printTechCourseState();
+			return InputView.getUserMission(missions);
+		} catch (IllegalArgumentException e) {
+			System.out.println(ERROR_PREFIX + e.getMessage());
+			getUserMission();
+		}
+		return null;
 	}
 }
