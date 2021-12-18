@@ -27,6 +27,7 @@ public enum PairFunction {
 			OutputView.printCourseLevelMissionInformation();
 			try {
 				List<String> informationList = getCourseLevelMissionInput();
+				OutputView.printCrewPairResult(informationList);
 			} catch (IllegalArgumentException exception) {
 				OutputView.printErrorMessage(exception.getMessage());
 			}
