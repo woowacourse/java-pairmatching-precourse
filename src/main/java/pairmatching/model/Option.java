@@ -15,7 +15,15 @@ public enum Option {
 
 	public static String checkInput(String input) {
 
-		return input;
+		for (Option option : values()) {
+
+			if (option.value.equals(input)) {
+				return input;
+			}
+
+		}
+
+		throw new IllegalArgumentException("없는 옵션입니다.");
 	}
 
 	public String getValue() {
