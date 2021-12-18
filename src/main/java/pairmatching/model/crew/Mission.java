@@ -14,15 +14,15 @@ public enum Mission {
     ENHANCING(Level.LEVEL4, "성능개선"),
     RELEASING(Level.LEVEL4, "배포");
 
-    private final String name;
     private final Level level;
+    private final String name;
 
     Mission(final Level level, final String name) {
         this.level = level;
         this.name = name;
     }
 
-    public static Mission of(final String nameValue, final String levelValue) {
+    public static Mission of(final String levelValue, final String nameValue) {
         Level level = Level.of(levelValue);
         return Arrays.stream(values())
                 .filter(mission -> mission.name.equals(nameValue) && mission.level == level)
