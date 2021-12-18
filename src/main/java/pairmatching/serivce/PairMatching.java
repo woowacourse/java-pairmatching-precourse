@@ -3,6 +3,8 @@ package pairmatching.serivce;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.model.Matching;
@@ -37,23 +39,26 @@ public class PairMatching {
 
 	public void match(HashMap<String, String> pairMatching) {
 		int count = 0;
-		List<String> suffledCrews = suffledCrews(pairMatching.get("course"));
+		Queue<String> crewQueue = suffledCrews(pairMatching.get("course"));
 
 		ArrayList<ArrayList<String>> matching = new ArrayList<>();
 		ArrayList<String> nowMatching = new ArrayList<>();
-		for (int i = 0; i < suffledCrews.size(); i += PAIR_LIMIT) {
-			nowMatching.add(suffledCrews.get(i));
-			nowMatching.add(suffledCrews.get(i + 1));
+		while (crewQueue.size() > 0) {
+			nowMatching.add(crewQueue.poll());
+			nowMatching.add(crewQueue.poll());
+			if (crewQueue.size() == 1) {
+				nowMatching.add(crewQueue.poll());
+			}
 			matching.add(nowMatching);
-			// TODO: 홀수일 경우 마지막 학생 추가
 			nowMatching = new ArrayList<>();
 		}
 		matchings.add(new Matching(pairMatching.get("course"), pairMatching.get("level"), pairMatching.get("mission"), matching));
 	}
 
-	private List<String> suffledCrews(String course) {
+	private Queue<String> suffledCrews(String course) {
 		List<String> crewNames = getCrews(course);
-		return Randoms.shuffle(crewNames);
+		List<String> suffledCrews = Randoms.shuffle(crewNames);
+		return new LinkedList<>(suffledCrews);
 	}
 
 	private List<String> getCrews(String course) {
