@@ -65,22 +65,22 @@ public class PairMatchingController {
 			.collect(Collectors.toList());
 
 		shuffleAndPair(pairs, crewNames);
-		if(!testPairs(pairs, crewNames)) {
-			System.out.println(SystemMessage.ERROR_CANT_SHUFFLE);
+		if (!testPairs(pairs, crewNames))
 			return false;
-		}
+
 		pairRepository.addPair(lastMatchParams, pairs);
 		return true;
 	}
 
 	private boolean hasSamePairInThisLevel(List<List<String>> pairs) {
-		List<String> pairListByCourseAndLevel = pairRepository.getPairsByCourseAndLevel(lastMatchParams.getCourse(), lastMatchParams.getLevel());
+		List<String> pairListByCourseAndLevel = pairRepository.getPairsByCourseAndLevel(lastMatchParams.getCourse(),
+			lastMatchParams.getLevel());
 		List<String> pairStringList = pairs.stream()
 			.map(item -> String.join(PAIR_DELIMITER, item))
 			.collect(Collectors.toList());
 
 		for (String pairString : pairStringList) {
-			if(pairListByCourseAndLevel.contains(pairString))
+			if (pairListByCourseAndLevel.contains(pairString))
 				return true;
 		}
 
@@ -90,7 +90,7 @@ public class PairMatchingController {
 	private boolean testPairs(List<List<String>> pairs, List<String> crewNames) {
 		int i;
 		for (i = 0; i < 3; i++) {
-			if(hasSamePairInThisLevel(pairs)) {
+			if (hasSamePairInThisLevel(pairs)) {
 				shuffleAndPair(pairs, crewNames);
 				continue;
 			}

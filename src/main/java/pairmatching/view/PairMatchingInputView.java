@@ -70,6 +70,7 @@ public class PairMatchingInputView implements View {
 			Application.controller.view(ViewMappingKey.PAIR_MATCHING_RESULT);
 			return;
 		}
+		System.out.println(SystemMessage.ERROR_CANT_SHUFFLE);
 		Application.controller.view(ViewMappingKey.FUNCTION_SELECT);
 	}
 
