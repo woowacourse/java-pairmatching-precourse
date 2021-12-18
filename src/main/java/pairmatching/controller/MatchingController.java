@@ -21,22 +21,35 @@ public class MatchingController {
 		while (true) {
 			String inputNum = inputController.scanSelectFunction();
 			if (inputNum.equals("1")) {
-				InputView.askCourseLevelMission();
-				String[] eachInform = inputController.scanCourseLevelMission();
-				HashMap<String, Pairs> missionPair = new HashMap<>();
-				Pairs pairs = shuffleCrew(eachInform[COURSE_INDEX]);
-				missionPair.put(eachInform[MISSION_INDEX], pairs);
-				pairStorage.backEndPair.put(Level.getLevelByName(eachInform[LEVEL_INDEX]), missionPair);
-				OutputView.printPairResult(pairs);
+				matchPair(pairStorage, inputController);
 			} else if (inputNum.equals("2")) {
-				InputView.askCourseLevelMission();
-				inputController.scanCourseLevelMission();
+				lookUpPair(pairStorage, inputController);
 			} else if (inputNum.equals("3")) {
 				pairStorage.initPairStorage();
 				OutputView.printInit();
 			} else if (inputNum.equals("Q")) {
 				break;
 			}
+		}
+	}
+
+	public void matchPair(PairStorage pairStorage, InputController inputController) {
+		String[] eachInform = inputController.scanCourseLevelMission();
+		HashMap<String, Pairs> missionPair = new HashMap<>();
+		Pairs pairs = shuffleCrew(eachInform[COURSE_INDEX]);
+		missionPair.put(eachInform[MISSION_INDEX], pairs);
+		pairStorage.backEndPair.put(Level.getLevelByName(eachInform[LEVEL_INDEX]), missionPair);
+		OutputView.printPairResult(pairs);
+	}
+
+	public void lookUpPair(PairStorage pairStorage, InputController inputController) {
+		try {
+			String[] eachInform = inputController.scanCourseLevelMission();
+			Pairs pairs = pairStorage.getPairs(Level.getLevelByName(eachInform[LEVEL_INDEX]),
+				eachInform[MISSION_INDEX]);
+			OutputView.printPairResult(pairs);
+		} catch (IllegalArgumentException e) {
+			OutputView.printNoExistError();
 		}
 	}
 

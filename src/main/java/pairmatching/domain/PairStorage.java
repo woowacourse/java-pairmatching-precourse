@@ -10,4 +10,12 @@ public class PairStorage {
 		backEndPair = new HashMap<>();
 		frontEndPair = new HashMap<>();
 	}
+
+	public Pairs getPairs(Level level, String mission) {
+		try {
+			return backEndPair.get(level).get(mission);
+		} catch (NullPointerException e) {
+			throw new IllegalArgumentException();
+		}
+	}
 }
