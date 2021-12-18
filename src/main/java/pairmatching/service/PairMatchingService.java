@@ -40,8 +40,10 @@ public class PairMatchingService {
         Mission mission = MissionRepository.getMissionByName(optionInfos[2]);
 
         List<Pair> pairs = returnMatchResult();
-        MatchResultRepository.addMatchResult(new MatchResult(course, level, mission, pairs));
+        MatchResult matchResult = new MatchResult(course, level, mission, pairs);
+        MatchResultRepository.addMatchResult(matchResult);
         saveAllPairHistory(pairs, level);
+        showMatchResult(matchResult);
     }
 
     public boolean confirmPostNewMatchResult(MatchResult existingResult) {
