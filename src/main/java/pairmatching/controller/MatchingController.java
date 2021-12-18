@@ -1,6 +1,7 @@
 package pairmatching.controller;
 
 import jdk.internal.util.xml.impl.Input;
+import pairmatching.service.MatchingService;
 import pairmatching.utils.InputMessage;
 import pairmatching.view.InputView;
 
@@ -9,7 +10,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MatchingController {
-    
+
+    private List<MatchingService> matchingServiceList;
+
+    public  MatchingController(){
+    }
+
     public void start(){
         //  기능 선택 질문하기
         InputView.askCaegory();
@@ -28,13 +34,24 @@ public class MatchingController {
             System.out.println(detailAnswer);
             String[] detailArray = detailAnswer.split(",");
             List<String> detailList = new ArrayList<String>(Arrays.asList(detailArray));
-            // 현재 매칭 정보가 있는 지확인 하고 없으면 생성
 
-            // 있으면 매칭 정보 있다고 알려주고 다시 매칭
+            MatchingService service = new MatchingService(detailArray[0], detailArray[1], detailArray[2]);
+            // 현재 매칭 정보가 있는 지확인 하고 없으면 생성
+//            if(matchingServiceList.contains(service)){
+//                //존재합니다
+//                InputView.existService();
+//                String againAsnwer = InputView.getagainMatching();
+//                if (againAsnwer.equals("아니오")){
+//                    // 기존에 있는 매칭 출력
+//                }
+//
+//            }
+            service.getMatching();
+                //존재하지 않는 경우 그냥 매칭 결과 출력
         }
         if(categoryAnswer.equals("2")){
             // 현재 있는 매칭 출력
-            
+
         }
         if(categoryAnswer.equals("3")){
             
@@ -43,16 +60,5 @@ public class MatchingController {
         return;
     }
 
-
-
-
-    public void getShuffle(){
-        // 파일 내용 읽어오기
-
-        // 페어링 하기
-    }
-
-    public void getMatchingResult(){
-        // 페어링 결과 출력하기
-    }
 }
+

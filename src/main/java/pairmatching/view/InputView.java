@@ -22,4 +22,13 @@ public class InputView {
         String category = Console.readLine();
         return category;
     }
+
+    public static void existService(){
+        System.out.println(InputMessage.CHOOSE_AGAIN);
+    }
+
+    public static String getagainMatching(){
+        String category = Console.readLine();
+        return category;
+    }
 }

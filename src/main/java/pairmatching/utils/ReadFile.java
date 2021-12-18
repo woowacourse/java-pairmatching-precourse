@@ -9,8 +9,8 @@ import java.util.List;
 
 public class ReadFile {
 
-    public static String readFile(String path){
-
+    public static List<String> readFile(String path){
+        System.out.println(path);
         File file = new File(path);
         List<String> allNames = new ArrayList<String>() ;
         try {
@@ -18,10 +18,11 @@ public class ReadFile {
             while(scan.hasNextLine()){
                 allNames.add(scan.nextLine());
             }
+            return allNames;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        return path;
+        return null;
     }
 }
