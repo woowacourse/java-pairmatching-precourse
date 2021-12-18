@@ -14,12 +14,22 @@ public enum Level {
     }
 
     public static Level getLevelFromInput(String input) {
-        Level level = Level.valueOf(input);
+        Level level = Level.findBy(input);
 
         if (level == null) {
             throw new IllegalArgumentException("[ERROR] 잘못된 레벨을 입력하셨습니다.");
         }
 
         return level;
+    }
+
+    private static Level findBy(String arg) {
+        for (Level level : values()) {
+            if (level.name().equals(arg)) {
+                return level;
+            }
+        }
+
+        return null;
     }
 }

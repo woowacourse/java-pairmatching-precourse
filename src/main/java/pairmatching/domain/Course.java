@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import com.sun.deploy.util.StringUtils;
+
 public enum Course {
     BACKEND("백엔드"),
     FRONTEND("프론트엔드");
@@ -11,13 +13,23 @@ public enum Course {
     }
 
     public static Course getCourseFromInput(String input) {
-        Course course = Course.valueOf(input);
+        Course course = Course.findBy(input);
 
         if (course == null) {
             throw new IllegalArgumentException("[ERROR] 잘못된 과정을 입력하셨습니다.");
         }
 
         return course;
+    }
+
+    private static Course findBy(String arg) {
+        for (Course course : values()) {
+            if (course.name().equals(arg)) {
+                return course;
+            }
+        }
+
+        return null;
     }
 
     public static void printCourse() {

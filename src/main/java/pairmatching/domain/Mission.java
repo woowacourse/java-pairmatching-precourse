@@ -28,11 +28,19 @@ public enum Mission {
     public static void printMissionByLevel(Level level) {
         List<Mission> missions = getMissionByLevel(level);
 
+        if (missions.isEmpty()) {
+            System.out.println();
+        }
+
         for (int i = 0; i < missions.size(); i++) {
-            System.out.println(missions.get(i).name);
+            System.out.print(missions.get(i).name);
 
             if (i != missions.size() - 1) {
-                System.out.println(" | ");
+                System.out.print(" | ");
+            }
+
+            if (i == missions.size() -1) {
+                System.out.println();
             }
         }
     }
@@ -52,12 +60,22 @@ public enum Mission {
     }
 
     public static Mission getMissionFromNameAndLevel(String name, Level level) {
-        Mission mission = Mission.valueOf(name);
+        Mission mission = Mission.findBy(name);
 
         if (mission.level != level) {
             throw new IllegalArgumentException("[ERROR] 잘못된 미션 입니다.");
         }
 
         return mission;
+    }
+
+    private static Mission findBy(String arg) {
+        for (Mission mission : values()) {
+            if (mission.name().equals(arg)) {
+                return mission;
+            }
+        }
+
+        return null;
     }
 }
