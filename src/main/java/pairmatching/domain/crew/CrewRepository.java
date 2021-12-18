@@ -1,12 +1,8 @@
 package pairmatching.domain.crew;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import pairmatching.domain.Course;
-import pairmatching.domain.crew.Crew;
-
 public class CrewRepository {
     private final Map<String, Crew> backendCrew = new HashMap<>();
     private final Map<String, Crew> frontendCrew = new HashMap<>();
@@ -19,6 +15,17 @@ public class CrewRepository {
         if(course == Course.FRONTEND) {
             createFrontendCrew(crewNames);
         }
+    }
+
+    public List<String> getCrewNamesByCourse(Course course) {
+        if (course == Course.BACKEND) {
+            return new ArrayList<>(backendCrew.keySet());
+        }
+
+        if (course == Course.FRONTEND) {
+            return new ArrayList<>(frontendCrew.keySet());
+        }
+        return null;
     }
 
     private void createBackendCrew(List<String> crewNames) {
@@ -35,3 +42,4 @@ public class CrewRepository {
         }
     }
 }
+

@@ -33,4 +33,8 @@ public class MissionRepository {
         }
         return missionNamesByLevel;
     }
+
+    public List<String> findMissionNamesByLevel(Level level) {
+        return findMissionNamesByLevel().get(level);
+    }
 }

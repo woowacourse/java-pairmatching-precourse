@@ -2,6 +2,7 @@ package pairmatching.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public enum Course {
     BACKEND("백엔드"),
@@ -14,14 +15,17 @@ public enum Course {
     }
 
     public static boolean isCourseName(String name) {
-        if(getAllLevel().stream().anyMatch(course -> course.name.equals(name))) {
+        if(getAllCourse().stream().anyMatch(course -> course.name.equals(name))) {
             return true;
         };
         return false;
     }
 
-    private static List<Course> getAllLevel() {
-        return Arrays.asList(values());
+    public static Optional<Course> findByName(String name) {
+        return getAllCourse().stream().filter(course -> course.name.equals(name)).findAny();
     }
 
+    private static List<Course> getAllCourse() {
+        return Arrays.asList(values());
+    }
 }

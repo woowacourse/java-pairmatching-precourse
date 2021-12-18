@@ -19,7 +19,7 @@ public class InputView {
     public static String[] inputPairInfoToPerformFunction(List<String> allMissionNames, Map<Level, List<String>> missionNamesByLevel) {
         printPriorKnowledge(missionNamesByLevel);
         printRequestMessageAboutPairInfo();
-        String[] PairInfoToPerformFunction = input().split(",");
+        String[] PairInfoToPerformFunction = input().split(", ");
         checkCourseName(PairInfoToPerformFunction[0]);
         checkLevelName(PairInfoToPerformFunction[1]);
         checkMissionName(PairInfoToPerformFunction[1], PairInfoToPerformFunction[2], allMissionNames, missionNamesByLevel);
