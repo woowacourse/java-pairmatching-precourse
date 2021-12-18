@@ -42,4 +42,9 @@ public class FrontEndCrewService implements CourseCrewService {
             throw new NotFoundException(ErrorMessage.NOT_EXIST_FILE_PATH);
         }
     }
+
+    @Override
+    public List<Crew> findAll() {
+        return frontEndCrewRepository.findAll();
+    }
 }

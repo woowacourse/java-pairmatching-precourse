@@ -1,5 +1,8 @@
 package pairmatching.crew;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Crew {
 
     private Course course;

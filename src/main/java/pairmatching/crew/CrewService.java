@@ -3,6 +3,8 @@ package pairmatching.crew;
 import pairmatching.crew.backend.BackEndCrewService;
 import pairmatching.crew.frontend.FrontEndCrewService;
 
+import java.util.List;
+
 public class CrewService {
 
     private final String BACKEND_CREW_NAME_FILE_PATH = "/Users/nayoung/IdeaProjects/java-pairmatching-precourse/src/main/resources/backend-crew.md";
@@ -36,4 +38,14 @@ public class CrewService {
     private void initializeFrontEndCrew() {
         frontEndCrewService.initialCrew(FRONTEND_CREW_NAME_FILE_PATH);
     }
+
+    public List<Crew> findAllBackEndCrew() {
+        return backEndCrewService.findAll();
+    }
+
+    public List<Crew> findAllFrontEndCrew() {
+        return frontEndCrewService.findAll();
+    }
+
+
 }

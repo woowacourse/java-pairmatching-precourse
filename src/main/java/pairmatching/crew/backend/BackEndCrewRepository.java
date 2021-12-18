@@ -1,6 +1,9 @@
 package pairmatching.crew.backend;
 
 import pairmatching.crew.Crew;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -20,5 +23,9 @@ public class BackEndCrewRepository {
 
     public void add(Crew crew) {
         backEndCrewMap.put(crew.getName(), crew);
+    }
+
+    public List<Crew> findAll() {
+        return new ArrayList<>(backEndCrewMap.values());
     }
 }
