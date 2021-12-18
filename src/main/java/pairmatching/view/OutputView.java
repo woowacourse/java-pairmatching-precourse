@@ -25,6 +25,7 @@ public class OutputView {
 	}
 
 	public static void printMissionInformation() {
+		printBlankLine();
 		printMessage("#############################################");
 		printMessage("과정: " + courseListWithDelimiter(Arrays.asList(Course.values())));
 		printMessage("미션: ");
@@ -51,6 +52,7 @@ public class OutputView {
 	}
 
 	public static void printRematchingMessage() {
+		printBlankLine();
 		printMessage("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
 		printMessage("네 | 아니오");
 	}
