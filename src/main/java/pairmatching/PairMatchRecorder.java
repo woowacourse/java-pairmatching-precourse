@@ -7,7 +7,7 @@ public class PairMatchRecorder {
 	private Course course;
 	private Level level;
 	private String mission;
-	private HashMap<String, String> pairMatchMap;
+	private HashMap<String, String> pairMatchHistory;
 
 	PairMatchRecorder(Course course, Level level, String mission){
 		this.course=course;
@@ -15,14 +15,15 @@ public class PairMatchRecorder {
 		this.mission = mission;
 	}
 
-	public boolean checkDuplicatedPair(HashMap<String, String> pairMap){
-		for(Map.Entry<String, String> pair : pairMap.entrySet()){
-			String key = pair.getKey();
+	private boolean checkDuplicatedPair(HashMap<String, String> recentMatchedPair){
+		for(Map.Entry<String, String> entry : recentMatchedPair.entrySet()){
+			String key = entry.getKey();
 
-			if(this.pairMatchMap.get(key) == pair.getValue()){
+			if(pairMatchHistory.get(key) == entry.getValue()){
 				return false;
 			}
 		}
+
 		return true;
 	}
 }
