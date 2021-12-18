@@ -27,7 +27,7 @@ public class OutputView {
 
 	public static void printMatching(List<Pair> pairs) {
 		StringBuilder builder = new StringBuilder();
-		builder.append("페어 매칭 결과입니다.");
+		builder.append("페어 매칭 결과입니다.\n");
 		for (Pair pair : pairs) {
 			builder.append(pair.toString())
 				.append("\n");

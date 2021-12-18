@@ -58,6 +58,7 @@ public class MainController {
 			ReMatching reMatching = viewController.returnReMatching();
 			if (reMatching.isNoWantReMatch()) {
 				matching();
+				return;
 			}
 
 			matchingRepository.deleteMatching(matching.get());
