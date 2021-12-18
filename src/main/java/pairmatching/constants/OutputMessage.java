@@ -9,5 +9,6 @@ public class OutputMessage {
 	public static final String COLON = ": ";
 
 	public static final String PAIR_MATCHING = "페어 매칭 결과입니다.";
+	public static final String RESET_PROGRAM = "초기화 되었습니다.";
 
 }

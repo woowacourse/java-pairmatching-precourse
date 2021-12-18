@@ -43,4 +43,9 @@ public class OutputView {
 		}
 		System.out.println();
 	}
+
+	public static void resetProgram() {
+		System.out.println(RESET_PROGRAM);
+		System.out.println();
+	}
 }

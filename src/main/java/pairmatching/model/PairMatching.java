@@ -2,6 +2,7 @@ package pairmatching.model;
 
 import static pairmatching.constants.Constants.*;
 import static pairmatching.constants.ErrorMessage.*;
+import static pairmatching.view.OutputView.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -70,4 +71,9 @@ public class PairMatching {
 		matchingInfo.printMatchingInfo(course);
 	}
 
+	public void reset() {
+		matchingHistory = new MatchingHistory();
+		matchingInfo = new MatchingInfo();
+		resetProgram();
+	}
 }

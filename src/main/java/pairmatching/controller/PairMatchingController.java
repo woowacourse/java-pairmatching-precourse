@@ -26,7 +26,7 @@ public class PairMatchingController {
 				requestLookingUp();
 			}
 			if (selectFunc == RESET_NUMBER) {
-				System.out.println("초기화");
+				requestReset();
 			}
 			if (selectFunc == QUIT_NUMBER) {
 				break;
@@ -74,5 +74,9 @@ public class PairMatchingController {
 			printError(illegalArgumentException.getMessage());
 			requestLookingUp();
 		}
+	}
+
+	private void requestReset() {
+		pairMatching.reset();
 	}
 }
