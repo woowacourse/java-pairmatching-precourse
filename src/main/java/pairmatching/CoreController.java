@@ -27,6 +27,10 @@ public class CoreController {
 
 	CoreController() {
 		uiLogic = new UiLogic();
+		init();
+	}
+
+	private void init() {
 		missionInLevel = new HashMap<>();
 		for (Level specificLevel : Level.values()) {
 			String level = specificLevel.getName();
@@ -201,5 +205,9 @@ public class CoreController {
 
 	protected void searchPair(String course, String level, String mission) {
 		showPair(mission);
+	}
+
+	protected void initAllPair() {
+		init();
 	}
 }
