@@ -6,5 +6,5 @@ import java.util.Map;
 public class Crew {
 	private Course course;
 	private String name;
-	private Map<Level, List<Crew>> matchedCrew;
+	private MatchedCrew matchedCrew;
 }
