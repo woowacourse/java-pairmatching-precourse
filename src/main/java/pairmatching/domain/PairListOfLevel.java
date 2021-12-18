@@ -17,7 +17,7 @@ public class PairListOfLevel {
 
     // 이미 쌍이 존재하는지 검사
     public boolean checkNotMatchedYet(Pair pair) {
-        for (int crewNumber = 0; crewNumber < pair.getCrewSize();) {
+        for (int crewNumber = 0; crewNumber < pair.getCrewSize()-1;) {
             if (!checkNotMatchedYetUsingNames(pair.crewNameByNumber(crewNumber), pair.crewNameByNumber(crewNumber + 1))) return false;
             crewNumber = crewNumber + 2;
         }
