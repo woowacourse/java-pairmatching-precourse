@@ -22,7 +22,13 @@ public class PairMatchingSystem {
     }
 
     public void pairMatching(){
+        UI.printPairMatchingChoice();
 
+        String[] courseLevelMission = UI.insertPairMatchingChoice().split(",");
+        Validation.validatePairMatchingLength(courseLevelMission);
+        Validation.validateCourse(courseLevelMission);
+        Validation.validateLevel(courseLevelMission);
+        Validation.validateMission(courseLevelMission);
     }
 
     public void pairSelect(){
