@@ -7,6 +7,7 @@ import pairmatching.System.SystemInputMessage;
 import pairmatching.domain.Crew;
 import pairmatching.dto.PropertyDto;
 import pairmatching.service.MatchingService;
+import pairmatching.utils.ParsingUtility;
 import pairmatching.view.InputSystem;
 import pairmatching.view.OutputSystem;
 
@@ -25,6 +26,7 @@ public class PairMatchingManagementApplication {
     private final OutputSystem outputSystem;
     private final ConstantDataStore constantDataStore;
     private final MatchingService matchingService;
+    private final ParsingUtility parsingUtility;
 
     private Map<PropertyDto, String> matchingHistories;
 
@@ -33,6 +35,7 @@ public class PairMatchingManagementApplication {
         outputSystem = OutputSystem.getInstance();
         constantDataStore = ConstantDataStore.getInstance();
         matchingService = MatchingService.getInstance();
+        parsingUtility=ParsingUtility.getInstance();
         matchingHistories = new HashMap<>();
     }
 
@@ -55,7 +58,7 @@ public class PairMatchingManagementApplication {
                 continue;
             }
             String courseAndLevelAndMission = inputSystem.inputPropertyInput();
-            PropertyDto propertyDto = extractedPropertyInformation(courseAndLevelAndMission);
+            PropertyDto propertyDto = parsingUtility.extractedPropertyInformation(courseAndLevelAndMission);
             crews = pickCrews(propertyDto.getCourse());
             if (!matchingHistories.containsKey(propertyDto)) {
                 String matchingResult = matchingService.matchTheCrews(crews, propertyDto).toString();
@@ -76,17 +79,6 @@ public class PairMatchingManagementApplication {
             }
             outputSystem.printConsoleMessage(matchingHistories.get(propertyDto));
         } while (inputFunctionNumber != EXIT);
-    }
-
-    private PropertyDto extractedPropertyInformation(String courseAndLevelAndMission) {
-        String[] propertyInformation = courseAndLevelAndMission.split(",");
-        for (int index = 0; index < propertyInformation.length; index++) {
-            propertyInformation[index] = propertyInformation[index].trim();
-        }
-        String course = propertyInformation[0];
-        String level = propertyInformation[1];
-        String mission = propertyInformation[2];
-        return new PropertyDto(course, level, mission);
     }
 
     private List<Crew> pickCrews(String course) {
