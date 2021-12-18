@@ -14,8 +14,23 @@ public class CrewMatchingController {
 
 	public void start() {
 		setupCrewInfo();
-		InputView.printFunctionOptions();
-		FunctionOption functionOptionFromClient = getFunctionOptionFromClient();
+		boolean isRunning = true;
+
+		while (isRunning) {
+			InputView.printFunctionOptions();
+			FunctionOption functionOptionFromClient = getFunctionOptionFromClient();
+			isRunning = operateByFunction(functionOptionFromClient, isRunning);
+		}
+	}
+
+	private boolean operateByFunction(FunctionOption functionOptionFromClient, boolean isRunning) {
+		if (functionOptionFromClient.equals(FunctionOption.EXIT)) {
+			return false;
+		}
+
+		InputView.printCourseInfo();
+
+		return true;
 	}
 
 	private FunctionOption getFunctionOptionFromClient() {
