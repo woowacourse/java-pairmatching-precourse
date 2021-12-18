@@ -1,5 +1,7 @@
 package pairmatching.view;
 
+import pairmatching.utils.ErrorMessageConstants;
+
 public class PairMatchingOutputView {
 	private static final String FUNCTION_INPUT = "기능을 선택하세요.";
 	private static final String PAIR_MATCHING_FUNCTION = "1. 페어 매칭";
@@ -86,5 +88,9 @@ public class PairMatchingOutputView {
 		System.out.println(LINE_WRAPPING);
 		System.out.println(MATCHING_RESULT_OUTPUT);
 		System.out.println(matchingResult);
+	}
+
+	public static void printErrorMessage(String errorMessage) {
+		System.out.println(ErrorMessageConstants.ERROR + errorMessage);
 	}
 }

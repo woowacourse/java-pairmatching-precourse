@@ -36,20 +36,39 @@ public class PairMatchingController {
 	private void search() {
 		String inputMatchingCondition = PairMatchingInputView.readCourseAndMission();
 		Matching searchMatching = new Matching(inputMatchingCondition);
-		matches.forEach(matching -> {
-			if (matching.equals(searchMatching)) {
-				PairMatchingOutputView.printMatchingResult(matching.toString());
-				return;
-			}
-		});
+		if (!isDuplicateMatch(searchMatching)) {
+			PairMatchingOutputView.printMatchingResult(searchMatching.toString());
+			return;
+		}
 		throw new IllegalArgumentException(ErrorMessageConstants.NO_SUCH_MATCHING_EXCEPTION);
 	}
+
 
 	private void match() {
 		String inputMatchingCondition = PairMatchingInputView.readCourseAndMission();
 		Matching matching = new Matching(inputMatchingCondition);
-		matching.matchPairs();
-		matches.add(matching);
-		PairMatchingOutputView.printMatchingResult(matching.toString());
+		try {
+			int trial = 0;
+			while (trial < 3) {
+				matching.matchPairs();
+				if (!isDuplicateMatch(matching)) {
+					break;
+				}
+				trial++;
+			}
+			matches.add(matching);
+			PairMatchingOutputView.printMatchingResult(matching.toString());
+		} catch (IllegalArgumentException exception) {
+			PairMatchingOutputView.printErrorMessage(ErrorMessageConstants.PAIR_TRIAL_EXCEED_EXCEPTION);
+		}
+	}
+
+	private boolean isDuplicateMatch(Matching searchMatching) {
+		for (Matching matching : matches) {
+			if (matching.equals(searchMatching)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
