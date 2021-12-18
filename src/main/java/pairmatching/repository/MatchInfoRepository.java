@@ -51,5 +51,13 @@ public class MatchInfoRepository {
         return false;
     }
 
+    public MatchInfo findMatchInfo(Course course, Level level, Mission mission) {
+        return matchInfoList.stream()
+                .filter(matchInfo -> course == matchInfo.getCourse())
+                .filter(matchInfo -> level == matchInfo.getLevel())
+                .filter(matchInfo -> mission == matchInfo.getMission())
+                .collect(Collectors.toList()).get(0);
+    }
+
 
 }

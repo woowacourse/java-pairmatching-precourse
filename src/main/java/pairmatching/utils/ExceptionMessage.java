@@ -10,4 +10,5 @@ public class ExceptionMessage {
     public static final String ERROR_LEVEL_NOT_EXIST = "[ERROR] 입력된 레벨은 존재하지 않습니다.";
     public static final String ERROR_MISSION_NOT_EXIST = "[ERROR] 입력된 미션은 존재하지 않습니다.";
     public static final String ERROR_FILE_READ = "[ERROR] 파일을 읽기에서 오류가 발생했습니다. ";
+    public static final String ERROR_NOT_EXIST_MATCH = "[ERROR] 해당 매치는 존재하지 않습니다.";
 }

@@ -5,6 +5,7 @@ import static pairmatching.view.InputViews.getMainSelect;
 
 public class MainController {
     public static final MatchingController matchingController = new MatchingController();
+    public static final InqueryController inqueryController = new InqueryController();
 
     public void run() {
         boolean flag = false;
@@ -26,7 +27,7 @@ public class MainController {
             matchingController.run();
         }
         if (input.equals("2")) {
-
+            inqueryController.run();
         }
         if (input.equals("3")) {
 
