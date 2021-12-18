@@ -45,7 +45,7 @@ public enum Level {
 
 	public static Level from(String name) {
 		return Arrays.stream(Level.values())
-			.filter(level -> level.name == name)
+			.filter(level -> level.name.equals(name))
 			.findFirst()
 			.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 레벨입니다."));
 	}

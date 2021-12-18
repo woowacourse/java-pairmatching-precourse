@@ -19,7 +19,7 @@ public class CrewMaker {
 			BufferedReader bufReader = new BufferedReader(filereader);
 			String name = "";
 			while((name = bufReader.readLine()) != null){
-				CrewRepository.addCrew(Crew.from(Course.BACKEND, name));
+				CrewRepository.addBackEndCrew(Crew.from(Course.BACKEND, name));
 			}
 			bufReader.close();
 		}catch (FileNotFoundException e) {
@@ -36,7 +36,7 @@ public class CrewMaker {
 			BufferedReader bufReader = new BufferedReader(filereader);
 			String name = "";
 			while((name = bufReader.readLine()) != null){
-				CrewRepository.addCrew(Crew.from(Course.FRONTEND, name));
+				CrewRepository.addFrontEndCrew(Crew.from(Course.FRONTEND, name));
 			}
 			bufReader.close();
 		}catch (FileNotFoundException e) {

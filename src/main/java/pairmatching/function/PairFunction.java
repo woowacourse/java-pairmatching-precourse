@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import pairmatching.domain.CourseRepository;
+import pairmatching.domain.CrewPair;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -13,7 +14,7 @@ public enum PairFunction {
 		@Override
 		public void operate() {
 			OutputView.printCourseLevelMissionInformation();
-			while(true) {
+			while (true) {
 				List<String> informationList = getCourseLevelMissionInput();
 				if (CourseRepository.isExistPairMatching(informationList.get(0), informationList.get(1), informationList.get(2))) {
 					String newMatchingOpinion = InputView.getNewMatchingInput();
@@ -21,6 +22,9 @@ public enum PairFunction {
 						continue;
 					}
 				}
+				List<CrewPair> crewPairs = CourseRepository.makePair(informationList.get(0), informationList.get(1), informationList.get(2));
+
+
 			}
 		}
 	},
@@ -62,7 +66,8 @@ public enum PairFunction {
 	private static List<String> getCourseLevelMissionInput() {
 		String informationInput = InputView.getCourseLevelMissionInformation();
 		List<String> informationList = Arrays.stream(informationInput.split(",")).collect(Collectors.toList());
-		informationList.forEach(String::trim);
-		return informationList;
+		return informationList.stream()
+			.map(String::trim)
+			.collect(Collectors.toList());
 	}
 }

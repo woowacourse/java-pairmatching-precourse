@@ -14,7 +14,7 @@ public enum Course {
 
 	public static Course from(String name) {
 		return Arrays.stream(Course.values())
-			.filter(course -> course.name == name)
+			.filter(course -> course.name.equals(name))
 			.findFirst()
 			.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 과정입니다."));
 	}
