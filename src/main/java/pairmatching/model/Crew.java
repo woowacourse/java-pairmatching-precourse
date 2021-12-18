@@ -1,12 +1,13 @@
 package pairmatching.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Crew {
 	private Course course;
 	private String name;
-	private Map<Crew, Level> history = new HashMap<>();
+	private Map<Level, List<Crew>> history = new HashMap<>();
 
 	public Crew(Course course, String name) {
 		this.course = course;
@@ -29,11 +30,7 @@ public class Crew {
 		this.name = name;
 	}
 
-	public Map<Crew, Level> getHistory() {
-		return history;
-	}
-
-	public void setHistory(Map<Crew, Level> history) {
-		this.history = history;
+	public boolean haveWeMet(Level level, Crew crew) {
+		return history.get(level).contains(crew);
 	}
 }

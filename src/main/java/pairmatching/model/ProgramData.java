@@ -14,6 +14,7 @@ public class ProgramData {
 	private List<Crew> frontendCrews = new ArrayList<Crew>();
 	private Map<String, Boolean> pairExist = new HashMap<>();
 	private Map<String, List<Crew>> pairList = new HashMap<>();
+	private Map<String, List<NamePair>> history = new HashMap<>();
 
 	public ProgramData() throws FileNotFoundException {
 		makeCrewsFromFile();
@@ -83,4 +84,11 @@ public class ProgramData {
 		}
 	}
 
+	public Map<String, List<NamePair>> getHistory() {
+		return history;
+	}
+
+	public void setHistory(Map<String, List<NamePair>> history) {
+		this.history = history;
+	}
 }

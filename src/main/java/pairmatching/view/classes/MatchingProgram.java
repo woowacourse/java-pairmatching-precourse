@@ -4,6 +4,9 @@ import static camp.nextstep.edu.missionutils.Console.*;
 import static pairmatching.constant.PromptConstants.*;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import pairmatching.constant.CheckValidationCourseLevelMissionStatus;
 import pairmatching.constant.FunctionStatus;
@@ -12,6 +15,7 @@ import pairmatching.controller.CheckerValidationCourseLevelMissionInput;
 import pairmatching.controller.FunctionSelector;
 import pairmatching.controller.PairMaker;
 import pairmatching.exception.InvalidFunctionSelectException;
+import pairmatching.model.NamePair;
 import pairmatching.model.ProgramData;
 import pairmatching.view.MatchingProgramInterface;
 
@@ -32,14 +36,25 @@ public class MatchingProgram implements MatchingProgramInterface {
 				String inputCourseLevelMission = readLine();
 				CheckerValidationCourseLevelMissionInput validationChecker = new CheckerValidationCourseLevelMissionInput(inputCourseLevelMission);
 				if (validationChecker.checkValidation() == CheckValidationCourseLevelMissionStatus.VALID) {
-					inputCourseLevelMission = inputCourseLevelMission.split(", ")[0] + inputCourseLevelMission.split(", ")[1] + inputCourseLevelMission.split(", ")[2];
-					System.out.println(inputCourseLevelMission);
+					String inputCourse = inputCourseLevelMission.split(", ")[0];
+					String inputLevel = inputCourseLevelMission.split(", ")[1];
+					String inputMission = inputCourseLevelMission.split(", ")[2];
+					inputCourseLevelMission = inputCourse + inputLevel + inputMission;
 					if (programData.hasPair(inputCourseLevelMission)) {
 						programStatus = ProgramStatus.ASKING_REMATCHING;
-						continue;
 					}
 					PairMaker pairMaker = new PairMaker();
-					pairMaker.make(programData.getBackendCrews());
+					List<NamePair> inputNamePair = pairMaker.make(programData, inputCourse, inputLevel, inputMission);
+					Map<String, List<NamePair>> inputHistory = new HashMap<>();
+					inputHistory.put(inputLevel, inputNamePair);
+					programData.setHistory(inputHistory);
+					for (NamePair s : pairMaker.make(programData, inputCourse, inputLevel, inputMission)) {
+						System.out.print(s.getFirstName() + " : " + s.getSecondName());
+						if (s.getThirdName() == "") {
+							continue;
+						}
+						System.out.println(" : " + s.getThirdName());
+					}
 					break;
 				}
 				if (validationChecker.checkValidation() == CheckValidationCourseLevelMissionStatus.INVALID_COURSE) {
