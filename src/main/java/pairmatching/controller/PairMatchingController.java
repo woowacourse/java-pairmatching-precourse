@@ -18,14 +18,44 @@ public class PairMatchingController {
 		} while (!quit());
 	}
 
+	private void run() {
+		if (input.equals("1")) {
+			OutputView.printCourse();
+			matchPair();
+		}
+		if (input.equals("2")) {
+			OutputView.printCourse();
+			checkPair();
+		}
+		if (input.equals("3")) {
+			clearPair();
+			OutputView.printClearMessage();
+		}
+
+	}
+
 	private void matchPair() {
-		OutputView.printCourse();
+		OutputView.printEnterCurriculum();
 		String[] curriculumInfo = InputView.readString().split(", ");
 		Curriculum curriculum = new Curriculum(curriculumInfo[0], curriculumInfo[1], curriculumInfo[2]);
 		if (pairMatching.isEmpty(curriculum)) {
-
+			pairMatching.run(curriculum);
+			return;
 		}
+		OutputView.printAlreadyPair();
+		retry(curriculum);
+	}
 
+	private void retry(Curriculum curriculum) {
+		String input = InputView.readString();
+		if (input.equals("네")) {
+			pairMatching.run(curriculum);
+			checkPair();
+		}
+		if (input.equals("아니오")) {
+			matchPair();
+		}
+		throw new IllegalArgumentException();
 	}
 
 	private void checkPair() {
@@ -34,8 +64,8 @@ public class PairMatchingController {
 
 	}
 
-	private void cleanPair() {
-
+	private void clearPair() {
+		pairMatching.clearMatching();
 	}
 
 	private boolean quit() {
