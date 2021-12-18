@@ -9,4 +9,9 @@ public class Pairs {
 	public void init() {
 		pairs.clear();
 	}
+
+	public boolean isExists(Pair pair) {
+		return pairs.stream()
+			.anyMatch(p -> p.equals(pair));
+	}
 }
