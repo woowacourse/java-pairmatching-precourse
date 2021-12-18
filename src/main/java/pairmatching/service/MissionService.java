@@ -30,4 +30,8 @@ public class MissionService {
 			.map(Mission::getName)
 			.collect(Collectors.toList());
 	}
+
+	public Mission findByName(String name) {
+		return missionRepository.findByName(name);
+	}
 }

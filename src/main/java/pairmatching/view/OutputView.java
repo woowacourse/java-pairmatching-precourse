@@ -1,6 +1,11 @@
 package pairmatching.view;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import pairmatching.domain.Level;
+import pairmatching.domain.Member;
+import pairmatching.domain.Pair;
 import pairmatching.service.MissionService;
 
 public class OutputView {
@@ -23,5 +28,14 @@ public class OutputView {
 
 	public static void printInitializeMessage() {
 		System.out.println("초기화 되었습니다.");
+	}
+
+	public static void printPairs(List<Pair> pairs) {
+		System.out.println("페어 매칭 결과입니다.");
+		for (Pair pair : pairs) {
+			List<String> memberNames = pair.getMembers().stream()
+				.map(Member::getName).collect(Collectors.toList());
+			System.out.println(String.join(" : ", memberNames));
+		}
 	}
 }

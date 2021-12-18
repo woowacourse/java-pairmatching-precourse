@@ -8,4 +8,12 @@ public class Member {
 		this.name = name;
 		Course = course;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public pairmatching.domain.Course getCourse() {
+		return Course;
+	}
 }

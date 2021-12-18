@@ -35,7 +35,7 @@ public class Controller {
 		try {
 			String input = InputView.inputMenu();
 			MenuValidator.isRightMenu(input);
-			menuController.run(input, missionService);
+			menuController.run(input, missionService, memberService);
 		} catch (IllegalArgumentException e) {
 			OutputView.printExceptionMessage(e.getMessage());
 			inputMenuAndRun();
@@ -61,10 +61,10 @@ public class Controller {
 	private void saveMembers(String course) throws IOException {
 		List<String> memberNames = getMemberNames(course);
 		for (String memberName : memberNames) {
-			if (course.equals("백엔드")) {
+			if (course.equals("backend")) {
 				memberService.save(new Member(memberName, Course.Backend));
 			}
-			if (course.equals("프론트엔드")) {
+			if (course.equals("frontend")) {
 				memberService.save(new Member(memberName, Course.FrontEnd));
 			}
 		}

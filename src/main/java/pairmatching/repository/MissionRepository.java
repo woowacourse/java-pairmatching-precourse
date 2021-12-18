@@ -23,4 +23,10 @@ public class MissionRepository {
 	public List<Mission> findAll() {
 		return new ArrayList<>(missions.values());
 	}
+
+	public Mission findByName(String name) {
+		return missions.values().stream()
+			.filter(mission -> mission.getName().equals(name))
+			.findFirst().orElse(null);
+	}
 }
