@@ -5,6 +5,7 @@ import static pairmatching.view.OutputView.*;
 
 import pairmatching.domain.Menu;
 import pairmatching.domain.Order;
+import pairmatching.domain.ReMatching;
 import pairmatching.validator.MenuValidator;
 
 public class ViewController {
@@ -32,6 +33,19 @@ public class ViewController {
 		}
 
 		return menu;
+	}
+
+	public ReMatching returnReMatching() {
+		String reMatchingInputString = getReMatching();
+		ReMatching reMatching = null;
+		try {
+			reMatching = ReMatching.of(reMatchingInputString);
+		} catch (IllegalArgumentException exception) {
+			printError(exception);
+			return returnReMatching();
+		}
+
+		return reMatching;
 	}
 
 }

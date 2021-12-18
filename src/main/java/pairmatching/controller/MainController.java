@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import pairmatching.domain.Menu;
 import pairmatching.domain.Order;
+import pairmatching.domain.ReMatching;
 import pairmatching.domain.matcing.Matching;
 import pairmatching.domain.matcing.MatchingRepository;
 import pairmatching.view.OutputView;
@@ -33,10 +34,12 @@ public class MainController {
 
 	private void executeOrder(Order order) {
 		if (order.isMatching()) {
+			OutputView.printMenu();
 			matching();
 		}
 
 		if (order.isSearch()) {
+			OutputView.printMenu();
 			searchController.search();
 		}
 
@@ -50,7 +53,12 @@ public class MainController {
 		Menu menu = viewController.returnMenu();
 		Optional<Matching> matching = matchingRepository.findMatching(menu);
 		if (matching.isPresent()) {
-			// TODO: 2021/12/18 ask re-matching
+			ReMatching reMatching = viewController.returnReMatching();
+			if (reMatching.isNoWantReMatch()) {
+				matching();
+			}
+
+			// matchingRepository.delete(menu);
 		}
 
 		// TODO: 2021/12/18 matching
