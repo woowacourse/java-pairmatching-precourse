@@ -2,7 +2,7 @@ package pairmatching.view;
 
 import java.util.stream.Stream;
 
-import pairmatching.Function;
+import pairmatching.domain.Function;
 import pairmatching.domain.Course;
 import pairmatching.domain.Level;
 import pairmatching.domain.MatchedPairs;
@@ -15,7 +15,10 @@ public class OutputView {
 	private static final String TITLE_INQUIRY = "조회 결과입니다.";
 
 	private static final String NOTICE_NO_MATCHED = "매칭 이력이 없습니다.";
+	private static final String NOTICE_REMATCH = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
 	private static final String NOTICE_INIT = "초기화 되었습니다.";
+
+	private static final String OPTION_REMATCH = "네 | 아니오";
 
 	private static final String QUESTION_MISSION = "과정, 레벨, 미션을 선택하세요.";
 	private static final String QUESTION_MISSION_EX = "ex) 백엔드, 레벨1, 자동차경주";
@@ -65,6 +68,11 @@ public class OutputView {
 		}
 		matchedPairs.getPairs()
 			.forEach(this::printPair);
+	}
+
+	public void printRematch() {
+		System.out.println(NOTICE_REMATCH);
+		System.out.println(OPTION_REMATCH);
 	}
 
 	public void printInitResult() {

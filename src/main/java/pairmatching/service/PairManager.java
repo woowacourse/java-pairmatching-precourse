@@ -1,9 +1,17 @@
-package pairmatching.domain;
+package pairmatching.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import pairmatching.domain.Course;
+import pairmatching.domain.Crew;
+import pairmatching.domain.CrewRepository;
+import pairmatching.domain.Level;
+import pairmatching.domain.MatchedPairs;
+import pairmatching.domain.MatchedPairsRepository;
+import pairmatching.domain.Mission;
+import pairmatching.domain.Pair;
 
 public class PairManager {
 	private static final String ERROR_MISSION_NOT_IN_LEVEL = "해당 레벨의 미션이 아닙니다.";
@@ -11,8 +19,14 @@ public class PairManager {
 	public MatchedPairs matchPair(Course course, Level level, Mission mission) {
 		validateMission(level, mission);
 		if (MatchedPairsRepository.isMatched(course, mission)) {
-			// TODO: 재매치
+			return null;
 		}
+		List<String> names = CrewRepository.getNameList(course);
+		List<String> shuffledNames = Randoms.shuffle(names);
+		return new MatchedPairs(matchPair(course, shuffledNames), course, level, mission);
+	}
+
+	public MatchedPairs rematchPair(Course course, Level level, Mission mission) {
 		List<String> names = CrewRepository.getNameList(course);
 		List<String> shuffledNames = Randoms.shuffle(names);
 		return new MatchedPairs(matchPair(course, shuffledNames), course, level, mission);
