@@ -29,6 +29,10 @@ public class PairMatchingService {
 		return PairRepository.findByCourseAndMission(parseToMission(missionName, courseName));
 	}
 
+	public void initializeMatchedPair() {
+		PairRepository.deleteAll();
+	}
+
 	private Mission parseToMission(String name, String courseName) {
 		return MissionRepository.findByNameAndCourse(name, parseToCourse(courseName));
 	}

@@ -53,6 +53,12 @@ public class OutputView {
 		printMessage("네 | 아니오");
 	}
 
+	public static void printInitializeMessage() {
+		printBlankLine();
+		printMessage("초기화 되었습니다. ");
+		printBlankLine();
+	}
+
 	private static String courseListWithDelimiter(List<Course> courses) {
 		return courses.stream().map(Course::getName).collect(Collectors.joining(NAME_DELIMITER));
 	}

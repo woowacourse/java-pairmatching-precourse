@@ -30,4 +30,8 @@ public class PairRepository {
 	public static boolean existByMission(Mission mission) {
 		return pairs.stream().anyMatch(p -> p.getMission().equals(mission));
 	}
+
+	public static void deleteAll() {
+		pairs.clear();
+	}
 }

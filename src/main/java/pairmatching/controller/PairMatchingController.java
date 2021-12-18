@@ -26,6 +26,8 @@ public class PairMatchingController {
 				pairMatching();
 			} else if (option.equals("2")) {
 				printMatchedResult();
+			} else if (option.equals("3")) {
+				initializeMatchedPair();
 			} else if (option.equals("Q")) {
 				break;
 			}
@@ -35,6 +37,11 @@ public class PairMatchingController {
 	private void pairMatching() {
 		printCourseLevelMission();
 		handlePairMatching();
+	}
+
+	private void initializeMatchedPair() {
+		pairMatchingService.initializeMatchedPair();
+		OutputView.printInitializeMessage();
 	}
 
 	private void printCourseLevelMission() {
@@ -83,6 +90,11 @@ public class PairMatchingController {
 		} catch (IllegalArgumentException e) {
 			OutputView.printErrorMessage(e.getMessage());
 		}
+	}
+
+	private void initializeMatchedPair() {
+		pairMatchingService.initializeMatchedPair();
+		OutputView.printInitializeMessage();
 	}
 
 	private String inputInformationWithValidation() {
