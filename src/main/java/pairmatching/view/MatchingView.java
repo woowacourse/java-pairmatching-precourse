@@ -15,6 +15,9 @@ public class MatchingView {
 
     public static void printMatchingPrompt() {
         System.out.println(MATCHING_PROMPT);
+    }
+
+    public static void printSelectPrompt() {
         System.out.println(SELECT_PROMPT);
     }
 }
