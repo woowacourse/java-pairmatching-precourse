@@ -13,15 +13,15 @@ public class Init {
     private List<String> frontendCrewName;
     private List<Mission> missionInformation;
 
-    public Init() throws IOException {
+    public Init(){
         backendCrewName = new ArrayList<>();
         frontendCrewName = new ArrayList<>();
         missionInformation = new ArrayList<>();
     }
 
     private void readCrewName() throws IOException {
-        BufferedReader backendReader = new BufferedReader(new FileReader("resources\\backend-crew.md"));
-        BufferedReader frontendReader = new BufferedReader(new FileReader("resources\\frontend-crew.md"));
+        BufferedReader backendReader = new BufferedReader(new FileReader("src/main/resources/backend-crew.md"));
+        BufferedReader frontendReader = new BufferedReader(new FileReader("src/main/resources/frontend-crew.md"));
         String name;
 
         while ((name = backendReader.readLine()) != null) {
@@ -39,11 +39,16 @@ public class Init {
         for (int i = 0; i < Text.MISSION_NAME.length; i++) {
 
             for (int j = 0; j < Text.MISSION_NAME[i].length; j++) {
-                missionInformation.add(new Mission(Level.valueOf("레벨" + (i + 1)), Text.MISSION_NAME[i][j]));
+                missionInformation.add(new Mission(Level.valueOf("LEVEL" + (i + 1)), Text.MISSION_NAME[i][j]));
             }
 
         }
 
+    }
+
+    public void start() throws IOException {
+        readCrewName();
+        initMissionInformation();
     }
 
     public List<Mission> getMissionInformation() {
