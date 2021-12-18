@@ -4,7 +4,7 @@ import pairmatching.view.InputView;
 
 public class PairMatchingController {
     public static void run() {
-        InputView.startFunction();
-        InputView.chooseNumberOne();
+        String inputStart = InputView.startFunction();
+        InputView.chooseWhat(inputStart);
     }
 }

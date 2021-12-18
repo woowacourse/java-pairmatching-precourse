@@ -35,4 +35,19 @@ public class InputView {
 
         return Console.readLine();
     }
+
+    public static void chooseWhat(String readLine) {
+        if (readLine.equals("1")) {
+            chooseNumberOne();
+        }
+//        if (readLine.equals("2")) {
+//            chooseNumberTwo();
+//        }
+//        if (readLine.equals("3")) {
+//            chooseNumberTwo();
+//        }
+//        if (readLine.equals("Q")) {
+//            quitProgram();
+//        }
+    }
 }
