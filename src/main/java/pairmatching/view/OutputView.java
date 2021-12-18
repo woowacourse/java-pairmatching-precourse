@@ -17,13 +17,17 @@ public class OutputView {
 
 	public static void showMatchingCrews(List<String> crews) {
 		for (int i = 0; i < crews.size(); i++) {
-			if (crews.size() - i == 3) {
+			if (isOdd(crews, i)) {
 				printPairCrews(crews, i, SHOW_THREE);
 				break;
 			}
 			printPairCrews(crews, i, SHOW_TWO);
 		}
 		System.out.println(NEXT_LINE);
+	}
+
+	private static boolean isOdd(List<String> crews, int i) {
+		return crews.size() - i == SHOW_THREE;
 	}
 
 	private static void printPairCrews(List<String> crews, int start, int end) {
