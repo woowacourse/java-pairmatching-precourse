@@ -20,4 +20,14 @@ public class Mission {
 	public String getName() {
 		return this.name;
 	}
+
+	public boolean existPair() {
+		return this.pairList.size() != 0;
+	}
+
+	public void printList() {
+		for (String asd : pairList) {
+			System.out.println(asd);
+		}
+	}
 }

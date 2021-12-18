@@ -19,4 +19,9 @@ public class InputView {
 		return Console.readLine();
 	}
 
+	public static String requestRematch() {
+		System.out.println("네 | 아니오");
+		return Console.readLine();
+	}
+
 }
