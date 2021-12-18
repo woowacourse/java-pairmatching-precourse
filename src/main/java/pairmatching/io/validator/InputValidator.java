@@ -15,4 +15,8 @@ public class InputValidator {
 			throw new InvalidSelectException(ProgramData.INVALID_SELECT_ERROR);
 		}
 	}
+
+	public static void isValidCourseLevelMissionInformation(String[] data) {
+
+	}
 }

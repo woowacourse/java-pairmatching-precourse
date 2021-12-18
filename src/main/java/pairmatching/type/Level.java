@@ -38,4 +38,22 @@ public enum Level {
 		String missionInfo = String.join(ProgramData.BAR_SEPARATOR, missionList);
 		return String.format(ProgramData.LEVEL_INFO_FORMAT, name, missionInfo);
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public static Level selectLevel(String name) {
+		List<Level> levelList = levelList();
+		for(Level level:levelList) {
+			if(level.getName().equals(name)) {
+				return level;
+			}
+		}
+		return null;
+	}
+
+	public boolean checkMission(String mission) {
+		return missionList.contains(mission);
+	}
 }

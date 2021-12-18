@@ -37,12 +37,12 @@ public class CrewProcessor {
 	}
 
 	public void matchPair(Course course, Level level, String mission) {
-		if(checkDuplicatePairResult(course, level, mission) != null && inputHandler.getValidDuplicatePairSelect()) {
+		if(getDuplicatePairResult(course, level, mission) != null && inputHandler.getValidDuplicatePairSelect()) {
 			return;
 		}
 		try {
 			PairLog pairLog = createValidPair(course, level, mission);
-			pairLogList.remove(checkDuplicatePairResult(course, level, mission));
+			pairLogList.remove(getDuplicatePairResult(course, level, mission));
 			pairLogList.add(pairLog);
 			outputHandler.printPairInformation(pairLog);
 		} catch (IllegalArgumentException iae) {
@@ -69,10 +69,12 @@ public class CrewProcessor {
 	}
 
 	public void shuffleCrewList(Course course) {
-		courseCrewMap.replace(course, Randoms.shuffle(courseCrewMap.get(course)));
+		List<Crew> crewList = courseCrewMap.get(course);
+		crewList = Randoms.shuffle(crewList);
+		courseCrewMap.put(course, crewList);
 	}
 
-	private PairLog checkDuplicatePairResult(Course course, Level level, String mission) {
+	private PairLog getDuplicatePairResult(Course course, Level level, String mission) {
 		for(PairLog pairLog:pairLogList) {
 			if(pairLog.checkDuplicate(course, level, mission)) {
 				return pairLog;
@@ -91,5 +93,10 @@ public class CrewProcessor {
 			}
 		}
 		return false;
+	}
+
+	public void printPairInfoirmation(Course course, Level level, String mission) {
+		PairLog pairLog = getDuplicatePairResult(course, level, mission);
+		outputHandler.printPairInformation(pairLog);
 	}
 }

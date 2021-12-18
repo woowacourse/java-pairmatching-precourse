@@ -31,6 +31,16 @@ public enum Course {
 		return courseList;
 	}
 
+	public static Course selectCourse(String name) {
+		List<Course> courseList = Arrays.asList(Course.values());
+		for(Course course:courseList) {
+			if(course.getName().equals(name)) {
+				return course;
+			}
+		}
+		return null;
+	}
+
 	public static String getCourseInfo() {
 		return String.format(ProgramData.COURSE_LIST_FORMAT, String.join(ProgramData.BAR_SEPARATOR, getCourseNames()));
 	}

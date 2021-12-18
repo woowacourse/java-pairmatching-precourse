@@ -1,8 +1,12 @@
 package pairmatching.io;
 
+import java.util.List;
+
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.data.ProgramData;
 import pairmatching.io.validator.InputValidator;
+import pairmatching.type.Course;
+import pairmatching.type.CourseLevelMissionInfo;
 
 public class ConsoleInputHandler {
 
@@ -25,6 +29,24 @@ public class ConsoleInputHandler {
 				outputHandler.printErrorMessage(iae);
 			}
 		}
+	}
+
+	public CourseLevelMissionInfo getValidCourseLevelMissionInfo() {
+		outputHandler.printMessage(ProgramData.SELECT_COURSE_LEVEL_MISSION_MESSAGE);
+		while(true) {
+			try {
+				return getCourseLevelMissionInfo();
+			} catch (IllegalArgumentException iae) {
+				outputHandler.printErrorMessage(iae);
+			}
+		}
+	}
+
+	private CourseLevelMissionInfo getCourseLevelMissionInfo() {
+		String[] data = read().split(ProgramData.COURSE_LEVEL_MISSION_SEPARATOR);
+		CourseLevelMissionInfo info = new CourseLevelMissionInfo(data);
+		System.out.println(info.getCourse());
+		return info;
 	}
 
 	public boolean getValidDuplicatePairSelect() {
