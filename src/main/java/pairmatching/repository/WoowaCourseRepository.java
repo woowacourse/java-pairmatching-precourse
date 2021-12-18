@@ -15,6 +15,11 @@ public class WoowaCourseRepository {
 		return woowaCourses.entrySet().stream().filter(course -> course.getKey().equals(woowaCourse)).findAny();
 	}
 
+	public Map<WoowaCourse, PairMatching> get() {
+		Map<WoowaCourse, PairMatching> map = new HashMap<>(woowaCourses);
+		return map;
+	}
+
 	public void add(WoowaCourse woowaCourse, PairMatching pairMatching) {
 		woowaCourses.put(woowaCourse, pairMatching);
 	}

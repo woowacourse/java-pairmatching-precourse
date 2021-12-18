@@ -4,7 +4,6 @@ import pairmatching.domain.WoowaCourse;
 import pairmatching.service.ParseService;
 import pairmatching.service.WoowaCourseService;
 import pairmatching.view.ViewManager;
-import pairmatching.view.common.CommonOutputView;
 import pairmatching.view.match.MatchInputView;
 import pairmatching.view.match.SearchOutputView;
 

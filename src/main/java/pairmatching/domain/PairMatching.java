@@ -15,4 +15,13 @@ public class PairMatching {
 	public String toString() {
 		return pairs.stream().map(Pair::toString).collect(Collectors.joining("\n"));
 	}
+
+	public boolean contains(Pair candidate) {
+		for (Pair pair : pairs) {
+			if (pair.isSame(candidate)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

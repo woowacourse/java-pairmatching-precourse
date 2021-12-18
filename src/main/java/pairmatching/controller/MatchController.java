@@ -2,6 +2,7 @@ package pairmatching.controller;
 
 import pairmatching.domain.PairMatching;
 import pairmatching.domain.WoowaCourse;
+import pairmatching.service.PairMatchingService;
 import pairmatching.service.ParseService;
 import pairmatching.service.WoowaCourseService;
 import pairmatching.view.ViewManager;
@@ -14,12 +15,14 @@ public class MatchController implements Controller {
 	private final ViewManager viewManager;
 	private final ParseService parseService;
 	private final WoowaCourseService woowaCourseService;
+	private final PairMatchingService pairMatchingService;
 
 	public MatchController(ViewManager viewManager, ParseService parseService,
-		WoowaCourseService woowaCourseService) {
+		WoowaCourseService woowaCourseService, PairMatchingService pairMatchingService) {
 		this.viewManager = viewManager;
 		this.parseService = parseService;
 		this.woowaCourseService = woowaCourseService;
+		this.pairMatchingService = pairMatchingService;
 	}
 
 	@Override
@@ -33,7 +36,8 @@ public class MatchController implements Controller {
 	}
 
 	private void match(WoowaCourse woowaCourse) {
-		PairMatching pairMatching = woowaCourseService.matchAndEnroll(woowaCourse);
+		PairMatching pairMatching = new PairMatching(pairMatchingService.pairMatch(woowaCourse));
+		woowaCourseService.matchAndEnroll(woowaCourse, pairMatching);
 		viewManager.output(new SearchOutputView(pairMatching.toString()));
 	}
 

@@ -22,10 +22,7 @@ public class WoowaCourseService {
 		return one.isPresent();
 	}
 
-	public PairMatching matchAndEnroll(WoowaCourse woowaCourse) {
-		PairMatchingService service = new PairMatchingService();
-		List<Pair> pairs = service.pairMatch(woowaCourse);
-		PairMatching pairMatching = new PairMatching(pairs);
+	public PairMatching matchAndEnroll(WoowaCourse woowaCourse, PairMatching pairMatching) {
 		woowaCourseRepository.add(woowaCourse, pairMatching);
 		return pairMatching;
 	}

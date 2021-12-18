@@ -35,6 +35,10 @@ public class WoowaCourse {
 		}
 	}
 
+	public boolean isSameLevel(WoowaCourse woowaCourse) {
+		return this.level == woowaCourse.level;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {
