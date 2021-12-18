@@ -38,4 +38,8 @@ public class OutputView {
 	public void printTargetSelectMessage() {
 		System.out.println(TARGET_SELECT_MESSAGE);
 	}
+
+	public void printRestMessage() {
+		System.out.println(RESET_MESSAGE);
+	}
 }
