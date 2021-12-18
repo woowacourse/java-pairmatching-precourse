@@ -97,7 +97,8 @@ public class PairController {
 	}
 
 	public void startClear() {
-		System.out.println("초기화 메뉴 진입");
+		OutputView.printClear();
+		PairsRepository.clear();
 	}
 
 	private void showOverview() {

@@ -14,6 +14,8 @@ public class OutputView {
 	private static final String INPUT_COURSE_LEVEL_MISSION = "과정, 레벨, 미션을 선택하세요.\nex) 백엔드, 레벨1, 자동차경주";
 	private static final String PAIR_MATCHING_RESULT = "페어 매칭 결과입니다.";
 
+	private static final String CLEAR = "초기화 되었습니다.";
+
 	public static void printError(Exception e) {
 		System.out.println(String.format(ERROR_FORMAT, e.getMessage()));
 	}
@@ -46,5 +48,9 @@ public class OutputView {
 	public static void printPairMatching(Pairs pairs) {
 		System.out.println(PAIR_MATCHING_RESULT);
 		System.out.println(pairs);
+	}
+
+	public static void printClear() {
+		System.out.println(CLEAR);
 	}
 }

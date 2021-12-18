@@ -25,4 +25,8 @@ public class PairsRepository {
 			.orElseThrow(NoPairsException::new);
 	}
 
+	public static void clear() {
+		pairsList.clear();
+	}
+
 }
