@@ -9,9 +9,16 @@ public class PairMatchingSystem {
     }
 
     public void choiceFeature(){
-        UI.printChoiceFeature();
-        featureNum = UI.insertChoiceFeature();
-        Validation.validateChoiceFeature(featureNum);
+        while(true) {
+            try {
+                UI.printChoiceFeature();
+                featureNum = UI.insertChoiceFeature();
+                Validation.validateChoiceFeature(featureNum);
+                break;
+            } catch (IllegalArgumentException e){
+                UI.printException(e.getMessage());
+            }
+        }
     }
 
     public void pairMatching(){
