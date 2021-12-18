@@ -81,9 +81,7 @@ public class MatchingController {
 			mission = findMission(splitRequestInfo.get(REQUEST_INFO_MISSION_NAME).trim());
 		} while (existPair(mission));
 		List<String> shuffleNameList = shuffleNameList(splitRequestInfo);
-		missionList.remove(mission);
 		mission.setPairList(shuffleNameList);
-		missionList.add(mission);
 		OutputView.printPairResult(shuffleNameList);
 	}
 
@@ -98,9 +96,6 @@ public class MatchingController {
 	public void resetMatchInfo() {
 		for (int i = 0; i< missionList.size(); i++){
 			Mission mission = missionList.get(i);
-			missionList.remove(mission);
-			mission.setPairList(new ArrayList<>());
-			missionList.add(mission);
 		}
 	}
 
