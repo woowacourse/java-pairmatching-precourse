@@ -40,8 +40,10 @@ public class InputView {
             .append("ex) 백엔드, 레벨1, 자동차경주");
 
         System.out.println(stringBuilder);
+        PairMission pairMission = new PairMission(Console.readLine());
+        System.out.println();
 
-        return new PairMission(Console.readLine());
+        return pairMission;
     }
 
     private static String getCourseMessage() {

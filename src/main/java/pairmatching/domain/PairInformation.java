@@ -1,5 +1,6 @@
 package pairmatching.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class PairInformation {
@@ -9,5 +10,9 @@ public class PairInformation {
     public PairInformation(PairMission pairMission, List<Pair> pairs) {
         this.pairMission = pairMission;
         this.pairs = pairs;
+    }
+
+    public List<Pair> getPairs() {
+        return Collections.unmodifiableList(pairs);
     }
 }

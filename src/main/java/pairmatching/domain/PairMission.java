@@ -19,4 +19,8 @@ public class PairMission {
             throw new IllegalArgumentException("[ERROR] 잘못된 입력 형식입니다.");
         }
     }
+
+    public Course getCourse() {
+        return course;
+    }
 }
