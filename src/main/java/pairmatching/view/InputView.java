@@ -24,7 +24,7 @@ public class InputView {
         return lines;
     }
 
-    public static String selectFunction() {
+    public static String selectFunctionMenu() {
         System.out.println(FUNCTION_MAIN);
         System.out.println(FUNCTION_1);
         System.out.println(FUNCTION_2);
@@ -32,7 +32,8 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static String fairMatching() {
+    public static String selectCLMMenu() {
+        System.out.println();
         System.out.println(MENU_DELIMETER);
         System.out.println(MENU_COURSES);
         System.out.println(MENU_MISSION);
@@ -45,6 +46,10 @@ public class InputView {
         System.out.println(SELECT_C_L_M);
         System.out.println(EX_C_L_M);
         return Console.readLine();
+    }
+
+    public static String fairMatchingMenu() {
+
     }
 
     public static String reMatching() {
