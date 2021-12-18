@@ -1,7 +1,7 @@
 package pairmatching.view;
 
 public class OutputView {
-	public static void printCourseInformation() {
+	public static void printCourseLevelMissionInformation() {
 		System.out.println("\n#############################################\n"
 			+ "과정: 백엔드 | 프론트엔드\n"
 			+ "미션:\n"

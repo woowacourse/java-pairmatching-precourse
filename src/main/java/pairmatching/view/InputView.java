@@ -11,4 +11,9 @@ public class InputView {
 			+ "Q. 종료");
 		return Console.readLine();
 	}
+
+	public static String getCourseLevelMissionInformation() {
+		System.out.println("과정, 레벨, 미션을 선택하세요.");
+		return Console.readLine();
+	}
 }
