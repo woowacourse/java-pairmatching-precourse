@@ -21,9 +21,21 @@ public class MatchingInfo {
         return matchingPairs;
     }
 
-    public boolean isSameMatching(String course, String level, String mission) {
-        return this.course.getName().equals(course)
-                && this.level.getName().equals(level)
-                && this.mission.equals(mission);
+    public Course getCourse() {
+        return course;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public String getMission() {
+        return mission;
+    }
+
+    public boolean isSameMatching(MatchingInfo matchingInfo) {
+        return this.course == matchingInfo.getCourse()
+                && this.level == matchingInfo.getLevel()
+                && this.mission.equals(matchingInfo.getMission());
     }
 }
