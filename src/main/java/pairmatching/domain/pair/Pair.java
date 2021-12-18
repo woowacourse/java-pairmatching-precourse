@@ -3,6 +3,7 @@ package pairmatching.domain.pair;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import pairmatching.domain.crew.Crew;
 
@@ -20,6 +21,6 @@ public class Pair {
 
 	@Override
 	public String toString() {
-		return pair.toString();
+		return String.join(" : ", pair.stream().map(crew -> crew.toString()).collect(Collectors.toList()));
 	}
 }

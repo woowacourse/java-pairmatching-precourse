@@ -40,27 +40,6 @@ public class PairController {
 		}
 	}
 
-	private void showOverview() {
-		List<String> levelMissions = Arrays.stream(Level.values())
-			.map(level -> String.format(LEVEL_MISSIONS_FORMAT, level.getName(), MissionRepository.findMissions(level)))
-			.collect(Collectors.toList());
-		List<String> courses = Arrays.stream(Course.values())
-			.map(Course::getName)
-			.collect(Collectors.toList());
-
-		OutputView.printOverview(courses, levelMissions);
-	}
-
-	private List<String> getCourseLevelMission() {
-		String input = InputView.inputCourseLevelMission();
-		validateCourseLevelMissionFormat(input);
-
-		List<String> courseLevelMission = InputParser.parseCourseLevelMission(input);
-		validateCourseLevelMission(courseLevelMission);
-
-		return courseLevelMission;
-	}
-
 	private void validateCourseLevelMissionFormat(String input) {
 		boolean isFormatValid = FormatChecker.validateCourseLevelMissionInputFormat(input);
 		if (!isFormatValid) {
@@ -98,10 +77,47 @@ public class PairController {
 	}
 
 	public void startView() {
-		System.out.println("조회 메뉴 진입");
+		try {
+			showOverview();
+			List<String> courseLevelMission = getCourseLevelMission();
+			showPairMatching(courseLevelMission);
+		} catch (IllegalArgumentException e) {
+			OutputView.printError(e);
+			startMatching();
+		}
+	}
+
+	private void showPairMatching(List<String> courseLevelMission) {
+		Course course = Course.getByName(courseLevelMission.get(COURSE_INDEX));
+		Level level = Level.getByName(courseLevelMission.get(LEVEL_INDEX));
+		String mission = courseLevelMission.get(MISSION_INDEX);
+		Pairs pairs = PairsRepository.find(course, level, mission);
+
+		OutputView.printPairMatching(pairs);
 	}
 
 	public void startClear() {
 		System.out.println("초기화 메뉴 진입");
+	}
+
+	private void showOverview() {
+		List<String> levelMissions = Arrays.stream(Level.values())
+			.map(level -> String.format(LEVEL_MISSIONS_FORMAT, level.getName(), MissionRepository.findMissions(level)))
+			.collect(Collectors.toList());
+		List<String> courses = Arrays.stream(Course.values())
+			.map(Course::getName)
+			.collect(Collectors.toList());
+
+		OutputView.printOverview(courses, levelMissions);
+	}
+
+	private List<String> getCourseLevelMission() {
+		String input = InputView.inputCourseLevelMission();
+		validateCourseLevelMissionFormat(input);
+
+		List<String> courseLevelMission = InputParser.parseCourseLevelMission(input);
+		validateCourseLevelMission(courseLevelMission);
+
+		return courseLevelMission;
 	}
 }

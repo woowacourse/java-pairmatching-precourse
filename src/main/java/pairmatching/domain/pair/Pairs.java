@@ -67,6 +67,11 @@ public class Pairs {
 
 	@Override
 	public String toString() {
-		return course + " | " + level + " | " + mission + " | " + pairs.toString();
+		StringBuilder stringBuilder = new StringBuilder();
+		for (Pair pair : pairs) {
+			stringBuilder.append(pair + "\n");
+		}
+
+		return stringBuilder.toString();
 	}
 }
