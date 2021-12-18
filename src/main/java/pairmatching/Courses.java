@@ -17,13 +17,21 @@ public class Courses {
     private static final int MIN_LEVEL = 1;
     private static final int MAX_LEVEL = 5;
 
+    private static Courses courses = null;
     private HashMap<Integer, ArrayList<String>> courseList;
 
-    public Courses() {
+    private Courses() {
         for (int level = MIN_LEVEL; level <= MAX_LEVEL; level++) {
             courseList.put(level, new ArrayList<String>());
         }
         init();
+    }
+
+    public static Courses getInstance() {
+        if (courses == null) {
+            courses = new Courses();
+        }
+        return courses;
     }
 
     private void init() {
@@ -35,5 +43,9 @@ public class Courses {
     private List<String> getCourseByString(String course) {
         return Arrays.stream(course.split(SPLIT_REGEX))
                 .collect(Collectors.toList());
+    }
+
+    public ArrayList<String> getCourses(int level) {
+        return courseList.get(level);
     }
 }
