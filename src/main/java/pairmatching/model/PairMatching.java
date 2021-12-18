@@ -15,15 +15,32 @@ public class PairMatching {
 		option = Option.PAIR_INITIALIZATION.getValue();
 	}
 
+	public boolean isFinish() {
+		return option.equals(Option.QUIT.getValue());
+	}
+
 	public void executeOption(String option) {
 		this.option = option;
 
+		if (option.equals(Option.QUIT.getValue())) {
+			return;
+		}
+
+		AdvanceInformationView advanceInformationView = new AdvanceInformationView();
+		advanceInformationView.print();
+		PairInfoView pairInfoView = new PairInfoView();
+		PairInfo pairInfo = pairInfoView.getInput();
+
 		if (option.equals(Option.PAIR_MATCHING.getValue())) {
-			AdvanceInformationView advanceInformationView = new AdvanceInformationView();
-			advanceInformationView.print();
-			PairInfoView pairInfoView = new PairInfoView();
-			PairInfo pairInfo = pairInfoView.getInput();
 			checkDuplication(pairInfo);
+		}
+
+		if (option.equals(Option.PAIR_SELECT.getValue())) {
+			selectPair(pairInfo);
+		}
+
+		if (option.equals(Option.PAIR_INITIALIZATION.getValue())) {
+			initializePairListMap();
 		}
 
 	}
@@ -50,7 +67,19 @@ public class PairMatching {
 		pairListMap.save(pairInfo, pairList);
 	}
 
-	public boolean isFinish() {
-		return option.equals(Option.QUIT.getValue());
+	public void selectPair(PairInfo pairInfo) {
+		PairList pairList = pairListMap.getPairList(pairInfo);
+
+		if (pairList != null) {
+			PairListView pairListView = new PairListView();
+			pairListView.print(pairList);
+			return;
+		}
+
 	}
+
+	public void initializePairListMap() {
+		// pairListMap.initialize();
+	}
+
 }

@@ -11,6 +11,10 @@ public class PairListMap {
 		pairListMap = new HashMap<>();
 	}
 
+	public PairList getPairList(PairInfo pairInfo) {
+		return pairListMap.getOrDefault(pairInfo, null);
+	}
+
 	public void save(PairInfo pairInfo, PairList pairList) {
 		pairListMap.put(pairInfo, pairList);
 	}
