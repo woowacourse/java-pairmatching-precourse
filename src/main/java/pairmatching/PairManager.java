@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.HashMap;
+import java.util.Map.Entry;
+
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class PairManager {
@@ -11,7 +13,7 @@ public class PairManager {
     private static final String FRONTEND = "프론트엔드";
     private static final String BACKEND = "백엔드";
 
-    HashMap<String, ArrayList<Pair>> pairLog = new HashMap<>();
+    HashMap<PairKey, ArrayList<Pair>> pairLog = new HashMap<>();
     CrewManager crewManager = new CrewManager();
     private static PairManager pairManager;
 
@@ -47,7 +49,7 @@ public class PairManager {
             throw new IllegalArgumentException(ERROR_NOT_MATCH);
         }
         updateCrewData(pairList, level);
-        pairLog.put(course, pairList);
+        pairLog.put(new PairKey(mission, level), pairList);
         PairOutput.printPairResult(pairList);
     }
 
