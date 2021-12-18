@@ -4,6 +4,7 @@ import pairmatching.domain.Mission;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public enum Level {
 	  LEVEL1("레벨1", Arrays.asList(Mission.GAME_RACINGCAR, Mission.GAME_LOTTO, Mission.GAME_BASEBALL)),
@@ -36,4 +37,10 @@ public enum Level {
 		  return missionList.stream().anyMatch(mission -> mission.equals(missionName));
 	  }
 	  
+	  public static boolean hasLevel(String value) {
+		  return Stream.of(Level.values())
+				  .filter(level -> level.equals(value))
+				  .findFirst()
+				  .isPresent();
+	  }
 }
