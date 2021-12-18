@@ -19,6 +19,9 @@ public class Crew {
         return matchedList.get(level) == crew;
     }
 
+    public String getName() {
+        return name;
+    }
 
     @Override
     public String toString() {

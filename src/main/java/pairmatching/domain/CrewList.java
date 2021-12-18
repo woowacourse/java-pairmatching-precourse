@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static pairmatching.constant.SystemMessage.*;
 
@@ -18,14 +19,31 @@ public class CrewList {
         return Randoms.shuffle(toStringList());
     }
 
-    public void toCrewListBy(List<String> stringList) {
+    public void initCrewListBy(List<String> stringList) {
+        List<Crew> newCrewList = new ArrayList<>();
         for (String str : stringList) {
-            crewList.add(new Crew(str));
+            newCrewList.add(new Crew(str));
         }
+        crewList = newCrewList;
     }
 
-    public boolean IsMatched(Level level) {
-        for (int i = 0; i < crewList.size(); i = i + EVEN) {
+    public void toCrewListBy(List<String> stringList) {
+        List<Crew> newCrewList = new ArrayList<>();
+        for (String str : stringList) {
+            for (Crew crew : crewList) {
+                if (crew.getName().equals(str)) {
+                    newCrewList.add(crew);
+                }
+            }
+        }
+        for (Crew crew : newCrewList) {
+            System.out.println("crew = " + crew);
+        }
+        crewList = newCrewList;
+    }
+
+    public boolean isMatched(Level level) {
+        for (int i = 0; i < crewList.size() - EVEN; i = i + EVEN) {
             Crew crew = crewList.get(i);
             if (crew.isMatched(level, crewList.get(i + 1))) {
                 return false;
@@ -38,9 +56,9 @@ public class CrewList {
     }
 
     private boolean checkAdditional(Level level) {
-        Crew lastFirstCrew = crewList.get(crewList.size() - 1);
-        Crew lastSecondCrew = crewList.get(crewList.size() - 2);
-        Crew lastThirdCrew = crewList.get(crewList.size() - 3);
+        Crew lastFirstCrew = crewList.get(crewList.size() - FIRST);
+        Crew lastSecondCrew = crewList.get(crewList.size() - SECOND);
+        Crew lastThirdCrew = crewList.get(crewList.size() - THIRD);
         if (lastFirstCrew.isMatched(level, lastSecondCrew)) {
             return false;
         }
@@ -51,7 +69,7 @@ public class CrewList {
     }
 
     public void addPartner(Level level) {
-        for (int i = 0; i < crewList.size(); i = i + EVEN) {
+        for (int i = 0; i < crewList.size() - EVEN; i = i + EVEN) {
             Crew crew = crewList.get(i);
             Crew crewPartner = crewList.get(i + 1);
             crew.addMatchedPartner(level, crewPartner);
@@ -63,9 +81,9 @@ public class CrewList {
     }
 
     private void addPartnerAdditional(Level level) {
-        Crew lastFirstCrew = crewList.get(crewList.size() - 1);
-        Crew lastSecondCrew = crewList.get(crewList.size() - 2);
-        Crew lastThirdCrew = crewList.get(crewList.size() - 3);
+        Crew lastFirstCrew = crewList.get(crewList.size() - FIRST);
+        Crew lastSecondCrew = crewList.get(crewList.size() - SECOND);
+        Crew lastThirdCrew = crewList.get(crewList.size() - THIRD);
         lastFirstCrew.addMatchedPartner(level, lastSecondCrew);
         lastFirstCrew.addMatchedPartner(level, lastThirdCrew);
     }
@@ -94,7 +112,7 @@ public class CrewList {
         StringBuilder matchedCrew = new StringBuilder();
         List<String> crewListString = toStringList();
         for (int i = 0; i < crewList.size(); i = i + EVEN) {
-            matchedCrew.append(String.join(DELIMITER, crewListString.subList(i, i + EVEN)));
+            matchedCrew.append(String.join(MATCHING_JOIN_DELIMITER, crewListString.subList(i, i + EVEN)));
             matchedCrew.append(NEW_LINE);
         }
         return matchedCrew.toString();
@@ -104,10 +122,10 @@ public class CrewList {
         StringBuilder matchedCrew = new StringBuilder();
         List<String> crewListString = toStringList();
         for (int i = 0; i < crewList.size() - ODD_THREE; i = i + EVEN) {
-            matchedCrew.append(String.join(DELIMITER, crewListString.subList(i, i + EVEN)));
+            matchedCrew.append(String.join(MATCHING_JOIN_DELIMITER, crewListString.subList(i, i + EVEN)));
             matchedCrew.append(NEW_LINE);
         }
-        matchedCrew.append(String.join(DELIMITER, crewListString.subList(crewList.size() - ODD_THREE, crewList.size())));
+        matchedCrew.append(String.join(MATCHING_JOIN_DELIMITER, crewListString.subList(crewList.size() - ODD_THREE, crewList.size())));
         return matchedCrew.toString();
     }
 }
