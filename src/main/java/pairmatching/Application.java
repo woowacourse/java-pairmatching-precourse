@@ -8,6 +8,7 @@ import pairmatching.domain.Level;
 import pairmatching.domain.Match;
 import pairmatching.domain.Mission;
 import pairmatching.domain.PairProgram;
+import pairmatching.exception.MissionNotFoundMatchException;
 import pairmatching.exception.OverMatchingException;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
@@ -42,6 +43,7 @@ public class Application {
         }
         if (command.isSelect()) {
             InputView.printCurrentBoard(pairProgram.coures(), pairProgram.missions());
+            OutputView.printMatchResult(findMatching(pairProgram));
         }
         if (command.isInit()) {
 
@@ -72,6 +74,20 @@ public class Application {
         } catch (IllegalArgumentException | OverMatchingException e) {
             OutputView.printErrorMessage(e.getMessage());
             return matching(pairProgram);
+        }
+    }
+
+    private static List<Match> findMatching(PairProgram pairProgram) {
+        try {
+            List<String> matchingInformation = InputView.inputCourseAndLevelAndMission();
+            Course course = Course.getCourse(matchingInformation.get(0));
+            Level level = Level.getLevel(matchingInformation.get(1));
+            String missionName = matchingInformation.get(2);
+            Mission mission = Mission.createEmptyMission(missionName, course);
+            return pairProgram.findMatch(level, mission);
+        } catch (IllegalArgumentException | MissionNotFoundMatchException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return findMatching(pairProgram);
         }
     }
 }

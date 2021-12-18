@@ -1,7 +1,9 @@
 package pairmatching.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import pairmatching.exception.MissionNotFoundMatchException;
 
 public class Mission {
 
@@ -42,5 +44,16 @@ public class Mission {
 
     public void updateMatch(List<Match> matches) {
         this.matches = matches;
+    }
+
+    public List<Match> matches() {
+        checkMatchIsEnd();
+        return Collections.unmodifiableList(new ArrayList<>(matches));
+    }
+
+    private void checkMatchIsEnd() {
+        if (!isMatched()) {
+            throw new MissionNotFoundMatchException();
+        }
     }
 }

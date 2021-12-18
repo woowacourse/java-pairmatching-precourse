@@ -33,6 +33,10 @@ public class PairProgram {
         levelMission.addMission(level, missionNames);
     }
 
+    public List<Match> findMatch(Level level, Mission mission) {
+        return levelMission.getMission(level, mission).matches();
+    }
+
     public boolean isMatched(Level level, Mission mission) {
         levelMission.checkExistMission(level, mission);
         return levelMission.isMatched(level, mission);
