@@ -31,4 +31,7 @@ public class MatchedPairs {
 		return this.mission == mission;
 	}
 
+	public Level getLevel() {
+		return level;
+	}
 }
