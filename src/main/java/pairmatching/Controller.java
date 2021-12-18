@@ -9,6 +9,8 @@ import pairmatching.view.OutputView;
 public class Controller {
 	private final OutputView outputView = new OutputView();
 
+	private boolean running = true;
+
 	public void initData() {
 		DataInitializer dataInitializer = new DataInitializer();
 		try {
@@ -20,6 +22,10 @@ public class Controller {
 
 	public void run() {
 		runFunction(chooseFunction());
+	}
+
+	public boolean isRunning() {
+		return running;
 	}
 
 	private Function chooseFunction() {
@@ -34,7 +40,8 @@ public class Controller {
 
 	private void runFunction(Function function) {
 		if (function == Function.QUIT) {
-			// TODO: 종료
+			running = false;
+			return;
 		}
 		if (function == Function.MATCHING) {
 			// TODO: 페어 매칭

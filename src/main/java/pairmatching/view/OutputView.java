@@ -11,6 +11,7 @@ public class OutputView {
 	private static final String ERROR_FORMAT = "[ERROR] %s%n";
 
 	public void printMain() {
+		printBlankLine();
 		System.out.println(MAIN_TITLE);
 		Stream.of(Function.values())
 			.forEach(
@@ -18,6 +19,11 @@ public class OutputView {
 	}
 
 	public void printError(Exception exception) {
+		printBlankLine();
 		System.out.printf(ERROR_FORMAT, exception.getMessage());
+	}
+
+	private void printBlankLine() {
+		System.out.println();
 	}
 }
