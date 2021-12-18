@@ -20,7 +20,7 @@ public class Utils {
             PrintPage.PairMatching();
         }
         if (answer.equals("2")) {
-            // 페어 조회
+            PrintPage.PrintMatching();
         }
         if (answer.equals("3")) {
             // 페어 초기화
@@ -30,15 +30,16 @@ public class Utils {
         }
     }
 
-    public static void InputPairMatching() {
+    public static boolean InputPairMatching() {
         System.out.println("과정, 레벨, 미션을 선택하세요.");
         System.out.println("ex) 백엔드, 레벨1, 자동차경주");
         String[] answer = Console.readLine().split(", ");
         if (answer.length == 3 && Course.JudgeCourse(answer[0])
                 && Level.JudgeLevel(answer[1], answer[2])) {
-            PrintPage.StartPage();
+            return true;
         }
         Except.PairMatchingInputError();
+        return false;
     }
 
     public static void BackEndCrewInput() {
