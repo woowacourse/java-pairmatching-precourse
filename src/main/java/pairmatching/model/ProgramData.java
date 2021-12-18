@@ -15,6 +15,7 @@ public class ProgramData {
 	private Map<String, Boolean> pairExist = new HashMap<>();
 	private Map<String, List<Crew>> pairList = new HashMap<>();
 	private Map<String, List<NamePair>> history = new HashMap<>();
+	private Map<String, List<NamePair>> search = new HashMap<>();
 
 	public ProgramData() throws FileNotFoundException {
 		makeCrewsFromFile();
@@ -90,5 +91,13 @@ public class ProgramData {
 
 	public void setHistory(Map<String, List<NamePair>> history) {
 		this.history = history;
+	}
+
+	public Map<String, List<NamePair>> getSearch() {
+		return search;
+	}
+
+	public void setSearch(Map<String, List<NamePair>> search) {
+		this.search = search;
 	}
 }

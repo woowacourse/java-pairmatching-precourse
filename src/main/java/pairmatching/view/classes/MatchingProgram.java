@@ -1,6 +1,7 @@
 package pairmatching.view.classes;
 
 import static camp.nextstep.edu.missionutils.Console.*;
+import static pairmatching.constant.ExceptionMessages.*;
 import static pairmatching.constant.PromptConstants.*;
 
 import java.io.FileNotFoundException;
@@ -36,41 +37,8 @@ public class MatchingProgram implements MatchingProgramInterface {
 
 			proceedShowPairMatchingBoardForMatching();
 			if (programStatus == ProgramStatus.INPUT_COURSE_LEVEL_MISSION) {
-				String inputCourseLevelMission = readLine();
-				CheckerValidationCourseLevelMissionInput validationChecker = new CheckerValidationCourseLevelMissionInput(inputCourseLevelMission);
-				if (validationChecker.checkValidation() == CheckValidationCourseLevelMissionStatus.VALID) {
-					String inputCourse = inputCourseLevelMission.split(", ")[0];
-					String inputLevel = inputCourseLevelMission.split(", ")[1];
-					String inputMission = inputCourseLevelMission.split(", ")[2];
-					inputCourseLevelMission = inputCourse + inputLevel + inputMission;
-					if (programData.hasPair(inputCourseLevelMission)) {
-						programStatus = ProgramStatus.ASKING_REMATCHING;
-					}
-					PairMaker pairMaker = new PairMaker();
-					List<NamePair> inputNamePair = pairMaker.make(programData, inputCourse, inputLevel, inputMission);
-					Map<String, List<NamePair>> inputHistory = new HashMap<>();
-					inputHistory.put(inputLevel, inputNamePair);
-					programData.setHistory(inputHistory);
-					for (NamePair s : pairMaker.make(programData, inputCourse, inputLevel, inputMission)) {
-						System.out.print(s.getFirstName() + " : " + s.getSecondName());
-						if (s.getThirdName() == "") {
-							System.out.print("\n");
-							continue;
-						}
-						System.out.println(" : " + s.getThirdName());
-					}
-					break;
-				}
-				if (validationChecker.checkValidation() == CheckValidationCourseLevelMissionStatus.INVALID_COURSE) {
-
-				}
-				if (validationChecker.checkValidation() == CheckValidationCourseLevelMissionStatus.INVALID_LEVEL) {
-
-				}
-				if (validationChecker.checkValidation() == CheckValidationCourseLevelMissionStatus.INVALID_MISSION) {
-
-				}
-				break;
+				proceedInputCourseLevelMission();
+				programStatus = ProgramStatus.SHOW_FUNCTIONS;
 			}
 
 			if (programStatus == ProgramStatus.ASKING_REMATCHING) {
@@ -84,9 +52,68 @@ public class MatchingProgram implements MatchingProgramInterface {
 			}
 
 			if (programStatus == ProgramStatus.SHOW_PAIR_CLEAN) {
-				System.out.println("clean");
+				proceedClean();
 				break;
 			}
+		}
+	}
+
+	private void proceedClean() {
+		Map<String, List<NamePair>> cleanAgain = new HashMap<>();
+		programData.setHistory(cleanAgain);
+		System.out.println(CLEAN_PROMPT);
+	}
+
+	private void proceedInputCourseLevelMission() {
+		String inputCourseLevelMission = readLine();
+		CheckerValidationCourseLevelMissionInput validationChecker = new CheckerValidationCourseLevelMissionInput(inputCourseLevelMission);
+		if (validationChecker.checkValidation() == CheckValidationCourseLevelMissionStatus.VALID) {
+			proceedValidPairMaker(inputCourseLevelMission);
+			return;
+		}
+		if (validationChecker.checkValidation() == CheckValidationCourseLevelMissionStatus.INVALID_COURSE) {
+
+		}
+		if (validationChecker.checkValidation() == CheckValidationCourseLevelMissionStatus.INVALID_LEVEL) {
+			System.out.println(INVALID_LEVEL_SELECT_EXCEPTION);
+		}
+		if (validationChecker.checkValidation() == CheckValidationCourseLevelMissionStatus.INVALID_MISSION) {
+
+		}
+	}
+
+	private void proceedValidPairMaker(String inputCourseLevelMission) {
+		String inputCourse = inputCourseLevelMission.split(", ")[0];
+		String inputLevel = inputCourseLevelMission.split(", ")[1];
+		String inputMission = inputCourseLevelMission.split(", ")[2];
+		inputCourseLevelMission = inputCourse + inputLevel + inputMission;
+		proceedMakePair(inputCourseLevelMission, inputCourse, inputLevel, inputMission);
+	}
+
+	private void proceedMakePair(String inputCourseLevelMission, String inputCourse, String inputLevel, String inputMission) {
+		if (programData.hasPair(inputCourseLevelMission)) {
+			programStatus = ProgramStatus.ASKING_REMATCHING;
+		}
+		makePairByCourseLevelMission(inputCourse, inputLevel, inputMission);
+		return;
+	}
+
+	private void makePairByCourseLevelMission(String inputCourse, String inputLevel, String inputMission) {
+		PairMaker pairMaker = new PairMaker();
+		List<NamePair> inputNamePair = pairMaker.make(programData, inputCourse, inputLevel, inputMission);
+		Map<String, List<NamePair>> inputHistory = new HashMap<>();
+		Map<String, List<NamePair>> inputSearch = new HashMap<>();
+		inputHistory.put(inputLevel, inputNamePair);
+		inputSearch.put(inputCourse+inputLevel+inputMission, inputNamePair);
+		programData.setHistory(inputHistory);
+		programData.setSearch(inputSearch);
+		for (NamePair s : pairMaker.make(programData, inputCourse, inputLevel, inputMission)) {
+			System.out.print(s.getFirstName() + " : " + s.getSecondName());
+			if (s.getThirdName() == "") {
+				System.out.print("\n");
+				continue;
+			}
+			System.out.println(" : " + s.getThirdName());
 		}
 	}
 
