@@ -43,14 +43,13 @@ public class Controller {
 			running = false;
 			return;
 		}
-		if (function == Function.MATCHING) {
-			// TODO: 페어 매칭
-		}
-		if (function == Function.INQUIRY) {
-			// TODO: 페어 조회
-		}
 		if (function == Function.INIT) {
 			// TODO: 페어 초기화
 		}
+		chooseMission();
+	}
+
+	private void chooseMission() {
+		outputView.printCourseAndMission();
 	}
 }
