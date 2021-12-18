@@ -36,9 +36,11 @@ public class UI {
         return Console.readLine();
     }
 
-    public static void printPairMatchingResult(List<String> matchedPairList){
+    public static void printPairMatchingResult(List<Crew> crewList){
         System.out.println("페어 매칭 결과입니다.");
-        // 리스트 반복문
+        for(int i = 0; i < crewList.size()-1; i+=2){
+            System.out.println(crewList.get(i).getName() + " : " + crewList.get(i+1).getName());
+        }
     }
 
     public static void printMatchedBefore(){

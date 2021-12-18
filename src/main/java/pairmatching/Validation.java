@@ -1,5 +1,7 @@
 package pairmatching;
 
+import java.util.ArrayList;
+
 public class Validation {
 
     static int COURSE_NAME = 0;
@@ -12,23 +14,16 @@ public class Validation {
         }
     }
 
-    public static void validatePairMatchingLength(String[] pairMatchingArray){
-        if(pairMatchingArray.length != 3){
-            throw new IllegalArgumentException("[ERROR] 과정, 레벨, 미션을 한가지씩 입력해야 합니다.");
-        }
-    }
-
-    public static void validateCourse(String[] pairMatchingArray){
+    public static void validateCourseAndLevel(String[] pairMatchingArray){
         if(!pairMatchingArray[COURSE_NAME].equals("백엔드") && !pairMatchingArray[COURSE_NAME].equals("프론트엔드")){
             throw new IllegalArgumentException("[ERROR] 과정이 잘못 입력되었습니다.");
         }
-    }
-    public static void validateLevel(String[] pairMatchingArray){
         if(!pairMatchingArray[LEVEL_NAME].equals("레벨1") && !pairMatchingArray[LEVEL_NAME].equals("레벨2") && !pairMatchingArray[LEVEL_NAME].equals("레벨3") && !pairMatchingArray[LEVEL_NAME].equals("레벨4")
                 && !pairMatchingArray[LEVEL_NAME].equals("레벨5")){
             throw new IllegalArgumentException("[ERROR] 레벨이 잘못 입력되었습니다.");
         }
     }
+
     public static void validateMission(String[] pairMatchingArray){
         if(pairMatchingArray[LEVEL_NAME].equals("레벨1") && !pairMatchingArray[MISSION_NAME].equals("자동차경주") && !pairMatchingArray[MISSION_NAME].equals("로또") && !pairMatchingArray[MISSION_NAME].equals("숫자야구게임")){
             throw new IllegalArgumentException("[ERROR] 미션이 잘못 입력되었습니다.");
@@ -43,4 +38,40 @@ public class Validation {
             throw new IllegalArgumentException("[ERROR] 미션이 잘못 입력되었습니다.");
         }
     }
+
+    public static boolean validateMeetList(ArrayList<String> meetList, String name){
+        for(String met: meetList){
+            if(met.equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean insertYesOrNo(String answer){
+        if(answer.equals("아니오")){
+            return true;
+        }
+        return false;
+    }
+
+    public static String[] trimString(String[] arr){
+        String[] trimArray = new String[3];
+        try{
+            for(int i = 0; i < arr.length; i++){
+                trimArray[i] = arr[i].trim();
+            }
+        }catch (Exception e){
+            throw new IllegalArgumentException("[ERROR] 과정, 레벨, 미션을 한가지씩 입력해야 합니다.");
+        }
+        return trimArray;
+    }
+
+    public static void checkMatchCount(int count){
+        if(count > 3){
+            throw new IllegalArgumentException("[ERROR] 더 이상 매칭을 시도할 수 없습니다.");
+        }
+
+    }
+
 }
