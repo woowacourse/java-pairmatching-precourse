@@ -17,7 +17,7 @@ public class FunctionInputChecker {
         do{
             System.out.println(FUNCTION_INPUT_REQUEST);
             input = Console.readLine();
-        }while(checkIsRightInput(input));
+        }while(!checkIsRightInput(input));
 
         return input;
     }
