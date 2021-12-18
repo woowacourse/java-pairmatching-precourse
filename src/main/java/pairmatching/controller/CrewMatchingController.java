@@ -3,6 +3,7 @@ package pairmatching.controller;
 import pairmatching.exception.DuplicatedCrewNameException;
 import pairmatching.model.CrewNameReader;
 import pairmatching.model.CrewRepository;
+import pairmatching.view.InputView;
 
 public class CrewMatchingController {
 	private CrewRepository frontendCrews;
@@ -10,7 +11,7 @@ public class CrewMatchingController {
 
 	public void start() {
 		setupCrewInfo();
-		System.out.println();
+		InputView.printFunctionOptions();
 	}
 
 	private void setupCrewInfo() {
