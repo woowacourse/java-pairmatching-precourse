@@ -12,8 +12,12 @@ public class Input {
     }
 
     public static String matching() {
-        System.out.println("\n" + LIST);
         System.out.println(MATCHING);
+        return Console.readLine();
+    }
+
+    public static String rematching() {
+        System.out.println("\n" + REMATCHING);
         return Console.readLine();
     }
 }

@@ -21,22 +21,28 @@ public class PairMatchingController {
         String function;
         do {
             function = Input.function();
-            //validate();
             selectFunction(function);
         } while (!function.equals("Q"));
     }
 
     private void selectFunction(String function) {
         if (function.equals("1")) {
+            Output.LIST();
             matching();
         }
         if (function.equals("2")) {
+            System.out.println();
             search();
         }
     }
 
     private void matching() {
         String value = Input.matching();
+        if (pairs.getNames(value) != null) {
+            if (Input.rematching().equals("아니오")) {
+                matching();
+            }
+        }
         List<String> names = pairMatching.matching(value);
         pairs.add(names, value);
         Output.matching(names);

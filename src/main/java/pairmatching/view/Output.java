@@ -6,6 +6,10 @@ import java.util.List;
 
 public class Output {
 
+    public static void LIST() {
+        System.out.println("\n" + LIST);
+    }
+
     public static void matching(List<String> names) {
         System.out.println("\n" + MATCHING_RESULT);
         if (names.size() % 2 == 0) {
