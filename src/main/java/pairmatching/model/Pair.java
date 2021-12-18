@@ -1,10 +1,11 @@
 package pairmatching.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Pair {
-	private List<Crew> crews;
+	private List<Crew> crews = new ArrayList<>();
 
 	//두명일 경우/ 세명일 경우를 유효성 검사해야함
 

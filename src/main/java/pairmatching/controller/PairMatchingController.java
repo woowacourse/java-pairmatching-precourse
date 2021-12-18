@@ -7,6 +7,7 @@ import pairmatching.model.Course;
 import pairmatching.model.CourseLevelMission;
 import pairmatching.model.Crew;
 import pairmatching.model.Role;
+import pairmatching.service.InitializingService;
 import pairmatching.service.InquiringService;
 import pairmatching.service.MatchingService;
 import pairmatching.view.InputView;
@@ -52,5 +53,8 @@ public class PairMatchingController {
 	}
 
 	public static void initialize() {
+		InitializingService initializingService = new InitializingService();
+		initializingService.initialize();
+		outputView.printInitialize();
 	}
 }

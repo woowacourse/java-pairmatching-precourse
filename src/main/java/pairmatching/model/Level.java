@@ -30,6 +30,10 @@ public enum Level {
 		return this.name;
 	}
 
+	public Missions getMissions() {
+		return missions;
+	}
+
 	public Mission getMission(String missionName) {
 		return this.missions.getMission(missionName);
 	}

@@ -27,6 +27,10 @@ public class Mission {
 		return mission;
 	}
 
+	public void initializeMatchingPairs() {
+		this.matchingPairs = null;
+	}
+
 	public void setMatchingPairs(MatchingPairs matchingPairs) {
 		this.matchingPairs = matchingPairs;
 	}

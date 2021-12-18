@@ -12,6 +12,7 @@ public class OutputView {
 	private static final String MISSION = "미션: ";
 	private static final String DIVIDING_LINE = "#############################################";
 	private static final String SELECT_COURSE_LEVEL_MISSION = "과정, 레벨, 미션을 선택하세요";
+	private static final String INITIALIZE = "초기화 되었습니다";
 
 	public void printRoleList() {
 		System.out.println(CHOOSE_ROLE);
@@ -46,5 +47,9 @@ public class OutputView {
 
 	public void printPair(String pairs) {
 		System.out.println(pairs);
+	}
+
+	public void printInitialize() {
+		System.out.println(INITIALIZE);
 	}
 }

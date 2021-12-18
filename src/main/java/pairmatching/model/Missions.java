@@ -30,4 +30,8 @@ public class Missions {
 	public Mission getMission(String missionName) {
 		return this.missionList.stream().filter(mission -> missionName.equals(mission.getName())).findFirst().get();
 	}
+
+	public void initialize() {
+		missionList.forEach(Mission::initializeMatchingPairs);
+	}
 }
