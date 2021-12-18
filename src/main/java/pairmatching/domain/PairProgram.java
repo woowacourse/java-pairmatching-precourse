@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import pairmatching.exception.OverMatchingException;
 
 public class PairProgram {
 
@@ -15,9 +16,22 @@ public class PairProgram {
         this.levelMission = levelMission;
     }
 
-    public boolean isAlreadyMatch(Level level, Mission mission) {
+    public boolean isMatched(Level level, Mission mission) {
         levelMission.checkExistMission(level, mission);
-        return levelMission.isAlreadyMatch(level, mission);
+        return levelMission.isMatched(level, mission);
+    }
+
+    public List<Match> matching(Level level, Mission mission) {
+        levelMission.checkExistMission(level, mission);
+        Mission originMission = levelMission.getMission(level, mission);
+        for (int i = 1; i <= 3; i++) {
+            List<Match> matches = createMatch(crews.crews(mission.course()), mission.course());
+            if (!levelMission.isAlreadyMatchCrew(level, matches)) {
+                levelMission.updateMatch(level, mission, matches);
+                return matches;
+            }
+        }
+        throw new OverMatchingException();
     }
 
     public List<Match> createMatch(List<Crew> crews, Course course) {

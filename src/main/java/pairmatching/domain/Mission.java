@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Mission {
 
-    private final List<Match> matches;
+    private List<Match> matches;
     private final String name;
     private final Course course;
 
@@ -19,11 +19,24 @@ public class Mission {
         return new Mission(new ArrayList<>(), name, course);
     }
 
+    public Course course() {
+        return course;
+    }
+
+    public boolean containAlreadyMatchCrew(Match match) {
+        return matches.stream()
+            .anyMatch(match1 -> match1.isSameMatch(match));
+    }
+
     public boolean isEqualsMission(Mission mission) {
         return this.course.equals(mission.course) && this.name.equals(mission.name);
     }
 
-    public boolean isAlreayMatch() {
+    public boolean isMatched() {
         return matches.size() != 0;
+    }
+
+    public void updateMatch(List<Match> matches) {
+        this.matches = matches;
     }
 }
