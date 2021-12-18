@@ -21,6 +21,17 @@ public class Missions {
 			.collect(Collectors.toList()));
 	}
 
+	public Mission getByMissionName(String missionName) {
+		return missions.stream()
+			.filter(mission -> mission.getName().equals(missionName))
+			.findAny()
+			.orElseThrow(() -> new IllegalArgumentException("[ERROR] 입력한 미션은 존재하지 않습니다."));
+	}
+
+	public boolean haveName(String missionName) {
+		return getNames().contains(missionName);
+	}
+
 	public List<String> getNames() {
 		return missions.stream().map(Mission::getName).collect(Collectors.toList());
 	}

@@ -13,8 +13,10 @@ import pairmatching.constant.PairMatchingConst;
 import pairmatching.domain.Course;
 import pairmatching.domain.Crews;
 import pairmatching.domain.Level;
+import pairmatching.domain.MatchingOption;
 import pairmatching.domain.Mission;
 import pairmatching.domain.Missions;
+import pairmatching.utils.Converter;
 import pairmatching.utils.Validator;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
@@ -22,16 +24,23 @@ import pairmatching.view.OutputView;
 public class PairMatchingController {
 
 	public void run() {
-		// List<String> backCrewNames = getCrewNameByFile("backend-crew.md");
-		// List<String> frontCrewNames = getCrewNameByFile("frontend-crew.md");
-		// Missions missions = initMissions();
-		// Crews crews = initCrews(backCrewNames, frontCrewNames);
-		// // 사전 제공 정보 출력
-		// OutputView.printCourseAndMissionStatus(missions);
+		List<String> backCrewNames = getCrewNameByFile("backend-crew.md");
+		List<String> frontCrewNames = getCrewNameByFile("frontend-crew.md");
+		Missions missions = initMissions();
+		Crews crews = initCrews(backCrewNames, frontCrewNames);
 
 		// 기능 선택 기능
 		String select = enterSelectOption();
 		if (select.equals(PairMatchingConst.SELECT_PAIR_MATCHING)) { // 페어 매칭
+			try {
+				OutputView.printCourseAndMissionStatus(missions);
+				String matchingOptionInput = InputView.enterString();
+				MatchingOption matchingOption = Converter.toMatchingOption(matchingOptionInput, missions);
+				System.out.println(matchingOption.toString());
+			} catch (IllegalArgumentException ex) {
+				OutputView.printError(ex.getMessage());
+			}
+
 		}
 		if (select.equals(PairMatchingConst.SELECT_PAIR_READ)) { // 페어 조회
 		}

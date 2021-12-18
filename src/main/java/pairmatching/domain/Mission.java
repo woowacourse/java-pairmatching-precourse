@@ -16,4 +16,12 @@ public class Mission {
 	public String getName() {
 		return name;
 	}
+
+	@Override
+	public String toString() {
+		return "Mission{" +
+			"level=" + level +
+			", name='" + name + '\'' +
+			'}';
+	}
 }
