@@ -7,11 +7,14 @@ import java.util.stream.Stream;
 import pairmatching.domain.Course;
 import pairmatching.domain.LevelGroup;
 import pairmatching.domain.Mission;
+import pairmatching.domain.PairMatching;
+import pairmatching.util.ErrorMessage;
 
 public class OutputView {
 
 	public static final String DONE_INITIALIZATION = "초기화 되었습니다.";
 	public static final String SPLIT = "#############################################";
+	public static final String NONE_RESULT = "매칭 이력이 없습니다.";
 
 	public static void printErrorMessage(String errorMessage) {
 		System.out.println(errorMessage);
@@ -47,5 +50,13 @@ public class OutputView {
 
 	public static void newLine() {
 		System.out.println();
+	}
+
+	public static void printPairResult(PairMatching pairMatching) {
+
+	}
+
+	public static void printPairResultNone() {
+		System.out.print(ErrorMessage.ERROR + NONE_RESULT);
 	}
 }
