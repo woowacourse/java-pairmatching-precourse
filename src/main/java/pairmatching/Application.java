@@ -1,21 +1,24 @@
 package pairmatching;
 
-import static pairmatching.model.CrewRepository.*;
-import static pairmatching.model.MissionRepository.*;
-
 import java.util.List;
 
+import pairmatching.controller.PairMatchingController;
 import pairmatching.model.Course;
 import pairmatching.model.Crew;
 import pairmatching.model.CrewRepository;
 import pairmatching.model.Level;
 import pairmatching.model.Mission;
 import pairmatching.model.MissionRepository;
+import pairmatching.model.Pairs;
 import pairmatching.utils.FileUtils;
+import pairmatching.view.InputView;
+import pairmatching.view.OutputView;
 
 public class Application {
 	public static void main(String[] args) {
 		init();
+		PairMatchingController controller = new PairMatchingController();
+		controller.run();
 	}
 
 	private static void init() {
@@ -31,7 +34,7 @@ public class Application {
 
 		MissionRepository.addMission(new Mission(Level.LEVEL2, "장바구니"));
 		MissionRepository.addMission(new Mission(Level.LEVEL2, "결제"));
-		MissionRepository.addMission(new Mission(Level.LEVEL2, "지하철 노선도"));
+		MissionRepository.addMission(new Mission(Level.LEVEL2, "지하철노선도"));
 
 		MissionRepository.addMission(new Mission(Level.LEVEL4, "성능개선"));
 		MissionRepository.addMission(new Mission(Level.LEVEL4, "배포"));
