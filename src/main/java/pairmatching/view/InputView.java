@@ -24,11 +24,11 @@ public abstract class InputView {
     private static final String BACKEND_FILE_PATH = "./src/main/resources/backend-crew.md";
     private static final String FRONTEND_FILE_PATH = "./src/main/resources/frontend-crew.md";
     private static final String INPUT_MESSAGE_CHOOSE_COURSE_INFORMATION = "과정, 레벨, 미션을 선택하세요.";
-    private static final String LEVEL1_COURSE_INFORMATION = "  - 레벨1: 자동차경주 | 로또 | 숫자야구게임";
-    private static final String LEVEL2_COURSE_INFORMATION = "  - 레벨2: 장바구니 | 결제 | 지하철노선도";
-    private static final String LEVEL5_COURSE_INFORMATION = "  - 레벨5: ";
-    private static final String LEVEL3_COURSE_INFORMATION = "  - 레벨3: ";
-    private static final String LEVEL4_COURSE_INFORMATION = "  - 레벨4: 성능개선 | 배포";
+    private static final String LEVEL1_INFORMATION = "  - 레벨1: 자동차경주 | 로또 | 숫자야구게임";
+    private static final String LEVEL2_INFORMATION = "  - 레벨2: 장바구니 | 결제 | 지하철노선도";
+    private static final String LEVEL5_INFORMATION = "  - 레벨5: ";
+    private static final String LEVEL3_INFORMATION = "  - 레벨3: ";
+    private static final String LEVEL4_INFORMATION = "  - 레벨4: 성능개선 | 배포";
     private static final String INPUT_COURSE_INFORMATION_EXAMINATION = "ex) 백엔드, 레벨1, 자동차경주";
     private static final int COURSE_INDEX = 0;
     private static final int LEVEL_INDEX = 1;
@@ -36,6 +36,7 @@ public abstract class InputView {
     private static final String ERROR_MESSAGE_NOT_CONTAINS_COURSE = "[ERROR] 해당 과정이 존재하지 않습니다.";
     private static final String ERROR_MESSAGE_NOT_CONTAINS_LEVEL = "[ERROR] 해당 레벨이 존재하지 않습니다.";
     private static final String ERROR_MESSAGE_NOT_CONTAINS_MISSION = "[ERROR] 해당 미션이 존재하지 않습니다.";
+    private static final String COURSE_INFORMATION = "과정: 백엔드 | 프론트엔드";
 
     public static List<String> readFrontendCrew() {
         try {
@@ -141,11 +142,12 @@ public abstract class InputView {
 
     private static String createCourseInformationPrintFormat() {
         return NEW_LINE + BOUNDARY + NEW_LINE + MISSION + COLON + NEW_LINE
-                + LEVEL1_COURSE_INFORMATION + NEW_LINE
-                + LEVEL2_COURSE_INFORMATION + NEW_LINE
-                + LEVEL3_COURSE_INFORMATION + NEW_LINE
-                + LEVEL4_COURSE_INFORMATION + NEW_LINE
-                + LEVEL5_COURSE_INFORMATION + NEW_LINE
+                + COURSE_INFORMATION + NEW_LINE
+                + LEVEL1_INFORMATION + NEW_LINE
+                + LEVEL2_INFORMATION + NEW_LINE
+                + LEVEL3_INFORMATION + NEW_LINE
+                + LEVEL4_INFORMATION + NEW_LINE
+                + LEVEL5_INFORMATION + NEW_LINE
                 + BOUNDARY + NEW_LINE
                 + INPUT_MESSAGE_CHOOSE_COURSE_INFORMATION + NEW_LINE
                 + INPUT_COURSE_INFORMATION_EXAMINATION;
