@@ -2,6 +2,7 @@ package pairmatching.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public enum Level {
     LEVEL1("레벨1"),
@@ -25,6 +26,10 @@ public enum Level {
 
     private static List<Level> getAllLevel() {
         return Arrays.asList(values());
+    }
+
+    public static Optional<Level> findByName(String name) {
+        return getAllLevel().stream().filter(level -> level.name.equals(name)).findAny();
     }
 
 

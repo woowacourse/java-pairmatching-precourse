@@ -22,7 +22,7 @@ public class InputView {
         String[] PairInfoToPerformFunction = input().split(",");
         checkCourseName(PairInfoToPerformFunction[0]);
         checkLevelName(PairInfoToPerformFunction[1]);
-        checkMissionName(PairInfoToPerformFunction[2], allMissionNames);
+        checkMissionName(PairInfoToPerformFunction[1], PairInfoToPerformFunction[2], allMissionNames, missionNamesByLevel);
         return PairInfoToPerformFunction;
     }
 
@@ -92,9 +92,12 @@ public class InputView {
         }
     }
 
-    private static void checkMissionName(String nameInput, List<String> allMissionNames) {
-        if(!allMissionNames.contains(nameInput)) {
+    private static void checkMissionName(String levelNameInput, String missionNameInput, List<String> allMissionNames, Map<Level, List<String>> missionNamesByLevel) {
+        if(!allMissionNames.contains(missionNameInput)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_ABOUT_MISSION_INPUT);
+        }
+        if(!missionNamesByLevel.get(Level.findByName(levelNameInput).get()).contains(missionNameInput)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_ABOUT_WRONG_LEVEL_MISSION_INPUT);
         }
     }
 

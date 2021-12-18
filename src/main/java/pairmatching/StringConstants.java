@@ -32,6 +32,7 @@ public class StringConstants {
     public static final String ERROR_MESSAGE_ABOUT_COURSE_INPUT = "올바른 과정 이름을 입력해주세요";
     public static final String ERROR_MESSAGE_ABOUT_LEVEL_INPUT = "올바른 레벨 이름을 입력해주세요";
     public static final String ERROR_MESSAGE_ABOUT_MISSION_INPUT = "올바른 미션 이름을 입력해주세요";
+    public static final String ERROR_MESSAGE_ABOUT_WRONG_LEVEL_MISSION_INPUT = "해당 레벨에 해당하는 올바른 미션 이름을 입력해주세요";
 
     private StringConstants() {
     }

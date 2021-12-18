@@ -38,7 +38,7 @@ public class Application {
 
     private static void callFunction(String functionKey, String[] pairInfoToPerformFunction) {
         if(functionKey.equals(PAIR_MATCHING_FUNCTION_KEY)) {
-            matchPair();
+            matchPair(pairInfoToPerformFunction);
         }
 
         if(functionKey.equals(PAIR_MATCHING_FUNCTION_KEY)) {
@@ -50,7 +50,7 @@ public class Application {
         }
     }
 
-    private static void matchPair() {
+    private static void matchPair(String[] pairInfoToPerformFunction) {
 
     }
 
