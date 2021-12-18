@@ -11,11 +11,11 @@ public abstract class InputView {
 
     public static String inputPairMatchingFunction() {
         try {
-            String inputFunctionSignal = inputValue();
             String printFormatProvidingFunction = createProvidingFunctionPrintFormat();
+            System.out.print(printFormatProvidingFunction);
 
+            String inputFunctionSignal = inputValue();
             validateInputFunctionSignal(inputFunctionSignal);
-            System.out.println(printFormatProvidingFunction);
 
             return inputFunctionSignal;
         } catch (IllegalArgumentException illegalArgumentException) {
