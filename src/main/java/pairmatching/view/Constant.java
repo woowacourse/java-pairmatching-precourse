@@ -35,6 +35,8 @@ public class Constant {
 
     public static final String RE_PAIR_MATCHING = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
     public static final String Y_N = "네 | 아니오";
+    public static final String YES = "네";
+    public static final String NO = "아니오";
 
     public static final String RESET = "초기화 되었습니다.";
 
@@ -42,4 +44,5 @@ public class Constant {
     public static final String ERROR_HAS_EMPTY = "[ERROR] 빈칸이 포함되어 있습니다.";
     public static final String ERROR_IS_NOT_RIGHT = "[ERROR] 기능 선택은 1, 2, 3, B만 가능합니다.";
     public static final String ERROR_IS_NO_DELIMITER = "[ERROR] 구분은 쉼표(, )로 가능합니다.";
+    public static final String ERROR_YES_OR_NO = "[ERROR] 대답은 예 또는 아니오만 가능합니다.";
 }
