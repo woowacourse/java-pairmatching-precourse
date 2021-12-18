@@ -23,7 +23,7 @@ public class PairMatchingController {
 				requestMatching();
 			}
 			if (selectFunc == LOOK_UP_NUMBER) {
-				System.out.println("조회");
+				requestLookingUp();
 			}
 			if (selectFunc == RESET_NUMBER) {
 				System.out.println("초기화");
@@ -60,6 +60,19 @@ public class PairMatchingController {
 		} catch (IllegalArgumentException illegalArgumentException) {
 			printError(illegalArgumentException.getMessage());
 			requestMatching();
+		}
+	}
+
+	private void requestLookingUp() {
+		introCourse();
+		String input = selectCourse();
+		try {
+			String[] courseInput = isCourseInput(input);
+			isExistCourse(courseInput);
+			pairMatching.printMatchingInfo(input);
+		} catch (IllegalArgumentException illegalArgumentException) {
+			printError(illegalArgumentException.getMessage());
+			requestLookingUp();
 		}
 	}
 }
