@@ -1,9 +1,12 @@
 package pairmatching.model;
 
+import static pairmatching.model.Course.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MissionRepository {
 	private static final List<Mission> missions = new ArrayList<>();
@@ -22,4 +25,16 @@ public class MissionRepository {
 			.map(Mission::getMissionName)
 			.collect(Collectors.toList());
 	}
+
+	public static String findByName(String missionName) {
+		missionName = replaceGap(missionName);
+
+		String finalMissionName = missionName;
+		return missions.stream()
+			.filter(mission -> mission.getMissionName().equals(finalMissionName))
+			.map(Mission::getMissionName)
+			.findFirst()
+			.orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 미션이름은 없습니다."))
+	}
+
 }
