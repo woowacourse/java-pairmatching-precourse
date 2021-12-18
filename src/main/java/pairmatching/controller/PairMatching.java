@@ -1,5 +1,6 @@
 package pairmatching.controller;
 
+import static pairmatching.enums.ErrorMessage.*;
 import static pairmatching.view.InputView.*;
 import static pairmatching.view.OutputView.*;
 
@@ -27,6 +28,7 @@ public class PairMatching {
 		if (FeatureEnum.EXIT.isSame(feature)) {
 			return;
 		}
+		throw new IllegalArgumentException(INPUT_EXECUTE_FEATURE_ERROR.get());
 	}
 
 	private void pairMatching() {
