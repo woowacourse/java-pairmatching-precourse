@@ -13,8 +13,9 @@ public enum Option {
 		this.value = value;
 	}
 
-	public static void checkInput(String input) {
+	public static String checkInput(String input) {
 
+		return input;
 	}
 
 	public String getValue() {

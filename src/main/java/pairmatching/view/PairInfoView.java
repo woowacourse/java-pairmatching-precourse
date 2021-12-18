@@ -2,16 +2,16 @@ package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.constant.Message;
-import pairmatching.model.Option;
+import pairmatching.model.PairInfo;
 
-public class OptionView {
+public class PairInfoView {
 
-	public String getInput() {
-		System.out.println(Message.INPUT_OPTION);
+	public PairInfo getInput() {
+		System.out.println(Message.INPUT_PAIR_INFO);
 		try {
 			String input = Console.readLine();
 			System.out.println();
-			return Option.checkInput(input);
+			return new PairInfo(input);
 		} catch (IllegalArgumentException e) {
 			System.out.println(Message.ERROR + e.getMessage() + "\n");
 			return getInput();

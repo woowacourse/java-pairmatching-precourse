@@ -13,5 +13,6 @@ public class PairMatchingController {
 
 	public void operate() {
 		OptionView optionView = new OptionView();
+		pairMatching.executeOption(optionView.getInput());
 	}
 }
