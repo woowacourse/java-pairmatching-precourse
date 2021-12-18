@@ -28,10 +28,10 @@ public class FileManager {
 				}
 
 				if (filePath.contains("back")) {
-					crews.add(new Crew(Course.BACKEND, br.readLine()));
+					crews.add(new Crew(Course.BACKEND, currentLine));
 				}
 				if (filePath.contains("front")) {
-					crews.add(new Crew(Course.FRONTEND, br.readLine()));
+					crews.add(new Crew(Course.FRONTEND, currentLine));
 				}
 				// line += br.readLine();
 			}
