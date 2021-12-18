@@ -14,4 +14,8 @@ public class Curriculum {
 	public String getCourse() {
 		return course;
 	}
+
+	public String getLevel() {
+		return level;
+	}
 }
