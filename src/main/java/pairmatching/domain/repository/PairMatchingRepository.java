@@ -1,5 +1,6 @@
 package pairmatching.domain.repository;
 
+import static javax.swing.JOptionPane.*;
 import static pairmatching.domain.repository.CrewRepository.*;
 
 import java.util.ArrayList;
@@ -19,24 +20,24 @@ public class PairMatchingRepository {
 
 	public static void add(String course, String level, String mission) {
 		List<MatchingCrew> crewList = createMatchingCrews(course);
-		pairMatchingList.add(new PairMatching(Course.find(course), new Mission(Level.find(level), mission), crewList));
+		pairMatchingList.add(new PairMatching(Course.find(course), new Mission(mission), Level.find(level), crewList));
 	}
 
 	public static void rematching(String course, String level, String mission) {
 		pairMatchingList.remove(PairMatchingRepository.find(course, level, mission));
 		List<MatchingCrew> crewList = createMatchingCrews(course);
-		pairMatchingList.add(new PairMatching(Course.find(course), new Mission(Level.find(level), mission), crewList));
+		pairMatchingList.add(new PairMatching(Course.find(course), new Mission(mission), Level.find(level), crewList));
 	}
 
 	public static PairMatching find(String course, String level, String mission) {
 		return pairMatchingList.stream()
 			.filter(pairMatching -> pairMatching.isSame(course, level, mission))
 			.findFirst()
-			.orElseThrow(() -> new IllegalArgumentException("올바른 페어 매칭 값이 아닙니다."));
+			.orElseThrow(() -> new IllegalArgumentException(ERROR_MESSAGE + "올바른 페어 매칭 값이 아닙니다."));
 	}
 
 	public static boolean isExistPairMatching(String course, String level, String mission) {
-		for (PairMatching pairMatching: pairMatchingList) {
+		for (PairMatching pairMatching : pairMatchingList) {
 			if (pairMatching.isSame(course, level, mission)) {
 				return true;
 			}
@@ -45,31 +46,47 @@ public class PairMatchingRepository {
 	}
 
 	public static List<MatchingCrew> createMatchingCrews(String course) {
-		List<MatchingCrew> matchingCrewList =  new ArrayList<>();
-		List<Crew> crewList = Randoms.shuffle(getCrewList(course));
+		List<MatchingCrew> matchingCrewList = new ArrayList<>();
+		List<Crew> crewList = getCrewList(course);
 		if ((crewList.size() % 2) == 0) {
-			for (int i = 0; i < crewList.size()-1; i+=2) {
-				matchingCrewList.add(new MatchingCrew(crewList.get(i), crewList.get(i+1)));
+			for (int i = 0; i < crewList.size() - 1; i += 2) {
+				matchingCrewList.add(new MatchingCrew(crewList.get(i), crewList.get(i + 1)));
 			}
 			return matchingCrewList;
 		}
-		for (int i = 0; i < crewList.size() - 3; i+=2) {
-			matchingCrewList.add(new MatchingCrew(crewList.get(i), crewList.get(i+1)));
+		for (int i = 0; i < crewList.size() - 3; i += 2) {
+			matchingCrewList.add(new MatchingCrew(crewList.get(i), crewList.get(i + 1)));
 		}
 		int crewListSize = crewList.size();
-		matchingCrewList.add(new MatchingCrew(crewList.get(crewListSize - 3), crewList.get(crewListSize - 2), crewList.get(crewListSize - 1)));
+		matchingCrewList.add(new MatchingCrew(crewList.get(crewListSize - 3), crewList.get(crewListSize - 2),
+			crewList.get(crewListSize - 1)));
 		return matchingCrewList;
 	}
 
-
 	public static List<Crew> getCrewList(String course) {
 		if (course.equals("백엔드")) {
-			return getBackEndCrewList();
+			return createCrewListForBackEnd(CrewRepository.getBackEndCrewList());
 		}
 		if (course.equals("프론트엔드")) {
-			return getFrontEndCrewList();
+			return createCrewListForFrontEnd(CrewRepository.getFrontEndCrewList());
 		}
-		throw new IllegalArgumentException("올바르지 않은 과정 입력 값 입니다.");
+		throw new IllegalArgumentException(ERROR_MESSAGE + "올바르지 않은 과정 입력 값 입니다.");
+	}
+
+	public static List<Crew> createCrewListForBackEnd(List<String> crewNameList) {
+		List<Crew> crewList = new ArrayList<>();
+		for (String crewName: Randoms.shuffle(crewNameList)) {
+			crewList.add(new Crew(Course.BACKEND, crewName));
+		}
+		return crewList;
+	}
+
+	public static List<Crew> createCrewListForFrontEnd(List<String> crewNameList) {
+		List<Crew> crewList = new ArrayList<>();
+		for (String crewName: Randoms.shuffle(crewNameList)) {
+			crewList.add(new Crew(Course.FRONTEND, crewName));
+		}
+		return crewList;
 	}
 
 	public static void reset() {

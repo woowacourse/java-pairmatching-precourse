@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static javax.swing.JOptionPane.*;
+
 import java.util.Arrays;
 
 public enum Level {
@@ -24,7 +26,7 @@ public enum Level {
 		return Arrays.stream(values())
 			.filter(course -> course.name.equals(name))
 			.findFirst()
-			.orElseThrow(() -> new IllegalArgumentException("올바르지 않은 레벨 입력 값 입니다."));
+			.orElseThrow(() -> new IllegalArgumentException(ERROR_MESSAGE + "올바르지 않은 레벨 입력 값 입니다."));
 	}
 	// 추가 기능 구현
 }

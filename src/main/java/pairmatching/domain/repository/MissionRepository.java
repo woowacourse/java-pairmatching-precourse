@@ -1,5 +1,7 @@
 package pairmatching.domain.repository;
 
+import static javax.swing.JOptionPane.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,23 +12,19 @@ public class MissionRepository {
 	static List<Mission> missionList = new ArrayList<>();
 
 	static {
-		missionList.add(new Mission(Level.LEVEL1, "자동차 경주"));
-		missionList.add(new Mission(Level.LEVEL1, "로또"));
-		missionList.add(new Mission(Level.LEVEL1, "숫자야구게임"));
-		missionList.add(new Mission(Level.LEVEL2, "장바구니"));
-		missionList.add(new Mission(Level.LEVEL2, "결제"));
-		missionList.add(new Mission(Level.LEVEL2, "지하철노선도"));
-		missionList.add(new Mission(Level.LEVEL3, ""));
-		missionList.add(new Mission(Level.LEVEL4, "자동차 경주"));
-		missionList.add(new Mission(Level.LEVEL4, "자동차 경주"));
-		missionList.add(new Mission(Level.LEVEL5, ""));
+		missionList.add(new Mission( "자동차 경주"));
+		missionList.add(new Mission( "로또"));
+		missionList.add(new Mission( "숫자야구게임"));
+		missionList.add(new Mission("장바구니"));
+		missionList.add(new Mission("결제"));
+		missionList.add(new Mission("지하철노선도"));
 	}
 
 
 	public Mission findMission(String level, String name) {
 		return missionList.stream()
-			.filter(mission -> mission.isSame(level, name))
+			.filter(mission -> mission.isSame(name))
 			.findFirst()
-			.orElseThrow(() -> new IllegalArgumentException("올바르지 않은 미션 입력 값 입니다."));
+			.orElseThrow(() -> new IllegalArgumentException(ERROR_MESSAGE + "올바르지 않은 미션 입력 값 입니다."));
 	}
 }

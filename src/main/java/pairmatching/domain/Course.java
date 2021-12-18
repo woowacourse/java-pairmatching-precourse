@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static javax.swing.JOptionPane.*;
+
 import java.util.Arrays;
 
 public enum Course {
@@ -16,7 +18,7 @@ public enum Course {
 		return Arrays.stream(values())
 			.filter(course -> course.name.equals(name))
 			.findFirst()
-			.orElseThrow(() -> new IllegalArgumentException("올바르지 않은 코스 입력 값 입니다."));
+			.orElseThrow(() -> new IllegalArgumentException(ERROR_MESSAGE + "올바르지 않은 코스 입력 값 입니다."));
 	}
 
 	public boolean isSame(String name) {

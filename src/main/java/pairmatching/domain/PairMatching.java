@@ -6,16 +6,18 @@ import java.util.Objects;
 public class PairMatching {
 	private Course course;
 	private Mission mission;
+	private Level level;
 	private List<MatchingCrew> crewList;
 
-	public PairMatching(Course course, Mission mission, List<MatchingCrew> crewList) {
+	public PairMatching(Course course, Mission mission,Level level, List<MatchingCrew> crewList) {
 		this.course = course;
 		this.mission = mission;
+		this.level = level;
 		this.crewList = crewList;
 	}
 
 	public boolean isSame(String course, String level, String mission) {
-		return this.course.isSame(course) && this.mission.isSame(level, mission);
+		return this.course.isSame(course) && this.mission.isSame(mission) && this.level.isSame(level);
 	}
 
 	public String getPairMatchingResult() {

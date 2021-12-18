@@ -1,5 +1,6 @@
 package pairmatching.controller.function;
 
+import static javax.swing.JOptionPane.*;
 import static pairmatching.view.InputView.*;
 import static pairmatching.view.OutputView.*;
 
@@ -22,6 +23,7 @@ public enum PairMatchingFunction {
 				if (inputRequestRematching().equals("네")) {
 					PairMatchingService.pairReMatching(course, level, mission);
 				}
+				return;
 			}
 			PairMatchingService.pairMatching(course, level, mission);
 		}
@@ -67,7 +69,7 @@ public enum PairMatchingFunction {
 		return Arrays.stream(values())
 			.filter(function -> function.command.equals(command))
 			.findFirst()
-			.orElseThrow(() -> new IllegalArgumentException("올바르지 않은 명령어 입니다."));
+			.orElseThrow(() -> new IllegalArgumentException(ERROR_MESSAGE + "올바르지 않은 명령어 입니다."));
 	}
 
 	public void apply() {
