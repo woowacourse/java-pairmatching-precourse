@@ -1,7 +1,7 @@
 package pairmatching.controller;
 
 import pairmatching.service.WoowaCourseService;
-import pairmatching.view.ClearOutputView;
+import pairmatching.view.clear.ClearOutputView;
 import pairmatching.view.ViewManager;
 
 public class ClearController implements Controller {

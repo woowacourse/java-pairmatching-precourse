@@ -6,6 +6,7 @@ import pairmatching.service.WoowaCourseService;
 import pairmatching.view.ViewManager;
 import pairmatching.view.common.CommonOutputView;
 import pairmatching.view.match.MatchInputView;
+import pairmatching.view.match.SearchOutputView;
 
 public class SearchController implements Controller {
 
@@ -24,6 +25,6 @@ public class SearchController implements Controller {
 	public void execute() {
 		String input = viewManager.input(new MatchInputView());
 		WoowaCourse woowaCourse = parseService.parseWoowaCourse(input);
-		viewManager.output(new CommonOutputView(woowaCourseService.getPairMatch(woowaCourse)));
+		viewManager.output(new SearchOutputView(woowaCourseService.getPairMatch(woowaCourse)));
 	}
 }

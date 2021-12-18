@@ -5,9 +5,9 @@ import pairmatching.domain.WoowaCourse;
 import pairmatching.service.ParseService;
 import pairmatching.service.WoowaCourseService;
 import pairmatching.view.ViewManager;
-import pairmatching.view.common.CommonOutputView;
 import pairmatching.view.match.MatchInputView;
 import pairmatching.view.match.RematchInputView;
+import pairmatching.view.match.SearchOutputView;
 
 public class MatchController implements Controller {
 
@@ -26,7 +26,7 @@ public class MatchController implements Controller {
 	public void execute() {
 		String input = viewManager.input(new MatchInputView());
 		WoowaCourse woowaCourse = parseService.parseWoowaCourse(input);
-		if (alreadyExists(woowaCourse) && rematch()) {
+		if (alreadyExists(woowaCourse) && !userWantRematch()) {
 			return;
 		}
 		match(woowaCourse);
@@ -34,14 +34,14 @@ public class MatchController implements Controller {
 
 	private void match(WoowaCourse woowaCourse) {
 		PairMatching pairMatching = woowaCourseService.matchAndEnroll(woowaCourse);
-		viewManager.output(new CommonOutputView(pairMatching.toString()));
+		viewManager.output(new SearchOutputView(pairMatching.toString()));
 	}
 
 	private boolean alreadyExists(WoowaCourse woowaCourse) {
 		return woowaCourseService.isDuplicated(woowaCourse);
 	}
 
-	private boolean rematch() {
+	private boolean userWantRematch() {
 		String rematch = viewManager.input(new RematchInputView());
 		return parseService.parseRematch(rematch);
 	}

@@ -24,7 +24,7 @@ public enum ControllerType {
 				return type;
 			}
 		}
-		throw new IllegalArgumentException();
+		throw new IllegalArgumentException(ERROR);
 	}
 
 	public void controlAction() {
