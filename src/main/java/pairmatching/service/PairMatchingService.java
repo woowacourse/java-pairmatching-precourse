@@ -1,14 +1,23 @@
 package pairmatching.service;
 
-import pairmatching.exception.dto.ResponseError;
+import pairmatching.domain.Pair;
 
 public class PairMatchingService {
 
-	public void selectFunction() {
+	private Pair pair;
 
+	public PairMatchingService() {
+		this.pair = new Pair();
 	}
 
-	public void selectProcessLevelMission() {
+	public boolean selectFunction(String input) {
+		//TODO: validation
+
+		// 1, 2, 3, Q로 입력 받아서 처리
+		return pair.handleFunction(input);
+	}
+
+	public void selectProcessLevelMission(String input) {
 
 	}
 }
