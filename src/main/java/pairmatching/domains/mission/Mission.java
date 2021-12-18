@@ -7,7 +7,7 @@ import pairmatching.domains.crew.CrewPair;
 public class Mission {
 	private MissionModel missionModel;
 	private Course course;
-	private Optional<CrewPair> crewPair;
+	private CrewPair crewPair;
 	private boolean isShuffled = false;
 
 	public Mission(MissionModel missionModel, Course course) {
@@ -29,5 +29,9 @@ public class Mission {
 
 	public void shufflePairs() {
 
+	}
+
+	public void clearMatching() {
+		crewPair.clear();
 	}
 }

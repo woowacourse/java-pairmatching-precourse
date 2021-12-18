@@ -52,7 +52,7 @@ public class PairController {
 		} else if (selection == ProgramSelection.FIND_PAIR) {
 			findPair();
 		} else if (selection == ProgramSelection.CLEAR) {
-
+			clearAll();
 		} else if (selection == ProgramSelection.QUIT) {
 			return;
 		}
@@ -98,6 +98,10 @@ public class PairController {
 			getUserMission();
 		}
 		return null;
+	}
+
+	private void clearAll() {
+		missions.clearAllMatching();
 	}
 
 

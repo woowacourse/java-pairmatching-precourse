@@ -30,4 +30,10 @@ public class Missions {
 			.findAny()
 			.get();
 	}
+
+	public void clearAllMatching() {
+		for (Mission mission : missions) {
+			mission.clearMatching();
+		}
+	}
 }
