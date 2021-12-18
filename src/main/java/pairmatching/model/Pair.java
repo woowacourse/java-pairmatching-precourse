@@ -15,4 +15,8 @@ public class Pair {
 	public List<String> getCrews() {
 		return crews;
 	}
+
+	public int getCrewSize() {
+		return crews.size();
+	}
 }

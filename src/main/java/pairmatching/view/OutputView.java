@@ -50,7 +50,15 @@ public class OutputView {
 		printNewLine();
 		System.out.println(PAIR_MATCHING_RESULT);
 		for (Pair pair : pairs) {
-			System.out.println(pair.getCrews().get(0) + PAIR_DELIMITER + pair.getCrews().get(1));
+			System.out.print(pair.getCrews().get(0) + PAIR_DELIMITER + pair.getCrews().get(1));
+			printLastPairForOdd(pair);
+			printNewLine();
+		}
+	}
+
+	private static void printLastPairForOdd(Pair pair) {
+		if (pair.getCrewSize() == 3) {
+			System.out.print(PAIR_DELIMITER + pair.getCrews().get(2));
 		}
 	}
 

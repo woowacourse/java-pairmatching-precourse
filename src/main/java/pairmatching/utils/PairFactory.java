@@ -14,7 +14,7 @@ public class PairFactory {
 
 	private static final int COURSE_INDEX = 0;
 	private static final int MISSION_INDEX = 2;
-	private static final int PAIR_SIZE = 2;
+	private static int PAIR_SIZE = 2;
 
 	private PairFactory() {
 	}
@@ -41,12 +41,20 @@ public class PairFactory {
 		List<Pair> pairs = new ArrayList<>();
 		for (String crew : shuffledCrew) {
 			twoCrews.add(crew);
+			if (isOddAndLastPair(pairs, shuffledCrew)) {
+				System.out.println(shuffledCrew.size());
+				PAIR_SIZE = 3;
+			}
 			if (twoCrews.size() == PAIR_SIZE) {
 				pairs.add(calculatePair(twoCrews, information));
 				twoCrews = new ArrayList<>();
 			}
 		}
 		return pairs;
+	}
+
+	private static boolean isOddAndLastPair(List<Pair> pairs, List<String> crews) {
+		return crews.size() % 2 == 1 && pairs.size() == crews.size() / 2 - 1;
 	}
 
 	private static Pair calculatePair(List<String> crews, List<String> information) {
