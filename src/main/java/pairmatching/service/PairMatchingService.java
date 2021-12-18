@@ -96,4 +96,8 @@ public class PairMatchingService {
     public boolean hasProgramInfo(ProgramInfo programInfo) {
         return programInfoRepository.hasProgramInfo(programInfo);
     }
+
+    public void clearAllMatchingInfo() {
+        programInfoRepository.clearAllProgramInfo();
+    }
 }

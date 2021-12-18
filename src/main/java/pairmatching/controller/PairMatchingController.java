@@ -25,7 +25,7 @@ public class PairMatchingController {
                 searchProgramsPair();
             }
             if (mainCode == MainCode.INITIALIZE) {
-
+                pairMatchingService.clearAllMatchingInfo();
             }
         }
     }

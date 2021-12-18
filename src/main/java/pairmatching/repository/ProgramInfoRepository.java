@@ -34,4 +34,13 @@ public class ProgramInfoRepository {
         // 매치가 된 경우가 있으면 -> true
 
     }
+
+    public void clearAllMatchingInfo() {
+        programInfos.stream().forEach(programInfo -> programInfo.clearPairs());
+    }
+
+    public void clearAllProgramInfo() {
+        clearAllMatchingInfo();
+        programInfos.clear();
+    }
 }
