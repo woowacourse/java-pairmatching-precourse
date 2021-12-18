@@ -49,9 +49,13 @@ public class PairMatchingController {
 			pairMatchingService.match(parser.parseToCourse(information), parser.parseToLevel(information),
 				parser.parseToMission(information));
 		}
-		OutputView.printMatchingResult(
-			pairMatchingService.findByCourseAndMission(parser.parseToCourse(information),
-				parser.parseToMission(information)));
+		printPairList(information);
+	}
+
+	private void printPairList(String information) {
+		List<Pair> pairList = pairMatchingService.findByCourseAndMission(parser.parseToCourse(information),
+			parser.parseToMission(information));
+		OutputView.printMatchingResult(pairList);
 	}
 
 	private boolean isWantToMatch(String information) {
@@ -73,9 +77,7 @@ public class PairMatchingController {
 
 	private void handlePrintMatchedResult() {
 		String information = inputInformationWithValidation();
-		List<Pair> pairList = pairMatchingService.findByCourseAndMission(parser.parseToCourse(information),
-			parser.parseToMission(information));
-		OutputView.printMatchingResult(pairList);
+		printPairList(information);
 	}
 
 	private void initializeMatchedPair() {
