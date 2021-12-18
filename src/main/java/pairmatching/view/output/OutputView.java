@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import pairmatching.domain.Course;
 import pairmatching.domain.FunctionChoice;
 import pairmatching.domain.Level;
+import pairmatching.view.input.Delimiter;
 
 public class OutputView {
 
@@ -15,18 +16,17 @@ public class OutputView {
 	}
 
 	public void printErrorMessage(String message) {
-		printMessage("[ERROR] " + message);
+		printMessage(ErrorMessage.TAG + message);
 	}
 
 	public void printFunctionChoice() {
-		printMessage("기능을 선택하세요.");
+		printMessage(OutputMessage.REQUEST_FUNCTION_CHOICE);
 		Arrays.stream(FunctionChoice.values())
 			.map(FunctionChoice::toString).forEach(this::printMessage);
 	}
 
 	public void printEmptyNewLine() {
-		String emptyNewLine = "\n";
-		printMessage(emptyNewLine);
+		printMessage(Delimiter.getNewLine());
 	}
 
 	public void printDetails() {
@@ -37,33 +37,35 @@ public class OutputView {
 	}
 
 	public void printShopLine() {
-		printMessage("#############################################");
+		printMessage(OutputMessage.SHOP_LINE);
 	}
 
 	private void printCourses() {
-		String result = "과정: ";
-		result += String.join(" | ", Arrays.stream(Course.values()).map(Course::getName).collect(Collectors.toList()));
+		String result = OutputMessage.PRINT_COURSE_INTRO;
+		result += Delimiter.joinWithVerticalLine(
+			Arrays.stream(Course.values()).map(Course::getName).collect(Collectors.toList())
+		);
 		printMessage(result);
 	}
 
 	private void printMission() {
-		printMessage("미션: ");
+		printMessage(OutputMessage.PRINT_MISSION_INTRO);
 		Arrays.stream(Level.values()).map(Level::toString).forEach(this::printMessage);
 	}
 
 	public void printRequestMatchOptions() {
-		printMessage("과정, 레벨, 미션을 선택하세요.");
-		printMessage("ex) 백엔드, 레벨1, 자동차경주");
+		printMessage(OutputMessage.REQUEST_CHOOSE_MATCHING_OPTIONS);
+		printMessage(OutputMessage.EXAMPLE_CHOOSE_MATCHING_OPTIONS);
 	}
 
 	public void printMatchResult(List<String> results) {
-		printMessage("페어 매칭 결과입니다.");
+		printMessage(OutputMessage.PRINT_RESULT_MATCHING);
 		results.forEach(this::printMessage);
 	}
 
 	public void printRequestYesOrNow() {
-		printMessage("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
-		printMessage("네 | 아니오");
+		printMessage(OutputMessage.REQUEST_AGAIN_MATCHING_OPTIONS_INTRO);
+		printMessage(OutputMessage.REQUEST_AGAIN_MATCHING_OPTIONS);
 	}
 
 }

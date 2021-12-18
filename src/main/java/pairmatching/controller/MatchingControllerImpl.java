@@ -3,20 +3,26 @@ package pairmatching.controller;
 import java.util.List;
 
 import pairmatching.domain.FunctionChoice;
-import pairmatching.domain.YesOrNo;
 import pairmatching.dto.MatchDto;
 import pairmatching.exception.MatchDataNotExistException;
 import pairmatching.exception.PairMatchingException;
 import pairmatching.service.MatchingService;
-import pairmatching.service.MatchingServiceImpl;
 import pairmatching.view.input.InputView;
+import pairmatching.view.input.YesOrNo;
 import pairmatching.view.output.OutputView;
 
 public class MatchingControllerImpl implements MatchingController {
 
-	private final MatchingService matchingService = new MatchingServiceImpl();
-	private final InputView inputView = new InputView();
-	private final OutputView outputView = new OutputView();
+	private final MatchingService matchingService;
+	private final InputView inputView;
+	private final OutputView outputView;
+
+	public MatchingControllerImpl(MatchingService matchingService,
+							  InputView inputView, OutputView outputView) {
+		this.matchingService = matchingService;
+		this.inputView = inputView;
+		this.outputView = outputView;
+	}
 
 	@Override
 	public void run() {
@@ -68,7 +74,7 @@ public class MatchingControllerImpl implements MatchingController {
 			outputView.printRequestYesOrNow();
 			outputView.printEmptyNewLine();
 			YesOrNo option = inputView.requestYesOrNo();
-			return option.getValue();
+			return !option.getValue();
 		}
 		return false;
 	}

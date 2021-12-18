@@ -5,9 +5,9 @@ import pairmatching.domain.Level;
 
 public class MatchDto {
 
-	private Course course;
-	private Level level;
-	private String missionName;
+	private final Course course;
+	private final Level level;
+	private final String missionName;
 
 	public MatchDto(String courseName, String levelName, String missionName) {
 		this.course = Course.of(courseName);

@@ -10,7 +10,7 @@ import pairmatching.exception.MatchDataNotFoundException;
 
 public class MatchGroupRepository {
 
-	private List<MatchGroup> matchGroups = new ArrayList<>();
+	private final List<MatchGroup> matchGroups = new ArrayList<>();
 
 	public MatchGroupRepository() {
 		reset();

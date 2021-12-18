@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.FunctionChoice;
-import pairmatching.domain.YesOrNo;
+import pairmatching.domain.MatchGroupInformationCount;
 import pairmatching.dto.MatchDto;
 import pairmatching.exception.InputIsNotCorrectException;
 
@@ -38,7 +38,7 @@ public class InputView {
 	}
 
 	private void checkSize(List<String> informations) {
-		if (informations.size() != 3) {
+		if (MatchGroupInformationCount.isCountNotEquals(informations.size())) {
 			throw new InputIsNotCorrectException();
 		}
 	}
@@ -47,6 +47,5 @@ public class InputView {
 		String inputString = Console.readLine();
 		return YesOrNo.of(inputString.trim());
 	}
-
 
 }

@@ -9,6 +9,8 @@ public interface CrewRepository {
 
 	void load();
 
+	void reset();
+
 	List<Crew> findAll(Course course);
 
 }

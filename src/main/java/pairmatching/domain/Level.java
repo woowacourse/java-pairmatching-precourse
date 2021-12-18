@@ -1,20 +1,23 @@
 package pairmatching.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import pairmatching.exception.MissionNotFoundException;
+import pairmatching.view.input.Delimiter;
+import pairmatching.view.output.OutputMessage;
 
 public enum Level {
 
 	LEVEL1("레벨1", Arrays.asList("자동차경주", "로또", "숫자야구게임")),
 	LEVEL2("레벨2", Arrays.asList("장바구니", "결제", "지하철노선도")),
-	LEVEL3("레벨3", Arrays.asList()),
+	LEVEL3("레벨3", Collections.emptyList()),
 	LEVEL4("레벨4", Arrays.asList("성능개선", "배포")),
-	LEVEL5("레벨5", Arrays.asList());
+	LEVEL5("레벨5", Collections.emptyList());
 
-	private String level;
-	private List<String> missions;
+	private final String level;
+	private final List<String> missions;
 
 	Level(String level, List<String> missions) {
 		this.level = level;
@@ -34,7 +37,7 @@ public enum Level {
 	}
 
 	public String toString() {
-		return String.format(" - %s: %s", level, String.join(" | ", missions));
+		return String.format(OutputMessage.MISSION_STRING_FORMAT, level, Delimiter.joinWithVerticalLine(missions));
 	}
 
 	public String getLevel() {

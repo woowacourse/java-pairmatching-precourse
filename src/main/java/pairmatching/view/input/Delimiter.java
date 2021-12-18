@@ -1,26 +1,21 @@
 package pairmatching.view.input;
 
+import java.util.List;
+
 public enum Delimiter {
 
-	SQUARE_BRACKET_LEFT("["),
-	SQUARE_BRACKET_RIGHT("]"),
 	SEMI_COLON(";"),
 	COMMA(","),
 	EMPTY(""),
-	SPACE(" ");
+	SPACE(" "),
+	COLON(" : "),
+	VERTICAL_LINE(" | "),
+	NEW_LINE("\n");
 
 	private final String value;
 
 	Delimiter(String value) {
 		this.value = value;
-	}
-
-	public static boolean isEmpty(String targetString) {
-		return targetString.equals(EMPTY.value);
-	}
-
-	public static String[] splitWithSemiColon(String targetString) {
-		return targetString.split(SEMI_COLON.value);
 	}
 
 	public static String[] splitWithComma(String targetString) {
@@ -31,20 +26,16 @@ public enum Delimiter {
 		return targetString + SPACE.value;
 	}
 
-	public static boolean isEnclosedInSquareBracket(String targetString) {
-		return (isStartWithLeftBracket(targetString) && isEndWithRightBracket(targetString));
+	public static String joinWithVerticalLine(List<String> values) {
+		return String.join(VERTICAL_LINE.value, values);
 	}
 
-	public static boolean isNotEnclosedInSquareBracket(String targetString) {
-		return !isEnclosedInSquareBracket(targetString);
+	public static String joinWithColon(List<String> values) {
+		return String.join(COLON.value, values);
 	}
 
-	private static boolean isStartWithLeftBracket(String targetString) {
-		return (targetString.charAt(0) == SQUARE_BRACKET_LEFT.value.charAt(0));
-	}
-
-	private static boolean isEndWithRightBracket(String targetString) {
-		return (targetString.charAt(targetString.length() - 1) == SQUARE_BRACKET_RIGHT.value.charAt(0));
+	public static String getNewLine() {
+		return NEW_LINE.value;
 	}
 
 }

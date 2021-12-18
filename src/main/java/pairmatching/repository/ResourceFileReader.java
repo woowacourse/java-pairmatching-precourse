@@ -2,10 +2,11 @@ package pairmatching.repository;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import pairmatching.exception.FileReadException;
 
 public class ResourceFileReader {
 
@@ -18,10 +19,8 @@ public class ResourceFileReader {
 			while ((line = bufferedReader.readLine()) != null) {
 				lines.add(line);
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new FileReadException();
 		}
 		return lines;
 	}

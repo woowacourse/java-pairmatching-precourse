@@ -17,9 +17,9 @@ public class MatchingServiceImpl implements MatchingService {
 	private final CrewRepository crewRepository;
 	private final PairMatcher pairMatcher;
 
-	public MatchingServiceImpl() {
-		this.matchGroupRepository = new MatchGroupRepository();
-		this.crewRepository = new CrewRepositoryImpl();
+	public MatchingServiceImpl(MatchGroupRepository matchGroupRepository, CrewRepository crewRepository) {
+		this.matchGroupRepository = matchGroupRepository;
+		this.crewRepository = crewRepository;
 		this.pairMatcher = new PairMatcher();
 		this.loadCrews();
 	}
@@ -67,6 +67,7 @@ public class MatchingServiceImpl implements MatchingService {
 	}
 
 	public void resetMatchGroups() {
+		crewRepository.reset();
 		matchGroupRepository.reset();
 	}
 

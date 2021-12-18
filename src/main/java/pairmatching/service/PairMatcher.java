@@ -31,7 +31,7 @@ public class PairMatcher {
 	}
 
 	private boolean isSizeOdd(List<Crew> crews) {
-		return (crews.size() % 2 == 0);
+		return (crews.size() % 2 != 0);
 	}
 
 	private void matchIfSizeOdd(List<Crew> crews) {
@@ -45,9 +45,9 @@ public class PairMatcher {
 			crewPairs.add(pair);
 		}
 		List<Crew> pair = new ArrayList<>();
-		pair.add(crews.get(pair.size() - 3));
-		pair.add(crews.get(pair.size() - 2));
-		pair.add(crews.get(pair.size() - 1));
+		pair.add(crews.get(crews.size() - 3));
+		pair.add(crews.get(crews.size() - 2));
+		pair.add(crews.get(crews.size() - 1));
 		crewPairs.add(pair);
 	}
 

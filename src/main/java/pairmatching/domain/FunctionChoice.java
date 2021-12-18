@@ -3,6 +3,7 @@ package pairmatching.domain;
 import java.util.Arrays;
 
 import pairmatching.exception.FunctionChoiceNotFoundException;
+import pairmatching.view.output.OutputMessage;
 
 public enum FunctionChoice {
 
@@ -29,7 +30,7 @@ public enum FunctionChoice {
 
 	@Override
 	public String toString() {
-		return choice + ". " + value;
+		return String.format(OutputMessage.FUNCTION_CHOICE_STRING_FORMAT, choice, value);
 	}
 
 }
