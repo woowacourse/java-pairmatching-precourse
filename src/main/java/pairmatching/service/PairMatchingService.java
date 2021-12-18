@@ -23,7 +23,7 @@ public class PairMatchingService {
 
     public void readMatchResult() {
         showBackgroundInfo();
-        String optionsInput = requestPairMatchingOptionsInput();
+        String optionsInput = returnValidOptions();
         MatchResult matchResult = MatchResultRepository.getMatchResultByOptions(optionsInput);
         if (matchResult == null) {
             System.out.println(NO_MATCHING_RESULT_EXCEPTION);

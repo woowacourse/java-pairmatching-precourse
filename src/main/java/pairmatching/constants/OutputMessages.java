@@ -44,5 +44,4 @@ public class OutputMessages {
         }
         return pairFormat + "\n";
     }
-
 }
