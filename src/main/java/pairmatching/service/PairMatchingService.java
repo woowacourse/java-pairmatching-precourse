@@ -29,19 +29,6 @@ public class PairMatchingService {
 	}
 
 	public void match(String[] courseInfo) {
-		if (courseInfo[0].equals("프론트엔드")) {
-			matchFrontEnd(courseInfo);
-
-		}
-
-		if (courseInfo[0].equals("백엔드")) {
-			matchBackEnd(courseInfo);
-
-		}
-
-	}
-
-	public void matchFrontEnd(String[] courseInfo) {
 		ArrayList<ArrayList<String>> matchResult;
 		List<String> crewNames = getFileItem(courseInfo[0]);
 		crewNames = shuffleCrews(crewNames);
@@ -51,20 +38,6 @@ public class PairMatchingService {
 			return;
 		}
 		matchResult = matchOdd(crewNames);
-		outputView.printPair(matchResult);
-	}
-
-	public void matchBackEnd(String[] courseInfo) {
-		ArrayList<ArrayList<String>> matchResult;
-		List<String> crewNames = getFileItem(courseInfo[0]);
-		crewNames = shuffleCrews(crewNames);
-		if (crewNames.size() % 2 == 0) {
-			matchResult = matchEven(crewNames);
-			outputView.printPair(matchResult);
-			return;
-		}
-		matchResult = matchOdd(crewNames);
-		System.out.println(matchResult);
 		outputView.printPair(matchResult);
 	}
 

@@ -35,7 +35,7 @@ public class PairMatchingValidator {
 	}
 
 	public void isValidLevel(String level) {
-		String[] validLevel = {"1", "2", "4"};
+		String[] validLevel = {"레벨1", "레벨2", "레벨4"};
 		if (!Arrays.asList(validLevel).contains(level)) {
 			throw new IllegalArgumentException("[ERROR] 잘못된 레벨입니다.");
 		}
@@ -43,13 +43,13 @@ public class PairMatchingValidator {
 	}
 
 	public void isValidMission(String level, String mission) {
-		if (level.equals("1")) {
+		if (level.equals("레벨1")) {
 			isValidMissionLevel1(mission);
 		}
-		if (level.equals("2")) {
+		if (level.equals("레벨2")) {
 			isValidMissionLevel2(mission);
 		}
-		if (level.equals("4")) {
+		if (level.equals("레벨4")) {
 			isValidMissionLevel4(mission);
 		}
 
