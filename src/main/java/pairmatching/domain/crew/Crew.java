@@ -14,6 +14,10 @@ public class Crew {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -31,9 +35,6 @@ public class Crew {
 
     @Override
     public String toString() {
-        return "Crew{" +
-            "course=" + course +
-            ", name='" + name + '\'' +
-            '}';
+        return name;
     }
 }
