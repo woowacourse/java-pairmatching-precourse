@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import pairmatching.view.OutputView;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,7 +14,7 @@ import static pairmatching.constant.SystemMessage.BACK_END_PROCESS_FILE_PATH;
 import static pairmatching.constant.SystemMessage.FRONT_END_PROCESS_FILE_PATH;
 
 public class MatchingService {
-    List<String> crewList = new ArrayList<>();
+    private CrewList crewList = new CrewList();
     List<String> shuffledCrewList;
 
     public void match(String processName) throws IOException {
@@ -33,7 +34,7 @@ public class MatchingService {
     }
 
     private void shuffleCrewList() {
-        shuffledCrewList = Randoms.shuffle(crewList);
+        shuffledCrewList = crewList.shuffle();
     }
 
     private String makeFilePath(String processName) {
