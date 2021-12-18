@@ -1,4 +1,4 @@
-package pairmatching;
+package pairmatching.utils;
 
 public class Constant {
 	public static final String SELECT_FUNCTION = "기능을 선택하세요.";

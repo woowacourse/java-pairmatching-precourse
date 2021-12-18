@@ -1,11 +1,11 @@
 package pairmatching.view;
 
-import java.util.List;
-
 import camp.nextstep.edu.missionutils.Console;
-import pairmatching.Constant;
-import pairmatching.CourseLevelMissionSplit;
-import pairmatching.Function;
+import pairmatching.utils.Constant;
+import pairmatching.utils.CourseLevelMissionSpliter;
+import pairmatching.utils.Function;
+import pairmatching.domain.Mission;
+import pairmatching.domain.MissionRepository;
 
 public class InputView {
 	public static Function getInputOfFunctionType() {
@@ -16,6 +16,17 @@ public class InputView {
 		} catch (IllegalArgumentException e) {
 			System.out.println(Constant.ERROR + e.getMessage());
 			return getInputOfFunctionType();
+		}
+	}
+
+	public static Mission getInputOfCourseAndLevelAndMission() {
+		try {
+			OutputView.printCourseAndLevelAndMission();
+			String courseLevelMission = Console.readLine();
+			return MissionRepository.findMissionByName(CourseLevelMissionSpliter.split(courseLevelMission));
+		} catch (IllegalArgumentException e) {
+			System.out.println(Constant.ERROR + e.getMessage());
+			return getInputOfCourseAndLevelAndMission();
 		}
 	}
 }
