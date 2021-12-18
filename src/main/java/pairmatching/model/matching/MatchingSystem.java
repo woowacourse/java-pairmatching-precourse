@@ -34,8 +34,32 @@ public class MatchingSystem {
 
     private List<CrewPair> match(final List<String> crewNames, final String course) {
         List<String> shuffledNames = shuffle(crewNames);
+        if (crewNames.size() % 2 == 0) {
+            return matchCrewsOfEvenNumber(shuffledNames, course);
+        }
+        return matchCrewsOfOddNumber(shuffledNames, course);
+    }
+
+    private List<CrewPair> matchCrewsOfEvenNumber(List<String> shuffledNames, final String course) {
         List<CrewPair> matchedPairs = new ArrayList<>();
-        for (int i = 0; i < crewNames.size(); i += 2) {
+        for (int i = 0; i < shuffledNames.size(); i += 2) {
+            Crew first = Crew.of(shuffledNames.get(i), course);
+            Crew second = Crew.of(shuffledNames.get(i + 1), course);
+            matchedPairs.add(new CrewPair(first, second));
+        }
+        return matchedPairs;
+    }
+
+    private List<CrewPair> matchCrewsOfOddNumber(List<String> shuffledNames, final String course) {
+        List<CrewPair> matchedPairs = new ArrayList<>();
+        for (int i = 0; i < shuffledNames.size(); i += 2) {
+            if (i == shuffledNames.size() - 3) {
+                Crew first = Crew.of(shuffledNames.get(i), course);
+                Crew second = Crew.of(shuffledNames.get(i + 1), course);
+                Crew third = Crew.of(shuffledNames.get(i + 2), course);
+                matchedPairs.add(new CrewPair(first, second, third));
+                break;
+            }
             Crew first = Crew.of(shuffledNames.get(i), course);
             Crew second = Crew.of(shuffledNames.get(i + 1), course);
             matchedPairs.add(new CrewPair(first, second));

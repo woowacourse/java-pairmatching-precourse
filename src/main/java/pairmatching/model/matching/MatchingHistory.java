@@ -6,7 +6,6 @@ import pairmatching.model.crew.Level;
 import pairmatching.model.crew.Mission;
 
 import java.util.List;
-import java.util.Objects;
 
 public class MatchingHistory {
     private final Course course;
@@ -36,7 +35,7 @@ public class MatchingHistory {
 
     private boolean hasMatchedBeforeInSameLevel(final CrewPair before, List<CrewPair> newPairs) {
         return newPairs.stream()
-                .anyMatch(before::equals);
+                .anyMatch(before::isSameCaseWith);
     }
 
     public List<CrewPair> getMatchedCrews() {

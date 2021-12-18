@@ -1,33 +1,35 @@
 package pairmatching.model.crew;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class CrewPair {
-    private final Crew firstCrew;
-    private final Crew secondCrew;
+    private final List<Crew> crews = new ArrayList<>();
 
     public CrewPair(final Crew firstCrew, final Crew secondCrew) {
-        this.firstCrew = firstCrew;
-        this.secondCrew = secondCrew;
+        crews.add(firstCrew);
+        crews.add(secondCrew);
+    }
+
+    public CrewPair(final Crew firstCrew, final Crew secondCrew, final Crew thirdCrew) {
+        crews.add(firstCrew);
+        crews.add(secondCrew);
+        crews.add(thirdCrew);
     }
 
     public List<String> getNames() {
-        return Arrays.asList(firstCrew.getName(), secondCrew.getName());
+        return crews.stream().map(Crew::getName).collect(Collectors.toList());
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CrewPair crewPair = (CrewPair) o;
-        return (Objects.equals(firstCrew, crewPair.firstCrew) && Objects.equals(secondCrew, crewPair.secondCrew))
-                || (Objects.equals(firstCrew, crewPair.secondCrew) && Objects.equals(secondCrew, crewPair.firstCrew));
+    public boolean isSameCaseWith(CrewPair anotherPair) {
+        int sameCount = anotherPair.crews.stream()
+                .mapToInt(this::getSameCount)
+                .sum();
+        return sameCount == 2;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstCrew, secondCrew);
+    private int getSameCount(Crew another) {
+        return (int) crews.stream().filter(crew -> crew.equals(another)).count();
     }
 }
