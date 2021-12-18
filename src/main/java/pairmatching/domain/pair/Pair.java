@@ -10,6 +10,8 @@ import java.util.Set;
 import pairmatching.domain.crew.Crew;
 
 public class Pair {
+	private static final String TO_STRING_DELIMITER = " : ";
+
 	private Set<Crew> pair;
 
 	private Pair(Set<Crew> pair) {
@@ -28,7 +30,7 @@ public class Pair {
 		while (iterator.hasNext()) {
 			stringList.add(iterator.next().toString());
 		}
-		return String.join(" : ", stringList);
+		return String.join(TO_STRING_DELIMITER, stringList);
 	}
 
 	@Override
