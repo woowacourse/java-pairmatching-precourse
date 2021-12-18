@@ -1,6 +1,7 @@
 package pairmatching.view;
 
 import static camp.nextstep.edu.missionutils.Console.*;
+import static pairmatching.enums.ErrorMessage.*;
 
 import pairmatching.dto.RequestCourseAndLevelAndMissionDto;
 import pairmatching.dto.RequestExecuteFeatureDto;
@@ -44,6 +45,12 @@ public class InputView {
 	public static boolean inputRematching() {
 		System.out.println(ALREADY_HAS_PAIRS_MESSAGE);
 		String answer = readLine();
-		return answer.equals(NO);
+		if (answer.equals(YES)) {
+			return false;
+		}
+		if (answer.equals(NO)) {
+			return true;
+		}
+		throw new IllegalArgumentException(REMATCHING_INPUT_ERROR.get());
 	}
 }
