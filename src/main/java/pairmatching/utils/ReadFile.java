@@ -3,18 +3,20 @@ package pairmatching.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.List;
 
 public class ReadFile {
-    static String backendFilePath = "D:\\java-pairmatching-precourse\\src\\main\\resources\\backend-crew.md";
 
-    public static String ReadFile(String path){
+    public static String readFile(String path){
 
-        File file = new File(backendFilePath);
+        File file = new File(path);
+        List<String> allNames = new ArrayList<String>() ;
         try {
             Scanner scan = new Scanner(file);
             while(scan.hasNextLine()){
-                return scan.nextLine();
+                allNames.add(scan.nextLine());
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
