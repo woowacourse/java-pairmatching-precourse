@@ -30,4 +30,15 @@ public class InputView {
 			}
 		}
 	}
+
+	public boolean readRematchOrExit() {
+		while (true) {
+			try {
+				outputView.printRematchOrExit();
+				return InputConverter.convertYesOrNo(Console.readLine());
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
 }

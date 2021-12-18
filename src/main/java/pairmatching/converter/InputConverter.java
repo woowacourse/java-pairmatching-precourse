@@ -7,11 +7,13 @@ import pairmatching.domain.Mission;
 import pairmatching.domain.PairInfo;
 import pairmatching.validator.FunctionValidator;
 import pairmatching.validator.PairValidator;
+import pairmatching.validator.YesOrNoValidator;
 
 public class InputConverter {
 
 	private static FunctionValidator functionValidator = new FunctionValidator();
 	private static PairValidator pairValidator = new PairValidator();
+	private static YesOrNoValidator yesOrNoValidator = new YesOrNoValidator();
 
 	public static Function convertFunction(String input) {
 		functionValidator.validateFunctionNumber(input);
@@ -33,5 +35,9 @@ public class InputConverter {
 		pairValidator.validateMission(mission);
 
 		return new PairInfo(course, mission);
+	}
+
+	public static boolean convertYesOrNo(String input) {
+		return yesOrNoValidator.validateAnswer(input);
 	}
 }
