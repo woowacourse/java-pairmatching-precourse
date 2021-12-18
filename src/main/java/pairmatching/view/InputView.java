@@ -1,17 +1,35 @@
 package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.validation.CategoryValidation;
+import pairmatching.validation.ChoiceValidation;
 
 public class InputView {
     public static String askMain() {
-        OutputView.printMain();
-        return Console.readLine();
+        while (true) {
+            try {
+                OutputView.printMain();
+                String input = Console.readLine();
+                ChoiceValidation.validateChoice(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static String askCategory() {
-        System.out.println(Constant.ASK_PAIR);
-        System.out.println(Constant.EX);
-        return Console.readLine();
+        while (true) {
+            try {
+                System.out.println(Constant.ASK_PAIR);
+                System.out.println(Constant.EX);
+                String input = Console.readLine();
+                CategoryValidation.validateCategory(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static String askRePairMatching() {
