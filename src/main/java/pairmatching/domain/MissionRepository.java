@@ -36,4 +36,8 @@ public class MissionRepository {
 			.findAny()
 			.orElseThrow(() -> new IllegalArgumentException("올바르지 않은 입력입니다."));
 	}
+
+	public static void pairInitializing() {
+		missions().stream().forEach(mission -> mission.initializePair());
+	}
 }

@@ -61,4 +61,8 @@ public class Mission {
 	public List<Pair> getPairs() {
 		return pairs;
 	}
+
+	public void initializePair() {
+		this.pairs = new ArrayList<>();
+	}
 }
