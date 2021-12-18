@@ -58,7 +58,7 @@ public class MatcherService {
 	private void validatePairEach(Course course, Level level, Pair pair, String name) {
 		for (String crew : pair.getCrewsExcept(name)) {
 			if (crewService.didMeet(course, level, name, crew))
-				throw new MatchFailException("매칭 실패");
+				throw new MatchFailException("매칭 실패중...");
 		}
 	}
 
