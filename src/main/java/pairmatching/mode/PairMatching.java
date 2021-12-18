@@ -15,6 +15,7 @@ import pairmatching.Pair;
 
 public class PairMatching implements PairMatchingService {
     private static final String INPUT_DELIMITER = ",";
+    private static final int SHUFFLE_COUNT = 0;
 
     @Override
     public void run() {
@@ -38,7 +39,7 @@ public class PairMatching implements PairMatchingService {
         if (isExistedPairs(split, shuffleNames, mission)) {
             return;
         }
-        mission.addPairs(CrewRepository.matchingCrews(shuffleNames, Level.findByLevel(getLevel(split))));
+        mission.addPairs(CrewRepository.matchingCrews(shuffleNames, Level.findByLevel(getLevel(split)), SHUFFLE_COUNT));
         printPair();
         return;
     }
@@ -48,7 +49,8 @@ public class PairMatching implements PairMatchingService {
             System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
                 + "네 | 아니오");
             if (Check.isYes(Console.readLine())) {
-                mission.addPairs(CrewRepository.matchingCrews(shuffleNames, Level.findByLevel(getLevel(split))));
+                mission.addPairs(
+                    CrewRepository.matchingCrews(shuffleNames, Level.findByLevel(getLevel(split)), SHUFFLE_COUNT));
                 printPair();
                 return true;
             }

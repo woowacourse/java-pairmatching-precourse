@@ -25,4 +25,14 @@ public class Crew {
     public boolean isEqualToName(String name) {
         return this.name.equals(name);
     }
+
+    public void addLevel(Level level) {
+        if (!levels.contains(level)) {
+            levels.add(level);
+        }
+    }
+
+    public boolean isEqualToLevel(Level level) {
+        return this.levels.contains(level);
+    }
 }
