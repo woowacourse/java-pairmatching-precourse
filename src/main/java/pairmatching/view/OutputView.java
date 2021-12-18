@@ -3,6 +3,8 @@ package pairmatching.view;
 import pairmatching.domain.Level;
 import pairmatching.domain.validation.Text;
 
+import java.util.List;
+
 public class OutputView {
     public static final String LINE_BREAK = "\n";
     public static final String REQUEST_CHOOSE_MENU = "기능을 선택하세요.";
@@ -36,5 +38,13 @@ public class OutputView {
 
     public static void existsMatching() {
         System.out.println("");
+    }
+
+    public static void printPair(List<String> pair) {
+        int i;
+
+        for (i = 0; i < pair.size(); i += 2) {
+            System.out.println(pair.get(i) + " : " + pair.get(i + 1));
+        }
     }
 }

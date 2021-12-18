@@ -19,6 +19,7 @@ public class MainController {
     private final Validator validator;
     private final Init init;
     private final ResetController resetController;
+    private final MatchController matchController;
     private String menu = "";
     private String information = "";
 
@@ -27,6 +28,7 @@ public class MainController {
         this.validator = new Validator(exception);
         this.init = new Init();
         init.start();
+        this.matchController = new MatchController(init);
         this.resetController = new ResetController(init);
     }
 
@@ -70,6 +72,7 @@ public class MainController {
     private void mappingMenu() {
         if (menu.equals(PAIR_MATCHING)) {
             receiveInformation();
+            matchController.start(information);
             return;
         }
 
