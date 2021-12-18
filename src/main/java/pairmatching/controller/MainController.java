@@ -8,10 +8,12 @@ public class MainController {
 
 	private final ViewController viewController;
 	private final MatchingRepository matchingRepository;
+	private final SearchController searchController;
 
 	public MainController() {
 		this.viewController = new ViewController();
 		this.matchingRepository = new MatchingRepository();
+		this.searchController = new SearchController(matchingRepository, viewController);
 	}
 
 	public void run() {
@@ -31,7 +33,7 @@ public class MainController {
 		}
 
 		if (order.isSearch()) {
-			// TODO: 2021/12/18 search
+			searchController.search();
 		}
 
 		if (order.isInit()) {

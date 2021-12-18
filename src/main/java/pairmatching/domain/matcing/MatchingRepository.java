@@ -3,9 +3,7 @@ package pairmatching.domain.matcing;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import pairmatching.domain.Course;
-import pairmatching.domain.Level;
-import pairmatching.domain.Mission;
+import pairmatching.domain.Menu;
 
 public class MatchingRepository {
 
@@ -19,11 +17,11 @@ public class MatchingRepository {
 		matchings.add(matching);
 	}
 
-	public Matching findMatching(Course course, Level level, Mission mission) {
+	public Matching findMatching(Menu menu) {
 		return matchings.stream()
-			.filter(matching -> matching.isSameCourse(course))
-			.filter(matching -> matching.isSameLevel(level))
-			.filter(matching -> matching.isSameMission(mission))
+			.filter(matching -> matching.isSameCourse(menu.getCourse()))
+			.filter(matching -> matching.isSameLevel(menu.getLevel()))
+			.filter(matching -> matching.isSameMission(menu.getMission()))
 			.findFirst()
 			.orElseThrow(() -> new IllegalArgumentException("매칭이 존재하지 않습니다."));
 	}
