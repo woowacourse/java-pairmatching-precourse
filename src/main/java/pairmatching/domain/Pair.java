@@ -25,6 +25,10 @@ public class Pair {
 		return crewList.stream().map(crew -> crew.toString()).collect(Collectors.toList());
 	}
 
+	public static boolean duplicatedPairs(Pair one, Pair other) {
+		return one.crewList.stream().filter(crew -> other.crewList.contains(crew)).count() >= 2;
+	}
+
 	@Override
 	public boolean equals(Object other) {
 		if (this == other)

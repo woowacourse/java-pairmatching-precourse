@@ -23,7 +23,7 @@ public class Match {
 		do {
 			pairList = getRandomPairs(information);
 			trial++;
-		} while (MatchService.isDuplicatedPair(information.getLevel()) && trial < MAX_TRIAL);
+		} while (MatchService.isDuplicatedPair(information.getLevel(), pairList) && trial < MAX_TRIAL);
 		if (trial >= MAX_TRIAL) {
 			throw new IllegalArgumentException(FAIL_UNTIL_MAX_TRIAL);
 		}

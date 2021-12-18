@@ -34,8 +34,8 @@ public class Constants {
 	public static final String FAIL_UNTIL_MAX_TRIAL = "3회 이상 매칭 실패.";
 	public static final String COMMA = ",";
 	public static final int COURSE_INDEX = 0;
-	public static final int LEVEL_INDEX = 0;
-	public static final int MISSION_INDEX = 0;
+	public static final int LEVEL_INDEX = 1;
+	public static final int MISSION_INDEX = 2;
 	public static final String COLON = " : ";
 	public static final String PATTERN = "^[가-힣a-zA-Z0-9]+,\\s[가-힣a-zA-Z0-9]+,\\s[가-힣a-zA-Z0-9]+";
 	public static final String NO_MENU = "그런 메뉴 없습니다.";
