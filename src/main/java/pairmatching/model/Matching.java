@@ -8,12 +8,15 @@ import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.utils.FileUtils;
 
 public class Matching {
+	private static String REGEX = ", ";
+	private static int ONE = 1;
+	private static String LINE_WRAP = "\n";
 	private Course course;
 	private Level level;
 	private List<Pair> pairs;
 
 	public Matching(String inputMatchingCondition) {
-		String[] matchingCondition = inputMatchingCondition.split(", ");
+		String[] matchingCondition = inputMatchingCondition.split(REGEX);
 		this.course = Course.of(matchingCondition[0]);
 		this.level = Level.of(matchingCondition[1]);
 		this.pairs = new ArrayList<>();
@@ -26,7 +29,7 @@ public class Matching {
 			Pair pair = new Pair();
 			pair.addName(shuffledCrew.get(index++));
 			pair.addName(shuffledCrew.get(index++));
-			if (shuffledCrew.size() % 2 == 1 && index == shuffledCrew.size() - 1) {
+			if (shuffledCrew.size() % 2 == 1 && index == shuffledCrew.size() - ONE) {
 				pair.addName(shuffledCrew.get(index++));
 			}
 			pairs.add(pair);
@@ -37,7 +40,7 @@ public class Matching {
 	public String toString() {
 		StringBuilder pairStringBuilder = new StringBuilder();
 		for (Pair pair : pairs) {
-			pairStringBuilder.append(pair.toString()).append("\n");
+			pairStringBuilder.append(pair.toString()).append(LINE_WRAP);
 		}
 		return pairStringBuilder.toString();
 	}

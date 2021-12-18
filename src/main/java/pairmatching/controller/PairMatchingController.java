@@ -9,6 +9,13 @@ import pairmatching.view.PairMatchingInputView;
 import pairmatching.view.PairMatchingOutputView;
 
 public class PairMatchingController {
+	private static final int ZERO = 0;
+	private static final int TRIAL_LIMIT = 3;
+	private static final String ONE = "1";
+	private static final String TWO = "2";
+	private static final String THREE = "3";
+	private static final String QUIT = "Q";
+
 	private List<Matching> matches;
 
 	public PairMatchingController() {
@@ -18,16 +25,16 @@ public class PairMatchingController {
 	public void run() {
 		while (true) {
 			String inputFunction = PairMatchingInputView.readFunction();
-			if (inputFunction.equals("1")) {
+			if (inputFunction.equals(ONE)) {
 				match();
 			}
-			if (inputFunction.equals("2")) {
+			if (inputFunction.equals(TWO)) {
 				search();
 			}
-			if (inputFunction.equals("3")) {
+			if (inputFunction.equals(THREE)) {
 				matches.clear();
 			}
-			if (inputFunction.equals("Q")) {
+			if (inputFunction.equals(QUIT)) {
 				break;
 			}
 		}
@@ -48,8 +55,8 @@ public class PairMatchingController {
 		String inputMatchingCondition = PairMatchingInputView.readCourseAndMission();
 		Matching matching = new Matching(inputMatchingCondition);
 		try {
-			int trial = 0;
-			while (trial < 3) {
+			int trial = ZERO;
+			while (trial < TRIAL_LIMIT) {
 				matching.matchPairs();
 				if (!isDuplicateMatch(matching)) {
 					break;
