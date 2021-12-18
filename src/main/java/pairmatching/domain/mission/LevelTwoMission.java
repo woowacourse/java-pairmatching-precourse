@@ -10,4 +10,8 @@ public enum LevelTwoMission implements Mission {
 	LevelTwoMission(String name) {
 		this.name = name;
 	}
+
+	public String getName() {
+		return name;
+	}
 }

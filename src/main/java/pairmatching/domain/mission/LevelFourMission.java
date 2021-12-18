@@ -9,4 +9,8 @@ public enum LevelFourMission implements Mission {
 	LevelFourMission(String name) {
 		this.name = name;
 	}
+
+	public String getName() {
+		return name;
+	}
 }
