@@ -3,6 +3,7 @@ package pairmatching.matching;
 import pairmatching.GeneralInputView;
 import pairmatching.ValidatorMessage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MatchingController {
@@ -48,7 +49,7 @@ public class MatchingController {
         List<String> allMatched;
         try {
             matchingService.hasAlreadyMatching(courseName);
-            allMatched = matchingService.startMatching(courseName);
+            allMatched = tryMakingMatching(courseName);
         } catch (IllegalArgumentException e) {
             String inputReMatching = MatchingInputView.duplicateMatchingResult();
             if (inputReMatching.equals(REMATCH_NO)) {
@@ -57,6 +58,16 @@ public class MatchingController {
             allMatched = matchingService.startMatching(courseName);
         }
         MatchingOutputView.seeMatchingResult(allMatched);
+    }
+
+    public List<String> tryMakingMatching(String courseName) {
+        List<String> matchedList = new ArrayList<>();
+        try {
+            matchedList = matchingService.startMatching(courseName);
+        } catch (IllegalArgumentException e) {
+            ValidatorMessage.printError(ValidatorMessage.ERROR_MESSAGE + ValidatorMessage.DUPLICATE_MATCHING);
+        }
+        return matchedList;
     }
 
     public void seeMatchingInfo(String courseName) {
