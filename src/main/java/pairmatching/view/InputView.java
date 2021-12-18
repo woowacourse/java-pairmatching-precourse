@@ -25,23 +25,22 @@ public class InputView {
 	}
 
 	public static String inputMatching() {
-		String input;
+		out.println(INPUT_COURSE_MENU);
+		String input = "";
 		while (true) {
 			try {
-				input = commonSubMenuInput();
+				input = Console.readLine();
 				InputValidator.validateMatching(input);
+				out.println();
 				return input;
 			} catch (Exception e) {
 				out.println(e.getMessage());
+				continue;
 			}
 		}
 	}
 
 	public static String inputRetrieve() {
-		return commonSubMenuInput();
-	}
-
-	public static String commonSubMenuInput() {
 		out.println(INPUT_COURSE_MENU);
 		String input = Console.readLine();
 		out.println();

@@ -1,5 +1,7 @@
 package pairmatching.constant.message;
 
+import static pairmatching.validator.InputValidator.*;
+
 import pairmatching.constant.Course;
 import pairmatching.constant.LevelAndMission;
 
@@ -25,4 +27,8 @@ public class SystemMessage {
 	public static final String QUIT = "Q";
 
 	public static final String INVALID_COURSE = "존재하지 않는 과정입니다.";
+
+	public static final String OUTPUT_MATCHING_RESULT = "페어 매칭 결과입니다.";
+	public static final String OUTPUT_NO_MATCH_DATA = ERROR_PREFIX + "매칭 이력이 없습니다.\n";
+	public static final String OUTPUT_CLEAR_PAIRS = "초기화 되었습니다. \n";
 }
