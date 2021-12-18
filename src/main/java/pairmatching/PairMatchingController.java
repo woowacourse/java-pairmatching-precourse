@@ -1,8 +1,14 @@
 package pairmatching;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import pairmatching.domain.Function;
+import pairmatching.domain.SelectedMission;
 
 public class PairMatchingController {
+	private final Map<SelectedMission, List<String>> matchingList = new HashMap<>();
 
 	public void run() {
 		Function selectedFunction = requestFunctionSelect();
@@ -21,6 +27,27 @@ public class PairMatchingController {
 			return;
 		}
 
-		Input.requestToSelectMission();
+		Printer.printMissions();
+		runMatchingOrSelect(function);
+	}
+
+	private void runMatchingOrSelect(Function function) {
+		SelectedMission mission = Input.requestToSelectMission();
+		if (function == Function.MATCHING) {
+			runMatching(mission);
+		}
+	}
+
+	public void runMatching(SelectedMission mission) {
+		if (isMatchingExist(mission)) {
+			if (Input.requestMatchingAgain()) {
+				matchingList.remove(mission);
+			}
+		}
+
+	}
+
+	public boolean isMatchingExist(SelectedMission mission) {
+		return matchingList.containsKey(mission);
 	}
 }

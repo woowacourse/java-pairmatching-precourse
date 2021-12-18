@@ -27,7 +27,6 @@ public class Input {
 	}
 
 	public static SelectedMission requestToSelectMission() {
-		Printer.printMissions();
 		Printer.printMissionInputRequest();
 		return readMissionSelected();
 	}
@@ -43,6 +42,22 @@ public class Input {
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return readMissionSelected();
+		}
+	}
+
+	public static boolean requestMatchingAgain() {
+		Printer.printMatchingAgain();
+		return readMatchingAgain();
+	}
+
+	private static boolean readMatchingAgain() {
+		try {
+			String input = Console.readLine();
+			InputValidator.validateYesOrNo(input);
+			return input.equals(YES);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return readMatchingAgain();
 		}
 	}
 }

@@ -11,8 +11,8 @@ public class Printer {
 	private static final String BORDER_LINE_TEXT = "#############################################";
 	private static final String COURSE_TEXT = "과정: ";
 	private static final String MISSION_TEXT = "미션: ";
-
 	private static final String MISSION_INPUT_REQUEST_STRING = "과정, 레벨, 미션을 선택하세요.\nex) 백엔드, 레벨1, 자동차경주";
+	private static final String MATCHING_AGAIN_REQUEST_STRING = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n네 | 아니오";
 
 	public static void printFunctions() {
 		System.out.println(FUNCTION_SELECT_TEXT);
@@ -45,5 +45,9 @@ public class Printer {
 
 	private static String enclosedWithBorder(String str) {
 		return BORDER_LINE_TEXT + NEW_LINE + str + NEW_LINE + BORDER_LINE_TEXT;
+	}
+
+	public static void printMatchingAgain() {
+		System.out.println(MATCHING_AGAIN_REQUEST_STRING);
 	}
 }
