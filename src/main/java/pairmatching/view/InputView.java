@@ -13,6 +13,7 @@ public class InputView {
 	}
 
 	public static String inputMission() {
+		System.out.println();
 		System.out.println("#############################################");
 		System.out.println("과정: 백엔드 | 프론트엔드");
 		System.out.println("미션:");
