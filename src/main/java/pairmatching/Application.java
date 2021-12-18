@@ -1,7 +1,14 @@
 package pairmatching;
 
+import java.util.ArrayList;
+
 public class Application {
+    public void run() {
+        InputFile inputFile = new InputFile();
+    }
+
     public static void main(String[] args) {
-        // TODO 구현 진행
+        Application application = new Application();
+        application.run();
     }
 }
