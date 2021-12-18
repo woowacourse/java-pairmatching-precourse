@@ -8,7 +8,7 @@ import pairmatching.validator.InputValidator;
 
 public class InputView {
 
-	public static final String INPUT_MATCHING_AGAIN = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
+
 
 	public static String chooseEntryMenu() {
 		out.println(INPUT_ENTRY_MENU);
