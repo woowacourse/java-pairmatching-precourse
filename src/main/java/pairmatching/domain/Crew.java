@@ -1,5 +1,9 @@
 package pairmatching.domain;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Crew {
     private Course course;
     private String name;
@@ -16,4 +20,5 @@ public class Crew {
     public String getName(){
         return this.name;
     }
+
 }
