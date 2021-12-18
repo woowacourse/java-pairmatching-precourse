@@ -92,4 +92,8 @@ public class PairMatchingService {
     public boolean isAlreadyMatching(ProgramInfo programInfo) {
         return programInfoRepository.hasProgramInfo(programInfo);
     }
+
+    public boolean hasProgramInfo(ProgramInfo programInfo) {
+        return programInfoRepository.hasProgramInfo(programInfo);
+    }
 }
