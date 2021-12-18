@@ -19,7 +19,6 @@ public class Crews {
 		backEndShuffledCrew = Randoms.shuffle(backEndCrewNames);
 		Pairs pairs = new Pairs();
 		for (int i = 0; i < backEndShuffledCrew.size(); i += 2) {
-			System.out.println(backEndShuffledCrew.get(i));
 			Crew crew1 = new Crew(Course.BACKEND, backEndShuffledCrew.get(i));
 			Crew crew2 = new Crew(Course.BACKEND, backEndShuffledCrew.get(i + 1));
 			Pair pair = new Pair(crew1, crew2);

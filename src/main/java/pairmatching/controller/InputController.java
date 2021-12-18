@@ -31,7 +31,8 @@ public class InputController {
 				String[] eachInform = courseLevelMission.split(",");
 				eachInform[COURSE_INDEX] = InputValidator.isValidCourse(eachInform[COURSE_INDEX]);
 				eachInform[LEVEL_INDEX] = InputValidator.isValidLevel(eachInform[LEVEL_INDEX]);
-				eachInform[MISSION_INDEX] = InputValidator.isValidMission(eachInform[LEVEL_INDEX] ,eachInform[MISSION_INDEX]);
+				eachInform[MISSION_INDEX] = InputValidator.isValidMission(eachInform[LEVEL_INDEX],
+					eachInform[MISSION_INDEX]);
 				return eachInform;
 			} catch (IllegalArgumentException e) {
 				OutputView.printInputCourseLevelMissionError();

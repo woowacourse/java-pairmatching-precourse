@@ -16,5 +16,13 @@ public enum Level {
 	public String getName() {
 		return name;
 	}
-	// 추가 기능 구현
+
+	public static Level getLevelByName(String name) {
+		for (Level level : Level.values()) {
+			if (level.getName().equals(name)) {
+				return level;
+			}
+		}
+		return Level.LEVEL1;
+	}
 }

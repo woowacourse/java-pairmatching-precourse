@@ -1,10 +1,14 @@
 package pairmatching.controller;
 
+import java.util.HashMap;
+
 import pairmatching.domain.Course;
 import pairmatching.domain.Crews;
+import pairmatching.domain.Level;
 import pairmatching.domain.PairStorage;
 import pairmatching.domain.Pairs;
 import pairmatching.view.InputView;
+import pairmatching.view.OutputView;
 
 public class MatchingController {
 	public static final int COURSE_INDEX = 0;
@@ -18,12 +22,12 @@ public class MatchingController {
 		if (inputNum.equals("1")) {
 			InputView.askCourseLevelMission();
 			String[] eachInform = inputController.scanCourseLevelMission();
-			System.out.println(eachInform[COURSE_INDEX]);
-			System.out.println(eachInform[LEVEL_INDEX]);
-			System.out.println(eachInform[MISSION_INDEX]);
-			pairStorage.backEndLevel1 = shuffleCrew(eachInform[COURSE_INDEX]);
-		}
-		else if (inputNum.equals("2")) {
+			HashMap<String, Pairs> missionPair = new HashMap<>();
+			Pairs pairs = shuffleCrew(eachInform[COURSE_INDEX]);
+			missionPair.put(eachInform[MISSION_INDEX], pairs);
+			pairStorage.backEndPair.put(Level.getLevelByName(eachInform[LEVEL_INDEX]), missionPair);
+			OutputView.printPairResult(pairs);
+		} else if (inputNum.equals("2")) {
 			InputView.askCourseLevelMission();
 			inputController.scanCourseLevelMission();
 		}

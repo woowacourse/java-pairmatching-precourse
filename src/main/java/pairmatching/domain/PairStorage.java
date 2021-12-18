@@ -1,11 +1,8 @@
 package pairmatching.domain;
 
-public class PairStorage {
-	public Pairs backEndLevel1;
-	public Pairs backEndLevel2;
-	public Pairs backEndLevel4;
+import java.util.HashMap;
 
-	public Pairs frontEndLevel1;
-	public Pairs frontEndLevel2;
-	public Pairs frontEndLevel4;
+public class PairStorage {
+	public HashMap<Level, HashMap<String, Pairs>> backEndPair = new HashMap<>();
+	public HashMap<Level, HashMap<String, Pairs>> frontEndPair = new HashMap<>();
 }
