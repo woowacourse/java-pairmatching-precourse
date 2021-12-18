@@ -4,12 +4,12 @@ import java.util.List;
 
 public class PairMatchingMachine {
     private final RandomPairMatchingGenerator randomPairMatchingGenerator;
-    private final List<PairMission> pairMissions;
+    private final List<PairInformation> pairInformations;
 
     public PairMatchingMachine(RandomPairMatchingGenerator randomPairMatchingGenerator,
-        List<PairMission> pairMissions) {
+        List<PairInformation> pairInformations) {
         this.randomPairMatchingGenerator = randomPairMatchingGenerator;
-        this.pairMissions = pairMissions;
+        this.pairInformations = pairInformations;
     }
 
     public PairInformation share(PairMission pairMission, List<Crew> crews) {
@@ -17,10 +17,11 @@ public class PairMatchingMachine {
     }
 
     public boolean isPairMission(PairMission pairMission) {
-        return pairMissions.contains(pairMission);
+        return pairInformations.stream()
+            .anyMatch(pairInformation -> pairInformation.isSamePairMission(pairMission));
     }
 
-    public void addPairMission(PairMission pairMission) {
-        this.pairMissions.add(pairMission);
+    public void addPairInformation(PairInformation pairInformation) {
+        this.pairInformations.add(pairInformation);
     }
 }

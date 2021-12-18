@@ -15,4 +15,8 @@ public class PairInformation {
     public List<Pair> getPairs() {
         return Collections.unmodifiableList(pairs);
     }
+
+    public boolean isSamePairMission(PairMission pairMission) {
+        return this.pairMission.equals(pairMission);
+    }
 }

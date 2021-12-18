@@ -17,9 +17,9 @@ import pairmatching.view.OutputView;
 public class PairMatchingController {
 
     public void run() {
-        List<PairMission> pairMissions = new ArrayList<>();
+        List<PairInformation> pairInformations = new ArrayList<>();
         PairMatchingMachine pairMatchingMachine = new PairMatchingMachine(
-            new RandomPairMatchingGenerator(), pairMissions);
+            new RandomPairMatchingGenerator(), pairInformations);
 
         pairMatching(pairMatchingMachine);
     }
@@ -32,7 +32,6 @@ public class PairMatchingController {
 
         OutputView.printPairMission();
         PairMission pairMission = getPairMission(pairMatchingMachine);
-        pairMatchingMachine.addPairMission(pairMission);
         share(pairMission, pairMatchingMachine);
     }
 
@@ -50,6 +49,8 @@ public class PairMatchingController {
     private void share(PairMission pairMission, PairMatchingMachine pairMatchingMachine) {
         List<Crew> crews = getCrews(pairMission);
         PairInformation pairInformation = pairMatchingMachine.share(pairMission, crews);
+
+        pairMatchingMachine.addPairInformation(pairInformation);
         OutputView.printPairMatchingResult(pairInformation);
         pairMatching(pairMatchingMachine);
     }
