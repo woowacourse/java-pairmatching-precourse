@@ -11,5 +11,7 @@ public class ErrorMessages {
 	public static final String COURSE_NULL = "존재하지 않는 과정입니다.";
 	public static final String MISSION_NULL = "존재하지 않는 미션입니다";
 
+	public static final String NOT_YES_NO = "네, 아니오 로만 대답하셔야 합니다.";
+
 
 }

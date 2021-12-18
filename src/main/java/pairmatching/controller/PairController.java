@@ -1,12 +1,14 @@
 package pairmatching.controller;
 
 import static pairmatching.constant.ErrorMessages.*;
+import static pairmatching.constant.ViewMessage.*;
 
 import pairmatching.domains.crew.BackendCrews;
 import pairmatching.domains.crew.FrontendCrews;
 import pairmatching.domains.mission.Mission;
 import pairmatching.domains.mission.Missions;
 import pairmatching.domains.programfunc.ProgramSelection;
+import pairmatching.exceptions.UserInputException;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -56,6 +58,24 @@ public class PairController {
 
 	private void matching() {
 		Mission userMission = getUserMission();
+		checkShuffled(userMission);
+
+	}
+
+	private void checkShuffled(Mission mission) {
+		String shuffleMessage = YES_MESSAGE;
+		if (mission.isShuffled()) {
+			shuffleMessage = InputView.printShuffleMessage();
+		}
+		try {
+			UserInputException.checkYesOrNo(shuffleMessage);
+		} catch (IllegalArgumentException e) {
+			System.out.println(ERROR_PREFIX + e.getMessage());
+		}
+		if (shuffleMessage.equals(NO_MESSAGE)) {
+			return;
+		}
+		mission.shufflePairs();
 	}
 
 	private Mission getUserMission() {

@@ -22,4 +22,11 @@ public class UserInputException {
 			throw new IllegalArgumentException(MISSION_DETAIL_NULL + LINE_BREAK);
 		}
 	}
+
+	public static void checkYesOrNo(String userInput) {
+		if (!userInput.equals(YES_MESSAGE)
+			&& !userInput.equals(NO_MESSAGE)) {
+			throw new IllegalArgumentException(NOT_YES_NO + LINE_BREAK);
+		}
+	}
 }

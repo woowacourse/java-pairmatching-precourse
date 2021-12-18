@@ -1,6 +1,7 @@
 package pairmatching.domains.mission;
 
 import static pairmatching.constant.NumberConstant.*;
+import static pairmatching.constant.ViewMessage.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class Missions {
 	}
 
 	public Mission findMissionByInput(String userInput) {
-		String[] missionDetails = userInput.split(", ");
+		String[] missionDetails = userInput.split(MISSION_DETAIL_DIVIDER);
 		Course course = Course.findByString(missionDetails[DETAIL_COURSE_INDEX]);
 		MissionModel missionModel = MissionModel.findByString(
 			missionDetails[DETAIL_LEVEL_INDEX], missionDetails[

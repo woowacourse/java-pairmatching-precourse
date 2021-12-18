@@ -19,4 +19,12 @@ public class Mission {
 	public Course getCourse() {
 		return course;
 	}
+
+	public boolean isShuffled() {
+		return crewPair == null;
+	}
+
+	public void shufflePairs() {
+
+	}
 }

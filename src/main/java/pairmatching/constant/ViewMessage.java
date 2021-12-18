@@ -17,6 +17,12 @@ public class ViewMessage {
 	public static final String MISSION_SELECT_MESSAGE = "과정, 레벨, 미션을 선택하세요.";
 	public static final String MISSION_SELECT_EXAMPLE = "ex) 백엔드, 레벨1, 자동차경주";
 
+	public static final String IS_ALREADY_SHUFFLED = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
+	public static final String YES_MESSAGE = "네";
+	public static final String NO_MESSAGE = "아니오";
+
+
+
 
 
 
