@@ -22,8 +22,14 @@ public class Matching {
             this.course = arrayList.get(0).trim();
             this.level = arrayList.get(1).trim();
             this.mission = arrayList.get(2).trim();
-            ArrayList<String> backendCrewList = (ArrayList)InputView.inputCrew("backend");
-            ArrayList<String> frontendCrewList = (ArrayList)InputView.inputCrew("frontend");
+            ArrayList<String> crewList = new ArrayList<String>();
+            if (course.equals("백엔드")) {
+                crewList = (ArrayList)InputView.inputCrew("backend");
+            }
+            if (course.equals("프론트엔드")) {
+                crewList = (ArrayList)InputView.inputCrew("frontend");
+            }
+            Utils.shuffleCrewList(crewList);
         }
         if (actionNumber.equals("2")) {
             OutputView.outputCourse();

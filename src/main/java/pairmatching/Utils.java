@@ -1,8 +1,11 @@
 package pairmatching;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -31,5 +34,9 @@ public class Utils {
             new IllegalArgumentException("[ERROR]");
         }
         return crewList;
+    }
+
+    public static ArrayList<String> shuffleCrewList(ArrayList<String> crewList) {
+       return (ArrayList<String>) Randoms.shuffle(crewList);
     }
 }
