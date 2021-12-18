@@ -1,10 +1,12 @@
 package pairmatching.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PairMatchingMachine {
     private final RandomPairMatchingGenerator randomPairMatchingGenerator;
-    private final List<PairInformation> pairInformations;
+    private List<PairInformation> pairInformations;
 
     public PairMatchingMachine(RandomPairMatchingGenerator randomPairMatchingGenerator,
         List<PairInformation> pairInformations) {
@@ -30,5 +32,9 @@ public class PairMatchingMachine {
             .filter(pairInformation -> pairInformation.isSamePairMission(pairMission))
             .findFirst()
             .orElseThrow(() -> new IllegalArgumentException("[ERROR] 등록된 매칭이 없습니다."));
+    }
+
+    public void removePairInformations() {
+        this.pairInformations = new ArrayList<>();
     }
 }

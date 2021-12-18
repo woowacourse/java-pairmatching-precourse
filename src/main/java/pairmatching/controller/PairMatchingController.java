@@ -40,6 +40,10 @@ public class PairMatchingController {
         if (mainCommand == MainCommand.FIND) {
             find(pairMission, pairMatchingMachine);
         }
+
+        if (mainCommand == MainCommand.INIT) {
+            remove(pairMatchingMachine);
+        }
     }
 
     private MainCommand getMainCommand() {
@@ -79,6 +83,10 @@ public class PairMatchingController {
             System.out.println(e.getMessage());
             pairMatching(pairMatchingMachine);
         }
+    }
+
+    private void remove(PairMatchingMachine pairMatchingMachine) {
+        pairMatchingMachine.removePairInformations();
     }
 
     private List<Crew> getCrews(PairMission pairMission) {
