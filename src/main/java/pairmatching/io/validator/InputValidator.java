@@ -9,4 +9,10 @@ public class InputValidator {
 			throw new InvalidSelectException(ProgramData.INVALID_SELECT_ERROR);
 		}
 	}
+
+	public static void isValidDuplicatePairSelect(String select) {
+		if(!ProgramData.DUPLICATE_PAIR_SELECT_LIST.contains(select)) {
+			throw new InvalidSelectException(ProgramData.INVALID_SELECT_ERROR);
+		}
+	}
 }

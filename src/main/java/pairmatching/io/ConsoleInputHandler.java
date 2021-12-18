@@ -27,10 +27,29 @@ public class ConsoleInputHandler {
 		}
 	}
 
+	public boolean getValidDuplicatePairSelect() {
+		outputHandler.printMessage(ProgramData.DUPLICATE_PAIR_SELECT_MESSAGE);
+		while(true) {
+			try {
+				return getDuplicatePairSelect();
+			} catch (IllegalArgumentException iae) {
+				outputHandler.printErrorMessage(iae);
+			}
+		}
+	}
+
 	private String getSelect() {
 		String select = read();
 		InputValidator.isValidSelect(select);
 		return select;
 	}
 
+	private boolean getDuplicatePairSelect() {
+		String select = read();
+		InputValidator.isValidDuplicatePairSelect(select);
+		if(select.equals(ProgramData.YES)) {
+			return true;
+		}
+		return false;
+	}
 }

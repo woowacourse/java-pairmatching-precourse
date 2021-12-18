@@ -8,6 +8,7 @@ public class ProgramData {
 	public static final String FRONTEND_CREW_FILEPATH = "src/main/resources/frontend-crew.md";
 
 	public static final String SELECT_MESSAGE = "기능을 선택하세요.\n1. 페어 매칭\n2. 페어 조회\n3. 페어 초기화\nQ. 종료";
+	public static final String DUPLICATE_PAIR_SELECT_MESSAGE = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n네 | 아니오";
 	public static final String PAIR_MATCH_RESULT_MESSAGE = "페어 매칭 결과입니다.";
 	public static final String PAIR_SEPARATOR = " : ";
 	public static final String BAR_SEPARATOR = " | ";
@@ -25,6 +26,8 @@ public class ProgramData {
 	public static final List<String> LEVEL5_MISSION = Arrays.asList();
 
 	public static final List<String> SELECT_LIST = Arrays.asList("1", "2", "3", "Q");
+	public static final List<String> DUPLICATE_PAIR_SELECT_LIST = Arrays.asList("네", "아니오");
+	public static final String YES = "네";
 
 	public static final String INVALID_SELECT_ERROR = "[ERROR] 유효하지 않은 선택입니다.";
 
