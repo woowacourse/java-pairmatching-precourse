@@ -18,6 +18,10 @@ public class MatchingRepository {
 		matchings.add(matching);
 	}
 
+	public void deleteMatching(Matching matching) {
+		matchings.remove(matching);
+	}
+
 	public Optional<Matching> findMatching(Menu menu) {
 		return matchings.stream()
 			.filter(matching -> matching.isSameCourse(menu.getCourse()))

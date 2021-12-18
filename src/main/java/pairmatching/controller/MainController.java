@@ -58,7 +58,7 @@ public class MainController {
 				matching();
 			}
 
-			// matchingRepository.delete(menu);
+			matchingRepository.deleteMatching(matching.get());
 		}
 
 		// TODO: 2021/12/18 matching
