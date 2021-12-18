@@ -1,19 +1,26 @@
 package model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import utils.CrewFileReader;
 
 public class PairMatcher {
-	private List<String> backEndCrewNames;
-	private List<String> frontEndCrewNames;
-	private List<String> shuffledBackEndCrew;
-	private List<String> shuffledFrontEndCrew;
+	private List<Crew> backEndCrews;
+	private List<Crew> frontEndCrews;
+	private List<String> shuffledBackEndCrews;
+	private List<String> shuffledFrontEndCrews;
 
 	public PairMatcher() {
-		backEndCrewNames = CrewFileReader.readBackEndCrewFile();
-		frontEndCrewNames = CrewFileReader.readFrontEndCrewFile();
+		backEndCrews = CrewFileReader.readBackEndCrewFile()
+			.stream()
+			.map(crewName -> new Crew(crewName, "백엔드"))
+			.collect(Collectors.toList());
+		frontEndCrews = CrewFileReader.readFrontEndCrewFile()
+			.stream()
+			.map(crewName -> new Crew(crewName, "프론트엔드"))
+			.collect(Collectors.toList());
 	}
 
 	public List<String> matchingPairs(List<String> processInformation) {
@@ -26,12 +33,14 @@ public class PairMatcher {
 	}
 
 	private List<String> matchingBackEndPairs(List<String> processInformation) {
-		shuffledBackEndCrew = Randoms.shuffle(backEndCrewNames);
-		return shuffledBackEndCrew;
+		shuffledBackEndCrews = Randoms.shuffle(
+			backEndCrews.stream().map(crew -> crew.getName()).collect(Collectors.toList()));
+		return shuffledBackEndCrews;
 	}
 
 	private List<String> matchingFrontEndPairs(List<String> processInformation) {
-		shuffledFrontEndCrew = Randoms.shuffle(frontEndCrewNames);
-		return shuffledFrontEndCrew;
+		shuffledFrontEndCrews = Randoms.shuffle(
+			frontEndCrews.stream().map(crew -> crew.getName()).collect(Collectors.toList()));
+		return shuffledFrontEndCrews;
 	}
 }
