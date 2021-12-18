@@ -1,5 +1,7 @@
 package pairmatching.domain.enumeration;
 
+import pairmatching.utils.ErrorMessages;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +19,18 @@ public enum Level {
     Level(String name, List<Mission> missionList) {
         this.name = name;
         this.missionList = missionList;
+    }
+
+    public static Level findLevelByMission(Mission mission) {
+        return Arrays.stream(Level.values())
+                .filter(level -> level.hasMission(mission))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessages.PREFIX_ERROR + ErrorMessages.ERROR_INVALID_INPUT));
+    }
+
+    public boolean hasMission(Mission missionType) {
+        return missionList.stream()
+                .anyMatch(mission -> mission == missionType);
     }
 
     // 추가 기능 구현
