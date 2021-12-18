@@ -13,9 +13,9 @@ public class InputView {
 		+ "2. 페어 조회" + System.lineSeparator()
 		+ "3. 페어 초기화" + System.lineSeparator()
 		+ "Q. 종료";
-	private static final int COURSE_INDEX = 1;
-	private static final int LEVEL_INDEX = 2;
-	private static final int MISSION_INDEX = 3;
+	private static final int COURSE_INDEX = 0;
+	private static final int LEVEL_INDEX = 1;
+	private static final int MISSION_INDEX = 2;
 
 	public static RequestExecuteFeatureDto inputExecuteFeature() {
 		System.out.println(EXECUTE_FEATURE_MESSAGE);
