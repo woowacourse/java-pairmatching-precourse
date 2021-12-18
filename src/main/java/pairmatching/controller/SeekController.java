@@ -16,7 +16,7 @@ public class SeekController {
 	private static final int LEVEL_FIVE = 5;
 	private static final char CHAR_HELPER = '0';
 	private static final String BASE = "백엔드";
-	private static final String DELIMITER = ",";
+	private static final String DELIMITER = ", ";
 
 	public static void seek() {
 		OutputView.MatchingOutput();

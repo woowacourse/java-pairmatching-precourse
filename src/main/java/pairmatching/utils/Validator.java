@@ -12,7 +12,7 @@ public class Validator {
 	private static final int COURSE_INDEX = 0;
 	private static final int LEVEL_INDEX = 1;
 	private static final int MISSION_INDEX = 2;
-	private static final String DELIMITER = ",";
+	private static final String DELIMITER = ", ";
 	private static final String YES = "예";
 	private static final String NO = "아니오";
 
@@ -31,7 +31,7 @@ public class Validator {
 
 	public static void checkMenuInput(String input) throws IllegalArgumentException {
 		if (!(input.equals(MATCH_STRING) || input.equals(SEEK_STRING) || input.equals(INIT_STRING) || input.equals(END_STRING))) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(ErrorMessage.ERROR_MENU_INPUT_MSG.getMessage());
 		}
 	}
 
@@ -71,7 +71,7 @@ public class Validator {
 	public static void checkReMatchInput(String input) {
 		checkEmpty(input);
 		if (!(input.equals(YES) || input.equals(NO))) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(ErrorMessage.ERROR_YES_OR_NO_MSG.getMessage());
 		}
 	}
 }
