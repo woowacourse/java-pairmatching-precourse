@@ -1,5 +1,6 @@
 package pairmatching.controller;
 
+import static pairmatching.constant.constant.*;
 import static pairmatching.exception.EmptyException.*;
 import static pairmatching.exception.FunctionException.*;
 import static pairmatching.exception.SourceFormatException.*;
@@ -7,6 +8,7 @@ import static pairmatching.exception.SourceFormatException.*;
 import java.io.IOException;
 
 import pairmatching.exception.NotFindMatchException;
+import pairmatching.model.Function;
 import pairmatching.model.Match;
 import pairmatching.service.PairService;
 import pairmatching.view.InputView;
@@ -35,17 +37,17 @@ public class PairMatchingController {
 			} catch (Exception exception) {
 				outputView.reportException(exception.getMessage());
 			}
-		} while (!function.equals("Q"));
+		} while (!Function.isExit(function));
 	}
 
 	private void proceedFunction(String function) throws IOException {
-		if (function.equals("1")) {
+		if (Function.isMatch(function)) {
 			matchPair(checkEmptyInput(inputView.requestSource()));
 		}
-		if (function.equals("2")) {
+		if (Function.isLook(function)) {
 			lookPair(checkEmptyInput(inputView.requestSource()));
 		}
-		if (function.equals("3")) {
+		if (Function.isInit(function)) {
 			pairService.init();
 			outputView.reportInit();
 		}
@@ -53,24 +55,24 @@ public class PairMatchingController {
 
 	private void lookPair(String source) {
 		checkSourceFormat(source);
-		String[] sourceSplitByComma = source.replaceAll(" ", "").split(",");
-		if (!pairService.findMatch(sourceSplitByComma[0], sourceSplitByComma[1], sourceSplitByComma[2])) {
+		String[] sourceSplitByComma = source.replaceAll(BLANK, "").split(COMMA);
+		if (!pairService.findMatch(sourceSplitByComma[COURSE_IDX], sourceSplitByComma[LEVEL_IDX], sourceSplitByComma[MISSION_IDX])) {
 			throw new NotFindMatchException();
 		}
-		Match match = pairService.look(sourceSplitByComma[0], sourceSplitByComma[1], sourceSplitByComma[2]);
+		Match match = pairService.look(sourceSplitByComma[COURSE_IDX], sourceSplitByComma[LEVEL_IDX], sourceSplitByComma[MISSION_IDX]);
 		outputView.reportMatch(match.getPair());
 	}
 
 	private void matchPair(String source) throws IOException {
 		checkSourceFormat(source);
-		String[] sourceSplitByComma = source.replaceAll(" ", "").split(",");
-		if (pairService.findMatch(sourceSplitByComma[0], sourceSplitByComma[1], sourceSplitByComma[2])) {
+		String[] sourceSplitByComma = source.replaceAll(BLANK, "").split(COMMA);
+		if (pairService.findMatch(sourceSplitByComma[COURSE_IDX], sourceSplitByComma[LEVEL_IDX], sourceSplitByComma[MISSION_IDX])) {
 			String match = inputView.requestDuplicateMatch();
-			if (match.equals("아니오")) {
+			if (match.equals(NOT_MATCHING_MSG)) {
 				run();
 			}
 		}
-		Match match = pairService.match(sourceSplitByComma[0], sourceSplitByComma[1], sourceSplitByComma[2]);
+		Match match = pairService.match(sourceSplitByComma[COURSE_IDX], sourceSplitByComma[LEVEL_IDX], sourceSplitByComma[MISSION_IDX]);
 		outputView.reportMatch(match.getPair());
 	}
 }
