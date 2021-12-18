@@ -10,4 +10,12 @@ public class PairService {
 	public static void resetPairs() {
 		PairRepository.reset();
 	}
+
+	public static void makeBackPairs(String course, String mission) {
+
+	}
+
+	public static void makeFrontPairs(String course, String mission) {
+
+	}
 }
