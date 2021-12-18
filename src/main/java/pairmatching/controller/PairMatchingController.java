@@ -32,7 +32,13 @@ public class PairMatchingController {
 
 	public void start() {
 		ready();
-		selectFunction();
+		while (true) {
+			String function = selectFunction();
+			if (function.equals(Menu.QUIT.getFunctionNumber())) {
+				break;
+			}
+			doFunction(function);
+		}
 	}
 
 	private void ready() {
@@ -69,8 +75,11 @@ public class PairMatchingController {
 		return crewNames;
 	}
 
-	private void selectFunction() {
-		String functionNumber = inputView.getInputFunction();
+	private String selectFunction() {
+		return inputView.getInputFunction();
+	}
+
+	private void doFunction(String functionNumber) {
 		if (functionNumber.equals(Menu.MATCHING.getFunctionNumber())) {
 			matching();
 		}
