@@ -7,17 +7,19 @@ public class Mission {
 
     private final List<Match> matches;
     private final String name;
+    private final Course course;
 
-    public Mission(List<Match> matches, String name) {
+    public Mission(List<Match> matches, String name, Course course) {
         this.matches = matches;
         this.name = name;
+        this.course = course;
     }
 
-    public static Mission createEmptyMission(String name) {
-        return new Mission(new ArrayList<>(), name);
+    public static Mission createEmptyMission(String name, Course course) {
+        return new Mission(new ArrayList<>(), name, course);
     }
 
     public boolean equalsName(Mission mission) {
-        return this.name.equals(mission.name);
+        return this.course.equals(mission.course) && this.name.equals(mission.name);
     }
 }

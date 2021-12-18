@@ -12,7 +12,7 @@ class MissionsTest {
     void addDuplicateMissionTest() {
         // given
         Missions missions = Missions.init();
-        Mission mission = Mission.createEmptyMission("mission");
+        Mission mission = Mission.createEmptyMission("mission", Course.BACKEND);
         missions.addMission(mission);
 
         // when & then
