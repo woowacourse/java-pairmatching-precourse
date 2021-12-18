@@ -1,25 +1,24 @@
 package pairmatching.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import pairmatching.model.CrewPair;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MatchService {
 
-	public List<CrewPair> getRandomMatch(List<String> crewNames) {
-		List<CrewPair> crewPairs = new ArrayList<>();
+	public List<String> getRandomMatch(List<String> crewNames) {
+		List<String> crewPairs = new ArrayList<>();
 		List<String> shuffledNames = Randoms.shuffle(crewNames);
 		for (int i = 0; i < shuffledNames.size() - 1; i += 2) {
-			HashSet<String> pair = new HashSet<>();
+			List<String> pair = new ArrayList<>();
 			pair.add(shuffledNames.get(i));
 			pair.add(shuffledNames.get(i+1));
 			if (shuffledNames.size() % 2 == 1 && i == shuffledNames.size() - 3) {
 				pair.add(shuffledNames.get(shuffledNames.size()-1));
 			}
-			crewPairs.add(new CrewPair(pair));
+			crewPairs.add(pair.stream().collect(Collectors.joining(" : ")));
 		}
 		return crewPairs;
 	}

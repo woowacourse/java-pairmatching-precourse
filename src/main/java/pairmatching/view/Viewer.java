@@ -3,6 +3,7 @@ package pairmatching.view;
 import pairmatching.model.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Viewer {
 
@@ -26,9 +27,8 @@ public class Viewer {
 		System.out.println("과정, 레벨, 미션을 선택하세요.");
 	}
 
-	public void showCrewPairs(List<CrewPair> crewPairs) {
-		for (CrewPair pair : crewPairs) {
-			System.out.println(pair.toString());
-		}
+	public void showCrewPairs(List<String> crewPairs) {
+		String result = crewPairs.stream().collect(Collectors.joining("\n"));
+		System.out.println(result);
 	}
 }

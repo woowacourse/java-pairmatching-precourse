@@ -21,32 +21,58 @@ public class Pairmatching {
 
 	public void run() {
 		LevelMissionsMap levelMissionsMap = courseDataService.initLevelAndMissions();
-		viewer.showFunctions();
-
-		Function function = input.getFunction();
+		Function function = getFunction();
 		if (function == Function.MATCH) {
+			runMatch(levelMissionsMap);
+		}
+		if (function == Function.SEARCH) {
+			runSearch(levelMissionsMap);
+		}
+	}
+
+	private void saveMatchResult(String fileName, List<CrewPair> crewPairs) {
+		fileService.saveCrewMatchResult(fileName, crewPairs);
+	}
+
+	private Function getFunction() {
+		Function function = Function.QUIT;
+		try {
+			viewer.showFunctions();
+			function = input.getFunction();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			getFunction();
+		}
+		return function;
+	}
+
+	private void runMatch(LevelMissionsMap levelMissionsMap) {
+		try {
 			viewer.showCourseAndMissions(levelMissionsMap);
 			List<String> inputs = input.getCourseLevelMission();
 			Course course = Course.getCourseByName(inputs.get(COURSE_INDEX));
 			Level level = Level.getLevelByName(inputs.get(LEVEL_INDEX));
 			Mission mission = Mission.getMissionByName(inputs.get(MISSION_INDEX));
 			List<String> crewNames = fileService.readCrewNamesFromFile(Course.BACKEND);
-			List<CrewPair> randomMatch = matchService.getRandomMatch(crewNames);
+			List<String > randomMatch = matchService.getRandomMatch(crewNames);
 			viewer.showCrewPairs(randomMatch);
-			saveMatchResult(course.toString() + "_" + level.toString() + "_" + mission.toString() + ".md", randomMatch);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			runMatch(levelMissionsMap);
 		}
-		if (function == Function.SEARCH) {
+	}
+
+	private void runSearch(LevelMissionsMap levelMissionsMap) {
+		try {
 			viewer.showCourseAndMissions(levelMissionsMap);
 			List<String> inputs = input.getCourseLevelMission();
 			Course course = Course.getCourseByName(inputs.get(COURSE_INDEX));
 			Level level = Level.getLevelByName(inputs.get(LEVEL_INDEX));
 			Mission mission = Mission.getMissionByName(inputs.get(MISSION_INDEX));
 			fileService.readMatch(course.toString() + "_" + level.toString() + "_" + mission.toString() + ".md");
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			runSearch(levelMissionsMap);
 		}
-
-	}
-
-	private void saveMatchResult(String fileName, List<CrewPair> crewPairs) {
-		fileService.saveCrewMatchResult(fileName, crewPairs);
 	}
 }
