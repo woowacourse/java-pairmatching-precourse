@@ -8,8 +8,8 @@ import java.util.Optional;
 public enum Course {
     BACKEND("백엔드"),
     FRONTEND("프론트엔드"),
-    BACKEND_FILENAME("../../../resources/backend-crew.md"),
-    FRONTEND_FILENAME("../../../resources/frontend-crew.md");
+    BACKEND_FILENAME("src/main/resources/backend-crew.md"),
+    FRONTEND_FILENAME("src/main/resources/frontend-crew.md");
 
     private String name;
 
