@@ -38,7 +38,7 @@ public class Validator {
     }
 
     private void checkCourse(String course) {
-        if (!course.equals(Text.BACKEND) || !course.equals(Text.FRONTEND)) {
+        if (!(course.equals(Text.BACKEND) || course.equals(Text.FRONTEND))) {
             exception.throwException(ErrorMessage.INFORMATION_COURSE);
         }
     }
