@@ -1,12 +1,9 @@
 package pairmatching.view;
 
 import java.io.*;
-import java.nio.Buffer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;

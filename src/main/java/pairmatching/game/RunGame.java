@@ -44,7 +44,7 @@ public class RunGame {
         OutputView.askPairLookUp();
         String input = Console.readLine();
         System.out.println();
-        String[] pairLookUpInfo = InputView.splitString(input);
+        InputView.splitString(input);
         OutputView.resultPairLookUp(input);
     }
 
@@ -61,7 +61,7 @@ public class RunGame {
         OutputView.askPairMatching();
         String input = Console.readLine();
         System.out.println();
-        String[] pairMatchingInfo = InputView.splitString(input);
+        InputView.splitString(input);
         OutputView.resultPairMatching(input);
     }
 
