@@ -1,6 +1,7 @@
 package pairmatching.view;
 
 import org.assertj.core.util.Arrays;
+import org.junit.platform.commons.util.StringUtils;
 import pairmatching.Course;
 import pairmatching.Level;
 
@@ -22,8 +23,12 @@ public class OutputView {
         System.out.println(Constant.DELIMITER);
     }
 
-    public static void printPairMatching() {
+    public static void printPairMatching(List<List<String>> crew) {
         System.out.println(Constant.RESULT_PAIR_MATCHING);
+        for (List<String> pair : crew) {
+            String pairs = String.join(Constant.AND, pair);
+            System.out.println(pairs);
+        }
     }
 
     public static void reset() {
