@@ -1,6 +1,7 @@
 package pairmatching;
 
 import java.util.Arrays;
+import pairmatching.controller.PairMatchingController;
 import pairmatching.model.Course;
 import pairmatching.model.Crew;
 import pairmatching.model.CrewRepository;
@@ -13,6 +14,8 @@ public class Application {
 
 	public static void main(String[] args) {
 		saveInitialData();
+		PairMatchingController controller = new PairMatchingController();
+		controller.service();
 	}
 
 	private static void saveInitialData() {
