@@ -21,4 +21,6 @@ public class Constant {
 
 	public static final String REMATCHING = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
 	public static final String YES_OR_NO = "네 | 아니오";
+
+	public static final String NO_PAIR_MESSAGE = "매칭 이력이 없습니다.";
 }

@@ -3,6 +3,7 @@ package pairmatching.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import pairmatching.utils.Constant;
 import pairmatching.utils.PairGenerator;
 
 public class Mission {
@@ -18,7 +19,11 @@ public class Mission {
 	}
 
 	public void makePairs() {
-		this.pairs = PairGenerator.generatePairs(this);
+		try {
+			this.pairs = PairGenerator.generatePairs(this);
+		} catch (IllegalArgumentException e) {
+			System.out.println(Constant.ERROR + e.getMessage());
+		}
 	}
 
 	public boolean isNotMatching() {

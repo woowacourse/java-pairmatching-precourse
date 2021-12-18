@@ -1,5 +1,9 @@
 package pairmatching.view;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import pairmatching.domain.Pair;
 import pairmatching.utils.Constant;
 
 public class OutputView {
@@ -23,5 +27,17 @@ public class OutputView {
 		System.out.println(Constant.BOUNDARY);
 		System.out.println(Constant.SELECT_COURSE_LEVEL_MISSION);
 		System.out.println(Constant.EXAMPELE);
+	}
+
+	public static void printPairs(List<Pair> pairs) {
+		if (pairs.isEmpty()) {
+			System.out.println(Constant.ERROR + Constant.NO_PAIR_MESSAGE);
+		}
+		for (Pair pair : pairs) {
+			System.out.println(pair.getCrews()
+				.stream()
+				.map(crew -> crew.getName())
+				.collect(Collectors.joining(" : ")));
+		}
 	}
 }
