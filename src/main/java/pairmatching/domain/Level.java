@@ -32,5 +32,12 @@ public enum Level {
             .orElseThrow(() -> new IllegalArgumentException(NO_OBJECT_ERROR));
     }
 
-    //레벨, 미션을 입력하면 -> 레벨에서 missionList 꺼내주고, 그 missionList에 mission이 있나 확인. 없으면 NO_OBJECT_ERROR를 내줌. 있으면 해당 미션을 반환.
+    public Mission findMission(String missionName) {
+        Mission mission = Mission.find(missionName);
+        if (!missionList.contains(mission)) {
+            throw new IllegalArgumentException(LEVEL_HAVE_NOT_THIS_MISSION_MESSAGE);
+        }
+        return mission;
+    }
+
 }
