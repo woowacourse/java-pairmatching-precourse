@@ -9,15 +9,14 @@ import java.util.Map;
 
 import org.mockito.internal.util.Supplier;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.constant.Course;
 import pairmatching.domain.Crew;
 import pairmatching.domain.Match;
 import pairmatching.util.FileInputUtils;
-import pairmatching.util.Voider;
 
 public class CrewRepository {
-	private static List<Crew> frontendCrews = new ArrayList<>();
-	private static List<Crew> backendCrews = new ArrayList<>();
+	private static List<Crew> crews = new ArrayList<>();
 
 	private static Map<Course, Supplier<List<String>>> courseMap = new LinkedHashMap<>();
 
@@ -26,10 +25,20 @@ public class CrewRepository {
 		courseMap.put(FRONTEND, CrewRepository::getFrontendCrewNames);
 	}
 
-	public static void getShuffledCrews(Match match) {
+	public static List<Crew> getShuffledCrews(Match match) {
+		clearCrews();
 		Course course = match.getCourse();
 		List<String> crewNames = courseMap.get(course).get();
-		System.out.println("crewNames = " + crewNames);
+		List<String> shuffledCrewNames = Randoms.shuffle(crewNames);
+		for (String name : shuffledCrewNames) {
+			Crew crew = new Crew(course, name);
+			crews.add(crew);
+		}
+		return crews;
+	}
+
+	private static void clearCrews() {
+		crews = new ArrayList<>();
 	}
 
 	public static List<String> getBackendCrewNames() {
