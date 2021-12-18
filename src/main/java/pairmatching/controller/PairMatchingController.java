@@ -48,9 +48,8 @@ public class PairMatchingController {
 			String matchingInput = InputView.getMatchingInput();
 			MatchingService matchingService = new MatchingService();
 			Matching newMatching = matchingService.getMatching(matchingInput);
-			newMatching = selectOriginOrNew(newMatching);
-			String newMatchingCombination = getMatchingCombination(newMatching);
-			OutputView.printCombination(newMatchingCombination);
+			String matchingMessage = selectOriginOrNew(newMatching);
+			OutputView.printCombination(matchingMessage);
 			selectMenu();
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
@@ -58,20 +57,21 @@ public class PairMatchingController {
 		}
 	}
 
-	private Matching selectOriginOrNew(Matching newMatching) {
+	private String selectOriginOrNew(Matching newMatching) {
 		if (matchingHistory.has(newMatching)) {
-			newMatching = getOriginalOrNewMatching(newMatching);
-			return newMatching;
+			return getOriginalOrNewMatching(newMatching);
 		}
-		return newMatching;
+		String newMatchingCombination = getMatchingCombination(newMatching);
+		return newMatchingCombination;
 	}
 
-	private Matching getOriginalOrNewMatching(Matching newMatching) {
+	private String getOriginalOrNewMatching(Matching newMatching) {
 		String originOrRematchNumber = InputView.getOriginOrRematchNumber();
 		if (originOrRematchNumber.equals(ORIGIN)) {
 			newMatching = matchingHistory.getSameMatch(newMatching);
+			return newMatching.getCombinationMessage();
 		}
-		return newMatching;
+		return getMatchingCombination(newMatching);
 	}
 
 	private String getMatchingCombination(Matching newMatching) {
