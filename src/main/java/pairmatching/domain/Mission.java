@@ -19,7 +19,7 @@ public class Mission {
         return new Mission(new ArrayList<>(), name, course);
     }
 
-    public boolean equalsName(Mission mission) {
+    public boolean isEqualsMission(Mission mission) {
         return this.course.equals(mission.course) && this.name.equals(mission.name);
     }
 }
