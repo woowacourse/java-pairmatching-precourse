@@ -4,7 +4,7 @@ public enum Courses {
     BACKEND("백엔드"),
     FRONTEND("프론트엔드");
 
-    private final String name;
+    private String name;
 
     Courses(String name) {
         this.name = name;

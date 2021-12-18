@@ -11,7 +11,7 @@ public enum Missions {
     DISTRIBUTION("배포"),
     NOTHING("(없음)");
 
-    private final String mission;
+    private String mission;
 
     Missions(final String mission) {
         this.mission = mission;

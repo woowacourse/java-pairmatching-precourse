@@ -77,7 +77,8 @@ public abstract class InputView {
     public static String[] inputCourseInformation() {
         try {
             System.out.println(createCourseInformationPrintFormat());
-            String[] splitInputCourseInformation = inputValue().split(COMMA);
+            String inputCourseInformation = inputValue();
+            String[] splitInputCourseInformation = inputCourseInformation.split(COMMA);
             validateCourseInformation(splitInputCourseInformation);
 
             return splitInputCourseInformation;
