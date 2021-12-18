@@ -11,15 +11,16 @@ public class MatchingInfo {
 	private Mission mission;
 	private List<Crew> crewList;
 
-	public MatchingInfo(String matchingInfoString) {
-		validateMatchingInfo(matchingInfoString);
+	public MatchingInfo(String matchingInfoString, Levels levels) {
+		validateMatchingInfo(matchingInfoString, levels);
 	}
 
-	private void validateMatchingInfo(String matchingInfoString) {
+	private void validateMatchingInfo(String matchingInfoString, Levels levels) {
 		try {
 			isValidMatchingInfoString(matchingInfoString);
-			List<String> infoStringList = Arrays.asList(matchingInfoString.split(","));
+			List<String> infoStringList = Arrays.asList(matchingInfoString.split(", "));
 			isValidCourseInfo(infoStringList);
+			isValidLevelInfo(infoStringList, levels);
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
 		}
@@ -29,6 +30,13 @@ public class MatchingInfo {
 		String courseString = matchingInfoString.get(0);
 		if (!(courseString.equals("백엔드") || courseString.equals("프론트엔드"))) {
 			throw new IllegalArgumentException(Exceptions.ERROR_PREFIX + "과정은 백엔드 혹은 프론트엔드만 있습니다.");
+		}
+	}
+
+	private void isValidLevelInfo(List<String> matchingInfoString, Levels levels) {
+		String levelString = matchingInfoString.get(1);
+		if (!levels.isValidLevel(levelString)) {
+			throw new IllegalArgumentException(Exceptions.ERROR_PREFIX + "레벨은 1~5까지만 있습니다.");
 		}
 	}
 

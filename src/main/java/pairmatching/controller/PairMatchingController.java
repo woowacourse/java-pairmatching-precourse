@@ -17,6 +17,7 @@ public class PairMatchingController {
 	private static List<String> frontEndCrewNames;
 	private static List<Crew> backendCrews;
 	private static List<Crew> frontendCrews;
+	private static Levels levels;
 	private InputView inputView;
 
 	public PairMatchingController() {
@@ -26,11 +27,13 @@ public class PairMatchingController {
 	public void init() {
 		backEndCrewNames = inputView.getBackEndCrewNames();
 		frontEndCrewNames = inputView.getFrontEndCrewNames();
+		initCourse();
+		initLevelAndMission();
 	}
 
 	public void matching() {
 		String matchingInfoString = inputView.inputMatchingInfo();
-		MatchingInfo matchingInfo = new MatchingInfo(matchingInfoString);
+		MatchingInfo matchingInfo = new MatchingInfo(matchingInfoString, levels);
 	}
 
 	private void initCourse() {
@@ -64,7 +67,7 @@ public class PairMatchingController {
 		levelList.add(levelThree);
 		levelList.add(levelFour);
 		levelList.add(levelFive);
-		Levels levels = new Levels(levelList);
+		levels = new Levels(levelList);
 	}
 
 	private List<Mission> getMissionsOne() {
