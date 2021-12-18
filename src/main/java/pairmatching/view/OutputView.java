@@ -20,7 +20,9 @@ public class OutputView {
         List<Course> courseList = CourseLevelInfo.getCourseList();
         for(Course course : courseList){
             System.out.print(course.getName());
-            System.out.print(PARTITION);
+            if(courseList.get(courseList.size()-1) != course) {
+                System.out.print(PARTITION);
+            }
         }
         System.out.println();
 
@@ -33,7 +35,9 @@ public class OutputView {
             System.out.print(STICK + m.getKey().getName() + COLON);
             for(Game game : m.getValue()){
                 System.out.print(game.getName());
-                System.out.print(PARTITION);
+                if(m.getValue().get(m.getValue().size()-1) !=game) {
+                    System.out.print(PARTITION);
+                }
             }
             System.out.println();
         }
@@ -45,12 +49,13 @@ public class OutputView {
         for(List<Crew> list : matchingList){
             for(Crew crew : list){
                 System.out.print(crew.getName());
-                System.out.print(" : ");
+                if(list.get(list.size()-1) != crew) {
+                    System.out.print(" : ");
+                }
             }
             System.out.println();
-            System.out.println();
         }
-
+        System.out.println();
     }
 
     public static void outputReset(){

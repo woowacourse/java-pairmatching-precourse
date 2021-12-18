@@ -11,6 +11,7 @@ public class PairMatchingController {
     String[] info;
     public void run(){
         init();
+        PairMatchingList.initPairMatchingList();
         while(true) {
             functionSelect();
             if (selectNum.equals("1")) {
@@ -37,6 +38,7 @@ public class PairMatchingController {
         try{
             FunctionSelectValidation.isCorrect(number);
             selectNum = number;
+            System.out.println();
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
             functionSelect();
@@ -48,6 +50,7 @@ public class PairMatchingController {
         try{
             info = ProcessLevelMissionValidation.isValidation(input);
             PairMatching.createPairPerson(info[0], info[1], info[2]);
+            System.out.println();
             PairMatchingList.printPairMatching(info[0], info[1], info[2]);
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -68,7 +71,8 @@ public class PairMatchingController {
     }
 
     private void pairReset(){
-        PairMatchingList.removeList(info[0], info[1], info[2]);
+        PairMatchingList.removeList();
+        OutputView.outputReset();
     }
 
 }

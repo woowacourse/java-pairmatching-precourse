@@ -54,7 +54,8 @@ public class PairMatching {
             }
             pairPerson.add(pair);
         }
-        PairMatchingList.addList(new PairMatching(course, level, mission, pairPerson));
+
+        PairMatchingList.addList(course, level, mission, pairPerson);
     }
 
 }
