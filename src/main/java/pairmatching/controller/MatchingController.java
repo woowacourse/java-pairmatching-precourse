@@ -1,5 +1,6 @@
 package pairmatching.controller;
 
+import java.util.List;
 import pairmatching.utils.FunctionFactory;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
@@ -10,7 +11,7 @@ public class MatchingController {
 	}
 
 	public static void controlMatching() {
-		OutputView.askFunction(FunctionFactory.makeFunctions());
-		InputView.selectFunction();
+		List<String> functions = FunctionFactory.makeFunctions();
+		InputView.selectFunction(functions);
 	}
 }
