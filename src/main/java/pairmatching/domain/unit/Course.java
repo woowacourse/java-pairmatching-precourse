@@ -12,9 +12,9 @@ public enum Course {
 		this.name = name;
 	}
 
-	public static Course mapToCourse(String name) {
+	public static Course mapToCourse(String courseName) {
 		return Arrays.stream(Course.values())
-			.filter(course ->  course.name == name)
+			.filter(course ->  course.name.equals(courseName))
 			.findFirst().get();
 	}
 

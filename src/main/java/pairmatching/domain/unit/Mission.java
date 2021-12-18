@@ -19,9 +19,9 @@ public enum Mission {
 		this.name = name;
 	}
 
-	public static Mission mapToLevel(String name) {
+	public static Mission mapToLevel(String missionName) {
 		return Arrays.stream(Mission.values())
-			.filter(mission ->  mission.name() == name)
+			.filter(mission ->  mission.name.equals(missionName))
 			.findFirst().get();
 	}
 

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import pairmatching.view.OutputView;
 
 public class Function {
 	private static final int COURSE = 0;
@@ -46,17 +47,19 @@ public class Function {
 		}
 
 		if(course.equals("프론트엔드")) {
-			filePath = "frontend_crew.md";
+			filePath = "frontend-crew.md";
 		}
+		List<String> matchingResult = Randoms.shuffle(getCrewNames(filePath));
 
-		matchingSystem.saveMatchingResult(Randoms.shuffle(getCrewNames(filePath)), course,  level, mission);
+		OutputView.printMatchingResult(matchingResult);
+		matchingSystem.saveMatchingResult(matchingResult, course,  level, mission);
 	}
 
 
 	private List<String> getCrewNames(String filePath) throws IOException {
 		List<String> crewName = new ArrayList<>();
 		BufferedReader bufferedReader = new BufferedReader(
-			new FileReader("filePath"));
+			new FileReader("src/main/resources/"+filePath));
 
 		while(true) {
 			String line = bufferedReader.readLine();

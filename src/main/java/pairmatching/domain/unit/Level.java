@@ -15,9 +15,9 @@ public enum Level {
 		this.name = name;
 	}
 
-	public static Level mapToLevel(String name) {
+	public static Level mapToLevel(String levelName) {
 		return Arrays.stream(Level.values())
-			.filter(level ->  level.name == name)
+			.filter(level ->  level.name.equals(levelName))
 			.findFirst().get();
 	}
 

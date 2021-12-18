@@ -23,9 +23,6 @@ public class Pair {
 		function.handleFunction(information);
 	}
 
-	public void followFunction() {
-
-	}
 
 
 
