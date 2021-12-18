@@ -14,11 +14,26 @@ public enum Level {
     LEVEL5("레벨5", Arrays.asList(""));
 
     private String name;
-    private List<String> process;
+    private List<String> missions;
 
-    Level(String name, List<String> process) {
+    Level(String name, List<String> mission) {
         this.name = name;
-        this.process = process;
+        this.missions = mission;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<String> getMissions() {
+        return missions;
+    }
+
+    public static String parseMission(Level level, String input) {
+        return level.getMissions().stream()
+            .filter(mission -> mission.equals(input))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException(Message.MISSION_ERROR));
     }
 
     public static Level parseLevel(String input) {

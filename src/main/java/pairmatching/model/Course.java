@@ -20,4 +20,8 @@ public enum Course {
             .findFirst()
             .orElseThrow(() -> new IllegalArgumentException(Message.COURSE_ERROR));
     }
+
+    public String getName() {
+        return name;
+    }
 }
