@@ -45,7 +45,11 @@ public class Machine {
                 makePair();
             }
             if (chooseFunction.equals(SEARCH)) {
-                search();
+                try {
+                    search();
+                }catch (IllegalArgumentException exception){
+                    printer.printErrorMessage(exception);
+                }
             }
             if (chooseFunction.equals(RENEW)) {
                 renew();
@@ -73,7 +77,7 @@ public class Machine {
 
         for (Mission mission : Mission.values()) {
             if (mission.getName().equals(splitedInput[MISSION])
-                && !backendResults[mission.getResultIndex()].getPairs().isEmpty()) {
+                && backendResults[mission.getResultIndex()] != null) {
                 Result result = backendResults[mission.getResultIndex()];
                 printer.printResult(result);
                 return;
