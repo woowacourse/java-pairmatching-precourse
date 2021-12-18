@@ -46,7 +46,8 @@ public class Application {
             OutputView.printMatchResult(findMatching(pairProgram));
         }
         if (command.isInit()) {
-
+            pairProgram.clearPairMatching();
+            OutputView.printInit();
         }
         runPairProgram(pairProgram);
     }

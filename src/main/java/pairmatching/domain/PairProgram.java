@@ -95,4 +95,8 @@ public class PairProgram {
             this.crews.findCrew(thirdName, course)));
         return matches;
     }
+
+    public void clearPairMatching() {
+        levelMission.clearAllMatch();
+    }
 }

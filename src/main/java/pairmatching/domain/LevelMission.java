@@ -56,4 +56,10 @@ public class LevelMission {
         checkExistMission(level, mission);
         return levelmissions.get(level).mission(mission);
     }
+
+    public void clearAllMatch() {
+        for (Level level : levelmissions.keySet()) {
+            levelmissions.get(level).missionAllClear();
+        }
+    }
 }

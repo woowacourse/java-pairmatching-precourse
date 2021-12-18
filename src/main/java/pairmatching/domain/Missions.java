@@ -64,4 +64,8 @@ public class Missions {
             .findFirst()
             .orElseThrow(MissionNotFoundException::new);
     }
+
+    public void missionAllClear() {
+        missions.forEach(Mission::clearMatch);
+    }
 }

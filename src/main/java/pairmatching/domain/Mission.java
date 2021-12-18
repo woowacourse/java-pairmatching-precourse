@@ -56,4 +56,8 @@ public class Mission {
             throw new MissionNotFoundMatchException();
         }
     }
+
+    public void clearMatch() {
+        matches = new ArrayList<>();
+    }
 }
