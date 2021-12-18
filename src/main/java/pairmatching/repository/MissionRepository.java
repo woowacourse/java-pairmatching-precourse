@@ -11,15 +11,16 @@ import java.util.List;
 public class MissionRepository {
     private static final List<Mission> missions = new ArrayList<>();
 
-    public static void addMission(Mission mission){
+    public static void addMission(Mission mission) {
         missions.add(mission);
     }
-    public static Mission findMissionByInfo(Course course, Level level, String name){
+
+    public static Mission findMissionByInfo(Course course, Level level, String name) {
 
         Mission findMission = missions.stream()
-                .filter(mission -> mission.isEqual(course,level,name))
+                .filter(mission -> mission.isEqual(course, level, name))
                 .findAny()
-                .orElseThrow(()->new IllegalArgumentException(ErrorMessage.ERROR + ErrorMessage.NO_MISSION));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.ERROR + ErrorMessage.NO_MISSION));
         return findMission;
     }
 }

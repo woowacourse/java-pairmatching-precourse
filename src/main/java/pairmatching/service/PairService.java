@@ -14,6 +14,7 @@ import pairmatching.view.OutputView;
 import java.io.IOException;
 
 import java.util.List;
+
 import static camp.nextstep.edu.missionutils.Randoms.shuffle;
 import static pairmatching.view.Message.QuestionMessage.printQuestionRematch;
 import static pairmatching.view.Message.ResetMessage.printReset;
@@ -21,7 +22,8 @@ import static pairmatching.view.Message.ResetMessage.printReset;
 public class PairService {
 
     private MatchService matchService;
-    public PairService(){
+
+    public PairService() {
         this.matchService = new MatchService();
     }
 
@@ -29,7 +31,7 @@ public class PairService {
         mission.removeMatching();
         List<String> crewNameList = matchService.makeCrewNameList(course);
         int count = 0;
-        while(count < 3) {
+        while (count < 3) {
             crewNameList = shuffle(crewNameList);
             try {
                 if (matchService.isEven(crewNameList)) {

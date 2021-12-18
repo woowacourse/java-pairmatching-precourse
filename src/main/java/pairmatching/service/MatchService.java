@@ -5,7 +5,6 @@ import pairmatching.domain.Crew;
 import pairmatching.domain.Level;
 import pairmatching.domain.Mission;
 import pairmatching.repository.CrewRepository;
-import pairmatching.view.OutputView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static pairmatching.service.FileRead.fileRead;
+import static pairmatching.Initialize.FileRead.fileRead;
 
 public class MatchService {
     public boolean isEven(List<String> list) {
@@ -73,7 +72,7 @@ public class MatchService {
         return mission;
     }
 
-    private Mission makeLastPair(List<String> crewNameList,Level level, Mission mission) {
+    private Mission makeLastPair(List<String> crewNameList, Level level, Mission mission) {
         Crew last1 = CrewRepository.findByName(crewNameList.get(crewNameList.size() - 3));
         Crew last2 = CrewRepository.findByName(crewNameList.get(crewNameList.size() - 2));
         Crew last3 = CrewRepository.findByName(crewNameList.get(crewNameList.size() - 1));

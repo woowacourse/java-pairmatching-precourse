@@ -17,7 +17,7 @@ public enum Level {
         this.name = name;
     }
 
-    public static Level of(String originName){
+    public static Level of(String originName) {
         return Arrays.stream(values())
                 .filter(n -> originName.equals(n.name))
                 .findFirst()

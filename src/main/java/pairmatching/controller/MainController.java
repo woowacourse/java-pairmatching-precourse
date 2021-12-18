@@ -29,34 +29,34 @@ public class MainController {
         initializer.setMissions();
     }
 
-    public void run(){
+    public void run() {
         boolean runStatus = true;
-        while(runStatus){
-            try{
+        while (runStatus) {
+            try {
                 printMainMenu();
                 String input = InputView.input();
                 menuValidation.checkNull(input);
                 runStatus = selectMenu(input);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public boolean selectMenu(String input){
-        if(input.equals("1")){
+    public boolean selectMenu(String input) {
+        if (input.equals("1")) {
             mainService.match();
             return true;
         }
-        if(input.equals("2")){
+        if (input.equals("2")) {
             mainService.getPairList();
             return true;
         }
-        if(input.equals("3")){
+        if (input.equals("3")) {
             mainService.removePairList();
             return true;
         }
-        if(input.equals("Q")){
+        if (input.equals("Q")) {
             return false;
         }
         throw new IllegalArgumentException(ErrorMessage.ERROR + ErrorMessage.NO_MENU);
