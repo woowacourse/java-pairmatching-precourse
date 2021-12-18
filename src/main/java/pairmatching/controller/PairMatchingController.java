@@ -18,7 +18,8 @@ public class PairMatchingController {
 	private static final InputView inputView = new InputView();
 	private static final OutputView outputView = new OutputView();
 	private static final List<Crew> backendCrews = FileUtils.read("src/main/resources/backend-crew.md", Course.BACKEND);
-	private static final List<Crew> frontendCrews = FileUtils.read("src/main/resources/frontend-crew.md", Course.FRONTEND);
+	private static final List<Crew> frontendCrews = FileUtils.read("src/main/resources/frontend-crew.md",
+		Course.FRONTEND);
 
 	public void run() {
 		String roleNumber = inputView.enterRoleNumber();
@@ -30,7 +31,6 @@ public class PairMatchingController {
 
 		// TODO 매칭 기록 체크
 
-
 	}
 
 	public static void match() {
@@ -39,8 +39,13 @@ public class PairMatchingController {
 		outputView.printCourseAndMission();
 		String courseLevelMissionStr = inputView.enterCourseLevelMission();
 		CourseLevelMission courseLevelMission = new CourseLevelMission();
-		courseLevelMission.init(courseLevelMissionStr);
-		outputView.printPair(matchingService.match(courseLevelMission, backendCrews, frontendCrews).getMatchingPairs().toString());
+		try {
+			courseLevelMission.init(courseLevelMissionStr);
+			outputView.printPair(
+				matchingService.match(courseLevelMission, backendCrews, frontendCrews).getMatchingPairs().toString());
+		} catch (IllegalArgumentException exception) {
+			System.out.println(exception.getMessage());
+		}
 	}
 
 	public static void inquire() {
@@ -48,8 +53,13 @@ public class PairMatchingController {
 
 		String courseLevelMissionStr = inputView.enterCourseLevelMission();
 		CourseLevelMission courseLevelMission = new CourseLevelMission();
-		courseLevelMission.init(courseLevelMissionStr);
-		outputView.printPair(inquiringService.inquire(courseLevelMission));
+		try {
+			courseLevelMission.init(courseLevelMissionStr);
+			outputView.printPair(inquiringService.inquire(courseLevelMission));
+		} catch (IllegalArgumentException exception) {
+			System.out.println(exception.getMessage());
+		}
+
 		//TODO pair 가 없는 경우
 	}
 

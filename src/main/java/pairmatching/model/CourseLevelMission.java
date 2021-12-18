@@ -9,7 +9,7 @@ public class CourseLevelMission {
 	Level level;
 	Mission mission;
 
-	public CourseLevelMission init(String courseLevelMission) {
+	public CourseLevelMission init(String courseLevelMission) throws IllegalArgumentException {
 		List<String> courseLevelMissionList = Arrays.stream(courseLevelMission.split(", ")).collect(Collectors.toList());
 		this.course = Course.parse(courseLevelMissionList.get(0));
 		this.level = course.getLevel(courseLevelMissionList.get(1));

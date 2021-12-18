@@ -1,5 +1,6 @@
 package pairmatching.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,8 @@ public class MatchedCrew {
 			crewList.add(crew);
 			matchedCrew.put(level, crewList);
 		}
-		matchedCrew.put(level, Arrays.asList(crew));
+		List<Crew> crews = new ArrayList<>();
+		crews.add(crew);
+		matchedCrew.put(level, crews);
 	}
 }

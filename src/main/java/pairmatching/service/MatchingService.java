@@ -12,7 +12,7 @@ import pairmatching.model.Mission;
 import pairmatching.model.Pair;
 
 public class MatchingService {
-	public Mission match(CourseLevelMission courseLevelMission, List<Crew> backendCrews, List<Crew> frontEndCrews) {
+	public Mission match(CourseLevelMission courseLevelMission, List<Crew> backendCrews, List<Crew> frontEndCrews) throws IllegalArgumentException{
 		Course course = courseLevelMission.getCourse();
 		Level level = courseLevelMission.getLevel();
 		Mission mission = courseLevelMission.getMission();
@@ -22,7 +22,7 @@ public class MatchingService {
 		return matching(level, mission, frontEndCrews);
 	}
 
-	public Mission matching(Level level, Mission mission, List<Crew> crews) {
+	public Mission matching(Level level, Mission mission, List<Crew> crews) throws IllegalArgumentException {
 		List<Crew> shuffledCrews = Randoms.shuffle(crews);
 
 		if (shuffledCrews.size() % 2 == 0) {
@@ -46,7 +46,8 @@ public class MatchingService {
 				crews.get(i).addMatchedCrew(level, crews.get(i + 1));
 				crews.get(i + 1).addMatchedCrew(level, crews.get(i));
 			} catch (IllegalArgumentException exception) {
-				makeEvenPair(level, crews, count++);
+				count += 1;
+				makeEvenPair(level, crews, count);
 			}
 			matchingPairs.add(pair);
 		}
@@ -71,7 +72,8 @@ public class MatchingService {
 					crews.get(i + 1).addMatchedCrew(level, crews.get(i + 2));
 					crews.get(i + 2).addMatchedCrew(level, crews.get(i + 1));
 				} catch (IllegalArgumentException exception) {
-					makeOddPair(level, crews, count++);
+					count += 1;
+					makeOddPair(level, crews, count);
 				}
 				matchingPairs.add(pair);
 				break;
@@ -82,7 +84,8 @@ public class MatchingService {
 				crews.get(i).addMatchedCrew(level, crews.get(i + 1));
 				crews.get(i + 1).addMatchedCrew(level, crews.get(i));
 			} catch (IllegalArgumentException exception) {
-				makeOddPair(level, crews, count++);
+				count+=1;
+				makeOddPair(level, crews, count);
 			}
 			matchingPairs.add(pair);
 		}

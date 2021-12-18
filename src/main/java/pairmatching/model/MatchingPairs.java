@@ -35,4 +35,8 @@ public class MatchingPairs {
 			.map(Pair::toString)
 			.collect(Collectors.joining("\n"));
 	}
+
+	public boolean isEmpty() {
+		return pairList.isEmpty();
+	}
 }

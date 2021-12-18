@@ -34,7 +34,7 @@ public enum Level {
 		return missions;
 	}
 
-	public Mission getMission(String missionName) {
+	public Mission getMission(String missionName) throws IllegalArgumentException {
 		return this.missions.getMission(missionName);
 	}
 

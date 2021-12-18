@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import pairmatching.validator.MissionValidator;
+
 public class Missions {
 	private List<Mission> missionList;
 
@@ -28,7 +30,11 @@ public class Missions {
 	}
 
 	public Mission getMission(String missionName) {
-		return this.missionList.stream().filter(mission -> missionName.equals(mission.getName())).findFirst().get();
+		return this.missionList
+			.stream()
+			.filter(mission -> missionName.equals(mission.getName()))
+			.findFirst()
+			.orElseThrow(() -> new IllegalArgumentException(MissionValidator.ERROR_NOT_EXISTED));
 	}
 
 	public void initialize() {
