@@ -31,7 +31,7 @@ public class ValidCheck {
 				matchCourse = Course.FRONTEND;
 			}
 			// 에러메시지
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("[ERROR]");
 		}
 
 		// 레벨체크
@@ -43,7 +43,7 @@ public class ValidCheck {
 				}
 			}
 			// 에러메시지
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("[ERROR]");
 		}
 
 		
@@ -56,6 +56,6 @@ public class ValidCheck {
 				}
 			}
 			// 에러메시지
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("[ERROR]");
 		}
 }

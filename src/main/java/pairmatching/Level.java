@@ -22,7 +22,7 @@ public enum Level {
 	  }
 	  public ArrayList<String> getMission() {
 		  ArrayList<String> missionList= new ArrayList<>(); 
-		  if(this.name.equals(LEVEL1.getLevel())) {
+		  if(this.name ==LEVEL1.getLevel()) {
 			  missionList.add("자동차경주");
 			  missionList.add("로또");
 			  missionList.add("숫자야구게임");
