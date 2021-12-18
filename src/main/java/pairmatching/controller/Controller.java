@@ -30,7 +30,7 @@ public class Controller {
 		}
 
 		if (mainMenuInput.equals("2")) {
-
+			getPair();
 		}
 
 		if (mainMenuInput.equals("3")) {
@@ -74,6 +74,27 @@ public class Controller {
 		}
 
 		view.pairMatchingResult();
+
+		mainMenu();
+	}
+
+	public void getPair() {
+		view.courseLevelMissionInfo();
+
+		String pairMatchingInput = "";
+
+		boolean rewindSwitch = true;
+		while (rewindSwitch) {
+			view.selectCourseLevelMission();
+
+			pairMatchingInput = pairMatchingReceiver.receive();
+
+			if (pairService.isAlreadyPairMatching(pairMatchingInput)) {
+				PairMatching pairMatching = pairService.findPairMatching(pairMatchingInput);
+				view.showPariMatching(pairMatching);
+				break;
+			}
+		}
 
 		mainMenu();
 	}

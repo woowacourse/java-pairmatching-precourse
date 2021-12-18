@@ -76,6 +76,36 @@ public class View {
 		System.out.println(stringBuilder.toString());
 	}
 
+	public void showPariMatching(PairMatching pairMatching) {
+		System.out.println(PAIR_MATCHING_RESULT_MESSAGE);
+
+		ArrayList<String> pairList = pairMatching.getPairList();
+
+		StringBuilder stringBuilder = new StringBuilder();
+
+		if (pairList.size() % 2 == 0) {
+			for (int i = 0; i < pairList.size(); i += 2) {
+				stringBuilder.append(pairList.get(i));
+				stringBuilder.append(" : ").append(pairList.get(i + 1)).append("\n");
+			}
+		}
+
+		if (pairList.size() % 2 != 0) {
+			for (int i = 0; i < pairList.size() - 3; i += 2) {
+				stringBuilder.append(pairList.get(i));
+				stringBuilder.append(" : ").append(pairList.get(i + 1)).append("\n");
+			}
+			stringBuilder.append(pairList.get(pairList.size() - 3))
+				.append(" : ")
+				.append(pairList.get(pairList.size() - 2))
+				.append(" : ")
+				.append(pairList.get(pairList.size() - 1))
+				.append("\n");
+		}
+
+		System.out.println(stringBuilder.toString());
+	}
+
 	public void renewal() {
 		System.out.println(RENEWAL_MESSAGE);
 	}
