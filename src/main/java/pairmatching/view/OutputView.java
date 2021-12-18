@@ -42,14 +42,14 @@ public class OutputView {
     }
 
     public void printPairList(Course course, Mission mission) {
+        System.out.println("페어 매칭 결과입니다.");
         PairList pairList = mission.getPairList(course);
-        System.out.println(pairList.getPairListLength());
         for (Pair pair : pairList.getPairList()) {
             printPair(pair);
         }
     }
 
     public void printPair(Pair pair) {
-        System.out.println(String.join(":", pair.getPair()));
+        System.out.println(String.join(" : ", pair.getPair()));
     }
 }

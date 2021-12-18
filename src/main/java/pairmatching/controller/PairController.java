@@ -75,13 +75,16 @@ public class PairController {
     public void inputPair(Course course, Mission mission) {
         List<String> crewList = shuffleStringCrew(course);
         PairList pairList = new PairList();
-        Pair pair = new Pair();
-
+        for (int idx = 0; idx < crewList.size(); idx += 2) {
+            Pair pair = new Pair(crewList.get(idx), crewList.get(idx + 1));
+            if (crewList.size() % 2 == 1 && idx == crewList.size() - 2) {
+                pair.addPair(crewList.get(crewList.size() - 1));
+                pairList.addPair(pair);
+                break;
+            }
+            pairList.addPair(pair);
+        }
         mission.addPairMap(course, pairList);
-    }
-
-    public void addPairList(PairList pairList, Pair pair){
-        pairList.addPair(pair);
     }
 
     public List<String> shuffleStringCrew(Course course) {
