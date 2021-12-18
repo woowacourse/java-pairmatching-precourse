@@ -53,6 +53,10 @@ public enum Level {
         mission.printMatchedPairs();
     }
 
+    public Mission getMissionByName(String missionName){
+        return missionsMap.get(missionName);
+    }
+
     private boolean checkRematchMissionPair(){
         System.out.println(REMATCH_REQUEST);
 
