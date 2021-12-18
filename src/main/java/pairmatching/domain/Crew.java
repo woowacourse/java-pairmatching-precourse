@@ -1,10 +1,15 @@
 package pairmatching.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Crew {
 	private Course course;
 	private String name;
+	private static List<Crew> level1Crew = new ArrayList<>();
+	private static List<Crew> level2Crew = new ArrayList<>();
+	private static List<Crew> level4Crew = new ArrayList<>();
 
 	public String getName() {
 		return name;
@@ -29,4 +34,11 @@ public class Crew {
 	public int hashCode() {
 		return Objects.hash(name);
 	}
+
+	public void saveCrew(List<Crew> crews, Level level) {
+		if (level == Level.LEVEL1) {
+			level1Crew.addAll(crews);
+		}
+	}
+
 }

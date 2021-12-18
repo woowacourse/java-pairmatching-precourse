@@ -19,8 +19,8 @@ public class OutputView {
 		for (String crewName : crewNames) {
 			stringBuilder.append(crewName).append(CREW_SPLIT_LINE);
 		}
-		String substring = stringBuilder.substring(0, stringBuilder.length() - 3);
-		System.out.println(substring);
+		String substring = stringBuilder.substring(0, stringBuilder.length() - 2);
+		System.out.println(substring.trim());
 	}
 
 	public static void initPair() {

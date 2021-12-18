@@ -1,7 +1,9 @@
 package pairmatching.domain;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class Pair {
 	private Mission mission;
@@ -20,18 +22,22 @@ public class Pair {
 		return mission;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
+	public boolean equals(Pair pair) {
+		Set<Crew> crewSet = new HashSet<>();
+		for (Crew crew : crews) {
+			crewSet.add(crew);
+		}
+		for (Crew crew : pair.getCrews()) {
+			crewSet.add(crew);
+		}
+		if (crewSet.size() == pair.getCrews().size()) {
 			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		Pair pair = (Pair)o;
-		return Objects.equals(mission, pair.mission);
+		}
+		return false;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(mission);
+		return Objects.hash(crews);
 	}
 }
