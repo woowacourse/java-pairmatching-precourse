@@ -5,6 +5,7 @@ import java.util.List;
 import pairmatching.domain.Course;
 import pairmatching.domain.Level;
 import pairmatching.domain.Missions;
+import pairmatching.domain.Pair;
 
 public class OutputView {
 	public static void printCourseAndMissionStatus(Missions missions) {
@@ -44,6 +45,7 @@ public class OutputView {
 			printNowLevelMissionsNames(sb, nowLevelMissions);
 			String str = trimedLastSeparator(sb);
 			System.out.println(str);
+			sb.setLength(0);
 		}
 	}
 
@@ -82,5 +84,16 @@ public class OutputView {
 
 	public static void printReMatching() {
 		System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
+	}
+
+	public static void printPair(List<Pair> pairs) {
+		StringBuilder sb = new StringBuilder();
+		System.out.println("페어 매칭 결과입니다.");
+		for (Pair pair : pairs) {
+			List<String> crewNameList = pair.getCrewNameList();
+			sb.append(crewNameList);
+			sb.append("\n");
+		}
+		System.out.println(sb.toString());
 	}
 }

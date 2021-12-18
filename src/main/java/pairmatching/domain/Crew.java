@@ -12,4 +12,8 @@ public class Crew {
 	public boolean isCourse(Course course) {
 		return this.course == course;
 	}
+
+	public String getName(){
+		return name;
+	}
 }

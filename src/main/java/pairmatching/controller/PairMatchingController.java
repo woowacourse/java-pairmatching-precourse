@@ -49,14 +49,15 @@ public class PairMatchingController {
 			PairMatcher pairMatcher = new PairMatcher();
 			if (pairMatcher.existMatching(matchingOption)) { // 재매칭 판단
 				OutputView.printReMatching();
+				// TODO 재시도 선택
 			}
 			List<Pair> pairs = makePair(crews, matchingOption);
 			Matching matching = new Matching(pairs, matchingOption);
+			OutputView.printPair(pairs);
 			pairMatcher.addMatching(matching);
-			// pairs 검증
-
 		}
 		if (select.equals(PairMatchingConst.SELECT_PAIR_READ)) { // 페어 조회
+
 		}
 		if (select.equals(PairMatchingConst.SELECT_PAIR_RESET)) { // 페어 초기화
 		}
@@ -74,6 +75,7 @@ public class PairMatchingController {
 		try {
 			for (int i = 0; i + 1 < shuffledCrew.size(); i += 2) {
 				Pair pair = new Pair(crewsByCourse.get(i), crewsByCourse.get(i + 1));
+				// TODO 같은 레벨에서 만난적 있을 때는 다시 섞음
 				pairs.add(pair);
 			}
 			addLastPairOne(shuffledCrew, pairs);
