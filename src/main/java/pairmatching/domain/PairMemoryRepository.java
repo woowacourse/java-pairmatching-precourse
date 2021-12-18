@@ -17,7 +17,12 @@ public class PairMemoryRepository {
 
     public PairMemory searchPairMemory(Section section) {
         // TODO : 과정, 레벨, 미션으로 페어를 찾는다.
-        return null;
+        for(PairMemory pairMemory : pairMemoryList) {
+            if(pairMemory.getSection().compare(section)) {
+                return pairMemory;
+            }
+        }
+        throw new IllegalArgumentException("[ERROR] 검색 결과가 없습니다.");
     }
 
     public void clear() {
@@ -27,6 +32,10 @@ public class PairMemoryRepository {
 
     public void addPairMemory(PairMemory pairMemory) {
         pairMemoryList.add(pairMemory);
+    }
+
+    public void delete(PairMemory pairMemory) {
+        pairMemoryList.remove(pairMemory);
     }
 
     public List<PairMemory> findByCourseAndLevel(Course course, Level level) {

@@ -25,4 +25,10 @@ public class Section {
     public String getMisson() {
         return misson;
     }
+
+    public boolean compare(Section section) {
+        return this.course == section.getCourse()
+            && this.level == section.getLevel()
+            && this.misson.equals(section.getMisson());
+    }
 }
