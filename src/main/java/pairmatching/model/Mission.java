@@ -7,6 +7,9 @@ public enum Mission {
 	LOTTO("로또"),
 	BASEBALL("숫자야구게임"),
 	IMPROVE("성능개선"),
+	BASKET("장바구니"),
+	PAYMENT("결제"),
+	SUBWAY("지하철노선도"),
 	DISTRIBUTE("배포");
 
 	private String name;
