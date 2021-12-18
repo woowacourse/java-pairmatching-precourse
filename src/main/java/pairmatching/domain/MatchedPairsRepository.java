@@ -18,6 +18,13 @@ public class MatchedPairsRepository {
 			.orElse(null);
 	}
 
+	public static MatchedPairs findByLevel(Level level) {
+		return matchedPairsList.stream()
+			.filter(matchedPairs -> matchedPairs.isLevel(level))
+			.findFirst()
+			.orElse(null);
+	}
+
 	public static void add(MatchedPairs matchedPairs) {
 		matchedPairsList.add(matchedPairs);
 	}
