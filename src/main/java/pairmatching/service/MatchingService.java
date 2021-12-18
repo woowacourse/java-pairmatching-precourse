@@ -28,11 +28,12 @@ public class MatchingService {
 //    파일을 읽어온다
     public void getFileName(){
         String path = getPath();
-        if(path.equals("BACKEND_PATH")){
+        if(path.equals("백엔드")){
             String[] nameArr =Path.BACKNAME.split(",");
+            System.out.println(nameArr);
             List<String> tempnameList = new ArrayList<String>(Arrays.asList(nameArr));
+            System.out.println(tempnameList.toString());
             this.nameList = tempnameList;
-
             return;
         }
         this.nameList = ReadFile.readFile(path);
