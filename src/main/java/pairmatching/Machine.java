@@ -1,6 +1,6 @@
 package pairmatching;
 
-import static pairmatching.ErrorMessage.MISSION_NOT_FOUND_MESSAGE;
+import static pairmatching.ErrorMessage.EMPTY_ERROR_MESSAGE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
@@ -66,7 +66,7 @@ public class Machine {
         }
     }
 
-    private void search() {
+    private void search() throws IllegalArgumentException {
         printer.printInfoMessage(InfoMessage.COURSE_LEVEL_MISSION_MESSAGE);
         String input = this.input.inputCourseLevelMission();
         String[] splitedInput = input.split(SEPARATOR);
@@ -79,7 +79,7 @@ public class Machine {
                 return;
             }
         }
-        throw new IllegalArgumentException(MISSION_NOT_FOUND_MESSAGE.getMessage());
+        throw new IllegalArgumentException(EMPTY_ERROR_MESSAGE.getMessage());
     }
 
     private void renew() {
