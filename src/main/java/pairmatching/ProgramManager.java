@@ -1,6 +1,6 @@
 package pairmatching;
-import java.util.List;
 
+import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 
 public class ProgramManager {
@@ -14,17 +14,21 @@ public class ProgramManager {
 			String selectLine = Console.readLine();
 			String[] selectedComponent = parseLine(selectLine);
 			PairMatcher.pairMatch(Course.valueOf(selectedComponent[0]), Level.valueOf(selectedComponent[1]), selectedComponent[2]);
+			return false;
 		} else if(selection == "2"){
 			String selectLine = Console.readLine();
 			String[] selectedComponent = parseLine(selectLine);
 			ProgramManager.lookUpPair(Course.valueOf(selectedComponent[0]), Level.valueOf(selectedComponent[1]), selectedComponent[2]);
+			return false;
 		} else if(selection == "3"){
 			ProgramManager.initializePair();
+			return false;
 		} else if(selection == "Q"){
 			return true;
 		}
 
-		return false;
+		throw new IllegalArgumentException("[ERROR] 유효하지 않은 명령입니다.");
+
 	}
 
 	public static String[] parseLine(String selectLine){
