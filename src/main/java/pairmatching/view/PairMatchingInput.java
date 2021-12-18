@@ -6,6 +6,12 @@ import pairmatching.utils.Validator;
 
 public class PairMatchingInput{
 
+    public static int inputNumberToExecute() {
+        PairMatchingOutput.functionInstruction();
+        String functionNumber = Console.readLine();
+        Validator.validateNumber(functionNumber);
+        return Integer.parseInt(functionNumber);
+    }
 
     public static String[] choiceMatchingInformation() {
         PairMatchingOutput.choiceInstruction();

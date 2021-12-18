@@ -4,8 +4,18 @@ import pairmatching.domain.Pair;
 
 public class PairMatchingOutput {
     private static final String pairDelim = " : ";
+
+    public static void functionInstruction() {
+        System.out.println (
+                "기능을 선택하세요.\n" +
+                "1. 페어 매칭\n" +
+                "2. 페어 조회\n" +
+                "3. 페어 초기화\n" +
+                "Q. 종료");
+    }
     public static void matchInstruction() {
-        System.out.println("#############################################\n" +
+        System.out.println(
+                "#############################################\n" +
                 "과정: 백엔드 | 프론트엔드\n" +
                 "미션:\n" +
                 "  - 레벨1: 자동차경주 | 로또 | 숫자야구게임\n" +
@@ -16,12 +26,14 @@ public class PairMatchingOutput {
                 "############################################\n");
     }
     public static void choiceInstruction() {
-        System.out.println("과정, 레벨, 미션을 선택하세요.\n" +
+        System.out.println(
+                "과정, 레벨, 미션을 선택하세요.\n" +
                 "ex) 백엔드, 레벨1, 자동차경주");
     }
 
     public static void rematchInstruction() {
-        System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n" +
+        System.out.println(
+                "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n" +
                 "네 | 아니오");
     }
 
