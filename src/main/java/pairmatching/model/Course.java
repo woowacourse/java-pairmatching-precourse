@@ -16,5 +16,13 @@ public enum Course {
 		return name;
 	}
 
+	public boolean isSameName(String name){
+		return this.name.equals(name);
+	}
 
+	public static Course findCourseByName(String courseName) {
+		return Arrays.stream(Course.values()).filter(
+			course -> course.getName().equals(courseName)
+		).findFirst().orElseThrow(()-> new IllegalArgumentException("코스가 존재하지 않습니다."));
+	}
 }

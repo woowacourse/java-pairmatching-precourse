@@ -19,4 +19,13 @@ public enum Mission {
 		return name;
 	}
 
+	public boolean isSameName(String name){
+		return this.name.equals(name);
+	}
+
+	public static Mission findMissionByName(String missionName) {
+		return Arrays.stream(Mission.values()).filter(
+			mission -> mission.getName().equals(missionName)
+		).findFirst().orElseThrow(()-> new IllegalArgumentException("미션이 존재하지 않습니다."));
+	}
 }
