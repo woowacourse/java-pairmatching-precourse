@@ -5,30 +5,23 @@ import java.util.ArrayList;
 
 import pairmatching.domain.Crew;
 import pairmatching.domain.ProgramInfo;
+import pairmatching.service.PairMatchingService;
 import pairmatching.util.Initializer;
 import pairmatching.util.ProgramInfoTransformer;
 import pairmatching.view.InputView;
 
 public class PairMatchingController {
-    ArrayList<Crew> backEndCrews;
-    ArrayList<Crew> frontEndCrews;
+    PairMatchingService pairMatchingService = new PairMatchingService();
     InputView inputView = new InputView();
-
-    public PairMatchingController() {
-        registerCrews();
-    }
-
-    private void registerCrews() {
-        try {
-            backEndCrews = Initializer.registerBackEndCrews();
-            frontEndCrews = Initializer.registerFrontEndCrews();
-        } catch (IOException e) {
-            System.out.println(e.getMessage()); // IllegalArgument가 아니고 내가 예상 못한 예외니까 그냥 프로그램 터치는 게 맞다고 생각함.
-        }
-    }
 
     public void run() {
         inputView.determineMainFunction(); // TODO : 기능 선택은 나중에 하자.
         ProgramInfo programInfo = ProgramInfoTransformer.makeProgramInfo(inputView.determineProgramInfo());
+        //TODO: programInfoRepository에서 해당 정보로 저장되어있는 애가 있나 확인한다. -> 하나만 저장 가능하니까 map으로 구현하자. linked로 초기값 전부 0 넣어주면 되려나.
+        // 존재한다면 -> 덮어쓸지 물어본다. 나중에 구현할거.
+
+        //매칭을 만든다. -> service에서
+
+        // 매칭을 저장소에 넣어준다.
     }
 }
