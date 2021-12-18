@@ -1,6 +1,7 @@
 package pairmatching;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.domain.Function;
 
 public class Input {
 	private static final String FUNCTION_SELECT_TEXT = "기능을 선택하세요.";

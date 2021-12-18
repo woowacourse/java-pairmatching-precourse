@@ -1,5 +1,7 @@
 package pairmatching;
 
+import pairmatching.domain.Function;
+
 public class PairMatchingController {
 
 	public void run() {

@@ -1,6 +1,6 @@
 package pairmatching;
 
-import java.util.Set;
+import pairmatching.domain.Function;
 
 public class InputValidator {
 	private static final String FUNCTION_INPUT_ERROR_TEXT = "[ERROR] 제공된 기능 중 하나를 선택 하세요";
