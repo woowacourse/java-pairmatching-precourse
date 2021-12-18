@@ -31,4 +31,15 @@ public class Pair {
             System.out.println(" : " + crewList.get(crewList.size()-1));
         }
     }
+
+    @Override
+    public boolean equals(Object object) {
+        Pair pair = (Pair) object;
+
+        if (pair.getMission() == pair.getMission()) {
+            return true;
+        }
+
+        return false;
+    }
 }
