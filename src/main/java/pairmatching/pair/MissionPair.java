@@ -45,4 +45,12 @@ public abstract class MissionPair {
     public Set<Pair> pairs() {
         return Collections.unmodifiableSet(pairs);
     }
+
+    public void initPairs() {
+        this.pairs.clear();
+    }
+
+    public boolean isEmpty() {
+        return this.pairs.isEmpty();
+    }
 }

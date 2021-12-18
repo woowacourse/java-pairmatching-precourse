@@ -12,16 +12,20 @@ public class PairMatchingController {
     private static final String ERR_INVALID_LEVEL = "레벨이 일치하지 않습니다.";
     private final PairMatcher pairMatcher = new PairMatcher();
 
-    public void matchPair(String missionName, String positionName, String levelName) {
+    public boolean matchPair(String missionName, String positionName, String levelName) {
         Mission mission = MissionRepository.findByName(missionName);
         Level level = Level.of(levelName);
         Position position = Position.of(positionName);
         validateLevelMatched(mission, level);
+        if (mission.isMatched(position)) {
+            return false;
+        }
         if (position == Position.BACKEND) {
             pairMatcher.matchPairs(mission, CrewRepository.getBackendCrews(), Position.BACKEND);
-            return;
+            return true;
         }
         pairMatcher.matchPairs(mission, CrewRepository.getFrontendCrews(), Position.FRONTEND);
+        return true;
     }
 
     public String getResult(String missionName, String positionName, String levelName) {

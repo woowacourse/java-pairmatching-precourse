@@ -24,6 +24,10 @@ public class MainView {
     private static final int POSITION_INDEX = 0;
     private static final String MISSION_SELECT_PROMPT = "";
     private static final String ERR_INALID_MENU = "없는 기능입니다.";
+    private static final String MISSION_REMATCH = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n네 | 아니오";
+    private static final String REMATCH_TRUE = "네";
+    private static final String REMATCH_FALSE = "아니오";
+    private static final String ERR_INALID_INPUT_REMATCH = "네 아니오로 입력해쥇요.";
     private final String menuBoard;
     private final PairMatchingController controller;
     private boolean exited = false;
@@ -92,9 +96,32 @@ public class MainView {
             () -> {
                 String input = InputView.getLineWithPrompt(MISSION_SELECT_PROMPT);
                 String[] inputs = input.split(INPUT_DELIMITER);
-                controller.matchPair(inputs[MISSION_INDEX], inputs[POSITION_INDEX],
-                    inputs[LEVEL_INDEX]);
-                showResult(inputs[MISSION_INDEX], inputs[POSITION_INDEX], inputs[LEVEL_INDEX]);
+                matchPair(inputs[MISSION_INDEX], inputs[POSITION_INDEX], inputs[LEVEL_INDEX]);
+            }
+        );
+    }
+
+    private void matchPair(String mission, String position, String level) {
+        action(
+            () -> {
+                if (!controller.matchPair(mission, position, level)) {
+                    rematch(mission, position, level);
+                }
+                showResult(mission, position, level);
+            }
+        );
+    }
+
+    private void rematch(String mission, String position, String level) {
+        action(
+            () -> {
+                String input = InputView.getLineWithPrompt(MISSION_REMATCH);
+                if (!input.equals(REMATCH_TRUE) && !input.equals(REMATCH_FALSE)) {
+                    throw new IllegalArgumentException(ERR_INALID_INPUT_REMATCH);
+                }
+                if (input.equals(REMATCH_TRUE)) {
+                    matchPair(mission, position, level);
+                }
             }
         );
     }

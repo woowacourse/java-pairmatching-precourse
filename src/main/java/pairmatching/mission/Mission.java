@@ -67,4 +67,11 @@ public class Mission {
             .map(Pair::getMatching)
             .collect(Collectors.joining(LINE_BREAK));
     }
+
+    public boolean isMatched(Position position) {
+        if (position == Position.BACKEND) {
+            return !backEndPair.isEmpty();
+        }
+        return !frontEdnPair.isEmpty();
+    }
 }
