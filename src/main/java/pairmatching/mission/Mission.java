@@ -1,7 +1,10 @@
 package pairmatching.mission;
 
+import java.util.Set;
+import pairmatching.crew.Position;
 import pairmatching.pair.BackEndPair;
 import pairmatching.pair.FrontEdnPair;
+import pairmatching.pair.Pair;
 
 public class Mission {
 
@@ -33,5 +36,27 @@ public class Mission {
 
     public FrontEdnPair getFrontEdnPair() {
         return frontEdnPair;
+    }
+
+    public boolean hasPair(Pair pair) {
+        if (pair.getPosition() == Position.BACKEND) {
+            return backEndPair.hasPair(pair);
+        }
+        return frontEdnPair.hasPair(pair);
+    }
+
+    public void registerPair(Pair pair) throws IllegalArgumentException {
+        if (pair.getPosition() == Position.BACKEND) {
+            backEndPair.addPair(pair);
+            return;
+        }
+        frontEdnPair.addPair(pair);
+    }
+
+    public Set<Pair> getMatchedPair(Position position) {
+        if (position == Position.BACKEND) {
+            return backEndPair.pairs();
+        }
+        return frontEdnPair.pairs();
     }
 }

@@ -3,6 +3,7 @@ package pairmatching.pair;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import pairmatching.crew.Crew;
 import pairmatching.crew.Position;
 
@@ -12,6 +13,7 @@ public class Pair {
     private static final String ERR_POSITION_UNMATCHED = "포지션은 같아야합니다.";
     private static final int MAX_SIZE = 3;
     private static final int MIN_SIZE = 2;
+    private static final String DELIMITER = " : ";
     private final Position position;
     private final Set<Crew> pair = new HashSet<>();
 
@@ -34,6 +36,10 @@ public class Pair {
         }
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -51,5 +57,9 @@ public class Pair {
     @Override
     public int hashCode() {
         return pair.hashCode();
+    }
+
+    public String getMatching() {
+        return this.pair.stream().map(Crew::getName).collect(Collectors.joining(DELIMITER));
     }
 }

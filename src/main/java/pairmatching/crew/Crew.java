@@ -2,8 +2,8 @@ package pairmatching.crew;
 
 public class Crew {
 
-    public final String name;
-    public final Position position;
+    private final String name;
+    private final Position position;
 
     public Crew(String name, Position position) {
         this.name = name;

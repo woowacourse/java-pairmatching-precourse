@@ -1,8 +1,10 @@
 package pairmatching.pair;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javafx.print.PaperSource;
 import pairmatching.crew.Crew;
 import pairmatching.crew.Position;
 import pairmatching.mission.Mission;
@@ -25,6 +27,11 @@ public abstract class MissionPair {
         this.pairs.add(pair);
     }
 
+    public void addPair(Pair pair) {
+        validateDuplicated(pair);
+        this.pairs.add(pair);
+    }
+
     public boolean hasPair(Pair pair) {
         return this.pairs.contains(pair);
     }
@@ -33,5 +40,9 @@ public abstract class MissionPair {
         if (hasPair(pair)) {
             throw new IllegalArgumentException(ERR_DUPLICATED_PAIR);
         }
+    }
+
+    public Set<Pair> pairs() {
+        return Collections.unmodifiableSet(pairs);
     }
 }
