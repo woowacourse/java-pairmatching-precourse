@@ -39,17 +39,22 @@ public class PairMatchingController {
 		}
 	}
 
-	public void runMatching(SelectedMission mission) {
+	private void runMatching(SelectedMission mission) {
 		if (isMatchingExist(mission)) {
 			if (Input.requestMatchingAgain()) {
 				matchingList.remove(mission);
 			}
 		}
-		List<String> crew = mission.getCrews();
-		Randoms.shuffle(crew);
+		match(mission);
 	}
 
-	public boolean isMatchingExist(SelectedMission mission) {
+	private void match(SelectedMission mission) {
+		List<String> crew = mission.getCrews();
+		crew = Randoms.shuffle(crew);
+	}
+
+	private boolean isMatchingExist(SelectedMission mission) {
 		return matchingList.containsKey(mission);
 	}
+
 }
