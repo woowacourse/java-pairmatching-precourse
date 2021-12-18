@@ -1,4 +1,4 @@
-package pairmatching.model;
+package pairmatching.model.information;
 
 public enum Levels {
     LEVEL1("레벨1"),

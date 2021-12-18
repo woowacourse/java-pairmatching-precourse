@@ -1,4 +1,4 @@
-package pairmatching.model;
+package pairmatching.model.information;
 
 public enum Missions {
     CAR_RACING("자동차경주"),

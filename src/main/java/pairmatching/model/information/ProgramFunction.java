@@ -1,4 +1,4 @@
-package pairmatching.model;
+package pairmatching.model.information;
 
 public enum ProgramFunction {
     PAIR_MATCHING("1. 페어 매칭"),
