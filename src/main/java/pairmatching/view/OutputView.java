@@ -80,4 +80,8 @@ public class OutputView {
 			.forEach(pair -> System.out.println(pair));
 		System.out.println();
 	}
+
+	public void printExit() {
+		System.out.println("Q");
+	}
 }

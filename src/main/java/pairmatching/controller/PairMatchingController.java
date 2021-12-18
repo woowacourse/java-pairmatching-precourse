@@ -31,6 +31,19 @@ public class PairMatchingController {
 		if (function == Function.PAIR_CHECK) {
 			implementPairCheck();
 		}
+
+		if (function == Function.PAIR_RESET) {
+			implementPairReset();
+		}
+
+		if (function == Function.EXIT) {
+			outputView.printExit();
+		}
+	}
+
+	public void implementPairReset() {
+		pairInfoRepository.clear();
+		start();
 	}
 
 	public void implementPairCheck() {

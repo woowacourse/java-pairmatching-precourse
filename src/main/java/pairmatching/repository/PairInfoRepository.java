@@ -23,6 +23,10 @@ public class PairInfoRepository {
 			.orElse(null);
 	}
 
+	public void clear() {
+		pairInfoList.clear();
+	}
+
 	public boolean contains(PairInfo pairInfo) {
 		return pairInfoList.contains(pairInfo);
 	}
