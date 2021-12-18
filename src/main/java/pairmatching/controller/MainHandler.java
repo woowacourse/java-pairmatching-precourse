@@ -28,6 +28,7 @@ public class MainHandler {
 			final Level level = Level.findByLevel(command[LEVEL_INDEX]);
 			final MissionType missionType = MissionType.findByMission(command[MISSION_INDEX]);
 			matchingProcessJudge(course, level, missionType);
+			OutputView.printMatchingResult(MatchingRepository.selectMatchings(course, level, missionType));
 		} catch (IllegalArgumentException | IOException e) {
 			matchingManager();
 		}
