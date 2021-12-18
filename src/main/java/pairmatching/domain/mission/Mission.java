@@ -14,14 +14,16 @@ public class Mission {
     private final MissionName name;
     private Set<Pair> pairSet;
 
-    public Mission(Course course, Level level, MissionName name) {
+    public Mission(Course course, Level level, MissionName name, List<String> nameList) {
         this.course = course;
         this.level = level;
         this.name = name;
+
+        makePairSet(nameList);
     }
 
-    public static Mission of(Course course, Level level, MissionName name) {
-        return new Mission(course, level, name);
+    public static Mission of(Course course, Level level, MissionName name, List<String> nameList) {
+        return new Mission(course, level, name, nameList);
     }
 
     public boolean isName(String comparison) {
