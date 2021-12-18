@@ -24,6 +24,14 @@ public class ReadCrewFile {
         return crewNames;
     }
 
+    public static List<String> getCrewNamesByCourse(Course course){
+        if(course ==Course.BACKEND){
+            return getBackEndCrewNames();
+        }
+
+        return getFrontEndCrewNames();
+    }
+
     public static List<String> getFrontEndCrewNames(){
         List<String> crewNames;
 
