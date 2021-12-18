@@ -7,4 +7,8 @@ public class MainController {
     public MainController() {
         setup = new Setup();
     }
+
+    public void start() {
+
+    }
 }

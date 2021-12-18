@@ -19,4 +19,5 @@ public class LevelMisson {
     public List<String> getMissons() {
         return missons;
     }
+
 }
