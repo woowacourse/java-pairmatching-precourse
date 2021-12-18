@@ -38,4 +38,8 @@ public class MatchingHistory {
         return newPairs.stream()
                 .anyMatch(before::equals);
     }
+
+    public List<CrewPair> getMatchedCrews() {
+        return matchedCrews;
+    }
 }

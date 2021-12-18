@@ -14,7 +14,7 @@ public class MatchingSystem {
         Level level = Level.of(courseAndLevelAndMission.get(1));
         Mission mission = Mission.of(courseAndLevelAndMission.get(1), courseAndLevelAndMission.get(2));
         return matchingHistories.stream()
-                .anyMatch(matchingHistory -> matchingHistory.hasMatchedBeforeInConditionOf(course, level, mission));
+                .anyMatch(matchingHistory -> matchingHistory.isSameWith(course, level, mission));
     }
 
     public List<CrewPair> match(final List<String> crewNames, List<String> courseAndLevelAndMission) {
@@ -59,5 +59,16 @@ public class MatchingSystem {
         Level level = Level.of(courseAndLevelAndMission.get(1));
         Mission mission = Mission.of(courseAndLevelAndMission.get(1), courseAndLevelAndMission.get(2));
         matchingHistories.add(new MatchingHistory(course, level, mission, matchedCrews));
+    }
+
+    public List<CrewPair> getMatchingHistoryOf(List<String> courseAndLevelAndMission) {
+        Course course = Course.of(courseAndLevelAndMission.get(0));
+        Level level = Level.of(courseAndLevelAndMission.get(1));
+        Mission mission = Mission.of(courseAndLevelAndMission.get(1), courseAndLevelAndMission.get(2));
+        MatchingHistory matchingHistory = matchingHistories.stream()
+                .filter(history -> history.isSameWith(course, level, mission))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("매칭 이력이 없습니다."));
+        return matchingHistory.getMatchedCrews();
     }
 }

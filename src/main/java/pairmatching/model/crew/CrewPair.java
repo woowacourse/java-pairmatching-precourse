@@ -1,5 +1,7 @@
 package pairmatching.model.crew;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class CrewPair {
@@ -9,6 +11,10 @@ public class CrewPair {
     public CrewPair(final Crew firstCrew, final Crew secondCrew) {
         this.firstCrew = firstCrew;
         this.secondCrew = secondCrew;
+    }
+
+    public List<String> getNames() {
+        return Arrays.asList(firstCrew.getName(), secondCrew.getName());
     }
 
     @Override
