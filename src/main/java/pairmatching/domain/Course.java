@@ -22,7 +22,7 @@ public enum Course {
 
     private static Course findBy(String arg) {
         for (Course course : values()) {
-            if (course.name().equals(arg)) {
+            if (course.name.equals(arg)) {
                 return course;
             }
         }

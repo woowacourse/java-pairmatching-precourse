@@ -71,7 +71,7 @@ public enum Mission {
 
     private static Mission findBy(String arg) {
         for (Mission mission : values()) {
-            if (mission.name().equals(arg)) {
+            if (mission.name.equals(arg)) {
                 return mission;
             }
         }

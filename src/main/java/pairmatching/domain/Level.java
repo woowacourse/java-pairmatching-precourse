@@ -25,7 +25,7 @@ public enum Level {
 
     private static Level findBy(String arg) {
         for (Level level : values()) {
-            if (level.name().equals(arg)) {
+            if (level.name.equals(arg)) {
                 return level;
             }
         }
