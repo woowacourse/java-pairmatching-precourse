@@ -35,16 +35,21 @@ public class PairProgrammings {
     ) {
         if (pairProgramming.getCourse().equals(targetCourse)) {
             if (pairProgramming.getLevel().equals(targetLevel)) {
-                if (pairProgramming.hasMission(targetMission)) {
-
-                    duplicateMissionCheck(targetMission, shuffledCrew, pairProgramming);
-                    return true;
-                }
-                pairProgramming.addMission(shuffledCrew, targetMission);
-                return true;
+                return enrollNewMissionByMission(targetMission, shuffledCrew, pairProgramming);
             }
         }
         return false;
+    }
+
+    private boolean enrollNewMissionByMission(String targetMission, List<String> shuffledCrew,
+        PairProgramming pairProgramming) {
+        if (pairProgramming.hasMission(targetMission)) {
+
+            duplicateMissionCheck(targetMission, shuffledCrew, pairProgramming);
+            return true;
+        }
+        pairProgramming.addMission(shuffledCrew, targetMission);
+        return true;
     }
 
     private void duplicateMissionCheck(String targetMission, List<String> shuffledCrew,
