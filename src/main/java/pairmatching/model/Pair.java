@@ -8,9 +8,11 @@ public class Pair {
     Level level;
     Mission mission;
 
-    public Pair(String firstCrew, String secondCrew) {
-        crews.add(firstCrew);
-        crews.add(secondCrew);
+    public Pair(List<Crew> crews, MatchInfo matchInfo) {
+        this.crews = crews;
+        course = matchInfo.getCourse();
+        level = matchInfo.getLevel();
+        mission = matchInfo.getMission();
     }
 
     public List<Crew> getCrews() {

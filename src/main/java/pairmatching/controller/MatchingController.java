@@ -21,10 +21,8 @@ public class MatchingController {
 
     public void run() {
         String input;
-        do {
-            MatchingView.printMatchingPrompt();
-            input = inputMatchingCondition();
-        } while (shouldRematch(input));
+        MatchingView.printMatchingPrompt();
+        input = inputMatchingCondition();
         pairService.tryMatching(input);
     }
 

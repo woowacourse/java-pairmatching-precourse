@@ -22,7 +22,7 @@ public class PairService {
     private static final int NOT_EXIST = 1;
 
     public void tryMatching(String input) {
-        boolean canMatch = false;
+        boolean canMatch = true;
         MatchInfo matchInfo = getMatchInfo(input);
         List<String> crewNames = CrewRepository.getCrewNamesByCourse(matchInfo.getCourse());
         List<List<String>> pairNamesList = null;
@@ -30,17 +30,21 @@ public class PairService {
             List<String> shuffledCrew = Randoms.shuffle(crewNames);
             pairNamesList = createPairs(shuffledCrew, matchInfo.getLevel());
             if (!alreadyMetPair(pairNamesList, matchInfo.getLevel())) {
-                canMatch = true;
+                canMatch = false;
                 break;
             }
         }
         if (canMatch) {
-            createMatching(pairNamesList);
+            createMatching(pairNamesList, matchInfo);
         }
     }
 
-    public void createMatching(List<List<String>> pairNamesList) {
-
+    public void createMatching(List<List<String>> pairNamesList, MatchInfo matchInfo) {
+        for (List<String> pairNames : pairNamesList) {
+            List<Crew> crews = getCrewsByName(pairNames);
+            PairRepository.addPair(crews, matchInfo);
+        }
+        System.out.println(PairRepository.pairs());
 
     }
 

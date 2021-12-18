@@ -2,13 +2,14 @@ package pairmatching.repository;
 
 import pairmatching.model.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class PairRepository {
-    private static List<Pair> pairs = new ArrayList<>();
+    private static final List<Pair> pairs = new ArrayList<>();
+
+    public static List<Pair> pairs() {
+        return Collections.unmodifiableList(pairs);
+    }
 
     public static Optional<Course> findCourseByName(String courseName) {
         return Arrays.stream(Course.values())
@@ -40,5 +41,9 @@ public class PairRepository {
         return pairs.stream()
                 .filter(pair -> pair.getLevel().equals(level))
                 .anyMatch(pair -> pair.getCrews().equals(crews));
+    }
+
+    public static void addPair(List<Crew> crews, MatchInfo matchInfo) {
+        pairs.add(new Pair(crews, matchInfo));
     }
 }
