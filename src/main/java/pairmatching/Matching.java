@@ -40,7 +40,10 @@ public class Matching {
     }
 
     public void removePairs() {
-
+        for (Mission mission : missions) {
+            mission.resetPairs();
+            announcer.announceRemovePairs();
+        }
     }
 
     private void matchPairs(List<Crew> crews, Announcer announcer, String[] selectedMatching) {

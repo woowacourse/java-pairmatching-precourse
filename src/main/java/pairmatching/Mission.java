@@ -96,4 +96,7 @@ public class Mission {
         return size + LAST_INDEX;
     }
 
+    public void resetPairs() {
+        this.crewMatching = new LinkedHashMap<>();
+    }
 }
