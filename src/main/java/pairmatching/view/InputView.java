@@ -1,4 +1,4 @@
-package pairmatching;
+package pairmatching.view;
 
 import static pairmatching.StringConstants.*;
 

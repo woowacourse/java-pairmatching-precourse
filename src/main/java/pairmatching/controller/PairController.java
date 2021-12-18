@@ -1,5 +1,6 @@
 package pairmatching.controller;
 
+import pairmatching.domain.pair.Pair;
 import pairmatching.service.PairService;
 
 public class PairController {
@@ -9,7 +10,7 @@ public class PairController {
         this.pairService = pairService;
     }
 
-    public void createPairs(String[] pairInfo) {
-        pairService.createPairs(pairInfo);
+    public Pair createPairs(String[] pairInfo) {
+        return pairService.createPairs(pairInfo);
     }
 }

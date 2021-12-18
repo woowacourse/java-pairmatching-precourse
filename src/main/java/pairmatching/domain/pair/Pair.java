@@ -1,4 +1,4 @@
-package pairmatching.domain;
+package pairmatching.domain.pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +57,6 @@ public class Pair {
         }
         return pairCrewNames;
     }
-
 
     private boolean checkAvailable(List<String> pairToTry) {
         for (List<String> pairAlready : sameLevelPairs) {

@@ -27,6 +27,9 @@ public class StringConstants {
     public static final String REQUEST_MESSAGE_ABOUT_PAIR_INFO = "과정, 레벨, 미션을 선택하세요.";
     public static final String EXAMPLE_MESSAGE_ABOUT_PAIR_INFO = "ex) 백엔드, 레벨1, 자동차경주";
 
+    public static final String RESULT_NOTICE_MESSAGE_ABOUT_PAIR = "페어 매칭 결과입니다.";
+    public static final String DELIMITER_FOR_PAIR = " : ";
+
     public static final String PREFIX_OF_ERROR_MESSAGE = "[ERROR] ";
     public static final String ERROR_MESSAGE_ABOUT_FUNCTION_INPUT = "제시된 기능목록에서 선택해주세요";
     public static final String ERROR_MESSAGE_ABOUT_COURSE_INPUT = "올바른 과정 이름을 입력해주세요";

@@ -6,11 +6,13 @@ import static pairmatching.StringConstants.PAIR_MATCHING_FUNCTION_KEY;
 import pairmatching.controller.CrewController;
 import pairmatching.controller.MissionController;
 import pairmatching.controller.PairController;
-import pairmatching.domain.Course;
-import pairmatching.domain.PairRepository;
+import pairmatching.domain.pair.Pair;
+import pairmatching.domain.pair.PairRepository;
 import pairmatching.domain.crew.CrewRepository;
 import pairmatching.domain.mission.MissionRepository;
 import pairmatching.service.PairService;
+import pairmatching.view.InputView;
+import pairmatching.view.OutputView;
 
 public class Application {
     private static final CrewRepository crewRepository = new CrewRepository();
@@ -46,7 +48,7 @@ public class Application {
 
     private static void callFunction(String functionKey, String[] pairInfoToPerformFunction) {
         if (functionKey.equals(PAIR_MATCHING_FUNCTION_KEY)) {
-            matchPairs(pairInfoToPerformFunction);
+            OutputView.printPair(matchPairs(pairInfoToPerformFunction));
         }
 
         if (functionKey.equals(PAIR_MATCHING_FUNCTION_KEY)) {
@@ -58,8 +60,8 @@ public class Application {
         }
     }
 
-    private static void matchPairs(String[] pairInfoToPerformFunction) {
-        pairController.createPairs(pairInfoToPerformFunction);
+    private static Pair matchPairs(String[] pairInfoToPerformFunction) {
+        return pairController.createPairs(pairInfoToPerformFunction);
     }
 
 }
