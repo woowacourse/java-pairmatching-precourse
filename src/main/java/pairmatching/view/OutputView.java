@@ -31,6 +31,28 @@ public class OutputView {
 		System.out.println("과정, 레벨, 미션을 선택하세요.");
 		System.out.println("ex) 백엔드, 레벨1, 자동차경주");
 	}
+
+	public static void printExistOfMatchingInstruction() {
+		System.out.println();
+		System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
+		System.out.println("네 | 아니오");
+	}
+
+	public static void printResultOfMatch(String match) {
+		System.out.println();
+		System.out.println("페어 매칭 결과입니다.");
+		System.out.println(match);
+	}
+
+	public static void printInitInstruction() {
+		System.out.println();
+		System.out.println("초기화 되었습니다.");
+	}
+
+	public static void printNoHistory() {
+		System.out.println();
+		System.out.println("[ERROR] 매칭 이력이 없습니다.");
+	}
 }
 
 

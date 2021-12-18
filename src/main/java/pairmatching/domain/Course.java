@@ -3,8 +3,8 @@ package pairmatching.domain;
 import java.util.Arrays;
 
 public enum Course {
-	BACKEND("aaa"),
-	FRONTEND("bbb");
+	BACKEND("백엔드"),
+	FRONTEND("프론트엔드");
 
 	private final String name;
 

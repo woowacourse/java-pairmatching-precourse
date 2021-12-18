@@ -8,7 +8,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
 	public static final String FUNCTION_MENUS = "123Q";
-	public static final String MENU_DELIMITER = "";// 1. 변수까지 합해서 ctrl+alt+c로 상수로 빼기
+	public static final String MENU_DELIMITER = "";
 	public static final String FUNCTION_MENU_DELIMITER = ",";
 
 	public static String getInput() {
@@ -90,6 +90,36 @@ public class InputView {
 	private static void checkValidCountOfMatchingInfo(String inputValue, String delimeter) {
 		if (!(inputValue.split(delimeter).length == 3)) {
 			throw new IllegalArgumentException("3개의 정보를 모두 입력하세요.");
+		}
+	}
+
+	public static String getRematching() {
+		try {
+			String inputValue = InputView.getInput();
+			checkRematchingValidation(inputValue);
+			return inputValue.trim();
+		} catch (IllegalArgumentException e) {
+			OutputView.printError(e.getMessage());
+			return getRematching();
+		}
+	}
+
+	private static void checkRematchingValidation(String inputValue) {
+		checkNullOrEmpty(inputValue);
+		checkIncludeSpace(inputValue);
+		checkIsContainedYesOrNo(inputValue);
+
+	}
+
+	private static void checkIncludeSpace(String inputValue) {
+		if (inputValue.trim().contains(" ")) {
+			throw new IllegalArgumentException("공백이 포함될 수 없습니다.");
+		}
+	}
+
+	private static void checkIsContainedYesOrNo(String inputValue) {
+		if (!(Arrays.asList("네 아니오".split(" ")).contains(inputValue))) {
+			throw new IllegalArgumentException("네 혹은 아니오로만 대답해주세요.");
 		}
 	}
 
