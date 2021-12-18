@@ -1,10 +1,11 @@
 package pairmatching.controller;
 
 import pairmatching.domain.Crews;
+import pairmatching.view.Input;
+import pairmatching.view.Output;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 public class MainController {
@@ -17,18 +18,33 @@ public class MainController {
     }
 
     public void playGame() {
-//        Output.printFunctionSelection();
-//        String functionSelection = Input.inputFunctionSelection();
-//
-//        Output.printMissionAndProcess();
-//        String inputProcess = Input.inputProcess();
+        int inputChoice = chooseFunction();
+        if (inputChoice == 0){
+            return;
+        }
+        Output.printMissionAndProcess();
+        String inputProcess = Input.inputProcess();
 
         CrewInformationController.readCrews(pairmatching);
-        System.out.println(pairmatching.getCrewBackendNames());
-        System.out.println(pairmatching.getCrewFrontendNames());
 
         List<String> matchingList = PairmatchingController.pairmatchingStart(pairmatching.getCrewFrontendNames());
         printMatchingList(matchingList);
+    }
+
+    private int chooseFunction() {
+        while (true){
+            Output.printFunctionSelection();
+            String functionSelection = Input.inputFunctionSelection();
+            try{
+                if (ValidationController.checkSpellQValidation(functionSelection)){
+                    return 0;
+                }
+                ValidationController.chooseFunctionValidation(functionSelection);
+                return Integer.parseInt(functionSelection);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void printMatchingList(List<String> matchingList) {
