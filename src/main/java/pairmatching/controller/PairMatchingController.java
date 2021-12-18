@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import pairmatching.models.Course;
 import pairmatching.models.Level;
-import pairmatching.models.Mission;
 import pairmatching.models.Pair;
+
 import pairmatching.utils.CourseList;
 import pairmatching.utils.MissionList;
 import pairmatching.utils.NameList;
+
 import pairmatching.view.PairMachiningOutput;
 
 public class PairMatchingController {
@@ -69,31 +69,53 @@ public class PairMatchingController {
 		return true;
 	}
 
-	private Pair getTargetPair(final String level, final String course) {
+	private List<Pair> getTargetPair(final String level, final String course) {
 		List<Pair> target = pairs.stream()
-			.filter(pair -> pair.getLevel() == level && pair.getCourse().equals(course))
+			.filter(pair -> pair.getLevel().equals(level) && pair.getCourse().equals(course))
 			.collect(Collectors.toList());
-		return target.get(0);
+		return target;
+	}
+
+	private void setExPair(final String level, final String course, final List<String> pairNames) {
+		pairs.stream()
+			.filter(pair -> pair.getLevel().equals(level) && pair.getCourse().equals(course))
+			.forEach(pair -> {
+				pairNames.forEach(pairName -> {
+					String[] name = pairName.split(" : ");
+					pair.addPair(name[0], name[2]);
+				});
+			});
 	}
 
 	public void printMachineResult(final String level, final String course) throws IOException {
-		for(int i = 0; i < 3; i++) {
-			List<String> names = nameList.shuffleName(Course.FRONTEND.getName());
-			List<String> pairNames = makePair(names);
-			// Pair targetPair = getTargetPair(level, course);
-			output.printMatchingResult(pairNames);
+		List<String> names = nameList.shuffleName(course);
+		List<String> pairNames = makePair(names);
+		List<Pair> targetPairList = getTargetPair(level, course);
+		if(targetPairList.isEmpty()) {
+			setExPair(level, course, pairNames);
 		}
+
+		output.printMatchingResult(pairNames);
 
 	}
 
 	public void startProgram() throws IOException {
-		final String function = input.selectFunction();
-		final String[] courseLevelMission = input
-			.selectCourseAndMission(CourseList.getCourseList(), (new MissionList()).initMissionList());
-		final String course = courseLevelMission[0];
-		final String level = courseLevelMission[1];
-		final String mission = courseLevelMission[2];
-		printMachineResult(level, course);
+		while(true) {
+			final String function = input.selectFunction();
+			if (function.equals("1")) {
+				final String[] courseLevelMission = input
+					.selectCourseAndMission(CourseList.getCourseList(), (new MissionList()).initMissionList());
+				final String course = courseLevelMission[0];
+				final String level = courseLevelMission[1];
+				final String mission = courseLevelMission[2];
+				printMachineResult(level, course);
+			}
+			if(function.equals("Q")) {
+				break;
+			}
+		}
+
+
 	}
 
 }
