@@ -60,18 +60,27 @@ public class PairMatchingController {
     }
 
     private PairMission getPairMission(PairMatchingMachine pairMatchingMachine) {
-        PairMission pairMission = InputView.inputPairMission();
+        PairMission pairMission = getNormalPairMission();
+        validateSamePairMission(pairMatchingMachine, pairMission);
+        return pairMission;
+    }
+
+    private void validateSamePairMission(PairMatchingMachine pairMatchingMachine, PairMission pairMission) {
         if (pairMatchingMachine.isPairMission(pairMission)) {
             MatchCommand matchCommand = getMatchCommand();
             if (matchCommand == MatchCommand.NO) {
                 getPairMission(pairMatchingMachine);
             }
         }
-        return pairMission;
     }
 
     private PairMission getNormalPairMission() {
-        return InputView.inputPairMission();
+        try {
+            return InputView.inputPairMission();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getNormalPairMission();
+        }
     }
 
     private void share(PairMission pairMission, PairMatchingMachine pairMatchingMachine) {
