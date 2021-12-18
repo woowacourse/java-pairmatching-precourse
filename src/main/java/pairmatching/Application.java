@@ -9,10 +9,7 @@ import pairmatching.model.CrewRepository;
 import pairmatching.model.Level;
 import pairmatching.model.Mission;
 import pairmatching.model.MissionRepository;
-import pairmatching.model.Pairs;
 import pairmatching.utils.FileUtils;
-import pairmatching.view.InputView;
-import pairmatching.view.OutputView;
 
 public class Application {
 	public static void main(String[] args) {

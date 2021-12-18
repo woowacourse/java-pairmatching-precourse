@@ -5,7 +5,6 @@ import java.util.List;
 import pairmatching.model.Level;
 import pairmatching.model.MissionRepository;
 import pairmatching.model.Pair;
-import pairmatching.model.Pairs;
 
 public class OutputView {
 	private static final String SELECT_FUNTION_MESSAGE = "기능을 선택하세요";
