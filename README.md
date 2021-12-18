@@ -1,5 +1,16 @@
 # 미션 - 페어매칭관리 애플리케이션
 
+## 구현할 기능 리스트
+
+- 백엔드 크루 명단 불러오기
+- 프론트엔드 크루 명단 불러오기
+- 기능 선택
+- 매칭하고자 하는 과정, 레벨, 미션 입력
+- 페어 매칭
+- 매칭 결과 출력
+
+---
+
 ## 🔍 진행방식
 
 - 미션은 **기능 요구사항, 프로그래밍 요구사항, 과제 진행 요구사항** 세 가지로 구성되어 있다.
@@ -9,7 +20,8 @@
 ## ✉️ 미션 제출 방법
 
 - 미션 구현을 완료한 후 GitHub을 통해 제출해야 한다.
-    - GitHub을 활용한 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고해 제출한다.
+    - GitHub을 활용한 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고해
+      제출한다.
 - GitHub에 미션을 제출한 후 [우아한테크코스 지원 플랫폼](https://apply.techcourse.co.kr) 에 접속하여 프리코스 과제를 제출한다.
     - 자세한 방법은 [링크](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드) 를 참고한다.
     - **Pull Request만 보내고, 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
@@ -17,7 +29,8 @@
 ## ✔️ 과제 제출 전 체크리스트 - 0점 방지
 
 - 터미널에서 `java -version`을 실행해 자바 8인지 확인한다. 또는 Eclipse, IntelliJ IDEA와 같은 IDE의 자바 8로 실행하는지 확인한다.
-- 터미널에서 맥 또는 리눅스 사용자의 경우 `./gradlew clean test`, 윈도우 사용자의 경우 `gradlew.bat clean test` 명령을 실행했을 때 모든 테스트가 아래와 같이 통과하는지 확인한다.
+- 터미널에서 맥 또는 리눅스 사용자의 경우 `./gradlew clean test`, 윈도우 사용자의 경우 `gradlew.bat clean test` 명령을 실행했을 때 모든 테스트가 아래와 같이 통과하는지
+  확인한다.
 
 ```
 BUILD SUCCESSFUL in 0s
@@ -26,17 +39,21 @@ BUILD SUCCESSFUL in 0s
 ---
 
 ## 🚀 기능 요구사항
+
 - 우테코의 미션은 페어 프로그래밍으로 진행된다.
 - 미션을 함께할 페어를 관리해주는 애플리케이션을 완성하시오.
 
 ### 도메인 설명
+
 - 우테코에서 운영하는 과정은 현재 백엔드 과정과 프론트엔드 과정이 있다.
 - 각 과정은 5단계로 나누어 진행이 되는데 이를 레벨이라고 한다.
 - 미션을 수행하며 각 레벨에서 전달하고자 하는 내용을 학습하는데 이 과정을 페어 프로그래밍으로 진행한다.
 - 미션을 시작하기 전 페어를 매칭하는데 다양한 페어를 만나기 위해서 같은 레벨 동안은 같은 페어를 만나지 않는다.
 
 ### 페어 매칭 기능
+
 - 페어 매칭 조건
+
 ```
 - 미션을 함께 수행할 페어를 두명씩 매칭한다.
 - 페어 매칭 대상이 홀수인 경우 한 페어는 3인으로 구성한다. 
@@ -44,6 +61,7 @@ BUILD SUCCESSFUL in 0s
 ```
 
 - 페어 매칭 구현 방법
+
 ```
 - 크루들의 이름 목록을 List<String> 형태로 준비한다.
 - 크루 목록의 순서를 랜덤으로 섞는다. 이 때 `camp.nextstep.edu.missionutils.Randoms`의 shuffle 메서드를 활용해야 한다.
@@ -54,35 +72,39 @@ BUILD SUCCESSFUL in 0s
 ```
 
 ```java
-> 코드 예시
-        
-List<String> crewNames; // 파일에서 로드한 크루 이름 목록
-List<String> shuffledCrew = Randoms.shuffle(crewNames); // 섞인 크루 이름 목록
+>코드 예시
 
-// 페어 매칭 & 검증
+	List<String> crewNames; // 파일에서 로드한 크루 이름 목록
+	List<String> shuffledCrew=Randoms.shuffle(crewNames); // 섞인 크루 이름 목록
 
-...
+	// 페어 매칭 & 검증
+
+	...
 ```
 
 - 페어 재매칭 시도
+
 ```
 - 안내 문구를 출력 후 매칭을 진행한다.
 - 아니오를 선택할 경우 코스, 레벨, 미션을 다시 선택한다.
 ```
 
 ### 페어 조회 기능
+
 - 과정, 레벨, 미션을 선택하면 해당 미션의 페어 정보를 출력한다.
 - 매칭 이력이 없으면 매칭 이력이 없다고 안내한다.
 
 ```
 [ERROR] 매칭 이력이 없습니다.
 ```
+
 ---
 
 ## 💾 사전 제공 정보
+
 - 크루 정보는 src/resources 하위에 md 파일로 제공되며 변경이 가능하다.
 - 과정, 레벨, 미션 정보는 아래에 제공하는 그대로 사용해야 한다.
- 
+
 ```
 ## 과정
 - 백엔드
@@ -116,20 +138,25 @@ List<String> shuffledCrew = Randoms.shuffle(crewNames); // 섞인 크루 이름 
 ```
 
 ---
+
 ## ✍🏻 입출력 요구사항
 
 ### 파일 입출력
+
 - 페어 매칭에 필요한 크루들의 이름을 파일 입출력을 통해 불러온다.
 - `src/main/resources/backend-crew.md`과 `src/main/resources/frontend-crew.md` 파일을 이용한다.
 - 두 파일의 내용은 수정이 가능하다. 수정 시 크루들의 이름은 중복될 수 없다.
 - 파일 입출력 방법은 `자바 파일 읽기`나 `자바 파일 입출력`과 같은 키워드로 구글링해서 찾을 수 있다.
 
 ### 에러 처리
+
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, `[ERROR]`로 시작하는 에러 메시지를 출력 후 해당 부분부터 다시 입력을 받는다.
 - 아래의 프로그래밍 실행 결과 예시와 동일하게 입력과 출력이 이루어져야 한다.
 
 ### 기능 선택
+
 - 프로그램을 시작하면 기능의 종류를 출력하고 그 중 하나의 입력을 받는다.
+
 ```
 기능을 선택하세요.
 1. 페어 매칭
@@ -139,7 +166,9 @@ Q. 종료
 ```
 
 ### 페어 매칭
+
 - 과정와 미션을 출력하고 매칭하고자 하는 과정, 레벨, 미션을 입력 받는다.
+
 ```
 #############################################
 과정: 백엔드 | 프론트엔드
@@ -290,6 +319,7 @@ Q
 ```
 
 ---
+
 ## 🎱 프로그래밍 요구사항
 
 - 프로그램을 실행하는 시작점은 `Application`의 `main()`이다.
@@ -312,55 +342,60 @@ Q
 ### 프로그래밍 요구사항 - Randoms, Console
 
 - JDK에서 기본 제공하는 Random, Scanner API 대신 `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms`, `Console` API를 활용해 구현해야 한다.
-  - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `shuffle()`를 활용한다.
-  - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
+    - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `shuffle()`를 활용한다.
+    - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
 - 프로그램 구현을 완료했을 때 `src/test/java` 디렉터리의 `ApplicationTest`에 있는 모든 테스트 케이스가 성공해야 한다. **테스트가 실패할 경우 0점 처리한다.**
 
 ---
+
 ## ❗️ 힌트
+
 - 아래의 힌트를 참고하여 진행해도 좋다.
 - 반드시 아래의 힌트를 따라해야하는 것은 아니며 사용하지 않아도 되고 수정도 가능하다.
 
 ### 과정
+
 ```java
 public enum Course {
-  BACKEND("백엔드"),
-  FRONTEND("프론트엔드");
+	BACKEND("백엔드"),
+	FRONTEND("프론트엔드");
 
-  private String name;
+	private String name;
 
-  Course(String name) {
-    this.name = name;
-  }
+	Course(String name) {
+		this.name = name;
+	}
 
-  // 추가 기능 구현
+	// 추가 기능 구현
 }
 ```
 
 ### 레벨
+
 ```java
 public enum Level {
-  LEVEL1("레벨1"),
-  LEVEL2("레벨2"),
-  LEVEL3("레벨3"),
-  LEVEL4("레벨4"),
-  LEVEL5("레벨5");
+	LEVEL1("레벨1"),
+	LEVEL2("레벨2"),
+	LEVEL3("레벨3"),
+	LEVEL4("레벨4"),
+	LEVEL5("레벨5");
 
-  private String name;
+	private String name;
 
-  Level(String name) {
-    this.name = name;
-  }
+	Level(String name) {
+		this.name = name;
+	}
 
-  // 추가 기능 구현
+	// 추가 기능 구현
 }
 ```
 
 ### 크루
+
 ```java
 public class Crew {
-    private Course course;
-    private String name;
+	private Course course;
+	private String name;
 }
 
 ```
@@ -372,5 +407,6 @@ public class Crew {
 - 미션은 [java-pairmatching-precourse](https://github.com/woowacourse/java-pairmatching-precourse) 저장소를 Fork/Clone해 시작한다.
 - **기능을 구현하기 전에 java-pairmatching-precourse/docs/README.md 파일에 구현할 기능 목록을 정리**해 추가한다.
 - **Git의 커밋 단위는 앞 단계에서 README.md 파일에 정리한 기능 목록 단위**로 추가한다.
-    - [AngularJS Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 참고해 commit log를 남긴다.
+    - [AngularJS Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 참고해 commit log를
+      남긴다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고한다.
