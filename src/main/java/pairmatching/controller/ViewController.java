@@ -4,14 +4,20 @@ import static pairmatching.view.InputView.*;
 import static pairmatching.view.OutputView.*;
 
 import pairmatching.domain.Menu;
+import pairmatching.domain.Order;
 import pairmatching.validator.MenuValidator;
-import pairmatching.validator.OrderValidator;
 
 public class ViewController {
 
-	public String returnOrder() {
-		String order = getOrder();
-		OrderValidator.checkOrder(order);
+	public Order returnOrder() {
+		String orderInputString = getOrder();
+		Order order = null;
+		try {
+			order = Order.of(orderInputString);
+		} catch (IllegalArgumentException exception) {
+			printError(exception);
+			return returnOrder();
+		}
 		return order;
 	}
 
@@ -22,6 +28,7 @@ public class ViewController {
 			menu = MenuValidator.checkAndCreateMenu(menuInputString);
 		} catch (IllegalArgumentException exception) {
 			printError(exception);
+			return returnMenu();
 		}
 
 		return menu;
