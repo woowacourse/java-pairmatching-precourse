@@ -8,6 +8,11 @@ public class Pair {
     Level level;
     Mission mission;
 
+    public Pair(String firstCrew, String secondCrew) {
+        crews.add(firstCrew);
+        crews.add(secondCrew);
+    }
+
     public List<Crew> getCrews() {
         return crews;
     }

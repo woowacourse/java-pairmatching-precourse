@@ -1,9 +1,6 @@
 package pairmatching.repository;
 
-import pairmatching.model.Course;
-import pairmatching.model.Level;
-import pairmatching.model.Mission;
-import pairmatching.model.Pair;
+import pairmatching.model.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,5 +34,11 @@ public class PairRepository {
                 .filter(pair -> pair.getLevel().equals(level))
                 .filter(pair -> pair.getMission().equals(mission))
                 .count();
+    }
+
+    public static boolean alreadyMetPairInSameLevel(List<Crew> crews, Level level) {
+        return pairs.stream()
+                .filter(pair -> pair.getLevel().equals(level))
+                .anyMatch(pair -> pair.getCrews().equals(crews));
     }
 }
