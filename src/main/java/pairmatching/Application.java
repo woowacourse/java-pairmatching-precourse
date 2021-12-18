@@ -5,6 +5,6 @@ public class Application {
         PairMatching pairMatching = new PairMatching();
         do {
             pairMatching.run();
-        } while (!pairMatching.quit());
+        } while (pairMatching.run());
     }
 }
