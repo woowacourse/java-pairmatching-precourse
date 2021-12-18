@@ -6,6 +6,7 @@ public class Message {
 	public static final String EMPTY = "";
 	public static final String SPACE = " ";
 	public static final String TAP = "	";
+	public static final String COLON = " : ";
 
 	public static final String INPUT_OPTION = "기능을 선택하세요.\n"
 		+ "1. 페어 매칭\n"

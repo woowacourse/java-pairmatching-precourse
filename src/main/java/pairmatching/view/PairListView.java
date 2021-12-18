@@ -6,7 +6,12 @@ import pairmatching.model.PairList;
 public class PairListView {
 
 	public void print(PairList pairList) {
-		System.out.println(Message.OUTPUT_PAIR_MATCHING);
+		StringBuilder stringBuilder = new StringBuilder(Message.OUTPUT_PAIR_MATCHING);
 
+		for (String pair : pairList.getPairList()) {
+			stringBuilder.append("\n" + pair);
+		}
+
+		System.out.println(stringBuilder + "\n");
 	}
 }

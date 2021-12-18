@@ -2,6 +2,7 @@ package pairmatching.model;
 
 import pairmatching.view.AdvanceInformationView;
 import pairmatching.view.PairInfoView;
+import pairmatching.view.PairListView;
 
 public class PairMatching {
 
@@ -27,8 +28,8 @@ public class PairMatching {
 		PairInfoView pairInfoView = new PairInfoView();
 		PairInfo pairInfo = pairInfoView.getInput();
 		PairList pairList = new PairList(pairInfo);
-		// PairListView pairListView = new PairListView();
-		// pairListView.print(pairList);
+		PairListView pairListView = new PairListView();
+		pairListView.print(pairList);
 		// pairListMap.save(pairInfo, pairList);
 	}
 }
