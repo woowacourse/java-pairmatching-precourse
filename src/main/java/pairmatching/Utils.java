@@ -31,6 +31,8 @@ public class Utils {
     }
 
     public static void InputPairMatching() {
+        System.out.println("과정, 레벨, 미션을 선택하세요.");
+        System.out.println("ex) 백엔드, 레벨1, 자동차경주");
         String[] answer = Console.readLine().split(", ");
         if (answer.length == 3 && Course.JudgeCourse(answer[0])
                 && Level.JudgeLevel(answer[1], answer[2])) {
@@ -41,7 +43,7 @@ public class Utils {
 
     public static void BackEndCrewInput() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("../../resources/backend-crew.md"));
+            BufferedReader br = new BufferedReader(new FileReader("./src/main/resources/backend-crew.md"));
             while(true) {
                 String line = br.readLine();
                 if (line==null) break;
@@ -55,7 +57,7 @@ public class Utils {
 
     public static void frontEndCrewInput() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("../../resources/frontend-crew.md"));
+            BufferedReader br = new BufferedReader(new FileReader("./src/main/resources/frontend-crew.md"));
             while(true) {
                 String line = br.readLine();
                 if (line==null) break;
