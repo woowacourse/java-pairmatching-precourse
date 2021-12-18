@@ -9,4 +9,9 @@ public class InputView {
         System.out.println("3. 페어 초기화");
         System.out.println("Q. 종료");
     }
+
+    public void inputInformation(){
+        System.out.println("과정, 레벨, 미션을 선택하세요.");
+        System.out.println("ex) 백엔드, 레벨1, 자동차경주");
+    }
 }
