@@ -18,7 +18,6 @@ public class PairMatchingManagementApplication {
     private final static String FRONT_END = "프론트엔드";
     private final static String YES = "네";
     private final static String NO = "아니오";
-    private final static int NOT_EXIST_MATCHING_RECODE = 0;
     private final static char PAIR_SELECT = '2';
     private final static char PAIR_RESET = '3';
     private final static char EXIT = 'Q';
@@ -37,7 +36,7 @@ public class PairMatchingManagementApplication {
         outputSystem = dependencyInjection.outputSystem();
         constantDataStore = dependencyInjection.constantDataStore();
         matchingService = dependencyInjection.matchingService();
-        parsingUtility=dependencyInjection.parsingUtility();
+        parsingUtility = dependencyInjection.parsingUtility();
         matchingHistories = new HashMap<>();
     }
 
@@ -47,16 +46,10 @@ public class PairMatchingManagementApplication {
         CourseLevelMissionDto previousCourseLevelMissionDto = null;
         do {
             inputFunctionNumber = inputSystem.inputFunctionList();
-            if (inputFunctionNumber == PAIR_SELECT && previousCourseLevelMissionDto == null) {
-                outputSystem.printConsoleMessage(SystemErrorMessage.NOT_MATCHING_HISTORY.getMessage());
-                continue;
-            } else if (inputFunctionNumber == PAIR_SELECT) {
-                outputSystem.printConsoleMessage(matchingHistories.get(previousCourseLevelMissionDto));
+            if (!isGoNextInput(inputFunctionNumber, previousCourseLevelMissionDto)) {
                 continue;
             }
-            if (inputFunctionNumber == PAIR_RESET) {
-                matchingHistories = new HashMap<>();
-                outputSystem.printConsoleMessage(SystemInputMessage.RESET.getMessage());
+            if (isPreviousDataView(inputFunctionNumber)) {
                 continue;
             }
             String courseAndLevelAndMission = inputSystem.inputPropertyInput();
@@ -64,23 +57,54 @@ public class PairMatchingManagementApplication {
             crews = pickCrews(courseLevelMissionDto.getCourse());
             if (!matchingHistories.containsKey(courseLevelMissionDto)) {
                 String matchingResult = matchingService.matchTheCrews(crews, courseLevelMissionDto).toString();
-                if (matchingResult.toString().equals(SystemErrorMessage.NOT_MATCHING.getMessage())) {
+                if (isOccurredMatchingServiceError(matchingResult)) {
                     outputSystem.printConsoleMessage(matchingResult.toString());
                     continue;
                 }
-                previousCourseLevelMissionDto = courseLevelMissionDto;
-                matchingHistories.put(courseLevelMissionDto, SystemInputMessage.RESULT_PAIR_MATCHING.getMessage() + "\n" + matchingResult);
+                previousCourseLevelMissionDto = updateMatchingHistories(courseLevelMissionDto, matchingResult);
             } else {
                 String inputYesOrNo = inputSystem.inputYesOrNo();
                 if (inputYesOrNo.equals(YES)) {
-                    matchingHistories.put(courseLevelMissionDto, SystemInputMessage.RESULT_PAIR_MATCHING.getMessage() + "\n" + matchingService.matchTheCrews(crews, courseLevelMissionDto).toString());
-                    previousCourseLevelMissionDto = courseLevelMissionDto;
+                    String matchingResults = matchingService.matchTheCrews(crews, courseLevelMissionDto).toString();
+                    previousCourseLevelMissionDto = updateMatchingHistories(courseLevelMissionDto, SystemInputMessage.RESULT_PAIR_MATCHING.getMessage() + "\n" + matchingResults);
                 } else if (inputYesOrNo.equals(NO)) {
                     continue;
                 }
             }
             outputSystem.printConsoleMessage(matchingHistories.get(courseLevelMissionDto));
         } while (inputFunctionNumber != EXIT);
+    }
+
+    private CourseLevelMissionDto updateMatchingHistories(CourseLevelMissionDto courseLevelMissionDto, String matchingResult) {
+        matchingHistories.put(courseLevelMissionDto, SystemInputMessage.RESULT_PAIR_MATCHING.getMessage() + "\n" + matchingResult);
+        return courseLevelMissionDto;
+    }
+
+    private boolean isOccurredMatchingServiceError(String matchingResult) {
+        if (matchingResult.toString().equals(SystemErrorMessage.NOT_MATCHING.getMessage())) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isPreviousDataView(char inputFunctionNumber) {
+        if (inputFunctionNumber == PAIR_RESET) {
+            matchingHistories = new HashMap<>();
+            outputSystem.printConsoleMessage(SystemInputMessage.RESET.getMessage());
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isGoNextInput(char inputFunctionNumber, CourseLevelMissionDto previousCourseLevelMissionDto) {
+        if (inputFunctionNumber == PAIR_SELECT && previousCourseLevelMissionDto == null) {
+            outputSystem.printConsoleMessage(SystemErrorMessage.NOT_MATCHING_HISTORY.getMessage());
+            return false;
+        } else if (inputFunctionNumber == PAIR_SELECT) {
+            outputSystem.printConsoleMessage(matchingHistories.get(previousCourseLevelMissionDto));
+            return false;
+        }
+        return true;
     }
 
     private List<Crew> pickCrews(String course) {
