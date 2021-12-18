@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 public class PairProgramming {
@@ -15,30 +14,35 @@ public class PairProgramming {
     private String course;
     private String level;
     private String mission;
-    // 미션, 페어1, 페어2
-    private Map<String, Map<String, Set>> crewPairInfo = new LinkedHashMap();
-    // 페어1, 페어1의 페어 였던 사람들
-    private Map<String, Set> crewPairInfoHistory = new LinkedHashMap();
-    private List<String> backEndCrew = Arrays
-        .asList("백호", "태웅", "치수", "태섭", "대만", "준호", "대협", "덕규", "태산", "경태", "수겸", "현준", "준섭",
-        "한나", "소연", "호열", "대남", "용팔", "구식", "달재");
-    private List<String> frontEndCrew = Arrays
-        .asList("보노", "시저", "쉐리", "신디", "다비", "덴버", "이브", "제시", "라라", "린다", "리사", "니콜", "로드",
-        "윌터", "제키");
 
-    public PairProgramming(String targetCourse, String targetLevel, String targetMission) {
+    private static final List<String> LEVEL1MISSION = Arrays.asList("자동차경주", "로또", "숫자야구게임");
+    private static final List<String> LEVEL2MISSION = Arrays.asList("장바구니", "결제", "지하철노선도");
+    private static final List<String> LEVEL3MISSION = Arrays.asList("성능개선", "배포");
+
+    // 미션, 페어1, 페어2
+    private Map<String, Map<String, Set<String>>> crewPairInfo = new LinkedHashMap();
+    // 페어1, 페어1의 페어 였던 사람들
+    private Map<String, Set<String>> crewPairInfoHistory = new LinkedHashMap();
+
+    public PairProgramming(String targetCourse, String targetLevel, String targetMission, List<String> shuffledCrew) {
         this.course = targetCourse;
         this.level = targetLevel;
         this.mission = targetMission;
 
-        if (course.equals("백엔드")) {
-            initCrewPairInfo(mission);
-            createPairInfo();
+        validMission();
+        initCrewPairInfo(mission, shuffledCrew);
+        createPairInfo(shuffledCrew);
+
+    }
+
+    private void validMission() {
+        if (level.equals("1")) {
+
         }
     }
 
-    private void createPairInfo() {
-        List<String> shuffledCrew = Randoms.shuffle(backEndCrew);
+    private void createPairInfo(List<String> shuffledCrew) {
+
         int crewSize = shuffledCrew.size();
         createPairInfoBySize(shuffledCrew, crewSize);
 
@@ -86,13 +90,21 @@ public class PairProgramming {
         }
     }
 
-    private void initCrewPairInfo(String mission) {
+    private void initCrewPairInfo(String mission, List<String> shuffledCrew) {
         crewPairInfo.put(mission, new HashMap<>());
-        backEndCrew.forEach(crew -> crewPairInfo.get(mission).put(crew, new HashSet()));
-        backEndCrew.forEach(crew -> crewPairInfoHistory.put(crew, new HashSet()));
+        shuffledCrew.forEach(crew -> crewPairInfo.get(mission).put(crew, new HashSet()));
+        shuffledCrew.forEach(crew -> crewPairInfoHistory.put(crew, new HashSet()));
     }
 
-    public Map<String, Map<String, Set>> getCrewPairInfo() {
+    public String getCourse() {
+        return course;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public Map<String, Map<String, Set<String>>> crewPairInfo() {
         return crewPairInfo;
     }
 }
