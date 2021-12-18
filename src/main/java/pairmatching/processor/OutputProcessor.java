@@ -5,6 +5,7 @@ import java.util.List;
 import pairmatching.domain.Course;
 import pairmatching.domain.Level;
 import pairmatching.domain.Mission;
+import pairmatching.domain.PairCrews;
 
 public class OutputProcessor {
 	private static final String CROSS_HATCH_CONTINUOUS = "#############################################";
@@ -12,6 +13,7 @@ public class OutputProcessor {
 	private static final String MISSION_MESSAGE = "미션:\n";
 	private static final String PAIR_INTERFACE_SELECT_MESSAGE = "과정, 레벨, 미션을 선택하세요.";
 	private static final String PAIR_INTERFACE_EXAMPLE = "ex) 백엔드, 레벨1, 자동차경주";
+	private static final String PAIR_MATCHING_RESULT_MESSAGE = "페어 매칭 결과입니다.";
 
 	public void printPairInterface() {
 		System.out.println(CROSS_HATCH_CONTINUOUS);
@@ -64,5 +66,11 @@ public class OutputProcessor {
 			return "\n";
 		}
 		return "";
+	}
+
+	public void printPairCrews(PairCrews pairCrews) {
+		System.out.println(PAIR_MATCHING_RESULT_MESSAGE);
+		System.out.println(pairCrews);
+		System.out.println();
 	}
 }
