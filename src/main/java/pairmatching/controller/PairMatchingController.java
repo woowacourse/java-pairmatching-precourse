@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import pairmatching.domain.ContinuePairMatching;
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 import pairmatching.domain.Crews;
@@ -38,12 +39,15 @@ public class PairMatchingController {
 				continue;
 			}
 			PairMatching pairMatching = getMatchingInfo();
+			Optional<PairMatching> findPairMatching = pairMatchings.find(pairMatching);
 
 			if (matchingFunction == MatchingFunction.MATCHING) {
+				if (!possiblePairMatching(findPairMatching)) {
+					continue;
+				}
 				makeMatching(crews, pairMatching.getCourse());
 			}
 			if (matchingFunction == MatchingFunction.LOOKUP) {
-				Optional<PairMatching> findPairMatching = pairMatchings.find(pairMatching);
 				if (containsPairMatching(findPairMatching)) {
 					OutputView.printPairResult(findPairMatching.get());
 				}
@@ -80,6 +84,24 @@ public class PairMatchingController {
 		} catch (IllegalArgumentException e) {
 			OutputView.printErrorMessage(e.getMessage());
 			return getMatchingInfo();
+		}
+	}
+
+	public boolean possiblePairMatching(Optional<PairMatching> pairMatching) {
+		if (pairMatching.isPresent()) {
+			ContinuePairMatching continuePairMatching = getContinuePairMatching();
+			return continuePairMatching == ContinuePairMatching.YES;
+		}
+		return true;
+	}
+
+	public ContinuePairMatching getContinuePairMatching() {
+		try {
+			String continuePairMatching = InputView.getContinuePairMatching();
+			return ContinuePairMatching.fromString(continuePairMatching);
+		} catch (IllegalArgumentException e) {
+			OutputView.printErrorMessage(e.getMessage());
+			return getContinuePairMatching();
 		}
 	}
 

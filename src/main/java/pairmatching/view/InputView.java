@@ -11,6 +11,8 @@ public class InputView {
 	public static final String FUNCTION_EXIT = "Q. 종료";
 	public static final String INFO_PAIR_MATCHING = "과정, 레벨, 미션을 선택하세요.\n"
 		+ "ex) 백엔드, 레벨1, 자동차경주";
+	public static final String INFO_CONTINUE_PAIR_MATCHING = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
+		+ "네 | 아니오";
 
 	public static String getFunction() {
 		System.out.println(INFO_FUNCTION);
@@ -23,6 +25,11 @@ public class InputView {
 
 	public static String getPairMathing() {
 		System.out.println(INFO_PAIR_MATCHING);
+		return Console.readLine();
+	}
+
+	public static String getContinuePairMatching() {
+		System.out.println(INFO_CONTINUE_PAIR_MATCHING);
 		return Console.readLine();
 	}
 }

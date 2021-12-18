@@ -8,4 +8,5 @@ public class ErrorMessage {
 	public static final String INPUT_LEVEL_NONE = "없는 레벨입니다.";
 	public static final String INPUT_MISSION_NONE = "없는 미션입니다.";
 	public static final String INPUT_LEVEL_MISSION_NONE_MATCH = "해당 레벨에 맞는 미션을 입력해주세요.";
+	public static final String INPUT_CONTINUE_PAIR_MATCHING_NONE = "네 또는 아니오로 답해주세요.";
 }
