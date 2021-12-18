@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import pairmatching.domain.PairProgrammings;
 import pairmatching.view.InputView;
@@ -30,28 +31,38 @@ public class PairProgrammingController {
         while (true) {
             String mainFunction = InputView.mainFunction();
             if (mainFunction.equals("1")) {
-                requirePairProgrammingInfos();
-                enrollNewProgram();
-                OutputView.printPairInfo(pairProgrammings.getPairInfo(targetCourse, targetLevel, targetMission), shuffledCrew);
+                enrollPair();
             }
             if (mainFunction.equals("2")) {
-                requirePairProgrammingInfos();
-                Map<String, Set<String>> pairInfo;
-                try {
-                    pairInfo = pairProgrammings
-                        .getPairInfo(targetCourse, targetLevel, targetMission);
-                } catch (IllegalArgumentException exception) {
-                    System.out.println(exception.getMessage());
-                    continue;
-                }
-
-                OutputView.printPairInfo(pairInfo, shuffledCrew);
+                viewPairInfo();
+            }
+            if (mainFunction.equals("3")) {
+                pairProgrammings = new PairProgrammings();
             }
             if (mainFunction.equals("Q")) {
                 break;
             }
-
         }
+    }
+
+    private void viewPairInfo() {
+        requirePairProgrammingInfos();
+        Map<String, Set<String>> pairInfo = null;
+        try {
+            pairInfo = pairProgrammings
+                .getPairInfo(targetCourse, targetLevel, targetMission);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+        if (!Objects.isNull(pairInfo)) {
+            OutputView.printPairInfo(pairInfo, shuffledCrew);
+        }
+    }
+
+    private void enrollPair() {
+        requirePairProgrammingInfos();
+        enrollNewProgram();
+        OutputView.printPairInfo(pairProgrammings.getPairInfo(targetCourse, targetLevel, targetMission), shuffledCrew);
     }
 
     private void enrollNewProgram() {
