@@ -52,8 +52,6 @@ public class PairMatchingService {
 		}
 		matchResult = matchOdd(crewNames);
 		outputView.printPair(matchResult);
-		//matchOdd();
-
 	}
 
 	public void matchBackEnd(String[] courseInfo) {
@@ -83,7 +81,6 @@ public class PairMatchingService {
 	}
 
 	public ArrayList<ArrayList<String>> matchOdd(List<String> crewNames) {
-
 		ArrayList<ArrayList<String>> matchingInfo = new ArrayList<ArrayList<String>>();
 		for (int i = 0; i < crewNames.size() - 3; i += 2) {
 			ArrayList<String> rowItems = new ArrayList<>();
