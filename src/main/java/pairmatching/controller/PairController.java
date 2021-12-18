@@ -11,6 +11,7 @@ import pairmatching.utils.Validator;
 import java.util.ArrayList;
 import java.util.List;
 
+import static pairmatching.utils.InputConstants.MATCHING_RESULT_GUIDE;
 import static pairmatching.view.InputView.inputDetails;
 import static pairmatching.view.InputView.inputReMatch;
 
@@ -32,7 +33,13 @@ public class PairController {
         MatchingInfo matchingInfo = new MatchingInfo(arr[0], arr[1], arr[2]);
         if (!validator.isDuplicatedInfo(matchingInfos, matchingInfo)
                 || inputReMatch().equals(ANSWER_YES)) {
-            matchPair(matchingInfo);
+            try {
+                matchPair(matchingInfo);
+                printPairResult(matchingInfo);
+
+            } catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -42,6 +49,11 @@ public class PairController {
 
     public void initialPair() {
 
+    }
+
+    private void printPairResult(MatchingInfo matchingInfo) {
+        System.out.println(MATCHING_RESULT_GUIDE);
+        System.out.println(matchingInfo.toString());
     }
 
     private void matchPair(MatchingInfo matchingInfo) {

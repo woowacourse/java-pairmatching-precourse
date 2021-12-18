@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pair {
+    private final static String SEPARATOR = " , ";
     private List<String> members = new ArrayList<>();
 
     public Pair(String member1, String member2) {
@@ -26,5 +27,10 @@ public class Pair {
     public boolean isEquals(Pair pair) {
         return getMemberCnt() == pair.getMemberCnt()
                 && members.containsAll(pair.getMembers());
+    }
+
+    @Override
+    public String toString() {
+        return String.join(SEPARATOR, members);
     }
 }

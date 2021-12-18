@@ -4,8 +4,10 @@ import pairmatching.model.enums.Course;
 import pairmatching.model.enums.Level;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MatchingInfo {
+    private static final String SEPARATOR = "\n";
     private List<Pair> matchingPairs;
     private Course course;
     private Level level;
@@ -48,4 +50,14 @@ public class MatchingInfo {
                 && this.level == level;
     }
 
+    @Override
+    public String toString() {
+        return String.join(SEPARATOR, convertPairToStringList());
+    }
+
+    private List<String> convertPairToStringList() {
+        return matchingPairs.stream()
+                .map(Pair::toString)
+                .collect(Collectors.toList());
+    }
 }
