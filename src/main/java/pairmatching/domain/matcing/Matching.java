@@ -15,6 +15,10 @@ public class Matching {
 	private Mission mission;
 	private List<Pair> pairs;
 
+	public List<Pair> getPairs() {
+		return pairs;
+	}
+
 	public Matching(Course course, Level level, Mission mission) {
 		this.course = course;
 		this.level = level;
