@@ -26,12 +26,6 @@ public class InputValidator {
         validateLevelAndMissionLevel(levelByInput, missionLevel);
     }
 
-    public static void validateYesOrNo(String input) {
-        if(!input.equals(YES) && !input.equals(NO)) {
-            throw new IllegalArgumentException(ErrorMessages.PREFIX_ERROR + ErrorMessages.ERROR_INVALID_INPUT);
-        }
-    }
-
     private static void validateLevelAndMissionLevel(Level levelByInput, Level missionLevel) {
         if(levelByInput != missionLevel) {
             throw new IllegalArgumentException(ErrorMessages.PREFIX_ERROR + ErrorMessages.ERROR_INVALID_INPUT);
