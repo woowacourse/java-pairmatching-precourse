@@ -49,12 +49,32 @@ public class ValidationImplementation implements Validation {
             throw new IllegalArgumentException();
         }
         String course = courseAndLevelAndMission[0];
+        if (isContainsEmpty(course)) {
+            throw new IllegalArgumentException();
+        }
         String level = courseAndLevelAndMission[1];
         String mission = courseAndLevelAndMission[2];
+        if (!isContainsFirstEmpty(level) && !isContainsEmpty(mission)) {
+            throw new IllegalArgumentException();
+        }
         if (!(isContainCourse(course) && isContainLevel(level) && isContainLevelMission(mission))) {
             throw new IllegalArgumentException();
         }
         return true;
+    }
+
+    private boolean isContainsFirstEmpty(String levelAndMission) {
+        if (levelAndMission.charAt(0) == ' ') {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isContainsEmpty(String course) {
+        if (course.indexOf(' ') != -1) {
+            return true;
+        }
+        return false;
     }
 
     @Override

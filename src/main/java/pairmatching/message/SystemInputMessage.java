@@ -14,7 +14,7 @@ public enum SystemInputMessage {
             "  - 레벨3: \n" +
             "  - 레벨4: 성능개선 | 배포\n" +
             "  - 레벨5: "),
-    SELECT_PROPERTY_INPUT("\n과정, 레벨, 미션을 선택하세요.\n" +
+    SELECT_PROPERTY_INPUT("과정, 레벨, 미션을 선택하세요.\n" +
             "ex) 백엔드, 레벨1, 자동차경주"),
     RETRY_MATCHING("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n" +
             "네 | 아니오"),
