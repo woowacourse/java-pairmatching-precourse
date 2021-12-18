@@ -4,10 +4,18 @@ import java.util.List;
 
 public class PairMatch {
 	private Match match;
-	private List<Pair> pair;
+	private List<Pair> pairs;
 
-	public PairMatch(Match match, List<Pair> pair) {
+	public PairMatch(Match match, List<Pair> pairs) {
 		this.match = match;
-		this.pair = pair;
+		this.pairs = pairs;
+	}
+
+	public Match getMatch() {
+		return match;
+	}
+
+	public List<Pair> getPairs() {
+		return pairs;
 	}
 }

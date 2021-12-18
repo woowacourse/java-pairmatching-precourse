@@ -7,10 +7,12 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.domain.PairMatch;
 import pairmatching.dto.ChoiceDto;
 import pairmatching.service.PairmatchingService;
 import pairmatching.validator.InputValidator;
 import pairmatching.view.InputView;
+import pairmatching.view.OutputView;
 
 public class PairmatchingController {
 
@@ -34,7 +36,8 @@ public class PairmatchingController {
 	private static String toMatching() {
 		String input = InputView.inputMatching();
 		ChoiceDto choiceDto = new ChoiceDto(input);
-		pairmatchingService.makePairs(choiceDto);
+		PairMatch lastPairMatch = pairmatchingService.makePairs(choiceDto);
+		OutputView.outputPairMatchingResult(lastPairMatch);
 		return "";
 	}
 

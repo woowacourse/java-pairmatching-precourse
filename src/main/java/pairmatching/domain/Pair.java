@@ -18,10 +18,13 @@ public class Pair {
 
 	@Override
 	public String toString() {
-		return "Pair{" +
-			"crewOne=" + crewOne +
-			", crewAnother=" + crewAnother +
-			", crewThird=" + crewThird +
-			'}';
+		StringBuffer stringBuffer = new StringBuffer();
+		stringBuffer.append(crewOne);
+		stringBuffer.append(" : ");
+		stringBuffer.append(crewAnother);
+		if (crewThird != null) {
+			stringBuffer.append(crewThird);
+		}
+		return stringBuffer.toString();
 	}
 }
