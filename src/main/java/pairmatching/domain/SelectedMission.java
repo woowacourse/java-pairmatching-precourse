@@ -1,6 +1,9 @@
 package pairmatching.domain;
 
+import java.util.List;
 import java.util.Objects;
+
+import pairmatching.Input;
 
 public class SelectedMission {
 	private final Course course;
@@ -11,6 +14,17 @@ public class SelectedMission {
 		this.course = course;
 		this.level = level;
 		this.mission = mission;
+	}
+
+	private boolean isBackend() {
+		return course == Course.BACKEND;
+	}
+
+	public List<String> getCrews() {
+		if (this.isBackend()) {
+			return Input.readBackendCrewName();
+		}
+		return Input.readFrontendCrewName();
 	}
 
 	@Override

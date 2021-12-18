@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.domain.Function;
 import pairmatching.domain.SelectedMission;
 
@@ -44,8 +45,8 @@ public class PairMatchingController {
 				matchingList.remove(mission);
 			}
 		}
-		List<String> backendCrew = Input.readBackendCrewName();
-		List<String> frontendCrew = Input.readFrontendCrewName();
+		List<String> crew = mission.getCrews();
+		Randoms.shuffle(crew);
 	}
 
 	public boolean isMatchingExist(SelectedMission mission) {
