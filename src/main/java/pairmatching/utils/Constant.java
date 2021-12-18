@@ -9,6 +9,10 @@ public class Constant {
 	public static final int POSITION_LEVEL = 2;
 	public static final int POSITION_MISSION = 3;
 	
+	public static final String COURSE_MATCHING_NUMBER = "1";
+	public static final String COURSE_INQUERY_NUMBER = "2";
+	public static final String COURSE_INTI_NUMBER = "3";
+	
 	public static final String COURSE_MATCHING = "페어 매칭";
 	public static final String COURSE_INQUERY = "페어 조회";
 	public static final String COURSE_INIT = "페어 초기화";
