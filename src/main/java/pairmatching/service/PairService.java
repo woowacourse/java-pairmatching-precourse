@@ -19,11 +19,12 @@ public class PairService {
     private static final String INVALID_COURSE_NAME = "존재하지 않는 과정입니다.";
     private static final String INVALID_LEVEL_NAME = "존재하지 않는 레벨입니다.";
     private static final String INVALID_MISSION_NAME = "존재하지 않는 미션입니다.";
-    private static final int NOT_EXIST = 1;
+    private static final int NOT_EXIST = 0;
 
-    public boolean tryMatching(String input) {
+    public boolean matchPairs(String input) {
         boolean canMatch = true;
         MatchInfo matchInfo = getMatchInfo(input);
+
         List<String> crewNames = CrewRepository.getCrewNamesByCourse(matchInfo.getCourse());
         List<List<String>> pairNamesList = null;
         for (int i = 0; i < 3; i++) {
@@ -46,7 +47,6 @@ public class PairService {
             List<Crew> crews = getCrewsByName(pairNames);
             PairRepository.addPair(crews, matchInfo);
         }
-        System.out.println(PairRepository.pairs());
     }
 
     private List<List<String>> createPairs(List<String> shuffledCrew, Level level) {
@@ -58,7 +58,6 @@ public class PairService {
             if (shuffledCrew.size() % 2 != 0 && i == shuffledCrew.size() - 3) {
                 pairNames.add(shuffledCrew.get(i+2));
             }
-            Collections.sort(pairNames);
             pairNamesList.add(pairNames);
         }
         return pairNamesList;
@@ -81,10 +80,10 @@ public class PairService {
     }
 
 
-    public boolean pairsExist(String input) {
+    public boolean usedMatchInfo(String input) {
         MatchInfo matchInfo = getMatchInfo(input);
-        return PairRepository.countPairsByAll(matchInfo.getCourse(), matchInfo.getLevel(), matchInfo.getMission())
-                != NOT_EXIST;
+        return PairRepository.countPairsByAll(
+                matchInfo.getCourse(), matchInfo.getLevel(), matchInfo.getMission()) != NOT_EXIST;
     }
 
     private MatchInfo getMatchInfo(String input) {
@@ -102,5 +101,10 @@ public class PairService {
     public List<Pair> getMatching(String input) {
         MatchInfo matchInfo = getMatchInfo(input);
         return PairRepository.findPairsByMatchInfo(matchInfo);
+    }
+
+    public void deletePairs(String input) {
+        MatchInfo matchInfo = getMatchInfo(input);
+        PairRepository.deletePairsByMatchInfo(matchInfo);
     }
 }

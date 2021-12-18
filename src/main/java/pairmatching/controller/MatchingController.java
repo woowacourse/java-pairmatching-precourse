@@ -23,19 +23,16 @@ public class MatchingController {
         String input;
         MatchingView.printMatchingPrompt();
         input = inputMatchingCondition();
-        if (pairService.tryMatching(input)) {
-            OutputView.printMatchingResult(pairService.getMatching(input));
-        }
-    }
-
-    private boolean shouldRematch(String input) {
-        String answer = null;
-        if (pairService.pairsExist(input)) {
+        if (pairService.usedMatchInfo(input)) {
             MatchingView.printShouldRematch();
-            answer = InputView.getInput();
+            String answer = InputView.getInput();
+            if (!answer.equals("네")) {
+                return;
+            }
+            pairService.deletePairs(input);
         }
-        return false;
-        //TODO: continue or not
+        pairService.matchPairs(input);
+        OutputView.printMatchingResult(pairService.getMatching(input));
     }
 
     private String inputMatchingCondition() {

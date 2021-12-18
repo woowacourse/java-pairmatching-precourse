@@ -36,7 +36,7 @@ public class MainController {
             MatchingController.getInstance().run();
         }
         if (mode.equals(REFERENCE_MODE)) {
-            System.out.println("2");
+
         }
         if (mode.equals(CLEAR_MODE)) {
             System.out.println("3");

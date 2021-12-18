@@ -55,4 +55,10 @@ public class PairRepository {
                 .filter(pair -> pair.getMission().equals(matchInfo.getMission()))
                 .collect(Collectors.toList());
     }
+
+    public static void deletePairsByMatchInfo(MatchInfo matchInfo) {
+        pairs.removeIf(pair -> pair.getCourse().equals(matchInfo.getCourse()) &&
+                pair.getLevel().equals(matchInfo.getLevel()) &&
+                pair.getMission().equals(matchInfo.getMission()));
+    }
 }
