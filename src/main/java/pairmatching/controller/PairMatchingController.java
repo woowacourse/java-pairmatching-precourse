@@ -1,5 +1,8 @@
 package pairmatching.controller;
 
+import java.util.Arrays;
+
+import pairmatching.domain.Course;
 import pairmatching.domain.TechCourse;
 import pairmatching.util.InputValidator;
 import pairmatching.view.InputView;
@@ -17,17 +20,27 @@ public class PairMatchingController {
 		while (true) {
 			String mainCommend = getMainCommend();
 			if (mainCommend.equals(MATCH_PAIR)) {
-				matchPair();
+				matchPair(techCourse);
 			}
 			if (mainCommend.equals(LOOKUP_PAIR)) {
-				lookUpPair();
+				// lookUpPair();
 			}
 			if (mainCommend.equals(RESET_PAIR)) {
-				resetPair();
+				// resetPair();
 			}
 			if (mainCommend.equals(TERMINATION)) {
 				return;
 			}
+		}
+	}
+
+	private void matchPair(TechCourse techCourse) {
+		String mission = InputView.inputMission();
+		try {
+			techCourse.matchPair(mission);
+		} catch (IllegalArgumentException e) {
+			OutputView.showError(e.getMessage());
+			matchPair(techCourse);
 		}
 	}
 
