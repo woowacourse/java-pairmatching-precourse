@@ -56,8 +56,11 @@ public class PairMatching {
 			if (userChoice.equals("아니오")) {
 				return;
 			}
-		}
 
+			if (!userChoice.equals("네")) {
+				throw new IllegalArgumentException("없는 선택지입니다.");
+			}
+		}
 		matchPair(pairInfo);
 	}
 
