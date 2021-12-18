@@ -56,7 +56,8 @@ public class Controller {
 			return;
 		}
 		if (function == Function.INIT) {
-			// TODO: 페어 초기화
+			runInitFunction();
+			return;
 		}
 		chooseMission(function);
 	}
@@ -91,5 +92,10 @@ public class Controller {
 
 	private void runInquiryFunction(Course course, Level level, Mission mission) {
 		outputView.printInquiryResult(pairManager.inquiryPair(course, level, mission));
+	}
+
+	private void runInitFunction() {
+		MatchedPairsRepository.init();
+		outputView.printInitResult();
 	}
 }

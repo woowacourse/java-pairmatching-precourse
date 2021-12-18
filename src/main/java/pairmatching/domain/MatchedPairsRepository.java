@@ -21,4 +21,8 @@ public class MatchedPairsRepository {
 	public static void add(MatchedPairs matchedPairs) {
 		matchedPairsList.add(matchedPairs);
 	}
+
+	public static void init() {
+		matchedPairsList.clear();
+	}
 }
