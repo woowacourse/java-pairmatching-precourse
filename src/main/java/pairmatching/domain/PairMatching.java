@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static pairmatching.constant.ErrorMessage.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,25 +12,22 @@ public class PairMatching {
 	private HashMap<String, String> matchingLog;
 	private CrewGroup crewGroup = new CrewGroup();
 
-	public PairMatching() {
-	}
-
 	public void run(Curriculum curriculum) {
-		List<String> crews = getCrews();
+		List<String> crews = getCrews(curriculum.getLevel());
 		if (isEmpty(curriculum)) {
 			matchingPair.put(curriculum, crews);
 			logMeet(crews, curriculum.getLevel());
 		}
 	}
 
-	private List<String> getCrews() {
+	private List<String> getCrews(String level) {
 		for (int i = 0; i < 3; i++) {
 			List<String> shuffledCrews = crewGroup.getShuffledCrews();
-			if (!checkMetBefore(shuffledCrews)) {
+			if (!checkMetBefore(shuffledCrews, level)) {
 				return shuffledCrews;
 			}
 		}
-		throw new IllegalArgumentException("3회 초과");
+		throw new IllegalArgumentException(NO_MATCHING_WAY);
 	}
 
 	public boolean isEmpty(Curriculum curriculum) {
@@ -62,15 +61,23 @@ public class PairMatching {
 			.filter(cur -> cur.getKey().equals(curriculum))
 			.map(Map.Entry::getValue)
 			.findAny()
-			.orElseThrow(() -> new IllegalArgumentException("못찾았습니다."));
+			.orElseThrow(() -> new IllegalArgumentException(DEFAULT));
 	}
 
-	private boolean checkMetBefore(List<String> crews) {
-
+	private boolean checkMetBefore(List<String> crews, String level) {
+		for (String name : crews) {
+			Optional<String> met = matchingLog.keySet().stream()
+				.filter(key -> key.equals(name + level))
+				.findAny();
+			if (met.isPresent()) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void clearMatching() {
 		matchingPair = new HashMap<>();
-
+		matchingLog = new HashMap<>();
 	}
 }
