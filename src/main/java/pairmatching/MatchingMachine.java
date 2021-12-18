@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import pairmatching.domain.Course;
@@ -58,6 +59,12 @@ public class MatchingMachine {
 		if(mission.getPairCrews() == null) {
 			pairsCrew = matching.matching(crewNames);
 			OutputView.printPairCrews(pairsCrew);
+		}
+		if(mission.getPairCrews() != null){
+			Set<Map> prePairCrew = mission.getPairCrews();
+			for(int i = 0; i < pairsCrew.size(); i++) {
+				;
+			}
 		}
 	}
 }
