@@ -9,7 +9,7 @@ public class Application {
             Executor executor = new Executor();
             executor.execute();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }
