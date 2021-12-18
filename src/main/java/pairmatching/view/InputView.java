@@ -48,10 +48,6 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static String fairMatchingMenu() {
-
-    }
-
     public static String reMatching() {
         System.out.println(ASK_REMATCHING_MSG);
         System.out.println(REMATCHING_OPTION_MSG);
