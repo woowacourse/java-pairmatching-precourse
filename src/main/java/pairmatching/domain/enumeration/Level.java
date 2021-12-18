@@ -21,6 +21,13 @@ public enum Level {
         this.missionList = missionList;
     }
 
+    public static Level findLevelByInput(String input) {
+        return Arrays.stream(Level.values())
+                .filter(levelName -> levelName.equals(input))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessages.PREFIX_ERROR + ErrorMessages.ERROR_INVALID_INPUT));
+    }
+
     public static Level findLevelByMission(Mission mission) {
         return Arrays.stream(Level.values())
                 .filter(level -> level.hasMission(mission))
