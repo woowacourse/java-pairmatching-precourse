@@ -22,6 +22,10 @@ public class Crew {
         }
     }
 
+    public boolean isEqualsCourse(Course course) {
+        return this.course.equals(course);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
