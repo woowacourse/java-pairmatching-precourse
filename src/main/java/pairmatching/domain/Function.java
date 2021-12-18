@@ -10,6 +10,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.domain.unit.Course;
 import pairmatching.domain.unit.Level;
 import pairmatching.domain.unit.Mission;
+import pairmatching.exception.GlobalException;
 import pairmatching.view.OutputView;
 
 public class Function {
@@ -29,6 +30,8 @@ public class Function {
 	}
 
 	public boolean handleFunction(String[] information) throws IOException {
+		GlobalException.validateMatchingInformation(information);
+
 		String course = information[COURSE];
 		String level = information[LEVEL];
 		String mission = information[MISSION];
