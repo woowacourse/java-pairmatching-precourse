@@ -6,7 +6,6 @@ import java.util.List;
 import pairmatching.exception.ErrorMessage;
 
 public class MissionRepository {
-
     private static final List<Mission> missions = new ArrayList<>();
 
     public static void addMission(Mission mission) {
