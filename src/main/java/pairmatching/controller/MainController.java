@@ -10,6 +10,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MainController {
+    private static final String PRINT_Initialization = "\n초기화 되었습니다.";
+    private static final String BASE_NO = "아니오";
+    private static final String PAIR_RESULT = "\n페어 매칭 결과입니다.";
+
+
     Crews pairmatching;
     HashMap<String, List<String>> pairInfo;
     HashMap<String, List<List<String>>> duplicateCheck;
@@ -40,7 +45,7 @@ public class MainController {
     }
 
     private void pairInitialization() {
-        System.out.println("\n초기화 되었습니다.");
+        System.out.println(PRINT_Initialization);
         pairInfo = new HashMap<>();
     }
 
@@ -50,6 +55,7 @@ public class MainController {
         String inputProcess = Input.inputProcess();
         if (pairInfo.containsKey(inputProcess)) {
             printPairResult(pairInfo.get(inputProcess));
+            return;
         }
     }
 
@@ -69,11 +75,11 @@ public class MainController {
                 if (!pairInfo.containsKey(inputProcess)) {
                     setPair(inputProcess);
                 }
-                if (!inputData.equals("아니오")) {
+                if (!inputData.equals(BASE_NO)) {
                     printPairResult(pairInfo.get(inputProcess));
                     return;
                 }
-                if (inputData.equals("아니오")) {
+                if (inputData.equals(BASE_NO)) {
                     continue;
                 }
             } catch (IllegalArgumentException e) {
@@ -83,13 +89,13 @@ public class MainController {
     }
 
     private void printPairResult(List<String> result) {
-        System.out.println("\n페어 매칭 결과입니다.");
+        System.out.println(PAIR_RESULT);
         printMatchingList(result);
         System.out.println();
     }
 
     private void selectMatchingRestart(String inputData, String inputProcess) {
-        if (inputData.equals("아니오")) {
+        if (inputData.equals(BASE_NO)) {
             return;
         }
         setPair(inputProcess);
