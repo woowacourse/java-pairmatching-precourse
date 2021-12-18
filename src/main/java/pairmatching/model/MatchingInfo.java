@@ -25,6 +25,10 @@ public class MatchingInfo {
         return course;
     }
 
+    public void setMatchingPairs(List<Pair> matchingPairs) {
+        this.matchingPairs = matchingPairs;
+    }
+
     public Level getLevel() {
         return level;
     }
@@ -38,4 +42,10 @@ public class MatchingInfo {
                 && this.level == matchingInfo.getLevel()
                 && this.mission.equals(matchingInfo.getMission());
     }
+
+    public boolean isSameCourseAndLevel(Course course, Level level) {
+        return this.course == course
+                && this.level == level;
+    }
+
 }
