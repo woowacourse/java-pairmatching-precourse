@@ -55,7 +55,7 @@ public class Validator {
 		String level = input.get(1);
 		String mission = input.get(2);
 
-		if(!Course.contains(course)){
+		if (!Course.contains(course)) {
 			throw new IllegalArgumentException(INVALID_COURSE_STRING);
 		}
 		if (!Level.contains(level)) {
@@ -68,14 +68,20 @@ public class Validator {
 	}
 
 	public static void checkValidYesOrNo(String input) {
-		if(!YES_OR_NO.contains(input)){
+		if (!YES_OR_NO.contains(input)) {
 			throw new IllegalArgumentException(INVALID_INPUT);
 		}
 	}
 
 	public static void checkCrewsSize(List<Crew> crews) {
-		if(crews.size()<LEAST_CREW){
+		if (crews.size() < LEAST_CREW) {
 			throw new IllegalArgumentException(NOT_ENOUGH_CREWS);
+		}
+	}
+
+	public static void checkMatchingResultExist(List<Crew> crews) {
+		if (crews == null) {
+			throw new IllegalArgumentException("페어 매칭 결과가 존재하지 않습니다.");
 		}
 	}
 }

@@ -89,7 +89,12 @@ public class PairController {
 	private static void printResult(List<String> input) {
 		PairKey key = getKey(input);
 		List<Crew> crews = PairMap.getCrewsByKey(key);
-		PairView.printPair(crews);
+		try {
+			Validator.checkMatchingResultExist(crews);
+			PairView.printPair(crews);
+		} catch(IllegalArgumentException e){
+			ErrorMessage.print(e.getMessage());
+		}
 	}
 
 	private static PairKey getKey(List<String> input) {
