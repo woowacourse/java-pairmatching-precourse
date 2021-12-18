@@ -18,6 +18,8 @@ import pairmatching.domain.Crew;
 import pairmatching.domain.CrewInfoReader;
 import pairmatching.domain.Level;
 import pairmatching.domain.Matching;
+import pairmatching.domain.MatchingFactory;
+import pairmatching.domain.MatchingType;
 import pairmatching.domain.Mission;
 import pairmatching.domain.Pair;
 
@@ -29,7 +31,7 @@ public class Application {
 
         inputMissionByLevel();
 
-        Set<Matching> matchingSet = new HashSet<>();
+        Set<MatchingType> matchingSet = new HashSet<>();
         while(true) {
             printChooseFunction();
             input = readLine();
@@ -49,31 +51,48 @@ public class Application {
                 String courseName = data[0];
                 String level = data[1];
                 String mission = data[2];
-                Matching matching = new Matching(Course.findByName(courseName), Level.findByName(level), mission);
+                MatchingType matchingType = new MatchingType(Course.findByName(courseName), Level.findByName(level), mission);
                 System.out.println(courseName + ", " + level + ", " + mission);
 
                 // 매칭 정보가 이미 있을 경우
-                if (!matchingSet.add(matching)) {
-                    System.out.println("이미 매칭 정보가 있습니다.");
-                    continue;
+                if (!matchingSet.add(matchingType)) {
+                    System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"+
+                        "네 | 아니오");
+                    input =  readLine();
+                    if(input.equalsIgnoreCase("아니오")){
+                        continue;
+                    }
                 }
-                List<String> pairList = null;
+
                 // 없을 경우
                 if (courseName.equalsIgnoreCase(BACKEND.getName())) {
-                    matching.insertMatchingList(BACKEND);
+
+                    // matching.insertMatchingList(BACKEND);
                 } else if (courseName.equalsIgnoreCase(FRONTEND.getName())) {
-                    matching.insertMatchingList(FRONTEND);
+                    MatchingFactory.insertMatchingList(matchingType, FRONTEND);
+                    // matching.insertMatchingList(FRONTEND);
                 }
 
-                System.out.println(matching);
+                System.out.println(MatchingFactory.getMatching(matchingType));
 
             } else if (op == 2) { // 페어 조회
+                input = readLine(); // 프론트엔드, 레벨1, 자동차경주
+                String[] data = input.split(", ");
+                String courseName = data[0];
+                String level = data[1];
+                String mission = data[2];
+                MatchingType matchingType = new MatchingType(Course.findByName(courseName), Level.findByName(level), mission);
+                System.out.println(courseName + ", " + level + ", " + mission);
 
+                // 매칭 결과가 있을 경우
+                if(matchingSet.contains(matchingType)){
+                    System.out.println(MatchingFactory.getMatching(matchingType));
+                    continue;
+                }
+                System.out.println("매칭 결과가 없습니다.");
             } else if (op == 3) { // 페어 초기
-
+                matchingSet.clear();
             }
-            // pairMatching(BACKEND);
-            // pairMatching(FRONTEND);
         }
     }
 

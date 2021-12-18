@@ -6,38 +6,17 @@ import java.util.List;
 import java.util.Objects;
 
 public class Matching {
-	private Course course;
-	private String mission;
-	private Level level;
+	private MatchingType type;
 	private Pair pair;
 	private List<String> matchingList;
 
-	public Matching(Course course, Level level, String mission) {
+	public Matching(MatchingType type) {
 		pair = new Pair();
-		this.course = course;
-		this.mission = mission;
-		this.level = level;
+		this.type = type;
 	}
 
 	public void insertMatchingList(Course course){
 		matchingList = pairMatching(course);
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		Matching matching = (Matching)o;
-		return course == matching.course &&
-			Objects.equals(mission, matching.mission) &&
-			level == matching.level;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(course, mission, level);
 	}
 
 	@Override
