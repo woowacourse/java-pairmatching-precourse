@@ -4,7 +4,7 @@ public class InputView {
     public static void splitString(String input) {
         isValidNumPoint(input);
         String[] result = input.split(",");
-        isValidPairMatching(result);
+//        isValidPairMatching(result);
     }
 
     private static void isValidPairMatching(String[] result) {
