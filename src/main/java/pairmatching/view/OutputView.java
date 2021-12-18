@@ -10,7 +10,7 @@ import pairmatching.domain.Mission;
 public class OutputView {
 	private static final String MAIN_TITLE = "기능을 선택하세요.";
 	private static final String QUESTION_MISSION = "과정, 레벨, 미션을 선택하세요.";
-	private static final String QUESTION_MISSION_EX = "ex) 백엔드, 레벨1, 자동차경주";
+	private static final String QUESTION_MISSION_EX = "ex) 백엔드, 레벨1, 자동차 경주";
 
 	private static final String PREFIX_COURSE = "과정: ";
 	private static final String PREFIX_MISSION = "미션: ";
