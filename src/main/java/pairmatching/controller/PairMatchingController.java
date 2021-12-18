@@ -15,6 +15,7 @@ import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 import pairmatching.domain.Crews;
 import pairmatching.domain.Level;
+import pairmatching.domain.Matching;
 import pairmatching.domain.MatchingOption;
 import pairmatching.domain.Mission;
 import pairmatching.domain.Missions;
@@ -26,6 +27,7 @@ import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class PairMatchingController {
+	private final PairMatcher pairMatcher = new PairMatcher();
 
 	public void run() {
 		List<String> backCrewNames = getCrewNameByFile("backend-crew.md");
@@ -49,6 +51,8 @@ public class PairMatchingController {
 				OutputView.printReMatching();
 			}
 			List<Pair> pairs = makePair(crews, matchingOption);
+			Matching matching = new Matching(pairs, matchingOption);
+			pairMatcher.addMatching(matching);
 			// pairs 검증
 
 		}

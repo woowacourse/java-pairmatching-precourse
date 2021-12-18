@@ -26,4 +26,8 @@ public class PairMatcher {
 			.orElse(null);
 		return existMatching != null;
 	}
+
+	public void addMatching(Matching matching){
+		this.matchings.add(matching);
+	}
 }

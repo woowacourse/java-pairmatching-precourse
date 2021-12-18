@@ -6,6 +6,11 @@ public class Matching {
 	private List<Pair> pairs;
 	MatchingOption matchingOption;
 
+	public Matching(List<Pair> pairs, MatchingOption matchingOption) {
+		this.pairs = pairs;
+		this.matchingOption = matchingOption;
+	}
+
 	public boolean isMatched(MatchingOption matchingOption) {
 		if (this.matchingOption.getCourse().equals(matchingOption.getCourse())
 			&& this.matchingOption.getMission() == matchingOption.getMission()) {
