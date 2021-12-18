@@ -2,6 +2,7 @@ package pairmatching.matching;
 
 import pairmatching.GeneralInputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MatchingController {
@@ -41,22 +42,24 @@ public class MatchingController {
 
     public void startMatching(String courseName) {
         matchingService.hasDistinctMatching(courseName);
-        List<String> allMatched = matchingService.startMatching(courseName);
+        List<String> allMatched = new ArrayList<>();
         try {
             matchingService.hasAlreadyMatching(courseName);
+            allMatched = matchingService.startMatching(courseName);
         } catch (IllegalArgumentException e) {
             String inputReMatching = MatchingInputView.duplicateMatchingResult();
-            // 검증로직
-            if (inputReMatching.equals(REMATCH_NO)){
+            if (inputReMatching.equals(REMATCH_NO)) {
                 return;
             }
+            allMatched = matchingService.startMatching(courseName);
         }
         MatchingOutputView.seeMatchingResult(allMatched);
     }
 
     public void seeMatchingInfo(String courseName) {
-        // 결과 보여주기
-        // MatchingOutputView.seeMatchingResult();
+        matchingService.returnMatching(courseName);
+        MatchingOutputView.seeMatchingResult(
+                matchingService.returnMatching(courseName));
     }
 
     public void resetMatching() {
