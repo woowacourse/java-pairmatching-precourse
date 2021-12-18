@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CrewList {
-    private List<String> backEndCrewList;
-    private List<String> frontEndCrewList;
+    private final List<String> backEndCrewList;
+    private final List<String> frontEndCrewList;
 
     public CrewList(List<String> backEndCrewList, List<String> frontEndCrewList) {
         this.backEndCrewList = backEndCrewList;

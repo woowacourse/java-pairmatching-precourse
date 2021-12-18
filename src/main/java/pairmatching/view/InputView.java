@@ -42,13 +42,11 @@ public abstract class InputView {
     }
 
     public static String chooseNumberOne() {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append(DIVIDING_LINE).append("\n과정: 백엔드 | 프론트엔드").append("\n미션:")
-                .append(INDENT_NEW_LINE).append("- 레벨1: 자동차경주 | 로또 | 숫자야구게임").append(INDENT_NEW_LINE)
-                .append("- 레벨2: 장바구니 | 결제 | 지하철노선도").append(INDENT_NEW_LINE).append("- 레벨3: ").append(NEW_LINE).append("\t")
-                .append("- 레벨4: 성능개선 | 배포").append(INDENT_NEW_LINE).append("- 레벨5: ").append(DIVIDING_LINE)
-                .append("\n과정, 레벨, 미션을 선택하세요.");
+        String stringBuilder = DIVIDING_LINE + "\n과정: 백엔드 | 프론트엔드" + "\n미션:" +
+                INDENT_NEW_LINE + "- 레벨1: 자동차경주 | 로또 | 숫자야구게임" + INDENT_NEW_LINE +
+                "- 레벨2: 장바구니 | 결제 | 지하철노선도" + INDENT_NEW_LINE + "- 레벨3: " + NEW_LINE + "\t" +
+                "- 레벨4: 성능개선 | 배포" + INDENT_NEW_LINE + "- 레벨5: " + DIVIDING_LINE +
+                "\n과정, 레벨, 미션을 선택하세요.";
         System.out.println(stringBuilder);
 
         return Console.readLine();

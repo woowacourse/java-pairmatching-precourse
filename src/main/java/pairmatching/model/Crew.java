@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Crew {
-    private List<CrewList> crewList;
+    private final List<CrewList> crewList;
 
     public Crew(List<pairmatching.model.CrewList> crewList) {
         this.crewList = crewList;

@@ -9,5 +9,9 @@ public abstract class OutputView {
 
     public static void printRandomPairList() {
         System.out.println("페어 매칭 결과입니다.");
+//        Crew crew = new Crew();
+//        System.out.println(crew.makeRandomPair());
     }
+
+
 }

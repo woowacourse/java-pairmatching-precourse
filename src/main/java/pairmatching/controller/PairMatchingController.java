@@ -13,6 +13,5 @@ public class PairMatchingController {
         System.out.println(information);
         OutputView.printRandomPairList();
 
-
     }
 }
