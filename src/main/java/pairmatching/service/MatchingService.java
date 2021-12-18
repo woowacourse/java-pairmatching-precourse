@@ -62,14 +62,14 @@ public class MatchingService {
             this.shufflePairList.add(pair);
 
             if(i==this.shuffleNameList.size()-2){
-                pair.addExtra(this.shuffleNameList.get(i+1));
+                pair.addExtra(this.shuffleNameList.get(i+2));
             }
         }
         return;
     }
 
     public void cutEven(){
-        for(int i=0; i<this.shuffleNameList.size(); i++){
+        for(int i=0; i<this.shuffleNameList.size()-1; i++){
             Pair pair = new Pair(this.shuffleNameList.get(i), this.shuffleNameList.get(i + 1));
             this.shufflePairList.add(pair);
         }

@@ -46,8 +46,8 @@ public class MatchingController {
 //                }
 //
 //            }
+            // 페어링을 한다.
             service.getMatching();
-                //존재하지 않는 경우 그냥 매칭 결과 출력
         }
         if(categoryAnswer.equals("2")){
             // 현재 있는 매칭 출력
