@@ -9,5 +9,6 @@ public class PairMatchingController {
 
 	public void run() {
 		inputView.enterRoleNumber();
+		outputView.printCourse();
 	}
 }
