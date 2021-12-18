@@ -14,4 +14,10 @@ public class Crews {
     public static Crews init() {
         return new Crews(new ArrayList<>());
     }
+
+    public void addCrews(Course course, List<String> names) {
+        names.stream()
+            .map(name -> new Crew(course, name))
+            .forEach(crews::add);
+    }
 }
