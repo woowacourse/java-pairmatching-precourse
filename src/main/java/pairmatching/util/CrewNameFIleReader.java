@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import pairmatching.exception.ErrorMessage;
 
 public class CrewNameFIleReader {
     private static final String BACKEND_NAMES_PATH = "src/main/resources/backend-crew.md";
@@ -15,7 +16,7 @@ public class CrewNameFIleReader {
         try (Stream<String> stream = Files.lines(Paths.get(BACKEND_NAMES_PATH))) {
             return stream.collect(Collectors.toList());
         } catch (IOException e) {
-            throw new IllegalArgumentException();
+            throw ErrorMessage.NOT_FOUND_FILE.getException();
         }
     }
 
@@ -23,7 +24,7 @@ public class CrewNameFIleReader {
         try (Stream<String> stream = Files.lines(Paths.get(FRONTEND_NAMES_PATH))) {
             return stream.collect(Collectors.toList());
         } catch (IOException e) {
-            throw new IllegalArgumentException();
+            throw ErrorMessage.NOT_FOUND_FILE.getException();
         }
     }
 }
