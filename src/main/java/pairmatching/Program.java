@@ -2,6 +2,7 @@ package pairmatching;
 
 import pairmatching.util.CategoryDivider;
 import pairmatching.util.CourseMatch;
+import pairmatching.util.LevelMatch;
 import pairmatching.view.Constant;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
@@ -37,5 +38,6 @@ public class Program {
         String answer = InputView.askCategory();
         category = CategoryDivider.divideCategory(answer);
         Course course = CourseMatch.getCourse(category.get(0));
+        Level level = LevelMatch.getLevel(category.get(1));
     }
 }
