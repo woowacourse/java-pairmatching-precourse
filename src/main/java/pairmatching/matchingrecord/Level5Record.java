@@ -1,6 +1,6 @@
 package pairmatching.matchingrecord;
 
-public class Level5Record extends LevelRecord{
+public class Level5Record{
 
 
 }
