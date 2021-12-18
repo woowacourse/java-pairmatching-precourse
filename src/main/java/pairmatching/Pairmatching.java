@@ -22,8 +22,9 @@ public class Pairmatching {
 	public void run() {
 		LevelMissionsMap levelMissionsMap = courseDataService.initLevelAndMissions();
 		viewer.showFunctions();
+
 		Function function = input.getFunction();
-		if (function == Function.MATCH || function == Function.SEARCH) {
+		if (function == Function.MATCH) {
 			viewer.showCourseAndMissions(levelMissionsMap);
 			List<String> inputs = input.getCourseLevelMission();
 			Course course = Course.getCourseByName(inputs.get(COURSE_INDEX));
@@ -33,6 +34,14 @@ public class Pairmatching {
 			List<CrewPair> randomMatch = matchService.getRandomMatch(crewNames);
 			viewer.showCrewPairs(randomMatch);
 			saveMatchResult(course.toString() + "_" + level.toString() + "_" + mission.toString() + ".md", randomMatch);
+		}
+		if (function == Function.SEARCH) {
+			viewer.showCourseAndMissions(levelMissionsMap);
+			List<String> inputs = input.getCourseLevelMission();
+			Course course = Course.getCourseByName(inputs.get(COURSE_INDEX));
+			Level level = Level.getLevelByName(inputs.get(LEVEL_INDEX));
+			Mission mission = Mission.getMissionByName(inputs.get(MISSION_INDEX));
+			fileService.readMatch(course.toString() + "_" + level.toString() + "_" + mission.toString() + ".md");
 		}
 
 	}

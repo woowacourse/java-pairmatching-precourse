@@ -40,4 +40,17 @@ public class FileUtil {
 			bs.close();
 		}
 	}
+
+	public void readSavedMatch(String path) {
+		try {
+			FileInputStream fileInputStream = new FileInputStream(MATCH_RESULT_PATH + path);
+			byte[] readBuffer = new byte[fileInputStream.available()];
+			while (fileInputStream.read(readBuffer) != -1) {
+				System.out.println(new String(readBuffer));
+			}
+			fileInputStream.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

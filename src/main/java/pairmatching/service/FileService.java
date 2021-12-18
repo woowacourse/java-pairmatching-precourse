@@ -37,4 +37,8 @@ public class FileService {
 			e.printStackTrace();
 		}
 	}
+
+	public void readMatch(String path) {
+		fileUtil.readSavedMatch(path);
+	}
 }
