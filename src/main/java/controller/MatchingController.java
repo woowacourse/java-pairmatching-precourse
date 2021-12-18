@@ -11,18 +11,31 @@ public class MatchingController {
 
 	public static void runMatchingProgram() {
 		PairMatcher pairMatcher = new PairMatcher();
-		InputDisplay.askInputFunctionSelectionNumber();
+		while (true) {
+			InputDisplay.askInputFunctionSelectionNumber();
 
-		String functionSelectionNumber = InputController.inputFunctionSelectionNumber();
+			String functionSelectionNumber = InputController.inputFunctionSelectionNumber();
 
-		if (functionSelectionNumber.equals("1")) {
-			operateMatchingFunction(pairMatcher);
+			if (functionSelectionNumber.equals("1")) {
+				operateMatchingFunction(pairMatcher);
+			}
+			if (functionSelectionNumber.equals("Q")) {
+				break;
+			}
 		}
 	}
 
 	private static void operateMatchingFunction(PairMatcher pairMatcher) {
 		OutputDisplay.showProcessAndLevelAndMission();
-		InputDisplay.askInputProcessAndLevelAndMission();
-		OutputDisplay.showMatchedPairs(pairMatcher.matchingPairs(InputController.inputProcessAndLevelAndMission()));
+		while(true) {
+			try {
+				InputDisplay.askInputProcessAndLevelAndMission();
+				OutputDisplay.showMatchedPairs(
+					pairMatcher.matchingPairs(InputController.inputProcessAndLevelAndMission()));
+				break;
+			} catch (IllegalArgumentException error) {
+				System.out.println(error.getMessage());
+			}
+		}
 	}
 }

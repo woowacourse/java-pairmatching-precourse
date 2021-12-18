@@ -32,5 +32,6 @@ public class OutputDisplay {
 			}
 			System.out.println(matchedPairs.get(index) + " : " + matchedPairs.get(index + 1));
 		}
+		System.out.println();
 	}
 }
