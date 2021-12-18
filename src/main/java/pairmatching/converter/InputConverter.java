@@ -5,7 +5,6 @@ import pairmatching.domain.Function;
 import pairmatching.domain.Level;
 import pairmatching.domain.Mission;
 import pairmatching.domain.PairInfo;
-import pairmatching.domain.PairInfoRepository;
 import pairmatching.validator.FunctionValidator;
 import pairmatching.validator.PairValidator;
 
@@ -13,8 +12,6 @@ public class InputConverter {
 
 	private static FunctionValidator functionValidator = new FunctionValidator();
 	private static PairValidator pairValidator = new PairValidator();
-
-	private static PairInfoRepository pairInfoRepository = new PairInfoRepository();
 
 	public static Function convertFunction(String input) {
 		functionValidator.validateFunctionNumber(input);
