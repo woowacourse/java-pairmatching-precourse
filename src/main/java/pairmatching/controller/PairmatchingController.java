@@ -53,6 +53,9 @@ public class PairmatchingController {
     }
 
     private void executeReadPair() {
+        OutputView.showCoursesAndMissions();
+        MatchingCondition matchingCondition = InputView.requestMatchingCondition();
+        OutputView.showExistPairs(matchingResults, matchingCondition);
     }
 
     private void executeInitializePair() {

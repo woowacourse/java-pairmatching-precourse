@@ -15,4 +15,12 @@ public class MatchingResults {
     public void initialize() {
         matchingResults.clear();
     }
+
+    public boolean cotains(MatchingCondition matchingCondition) {
+        return matchingResults.containsKey(matchingCondition);
+    }
+
+    public Pairs getPairs(MatchingCondition matchingCondition) {
+        return matchingResults.get(matchingCondition);
+    }
 }
