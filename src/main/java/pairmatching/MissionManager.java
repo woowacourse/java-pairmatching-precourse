@@ -35,6 +35,14 @@ public class MissionManager {
                 .getPairList();
     }
 
+    public boolean isMatched(Course course, Level level, MissionName missionName) {
+        return missionMap.get(level).stream()
+                .filter(mission -> mission.getMissionName() == missionName)
+                .findFirst()
+                .orElseThrow(NoSuchElementException::new)
+                .isMatched();
+    }
+
     public List<Mission> getMissionListOfLevel(Level level) {
         return missionMap.get(level);
     }
