@@ -9,13 +9,23 @@ import pairmatching.view.OutputView;
 
 public class ServiceController {
 	public static ArrayList<Mission> missions;
-	static String choice;
+	static String choice = "";
 	static String[] matchingInfo;
+
 	public static void run() {
 		generateMission();
-		askFunction();
-		doMatching();
+		while (!(choice.equals("Q"))) {
+			askFunction();
+			if (choice.equals("1")) {
+				doMatching();
+			}// } else if (choice.equals("2")) {
+			//
+			// } else if (choice.equals("3")) {
+			//
+			// }
+		}
 	}
+
 
 	private static void doMatching() {
 		askMatchingInfo();
