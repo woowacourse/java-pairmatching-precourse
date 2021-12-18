@@ -17,6 +17,7 @@ public class PairMatching {
 
 	public void executeFeature() {
 		String feature = inputExecuteFeature().getMessage();
+		FeatureEnum.validateDomain(feature);
 		if (FeatureEnum.PAIR_MATCHING.isSame(feature)) {
 			pairMatching();
 		}
@@ -26,10 +27,6 @@ public class PairMatching {
 		if (FeatureEnum.PAIR_INITIALIZE.isSame(feature)) {
 			pairInitialize();
 		}
-		if (FeatureEnum.EXIT.isSame(feature)) {
-			return;
-		}
-		throw new IllegalArgumentException(INPUT_EXECUTE_FEATURE_ERROR.get());
 	}
 
 	private void pairMatching() {
