@@ -14,7 +14,11 @@ public class PairRepository {
     }
 
     public static Pairs findByCategory(Category category) {
-        return pairsMap.getOrDefault(category, new Pairs());
+        Pairs pairs = pairsMap.get(category);
+        if(pairs == null) {
+            return new Pairs();
+        }
+        return pairs;
     }
 
     public static void removeAll() {
