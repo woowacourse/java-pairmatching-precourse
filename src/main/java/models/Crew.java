@@ -95,9 +95,11 @@ public class Crew {
         return false;
     }
 
-    public static int lastMatch(int type) {
+    public static boolean lastMatch(int type) {
         if (type == 0 && BackendCrews.size() % 2 == 1) {
-            shufflePivot.get(BackendCrews.size() - 1);
+            // shufflePivot.get(BackendCrews.size() - 1);
+            // 홀수인 경우 3명이 한 묶음이 되어 매칭되도록
         }
+        return true;
     }
 }
