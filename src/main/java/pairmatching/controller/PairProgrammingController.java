@@ -19,5 +19,8 @@ public class PairProgrammingController {
 
     public void run() {
         String mainFunction = InputView.mainFunction();
+
+        String detailedFunction = InputView.detailedFunction();
+        detailedFunction.split(", ");
     }
 }
