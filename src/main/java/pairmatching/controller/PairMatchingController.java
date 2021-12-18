@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.domain.ContinuePairMatching;
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
@@ -45,7 +44,9 @@ public class PairMatchingController {
 				if (!possiblePairMatching(findPairMatching)) {
 					continue;
 				}
-				makeMatching(crews, pairMatching.getCourse());
+				pairMatching.makeMatching(crews);
+				pairMatchings.addPairMatching(pairMatching);
+				OutputView.printPairResult(pairMatching);
 			}
 			if (matchingFunction == MatchingFunction.LOOKUP) {
 				if (containsPairMatching(findPairMatching)) {
@@ -113,8 +114,4 @@ public class PairMatchingController {
 		return true;
 	}
 
-	public void makeMatching(Crews crews, Course course) {
-		List<String> crewNames = crews.getCourseCrewsNames(course);
-		List<String> shuffledCrew = Randoms.shuffle(crewNames);
-	}
 }

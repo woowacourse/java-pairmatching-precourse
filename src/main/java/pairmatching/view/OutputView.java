@@ -1,10 +1,12 @@
 package pairmatching.view;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import pairmatching.domain.Course;
+import pairmatching.domain.Crew;
 import pairmatching.domain.LevelGroup;
 import pairmatching.domain.Mission;
 import pairmatching.domain.PairMatching;
@@ -53,7 +55,14 @@ public class OutputView {
 	}
 
 	public static void printPairResult(PairMatching pairMatching) {
+		List<List<String>> printPairMatching = pairMatching.getMatchCrews()
+			.stream().map(e -> e.stream().map(Crew::getName).collect(Collectors.toList()))
+			.collect(Collectors.toList());
 
+		printPairMatching.stream()
+			.map(e ->
+				String.join(" : ", e))
+			.forEach(System.out::println);
 	}
 
 	public static void printPairResultNone() {

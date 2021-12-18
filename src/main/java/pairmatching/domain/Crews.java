@@ -20,4 +20,11 @@ public class Crews {
 			.map(Crew::getName)
 			.collect(Collectors.toList());
 	}
+
+	public Crew findCrew(String name) {
+		return crews.stream()
+			.filter(e -> e.getName().equals(name))
+			.findAny()
+			.get();
+	}
 }
