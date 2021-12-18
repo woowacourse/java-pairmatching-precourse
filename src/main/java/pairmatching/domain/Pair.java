@@ -17,4 +17,16 @@ public class Pair {
 		this.rightCrew = rightCrew;
 		this.extraCrew = extraCrew;
 	}
+
+	public boolean haveExtraCrew() {
+		return this.extraCrew != null;
+	}
+
+	@Override
+	public String toString() {
+		if (extraCrew == null) {
+			return leftCrew.getName() + " : " + rightCrew.getName();
+		}
+		return leftCrew.getName() + " : " + rightCrew.getName() + " : " + extraCrew.getName();
+	}
 }

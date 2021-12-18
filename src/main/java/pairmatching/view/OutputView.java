@@ -1,11 +1,14 @@
 package pairmatching.view;
 
 import java.util.Arrays;
+import java.util.List;
 
 import pairmatching.domain.Course;
 import pairmatching.domain.Function;
 import pairmatching.domain.Level;
 import pairmatching.domain.Mission;
+import pairmatching.domain.Pair;
+import pairmatching.domain.PairInfo;
 
 public class OutputView {
 
@@ -17,6 +20,8 @@ public class OutputView {
 	private static final String MISSION = "미션";
 
 	private static final String REMATCH_OR_EXIT = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n네 | 아니오";
+
+	private static final String PAIR_MATCHING_RESULT = "페어 메칭 결과입니다.";
 
 	private static String courseMessage;
 	private static String missionMessage;
@@ -66,5 +71,13 @@ public class OutputView {
 
 	public void printRematchOrExit() {
 		System.out.println(REMATCH_OR_EXIT);
+	}
+
+	public void printPairInfo(PairInfo pairInfo) {
+		System.out.println(PAIR_MATCHING_RESULT);
+		pairInfo.getPairList()
+			.stream()
+			.forEach(pair -> System.out.println(pair));
+		System.out.println();
 	}
 }

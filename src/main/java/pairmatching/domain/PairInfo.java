@@ -24,6 +24,10 @@ public class PairInfo {
 		pairList.add(pair);
 	}
 
+	public List<Pair> getPairList() {
+		return pairList;
+	}
+
 	@Override
 	public boolean equals(Object other) {
 		PairInfo otherInfo = (PairInfo) other;
