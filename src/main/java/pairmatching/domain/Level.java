@@ -2,6 +2,7 @@ package pairmatching.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import pairmatching.exception.LevelNotFoundException;
 
 public enum Level {
     LEVEL1("레벨1"),
@@ -22,5 +23,12 @@ public enum Level {
 
     public String getName() {
         return name;
+    }
+
+    public static Level getLevel(String name) {
+        return Arrays.stream(values())
+            .filter(level -> level.name.equals(name))
+            .findFirst()
+            .orElseThrow(LevelNotFoundException::new);
     }
 }
