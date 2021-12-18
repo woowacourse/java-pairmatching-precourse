@@ -25,5 +25,10 @@ public class PairMatching {
 
 
 
-
+	public boolean isEmpty(Curriculum curriculum) {
+		Optional<Curriculum> curriculumOptional = matchingLog.keySet().stream()
+			.filter(cur -> cur.equals(curriculum))
+			.findAny();
+		return curriculumOptional.isPresent();
+	}
 }
