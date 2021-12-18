@@ -1,5 +1,7 @@
 package pairmatching.model;
 
+import java.util.Arrays;
+
 public enum Course {
 	BACKEND("백엔드"),
 	FRONTEND("프론트엔드");
@@ -8,5 +10,24 @@ public enum Course {
 
 	Course(String name) {
 		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public static Course getCourseType(String courseName) {
+		courseName = replaceGap(courseName);
+
+		String finalCourseName = courseName;
+		return Arrays.stream(values())
+			.filter(course -> course.getName().equals(finalCourseName))
+			.findAny()
+			.orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 코스는 업습니다."));
+	}
+
+	protected static String replaceGap(String name) {
+		name = name.replace(" ", "");
+		return name;
 	}
 }
