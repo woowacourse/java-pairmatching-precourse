@@ -1,29 +1,29 @@
 package pairmatching.domain;
 
-import java.util.Objects;
+import java.util.Arrays;
 
-public class Mission {
+public enum Mission {
+	RACING_CAR("자동차경주"),
+	LOTTO("로또"),
+	NUMBER_BASEBALL("숫자야구게임"),
+	SHOP_BASKET("장바구니"),
+	PAYMENT("결제"),
+	SUBWAY_MAP("지하철노선도"),
+	PERFORMANCE_IMPROVEMENT("성능개선"),
+	DEPLOYMENT("배포");
+
+	private static final String ERROR = "미션을 잘못 입력하셨습니다.";
 
 	private String name;
 
-	public Mission(String name) {
+	Mission(String name) {
 		this.name = name;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
-		Mission mission = (Mission)o;
-		return Objects.equals(name, mission.name);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(name);
+	public static Mission of(String str) {
+		return Arrays.stream(values())
+			.filter(mission -> mission.name.equals(str))
+			.findAny()
+			.orElseThrow(() -> new IllegalArgumentException(ERROR));
 	}
 }

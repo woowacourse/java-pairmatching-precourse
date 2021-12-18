@@ -1,28 +1,33 @@
 package pairmatching.domain;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import pairmatching.config.DomainConfig;
 
 public class WoowaCourse {
 
+	public static final String ERROR_LEVEL_MISSION = "레벨에 맞는 미션이 아닙니다.";
 	private final Course course;
 	private final Level level;
 	private final Mission mission;
 
 	public WoowaCourse(Course course, Level level, Mission mission) {
+		validateLevelMission(level, mission);
 		this.course = course;
 		this.level = level;
 		this.mission = mission;
 	}
 
-	public List<String> load() {
+	private void validateLevelMission(Level level, Mission mission) {
+		if (!level.contains(mission)) {
+			throw new IllegalArgumentException(ERROR_LEVEL_MISSION);
+		}
+	}
+
+	public List<String> loadCrewInfo() {
 		try {
 			return DomainConfig.readCrews(course.getFileName()).collect(Collectors.toList());
 		} catch (IOException e) {
@@ -31,15 +36,15 @@ public class WoowaCourse {
 	}
 
 	@Override
-	public boolean equals(Object other) {
-		if (this == other) {
+	public boolean equals(Object o) {
+		if (this == o) {
 			return true;
 		}
-		if (other == null || getClass() != other.getClass()) {
+		if (o == null || getClass() != o.getClass()) {
 			return false;
 		}
-		WoowaCourse that = (WoowaCourse)other;
-		return course == that.course && level == that.level && Objects.equals(mission, that.mission);
+		WoowaCourse that = (WoowaCourse)o;
+		return course == that.course && level == that.level && mission == that.mission;
 	}
 
 	@Override
