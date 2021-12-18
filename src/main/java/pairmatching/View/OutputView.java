@@ -15,7 +15,7 @@ public class OutputView {
         System.out.printf("[ERROR] "+ e.getMessage());
     }
 
-    public void printPairMatchingNotice(){
+    public void printSelectionNotice(){
         System.out.println("#############################################");
         System.out.println("과정: 백엔드 | 프론트엔드");
         System.out.println("미션:");

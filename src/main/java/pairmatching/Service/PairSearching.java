@@ -1,20 +1,18 @@
 package pairmatching.Service;
 
 import pairmatching.Controller.MatchingController;
-import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.Model.*;
 import pairmatching.View.InputView;
 import pairmatching.View.OutputView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PairMatching {
+public class PairSearching {
     private InputView inputView;
     private OutputView outputView;
 
-    public PairMatching() {
+    public PairSearching() {
         inputView = new InputView();
         outputView = new OutputView();
     }
@@ -55,7 +53,7 @@ public class PairMatching {
                     .findFirst()
                     .orElseThrow(() -> new IllegalArgumentException("[ERROR] 잘못된 입력입니다."));
 
-            MatchingController.matchingData.put(mission, tryMatching(course));
+            searchMatching(MatchingController.matchingData, mission);
 
 
         } catch (IllegalArgumentException e) {
@@ -63,31 +61,17 @@ public class PairMatching {
         }
     }
 
-    private List<Pair> tryMatching(Course course) {
-        List<Crew> crews = Randoms.shuffle(getCrews(course));
-        List<Pair> matching = new ArrayList<>();
+    public void searchMatching(MatchingData matchingData, Mission mission){
+        try{
+            if(matchingData.contains(mission)){
+                List<Pair> matching = matchingData.get(mission);
+                outputView.printMatchingResult(matching);
+                return;
+            }
+            throw new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.");
 
-        int count = 0;
-        while (count < crews.size() - 3) {
-            matching.add(new Pair(crews.get(count), crews.get(count + 1)));
-            count += 2;
+        }catch(IllegalArgumentException e){
+            outputView.printErrorMessage(e);
         }
-        matching.add(getLastPair(count, crews));
-        outputView.printMatchingResult(matching);
-        return matching;
-    }
-
-    private Pair getLastPair(int count, List<Crew> crews) {
-        if (count == crews.size() - 3) {
-            return (new Pair(crews.get(count), crews.get(count + 1), crews.get(count + 2)));
-        }
-        return (new Pair(crews.get(count), crews.get(count + 1)));
-    }
-
-    private List<Crew> getCrews(Course course) {
-        if (Course.valueOf("BACKEND").equals(course)) {
-            return MatchingController.backEndCrews;
-        }
-        return MatchingController.frontEndCrews;
     }
 }

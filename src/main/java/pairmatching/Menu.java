@@ -1,6 +1,8 @@
 package pairmatching;
 
+import pairmatching.Service.PairInitializing;
 import pairmatching.Service.PairMatching;
+import pairmatching.Service.PairSearching;
 import pairmatching.View.InputView;
 import pairmatching.View.OutputView;
 
@@ -33,10 +35,12 @@ public class Menu {
             pairMatching.run();
         }
         if (selMenu.equals(PAIR_SEARCHING_SEL)) {
-            System.out.println("2");
+            PairSearching pairSearching=new PairSearching();
+            pairSearching.run();
         }
         if (selMenu.equals(PAIR_INITIALIZING_SEL)) {
-            System.out.println("3");
+            PairInitializing pairInitializing= new PairInitializing();
+            pairInitializing.run();
         }
         if (selMenu.equals(QUIT_MENU_SEL)) {
             return false;
