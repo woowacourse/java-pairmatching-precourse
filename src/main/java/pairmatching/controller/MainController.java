@@ -4,6 +4,7 @@ import java.util.StringTokenizer;
 
 import pairmatching.Service.PairService;
 import pairmatching.domain.Course;
+import pairmatching.domain.Pairs;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -38,18 +39,48 @@ public class MainController {
 		String level = stringTokenizer.nextToken();
 		String mission = stringTokenizer.nextToken();
 
-		System.out.println(course + level + mission);
-
 		if (course.equals(Course.BACKEND.getName())) {
-			PairService.makeBackPairs(course, mission);
+			Pairs pairs = makeBackRandomPair(mission, 0);
+			System.out.println(pairs);
 		}
+
 		if (course.equals(Course.FRONTEND.getName())) {
-			PairService.makeFrontPairs(course, mission);
+			Pairs pairs = makeFrontRandomPair(mission, 0);
+			System.out.println(pairs);
 		}
 		run();
 	}
 
+	private Pairs makeBackRandomPair(String mission, int count) {
+		Pairs pairs = PairService.makeBackPairs(mission);
+		if (pairs.equals(null) && count < 3) {
+			makeBackRandomPair(mission, count++);
+		}
+		return pairs;
+	}
+
+	private Pairs makeFrontRandomPair(String mission, int count) {
+		Pairs pairs = PairService.makeFrontPairs(mission);
+		if (pairs.equals(null) && count < 3) {
+			makeFrontRandomPair(mission, count++);
+		}
+		return pairs;
+	}
+
 	private void searchPair() {
 		String inputMissionInfo = InputView.requestMission();
+		StringTokenizer stringTokenizer = new StringTokenizer(inputMissionInfo, ",");
+
+		String course = stringTokenizer.nextToken();
+		String level = stringTokenizer.nextToken();
+		String mission = stringTokenizer.nextToken();
+
+		if (course.equals(Course.BACKEND.getName())) {
+			PairService.getBackPairs(mission);
+		}
+		if (course.equals(Course.FRONTEND.getName())) {
+			PairService.getFrontPairs(mission);
+		}
+		run();
 	}
 }

@@ -10,11 +10,9 @@ public class CrewRepository {
 
 	public static void setBackCrew(List<Crew> backCrew) {
 		CrewRepository.backCrew = backCrew;
-		System.out.println(backCrew);
 	}
 
 	public static void setFrontCrew(List<Crew> frontCrew) {
 		CrewRepository.frontCrew = frontCrew;
-		System.out.println(frontCrew);
 	}
 }

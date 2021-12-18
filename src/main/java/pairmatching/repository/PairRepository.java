@@ -50,7 +50,13 @@ public class PairRepository {
 	}
 
 	public static boolean validateFrontPairs(String mission, Pairs pairs) {
+		if (frontPairs.isEmpty()) {
+			return true;
+		}
 		List<Pairs> pairsList = frontPairs.get(mission);
+		if (pairsList.isEmpty()) {
+			return true;
+		}
 		for (Pairs Source : pairsList) {
 			if (!checkEachPair(Source, pairs)) {
 				return false;
