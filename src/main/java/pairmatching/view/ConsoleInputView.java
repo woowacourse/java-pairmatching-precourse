@@ -1,5 +1,7 @@
 package pairmatching.view;
 
+import pairmatching.utils.Validator;
+
 public class ConsoleInputView {
 
     private static final String INPUT_FUNCTION_REQUEST_MESSAGE = "기능을 선택하세요.";
@@ -18,8 +20,15 @@ public class ConsoleInputView {
     public static String inputMatchingInfo() {
         OutputView.printCourseLevelMissionInfo();
         OutputView.printMessage(INPUT_MATCHING_INFO_REQUEST_MESSAGE);
-
-        return camp.nextstep.edu.missionutils.Console.readLine();
+        String input;
+        try {
+            input = camp.nextstep.edu.missionutils.Console.readLine();
+            Validator.validateMatchingInfo(input);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            input = inputMatchingInfo();
+        }
+        return input;
 
     }
 }
