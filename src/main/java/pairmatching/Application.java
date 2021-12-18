@@ -36,19 +36,31 @@ public class Application {
         if (command.isEndGame()) {
             return;
         }
+        matchingCommand(pairProgram, command);
+        selectCommand(pairProgram, command);
+        initCommand(pairProgram, command);
+        runPairProgram(pairProgram);
+    }
+
+    private static void matchingCommand(PairProgram pairProgram, Command command) {
         if (command.isMatching()) {
             InputView.printCurrentBoard(pairProgram.coures(), pairProgram.missions());
             OutputView.printMatchResult(matching(pairProgram));
         }
+    }
+
+    private static void selectCommand(PairProgram pairProgram, Command command) {
         if (command.isSelect()) {
             InputView.printCurrentBoard(pairProgram.coures(), pairProgram.missions());
             OutputView.printMatchResult(findMatching(pairProgram));
         }
+    }
+
+    private static void initCommand(PairProgram pairProgram, Command command) {
         if (command.isInit()) {
             pairProgram.clearPairMatching();
             OutputView.printInit();
         }
-        runPairProgram(pairProgram);
     }
 
     private static Command inputCommand() {
