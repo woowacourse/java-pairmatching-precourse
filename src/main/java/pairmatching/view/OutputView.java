@@ -8,14 +8,16 @@ import pairmatching.domain.Level;
 import pairmatching.domain.PairCrews;
 
 public class OutputView {
+	private static final String DIVISION_COURSE_LEVEL_MISSION_LIST = "#############################################";
+
 	public static void printCourseLevelMission(Course[] courses, Level[] levels) {
-		System.out.println("#############################################");
+		System.out.println(DIVISION_COURSE_LEVEL_MISSION_LIST);
 		printCourse(courses);
 		System.out.println("미션: ");
 		for (Level level : levels) {
 			printMissionInLevel(level);
 		}
-		System.out.println("#############################################");
+		System.out.println(DIVISION_COURSE_LEVEL_MISSION_LIST);
 	}
 
 	public static void printCourse(Course[] courses) {
