@@ -19,6 +19,10 @@ public class CrewNames {
 		}
 	}
 
+	public List<String> get() {
+		return crewNames;
+	}
+
 	public List<String> getShuffledCrewNames() {
 		return Randoms.shuffle(crewNames);
 	}
