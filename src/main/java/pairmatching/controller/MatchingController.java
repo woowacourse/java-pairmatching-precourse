@@ -20,6 +20,7 @@ public class MatchingController {
                 printMissionInfo(missions);
                 String input = getMatchingInfo();
                 checkMissionInfo(input);
+                System.out.println("성공");
                 flag = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -51,7 +52,7 @@ public class MatchingController {
 
     private void checkMission(String level, String mission) {
         checkEachInfo(mission);
-        if (missions.isExist(level, mission)) {
+        if (!missions.isExist(level, mission)) {
             throw new IllegalArgumentException(ERROR_MISSION_NOT_EXIST);
         }
     }
