@@ -6,11 +6,13 @@ import pairmatching.application.PairMatchingService;
 import pairmatching.model.Pair;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
+import pairmatching.view.Parser;
 import pairmatching.view.Validator;
 
 public class PairMatchingController {
 	private PairMatchingService pairMatchingService = new PairMatchingService();
 	private Validator validator = new Validator();
+	private Parser parser = new Parser();
 
 	public void service() {
 		while (true) {
@@ -44,11 +46,12 @@ public class PairMatchingController {
 		try {
 			String information = inputInformationWithValidation();
 			if (isWantToMatch(information)) {
-				pairMatchingService.match(parseToCourse(information), parseToLevel(information),
-					parseToMission(information));
+				pairMatchingService.match(parser.parseToCourse(information), parser.parseToLevel(information),
+					parser.parseToMission(information));
 			}
 			OutputView.printMatchingResult(
-				pairMatchingService.findByCourseAndMission(parseToCourse(information), parseToMission(information)));
+				pairMatchingService.findByCourseAndMission(parser.parseToCourse(information),
+					parser.parseToMission(information)));
 		} catch (IllegalArgumentException | IllegalStateException e) {
 			OutputView.printErrorMessage(e.getMessage());
 			handlePairMatching();
@@ -58,10 +61,10 @@ public class PairMatchingController {
 	private boolean isWantToMatch(String information) {
 		boolean wantToMatch = true;
 
-		if (pairMatchingService.hasMatched(parseToCourse(information), parseToMission(information))) {
+		if (pairMatchingService.hasMatched(parser.parseToCourse(information), parser.parseToMission(information))) {
 			OutputView.printRematchingMessage();
 			String value = retryInput(() -> InputView.inputOption("네", "아니오"));
-			wantToMatch = parseToIsWantToMatch(value);
+			wantToMatch = parser.parseToIsWantToMatch(value);
 		}
 
 		return wantToMatch;
@@ -76,7 +79,8 @@ public class PairMatchingController {
 		try {
 			String information = inputInformationWithValidation();
 			List<Pair> pairList =
-				pairMatchingService.findByCourseAndMission(parseToCourse(information), parseToMission(information));
+				pairMatchingService.findByCourseAndMission(parser.parseToCourse(information),
+					parser.parseToMission(information));
 			OutputView.printMatchingResult(pairList);
 		} catch (IllegalArgumentException e) {
 			OutputView.printErrorMessage(e.getMessage());
@@ -90,28 +94,9 @@ public class PairMatchingController {
 
 	private String inputInformationWithValidation() {
 		String information = retryInput(InputView::inputMatchingInformation);
-		validator.validateCourseLevelMission(parseToCourse(information), parseToLevel(information),
-			parseToMission(information));
+		validator.validateCourseLevelMission(parser.parseToCourse(information), parser.parseToLevel(information),
+			parser.parseToMission(information));
 		return information;
-	}
-
-	private boolean parseToIsWantToMatch(String value) {
-		if (value.equals("아니오")) {
-			return false;
-		}
-		return true;
-	}
-
-	private String parseToCourse(String information) {
-		return information.split(",")[0].trim();
-	}
-
-	private String parseToLevel(String information) {
-		return information.split(",")[1].trim();
-	}
-
-	private String parseToMission(String information) {
-		return information.split(",")[2].trim();
 	}
 
 	private String retryInput(Supplier<String> supplier) {
