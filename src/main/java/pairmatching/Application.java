@@ -7,7 +7,7 @@ public class Application {
         int option = inputService.inputFunction();
         if (option == 0) {
             String input = inputService.inputMission();
-            matchService.startMatch(input);
+            matchService.startMatch(input.replace(" ", "").split(","));
         }
     }
 }
