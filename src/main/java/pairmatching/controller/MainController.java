@@ -1,23 +1,33 @@
 package pairmatching.controller;
 
+import static pairmatching.utils.Validator.checkAvailableSelect;
 import static pairmatching.view.InputViews.getMainSelect;
 
 public class MainController {
     public void run() {
-        mainSelect();
-    }
-
-    private void mainSelect() {
         boolean flag = false;
         while (!flag) {
             try {
-                String input = getMainSelect();
-                // input 판별 기능 구현
-                // input에 따른 결과 실행
-                flag = true;
+                String input = checkAvailableSelect(getMainSelect());
+                runSelectFunction(input);
+                if (input.equals("Q")) {
+                    flag = true;
+                }
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private void runSelectFunction(String input) {
+        if (input.equals("1")) {
+
+        }
+        if (input.equals("2")) {
+
+        }
+        if (input.equals("3")) {
+
         }
     }
 }
