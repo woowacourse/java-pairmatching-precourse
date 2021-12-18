@@ -29,7 +29,7 @@ public class CoursesOutput {
         for (int level = 1; level <= 5; level++) {
             ArrayList<String> levelCourses = courses.getCourses(level);
             String courseString = String.join(LEVEL_DELIMITER, levelCourses);
-            System.out.println(LEVEL_PREFIX + level + LEVEL_SUFFIX);
+            System.out.println(LEVEL_PREFIX + level + LEVEL_SUFFIX + courseString);
         }
     }
 }

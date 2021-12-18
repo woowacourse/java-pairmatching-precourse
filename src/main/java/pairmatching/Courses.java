@@ -21,6 +21,7 @@ public class Courses {
     private HashMap<Integer, ArrayList<String>> courseList;
 
     private Courses() {
+        courseList = new HashMap<>();
         for (int level = MIN_LEVEL; level <= MAX_LEVEL; level++) {
             courseList.put(level, new ArrayList<String>());
         }

@@ -15,4 +15,8 @@ public class BackEndManager {
                 .collect(Collectors.toList());
         backEndCrewList = new ArrayList<Crew>(userList);
     }
+
+    public ArrayList<Crew> getBackEndCrewList() {
+        return backEndCrewList;
+    }
 }

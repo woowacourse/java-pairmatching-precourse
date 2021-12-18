@@ -16,5 +16,7 @@ public class FrontEndManager {
         FrontEndCrewList = new ArrayList<Crew>(userList);
     }
 
-
+    public ArrayList<Crew> getFrontEndCrewList() {
+        return FrontEndCrewList;
+    }
 }
