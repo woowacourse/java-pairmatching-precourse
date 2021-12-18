@@ -95,8 +95,6 @@ public class PairMatchingService {
                 Level level = getLevelFromInput(splitStrings[1]);
                 Mission mission = getMissionFromNameAndLevel(splitStrings[2], level);
 
-
-
                 List<Crew> crewList = crewService.createCrewList(course);
 
                 Pair pair = new Pair(crewList, mission);

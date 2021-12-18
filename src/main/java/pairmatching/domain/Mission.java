@@ -62,6 +62,10 @@ public enum Mission {
     public static Mission getMissionFromNameAndLevel(String name, Level level) {
         Mission mission = Mission.findBy(name);
 
+        if (mission == null) {
+            throw new IllegalArgumentException("[ERROR] 존재하지 않는 미션입니다.");
+        }
+
         if (mission.level != level) {
             throw new IllegalArgumentException("[ERROR] 잘못된 미션 입니다.");
         }
