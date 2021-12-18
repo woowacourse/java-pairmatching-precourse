@@ -17,6 +17,7 @@ public class InputView {
 		+ "############################################\n"
 		+ "과정, 레벨, 미션을 선택하세요.\n"
 		+ "ex) 백엔드, 레벨1, 자동차경주";
+	private static final String AGAIN_MATCH = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
 
 	public static String getInputCommand() {
 		System.out.println(FUNCTION_CHOICE);
@@ -27,6 +28,11 @@ public class InputView {
 
 	public static String getInputPairMatching() {
 		System.out.println(PAIR_MATCHING_CHOICE);
+		return Console.readLine();
+	}
+
+	public static String getInputReMatching() {
+		System.out.println(AGAIN_MATCH);
 		return Console.readLine();
 	}
 }
