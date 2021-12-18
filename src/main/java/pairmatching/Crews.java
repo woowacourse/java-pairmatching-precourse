@@ -13,14 +13,32 @@ public class Crews {
 	public static List<String> backEndCrewNames;
 	public static List<String> frontEndCrewNames;
 
+	public static List<String> shuffledBackEndCrewNames;
+	public static List<String> shuffledFrontEndCrewNames;
+
 	public static Crew[] backEndCrews;
 	public static Crew[] frontEndCrews;
+
+	private static void randomShuffleBackEnd() {
+		shuffledBackEndCrewNames = Randoms.shuffle(backEndCrewNames);
+		System.out.println(shuffledBackEndCrewNames);
+	}
+
+	public static void randomShuffleFrontEnd() {
+		shuffledFrontEndCrewNames = Randoms.shuffle(frontEndCrewNames);
+		System.out.println(shuffledFrontEndCrewNames);
+	}
 
 	public static void makeCrews() throws IOException {
 		makeBackEndCrews();
 		makeFrontEndCrews();
 		System.out.println(Arrays.toString(makeBackEndCrews()));
 		System.out.println(Arrays.toString(makeFrontEndCrews()));
+
+		System.out.println();
+
+		randomShuffleBackEnd();
+		randomShuffleFrontEnd();
 
 	}
 
