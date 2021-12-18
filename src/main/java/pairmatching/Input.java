@@ -6,17 +6,17 @@ import pairmatching.domain.Function;
 public class Input {
 	public static Function requestToSelectFunction() {
 		Printer.printFunctions();
-		return readFunctionSelect();
+		return readFunctionSelected();
 	}
 
-	private static Function readFunctionSelect() {
+	private static Function readFunctionSelected() {
 		try {
 			String input = Console.readLine();
 			InputValidator.validateAllowedFunction(input);
 			return Function.byKey(input);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			return readFunctionSelect();
+			return readFunctionSelected();
 		}
 	}
 
