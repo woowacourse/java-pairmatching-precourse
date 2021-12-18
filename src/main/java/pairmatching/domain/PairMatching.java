@@ -36,7 +36,27 @@ public class PairMatching {
 		matchings.add(new Matching(Level.LEVEL4, Mission.DEPLOYMENT));
 	}
 
-	public List<Matching> getMatchings() {
+	public Matching findMatching(String inputMatching) {
+		for (Matching matching : getMatchings()) {
+			if (matching.isRight(inputMatching)) {
+				return matching;
+			}
+		}
+		return null;
+	}
+
+	private List<Matching> getMatchings() {
 		return matchings;
+	}
+
+	public List<List<String>> getMatchingResult(Course course, Matching matching) {
+		if (course == Course.BACKEND) {
+			matching.setBackResult(crewNameMap.get(course));
+			return matching.getBackResult();
+		}
+		return null;
+		// if (course == Course.FRONTEND) {
+		//
+		// }
 	}
 }

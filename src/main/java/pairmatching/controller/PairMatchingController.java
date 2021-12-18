@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -14,13 +15,18 @@ import pairmatching.constant.Menu;
 import pairmatching.domain.Matching;
 import pairmatching.domain.PairMatching;
 import pairmatching.view.InputView;
+import pairmatching.view.OutputView;
 
 public class PairMatchingController {
+	private static final String SPLIT_REGEX = ",";
+
 	private final InputView inputView;
+	private final OutputView outputView;
 	private final PairMatching pairMatching;
 
 	public PairMatchingController() {
 		inputView = new InputView();
+		outputView = new OutputView();
 		pairMatching = new PairMatching();
 	}
 
@@ -72,17 +78,15 @@ public class PairMatchingController {
 
 	private void matching() {
 		String inputMatching = inputView.getInputMatching();
-		Matching selectedMatching = findMatching(inputMatching);
-
+		Matching selectedMatching = pairMatching.findMatching(inputMatching);
+		List<List<String>> matchingResult = pairMatching.getMatchingResult(getInputMatchingCourse(inputMatching),
+			selectedMatching);
+		outputView.printMatchingResult(matchingResult);
 	}
 
-	private Matching findMatching(String inputMatching) {
-		for (Matching matching : pairMatching.getMatchings()) {
-			if (matching.isRight(inputMatching)) {
-				return matching;
-			}
-		}
-		return null;
+	private Course getInputMatchingCourse(String inputMatching) {
+		return Course.nameOf(Arrays.stream(inputMatching.split(SPLIT_REGEX))
+			.map(String::trim)
+			.toArray(String[]::new)[0]);
 	}
-
 }

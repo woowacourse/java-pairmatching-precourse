@@ -42,6 +42,22 @@ public class Matching {
 			.toArray(String[]::new);
 	}
 
+	public void setBackResult(List<String> crewNames) {
+		for (int i = 0; i < crewNames.size(); i = i + 2) {
+			List<String> temp = new ArrayList<>();
+			temp.add(crewNames.get(i));
+			temp.add(crewNames.get(i + 1));
+			backResult.add(temp);
+		}
+		if (crewNames.size() % 2 != 0) {
+			backResult.get(backResult.size() - 1).add(crewNames.get(crewNames.size() - 1));
+		}
+	}
+
+	public List<List<String>> getBackResult() {
+		return backResult;
+	}
+
 	// public void resetResults() {
 	// 	backResult.clear();
 	// 	frontResult.clear();
