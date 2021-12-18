@@ -1,5 +1,7 @@
 package pairmatching;
 
+import static pairmatching.view.InputView.inputCommandIsNo;
+
 import java.util.List;
 import pairmatching.domain.Command;
 import pairmatching.domain.Course;
@@ -66,7 +68,7 @@ public class Application {
             Level level = Level.getLevel(matchingInformation.get(1));
             String missionName = matchingInformation.get(2);
             Mission mission = Mission.createEmptyMission(missionName, course);
-            if (pairProgram.isMatched(level, mission) && InputView.inputAlreadyMatching().equals("아니오")) {
+            if (pairProgram.isMatched(level, mission) && inputCommandIsNo(InputView.inputAlreadyMatching())) {
                 matching(pairProgram);
             }
             return pairProgram.matching(level, mission);
