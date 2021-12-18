@@ -6,6 +6,7 @@ public class Pair {
 	private final Course course;
 	private final Level level;
 	private final Mission mission;
+	private PairCrews pairCrews;
 
 	private Pair(Course course, Level level, Mission mission) {
 		this.course = course;
@@ -20,6 +21,10 @@ public class Pair {
 		return new Pair(course, level, mission);
 	}
 
+	public void matchCrew(Crews crews) {
+		PairMatchGenerator pairMatchGenerator = new PairMatchGenerator();
+		this.pairCrews = pairMatchGenerator.generate(crews);
+	}
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {

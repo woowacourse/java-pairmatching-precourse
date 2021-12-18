@@ -1,5 +1,6 @@
 package pairmatching.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -28,5 +29,9 @@ public class Crews {
 		if(crewNameSet.size() != crewNameList.size()) {
 			throw new IllegalArgumentException(Notification.CREW_NAME_DUPLICATED.getMessage());
 		}
+	}
+
+	public List<Crew> getCrews() {
+		return new ArrayList<>(crews.values());
 	}
 }
