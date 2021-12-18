@@ -22,8 +22,17 @@ public class FileInputController {
 		List<String> backendNames = readFile(BACKEND_FILE);
 		List<String> frontendNames = readFile(FRONTEND_FILE);
 
-		CrewMembers.add(Course.BACKEND, backendNames);
-		CrewMembers.add(Course.FRONTEND, frontendNames);
+		addCrewMembers(Course.BACKEND, backendNames);
+		addCrewMembers(Course.FRONTEND, frontendNames);
+	}
+
+	private static void addCrewMembers(Course course, List<String> names) {
+
+		List<Crew> crews = new ArrayList<>();
+		for(String name: names){
+			crews.add(new Crew(course, name));
+		}
+		CrewMembers.add(course, crews);
 	}
 
 	private static List<String> readFile(String backendFile) {

@@ -5,16 +5,17 @@ import java.util.List;
 import java.util.Map;
 
 import pairmatching.domain.Course;
+import pairmatching.domain.Crew;
 
 public class CrewMembers {
 
-	private static Map<Course, List<String>> crewMembers = new HashMap<>();
+	private static Map<Course, List<Crew>> crewMembers = new HashMap<>();
 
-	public static void add(Course course, List<String> names) {
-		crewMembers.put(course, names);
+	public static void add(Course course, List<Crew> crews) {
+		crewMembers.put(course, crews);
 	}
 
-	public static List<String> getCrewsByCourse(Course course){
+	public static List<Crew> getCrewsByCourse(Course course){
 		return crewMembers.get(course);
 	}
 }
