@@ -1,5 +1,6 @@
 package pairmatching.controller;
 
+import pairmatching.domain.CrewRepository;
 import pairmatching.service.PairMatchingService;
 
 import static pairmatching.constants.SystemConstants.*;
@@ -11,6 +12,7 @@ public class PairMatchingController {
     private final PairMatchingService pairMatchingService = new PairMatchingService();
 
     public void run() {
+        CrewRepository.initCrewDatabase();
         boolean isRunning = true;
 
         while (isRunning) {
