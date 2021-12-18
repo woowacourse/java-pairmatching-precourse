@@ -22,25 +22,26 @@ public class Function {
 		this.matchingSystem = new MatchingSystem();
 	}
 
-	public void handleFunction(String[] information) throws IOException {
+	public boolean handleFunction(String[] information) throws IOException {
 		String course = information[COURSE];
 		String level = information[LEVEL];
 		String mission = information[MISSION];
 
 		if(number == 1) {
-			matching(course,level,mission);
-			return;
+			return matching(course,level,mission);
+
 		}
 
 		if(number == 2) {
 			check(course,level,mission);
-			return;
+			return true;
 		}
 
 		initialize(course,level,mission);
+		return true;
 	}
 
-	private void matching(String course, String level, String mission) throws IOException {
+	private boolean matching(String course, String level, String mission) throws IOException {
 		String filePath = "";
 		if(course.equals("백엔드")) {
 			filePath = "backend-crew.md";
@@ -52,10 +53,12 @@ public class Function {
 		List<String> matchingResult = Randoms.shuffle(getCrewNames(filePath));
 
 		OutputView.printMatchingResult(matchingResult);
-		matchingSystem.saveMatchingResult(matchingResult, course,  level, mission);
+
+		return matchingSystem.saveMatchingResult(matchingResult, course,  level, mission);
+
 	}
 
-
+	// TODO: utils 로 빼기
 	private List<String> getCrewNames(String filePath) throws IOException {
 		List<String> crewName = new ArrayList<>();
 		BufferedReader bufferedReader = new BufferedReader(

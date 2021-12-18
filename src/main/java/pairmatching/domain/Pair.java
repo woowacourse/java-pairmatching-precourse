@@ -19,8 +19,8 @@ public class Pair {
 		OutputView.printProcessMissionLevel();
 	}
 
-	public void takeInformation(String[] information) throws IOException {
-		function.handleFunction(information);
+	public boolean takeInformation(String[] information) throws IOException {
+		return function.handleFunction(information);
 	}
 
 

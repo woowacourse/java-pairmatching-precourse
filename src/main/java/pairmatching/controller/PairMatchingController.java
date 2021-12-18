@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
 import pairmatching.exception.dto.ResponseError;
 import pairmatching.service.PairMatchingService;
 import pairmatching.view.InputView;
+import pairmatching.view.OutputView;
 
 public class PairMatchingController {
 
@@ -20,7 +21,6 @@ public class PairMatchingController {
 			InputView.PrintSelectFunction();
 			return pairMatchingService.selectFunction(Console.readLine());
 
-
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
 		}
@@ -31,10 +31,11 @@ public class PairMatchingController {
 	public void selectProcessLevelMission() {
 		try {
 			InputView.printSelectProcessMissionLevel();
-			pairMatchingService.selectProcessLevelMission(Console.readLine());
+			if(!pairMatchingService.selectProcessLevelMission(Console.readLine())) {
+				selectProcessLevelMission();
+			}
 		} catch (IllegalArgumentException | IOException e) {
 			ResponseError.of(e.getMessage());
 		}
 	}
-
 }

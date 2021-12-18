@@ -36,4 +36,8 @@ public class OutputView {
 		}
 		System.out.println();
 	}
+
+	public static void printQueryMatchingInformation() {
+		System.out.println(Message.PRINT_QUERY_MATCHING);
+	}
 }

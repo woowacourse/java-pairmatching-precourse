@@ -19,10 +19,21 @@ public class PairMatchingService {
 		return true;
 	}
 
-	public void selectProcessLevelMission(String input) throws IOException {
+	public boolean selectProcessLevelMission(String input) throws IOException {
 		//TODO: validation
 
-		pair.takeInformation(
+		return pair.takeInformation(
 			input.replaceAll(" ","").split(","));
+	}
+
+	public boolean queryReMatching(String input) {
+		//TODO: validation
+
+		if(input.equals("아니오")) {
+			return false;
+		}
+
+
+		return true;
 	}
 }
