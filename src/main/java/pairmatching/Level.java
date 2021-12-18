@@ -1,6 +1,7 @@
 package pairmatching;
 
 import java.util.Arrays;
+import pairmatching.exception.ErrorMessage;
 
 public enum Level {
     LEVEL1("레벨1"),
@@ -19,7 +20,7 @@ public enum Level {
         return Arrays.stream(Level.values())
             .filter(level -> level.name.equals(name))
             .findAny()
-            .orElseThrow(IllegalArgumentException::new)
+            .orElseThrow(ErrorMessage.NOT_FOUND_LEVEL::getException)
             .name;
     }
 }
