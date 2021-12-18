@@ -10,15 +10,12 @@ public class Crews {
 		crews = getCrewsByCourse(course);
 	}
 
-	private CrewNames getCrewNamesByCourse(Course course) {
-		if (course.isBackend()) {
-			return new BackendCrewNames();
-		}
-		return new FrontendCrewNames();
+	public static Crews create(Course course) {
+		return new Crews(course);
 	}
 
 	private List<Crew> getCrewsByCourse(Course course) {
-		List<String> crewNames = getCrewNamesByCourse(course).get();
+		List<String> crewNames = CrewNames.create(course).get();
 
 		return crewNames.stream()
 			.map(crewName -> Crew.create(course, crewName))

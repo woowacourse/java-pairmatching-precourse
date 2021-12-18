@@ -23,8 +23,15 @@ public class CrewNames {
 		return crewNames;
 	}
 
-	public List<String> getShuffledCrewNames() {
+	public List<String> shuffle() {
 		return Randoms.shuffle(crewNames);
+	}
+
+	public static CrewNames create(Course course) {
+		if (course.isBackend()) {
+			return new BackendCrewNames();
+		}
+		return new FrontendCrewNames();
 	}
 
 	private void addCrewNames(String crewFile) throws IOException {
