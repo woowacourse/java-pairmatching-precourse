@@ -35,4 +35,17 @@ public class InputView {
             return inputDetails();
         }
     }
+
+    public static String inputReMatch() {
+        try {
+            System.out.println(PRECOURSE_AND_MISSIONS);
+            String input = Console.readLine();
+            validator.isValidDetails(input);
+            return input;
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputDetails();
+        }
+    }
 }
