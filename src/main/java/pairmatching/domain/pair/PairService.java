@@ -55,22 +55,38 @@ public class PairService {
             shuffledCrew = mapNamesToCrews(frontend, Course.FRONTEND);
         }
 
-        int i = 0;
-        while (i < shuffledCrew.size() - 1) {
-            Crew crewOne = shuffledCrew.get(i);
-            Crew crewTwo = shuffledCrew.get(i + 1);
-            Pair pair = new Pair(pairTag.getLevel());
-            pair.addCrew(crewOne);
-            pair.addCrew(crewTwo);
-            result.add(pair);
-            i += 2;
-        }
-        if (shuffledCrew.size() % 2 != 0) {
-            Pair pair = result.get(result.size() - 1);
-            pair.addCrew(shuffledCrew.get(shuffledCrew.size() - 1));
+        mappingPairs(pairTag, result, shuffledCrew);
+        if (isOddSizeCrews(shuffledCrew)) {
+            addLastCrewInLastPair(result, shuffledCrew);
         }
 
         return result;
+    }
+
+    private void addLastCrewInLastPair(List<Pair> result, List<Crew> shuffledCrew) {
+        Pair pair = result.get(result.size() - 1);
+        pair.addCrew(shuffledCrew.get(shuffledCrew.size() - 1));
+    }
+
+    private boolean isOddSizeCrews(List<Crew> shuffledCrew) {
+        return shuffledCrew.size() % 2 != 0;
+    }
+
+    private void mappingPairs(PairTag pairTag, List<Pair> result, List<Crew> shuffledCrew) {
+        int index = 0;
+        while (index < shuffledCrew.size() - 1) {
+            addCrewsInPair(pairTag, result, shuffledCrew, index);
+            index += 2;
+        }
+    }
+
+    private void addCrewsInPair(PairTag pairTag, List<Pair> result, List<Crew> shuffledCrew, int index) {
+        Crew crewOne = shuffledCrew.get(index);
+        Crew crewTwo = shuffledCrew.get(index + 1);
+        Pair pair = new Pair(pairTag.getLevel());
+        pair.addCrew(crewOne);
+        pair.addCrew(crewTwo);
+        result.add(pair);
     }
 
     private List<Crew> mapNamesToCrews(List<String> names, Course course) {
