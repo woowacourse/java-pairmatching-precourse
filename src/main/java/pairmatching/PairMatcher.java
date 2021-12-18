@@ -30,16 +30,8 @@ public class PairMatcher {
 		}
 	}
 
-	private boolean hasMatchingStatus(String input) {
-		List<String> matchingStatus = Parser.matchingStatus(input);
-		if (matchResults.contains(new Crews(matchingStatus))) {
-			InputView.getReMatching();
-			return true;
-		}
-		return false;
-	}
-
 	public void pairQuery() {
+		InputView.printCourseAndMission();
 		List<String> matchingStatus = Parser.matchingStatus(InputView.getInputToMatch());
 		if (!matchResults.contains(new Crews(matchingStatus))) {
 			throw new IllegalArgumentException(MESSAGE_NO_MATCH);
