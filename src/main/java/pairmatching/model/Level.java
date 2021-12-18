@@ -3,6 +3,8 @@ package pairmatching.model;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
+import pairmatching.exception.LevelException;
+
 public enum Level {
 	LEVEL1("레벨1"),
 	LEVEL2("레벨2"),
@@ -26,6 +28,6 @@ public enum Level {
 	public static Level findLevelByName(String levelName) {
 		return Arrays.stream(Level.values()).filter(
 			level -> level.getName().equals(levelName)
-		).findFirst().orElseThrow(()-> new IllegalArgumentException("레벨이 존재하지 않습니다."));
+		).findFirst().orElseThrow(LevelException::new);
 	}
 }

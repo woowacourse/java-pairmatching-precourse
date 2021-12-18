@@ -2,6 +2,8 @@ package pairmatching.model;
 
 import java.util.Arrays;
 
+import pairmatching.exception.MissionException;
+
 public enum Mission {
 	CAR("자동차경주"),
 	LOTTO("로또"),
@@ -29,6 +31,6 @@ public enum Mission {
 	public static Mission findMissionByName(String missionName) {
 		return Arrays.stream(Mission.values()).filter(
 			mission -> mission.getName().equals(missionName)
-		).findFirst().orElseThrow(()-> new IllegalArgumentException("미션이 존재하지 않습니다."));
+		).findFirst().orElseThrow(MissionException::new);
 	}
 }

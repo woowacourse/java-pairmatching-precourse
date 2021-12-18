@@ -2,6 +2,8 @@ package pairmatching.model;
 
 import java.util.Arrays;
 
+import pairmatching.exception.CourseException;
+
 public enum Course {
 	BACKEND("백엔드"),
 	FRONTEND("프론트엔드");
@@ -23,6 +25,6 @@ public enum Course {
 	public static Course findCourseByName(String courseName) {
 		return Arrays.stream(Course.values()).filter(
 			course -> course.getName().equals(courseName)
-		).findFirst().orElseThrow(()-> new IllegalArgumentException("코스가 존재하지 않습니다."));
+		).findFirst().orElseThrow(CourseException::new);
 	}
 }
