@@ -3,6 +3,7 @@ package pairmatching.domain;
 import pairmatching.utils.ConstantMessages;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -12,6 +13,10 @@ public class Pair {
 
     public void addCrew(Crew crew) {
         crews.add(crew);
+    }
+
+    public List<Crew> getCrews() {
+        return Collections.unmodifiableList(crews);
     }
 
     @Override
