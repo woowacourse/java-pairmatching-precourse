@@ -14,11 +14,11 @@ public class SelectingOptionService {
 
 	public void selectOption() {
 		pairMatchingView.selectOptionToDO();
-		String option = userView.selectSomething();
+		String option = userView.selectOptionToDo();
 	}
 
 	public void selectCourseLevelMission() {
 		pairMatchingView.selectCourseLevelMission();
-		String selection = userView.selectSomething();
+		String selection = userView.selectCourseLevelMission();
 	}
 }

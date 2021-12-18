@@ -19,7 +19,5 @@ public class PairMatchingView {
 		System.out.println("\t- 레벻4: 성능개선 | 배포");
 		System.out.println("\t- 레벻5:");
 		System.out.println("###############################");
-		System.out.println("과정, 레벨, 미션을 선택하세요.");
-		System.out.println("ex) 백엔드, 레벨ㅂ, 자동차경주");
 	}
 }
