@@ -2,13 +2,14 @@ package pairmatching.domain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class ProgramInfo {
     Course course;
     Level level;
     Mission mission;
-    HashMap<Crew, Crew> pairs = new HashMap<>(); // 크루1 -> 크루2/ 크루2 -> 크루1 이런 식으로
+    LinkedHashMap<Crew, Crew> pairs = new LinkedHashMap<>(); // 크루1 -> 크루2/ 크루2 -> 크루1 이런 식으로
 
     public ProgramInfo(Course course, Level level, Mission mission) {
         this.course = course;
@@ -31,11 +32,14 @@ public class ProgramInfo {
     public void savePairs(List<Crew> shuffledCrews) {
         int crewsCnt = shuffledCrews.size();
         for (int i = 0; i < crewsCnt / 2; i++) {
-            pairs.put(shuffledCrews.get(i), shuffledCrews.get(i + 1));
+            pairs.put(shuffledCrews.get(i*2), shuffledCrews.get(i*2 + 1));
         }
         if (crewsCnt % 2 == 1) {
             pairs.put(shuffledCrews.get(crewsCnt - 2), shuffledCrews.get(crewsCnt - 1));
             pairs.put(shuffledCrews.get(crewsCnt - 1), shuffledCrews.get(crewsCnt - 3));
+        }
+        for (Crew crew : pairs.keySet()) {
+            System.out.println(crew+" : "+pairs.get(crew));
         }
     }
 }

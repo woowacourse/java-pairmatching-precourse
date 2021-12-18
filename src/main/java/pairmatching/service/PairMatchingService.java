@@ -57,8 +57,8 @@ public class PairMatchingService {
         boolean alreadyMatch = false;
         int crewsCnt = shuffledCrews.size();
         for (int i = 0; i < crewsCnt / 2; i++) {
-            alreadyMatch = programInfoRepository.checkTwoCrewsAlreadyMatch(programInfo, shuffledCrews.get(i),
-                shuffledCrews.get(i + 1));
+            alreadyMatch = programInfoRepository.checkTwoCrewsAlreadyMatch(programInfo, shuffledCrews.get(i * 2),
+                shuffledCrews.get(i * 2 + 1));
             if (alreadyMatch) {
                 return alreadyMatch;
             }
