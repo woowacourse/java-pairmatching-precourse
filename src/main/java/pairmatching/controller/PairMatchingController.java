@@ -12,6 +12,7 @@ import pairmatching.view.OutputView;
 
 public class PairMatchingController {
 	private static final String PAIR_MATCHING = "1";
+	private static final String PAIR_CHECK = "2";
 	private static final String ORIGIN = "아니오";
 	private static final int COMBINATION_COUNT = 3;
 
@@ -31,6 +32,9 @@ public class PairMatchingController {
 	private void excuteMenu(String menu) {
 		if (menu.equals(PAIR_MATCHING)) {
 			matchPair();
+		}
+		if (menu.equals(PAIR_CHECK)) {
+			checkPair();
 		}
 	}
 
@@ -76,5 +80,9 @@ public class PairMatchingController {
 			newMatching.deleteCombination();
 		}
 		return newMatching.getCombinationMessage();
+	}
+
+	private void checkPair() {
+		OutputView.printProcessAndMission(Process.getProcessMessage(), Mission.getMissionMessage());
 	}
 }
