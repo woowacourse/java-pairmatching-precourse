@@ -10,35 +10,39 @@ import pairmatching.domain.MatchingRepository;
 import pairmatching.domain.MissionType;
 import pairmatching.domain.service.MatchingService;
 import pairmatching.view.InputView;
+import pairmatching.view.OutputView;
 
 public class MainHandler {
-	private static final String COMMAND_SPLIT = ",";
+	private static final String COMMAND_SPLIT = ", ";
 	private static final int COMMAND_SPLIT_LIMIT = -1;
 	private static final int COURSE_INDEX = 0;
 	private static final int LEVEL_INDEX = 1;
 	private static final int MISSION_INDEX = 2;
+	private static final String RE_MATCHING = "네";
 
 	public static void matchingManager() {
 		try {
 			final String[] command = InputView.getInputPairMatching().split(COMMAND_SPLIT, COMMAND_SPLIT_LIMIT);
+			OutputView.printLineSeparator();
 			final Course course = Course.findByCourse(command[COURSE_INDEX]);
 			final Level level = Level.findByLevel(command[LEVEL_INDEX]);
-			final MissionType missionType = Level.findByMission(command[MISSION_INDEX]);
+			final MissionType missionType = MissionType.findByMission(command[MISSION_INDEX]);
 			matchingProcessJudge(course, level, missionType);
-			// 결과 출력
 		} catch (IllegalArgumentException | IOException e) {
-
 			matchingManager();
 		}
 	}
 
 	private static void matchingProcessJudge(Course course, Level level, MissionType missionType) throws IOException {
 		boolean validate = isValidateCheckMatching(course, level);
-
 		if (validate == true) {
+			if (InputView.getInputReMatching().equals(RE_MATCHING)) {
+				MatchingService.generateMatching(course, level, missionType);
+			}
 		}
 
 		if (validate == false) {
+			MatchingService.generateMatching(course, level, missionType);
 		}
 	}
 
