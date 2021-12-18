@@ -11,7 +11,7 @@ public class InputValidator {
     private static final String NEW_LINE = "\n";
     private static final String MAIN_SCREEN_INPUT_FORMAT = "[123Q]";
     private static final String INVALID_SCREEN_INPUT = "선택할 수 없는 기능입니다.";
-    private static final String COMMA = ",";
+    private static final String CONDITION_REGEX = "[ ,]+";
     private static final int CONDITIONS_SIZE = 3;
     private static final String INVALID_CONDITION_SIZE = "과정, 레벨, 미션 세 가지를 작성해주세요.";
     private static final int COURSE_INDEX = 0;
@@ -28,7 +28,7 @@ public class InputValidator {
     }
 
     public static void validateMatchingInput(String input) {
-        List<String> conditions = Arrays.asList(input.split(COMMA));
+        List<String> conditions = Arrays.asList(input.split(CONDITION_REGEX));
         validateSize(conditions);
         validateCourse(conditions.get(COURSE_INDEX));
         validateLevel(conditions.get(LEVEL_INDEX));
