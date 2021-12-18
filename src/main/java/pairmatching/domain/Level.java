@@ -18,4 +18,13 @@ public enum Level {
     public boolean isSameLevel(int level) {
         return this.level == level;
     }
+
+    public boolean isSameName(String name) {
+        return this.name.equals(name);
+    }
+
+    @Override
+    public String toString() {
+        return "\t- " + this.name + ": ";
+    }
 }

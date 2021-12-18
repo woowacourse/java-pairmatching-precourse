@@ -14,6 +14,18 @@ public class Crew {
         this.name = name;
     }
 
+    public boolean isSameCourse(Course c) {
+        return this.course == c;
+    }
+
+    public boolean isSameName(String name) {
+        return this.name.equals(name);
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
     @Override
     public String toString() {
         return "Crew{" +

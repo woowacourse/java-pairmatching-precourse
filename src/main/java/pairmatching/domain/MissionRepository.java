@@ -2,6 +2,7 @@ package pairmatching.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MissionRepository {
     private static final List<Mission> missions = new ArrayList<>();
@@ -24,9 +25,22 @@ public class MissionRepository {
         missions.add(new Mission(missionName, level));
     }
 
-    public static void print() {
-        for (Mission m : missions) {
-            System.out.println(m.toString());
+    public static String print() {
+        StringBuilder infos = new StringBuilder();
+        for (Level l : Level.values()) {
+            infos.append("\n");
+            infos.append(l.toString());
+            infos.append(getMissionsByLevel(l));
         }
+        return infos.toString();
+    }
+
+    private static String getMissionsByLevel(Level l) {
+        List<String> names = missions.stream().filter(m -> m.level == l).map(m -> m.getName()).collect(Collectors.toList());
+        return String.join(" | ", names);
+    }
+
+    public static Mission getMissionByName(String name) {
+        return missions.stream().filter(m -> m.isSameName(name)).findFirst().orElse(null);
     }
 }

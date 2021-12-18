@@ -20,4 +20,8 @@ public enum MissionName {
         return this.name.equals(name);
     }
 
+    public String getName() {
+        return this.name;
+    }
+
 }

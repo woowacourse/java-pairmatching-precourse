@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CrewRepository {
     private static List<Crew> crews = new ArrayList<>();
@@ -24,6 +25,14 @@ public class CrewRepository {
 
     public static void addCrew(String courseName, String name) {
         crews.add(new Crew(courseName, name));
+    }
+
+    public static List<String> getCrewNames(Course c) {
+        return crews.stream().filter(cr -> cr.isSameCourse(c)).map(n -> n.getName()).collect(Collectors.toList());
+    }
+
+    public static Crew getCrewByName(String name) {
+        return crews.stream().filter(c -> c.isSameName(name)).findFirst().orElse(null);
     }
 
     public static void print() {
