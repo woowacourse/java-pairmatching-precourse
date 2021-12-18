@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import pairmatching.model.Course;
 import pairmatching.model.Level;
 import pairmatching.model.Mission;
+import pairmatching.model.Pairs;
 
 public class OutputView {
 
@@ -21,6 +22,7 @@ public class OutputView {
 	public static final String NEW_LINE = "\n";
 	public static final String TAP = "\t";
 	public static final String COLON = ": ";
+	public static final String PAIRING_RESULT_INIT = "페어 매칭 결과입니다.";
 
 	public static void printMenu() {
 		printMenuInit();
@@ -32,6 +34,11 @@ public class OutputView {
 		printCourseInfo();
 		printMissionInfo();
 		printBoundary();
+	}
+
+	public static void printPairResult(Pairs pairs) {
+		System.out.println(PAIRING_RESULT_INIT);
+		System.out.println(pairs);
 	}
 
 	private static void printMissionInfo() {

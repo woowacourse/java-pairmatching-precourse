@@ -6,6 +6,7 @@ import java.util.List;
 public class Pairs {
 	public static final int EVEN = 2;
 	public static final int NO_REMAINDER = 0;
+	private static final String NEW_LINE = "\n";
 
 	private final List<Pair> pairs;
 
@@ -77,5 +78,16 @@ public class Pairs {
 
 	private boolean isCrewSizeOdd(Crews crews) {
 		return crews.size() % EVEN != NO_REMAINDER;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+
+		for (Pair pair : pairs) {
+			stringBuilder.append(pair).append(NEW_LINE);
+		}
+
+		return stringBuilder.toString();
 	}
 }

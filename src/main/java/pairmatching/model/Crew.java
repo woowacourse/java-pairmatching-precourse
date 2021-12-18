@@ -15,6 +15,10 @@ public class Crew {
 		return new Crew(course, name);
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -29,4 +33,5 @@ public class Crew {
 	public int hashCode() {
 		return Objects.hash(course, name);
 	}
+
 }
