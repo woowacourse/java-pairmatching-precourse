@@ -16,6 +16,7 @@ public class InputValidator {
 
 	public static final List<String> ENTRY_MENU_LIST = Arrays.asList("1", "2", "3", "Q");
 	public static final List<String> YES_OR_NO_LIST = Arrays.asList("예", "아니오");
+	public static final String INPUT_YES_OR_NO = "'예' 혹은 '아니오' 만 입력 가능합니다.";
 
 	public static void validateEntryMenu(String input) {
 		if (!ENTRY_MENU_LIST.contains(input)) {
@@ -44,7 +45,7 @@ public class InputValidator {
 
 	public static void validateMatchingAgain(String input) {
 		if (!YES_OR_NO_LIST.contains(input)) {
-			throw new IllegalArgumentException("'예' 혹은 '아니오' 만 입력 가능합니다.");
+			throw new IllegalArgumentException(INPUT_YES_OR_NO);
 		}
 	}
 }

@@ -27,11 +27,10 @@ public class InputView {
 	}
 
 	public static String inputMatching() {
-		out.println(INPUT_COURSE_MENU);
-		String input = "";
 		while (true) {
+			out.println(INPUT_COURSE_MENU);
+			String input = Console.readLine();
 			try {
-				input = Console.readLine();
 				InputValidator.validateMatching(input);
 				out.println();
 				return input;
