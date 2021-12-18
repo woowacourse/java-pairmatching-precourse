@@ -3,6 +3,7 @@ package pairmatching;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import pairmatching.exception.ErrorMessage;
 
 public class MissionRepository {
 
@@ -13,7 +14,10 @@ public class MissionRepository {
     }
 
     public static Mission findByMission(String name) {
-        return missions.stream().filter(mission -> mission.getName().equals(name)).findAny().get();
+        return missions.stream()
+            .filter(mission -> mission.getName().equals(name))
+            .findAny()
+            .orElseThrow(ErrorMessage.NOT_FOUND_MISSION::getException);
     }
 
     public static List<Mission> getMissions() {
