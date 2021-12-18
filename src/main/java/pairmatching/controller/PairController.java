@@ -10,6 +10,9 @@ import pairmatching.domain.crew.Crew;
 import pairmatching.domain.level.Level;
 import pairmatching.domain.pair.Pairs;
 import pairmatching.exception.InvalidFormatException;
+import pairmatching.exception.NoCourseException;
+import pairmatching.exception.NoLevelException;
+import pairmatching.exception.NoMissionException;
 import pairmatching.repository.CrewRepository;
 import pairmatching.repository.MissionRepository;
 import pairmatching.repository.PairsRepository;
@@ -49,18 +52,18 @@ public class PairController {
 
 	private void validateCourseLevelMission(List<String> courseLevelMission) {
 		// TODO: 검증 해야함
-		// if (!Course.containsName(courseLevelMission.get(COURSE_INDEX))) {
-		// 	throw new NoCourseException();
-		// }
-		//
-		// if (!Level.containsName(courseLevelMission.get(LEVEL_INDEX))) {
-		// 	throw new NoLevelException();
-		// }
-		//
-		// Level level = Level.getByName(courseLevelMission.get(MISSION_INDEX));
-		// if (MissionRepository.contains(level, courseLevelMission.get(MISSION_INDEX))) {
-		// 	throw new NoMissionException();
-		// }
+		if (!Course.containsName(courseLevelMission.get(COURSE_INDEX))) {
+			throw new NoCourseException();
+		}
+
+		if (!Level.containsName(courseLevelMission.get(LEVEL_INDEX))) {
+			throw new NoLevelException();
+		}
+
+		Level level = Level.getByName(courseLevelMission.get(LEVEL_INDEX));
+		if (!MissionRepository.contains(level, courseLevelMission.get(MISSION_INDEX))) {
+			throw new NoMissionException();
+		}
 	}
 
 	private void createRandomPairs(Course course, Level level, String mission) {

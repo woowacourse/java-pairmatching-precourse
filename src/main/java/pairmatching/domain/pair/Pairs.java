@@ -28,7 +28,7 @@ public class Pairs {
 
 	public static Pairs createRandom(Course course, Level level, String mission, List<Crew> crews) {
 		// TODO: 리팩토링 필요
-		List<Crew> remainingCrews = Randoms.shuffle(crews);
+		List<Crew> remainingCrews = new ArrayList<>(Randoms.shuffle(crews));
 		Set<Pair> pairs = new LinkedHashSet<>();
 
 		while (remainingCrews.size() > 0) {
