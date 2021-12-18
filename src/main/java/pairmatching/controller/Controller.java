@@ -14,6 +14,9 @@ import pairmatching.view.OutputView;
 public class Controller {
 
     private static final String PAIR_MATCHING_SIGN = "1";
+    private static final String PAIR_LOOKING_UP_SIGN = "2";
+    private static final String PAIR_INITIALIZATION_SIGN = "3";
+    private static final String TERMINATING_SIGN = "Q";
     private static final String COMMA_SEPARATION = ",";
     private static final int COURSE_INDEX = 0;
     private static final int LEVEL_INDEX = 1;
@@ -26,10 +29,14 @@ public class Controller {
     }
 
     public void execute() {
-        String inputFunction = getInputFunction();
-        if (inputFunction.equals(PAIR_MATCHING_SIGN)) {
-            initializeMatchingInfo();
-        }
+        String inputFunction;
+        do {
+            inputFunction = getInputFunction();
+
+            if (inputFunction.equals(PAIR_MATCHING_SIGN)) {
+                initializeMatchingInfo();
+            }
+        } while (!inputFunction.equals(TERMINATING_SIGN));
     }
 
     private void initializeMatchingInfo() {
