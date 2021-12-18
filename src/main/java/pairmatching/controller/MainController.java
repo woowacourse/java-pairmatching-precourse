@@ -10,7 +10,9 @@ public class MainController {
 
     public void playGame() {
         Output.printFunctionSelection();
-        String FunctionSelection = Input.inputFunctionSelection();
+        String functionSelection = Input.inputFunctionSelection();
+
         Output.printMissionAndProcess();
+        String inputProcess = Input.inputProcess();
     }
 }

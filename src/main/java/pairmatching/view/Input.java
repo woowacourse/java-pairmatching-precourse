@@ -7,4 +7,9 @@ public class Input {
         String inputData = Console.readLine();
         return inputData;
     }
+
+    public static String inputProcess() {
+        String inputProcess = Console.readLine();
+        return inputProcess;
+    }
 }
