@@ -15,7 +15,6 @@ public class Match {
         this.level = level;
         this.mission = mission;
         this.pairs = pairs;
-        this.matchObject[course][level][mission] = 1;
     }
 
     public void initCheck() {
@@ -23,6 +22,13 @@ public class Match {
 
     }
 
+    public static void enrollMatchObject(ArrayList<Integer> pivots) {
+        // 매칭 오브젝트를 등록함
+        // 예를들어 matchObject[(0, 1, 2)] = {3, 4, 1, 2} 처럼
+        // 0 means 백엔드크루
+        // 1 means 레벨1
+        // 2 means 미션2(=로또)
+    }
 
 
 
