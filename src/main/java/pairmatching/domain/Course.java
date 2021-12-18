@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.*;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public enum Course {
         Course course = findCourse(inputCourse);
 
         String input = IOUtils.toString(getClass().getResourceAsStream(course.path), StandardCharsets.UTF_8);
-        List<String> names = getNames(input);
+        List<String> names = new ArrayList<>(getNames(input));
 
         return names.stream()
             .map(name -> new Crew(course, name))

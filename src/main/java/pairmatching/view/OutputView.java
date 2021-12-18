@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
@@ -30,16 +31,14 @@ public class OutputView {
     }
     
     public static void printPairMatchingResult(PairInformation pairInformation) {
-        System.out.println("페어 매칭 결과입니다.");
+        StringBuilder stringBuilder = new StringBuilder("페어 매칭 결과입니다.\n");
         List<Pair> pairs = pairInformation.getPairs();
         for (Pair pair : pairs) {
-            List<Crew> crews = pair.getCrews();
-            String pairCrews = crews.stream().
-                map(Crew::getName)
-                .collect(joining(" : "));
-            System.out.println(pairCrews);
+            List<String> crews = pair.getCrewNames();
+            String crewNames = String.join(" : ", crews);
+            stringBuilder.append(crewNames).append("\n");
         }
-        System.out.println();
+        System.out.println(stringBuilder);
     }
 
     public static void printPairMission() {
