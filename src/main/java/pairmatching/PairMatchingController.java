@@ -2,6 +2,8 @@ package pairmatching;
 
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
+import pairmatching.view.View;
+import pairmatching.view.Menu;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,8 +19,23 @@ public class PairMatchingController {
     public static final String FRONTEND_CREW_NAMES = "src/main/resources/frontend-crew.md";
 
     public void run() {
+        Menu menu;
+        do {
+            menu = View.getMenu();
+            execute(menu);
+        } while (menu != Menu.QUIT);
+    }
 
-
+    private void execute(Menu menu) {
+        if (menu == Menu.PAIR_MATCHING) {
+            // TODO: 2021/12/18 페어 매칭 기능 구현
+        }
+        if (menu == Menu.PAIR_SEARCH) {
+            // TODO: 2021/12/18 페어 조회 기능 구현
+        }
+        if (menu == Menu.PAIR_CLEAR) {
+            // TODO: 2021/12/18 페어 초기화 기능 구현
+        }
     }
 
 
