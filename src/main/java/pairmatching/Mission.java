@@ -59,12 +59,13 @@ public enum Mission {
         }
     }
 
-    public static void CheckTheMissionForPrint(String missionName) {
+    public static void CheckTheMissionForPrint(String end,String missionName) {
         for (Mission mission : Mission.values()) {
-            if (mission.missionName.equals(missionName)) {
+            if (mission.missionName.equals(missionName) && (mission.end == Course.setName(end))) {
                 mission.PrintPair();
             }
         }
+        Except.NotFoundMatching();
     }
 
     public void PrintPair() {
@@ -86,13 +87,8 @@ public enum Mission {
 
     public static void ClearPair() {
         for (Mission mission : Mission.values()) {
-            attendanceBook = new ArrayList<>();
+            mission.attendanceBook = new ArrayList<>();
         }
-    }
-
-    public static boolean CheckTheAttendanceBook(ArrayList<Crew> CrewList) {
-
-        return true;
     }
 
     public boolean MakeAttendanceBook(ArrayList<Crew> CrewList) {

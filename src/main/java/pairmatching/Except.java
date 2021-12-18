@@ -35,4 +35,11 @@ public class Except {
             System.out.println("[ERROR] : 매칭을 실패했어요!");
         }
     }
+    public static void NotFoundMatching() {
+        try {
+            throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] : 출력할 내용이 없어요");
+        }
+    }
 }

@@ -49,10 +49,11 @@ public class Utils {
         System.out.println("ex) 백엔드, 레벨1, 자동차경주");
         String[] answer = Console.readLine().split(", ");
         if (answer.length == 3 && Course.JudgeCourse(answer[0]) && Level.JudgeLevel(answer[1], answer[2])) {
-
+            Mission.CheckTheMissionForPrint(answer[0],answer[2]);
             return;
         }
         if (answer.length == 2 && Course.JudgeCourse(answer[0]) && Level.JudgeLevel(answer[1])) {
+            Mission.CheckTheMissionForPrint(answer[0],answer[1]);
             return;
         }
         Except.PrintPairInputError();
@@ -89,7 +90,7 @@ public class Utils {
     public static void ShuffleCrew(String end, String level,String missionName) {
         if (end.equals("백엔드")) {
             BackendMakePartnerThreeTime(level);
-            Mission.CheckTheMissionForPrint(missionName);
+            Mission.CheckTheMissionForPrint(end,missionName);
             Mission.AddCrewList(missionName,backendCrew);
         }
         if (end.equals("프론트엔드")) {
