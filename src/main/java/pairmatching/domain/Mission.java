@@ -1,5 +1,15 @@
 package pairmatching.domain;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import pairmatching.view.Function;
+
 public enum Mission {
 	CAR_RACING(Level.LEVEL1, "자동차경주"),
 	LOTTO(Level.LEVEL1, "로또"),
@@ -20,6 +30,12 @@ public enum Mission {
 
 	public String getTitle() {
 		return title;
+	}
+
+	public static List<Mission> getMissionByLevel(Level level) {
+		return Arrays.stream(values())
+			.filter(mission -> mission.level.equals(level))
+			.collect(Collectors.toList());
 	}
 
 }

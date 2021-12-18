@@ -1,7 +1,5 @@
 package pairmatching.processor;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -24,7 +22,7 @@ class FileProcessorTest {
 	}
 
 	public void printReadNames(List<String> crewNames, Course course) {
-		System.out.println(course.getName() + " 조회 결과");
+		System.out.println(course.getTitle() + " 조회 결과");
 		for (String crewName : crewNames) {
 			System.out.println(crewName);
 		}
