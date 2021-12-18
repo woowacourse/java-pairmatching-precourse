@@ -59,6 +59,13 @@ public class Pair {
         }
     }
 
+    public int getCrewSize() {
+        return crewNames.size();
+    }
+    public String crewNameByNumber(int number) {
+        return crewNames.get(number);
+    }
+
     public boolean validateMatchable(String firstCrewName, String secondCrewName) {
         return Arrays.asList(alreadyMatched.get(firstCrewName)).contains(secondCrewName);
     }
