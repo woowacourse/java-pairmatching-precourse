@@ -16,16 +16,21 @@ public class PairMatching {
 	}
 
 	public void executeFeature() {
-		String feature = inputExecuteFeature().getMessage();
-		FeatureEnum.validateDomain(feature);
-		if (FeatureEnum.PAIR_MATCHING.isSame(feature)) {
-			pairMatching();
-		}
-		if (FeatureEnum.PAIR_SEARCH.isSame(feature)) {
-			pairSearch();
-		}
-		if (FeatureEnum.PAIR_INITIALIZE.isSame(feature)) {
-			pairInitialize();
+		while (true) {
+			String feature = inputExecuteFeature().getMessage();
+			FeatureEnum.validateDomain(feature);
+			if (FeatureEnum.PAIR_MATCHING.isSame(feature)) {
+				pairMatching();
+			}
+			if (FeatureEnum.PAIR_SEARCH.isSame(feature)) {
+				pairSearch();
+			}
+			if (FeatureEnum.PAIR_INITIALIZE.isSame(feature)) {
+				pairInitialize();
+			}
+			if (FeatureEnum.EXIT.isSame(feature)) {
+				return;
+			}
 		}
 	}
 
