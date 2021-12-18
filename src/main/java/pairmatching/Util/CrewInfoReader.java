@@ -32,7 +32,7 @@ public class CrewInfoReader {
 			 BufferedReader br = new BufferedReader(rw);) {
 			String readLine = null;
 			while ((readLine = br.readLine()) != null) {
-				crewList.add(new Crew(Course.BACKEND, readLine));
+				crewList.add(new Crew(Course.FRONTEND, readLine));
 			}
 		} catch (IOException e) {
 			System.out.println("e");
