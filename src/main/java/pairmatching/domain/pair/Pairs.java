@@ -65,11 +65,15 @@ public class Pairs {
 		return mission;
 	}
 
+	public boolean hasPair(Pair pair) {
+		return pairs.contains(pair);
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (Pair pair : pairs) {
-			stringBuilder.append(pair + "\n");
+			stringBuilder.append(pair.toString() + "\n");
 		}
 
 		return stringBuilder.toString();

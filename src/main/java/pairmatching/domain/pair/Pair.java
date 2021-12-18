@@ -21,6 +21,12 @@ public class Pair {
 
 	@Override
 	public String toString() {
-		return pair.stream().map(Crew::toString).collect(Collectors.joining(" : "));
+		List<String> stringList = new ArrayList<>();
+		Iterator iterator = pair.iterator();
+		while (iterator.hasNext()) {
+			stringList.add(iterator.next().toString());
+		}
+		return String.join(" : ", stringList);
 	}
+
 }
