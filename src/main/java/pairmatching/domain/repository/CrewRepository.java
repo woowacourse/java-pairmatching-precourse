@@ -10,7 +10,8 @@ import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 
 public class CrewRepository {
-	static List<Crew> crewList = new ArrayList<>();
+	static List<Crew> backEndCrewList = new ArrayList<>();
+	static List<Crew> frontEndCrewList = new ArrayList<>();
 
 	static {
 		try {
@@ -27,7 +28,7 @@ public class CrewRepository {
 		);
 		String crew;
 		while ((crew = reader.readLine()) != null) {
-			crewList.add(new Crew(Course.BACKEND, crew));
+			backEndCrewList.add(new Crew(Course.BACKEND, crew));
 		}
 		reader.close();
 	}
@@ -38,9 +39,16 @@ public class CrewRepository {
 		);
 		String crew;
 		while ((crew = reader.readLine()) != null) {
-			crewList.add(new Crew(Course.FRONTEND, crew));
+			frontEndCrewList.add(new Crew(Course.FRONTEND, crew));
 		}
 		reader.close();
 	}
 
+	public static List<Crew> getBackEndCrewList() {
+		return backEndCrewList;
+	}
+
+	public static List<Crew> getFrontEndCrewList() {
+		return frontEndCrewList;
+	}
 }
