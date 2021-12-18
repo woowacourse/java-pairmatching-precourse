@@ -95,7 +95,7 @@ public abstract class InputView {
         boolean isContainsInputLevel = true;
 
         for (Levels level: Levels.values()) {
-            if (level.getName().equals(inputLevel.trim())) {
+            if (level.getLevel().equals(inputLevel.trim())) {
                 isContainsInputLevel = false;
                 break;
             }

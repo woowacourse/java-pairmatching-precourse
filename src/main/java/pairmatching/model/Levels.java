@@ -7,14 +7,14 @@ public enum Levels {
     LEVEL4("레벨4"),
     LEVEL5("레벨5");
 
-    private String name;
+    private String level;
 
     Levels(String name) {
-        this.name = name;
+        this.level = name;
     }
 
-    public String getName() {
-        return name;
+    public String getLevel() {
+        return level;
     }
 
 }
