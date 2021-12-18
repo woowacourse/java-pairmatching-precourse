@@ -21,7 +21,7 @@ public class PairService {
     private static final String INVALID_MISSION_NAME = "존재하지 않는 미션입니다.";
     private static final int NOT_EXIST = 1;
 
-    public void tryMatching(String input) {
+    public boolean tryMatching(String input) {
         boolean canMatch = true;
         MatchInfo matchInfo = getMatchInfo(input);
         List<String> crewNames = CrewRepository.getCrewNamesByCourse(matchInfo.getCourse());
@@ -36,7 +36,9 @@ public class PairService {
         }
         if (canMatch) {
             createMatching(pairNamesList, matchInfo);
+            return true;
         }
+        return false;
     }
 
     public void createMatching(List<List<String>> pairNamesList, MatchInfo matchInfo) {
@@ -45,7 +47,6 @@ public class PairService {
             PairRepository.addPair(crews, matchInfo);
         }
         System.out.println(PairRepository.pairs());
-
     }
 
     private List<List<String>> createPairs(List<String> shuffledCrew, Level level) {
@@ -96,5 +97,10 @@ public class PairService {
                 () -> new IllegalArgumentException(INVALID_MISSION_NAME));
 
         return new MatchInfo(course, level, mission);
+    }
+
+    public List<Pair> getMatching(String input) {
+        MatchInfo matchInfo = getMatchInfo(input);
+        return PairRepository.findPairsByMatchInfo(matchInfo);
     }
 }

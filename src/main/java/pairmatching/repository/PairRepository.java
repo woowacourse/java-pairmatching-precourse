@@ -3,6 +3,7 @@ package pairmatching.repository;
 import pairmatching.model.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PairRepository {
     private static final List<Pair> pairs = new ArrayList<>();
@@ -45,5 +46,13 @@ public class PairRepository {
 
     public static void addPair(List<Crew> crews, MatchInfo matchInfo) {
         pairs.add(new Pair(crews, matchInfo));
+    }
+
+    public static List<Pair> findPairsByMatchInfo(MatchInfo matchInfo) {
+        return pairs.stream()
+                .filter(pair -> pair.getCourse().equals(matchInfo.getCourse()))
+                .filter(pair -> pair.getLevel().equals(matchInfo.getLevel()))
+                .filter(pair -> pair.getMission().equals(matchInfo.getMission()))
+                .collect(Collectors.toList());
     }
 }

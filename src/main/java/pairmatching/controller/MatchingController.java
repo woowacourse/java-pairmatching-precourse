@@ -23,7 +23,9 @@ public class MatchingController {
         String input;
         MatchingView.printMatchingPrompt();
         input = inputMatchingCondition();
-        pairService.tryMatching(input);
+        if (pairService.tryMatching(input)) {
+            OutputView.printMatchingResult(pairService.getMatching(input));
+        }
     }
 
     private boolean shouldRematch(String input) {
