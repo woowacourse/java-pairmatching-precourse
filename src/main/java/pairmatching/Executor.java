@@ -53,9 +53,9 @@ public class Executor {
         if ("1".equals(selection)) {
             System.out.println("과정, 레벨, 미션을 선택하세요.\n" + "ex) 백엔드, 레벨1, 자동차경주");
             List<String> inputList = Arrays.asList(Console.readLine().trim().split(","));
-            Level level = Level.of(inputList.get(1));
-            Course course = Course.of(inputList.get(0));
-            MissionName missionName = MissionName.of(inputList.get(2));
+            Level level = Level.of(inputList.get(1).trim());
+            Course course = Course.of(inputList.get(0).trim());
+            MissionName missionName = MissionName.of(inputList.get(2).trim());
 
             if (missionManager.isMissionExists(level, course, missionName)) {
                 System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n" + "네 | 아니오");
@@ -65,10 +65,9 @@ public class Executor {
                 }
 
                 missionManager.generatePair(course, level, missionName);
+                printPairList(missionManager, course, level, missionName);
             }
-
         }
-        String answer = Console.readLine().trim();
 
     }
 

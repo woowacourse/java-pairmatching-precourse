@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum MissionName {
-    RACING("자동차 주"),
+    RACING("자동차경주"),
     LOTTO("로또"),
     BASEBALL("숫자야구게임"),
 
@@ -32,8 +32,8 @@ public enum MissionName {
         return this.missionName;
     }
 
-    public static final List<String> MissionNameList = Arrays.stream(Course.values())
-            .map(Course::getCourseName)
+    public static final List<String> MissionNameList = Arrays.stream(MissionName.values())
+            .map(MissionName::getMissionName)
             .collect(Collectors.toList());
 
     public static final Map<String, String> COURSE_NAME_MAP = Collections.unmodifiableMap(
