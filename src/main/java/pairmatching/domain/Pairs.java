@@ -12,6 +12,7 @@ public class Pairs {
 	private static Map<Mission, List<Pair>> missionListMap = new HashMap<>();
 
 	public static List<Pair> getPairList(Mission mission) {
+		validatePairMatchingExist(mission);
 		return missionListMap.get(mission);
 	}
 
@@ -25,7 +26,13 @@ public class Pairs {
 		missionListMap.put(mission, pairList);
 	}
 
-	public static boolean isExistPair(Mission mission) {
+	public static void validatePairMatchingExist(Mission mission) {
+		if (!missionListMap.containsKey(mission)) {
+			throw new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.");
+		}
+	}
+
+	public static boolean isContainPairing(Mission mission) {
 		if (missionListMap.containsKey(mission)) {
 			return true;
 		}

@@ -33,9 +33,11 @@ public class Crews {
 	}
 
 	public static List<String> getCrewNames(List<Crew> crewList) {
-		return crewList.stream()
-			.map(Crew::getName)
-			.collect(Collectors.toList());
+		List<String> crewNames = new ArrayList<>();
+		for (Crew crew : crewList) {
+			crewNames.add(crew.getName());
+		}
+		return crewNames;
 	}
 
 }
