@@ -59,6 +59,7 @@ public class PairMatchingController {
 	}
 
 	private void initialize() {
+		OutputView.PrintInitialize();
 		pairMap = new HashMap<>();
 	}
 

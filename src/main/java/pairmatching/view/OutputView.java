@@ -3,6 +3,8 @@ package pairmatching.view;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.omg.CORBA.INITIALIZE;
+
 import pairmatching.domain.Crew;
 
 public class OutputView {
@@ -25,6 +27,7 @@ public class OutputView {
 	private static final String REMATCHING_OR_PRINT = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
 	private static final String FIND_PAIR_RESULT = "페어 매칭 결과입니다.";
 	private static final String DELIMITER = " : ";
+	private static final String INITIALIZE = "초기화 되었습니다.";
 
 	public static void printInputMainMenu() {
 		System.out.println(SELECT_MENU);
@@ -69,5 +72,10 @@ public class OutputView {
 
 	public static void printFindPairByInputMenu() {
 		printInputInformation();
+	}
+
+	public static void PrintInitialize() {
+		printNewLine();
+		System.out.println(INITIALIZE);
 	}
 }
