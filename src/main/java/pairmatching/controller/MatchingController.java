@@ -1,6 +1,7 @@
 package pairmatching.controller;
 
 import jdk.internal.util.xml.impl.Input;
+import pairmatching.domain.Pair;
 import pairmatching.service.MatchingService;
 import pairmatching.utils.InputMessage;
 import pairmatching.view.InputView;
@@ -48,6 +49,7 @@ public class MatchingController {
 //            }
             // 페어링을 한다.
             service.getMatching();
+            getResultMatching(service);
         }
         if(categoryAnswer.equals("2")){
             // 현재 있는 매칭 출력
@@ -58,6 +60,27 @@ public class MatchingController {
         }
         // 그외에 프로그램 종료
         return;
+    }
+
+    public void getResultMatching(MatchingService service){
+        List<Pair> resultList = service.getShuffileResult();
+        //홀수라면
+        if(service.getIsOdd()){
+            for(int i=0; i<resultList.size(); i++){
+                Pair pair = resultList.get(i);
+                if(i==resultList.size()-1){
+                    System.out.println(pair.getName() + " : " + pair.getPairName() + " : " + service.getExtraName());
+                    return;
+                }
+                System.out.println(pair.getName() + " : " + pair.getPairName());
+            }
+            return;
+        }
+        //짝수라면
+        for(int i=0; i<resultList.size(); i++){
+            Pair pair = resultList.get(i);
+            System.out.println(pair.getName() + " : " + pair.getPairName());
+        }
     }
 
 }

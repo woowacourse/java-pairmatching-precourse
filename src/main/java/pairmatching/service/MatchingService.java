@@ -16,6 +16,7 @@ public class MatchingService {
     private boolean isOdd;
     private List<String> shuffleNameList = new ArrayList<String>();
     private List<Pair> shufflePairList = new ArrayList<Pair>();
+    private String extra="";
 
     public MatchingService(String courseName, String levelName, String testName){
         this.courseName = courseName;
@@ -28,6 +29,19 @@ public class MatchingService {
         String path = getPath();
         this.nameList = ReadFile.readFile(path);
         return;
+    }
+
+    public List<Pair> getShuffileResult (){
+        return this.shufflePairList;
+    }
+
+    public String getExtraName (){
+        return this.extra;
+    }
+
+
+    public boolean getIsOdd (){
+        return this.isOdd;
     }
 
     public String getPath(){
@@ -57,19 +71,24 @@ public class MatchingService {
     }
 
     public void cutOdd(){
-        for(int i=0; i<this.shuffleNameList.size()-1; i++){
+        for(int i=0; i<this.shuffleNameList.size(); i+=2){
+            if(i==this.shuffleNameList.size()-1){
+                this.extra = shuffleNameList.get(i);
+                break;
+            }
             Pair pair = new Pair(this.shuffleNameList.get(i), this.shuffleNameList.get(i + 1));
             this.shufflePairList.add(pair);
 
-            if(i==this.shuffleNameList.size()-2){
-                pair.addExtra(this.shuffleNameList.get(i+2));
-            }
+//            if(i==this.shuffleNameList.size()-3){
+//                pair.addExtra(this.shuffleNameList.get(i+2));
+//            }
+
         }
         return;
     }
 
     public void cutEven(){
-        for(int i=0; i<this.shuffleNameList.size()-1; i++){
+        for(int i=0; i<this.shuffleNameList.size()-1; i+=2){
             Pair pair = new Pair(this.shuffleNameList.get(i), this.shuffleNameList.get(i + 1));
             this.shufflePairList.add(pair);
         }

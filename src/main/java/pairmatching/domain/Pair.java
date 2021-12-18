@@ -13,4 +13,16 @@ public class Pair {
     public void addExtra(String extraName){
         this.extra = extraName;
     }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public String getPairName(){
+        return this.pairName;
+    }
+
+    public String getExtraName(){
+        return this.extra;
+    }
 }
