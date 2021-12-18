@@ -29,10 +29,11 @@ public class OutputView {
 			if(index + 2 == matchingResult.size()-1) {
 				System.out.print(matchingResult.get(index+1));
 				System.out.println(NAME_DIVISOR + matchingResult.get(index+2));
-				return;
+				break;
 			}
 
 			index+=2;
 		}
+		System.out.println();
 	}
 }

@@ -11,8 +11,16 @@ public class PairMatchingStarter {
 	}
 
 	public void start() {
-		if(pairMatchingController.selectFunction()) {
-			pairMatchingController.selectProcessLevelMission();
+
+		while(true) {
+			boolean check = pairMatchingController.selectFunction();
+			if(check) {
+				pairMatchingController.selectProcessLevelMission();
+			}
+
+			if(!check) {
+				break;
+			}
 		}
 	}
 }
