@@ -55,6 +55,12 @@ public class Mission {
         return !this.crewMatching.containsKey(course);
     }
 
+    public void printPairsByCourse(Course course) {
+        if (crewMatching.containsKey(course)) {
+            announcer.announcePairMatchingResult(crewMatching.get(course));
+        }
+    }
+
     private List<String> getCrewNamesByCourse(List<Crew> crews, Course course) {
         return crews.stream().filter(crew -> crew.checkCourse(course)).map(Crew::getName).collect(Collectors.toList());
     }

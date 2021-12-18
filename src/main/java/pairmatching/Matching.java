@@ -10,6 +10,7 @@ import java.util.List;
 public class Matching {
 
     private List<Mission> missions;
+    private Announcer announcer;
 
     public Matching() {
         missions = new ArrayList<>();
@@ -21,13 +22,25 @@ public class Matching {
         missions.add(new Mission(Level.LEVEL2, "지하철노선도"));
         missions.add(new Mission(Level.LEVEL4, "성능개선"));
         missions.add(new Mission(Level.LEVEL4, "배포"));
+        announcer = new Announcer();
     }
 
     public void startMatching(List<Crew> crews) {
-        Announcer announcer = new Announcer();
         announcer.announcePairMatchingSystem(missions);
         String[] selectedMatching = Console.readLine().split(",");
         matchPairs(crews, announcer, selectedMatching);
+    }
+
+    public void printPairs() {
+        announcer.announcePairMatchingSystem(missions);
+        String[] selectedMatching = Console.readLine().split(",");
+        Mission mission = findMissions(selectedMatching, missions);
+        Course course = findCourse(selectedMatching);
+        mission.printPairsByCourse(course);
+    }
+
+    public void removePairs() {
+
     }
 
     private void matchPairs(List<Crew> crews, Announcer announcer, String[] selectedMatching) {
@@ -56,14 +69,6 @@ public class Matching {
         String requiredName = selectedMatching[0].trim();
         return Arrays.stream(Course.values()).filter(c -> c.checkCourse(requiredName)).findFirst()
             .orElseThrow(() -> new IllegalArgumentException("[ERROR]"));
-    }
-
-    public void printPairs() {
-
-    }
-
-    public void removePairs() {
-
     }
 
     private Mission findMissions(String[] selectedMatching, List<Mission> missions) {
