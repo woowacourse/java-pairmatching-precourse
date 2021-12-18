@@ -8,6 +8,7 @@ import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 import pairmatching.view.Parser;
 import pairmatching.view.Validator;
+import static pairmatching.controller.Option.*;
 
 public class PairMatchingController {
 	private PairMatchingService pairMatchingService = new PairMatchingService();
@@ -17,9 +18,9 @@ public class PairMatchingController {
 	public void service() {
 		while (true) {
 			OutputView.printMain();
-			String option = retryInput(() -> InputView.inputOption("1", "2", "3", "Q"));
+			Option option = Option.valueBySymbol(retryInput(() -> InputView.inputOption("1", "2", "3", "Q")));
 
-			if (option.equals("Q")) {
+			if (option == QUIT) {
 				break;
 			}
 
@@ -27,12 +28,12 @@ public class PairMatchingController {
 		}
 	}
 
-	private void handleMainPage(String option) {
-		if (option.equals("1")) {
+	private void handleMainPage(Option option) {
+		if (option == MATCH_PAIRS) {
 			pairMatching();
-		} else if (option.equals("2")) {
+		} else if (option == PRINT_MATCHED_PAIRS) {
 			printMatchedResult();
-		} else if (option.equals("3")) {
+		} else if (option == INITIALIZE_PAIRS) {
 			initializeMatchedPair();
 		}
 	}
@@ -73,7 +74,7 @@ public class PairMatchingController {
 	private void handlePrintMatchedResult() {
 		String information = inputInformationWithValidation();
 		List<Pair> pairList = pairMatchingService.findByCourseAndMission(parser.parseToCourse(information),
-				parser.parseToMission(information));
+			parser.parseToMission(information));
 		OutputView.printMatchingResult(pairList);
 	}
 
