@@ -13,6 +13,7 @@ public class MainController {
 	static final String MISSION_INPUT_REGEX = ",";
 	static final int MISSION_INPUT_COUNT = 3;
 	static final String ERROR_MISSION_INPUT_COUNT = "과정, 레벨, 미션을 모두 입력해주세요.";
+	static final String ERROR_NOT_EXIST_MATCHING = "매칭 이력이 없습니다.";
 
 	public MainController() {
 		InitializeController.initCrews();
@@ -57,9 +58,9 @@ public class MainController {
 			Mission mission = getMission();
 			MatchingController.run(mission);
 		}
-		if (option.equals(Option.CHECK)) {
+		if (option.equals(Option.PRINT)) {
 			Mission mission = getMission();
-
+			printMatching(mission);
 		}
 		if (option.equals(Option.INIT)) {
 
@@ -80,5 +81,13 @@ public class MainController {
 		if (missionInput.size() != MISSION_INPUT_COUNT) {
 			throw new IllegalArgumentException(ERROR_MISSION_INPUT_COUNT);
 		}
+	}
+
+	private void printMatching(Mission mission) {
+		if (mission.isMatched()) {
+			Output.pairs(mission.getPairs());
+			return;
+		}
+		throw new IllegalArgumentException(ERROR_NOT_EXIST_MATCHING);
 	}
 }

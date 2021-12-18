@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public enum Option {
 	MATCH("1"),
-	CHECK("2"),
+	PRINT("2"),
 	INIT("3"),
 	QUIT("Q");
 
