@@ -9,6 +9,10 @@ public enum Level {
 
     private String name;
 
+    public String getName() {
+        return name;
+    }
+
     Level(String name) {
         this.name = name;
     }
