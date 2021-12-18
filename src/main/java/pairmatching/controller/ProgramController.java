@@ -3,7 +3,7 @@ package pairmatching.controller;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
-public class PairMatchingController {
+public class ProgramController {
 	OutputView outputView = new OutputView();
 	InputView inputView = new InputView();
 
