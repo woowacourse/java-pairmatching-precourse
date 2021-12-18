@@ -19,4 +19,13 @@ public enum Mission {
 	public String getName() {
 		return name;
 	}
+
+	public static Mission fromString(String text) {
+		for (Mission mission : Mission.values()) {
+			if (mission.name.equals(text)) {
+				return mission;
+			}
+		}
+		return null;
+	}
 }

@@ -9,6 +9,7 @@ import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 import pairmatching.domain.Crews;
 import pairmatching.domain.Level;
+import pairmatching.domain.LevelGroup;
 import pairmatching.domain.Mission;
 import pairmatching.domain.PairMatching;
 import pairmatching.domain.PairMatchings;
@@ -72,8 +73,8 @@ public class PairMatchingController {
 	public PairMatching makePairMatching() {
 		List<String> pairMatching = runPairMatching();
 
-		return new PairMatching(Course.valueOf(pairMatching.get(0)), Level.valueOf(pairMatching.get(1)),
-			Mission.valueOf(pairMatching.get(2)));
+		return new PairMatching(Course.fromString(pairMatching.get(0)), Level.fromString(pairMatching.get(1)),
+			Mission.fromString(pairMatching.get(2)));
 	}
 
 	public List<String> runPairMatching() {
@@ -92,16 +93,21 @@ public class PairMatchingController {
 		if (pairMatching.size() != Constant.INPUT_SIZE) {
 			throw new IllegalArgumentException(ErrorMessage.ERROR + ErrorMessage.INPUT_COURSE_AND_MISSION);
 		}
-		if (!Arrays.stream(Course.values()).anyMatch(e -> e.name().equals(pairMatching.get(Constant.COURSE_INDEX)))) {
-
+		if (Arrays.stream(Course.values())
+			.noneMatch(e -> e.getName().equals(pairMatching.get(Constant.COURSE_INDEX)))) {
+			throw new IllegalArgumentException(ErrorMessage.ERROR + ErrorMessage.INPUT_COURSE_NONE);
 		}
-		if (!Arrays.stream(Level.values()).anyMatch(e -> e.name().equals(pairMatching.get(Constant.LEVEL_INDEX)))) {
-
+		if (Arrays.stream(Level.values()).noneMatch(e -> e.getName().equals(pairMatching.get(Constant.LEVEL_INDEX)))) {
+			throw new IllegalArgumentException(ErrorMessage.ERROR + ErrorMessage.INPUT_LEVEL_NONE);
 		}
-		if (!Arrays.stream(Mission.values()).anyMatch(e -> e.name().equals(pairMatching.get(Constant.MISSION_INDEX)))) {
-
+		if (Arrays.stream(Mission.values())
+			.noneMatch(e -> e.getName().equals(pairMatching.get(Constant.MISSION_INDEX)))) {
+			throw new IllegalArgumentException(ErrorMessage.ERROR + ErrorMessage.INPUT_MISSION_NONE);
 		}
-
+		LevelGroup levelGroup = LevelGroup.findGroup(pairMatching.get(Constant.LEVEL_INDEX));
+		if (!LevelGroup.hasMission(levelGroup, Mission.fromString(pairMatching.get(Constant.MISSION_INDEX)))) {
+			throw new IllegalArgumentException(ErrorMessage.ERROR + ErrorMessage.INPUT_LEVEL_MISSION_NONE_MATCH);
+		}
 		return pairMatching;
 	}
 

@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import java.util.Arrays;
+
 public enum LevelGroup {
 	LEVEL1("레벨1", new Mission[] {Mission.CAR_RACING, Mission.LOTTO, Mission.BASEBALL_GAME}),
 	LEVEL2("레벨2", new Mission[] {Mission.SHOPPING_CART, Mission.PAYMENT, Mission.SUBWAY_MAP}),
@@ -21,5 +23,17 @@ public enum LevelGroup {
 
 	public Mission[] getMissions() {
 		return missions;
+	}
+
+	public static LevelGroup findGroup(String name) {
+		return Arrays.stream(LevelGroup.values())
+			.filter(e -> e.getName().equals(name))
+			.findAny()
+			.get();
+	}
+
+	public static boolean hasMission(LevelGroup levelGroup, Mission mission) {
+		return Arrays.stream(levelGroup.missions)
+			.anyMatch(containMission -> containMission == mission);
 	}
 }
