@@ -3,6 +3,10 @@ package pairmatching.model;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import pairmatching.validator.CourseValidator;
+import pairmatching.validator.LevelValidator;
+import pairmatching.validator.MissionValidator;
+
 public enum Level {
 	LEVEL1("레벨1", Missions.init("자동차경주,로또,숫자야구게임")),
 	LEVEL2("레벨2", Missions.init("장바구니,결제,지하철노선도")),
@@ -27,4 +31,20 @@ public enum Level {
 			.map(Level::toString)
 			.collect(Collectors.joining("\n"));
 	}
+
+	public static Level parse(String name) {
+		return Arrays.stream(values())
+			.filter(level -> name.equals(level.name))
+			.findFirst()
+			.orElseThrow(() -> new IllegalArgumentException(LevelValidator.ERROR_NOT_EXISTED));
+	}
+
+
+	public static void isValidMission(Level level, String missionName) {
+		if (!level.missions.contains(missionName)) {
+			throw new IllegalArgumentException(MissionValidator.ERROR_NOT_EXISTED);
+		}
+	}
+
+
 }

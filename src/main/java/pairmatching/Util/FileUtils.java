@@ -25,7 +25,7 @@ public class FileUtils {
 		return crewList;
 	}
 
-	public static List<Crew> readReader(Reader input, Course course) throws IOException {
+	private static List<Crew> readReader(Reader input, Course course) throws IOException {
 		try {
 			BufferedReader in = new BufferedReader(input);
 			String line;

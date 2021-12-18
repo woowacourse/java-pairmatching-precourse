@@ -1,5 +1,10 @@
 package pairmatching.model;
 
+import java.util.Arrays;
+
+import pairmatching.validator.LevelValidator;
+import pairmatching.validator.MissionValidator;
+
 public class Mission {
 	private String name;
 	private MatchingPairs matchingPairs = null;
@@ -10,5 +15,11 @@ public class Mission {
 
 	public String getName() {
 		return this.name;
+	}
+
+	public static Mission parse(Level level, String name) {
+		Level.isValidMission(level, name);
+		Mission mission = new Mission(name);
+		return mission;
 	}
 }

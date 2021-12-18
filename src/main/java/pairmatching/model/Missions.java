@@ -22,4 +22,8 @@ public class Missions {
 			.map(Mission::getName)
 			.collect(Collectors.joining(" | "));
 	}
+
+	public boolean contains(String name) {
+		return missionList.stream().map(Mission::getName).collect(Collectors.toList()).contains(name);
+	}
 }
