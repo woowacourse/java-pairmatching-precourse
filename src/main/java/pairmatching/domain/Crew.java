@@ -10,4 +10,8 @@ public class Crew {
         this.name = name;
         this.course = course;
     }
+
+    public String getName() {
+        return name;
+    }
 }
