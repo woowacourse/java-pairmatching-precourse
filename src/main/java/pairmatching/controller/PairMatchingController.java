@@ -35,8 +35,30 @@ public class PairMatchingController {
 	private void pairMatching() {
 		List<Mission> missions = MissionRepository.findAll();
 		OutputView.printMissionInformation(Arrays.asList(Course.values()), Arrays.asList(Level.values()), missions);
-		String information = retryInput(InputView::inputMatchingInformation);
-		List<String> matchingResult = pairMatchingService.match(information);
+		handlePairMatching();
+	}
 
+	private void handlePairMatching() {
+		try {
+			String information = retryInput(InputView::inputMatchingInformation);
+			List<String> matchingResult =
+				pairMatchingService.match(parseToCourse(information), parseToLevel(information),
+					parseToMission(information));
+		} catch (IllegalArgumentException e) {
+			OutputView.printErrorMessage(e.getMessage());
+			handlePairMatching();
+		}
+	}
+
+	private String parseToCourse(String information) {
+		return information.split(",")[0].trim();
+	}
+
+	private String parseToLevel(String information) {
+		return information.split(",")[1].trim();
+	}
+
+	private String parseToMission(String information) {
+		return information.split(",")[2].trim();
 	}
 }

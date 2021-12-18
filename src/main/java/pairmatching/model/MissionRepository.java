@@ -17,4 +17,12 @@ public class MissionRepository {
 	public static List<Mission> findAll() {
 		return missions;
 	}
+
+	public static boolean existsByName(String name) {
+		return missions.stream().anyMatch(m -> m.getName().equals(name));
+	}
+
+	public static Mission findByName(String name) {
+		return missions.stream().filter(m -> m.getName().equals(name)).findFirst().get();
+	}
 }
