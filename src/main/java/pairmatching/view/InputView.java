@@ -1,7 +1,7 @@
 package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import pairmatching.domain.input.Function;
+import pairmatching.domain.input.FunctionType;
 
 public class InputView {
 	private static final String NOTICE_INPUT_FUNCTION_NUMBER = "기능을 선택하세요.";
@@ -13,7 +13,7 @@ public class InputView {
 	}
 
 	private static void showFunctionList() {
-		for (Function function : Function.values()) {
+		for (FunctionType function : FunctionType.values()) {
 			System.out.println(function);
 		}
 	}
