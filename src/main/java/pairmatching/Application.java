@@ -6,13 +6,13 @@ public class Application {
         while(true){
             boolean quit = true;
 
-            while(quit != true){
-                try{
+            //while(quit != true){
+                //try{
                     quit = ProgramManager.selectFunction();
-                }catch(IllegalArgumentException e){
-                    System.out.println(e.getMessage());
-                }
-            }
+               // }catch(IllegalArgumentException e){
+                 //   System.out.println(e.getMessage());
+               // }
+            //}
 
             break;
         }

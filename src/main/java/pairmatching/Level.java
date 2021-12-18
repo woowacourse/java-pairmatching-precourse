@@ -14,4 +14,16 @@ public enum Level {
 	}
 
 	// 추가 기능 구현
+	public String getName(){
+		return this.name;
+	}
+
+	public static Level getLevel(String name) {
+		for (Level level : Level.values()) {
+			if (level.getName().equals(name)) {
+				return level;
+			}
+		}
+		throw new IllegalArgumentException("[ERROR]존재하지 않는 코스입니다.");
+	}
 }

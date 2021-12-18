@@ -11,4 +11,16 @@ public enum Course {
 	}
 
 	// 추가 기능 구현
+	public String getName(){
+		return this.name;
+	}
+
+	public static Course getCourse(String name) {
+		for (Course course : Course.values()) {
+			if (course.getName().equals(name)) {
+				return course;
+			}
+		}
+		throw new IllegalArgumentException("[ERROR]존재하지 않는 코스입니다.");
+	}
 }
