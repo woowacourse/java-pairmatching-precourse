@@ -31,4 +31,8 @@ public class MissionRepository {
             .filter(findMission -> findMission.getPairs().get(0).getCrews().get(0).isEqualToCourse(course))
             .orElseThrow(ErrorMessage.NOT_FOUND_MISSION::getException);
     }
+
+    public static void clear() {
+        missions.clear();
+    }
 }
