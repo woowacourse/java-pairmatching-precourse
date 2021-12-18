@@ -1,14 +1,17 @@
 package pairmatching.matching;
 
-import pairmatching.ValidatorMessage;
+import camp.nextstep.edu.missionutils.Randoms;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MatchingService {
-    private MatchingFileInput matchingFileInput;
-    private final Matching matching;
+    private final String BACK_COURSE = "백엔드";
+    private final String FRONT_COURSE = "프론트엔드";
 
+    private final Matching matching;
+    private MatchingFileInput matchingFileInput;
     private List<String> backendPeople;
     private List<String> frontendPeople;
 
@@ -18,7 +21,7 @@ public class MatchingService {
             initPeople();
         } catch (IOException e) {
             throw new IllegalArgumentException();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
 
         }
     }
@@ -33,7 +36,46 @@ public class MatchingService {
         return matching.HasDuplicateMatchingBySameLevel(matching.getSameLevelIndexList(courseName));
     }
 
-//    public List<String> startMatching(String courseName) {
-//
-//    }
+    public void hasAlreadyMatching(String courseName) {
+        if (matching.alreadyHasMatching(courseName)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public List<String> startMatching(String courseName) {
+        if (courseName.contains(BACK_COURSE)) {
+            List<String> matchingBackList = makeMatchingList(backendPeople);
+            makeDistinctBackMatching(courseName, matchingBackList);
+            return matchingBackList;
+        }
+        List<String> matchingFrontList = makeMatchingList(frontendPeople);
+        makeDistinctFrontMatching(courseName, matchingFrontList);
+        return matchingFrontList;
+    }
+
+    public boolean makeDistinctBackMatching(String courseName, List<String> matching){
+        // 랜덤 안되는 경우 검증로직
+        List<String> matchingList = makeMatchingList(backendPeople);
+        return true;
+    }
+
+    public boolean makeDistinctFrontMatching(String courseName, List<String> matching){
+        // 랜덤 안되는 경우 검증로직
+        return true;
+    }
+
+    public List<String> makeMatchingList(List<String> originalPeople) {
+        List<String> shufflePeople = Randoms.shuffle(originalPeople);
+        List<String> matchingList = new ArrayList<>();
+        int index = 0;
+        for (index = 0; index < shufflePeople.size(); index += 2) {
+            if (index == shufflePeople.size() - 3) {
+                matchingList.add(shufflePeople.get(index) + " : " + shufflePeople.get(index + 1)
+                        + " : " + shufflePeople.get(index + 2));
+                break;
+            }
+            matchingList.add(shufflePeople.get(index) + " : " + shufflePeople.get(index + 1));
+        }
+        return matchingList;
+    }
 }
