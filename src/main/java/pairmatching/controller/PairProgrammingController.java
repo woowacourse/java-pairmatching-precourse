@@ -3,6 +3,8 @@ package pairmatching.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import pairmatching.domain.PairProgrammings;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
@@ -31,6 +33,10 @@ public class PairProgrammingController {
                 enrollNewProgram();
                 OutputView.printPairInfo(pairProgrammings.getPairInfo(targetCourse, targetLevel, targetMission), shuffledCrew);
             }
+            if (mainFunction.equals("2")) {
+                enrollNewProgram();
+                OutputView.printPairInfo(pairProgrammings.getPairInfo(targetCourse, targetLevel, targetMission), shuffledCrew);
+            }
             if (mainFunction.equals("Q")) {
                 break;
             }
@@ -46,7 +52,8 @@ public class PairProgrammingController {
                 this.targetCourse = detailedFunctions[0];
                 this.targetLevel = detailedFunctions[1];
                 this.targetMission = detailedFunctions[2];
-                if (targetCourse.equals("백엔드")) {
+
+                if (targetCourse.equals("프론트엔드")) {
                     shuffledCrew = Randoms.shuffle(backEndCrew);
                 }
 
