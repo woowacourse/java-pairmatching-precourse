@@ -14,6 +14,10 @@ public enum Role {
 		this.name = name;
 	}
 
+	public String getNumber() {
+		return this.number;
+	}
+
 	public String toString() {
 		return number + ". " + name;
 	}

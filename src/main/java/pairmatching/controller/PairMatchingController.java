@@ -8,6 +8,6 @@ public class PairMatchingController {
 	OutputView outputView = new OutputView();
 
 	public void run() {
-		outputView.printRoleList();
+		inputView.enterRoleNumber();
 	}
 }
