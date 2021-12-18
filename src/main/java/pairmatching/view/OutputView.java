@@ -16,6 +16,7 @@ public class OutputView {
 	private static final String MISSION_MSG = "미션: ";
 
 	private static final String MATCHING_RESULT_MSG = "페어 매칭 결과입니다.";
+	private static final String MATCHING_INIT_MSG = "초기화 되었습니다.";
 
 	public static void displayMainView() {
 		String mainViewMsg = MAIN_OPTION_MATCHING + NEW_LINE
@@ -59,5 +60,9 @@ public class OutputView {
 		for (String pair : result) {
 			System.out.println(pair);
 		}
+	}
+
+	public static void displayInitMsg() {
+		System.out.println(MATCHING_INIT_MSG);
 	}
 }
