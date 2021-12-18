@@ -4,6 +4,7 @@ import pairmatching.domain.WoowaCourse;
 import pairmatching.service.ParseService;
 import pairmatching.service.WoowaCourseService;
 import pairmatching.view.ViewManager;
+import pairmatching.view.common.CommonErrorView;
 import pairmatching.view.match.MatchInputView;
 import pairmatching.view.match.SearchOutputView;
 
@@ -22,8 +23,13 @@ public class SearchController implements Controller {
 
 	@Override
 	public void execute() {
-		String input = viewManager.input(new MatchInputView());
-		WoowaCourse woowaCourse = parseService.parseWoowaCourse(input);
-		viewManager.output(new SearchOutputView(woowaCourseService.getPairMatch(woowaCourse)));
+		try {
+			String input = viewManager.input(new MatchInputView());
+			WoowaCourse woowaCourse = parseService.parseWoowaCourse(input);
+			viewManager.output(new SearchOutputView(woowaCourseService.getPairMatch(woowaCourse)));
+		} catch (IllegalArgumentException e) {
+			viewManager.error(new CommonErrorView(e.getMessage()));
+			execute();
+		}
 	}
 }

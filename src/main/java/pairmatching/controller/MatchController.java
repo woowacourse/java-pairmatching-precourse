@@ -6,6 +6,8 @@ import pairmatching.service.PairMatchingService;
 import pairmatching.service.ParseService;
 import pairmatching.service.WoowaCourseService;
 import pairmatching.view.ViewManager;
+import pairmatching.view.common.CommonErrorView;
+import pairmatching.view.common.CommonOutputView;
 import pairmatching.view.match.MatchInputView;
 import pairmatching.view.match.RematchInputView;
 import pairmatching.view.match.SearchOutputView;
@@ -27,12 +29,17 @@ public class MatchController implements Controller {
 
 	@Override
 	public void execute() {
-		String input = viewManager.input(new MatchInputView());
-		WoowaCourse woowaCourse = parseService.parseWoowaCourse(input);
-		if (alreadyExists(woowaCourse) && !userWantRematch()) {
-			return;
+		try {
+			String input = viewManager.input(new MatchInputView());
+			WoowaCourse woowaCourse = parseService.parseWoowaCourse(input);
+			if (alreadyExists(woowaCourse) && !userWantRematch()) {
+				return;
+			}
+			match(woowaCourse);
+		} catch (IllegalArgumentException e) {
+			viewManager.error(new CommonErrorView(e.getMessage()));
+			execute();
 		}
-		match(woowaCourse);
 	}
 
 	private void match(WoowaCourse woowaCourse) {
@@ -46,7 +53,12 @@ public class MatchController implements Controller {
 	}
 
 	private boolean userWantRematch() {
-		String rematch = viewManager.input(new RematchInputView());
-		return parseService.parseRematch(rematch);
+		try {
+			String rematch = viewManager.input(new RematchInputView());
+			return parseService.parseRematch(rematch);
+		} catch (IllegalArgumentException e) {
+			viewManager.error(new CommonErrorView(e.getMessage()));
+			return userWantRematch();
+		}
 	}
 }
