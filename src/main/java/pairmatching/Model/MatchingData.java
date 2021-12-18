@@ -25,4 +25,7 @@ public class MatchingData {
     public List<Pair> get(Mission mission){
         return matchingInfo.get(mission);
     }
+    public void clearAll(){
+        matchingInfo.clear();
+    }
 }

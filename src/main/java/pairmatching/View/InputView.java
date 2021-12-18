@@ -6,6 +6,8 @@ import pairmatching.Menu;
 
 public class InputView {
     private OutputView outputView;
+    private final String CHOICE_YES="네";
+    private final String CHOICE_NO="아니오";
 
     public String inputMenu(){
         String menu = "";
@@ -22,5 +24,18 @@ public class InputView {
 
     public String inputMission(){
         return Console.readLine();
+    }
+    
+    public String inputRematching(){
+        String isRematch = "";
+        try {
+            isRematch = Console.readLine();
+            if (!(isRematch.equals(CHOICE_YES) || isRematch.equals(CHOICE_NO))) {
+                throw new NotValidMenuInputException();
+            }
+        } catch (NotValidMenuInputException e) {
+            outputView.printErrorMessage(e);
+        }
+        return isRematch;
     }
 }
