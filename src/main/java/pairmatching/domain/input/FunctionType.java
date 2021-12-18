@@ -16,7 +16,7 @@ public enum FunctionType {
 		this.functionName = functionName;
 	}
 
-	private String getFunctionNumber() {
+	public String getFunctionNumber() {
 		return functionNumber;
 	}
 
