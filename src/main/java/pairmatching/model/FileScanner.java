@@ -10,18 +10,19 @@ import pairmatching.util.Constant;
 
 public class FileScanner {
 
-    public List<Crew> crewFileScanner(Course course) {
-        List<Crew> crewNames = new ArrayList<>();
+    public List<String> nameFileScanner(Course course) {
+        List<String> crewNames = new ArrayList<>();
         try {
             File file = courseToFile(course);
             Scanner scan = new Scanner(file);
             while (scan.hasNextLine()) {
-                crewNames.add(new Crew(course, scan.nextLine()));
+                crewNames.add(scan.nextLine());
             }
         } catch (FileNotFoundException e) {
         }
         return crewNames;
     }
+
 
     private File courseToFile(Course course) {
         if (course == Course.BACKEND) {
