@@ -14,11 +14,17 @@ public class PairProgrammingController {
     }
 
     public void run() {
-        String mainFunction = InputView.mainFunction();
 
-        if (mainFunction.equals("1")) {
-            String detailedFunction = InputView.detailedFunction();
-            pairProgrammings.add(new PairProgramming(detailedFunction));
+        while (true) {
+            String mainFunction = InputView.mainFunction();
+            if (mainFunction.equals("1")) {
+                String detailedFunction = InputView.detailedFunction();
+                pairProgrammings.add(new PairProgramming(detailedFunction));
+            }
+            if (mainFunction.equals("Q")) {
+                break;
+            }
+
         }
     }
 }
