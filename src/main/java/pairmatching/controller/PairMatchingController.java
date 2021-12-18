@@ -21,17 +21,20 @@ public class PairMatchingController {
 		crewList.addAll(CrewParse.make(Course.FRONTEND, FileInput.input(Constant.frontendCrewFileName)));
 		Crews crews = new Crews(crewList);
 
-		runFunction();
+		while (runFunction()) {
 
+		}
 	}
 
-	public void runFunction() {
+	public boolean runFunction() {
+		String function = "";
 		try {
-			String function = getFunction();
+			function = getFunction();
 		} catch (IllegalArgumentException e) {
 			OutputView.printErrorMessage(e.getMessage());
 			runFunction();
 		}
+		return selectFunction(function);
 	}
 
 	public String getFunction() {
@@ -43,5 +46,18 @@ public class PairMatchingController {
 		}
 
 		throw new IllegalArgumentException(ErrorMessage.ERROR + ErrorMessage.INPUT_FUNCTION_NONE);
+	}
+
+	public boolean selectFunction(String function) {
+		if (function.equals(Constant.FUNCTION_PAIR_MATCHING)) {
+
+		}
+		if (function.equals(Constant.FUNCTION_PAIR_LOOKUP)) {
+
+		}
+		if (function.equals(Constant.FUNCTION_PAIR_INITIALIZATION)) {
+
+		}
+		return !function.equals(Constant.FUNCTION_EXIT);
 	}
 }
