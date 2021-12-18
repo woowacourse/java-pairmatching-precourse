@@ -1,10 +1,11 @@
 package pairmatching.repository;
 
-import pairmatching.domain.Crew;
-import pairmatching.domain.MatchInfo;
+import pairmatching.domain.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MatchInfoRepository {
     private static final MatchInfoRepository instance = new MatchInfoRepository();
@@ -20,6 +21,18 @@ public class MatchInfoRepository {
     public MatchInfo addMatchInfo(MatchInfo matchInfo) {
         matchInfoList.add(matchInfo);
         return matchInfo;
+    }
+
+    public boolean isExist(Course course, Level level, Mission mission) {
+        List<MatchInfo> result =  matchInfoList.stream()
+                .filter(matchInfo -> course == matchInfo.getCourse())
+                .filter(matchInfo -> level == matchInfo.getLevel())
+                .filter(matchInfo -> mission == matchInfo.getMission())
+                .collect(Collectors.toList());
+        if (result.size() == 1) {
+            return true;
+        }
+        return false;
     }
 
 

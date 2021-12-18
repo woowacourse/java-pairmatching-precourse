@@ -18,4 +18,16 @@ public class MatchInfo {
     public List<List<Crew>> getPairInfo() {
         return pair;
     }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public Mission getMission() {
+        return mission;
+    }
 }

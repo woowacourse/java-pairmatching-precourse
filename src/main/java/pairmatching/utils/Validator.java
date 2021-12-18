@@ -37,5 +37,13 @@ public class Validator {
         }
     }
 
+    public static String checkRematchAnswer(String input) {
+        List<String> candidate = Arrays.asList(new String[]{"네", "아니요"});
+        if (!candidate.contains(input)) {
+            throw new IllegalArgumentException(ERROR_INVALID_SELECT);
+        }
+        return input;
+    }
+
 
 }
