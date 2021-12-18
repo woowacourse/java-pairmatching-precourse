@@ -16,7 +16,7 @@ public class MissionInitializer {
     private static final String LEVEL4_OPT = "성능개선";
     private static final String LEVEL4_DEPLOY = "배포";
 
-    public List<Mission> getAvailableMissions() {
+    public static List<Mission> getAvailableMissions() {
         List<Mission> list = new ArrayList<>();
         list.add(new Mission(Level.LEVEL1, LEVEL1_RACING));
         list.add(new Mission(Level.LEVEL1, LEVEL1_LOTTO));
