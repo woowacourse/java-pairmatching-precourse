@@ -26,15 +26,9 @@ public class PairMatching {
 		return pairmatching.file.File.readFile(fileName);
 	}
 
-	public boolean isAvailableMatch(HashMap<String, String> pairMatching) {
+	public boolean isExistMatch(HashMap<String, String> pairMatching) {
 		for (Matching matching : matchings) {
-			if (!matching.isSameCourse(pairMatching.get("course"))) {
-				return true;
-			}
-			if (!matching.isSameLevel(pairMatching.get("level"))) {
-				return true;
-			}
-			if (!matching.isSameMission(pairMatching.get("mission"))) {
+			if (matching.isSameMatching(pairMatching.get("course"), pairMatching.get("level"), pairMatching.get("mission"))) {
 				return true;
 			}
 		}
@@ -51,6 +45,7 @@ public class PairMatching {
 			nowMatching.add(suffledCrews.get(i));
 			nowMatching.add(suffledCrews.get(i + 1));
 			matching.add(nowMatching);
+			// TODO: 홀수일 경우 마지막 학생 추가
 			nowMatching = new ArrayList<>();
 		}
 		matchings.add(new Matching(pairMatching.get("course"), pairMatching.get("level"), pairMatching.get("mission"), matching));
@@ -66,5 +61,16 @@ public class PairMatching {
 			return backEnd;
 		}
 		return frontEnd;
+	}
+
+	public void show(HashMap<String, String> pairMatchingMap) {
+		Matching selectedMatching;
+		for (Matching matching : matchings) {
+			if (isExistMatch(pairMatchingMap)) {
+				selectedMatching = matching;
+				selectedMatching.showCrews();
+				break;
+			}
+		}
 	}
 }

@@ -47,11 +47,11 @@ public class PairMatchingController {
 		if (function == PairMatchingType.MATCH.getNumber()) {
 			pairMatching();
 		} else if (function == PairMatchingType.VIEW.getNumber()) {
-			// TODO: 조회
+			viewPairMatching();
 		} else if (function == PairMatchingType.RESET.getNumber()) {
 			// TODO: 초기화
 		}
-		// selectFunction();
+		selectFunction();
 	}
 
 	private void pairMatching() {
@@ -59,7 +59,7 @@ public class PairMatchingController {
 
 		String input = inputFunction();
 		HashMap<String, String> pairMatchingMap = setPairMatchingIntoHashMap(input);
-		if (pairMatching.isAvailableMatch(pairMatchingMap)) {
+		if (pairMatching.isExistMatch(pairMatchingMap)) {
 			checkRematch(pairMatchingMap);
 		}
 		match(pairMatchingMap);
@@ -78,5 +78,20 @@ public class PairMatchingController {
 
 	private void match(HashMap<String, String> pairMatchingMap) {
 		pairMatching.match(pairMatchingMap);
+	}
+
+	private void viewPairMatching() {
+		printWoowaCourseInfo();
+
+		String input = inputFunction();
+		HashMap<String, String> pairMatchingMap = setPairMatchingIntoHashMap(input);
+		if (pairMatching.isExistMatch(pairMatchingMap)) {
+			pairMatching.show(pairMatchingMap);
+			selectFunction();
+			return;
+		}
+		// TODO: 해당 매칭 정보가 없다는 에러 문구
+		selectFunction();
+		return;
 	}
 }

@@ -2,6 +2,8 @@ package pairmatching.model;
 
 import java.util.ArrayList;
 
+import static pairmatching.view.Print.*;
+
 public class Matching {
 	private String course;
 	private String level;
@@ -15,15 +17,32 @@ public class Matching {
 		this.crews = crews;
 	}
 
-	public boolean isSameCourse(String course) {
+	private boolean isSameCourse(String course) {
 		return this.course.equals(course);
 	}
 
-	public boolean isSameLevel(String level) {
+	private boolean isSameLevel(String level) {
 		return this.level.equals(level);
 	}
 
-	public boolean isSameMission(String mission) {
+	private boolean isSameMission(String mission) {
 		return this.mission.equals(mission);
+	}
+
+	public boolean isSameMatching(String course, String level, String mission) {
+		if (isSameCourse(course)) {
+			return true;
+		}
+		if (isSameLevel(level)) {
+			return true;
+		}
+		if (isSameMission(mission)) {
+			return true;
+		}
+		return false;
+	}
+
+	public void showCrews() {
+		printPairMatching(this.crews);
 	}
 }

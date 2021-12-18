@@ -1,7 +1,10 @@
 package pairmatching.view;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import pairmatching.model.Missions;
+import pairmatching.serivce.PairMatching;
 import pairmatching.type.Notice;
 import pairmatching.type.Course;
 import pairmatching.type.Level;
@@ -49,5 +52,12 @@ public class Print {
 		System.out.print(PairMatchingType.REMATCH.getString());
 		System.out.print(Notice.WOOWACOURSE_INFO_SPLIT.getString());
 		System.out.println(PairMatchingType.ENDMATCH.getString());
+	}
+
+	public static void printPairMatching(ArrayList<ArrayList<String>> crews) {
+		System.out.println(Notice.MATCHING_RESULT.getString());
+		for (ArrayList<String> pair : crews) {
+			System.out.println(String.join(Notice.PAIR_IS.getString(), pair));
+		}
 	}
 }
