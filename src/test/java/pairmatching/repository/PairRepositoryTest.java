@@ -16,7 +16,7 @@ class PairRepositoryTest {
     @Test
     void 페어_저장() {
         Pairs pairs = new Pairs();
-        pairs.addPair(new Pair(Arrays.asList(CrewRepository.getCrews().get(0))));
+        pairs.addPair(new Pair());
         PairRepository.createPairs(new Category(Mission.CAR_RACING, Course.BACKEND), pairs);
 
         assertThat(PairRepository.findByCategory(new Category(Mission.CAR_RACING, Course.BACKEND))

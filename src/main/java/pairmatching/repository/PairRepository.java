@@ -17,4 +17,8 @@ public class PairRepository {
         return pairsMap.get(category);
     }
 
+    public static void removeAll() {
+        pairsMap.clear();
+    }
+
 }

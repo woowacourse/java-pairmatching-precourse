@@ -18,5 +18,5 @@ public class ConstantMessages {
     public final static String NO = "아니오";
 
     public static final String DELIMITER = ",";
-    public static final String CREW_DELIMITER = ":";
+    public static final String CREW_DELIMITER = " : ";
 }

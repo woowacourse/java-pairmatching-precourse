@@ -15,14 +15,6 @@ public class Pair {
         crews.add(crew);
     }
 
-    public Pair(List<Crew> crews) {
-        this.crews = crews;
-    }
-
-    public static Pair createPair(Crew... crews) {
-        return new Pair(Arrays.stream(crews).collect(Collectors.toList()));
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
