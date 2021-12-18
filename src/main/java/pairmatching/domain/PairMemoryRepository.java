@@ -71,6 +71,7 @@ public class PairMemoryRepository {
     private void validatePair(List<String> existPair, List<String> pair) {
 //        System.out.println("compare with " + existPair + " and " + pair);
         if(existPair.containsAll(pair)) {
+            System.out.println("because of : " + existPair + ", " + pair);
             throw new IllegalArgumentException("[ERROR] 이미 존재하는 조합입니다.");
         }
     }

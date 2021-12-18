@@ -106,7 +106,6 @@ public class MainController {
             return;
         }
         pairMemoryRepository.addPairMemory(pairMemory);
-        // TODO : 매칭결과 프린트
         OutputView.printPairResult(pairs);
     }
 

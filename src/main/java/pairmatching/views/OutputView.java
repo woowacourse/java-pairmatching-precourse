@@ -9,10 +9,10 @@ import pairmatching.enums.Course;
 public class OutputView {
     private static final String HEADER_FOOTER = "#############################################";
     public static void printSection() {
-        printHeaderOrFooter();
+        printHeader();
         printCourse();
         printLevel();
-        printHeaderOrFooter();
+        printFooter();
     }
 
     public static void printCourse() {
@@ -30,12 +30,16 @@ public class OutputView {
         }
     }
 
-    public static void printHeaderOrFooter() {
+    public static void printHeader() {
+        System.out.println("\n" + HEADER_FOOTER);
+    }
+
+    public static void printFooter() {
         System.out.println(HEADER_FOOTER);
     }
 
     public static void printPairResult(List<List<String>> pairs) {
-        System.out.println("페어 매칭 결과입니다.");
+        System.out.println("\n페어 매칭 결과입니다.");
         for(List<String> pair : pairs) {
             System.out.println(String.join(" : ", pair));
         }
