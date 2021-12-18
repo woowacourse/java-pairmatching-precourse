@@ -1,7 +1,6 @@
 package pairmatching.repository;
 
 import pairmatching.domain.Course;
-import pairmatching.domain.Crew;
 import pairmatching.domain.Level;
 import pairmatching.domain.Mission;
 import pairmatching.view.Message.ErrorMessage;

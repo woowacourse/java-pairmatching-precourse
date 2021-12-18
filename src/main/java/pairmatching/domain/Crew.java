@@ -34,7 +34,7 @@ public class Crew {
             return false;
         }
         if(alreadyPair.get(level).contains(crew)){
-            return true;
+            throw new IllegalArgumentException("페어가 취소되었습니다");
         }
         return false;
     }

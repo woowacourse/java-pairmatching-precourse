@@ -6,6 +6,7 @@ import pairmatching.domain.Mission;
 import pairmatching.repository.MissionRepository;
 import pairmatching.validation.InfoValidation;
 import pairmatching.view.InputView;
+import pairmatching.view.OutputView;
 
 import java.io.IOException;
 
