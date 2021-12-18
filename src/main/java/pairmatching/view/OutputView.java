@@ -3,27 +3,38 @@ package pairmatching.view;
 import pairmatching.model.Course;
 import pairmatching.model.Level;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OutputView {
+    private static final String DIVIDER = "#############################################";
 
     public void printInformation() {
-        System.out.println("#############################################");
+        System.out.println(DIVIDER);
         printCourse();
-        printMission();
-        System.out.println("############################################");
+        printMissions();
+        System.out.println(DIVIDER);
     }
 
     private void printCourse() {
-        System.out.println("과정: 백엔드 | 프론트엔드");
+        System.out.print("과정: ");
+        List<String> stringList = new ArrayList<>();
+        for (Course course : Course.values()) {
+            stringList.add(course.getName());
+        }
+        System.out.println(String.join(" | ", stringList));
+
     }
 
-    private void printMission() {
-        System.out.println("미션:");
-        System.out.println("- 레벨1: 자동차경주 | 로또 | 숫자야구게임");
-        System.out.println("- 레벨2: 장바구니 | 결제 | 지하철노선도");
-        System.out.println("- 레벨3:");
-        System.out.println("- 레벨4: 성능개선 | 배포");
-        System.out.println("- 레벨5:");
+    private void printMissions() {
+        System.out.println("미션: ");
+        for (Level level : Level.values()) {
+            System.out.print("- " + level.getName() + ": ");
+            printMission(level.getMissions());
+        }
+    }
+
+    private void printMission(ArrayList<String> missions) {
+        System.out.println(String.join(" | ", missions));
     }
 }

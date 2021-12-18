@@ -14,11 +14,15 @@ public enum Course {
         this.name = name;
     }
 
-    public void addCrew(Crew crew){
+    public String getName() {
+        return this.name;
+    }
+
+    public void addCrew(Crew crew) {
         crewList.add(crew);
     }
 
-    public List<Crew> getCrewList(){
+    public List<Crew> getCrewList() {
         return crewList;
     }
 }

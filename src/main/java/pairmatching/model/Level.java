@@ -16,10 +16,19 @@ public enum Level {
         this.name = name;
     }
 
-    public void addMission(String missionName){
+    public void addMission(String missionName) {
         missions.add(missionName);
     }
-    public ArrayList<String> getMissions(){
+
+    public ArrayList<String> getMissions() {
         return missions;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void getMission() {
+
     }
 }
