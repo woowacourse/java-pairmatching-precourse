@@ -26,6 +26,11 @@ public class PairMatching {
 			return;
 		}
 
+		if (option.equals(Option.PAIR_INITIALIZATION.getValue())) {
+			initializePairListMap();
+			return;
+		}
+
 		AdvanceInformationView advanceInformationView = new AdvanceInformationView();
 		advanceInformationView.print();
 		PairInfoView pairInfoView = new PairInfoView();
@@ -37,10 +42,6 @@ public class PairMatching {
 
 		if (option.equals(Option.PAIR_SELECT.getValue())) {
 			selectPair(pairInfo);
-		}
-
-		if (option.equals(Option.PAIR_INITIALIZATION.getValue())) {
-			initializePairListMap();
 		}
 
 	}
@@ -79,7 +80,7 @@ public class PairMatching {
 	}
 
 	public void initializePairListMap() {
-		// pairListMap.initialize();
+		pairListMap.initialize();
 	}
 
 }

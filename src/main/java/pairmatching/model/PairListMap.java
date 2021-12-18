@@ -26,4 +26,8 @@ public class PairListMap {
 	public boolean contains(PairInfo pairInfo) {
 		return pairListMap.containsKey(pairInfo);
 	}
+
+	public void initialize() {
+		pairListMap = new HashMap<>();
+	}
 }
