@@ -1,12 +1,16 @@
 package pairmatching.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 import pairmatching.domain.Level;
 import pairmatching.domain.Mission;
+import pairmatching.domain.PairCrew;
+import pairmatching.domain.PairCrews;
 import pairmatching.exception.ToCourseException;
 import pairmatching.exception.ToLevelException;
 import pairmatching.exception.ToMissionException;
@@ -20,6 +24,8 @@ public class PairMatchingService {
 	private static final int LEVEL_INDEX = 1;
 	private static final int MISSION_INDEX = 2;
 
+	private static final int PAIR_SIZE = 2;
+
 	private final CrewRepository crewRepository = CrewRepository.getInstance();
 	private final PairMatchingRepository pairMatchingRepository = PairMatchingRepository.getInstance();
 
@@ -32,13 +38,23 @@ public class PairMatchingService {
 		Course course = toCourse(splitInput[COURSE_INDEX].trim());
 		Level level = toLevel(splitInput[LEVEL_INDEX].trim());
 		Mission mission = toMission(level, splitInput[MISSION_INDEX].trim());
-
+		pairMatch(course, level, mission);
+		System.out.println(pairMatchingRepository.get());
 	}
 
-	public void pairMatch(Course course, Level level, Mission mission) {
+	public void pairMatch(Course course, Level level, Mission mission) throws IllegalArgumentException {
+		PairCrews pairCrews = new PairCrews(course, level, mission);
 		List<Crew> crewsShuffle = Randoms.shuffle(crewRepository.getCrews(course));
-
-
+		for (int i = 0; i < crewsShuffle.size(); i += PAIR_SIZE) {
+			List<Crew> pairCrewList = crewsShuffle
+				.subList(i, Math.min(i + PAIR_SIZE, crewsShuffle.size()));
+			if (i == crewsShuffle.size()-2) {
+				pairCrewList.add(crewsShuffle.get(crewsShuffle.size()-1));
+			}
+			PairCrew pairCrew = new PairCrew(pairCrewList);
+			pairCrews.addPair(pairCrew);
+		}
+		pairMatchingRepository.add(pairCrews);
 	}
 
 	private Course toCourse(String input) throws IllegalArgumentException {

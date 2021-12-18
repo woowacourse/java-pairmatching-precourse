@@ -3,12 +3,12 @@ package pairmatching.repository;
 import java.util.HashMap;
 import java.util.Map;
 
-import pairmatching.domain.PairMatching;
+import pairmatching.domain.PairCrews;
 
 public class PairMatchingRepository {
 	private static final PairMatchingRepository pairMatchingRepository = new PairMatchingRepository();
 
-	Map<Integer, PairMatching> pairMatchingMap = new HashMap<>();
+	private Map<Integer, PairCrews> pairCrewsMap = new HashMap<>();
 
 	private PairMatchingRepository() {
 	}
@@ -17,7 +17,11 @@ public class PairMatchingRepository {
 		return pairMatchingRepository;
 	}
 
-	public void addPairMathching(PairMatching pairMatching) {
-		pairMatchingMap.put(pairMatching.hashCode(), pairMatching);
+	public void add(PairCrews pairCrews) {
+		pairCrewsMap.put(pairCrews.hashCode(), pairCrews);
+	}
+
+	public Map<Integer, PairCrews> get() {
+		return pairCrewsMap;
 	}
 }
