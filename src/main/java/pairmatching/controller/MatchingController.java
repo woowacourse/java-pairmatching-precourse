@@ -1,5 +1,6 @@
 package pairmatching.controller;
 
+import pairmatching.service.MatchingService;
 import pairmatching.util.InputValidator;
 import pairmatching.view.InputView;
 import pairmatching.view.MatchingView;
@@ -7,10 +8,12 @@ import pairmatching.view.OutputView;
 
 public class MatchingController {
     private static MatchingController instance;
+    private static MatchingService matchingService;
 
     public static MatchingController getInstance() {
         if (instance == null) {
             instance = new MatchingController();
+            matchingService = new MatchingService();
 
         }
         return instance;
@@ -19,6 +22,7 @@ public class MatchingController {
     public void run() {
         MatchingView.printMatchingPrompt();
         String input = inputMatchingCondition();
+        matchingService.createMatching(input);
     }
 
     private String inputMatchingCondition() {
