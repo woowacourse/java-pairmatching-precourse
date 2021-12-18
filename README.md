@@ -11,12 +11,10 @@
    - Saver
 
 2. View
-   - InputView
    - MenuInputView
-   - InitialInputView
    - MatchingInputView
    - FileInputView
-   - SeekInputView
+   - ReMatchInputView
    
 3. Controller
    - SeekController
@@ -36,5 +34,5 @@
   - [] 이미 매칭이 되어있는지 확인하는 기능
   - [] 페어를 계속 찾을 수 있는지 없는지 확인하는 기능
   - [] 각 페어가 매칭된 기록을 저장하는 기능
-  - [] 사용자의 입력을 가져오는 기능
+  - [x] 사용자의 입력을 가져오는 기능
   - [] 사용자에게 요청된 작업이 완료되었다는 화면을 띄우는 기능
