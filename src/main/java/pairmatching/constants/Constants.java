@@ -16,4 +16,9 @@ public class Constants {
 
 	public static final String BACKEND_CREW_FILE = "src/main/resources/backend-crew.md";
 	public static final String FRONTEND_CREW_FILE = "src/main/resources/frontend-crew.md";
+
+	public static final int PAIR_CNT = 2;
+	public static final int PAIR_START = 0;
+	public static final int RESET_START = 0;
+	public static final int RESET_CNT = 3;
 }

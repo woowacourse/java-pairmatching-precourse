@@ -10,4 +10,5 @@ public class ErrorMessage {
 	public static final String NOT_EXIST_MISSION = "존재하지 않는 미션입니다.";
 	public static final String NOT_EXIST_LEVEL = "존재하지 않는 레벨입니다.";
 	public static final String FILE_NOT_EXIST = "파일이 존재하지 않습니다.";
+	public static final String PAIR_EXIST = "이미 만났던 페어입니다.";
 }

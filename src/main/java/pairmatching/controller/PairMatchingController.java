@@ -7,8 +7,6 @@ import static pairmatching.view.ErrorView.*;
 import static pairmatching.view.InputView.*;
 import static pairmatching.view.OutputView.*;
 
-import pairmatching.model.MatchingHistory;
-import pairmatching.model.MatchingInfo;
 import pairmatching.model.PairMatching;
 
 public class PairMatchingController {
@@ -56,6 +54,7 @@ public class PairMatchingController {
 		try {
 			String[] courseInput = isCourseInput(selectCourse());
 			isExistCourse(courseInput);
+			pairMatching.matchingPair(courseInput);
 		} catch (IllegalArgumentException illegalArgumentException) {
 			printError(illegalArgumentException.getMessage());
 			requestMatching();

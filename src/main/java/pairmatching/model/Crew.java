@@ -9,11 +9,11 @@ public class Crew {
 		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		return "Crew{" +
-			"course=" + course +
-			", name='" + name + '\'' +
-			'}';
+	public boolean sameCourse(String course) {
+		return this.course.getName().equals(course);
+	}
+
+	public String getName() {
+		return name;
 	}
 }
