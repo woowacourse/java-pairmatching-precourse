@@ -20,12 +20,20 @@ public class InputView {
     public void inputFunction() throws IOException {
         while(true) {
             String function = init();
-            if (function.equals("1")){
-                OutputView outputView = new OutputView();
-                outputView.outputInformation();
-                String[] info = inputInformation();
-                PairMatching.matching(info);
-            }
+            OutputView outputView = new OutputView();
+            selectFunction(outputView, function);
+        }
+    }
+
+    private boolean selectFunction(OutputView outputView, String function) throws IOException {
+        if (function.equals("1")) {
+            outputView.outputInformation();
+            String[] info = inputInformation();
+            PairMatching.matching(info);
+        }
+        if (function.equals("2")) {
+            String[] info = inputInformation();
+            outputView.outputMatching(info[0], info[1], info[2]);
         }
     }
 
