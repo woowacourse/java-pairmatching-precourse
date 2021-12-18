@@ -19,9 +19,37 @@ public class Pairs {
 
 	private List<Pair> addPairToPairs(Crews crews) {
 		if (isCrewSizeOdd(crews)) {
-			//TODO
+			return getPairsWhenCrewSizeOdd(crews);
 		}
 		return getPairsWhenCrewSizeEven(crews);
+	}
+
+	private List<Pair> getPairsWhenCrewSizeOdd(Crews crews) {
+		List<Pair> pairs = new ArrayList<>();
+
+		for (int i = 1; i < crews.size() - 3; i += 2) {
+			Pair pair = Pair.create(
+				crews.getCrew(i - 1),
+				crews.getCrew(i)
+			);
+
+			pairs.add(pair);
+		}
+		addLastThreeCrewsToPair(pairs, crews);
+
+		return pairs;
+	}
+
+	private void addLastThreeCrewsToPair(List<Pair> pairs, Crews crews) {
+		int size = crews.size();
+
+		Pair pair = Pair.create(
+			crews.getCrew(size - 3),
+			crews.getCrew(size - 2),
+			crews.getCrew(size - 1)
+		);
+
+		pairs.add(pair);
 	}
 
 	private List<Pair> getPairsWhenCrewSizeEven(Crews crews) {
