@@ -21,4 +21,20 @@ public enum Action {
     public String getNumber() {
         return this.number;
     }
+
+    public static void checkActionNumber(String actionNumber) {
+        if (actionNumber.equals("1")) {
+
+        }
+        if (actionNumber.equals("2")) {
+
+        }
+        if (actionNumber.equals("3")) {
+
+        }
+        if (actionNumber.equals("Q")) {
+
+        }
+
+    }
 }

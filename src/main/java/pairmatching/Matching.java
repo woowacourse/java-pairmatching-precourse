@@ -4,6 +4,7 @@ public class Matching {
 
     Matching() {
         OutputView.outputActions();
-        InputView.inputAction();
+        String actionNumber = InputView.inputAction();
+        Action.checkActionNumber(actionNumber);
     }
 }
