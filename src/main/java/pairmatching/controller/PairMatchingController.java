@@ -1,18 +1,19 @@
 package pairmatching.controller;
 
 import pairmatching.model.PairMatching;
-import pairmatching.view.OptionView;
+import pairmatching.service.PairMatchingSerivce;
 
 public class PairMatchingController {
 
 	private PairMatching pairMatching;
+	private PairMatchingSerivce pairMatchingSerivce;
 
 	public PairMatchingController(PairMatching pairMatching) {
 		this.pairMatching = pairMatching;
+		pairMatchingSerivce = new PairMatchingSerivce();
 	}
 
 	public void operate() {
-		OptionView optionView = new OptionView();
-		pairMatching.executeOption(optionView.getInput());
+		pairMatching = pairMatchingSerivce.executeUntilUserFinish(pairMatching);
 	}
 }

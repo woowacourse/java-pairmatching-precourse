@@ -18,4 +18,8 @@ public class PairListMap {
 	public int size() {
 		return pairListMap.size();
 	}
+
+	public boolean contains(PairInfo pairInfo) {
+		return pairListMap.containsKey(pairInfo);
+	}
 }
