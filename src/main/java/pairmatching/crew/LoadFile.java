@@ -1,5 +1,7 @@
 package pairmatching.crew;
 
+import pairmatching.Course;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,6 +12,13 @@ import java.util.List;
 public class LoadFile {
     List<String> backCrew = new ArrayList<>();
     List<String> frontCrew = new ArrayList<>();
+
+    public List<String> getCrew(Course course) {
+        if (course == Course.BACKEND) {
+            return getBackCrew();
+        }
+        return getFrontCrew();
+    }
 
     public void loadBackendCrew() {
         File file = new File("../../resources/backend-crew.md");

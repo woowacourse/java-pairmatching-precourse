@@ -23,4 +23,8 @@ public enum Mission {
         String s = String.join(Constant.OR, missions);
         return s;
     }
+
+    public List<String> get() {
+        return missions;
+    }
 }

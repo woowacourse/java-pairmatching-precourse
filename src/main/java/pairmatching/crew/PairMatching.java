@@ -1,5 +1,6 @@
 package pairmatching.crew;
 
+import pairmatching.Course;
 import pairmatching.Level;
 
 import java.util.ArrayList;
@@ -8,6 +9,22 @@ import java.util.List;
 
 public class PairMatching {
     static List<List<String>> pairCrew = new ArrayList<>();
+    static LoadFile file = new LoadFile();
+
+    public static void pairMatch(Course course, Level level, String mission) {
+        int count = 0;
+        while (true) {
+            List<String> crew = file.getCrew(course);
+            if (PairMatching.isPairedCrew(level, crew)) {
+                pairCrew = PairMatching.getPairCrew();
+                return;
+            }
+            if (count == 3) {
+                throw new IllegalArgumentException();
+            }
+            count += 1;
+        }
+    }
 
     public static boolean isPairedCrew(Level level, List<String> crew) {
         if (isOdd(crew)) {
@@ -57,4 +74,6 @@ public class PairMatching {
         CrewRepository.savePair(level, pairCrew);
         return true;
     }
+
+
 }
