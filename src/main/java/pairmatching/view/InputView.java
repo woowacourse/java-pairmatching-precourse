@@ -3,6 +3,7 @@ package pairmatching.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import pairmatching.Answer;
 import pairmatching.Course;
 import pairmatching.Level;
 import pairmatching.Menu;
@@ -11,12 +12,13 @@ import pairmatching.Mission;
 public class InputView {
 	private static final String SELECT_FEATURE = "기능을 선택하세요.";
 	private static final String LINE_BREAK_DELIMITER = "#############################################";
-	private static final String OPTION_DELIMITER = "|";
+	private static final String OPTION_DELIMITER = " | ";
 	private static final String PREFIX_COURSE = "과정:";
 	private static final String PREFIX_MISSION = "미션:";
-	private static final String PREFIX_LEVEL_DASH = "-";
-	private static final String SUFFIX_LEVEL_COLON = ":";
+	private static final String PREFIX_LEVEL_DASH = "  -";
+	private static final String SUFFIX_LEVEL_COLON = ": ";
 	private static final String SELECT_COURSE_LEVEL_MISSION = "과정,레벨,미션을 선택하세요.";
+	private static final String ALREADY_PAIR = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
 
 	private static void printLineBreak() {
 		System.out.println();
@@ -72,6 +74,16 @@ public class InputView {
 		printLevelWithMission();
 		printLineBreakDelimiter();
 		printSelectCourseLevelMission();
+	}
+
+	public static void printAlreadyPair() {
+		printLineBreak();
+		System.out.println(ALREADY_PAIR);
+		List<String> answers = new ArrayList<>();
+		for (Answer each : Answer.values()) {
+			answers.add(each.toString());
+		}
+		System.out.println(String.join(OPTION_DELIMITER, answers));
 	}
 }
 

@@ -40,6 +40,19 @@ public class PairMatching {
 			.collect(Collectors.toList());
 	}
 
+	public boolean alreadyPairsByPairTarget(PairTarget pairTarget) {
+		return pairs.stream().anyMatch(pair -> pair.isSamePairTarget(pairTarget));
+	}
+
+	public void resetPairs(PairTarget pairTarget) {
+		List<Pair> remove = pairs.stream()
+			.filter(pair -> pair.isSamePairTarget(pairTarget))
+			.collect(Collectors.toList());
+		for (Pair each : remove) {
+			pairs.remove(each);
+		}
+	}
+
 	public List<Pair> findPairsByPairTarget(PairTarget pairTarget) {
 		return pairs.stream().filter(pair -> pair.isSamePairTarget(pairTarget)).collect(Collectors.toList());
 	}

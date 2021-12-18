@@ -45,7 +45,12 @@ public class PairTarget {
 	}
 
 	public boolean isSameLevel(PairTarget pairTarget) {
-		return this.level == pairTarget.level;
+		return this.level.equals(pairTarget.level);
+	}
+
+	public boolean isSame(PairTarget pairTarget) {
+		return this.level.equals(pairTarget.level) && pairTarget.course.equals(this.course)
+			&& pairTarget.mission.equals(this.mission);
 	}
 }
 

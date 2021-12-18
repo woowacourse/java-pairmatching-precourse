@@ -29,7 +29,7 @@ public class Pair {
 	}
 
 	public boolean isSamePairTarget(PairTarget pairTarget) {
-		return this.pairTarget == pairTarget;
+		return this.pairTarget.isSame(pairTarget);
 	}
 
 	public List<String> getCrews() {

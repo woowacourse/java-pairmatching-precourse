@@ -1,6 +1,7 @@
 package pairmatching.pair;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.Answer;
 import pairmatching.Menu;
 import pairmatching.view.ErrorView;
 import pairmatching.view.InputView;
@@ -52,12 +53,42 @@ public class PairMatchingController {
 		}
 	}
 
+	private PairTarget requestPairTarget() {
+		PairTarget pairTarget = new PairTarget();
+		InputView.printSelectPairTarget();
+		requestPairTarget(pairTarget);
+		return pairTarget;
+	}
+
 	private void runRandomPairMatching() {
 		PairTarget pairTarget = new PairTarget();
 		InputView.printSelectPairTarget();
 		requestPairTarget(pairTarget);
+		try {
+			validateAlreadyPairs(pairTarget);
+		} catch (IllegalArgumentException illegalArgumentException) {
+			if (illegalArgumentException.getMessage() != Answer.NO.toString()) {
+				ErrorView.print(illegalArgumentException.getMessage());
+			}
+			runRandomPairMatching();
+		}
 		pairMatching.repeatMatching(pairTarget);
 		OutputView.printMatchingResult(pairMatching.findPairsByPairTarget(pairTarget));
+	}
+
+	private void validateAlreadyPairs(PairTarget pairTarget) {
+		if (pairMatching.alreadyPairsByPairTarget(pairTarget)) {
+			InputView.printAlreadyPair();
+			String inputAnswer = Console.readLine();
+			Answer answer = Answer.validateChoose(inputAnswer);
+			if (answer == Answer.YES) {
+				pairMatching.resetPairs(pairTarget);
+				return;
+			}
+			if (answer == Answer.NO) {
+				throw new IllegalArgumentException(Answer.NO.toString());
+			}
+		}
 	}
 
 	private void runFindPair() {
