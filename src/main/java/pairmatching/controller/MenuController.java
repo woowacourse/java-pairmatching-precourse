@@ -51,8 +51,18 @@ public class MenuController {
 	private String runPairMatchingAndReturnCode(MissionService missionService, MemberService memberService) {
 		OutputView.printStatus(missionService);
 		PairInfoDto pairInfoDto = getPairInfoDto(missionService);
-		PairGenerator.generate(memberService, pairInfoDto, pairService);
 		List<Pair> pairs = pairService.findPairs(pairInfoDto);
+		if (!pairs.isEmpty()) {
+			if (getRetry().equals("네")) {
+				return generatePairAndReturnCode(memberService, pairInfoDto, pairs);
+			}
+		}
+		return generatePairAndReturnCode(memberService, pairInfoDto, pairs);
+	}
+
+	private String generatePairAndReturnCode(MemberService memberService, PairInfoDto pairInfoDto, List<Pair> pairs) {
+		PairGenerator.generate(memberService, pairInfoDto, pairService);
+		pairs = pairService.findPairs(pairInfoDto);
 		OutputView.printPairs(pairs);
 		return PAIR_MATCHING;
 	}
