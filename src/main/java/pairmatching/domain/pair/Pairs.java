@@ -53,6 +53,10 @@ public class Pairs {
 		return Pair.from(pair);
 	}
 
+	public List<Pair> getPairList() {
+		return new ArrayList<>(pairs);
+	}
+
 	public Course getCourse() {
 		return course;
 	}

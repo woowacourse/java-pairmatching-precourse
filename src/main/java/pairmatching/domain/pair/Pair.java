@@ -1,9 +1,11 @@
 package pairmatching.domain.pair;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import pairmatching.domain.crew.Crew;
 
@@ -29,4 +31,18 @@ public class Pair {
 		return String.join(" : ", stringList);
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Pair pair1 = (Pair)o;
+		return pair.equals(pair1.pair);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(pair);
+	}
 }

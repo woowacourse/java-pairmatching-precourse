@@ -5,6 +5,7 @@ import java.util.List;
 
 import pairmatching.domain.course.Course;
 import pairmatching.domain.level.Level;
+import pairmatching.domain.pair.Pair;
 import pairmatching.domain.pair.Pairs;
 import pairmatching.exception.NoPairsException;
 
@@ -34,6 +35,25 @@ public class PairsRepository {
 
 	public static void clear() {
 		pairsList.clear();
+	}
+
+	public static boolean existsOtherLevel(Pairs newPairs) {
+		for (Pairs pairs : pairsList) {
+			if (checkDuplicate(pairs, newPairs)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private static boolean checkDuplicate(Pairs pairs, Pairs newPairs) {
+		for (Pair newPair : newPairs.getPairList()) {
+			boolean hasPair = pairs.hasPair(newPair);
+			if (hasPair) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

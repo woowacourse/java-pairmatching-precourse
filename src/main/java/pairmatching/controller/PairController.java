@@ -38,7 +38,8 @@ public class PairController {
 			createRandomPairs(
 				Course.getByName(courseLevelMission.get(COURSE_INDEX)),
 				Level.getByName(courseLevelMission.get(LEVEL_INDEX)),
-				courseLevelMission.get(MISSION_INDEX)
+				courseLevelMission.get(MISSION_INDEX),
+				1
 			);
 		} catch (IllegalArgumentException e) {
 			OutputView.printError(e);
@@ -68,22 +69,40 @@ public class PairController {
 		}
 	}
 
-	private void createRandomPairs(Course course, Level level, String mission) {
-		// TODO: 겹칠경우 최대 3번 반복하는 로직 추가해야함.
+	private void createRandomPairs(Course course, Level level, String mission, int tryCount) {
+		if (tryCount > 3) {
+			OutputView.printCantMatch();
+			return;
+		}
+
 		if (!checkOverlap(course, level, mission)) {
 			return;
 		}
 
+		List<Crew> crews = getCrews(course);
+		createPairsWithRetry(course, level, mission, crews, tryCount);
+	}
+
+	private List<Crew> getCrews(Course course) {
 		List<Crew> crews = new ArrayList<>();
 		if (course == Course.BACKEND) {
 			crews = CrewRepository.getBackend();
 		} else if (course == Course.FRONTEND) {
 			crews = CrewRepository.getFrontend();
 		}
+		return crews;
+	}
 
+	private void createPairsWithRetry(Course course, Level level, String mission, List<Crew> crews, int tryCount) {
 		Pairs pairs = Pairs.createRandom(course, level, mission, crews);
-		OutputView.printPairMatching(pairs);
-		PairsRepository.create(pairs);
+		boolean retry = PairsRepository.existsOtherLevel(pairs);
+		if (retry) {
+			createRandomPairs(course, level, mission, tryCount + 1);
+		}
+		if (!retry) {
+			OutputView.printPairMatching(pairs);
+			PairsRepository.create(pairs);
+		}
 	}
 
 	private boolean checkOverlap(Course course, Level level, String mission) {
