@@ -1,7 +1,9 @@
 package pairmatching.service;
 
 import java.util.List;
+
 import pairmatching.domain.Crew;
+import pairmatching.dto.MatchDto;
 
 public interface MatchingService {
 
@@ -9,6 +11,8 @@ public interface MatchingService {
 
 	Crew findCrew();
 
-	List<String> matchCrews();
+	List<String> matchCrews(MatchDto matchDto);
+
+	boolean isAlreadyMatched(MatchDto matchDto);
 
 }

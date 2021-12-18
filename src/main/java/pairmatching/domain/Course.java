@@ -1,5 +1,8 @@
 package pairmatching.domain;
 
+import java.util.Arrays;
+import pairmatching.exception.CourseNotFoundException;
+
 public enum Course {
 
 	BACKEND("백엔드"),
@@ -11,6 +14,15 @@ public enum Course {
 		this.name = name;
 	}
 
-	// 추가 기능 구현
+	public static Course of(String name) {
+		return Arrays.stream(Course.values())
+			.filter(course -> name.equals(course.name))
+			.findAny()
+			.orElseThrow(CourseNotFoundException::new);
+	}
+
+	public String getName() {
+		return this.name;
+	}
 
 }

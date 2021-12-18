@@ -10,4 +10,8 @@ public class Crew {
 		this.name = name;
 	}
 
+	public boolean isCourseEquals(Course course) {
+		return (this.course == course);
+	}
+
 }
