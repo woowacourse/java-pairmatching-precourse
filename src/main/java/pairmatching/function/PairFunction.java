@@ -2,10 +2,13 @@ package pairmatching.function;
 
 import java.util.Arrays;
 
+import pairmatching.view.OutputView;
+
 public enum PairFunction {
 	MATCHING("1"){
 		@Override
 		public void operate() {
+			OutputView.printCourseInformation();
 		}
 	},
 	SEARCH("2"){
