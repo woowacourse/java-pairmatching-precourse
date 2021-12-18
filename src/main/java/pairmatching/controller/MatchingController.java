@@ -16,11 +16,11 @@ public class MatchingController {
 	}
 
 	private static void controlFunctionSelect() {
-		String functionNumber;
-		do {
+		String functionNumber = InputView.selectFunction(FunctionFactory.makeFunctions());
+		while (!isTerminateCondition(functionNumber)) {
 			functionNumber = InputView.selectFunction(FunctionFactory.makeFunctions());
 			controlInformationSelect();
-		} while (!isTerminateCondition(functionNumber));
+		}
 	}
 
 	private static void controlInformationSelect() {
