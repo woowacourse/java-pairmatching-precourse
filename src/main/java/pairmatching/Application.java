@@ -7,6 +7,5 @@ public class Application {
         // TODO 구현 진행
 		MainController mainController = new MainController();
 		mainController.run();
-
     }
 }
