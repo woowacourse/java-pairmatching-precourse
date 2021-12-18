@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Crews {
 	private final List<Crew> crews;
@@ -11,5 +12,12 @@ public class Crews {
 
 	public List<Crew> getCrews() {
 		return crews;
+	}
+
+	public List<String> getCourseCrewsNames(Course course) {
+		return crews.stream()
+			.filter(e -> e.getCourse() == course)
+			.map(Crew::getName)
+			.collect(Collectors.toList());
 	}
 }
