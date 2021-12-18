@@ -1,8 +1,13 @@
 package pairmatching.domain;
 
-import java.util.LinkedHashMap;
+import java.util.Set;
 
 public class Pair {
-	private LinkedHashMap<Crew, Crew> pair;
+	private Set<Crew> pair;
+
+	public Pair(Set<Crew> pair) {
+		this.pair = pair;
+	}
+
 
 }

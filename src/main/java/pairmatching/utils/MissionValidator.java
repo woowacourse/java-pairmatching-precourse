@@ -18,9 +18,9 @@ public class MissionValidator {
 		StringTokenizer stringTokenizer = new StringTokenizer(inputValues, MISSION_DELIMITER);
 		isInfoCountRight(stringTokenizer.countTokens());
 
-		String course = stringTokenizer.nextToken();
-		String level = stringTokenizer.nextToken();
-		String mission = stringTokenizer.nextToken();
+		String course = stringTokenizer.nextToken().trim();
+		String level = stringTokenizer.nextToken().trim();
+		String mission = stringTokenizer.nextToken().trim();
 
 		checkCourse(course);
 		checkLevel(level);
