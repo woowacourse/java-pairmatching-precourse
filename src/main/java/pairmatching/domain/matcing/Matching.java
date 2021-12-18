@@ -22,8 +22,8 @@ public class Matching {
 		this.pairs = new ArrayList<>();
 	}
 
-	public List<Pair> getPairs() {
-		return pairs;
+	public void addPair(Pair pair) {
+		pairs.add(pair);
 	}
 
 	public boolean isSameCourse(Course course) {
