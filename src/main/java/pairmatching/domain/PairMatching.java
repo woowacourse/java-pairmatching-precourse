@@ -31,4 +31,19 @@ public class PairMatching {
 	public List<String> getGetRoll() {
 		return roll;
 	}
+
+	public Crew getCrew() {
+		return crew;
+	}
+
+	public void makeRandomMatching(String roll, String level) {
+		if (roll.equals("백엔드")) {
+			getCrew().createBackendMatching(getLevel().getLevelMap(), level);
+		}
+
+	}
+
+	public void doesExistMatchingInfo() {
+
+	}
 }

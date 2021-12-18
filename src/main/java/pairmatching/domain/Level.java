@@ -17,10 +17,10 @@ public class Level {
 	}
 
 	private void initLevelMap() {
-		levelMap.put("레벨 1", Arrays.asList("자동차경주","로또", "숫자야구게임"));
-		levelMap.put("레벨 2", Arrays.asList("장바구니","결제", "지하철노선도"));
-		levelMap.put("레벨 3", Arrays.asList(" "));
-		levelMap.put("레벨 4", Arrays.asList("성능개선", "배포"));
-		levelMap.put("레벨 5", Arrays.asList(" "));
+		levelMap.put("레벨1", Arrays.asList("자동차경주","로또", "숫자야구게임"));
+		levelMap.put("레벨2", Arrays.asList("장바구니","결제", "지하철노선도"));
+		levelMap.put("레벨3", Arrays.asList(" "));
+		levelMap.put("레벨4", Arrays.asList("성능개선", "배포"));
+		levelMap.put("레벨5", Arrays.asList(" "));
 	}
 }
