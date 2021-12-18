@@ -3,6 +3,7 @@ import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,18 +33,15 @@ public class CrewService {
 
         List<String> crewNameList = new ArrayList<>();
 
-        try {
-            File file = new File("../../resources/" + courseName + "-crew.md");
+        String filename = courseName + "-crew.md";
 
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-
+        try (BufferedReader bufferedReader =
+                     new BufferedReader(new FileReader(readFilePath(filename)))) {
             String line = "";
 
             while ((line = bufferedReader.readLine()) != null) {
                 crewNameList.add(line);
             }
-            bufferedReader.close();
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException("[ERROR] 파일을 읽지 못하였습니다.");
         } catch (IOException e) {
@@ -51,5 +49,11 @@ public class CrewService {
         }
 
         return crewNameList;
+    }
+
+    private static String readFilePath(String filename) {
+        ClassLoader classLoader = CrewService.class.getClassLoader();
+        String path = classLoader.getResource(filename).getPath();
+        return path;
     }
 }
