@@ -19,4 +19,16 @@ public class ChoiceDto {
 		level = item[LEVEL_INDEX].trim();
 		mission = item[MISSION_INDEX].trim();
 	}
+
+	public String getCourse() {
+		return course;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public String getMission() {
+		return mission;
+	}
 }

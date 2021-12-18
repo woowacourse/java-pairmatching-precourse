@@ -7,7 +7,6 @@ import pairmatching.service.PairmatchingService;
 import pairmatching.util.FileInputUtils;
 
 public class Application {
-    private static PairmatchingService pairmatchingService;
     private static PairmatchingController pairmatchingController;
 
     public static void main(String[] args) {

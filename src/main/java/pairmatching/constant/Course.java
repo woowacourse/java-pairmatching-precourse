@@ -1,5 +1,8 @@
 package pairmatching.constant;
 
+import static pairmatching.constant.message.SystemMessage.*;
+
+import java.util.Arrays;
 import java.util.StringJoiner;
 
 public enum Course {
@@ -12,12 +15,15 @@ public enum Course {
 		this.name = name;
 	}
 
-	public String getName() {
-		return name;
+	public static Course of(String name) {
+		return Arrays.stream(Course.values())
+			.filter(course -> course.name.equals(name))
+			.findAny()
+			.orElseThrow(() -> new IllegalArgumentException(INVALID_COURSE));
 	}
 
 	public static String getSelfDescription() {
-		StringJoiner joiner = new StringJoiner( " | ");
+		StringJoiner joiner = new StringJoiner(" | ");
 		for (Course course : Course.values()) {
 			joiner.add(course.name);
 		}
