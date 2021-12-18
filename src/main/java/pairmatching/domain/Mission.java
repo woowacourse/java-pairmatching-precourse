@@ -25,6 +25,10 @@ public enum Mission {
         this.level = level;
     }
 
+    public Level getLevel() {
+        return this.level;
+    }
+
     public static void printMissionByLevel(Level level) {
         List<Mission> missions = getMissionByLevel(level);
 

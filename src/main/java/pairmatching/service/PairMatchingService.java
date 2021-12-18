@@ -71,15 +71,40 @@ public class PairMatchingService {
                 Level level = getLevelFromInput(splitStrings[1]);
                 Mission mission = getMissionFromNameAndLevel(splitStrings[2], level);
 
-                List<Crew> crewList = crewService.createCrewList(course);
-
-                Pair pair = new Pair(crewList, mission);
-
-                checkPairExist(pair);
+                Pair pair = makePair(course, mission);
 
                 return pair;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private Pair makePair(Course course, Mission mission) {
+        for(int i = 0; i < 3; i++) {
+            try {
+                List<Crew> crewList = crewService.createCrewList(course);
+
+                Pair pair = new Pair(crewList, mission);
+
+                checkPair(pair);
+
+                checkPairExist(pair);
+
+                return pair;
+            }  catch(IllegalArgumentException e) {
+            }
+        }
+        throw new IllegalArgumentException("[ERROR] 동일쌍으로 인해 매칭이 불가능합니다.");
+    }
+
+    private void checkPair(Pair inputPair) {
+        Level inputLevel = inputPair.getMission().getLevel();
+
+        for (Pair pair : pairList) {
+            Level level = pair.getMission().getLevel();
+            if (level == inputLevel) {
+                inputPair.checkPairMapWithPair(pair);
             }
         }
     }
