@@ -14,6 +14,7 @@ import pairmatching.utils.OptionInputUtils;
 
 import java.util.List;
 
+import static pairmatching.constants.ExceptionMessages.NO_MATCHING_RESULT_EXCEPTION;
 import static pairmatching.constants.SystemConstants.*;
 import static pairmatching.utils.PairMatchUtils.returnMatchResult;
 import static pairmatching.utils.UserChoiceValidator.*;
@@ -30,7 +31,11 @@ public class PairMatchingService {
     public void readMatchResult() {
         showBackgroundInfo();
         String optionsInput = requestPairMatchingOptionsInput();
-        MatchResult matchResult = MatchResultRepository.getMatchResultByOptions(requestPairMatchingOptionsInput());
+        MatchResult matchResult = MatchResultRepository.getMatchResultByOptions(optionsInput);
+        if (matchResult == null) {
+            System.out.println(NO_MATCHING_RESULT_EXCEPTION);
+            return;
+        }
         showMatchResult(matchResult);
     }
 
