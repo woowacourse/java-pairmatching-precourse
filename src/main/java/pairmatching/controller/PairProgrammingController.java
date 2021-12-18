@@ -2,6 +2,7 @@ package pairmatching.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import pairmatching.view.InputView;
 
 public class PairProgrammingController {
     private List<String> backEndCrew;
@@ -17,5 +18,6 @@ public class PairProgrammingController {
     }
 
     public void run() {
+        String mainFunction = InputView.mainFunction();
     }
 }
