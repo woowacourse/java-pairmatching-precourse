@@ -66,7 +66,7 @@ public class MatchingController {
     }
 
     public void resetMatching() {
-        // 초기화 로직
+        matchingService.initAllMatching();
         MatchingOutputView.resetFinishedPrint();
     }
 
