@@ -3,7 +3,7 @@ package pairmatching.domain;
 import java.util.Arrays;
 
 public enum Course {
-	Backend("backend"), FrontEnd("frontend");
+	Backend("백엔드"), FrontEnd("프론트엔드");
 
 	private final String course;
 

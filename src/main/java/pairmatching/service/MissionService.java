@@ -18,9 +18,15 @@ public class MissionService {
 		return missionRepository.findById(id);
 	}
 
-	public List<String> getMissionsByLevel(Level level) {
+	public List<String> getMissionNamesByLevel(Level level) {
 		return missionRepository.findAll().stream()
-			.filter(x -> x.getLevel() == level)
+			.filter(mission -> mission.getLevel() == (level))
+			.map(Mission::getName)
+			.collect(Collectors.toList());
+	}
+
+	public List<String> getMissionNames() {
+		return missionRepository.findAll().stream()
 			.map(Mission::getName)
 			.collect(Collectors.toList());
 	}

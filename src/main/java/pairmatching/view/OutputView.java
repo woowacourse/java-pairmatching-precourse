@@ -15,9 +15,13 @@ public class OutputView {
 		System.out.println("과정: 백엔드 | 프론트엔드");
 		System.out.println("미션");
 		for (Level value : Level.values()) {
-			System.out.print("  - 레벨" + value.getLevel() + ": ");
-			System.out.println(String.join(" | ", missionService.getMissionsByLevel(value)));
+			System.out.print("  - " + value.getLevel() + ": ");
+			System.out.println(String.join(" | ", missionService.getMissionNamesByLevel(value)));
 		}
 		System.out.println("#############################################");
+	}
+
+	public static void printInitializeMessage() {
+		System.out.println("초기화 되었습니다.");
 	}
 }

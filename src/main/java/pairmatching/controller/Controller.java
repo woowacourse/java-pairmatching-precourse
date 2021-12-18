@@ -22,25 +22,23 @@ public class Controller {
 	private final MenuController menuController = new MenuController();
 
 	public void run() {
-		inputMenu();
-
 		try {
 			initializeApplication();
 		} catch (IOException e) {
 			OutputView.printExceptionMessage("파일 경로가 잘못되었습니다.");
 			return;
 		}
-		OutputView.printStatus(missionService);
+		inputMenuAndRun();
 	}
 
-	private void inputMenu() {
+	private void inputMenuAndRun() {
 		try {
 			String input = InputView.inputMenu();
 			MenuValidator.isRightMenu(input);
-			menuController.run(input);
+			menuController.run(input, missionService);
 		} catch (IllegalArgumentException e) {
 			OutputView.printExceptionMessage(e.getMessage());
-			inputMenu();
+			inputMenuAndRun();
 		}
 	}
 

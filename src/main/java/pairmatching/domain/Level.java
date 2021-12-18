@@ -1,15 +1,15 @@
 package pairmatching.domain;
 
 public enum Level {
-	level1(1), level2(2), level3(3), level4(4), level5(5);
+	level1("레벨1"), level2("레벨2"), level3("레벨3"), level4("레벨4"), level5("레벨5");
 
-	private final int level;
+	private final String level;
 
-	Level(int level) {
+	Level(String level) {
 		this.level = level;
 	}
 
-	public int getLevel() {
+	public String getLevel() {
 		return level;
 	}
 }
