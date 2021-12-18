@@ -21,4 +21,20 @@ public enum Order {
 			.findFirst()
 			.orElseThrow(() -> new IllegalArgumentException("기능을 찾을 수 없습니다."));
 	}
+
+	public boolean isMatching() {
+		return this.name.equals("1");
+	}
+
+	public boolean isSearch() {
+		return this.name.equals("2");
+	}
+
+	public boolean isInit() {
+		return this.name.equals("3");
+	}
+
+	public boolean isFinish() {
+		return this.name.equals("Q");
+	}
 }
