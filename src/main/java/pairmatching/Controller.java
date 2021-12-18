@@ -19,7 +19,16 @@ public class Controller {
 	}
 
 	public void run() {
+		chooseFunction();
+	}
+
+	private void chooseFunction() {
 		outputView.printMain();
-		Console.readLine();
+		try {
+			Function chosenFunction = Function.findByCode(Console.readLine());
+		} catch (IllegalArgumentException e) {
+			outputView.printError(e);
+			chooseFunction();
+		}
 	}
 }
