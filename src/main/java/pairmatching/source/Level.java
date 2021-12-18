@@ -17,6 +17,7 @@ public enum Level {
     private static final String LEVEL_MISSION_DELIMITER = ": ";
     private static final String MISSION_DELIMITER = " | ";
 
+    private static final String MATCH_RESULT  = "\n페어 매칭 결과입니다.";
     private static final String REMATCH_REQUEST   = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n네 | 아니오 ";
     private static final String NOT_FOUND_ERROR= "존재하지 않는 레벨입니다.";
 
@@ -48,6 +49,8 @@ public enum Level {
         }
 
         mission.matchingPair(ReadCrewFile.getCrewNamesByCourse(course), crewDataBase.getCrewMapByCourse(course));
+        System.out.println(MATCH_RESULT);
+        mission.printMatchedPairs();
     }
 
     private boolean checkRematchMissionPair(){
@@ -62,8 +65,8 @@ public enum Level {
 
     public void isExistMission(String missionName) throws IllegalArgumentException{
 
-        if(missionsMap.containsKey(missionName)){
-            throw new IllegalArgumentException("[Error]: 존재하지 않는 미션입니다.");
+        if(!missionsMap.containsKey(missionName)){
+            throw new IllegalArgumentException(StringConstant.ERROR_MESSAGE_PREFIX + "존재하지 않는 미션입니다.");
         }
 
     }
@@ -76,7 +79,7 @@ public enum Level {
         Level[] levels = Level.values();
 
         for(Level level : levels){
-            if(level.name == name){
+            if(level.name.equals(name)){
                 return;
             }
         }

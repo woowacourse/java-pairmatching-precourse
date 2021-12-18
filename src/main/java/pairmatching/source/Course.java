@@ -14,11 +14,27 @@ public enum Course {
         this.name = name;
     }
 
+    public static Course getCourseByName(String name){
+        Course[] courses = Course.values();
+
+        for(Course course : courses){
+            if(course.name.equals(name)){
+                return course;
+            }
+        }
+
+        return null;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
     public static void checkExistCourse(String name) throws IllegalArgumentException{
         Course[] courses = Course.values();
 
         for(Course course : courses){
-            if(course.name == name){
+            if(course.name.equals(name)){
                 return;
             }
         }

@@ -59,6 +59,10 @@ public class Mission {
         return isMatched;
     }
 
+    public String getName(){
+        return this.name;
+    }
+
     public void printMatchedPairs(){
 
         for(Pair currentPair : missionPairs){
