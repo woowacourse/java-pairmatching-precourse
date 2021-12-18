@@ -26,4 +26,9 @@ public enum Mission {
 			.forEach(mission -> result.append("\n" + mission.level + mission.assignment));
 		return result.toString();
 	}
+
+	public static boolean hasLevelAndAssignment(Level level, Assignment assignment) {
+		return Arrays.stream(Mission.values())
+			.anyMatch(mission -> mission.level == level && mission.assignment == assignment);
+	}
 }
