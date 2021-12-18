@@ -26,7 +26,7 @@ public class CoreController {
 
 	private UiLogic uiLogic;
 	private Map<String, List<String>> missionInLevel;
-	private Map<String, List<String>> pairInMission;
+	private Map<String, Map<String, List<String>>> pairInMission;
 	private Map<String, People> members;
 
 	CoreController() {
@@ -42,6 +42,8 @@ public class CoreController {
 		}
 		fillMission();
 		pairInMission = new HashMap<>();
+		pairInMission.put(BACKEND, new HashMap<>());
+		pairInMission.put(FRONTEND, new HashMap<>());
 		members = new HashMap<>();
 		initMembers();
 	}
@@ -148,10 +150,10 @@ public class CoreController {
 		return isRematch;
 	}
 
-	private void showPair(String missionName) {
+	private void showPair(String course, String missionName) {
 		List<String> pair = null;
-		if (pairInMission.containsKey(missionName)) {
-			pair = pairInMission.get(missionName);
+		if (pairInMission.get(course).containsKey(missionName)) {
+			pair = pairInMission.get(course).get(missionName);
 		}
 		uiLogic.printPair(pair);
 	}
@@ -195,7 +197,7 @@ public class CoreController {
 
 	private void matchPair(String course, String level, String mission) {
 		ArrayList<String> peopleNames = getPeopleInCourse(course);
-		if (pairInMission.containsKey(mission) && Boolean.FALSE.equals(checkRematch())) {
+		if (pairInMission.get(course).containsKey(mission) && Boolean.FALSE.equals(checkRematch())) {
 			return;
 		}
 		List<String> pair = makePair(level, peopleNames);
@@ -203,12 +205,12 @@ public class CoreController {
 			uiLogic.printFailPairErrorMessage();
 			return;
 		}
-		pairInMission.put(mission, pair);
-		showPair(mission);
+		pairInMission.get(course).put(mission, pair);
+		showPair(course, mission);
 	}
 
 	private void searchPair(String course, String mission) {
-		showPair(mission);
+		showPair(course, mission);
 	}
 
 	private void initAllPair() {
