@@ -37,7 +37,11 @@ public class PairMatchingController {
 			if (function.equals(Menu.QUIT.getFunctionNumber())) {
 				break;
 			}
-			doFunction(function);
+			try {
+				doFunction(function);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 
@@ -83,11 +87,15 @@ public class PairMatchingController {
 		if (functionNumber.equals(Menu.MATCHING.getFunctionNumber())) {
 			matching();
 		}
+		if (functionNumber.equals(Menu.READ.getFunctionNumber())) {
+			read();
+		}
 	}
 
 	private void matching() {
 		String inputMatching = inputView.getInputMatching();
 		Matching selectedMatching = pairMatching.findMatching(inputMatching);
+		pairMatching.setMatchingResult(getInputMatchingCourse(inputMatching), selectedMatching);
 		List<List<String>> matchingResult = pairMatching.getMatchingResult(getInputMatchingCourse(inputMatching),
 			selectedMatching);
 		outputView.printMatchingResult(matchingResult);
@@ -97,5 +105,13 @@ public class PairMatchingController {
 		return Course.nameOf(Arrays.stream(inputMatching.split(SPLIT_REGEX))
 			.map(String::trim)
 			.toArray(String[]::new)[0]);
+	}
+
+	private void read() {
+		String inputMatching = inputView.getInputMatching();
+		Matching selectedMatching = pairMatching.findMatching(inputMatching);
+		List<List<String>> matchingResult = pairMatching.getMatchingResult(getInputMatchingCourse(inputMatching),
+			selectedMatching);
+		outputView.printMatchingResult(matchingResult);
 	}
 }

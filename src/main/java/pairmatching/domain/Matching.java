@@ -9,6 +9,7 @@ import pairmatching.constant.Mission;
 
 public class Matching {
 	private static final String SPLIT_REGEX = ",";
+	private static final String FRONT_NO_ERROR = "[ERROR] 매칭 이력이 없습니다.\n";
 
 	private final Level level;
 	private final Mission mission;
@@ -55,7 +56,29 @@ public class Matching {
 	}
 
 	public List<List<String>> getBackResult() {
+		if (backResult.size() == 0) {
+			throw new IllegalArgumentException(FRONT_NO_ERROR);
+		}
 		return backResult;
+	}
+
+	public void setFrontResult(List<String> crewNames) {
+		for (int i = 0; i < crewNames.size(); i = i + 2) {
+			List<String> temp = new ArrayList<>();
+			temp.add(crewNames.get(i));
+			temp.add(crewNames.get(i + 1));
+			frontResult.add(temp);
+		}
+		if (crewNames.size() % 2 != 0) {
+			frontResult.get(frontResult.size() - 1).add(crewNames.get(crewNames.size() - 1));
+		}
+	}
+
+	public List<List<String>> getFrontResult() {
+		if (frontResult.size() == 0) {
+			throw new IllegalArgumentException(FRONT_NO_ERROR);
+		}
+		return frontResult;
 	}
 
 	// public void resetResults() {

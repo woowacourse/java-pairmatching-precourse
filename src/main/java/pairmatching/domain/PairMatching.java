@@ -49,14 +49,23 @@ public class PairMatching {
 		return matchings;
 	}
 
-	public List<List<String>> getMatchingResult(Course course, Matching matching) {
+	public void setMatchingResult(Course course, Matching matching) {
 		if (course == Course.BACKEND) {
 			matching.setBackResult(crewNameMap.get(course));
+		}
+		if (course == Course.FRONTEND) {
+			matching.setFrontResult(crewNameMap.get(course));
+
+		}
+	}
+
+	public List<List<String>> getMatchingResult(Course course, Matching matching) {
+		if (course == Course.BACKEND) {
 			return matching.getBackResult();
 		}
+		if (course == Course.FRONTEND) {
+			return matching.getFrontResult();
+		}
 		return null;
-		// if (course == Course.FRONTEND) {
-		//
-		// }
 	}
 }
