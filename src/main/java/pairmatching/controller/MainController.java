@@ -4,5 +4,8 @@ public class MainController {
 	public void run() {
 		MenuController menuController = new MenuController();
 		menuController.select();
+
+		CrewController crewController = new CrewController();
+		crewController.loadCrewName();
 	}
 }
