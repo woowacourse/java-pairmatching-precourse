@@ -3,10 +3,10 @@ package pairmatching.model;
 import java.util.Arrays;
 
 public enum Function {
-	매칭("1"),
-	조회("2"),
-	초기화("3"),
-	종료("Q");
+	MATCH("1"),
+	LOOK("2"),
+	INIT("3"),
+	EXIT("Q");
 
 	private String name;
 
