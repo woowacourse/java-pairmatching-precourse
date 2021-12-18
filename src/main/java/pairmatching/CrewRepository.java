@@ -11,6 +11,7 @@ import pairmatching.exception.ErrorMessage;
 public class CrewRepository {
     private static final int MAX_SHUFFLE_COUNT = 3;
     private static final int SHUFFLE_COUNT = 1;
+    private static final int IMPOSSIBLE_SHUFFLE_SIZE = 1;
 
     private static final List<Crew> crews = new ArrayList<>();
 
@@ -28,6 +29,7 @@ public class CrewRepository {
     }
 
     public static List<Pair> matchingCrews(List<String> shuffle, Level level, int shuffleCount) {
+        validateShuffleSize(shuffle);
         validateMaxCount(shuffleCount);
         List<Pair> pairs = new ArrayList<>();
         Queue<String> queue = new LinkedList<>(shuffle);
@@ -59,6 +61,12 @@ public class CrewRepository {
     private static void validateMaxCount(int shuffleCount) {
         if (shuffleCount == MAX_SHUFFLE_COUNT) {
             System.out.println(shuffleCount);
+            throw ErrorMessage.NOT_SHUFFLE.getException();
+        }
+    }
+
+    private static void validateShuffleSize(List<String> shuffle) {
+        if (shuffle.isEmpty() || shuffle.size() == IMPOSSIBLE_SHUFFLE_SIZE) {
             throw ErrorMessage.NOT_SHUFFLE.getException();
         }
     }
