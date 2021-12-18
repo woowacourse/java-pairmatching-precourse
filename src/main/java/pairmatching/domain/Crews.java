@@ -23,6 +23,14 @@ public class Crews {
             .forEach(crews::add);
     }
 
+    public void addBackEndCrews(List<String> names) {
+        addCrews(Course.BACKEND, names);
+    }
+
+    public void addFrontEndCrews(List<String> names) {
+        addCrews(Course.BACKEND, names);
+    }
+
     public List<Crew> crews(Course course) {
         return crews.stream()
             .filter(crew -> crew.isEqualsCourse(course))
