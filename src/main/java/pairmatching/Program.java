@@ -16,6 +16,10 @@ public class Program {
     public static List<String> category;
     public static List<List<String>> pairCrew;
 
+    public static Course course;
+    public static Level level;
+    public static String mission;
+
     public static boolean on() {
         return again;
     }
@@ -23,7 +27,7 @@ public class Program {
     public static void choiceMain() {
         String choice = InputView.askMain();
         if (choice.equals(Constant.ONE)) {
-
+            choiceOne();
         }
         if (choice.equals(Constant.TWO)) {
 
@@ -36,16 +40,21 @@ public class Program {
         }
     }
 
+    public static void choiceOne() {
+        choiceCategory();
+        pairMatch();
+    }
+
     public static void choiceCategory() {
         OutputView.printMenu();
         String answer = InputView.askCategory();
         category = CategoryDivider.divideCategory(answer);
-        Course course = CourseMatch.getCourse(category.get(0));
-        Level level = LevelMatch.getLevel(category.get(1));
-        String mission = category.get(2);
+        course = CourseMatch.getCourse(category.get(0));
+        level = LevelMatch.getLevel(category.get(1));
+        mission = category.get(2);
     }
 
-    public static void pairMatch(Course course, Level level, String mission) {
+    public static void pairMatch() {
         while (true) {
             try {
                 PairMatching.pairMatch(course, level, mission);
@@ -55,5 +64,6 @@ public class Program {
                 System.out.println(e.getMessage());
             }
         }
+        OutputView.printPairMatching(pairCrew);
     }
 }
