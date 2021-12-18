@@ -4,7 +4,6 @@ import static pairmatching.constant.constant.*;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Random;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.utils.PeopleReader;

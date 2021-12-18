@@ -1,7 +1,6 @@
 package pairmatching.model;
 
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 import pairmatching.exception.LevelException;
 

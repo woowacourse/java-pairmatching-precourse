@@ -18,7 +18,7 @@ public enum Course {
 		return name;
 	}
 
-	public boolean isSameName(String name){
+	public boolean isSameName(String name) {
 		return this.name.equals(name);
 	}
 
