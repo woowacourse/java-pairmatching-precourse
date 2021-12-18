@@ -1,8 +1,9 @@
-package pairmatching.domain;
-import static pairmatching.domain.Course.*;
+package pairmatching.domain.matching;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import pairmatching.domain.Course;
 
 public class MatchingFactory {
 

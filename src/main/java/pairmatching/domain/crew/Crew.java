@@ -1,10 +1,11 @@
-package pairmatching.domain;
+package pairmatching.domain.crew;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import pairmatching.domain.Course;
 
 public class Crew {
 	// 크루, 인원

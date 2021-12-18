@@ -1,9 +1,13 @@
-package pairmatching.domain;
+package pairmatching.domain.matching;
 
 import static pairmatching.domain.Course.*;
 
 import java.util.List;
-import java.util.Objects;
+
+import pairmatching.domain.Course;
+import pairmatching.domain.crew.Crew;
+import pairmatching.domain.crew.CrewInfoReader;
+import pairmatching.domain.Pair;
 
 public class Matching {
 	private MatchingType type;

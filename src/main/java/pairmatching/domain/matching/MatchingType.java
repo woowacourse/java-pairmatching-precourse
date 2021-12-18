@@ -1,6 +1,9 @@
-package pairmatching.domain;
+package pairmatching.domain.matching;
 
 import java.util.Objects;
+
+import pairmatching.domain.Course;
+import pairmatching.domain.Level;
 
 public class MatchingType {
 	private Course course;

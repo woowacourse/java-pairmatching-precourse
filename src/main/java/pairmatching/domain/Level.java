@@ -46,4 +46,10 @@ public enum Level {
 		return Stream.of(Level.values()).collect(Collectors.toList());
 	}
 
+	public static List<String> getLevelNameList() {
+		return Stream.of(Level.values())
+			.map(level -> level.getName())
+			.collect(Collectors.toList());
+	}
+
 }

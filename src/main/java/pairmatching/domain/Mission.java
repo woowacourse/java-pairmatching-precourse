@@ -18,6 +18,10 @@ public class Mission {
 		missionMap.get(level).add(missionName);
 	}
 
+	public List<String> getMissionListByLevel(Level level){
+		return missionMap.get(level);
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
