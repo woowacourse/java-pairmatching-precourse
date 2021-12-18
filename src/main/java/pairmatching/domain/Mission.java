@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
 import java.util.Arrays;
+import java.util.List;
 
 public enum Mission {
 	CAR_RACE("자동차 경주", Level.LEVEL1),
@@ -16,6 +17,7 @@ public enum Mission {
 
 	private String name;
 	private Level level;
+	private List<Pair> pairs;
 
 	Mission(String name, Level level) {
 		this.name = name;
@@ -31,6 +33,10 @@ public enum Mission {
 			.filter(mission -> mission.isName(name))
 			.findFirst()
 			.orElseThrow(() -> new IllegalArgumentException(ERROR_NO_SUCH_MISSION));
+	}
+
+	public void setPairs(List<Pair> pairs) {
+		this.pairs = pairs;
 	}
 
 	public boolean isLevel(Level level) {

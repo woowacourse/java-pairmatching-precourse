@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.Course;
 import pairmatching.domain.Level;
 import pairmatching.domain.Mission;
+import pairmatching.domain.PairManager;
 import pairmatching.utils.DataInitializer;
 import pairmatching.view.OutputView;
 
@@ -16,6 +17,7 @@ public class Controller {
 	private final static int INDEX_MISSION = 2;
 
 	private final OutputView outputView = new OutputView();
+	private final PairManager pairManager = new PairManager();
 
 	private boolean running = true;
 
@@ -54,19 +56,21 @@ public class Controller {
 		if (function == Function.INIT) {
 			// TODO: 페어 초기화
 		}
-		chooseMission();
+		chooseMission(function);
 	}
 
-	private void chooseMission() {
+	private void chooseMission(Function function) {
 		outputView.printCourseAndMission();
 		String[] missionInfo = Console.readLine().split(MISSION_SEPARATOR);
 		try {
-			Course course = Course.findByName(missionInfo[INDEX_COURSE]);
-			Level level = Level.findByName(missionInfo[INDEX_LEVEL]);
-			Mission mission = Mission.findByName(missionInfo[INDEX_MISSION]);
+			pairManager.runFunction(
+				Course.findByName(missionInfo[INDEX_COURSE]),
+				Level.findByName(missionInfo[INDEX_LEVEL]),
+				Mission.findByName(missionInfo[INDEX_MISSION]),
+				function);
 		} catch (IllegalArgumentException e) {
 			outputView.printError(e);
-			chooseMission();
+			chooseMission(function);
 		}
 	}
 }
