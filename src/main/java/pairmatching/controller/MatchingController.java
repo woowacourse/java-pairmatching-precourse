@@ -4,7 +4,6 @@ import pairmatching.domain.crew.BackendCrews;
 import pairmatching.domain.crew.Crews;
 import pairmatching.domain.crew.FrontendCrews;
 import pairmatching.exception.AlreadyExistPairException;
-import pairmatching.exception.QuitProgramException;
 import pairmatching.service.CrewService;
 import pairmatching.service.MatchingService;
 import pairmatching.utils.Validator;
@@ -43,17 +42,17 @@ public class MatchingController {
 		return crewService.getShuffledFrontendCrews();
 	}
 
-	public void getFunctionNumber() {
+	public void start() {
 		String input = InputView.chooseFunction();
 		try {
 			Validator.validateFunctionNumber(input);
 			if (input.equals("Q")) {
-				throw new QuitProgramException();
+				return;
 			}
 			chooseFunction(Integer.parseInt(input));
 		} catch (IllegalArgumentException e) {
 			OutputView.printError(e.getMessage());
-			getFunctionNumber();
+			start();
 		}
 	}
 
