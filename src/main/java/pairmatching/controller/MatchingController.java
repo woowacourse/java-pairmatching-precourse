@@ -21,7 +21,7 @@ public class MatchingController {
 	public static void run(Mission targetMission) {
 		for (int i = 0; i < MAX_TRIAL; i++) {
 			List<Set<Crew>> pairs = matchingPairs(targetMission);
-			if(validateSamePairs(targetMission, pairs)) {
+			if(!validateSamePairs(targetMission, pairs)) {
 				continue;
 			}
 			targetMission.setPairs(pairs);

@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import pairmatching.domain.crew.BackendCrewRepository;
 import pairmatching.domain.crew.Crew;
+import pairmatching.domain.crew.FrontendCrewRepository;
 
 public class Mission {
 	private List<Set<Crew>> pairs;
@@ -19,6 +21,10 @@ public class Mission {
 		this.course = course;
 		this.level = level;
 		this.name = name;
+	}
+
+	public void setPairs(List<Set<Crew>> pairs) {
+		this.pairs = pairs;
 	}
 
 	public Course getCourse() {
@@ -47,25 +53,33 @@ public class Mission {
 		if (!isMatched()) {
 			return false;
 		}
-		for(Set<Crew> thisCrew: pairs) {
-			if (haveSameCrew(targetPairs, thisCrew))
+		for (Set<Crew> pair : targetPairs) {
+			if (checkParisMeet(pair))
 				return true;
 		}
 		return false;
 	}
 
-	private boolean haveSameCrew(List<Set<Crew>> targetPairs, Set<Crew> thisCrew) {
-		for(Set<Crew> targetCrew: targetPairs) {
-			Set<Crew> combineCrew = new HashSet<>();
-			combineCrew.addAll(targetCrew);
-			combineCrew.addAll(targetCrew);
-			if (thisCrew.size() + targetCrew.size() - 2 >= combineCrew.size())
+	private boolean checkParisMeet(Set<Crew> pair) {
+		for (Crew crew : pair) {
+			if (haveMeet(pair, crew)) {
 				return true;
+			}
 		}
 		return false;
 	}
 
-	private boolean isMatched() {
+	private boolean haveMeet(Set<Crew> pair, Crew crew) {
+		if (course == Course.BACKEND) {
+			return BackendCrewRepository.haveMeet(crew, pair);
+		}
+		if (course == Course.FRONTEND) {
+			return FrontendCrewRepository.haveMeet(crew, pair);
+		}
+		return false;
+	}
+
+	public boolean isMatched() {
 		return pairs.size() != 0;
 	}
 
@@ -82,9 +96,5 @@ public class Mission {
 	@Override
 	public int hashCode() {
 		return Objects.hash(course, level, name);
-	}
-
-	public void setPairs(List<Set<Crew>> pairs) {
-		this.pairs = pairs;
 	}
 }
