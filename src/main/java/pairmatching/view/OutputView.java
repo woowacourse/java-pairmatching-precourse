@@ -7,9 +7,12 @@ import pairmatching.common.Course;
 import pairmatching.common.Level;
 import pairmatching.common.MainCategory;
 import pairmatching.common.Mission;
+import pairmatching.domain.Pair;
+import pairmatching.domain.Pairs;
 
 public class OutputView {
 	private static final String SELECT_MAIN_OPTION = "기능을 선택하세요.";
+	private static final String ENTER_CONDITION= "과정, 레벨, 미션을 선택하세요.";
 	private static final String CONNECTION = " - ";
 	private static final String OUTLINE_START = "#############################################";
 	private static final String OUTLINE_END = "############################################";
@@ -37,6 +40,10 @@ public class OutputView {
 		System.out.println(OUTLINE_END);
 	}
 
+	public void printEnterConditionRequest() {
+		System.out.println(ENTER_CONDITION);
+	}
+
 	private void printCourses() {
 		System.out.print("과정: ");
 		List<String> courses = new ArrayList<>();
@@ -62,5 +69,11 @@ public class OutputView {
 			}
 		}
 		System.out.println(String.join(ITEM_DELIMITER, missions));
+	}
+
+	public void printMatchResult(Pairs pairs) {
+		for (Pair pair : pairs.getPairs()){
+			System.out.println(pair.toString());
+		}
 	}
 }

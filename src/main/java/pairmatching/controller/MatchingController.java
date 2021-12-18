@@ -114,24 +114,39 @@ public class MatchingController {
 			crewName = Randoms.shuffle(Backends.getCrews());
 			Pairs pairs = makePairs(condition, crewName);
 			outputView.printMatchResult(pairs);
-			if (condition.get(COURSE_INDEX).equals(Course.FRONTEND.getCourse())) {
-				crewName = Randoms.shuffle(Frontends.getCrews());
-				Pairs pairs2 = makePairs(condition, crewName);
-				outputView.printMatchResult(pairs2);
-			}
-
+		if (condition.get(COURSE_INDEX).equals(Course.FRONTEND.getCourse())) {
+			crewName = Randoms.shuffle(Frontends.getCrews());
+			Pairs pairs2 = makePairs(condition, crewName);
+			outputView.printMatchResult(pairs2);
+		}
 		}
 	}
 
 	private Pairs makePairs(List<String> condition, List<String> crewName) {
-		Pairs pairs = new Pairs(condition);
-		for (int i = 0; i < crewName.size(); i++) {
-			List<String> temp = new ArrayList<>();
-			temp.add(crewName.get(i));
-			temp.add(crewName.get(i + 1));
-			pairs.add(new Pair(temp));
+		if (crewName.size() % 2 == 0) {
+			return makeOddPairs(condition, crewName);
 		}
-		return pairs;
+
+	}
+
+	private Pairs makeOddPairs (List<String> condition, List<String> crewName) {
+		Pairs pairs = new Pairs(condition);
+	}
+
+	private Pairs makeEvenPairs (List<String> condition, List<String> crewName) {
+		Pairs pairs = new ArrayList<>();
+
+		for (int i = 0; i < crewName.size() - 1; i += 2) {
+			List<String> names = new ArrayList<>();
+			names.add(crewName.get(i));
+			names.add(crewName.get(i + 1));
+
+			Pair pair = new Pair(names);
+			pairs.add(pair);
+			if (i == crewName.size() - 3 && crewName.size() % 2 != 0) {
+				names.add(crewName.get(i));
+			}
+		}
 	}
 
 }
