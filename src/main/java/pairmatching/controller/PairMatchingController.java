@@ -8,7 +8,10 @@ import pairmatching.domain.Crew;
 import pairmatching.domain.Crews;
 import pairmatching.util.Constant;
 import pairmatching.util.CrewParse;
+import pairmatching.util.ErrorMessage;
 import pairmatching.util.FileInput;
+import pairmatching.view.InputView;
+import pairmatching.view.OutputView;
 
 public class PairMatchingController {
 
@@ -18,5 +21,27 @@ public class PairMatchingController {
 		crewList.addAll(CrewParse.make(Course.FRONTEND, FileInput.input(Constant.frontendCrewFileName)));
 		Crews crews = new Crews(crewList);
 
+		runFunction();
+
+	}
+
+	public void runFunction() {
+		try {
+			String function = getFunction();
+		} catch (IllegalArgumentException e) {
+			OutputView.printErrorMessage(e.getMessage());
+			runFunction();
+		}
+	}
+
+	public String getFunction() {
+
+		String function = InputView.getFunction();
+		if (function.equals(Constant.FUNCTION_PAIR_MATCHING) || function.equals(Constant.FUNCTION_PAIR_LOOKUP)
+			|| function.equals(Constant.FUNCTION_PAIR_INITIALIZATION) || function.equals(Constant.FUNCTION_EXIT)) {
+			return function;
+		}
+
+		throw new IllegalArgumentException(ErrorMessage.ERROR + ErrorMessage.INPUT_FUNCTION_NONE);
 	}
 }
