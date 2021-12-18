@@ -1,10 +1,11 @@
 package pairmatching.models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class Pair {
-	private final int level;
+	private final String level;
 
 	private final String course;
 
@@ -12,9 +13,11 @@ public class Pair {
 
 	private HashMap<String, String> exPair;
 
-	public Pair(final int level, final String course) {
+	public Pair(final String level, final String course) {
 		this.level = level;
 		this.course = course;
+		this.currentPairs = new ArrayList<>();
+		this.exPair = new HashMap<>();
 	}
 
 	public List<String> getCurrentPairs() {
@@ -25,7 +28,7 @@ public class Pair {
 		return exPair;
 	}
 
-	public int getLevel() {
+	public String getLevel() {
 		return level;
 	}
 
