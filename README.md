@@ -10,7 +10,8 @@
 - 기능 3) 현재 저장된 Pair 리스트를 초기화 한다. 
 
 ## ✔️ 에러 처리
-- `INVALID_NUMBER`: 
-- `INVALID_INFORMATION_DATA`:
-- `INCORRECT_INFORMATION_FORMAT`:
+- `INVALID_NUMBER`: [ERROR] 숫자를 입력하세요.
+- `INVALID_INFORMATION_DATA`: [ERROR] 올바른 데이터가 아닙니다.
+- `INCORRECT_INFORMATION_FORMAT`: [ERROR] 올바른 정보 포멧이 아닙니다.
+- `NOT_MATCHABLE`: [ERROR] 매칭이 불가능합니다.
 - `NO_MATCHING_HISTORY`: [ERROR] 매칭 이력이 없습니다.
