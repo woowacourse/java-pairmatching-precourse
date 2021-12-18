@@ -32,4 +32,8 @@ public class MatchingInformation {
 	public Course getCourse() {
 		return course;
 	}
+
+	public Level getLevel() {
+		return level;
+	}
 }

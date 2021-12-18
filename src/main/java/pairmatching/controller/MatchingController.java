@@ -1,6 +1,7 @@
 package pairmatching.controller;
 
 import pairmatching.domain.Match;
+import pairmatching.domain.MatchRepository;
 import pairmatching.domain.MatchingInformation;
 import pairmatching.service.InputService;
 import pairmatching.validator.MatchValidator;
@@ -9,7 +10,12 @@ import pairmatching.view.OutputView;
 
 public class MatchingController {
 	public void pairMatching() {
-		makeMatch(getInformation());
+		try {
+			MatchRepository.enrollMatch(makeMatch(getInformation()));
+		} catch (IllegalArgumentException exception) {
+			OutputView.errorView(exception.getMessage());
+			pairMatching();
+		}
 	}
 
 	private MatchingInformation getInformation() {
@@ -24,7 +30,9 @@ public class MatchingController {
 		return information;
 	}
 
-	private void makeMatch(MatchingInformation matchingInformation) {
-		OutputView.matchView(Match.of(matchingInformation));
+	private Match makeMatch(MatchingInformation matchingInformation) {
+		Match match = Match.of(matchingInformation);
+		OutputView.matchView(match);
+		return match;
 	}
 }

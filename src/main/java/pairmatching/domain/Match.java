@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import pairmatching.service.MatchService;
 
 public class Match {
 	private MatchingInformation information;
@@ -15,8 +16,22 @@ public class Match {
 	}
 
 	public static Match of(MatchingInformation information) {
-		List<Pair> pairList = getPairList(Randoms.shuffle(CrewRepository.getCrews(information.getCourse())));
+		int trial = 0;
+		List<Pair> pairList;
+		do {
+			pairList = getRandomPairs(information);
+			trial++;
+		} while (MatchService.isDuplicatedPair(information.getLevel()) && trial < 3);
+		if (trial >= 3) {
+			throw new IllegalArgumentException("3회 이상 매칭 실패.");
+		}
 		return new Match(information, pairList);
+	}
+
+	private static List<Pair> getRandomPairs(MatchingInformation information) {
+		List<String> shuffleNames = Randoms.shuffle(CrewRepository.getCrewNames(information.getCourse()));
+		List<Pair> pairList = getPairList(CrewRepository.getCrews(information.getCourse(), shuffleNames));
+		return pairList;
 	}
 
 	private static List<Pair> getPairList(List<Crew> crewList) {
@@ -47,5 +62,13 @@ public class Match {
 
 	public List<Pair> getPairList() {
 		return pairList;
+	}
+
+	public boolean isLevel(Level level) {
+		return level.equals(information.getLevel());
+	}
+
+	public boolean isDuplicated(Pair comparePair) {
+		return pairList.stream().anyMatch(pair -> pair.equals(comparePair));
 	}
 }

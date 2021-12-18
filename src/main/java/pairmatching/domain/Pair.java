@@ -2,6 +2,7 @@ package pairmatching.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Pair {
@@ -20,5 +21,24 @@ public class Pair {
 
 	private List<String> getCrewNameList() {
 		return crewList.stream().map(crew -> crew.toString()).collect(Collectors.toList());
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		if (this == other)
+			return true;
+		if (other == null || getClass() != other.getClass())
+			return false;
+		Pair pair = (Pair)other;
+		return duplicate(this, pair);
+	}
+
+	private boolean duplicate(Pair pair, Pair other) {
+		return pair.crewList.stream().allMatch(crew -> other.crewList.contains(crew));
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(crewList);
 	}
 }
