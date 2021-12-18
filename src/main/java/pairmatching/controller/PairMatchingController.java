@@ -28,7 +28,25 @@ public class PairMatchingController {
 			implementPairMatching();
 		}
 
+		if (function == Function.PAIR_CHECK) {
+			implementPairCheck();
+		}
+	}
 
+	public void implementPairCheck() {
+		PairInfo pairInfo = inputView.readPairInfo();
+
+		PairInfo findInfo = pairInfoRepository.getByInfo(pairInfo.getCourse(), pairInfo.getMission());
+
+		if (findInfo == null) {
+			// todo 예외처리하기
+			implementPairCheck();
+			return;
+		}
+
+		outputView.printPairInfo(findInfo);
+
+		start();
 	}
 
 	public void implementPairMatching() {

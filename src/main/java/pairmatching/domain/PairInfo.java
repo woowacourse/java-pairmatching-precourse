@@ -20,6 +20,10 @@ public class PairInfo {
 		return this.course;
 	}
 
+	public Mission getMission() {
+		return this.mission;
+	}
+
 	public void addPairList(Pair pair) {
 		pairList.add(pair);
 	}
