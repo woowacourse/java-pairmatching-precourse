@@ -9,13 +9,10 @@ public abstract class PairMatchingController {
     public static void run() {
         String selectFunction = InputView.inputPairMatchingFunction();
 
-        List<String> FrontendCrewNames = InputView.readFrontendCrew();
-        List<String> BackendCrewNames = InputView.readBackendCrew();
+        List<String> frontendCrewNames = InputView.readFrontendCrew();
+        List<String> backendCrewNames = InputView.readBackendCrew();
         String[] selectCourseInformation = InputView.inputCourseInformation();
 
-        for (int i = 0; i < selectCourseInformation.length; i++) {
-            System.out.println(selectCourseInformation[i]);
-        }
     }
 
 }
