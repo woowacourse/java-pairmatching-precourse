@@ -19,7 +19,6 @@ public class MissionList {
     }
 
     public Mission getMission(String level, String missionName) {
-
         for (Mission mission : missonMap.get(returnLevelByLevelName(level))) {
             if (mission.getMissonName().equals(missionName)){
                 return mission;
@@ -40,8 +39,9 @@ public class MissionList {
 
     private Level returnLevelByLevelName(String levelName) {
         for (Level level : Level.values()) {
-            if (level.name().contains(levelName)){
-                System.out.println("level = " + level);
+            System.out.println("level = " + level.getName());
+            System.out.println("levelName = " + levelName);
+            if (level.getName().equals(levelName)){
                 return level;
             }
         }
