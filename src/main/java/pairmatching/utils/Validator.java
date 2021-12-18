@@ -18,4 +18,7 @@ public class Validator {
         throw new IllegalArgumentException(ERROR_INPUT_OPTION);
     }
 
+    public boolean isValidDetails(String input) {
+        return true;
+    }
 }
