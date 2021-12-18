@@ -17,14 +17,16 @@ public class PairMatchingService {
 	}
 
 	public void match(PairInfo pairInfo) {
-		List<Crew> shuffleCrew = Randoms.shuffle(crewRepository.getByCourse(pairInfo.getCourse()));
+		List<String> shuffleCrew = Randoms.shuffle(crewRepository.getByCourse(pairInfo.getCourse()));
 
 		for (int i = 0; i < shuffleCrew.size() - 1; i += 2) {
-			Crew leftCrew = shuffleCrew.get(i);
-			Crew rightCrew = shuffleCrew.get(i + 1);
+			Crew leftCrew = new Crew(pairInfo.getCourse(), shuffleCrew.get(i));
+			Crew rightCrew =  new Crew(pairInfo.getCourse(), shuffleCrew.get(i));
 
 			if (i + 2 == shuffleCrew.size() - 1) {
-				pairInfo.addPairList(new Pair(leftCrew, rightCrew, shuffleCrew.get(i + 2)));
+				pairInfo.addPairList(
+					new Pair(leftCrew, rightCrew, new Crew(pairInfo.getCourse(), shuffleCrew.get(i + 2))))
+				;
 				break;
 			}
 

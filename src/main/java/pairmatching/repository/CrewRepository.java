@@ -45,11 +45,17 @@ public class CrewRepository {
 		reader.close();
 	}
 
-	public List<Crew> getByCourse(Course course) {
+	public List<String> getByCourse(Course course) {
+		List<String> names = new ArrayList<>();
+
 		if (course == Course.BACKEND) {
-			return backendCrewList;
+			backendCrewList.stream()
+				.forEach(crew -> names.add(crew.getName()));
+			return names;
 		}
 
-		return frontEndCrewList;
+		frontEndCrewList.stream()
+			.forEach(crew -> names.add(crew.getName()));
+		return names;
 	}
 }
