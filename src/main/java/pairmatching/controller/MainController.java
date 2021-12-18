@@ -32,9 +32,14 @@ public class MainController {
                 pairInquiry();
             }
             if (inputChoice == 3) {
-                pairInquiry();
+                pairInitialization();
             }
         }
+    }
+
+    private void pairInitialization() {
+        System.out.println("\n초기화 되었습니다.");
+        pairInfo = new HashMap<>();
     }
 
     private void pairInquiry() {
