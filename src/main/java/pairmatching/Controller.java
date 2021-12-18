@@ -19,16 +19,31 @@ public class Controller {
 	}
 
 	public void run() {
-		chooseFunction();
+		runFunction(chooseFunction());
 	}
 
-	private void chooseFunction() {
+	private Function chooseFunction() {
 		outputView.printMain();
 		try {
-			Function chosenFunction = Function.findByCode(Console.readLine());
+			return Function.findByCode(Console.readLine());
 		} catch (IllegalArgumentException e) {
 			outputView.printError(e);
-			chooseFunction();
+			return chooseFunction();
+		}
+	}
+
+	private void runFunction(Function function) {
+		if (function == Function.QUIT) {
+			// TODO: 종료
+		}
+		if (function == Function.MATCHING) {
+			// TODO: 페어 매칭
+		}
+		if (function == Function.INQUIRY) {
+			// TODO: 페어 조회
+		}
+		if (function == Function.INIT) {
+			// TODO: 페어 초기화
 		}
 	}
 }
