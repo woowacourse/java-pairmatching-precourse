@@ -11,6 +11,7 @@ import pairmatching.model.Levels;
 import pairmatching.model.MatchingInfo;
 import pairmatching.model.Mission;
 import pairmatching.view.InputView;
+import pairmatching.view.OutputView;
 
 public class PairMatchingController {
 	private static List<String> backEndCrewNames;
@@ -19,9 +20,11 @@ public class PairMatchingController {
 	private static List<Crew> frontendCrews;
 	private static Levels levels;
 	private InputView inputView;
+	private OutputView outputView;
 
 	public PairMatchingController() {
 		inputView = new InputView();
+		outputView = new OutputView();
 	}
 
 	public void init() {
@@ -32,9 +35,11 @@ public class PairMatchingController {
 	}
 
 	public void matching() {
+		outputView.printChooseFeature();
+		outputView.printNewLine();
+		outputView.printCourseAndMissionInfo(levels);
 		String matchingInfoString = inputView.inputMatchingInfo();
 		MatchingInfo matchingInfo = new MatchingInfo(matchingInfoString, levels);
-
 	}
 
 	private void initCourse() {

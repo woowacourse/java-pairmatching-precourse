@@ -1,6 +1,7 @@
 package pairmatching.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Level {
 	LEVEL1("레벨1"),
@@ -30,4 +31,12 @@ public enum Level {
 		this.missions = missions;
 	}
 
+	@Override
+	public String toString() {
+		List<String> missionNames = missions.stream()
+			.map(Mission::getName)
+			.collect(Collectors.toList());
+		String missionsString = String.join(" | ", missionNames);
+		return "- "+ name + ": " + missionsString;
+	}
 }

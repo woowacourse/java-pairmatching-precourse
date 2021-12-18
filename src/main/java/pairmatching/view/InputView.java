@@ -24,6 +24,10 @@ public class InputView {
 		return Console.readLine();
 	}
 
+	public String inputChoosingFeature() {
+		return Console.readLine();
+	}
+
 	public List<String> getBackEndCrewNames() {
 		return readCrewNamesFile(backEndCrewNames, BACKEND_FILE_LOCATION);
 	}

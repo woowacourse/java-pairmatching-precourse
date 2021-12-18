@@ -1,12 +1,13 @@
 package pairmatching.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Levels {
 	private List<Level> levels;
 
-	public List<Level> getLevels() {
-		return levels;
+	public Levels(List<Level> levels) {
+		this.levels = levels;
 	}
 
 	public boolean isValidLevel(String levelString) {
@@ -21,4 +22,12 @@ public class Levels {
 				.anyMatch(mission -> mission.getName().equals(missionString))
 			);
 	}
+
+	public String toStringLevels() {
+		List<String> levelsString = levels.stream()
+			.map(Level::toString)
+			.collect(Collectors.toList());
+		return String.join("\n", levelsString);
+	}
+
 }
