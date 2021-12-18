@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.models.Course;
 
 public class NameList {
@@ -23,15 +26,22 @@ public class NameList {
 		return absolutePath + COMMON_PATH + FRONTEND_CREW_PATH;
 	}
 
-	public void readName(final String course) throws IOException {
+	private List<String> readName(final String course) throws IOException {
 		final String filePath = makePath(course);
+		final List<String> names = new ArrayList<>();
 		BufferedReader readFile = new BufferedReader(new FileReader(filePath));
 		while(true) {
-			String line = readFile.readLine();
-			if(line == null) break;
-			System.out.println(line);
+			String name = readFile.readLine();
+			if(name == null) break;
+			names.add(name);
 		}
 		readFile.close();
+		return names;
+	}
+
+	public List<String> shuffleName(final String course) throws IOException {
+		final List<String> names = readName(course);
+		return Randoms.shuffle(names);
 	}
 
 }
