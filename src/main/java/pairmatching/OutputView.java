@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 public class OutputView {
     public static String DASH_LINE = "#############################################";
-    public static String PRINT_PAIR_RESULT_MESSAGE = "페어 매칭 결과입니다.";
+    public static String PRINT_ACTION_MESSAGE = "기능을 선택하세요.";
+    public static String PRINT_PAIR_RESULT_MESSAGE = "\n페어 매칭 결과입니다.";
 
     public static void outputActions() {
-        System.out.println("기능을 선택하세요.");
+        System.out.println(PRINT_ACTION_MESSAGE);
         for (Action action : Action.values()) {
             System.out.println(action.getName());
         }

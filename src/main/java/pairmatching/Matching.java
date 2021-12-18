@@ -18,7 +18,9 @@ public class Matching {
 
     public boolean checkActionNumber(String actionNumber) {
         if (actionNumber.equals("1")) {
-            matchFunctionInCommon();
+            ArrayList<String> crewList = matchFunctionInCommon();
+            crewList = Utils.shuffleCrewList(crewList);
+            pairList = Pair.makePairList(crewList);
             OutputView.printPairResult(pairList);
         }
         if (actionNumber.equals("2")) {
@@ -33,7 +35,7 @@ public class Matching {
         return false;
     }
 
-    public void matchFunctionInCommon() {
+    public ArrayList<String> matchFunctionInCommon() {
         OutputView.outputCourse();
         ArrayList<String> arrayList = Utils.splitString(InputView.inputCourseLevelMission());
         this.course = arrayList.get(0).trim();
@@ -46,7 +48,6 @@ public class Matching {
         if (course.equals("프론트엔드")) {
             crewList = (ArrayList) InputView.inputCrew("frontend");
         }
-        crewList = Utils.shuffleCrewList(crewList);
-        pairList = Pair.makePairList(crewList);
+        return crewList;
     }
 }
