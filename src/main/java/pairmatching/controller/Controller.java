@@ -2,6 +2,7 @@ package pairmatching.controller;
 
 import pairmatching.model.receiver.PairMatchingReceiver;
 import pairmatching.model.receiver.MainMenuReceiver;
+import pairmatching.model.receiver.RePairMatchingAskReceiver;
 import pairmatching.model.service.PairService;
 import pairmatching.view.View;
 
@@ -11,6 +12,7 @@ public class Controller {
 	MainMenuReceiver mainMenuReceiver = new MainMenuReceiver();
 	PairMatchingReceiver pairMatchingReceiver = new PairMatchingReceiver();
 	PairService pairService = new PairService();
+	RePairMatchingAskReceiver rePairMatchingAskReceiver = new RePairMatchingAskReceiver();
 
 	public void run() {
 		mainMenu();
@@ -27,14 +29,28 @@ public class Controller {
 	}
 
 	public void pairMatching() {
-		view.pairMatching();
+		view.courseLevelMissionInfo();
 
-		String pairMatchingInput = pairMatchingReceiver.receive();
+		boolean rewindSwitch = true;
+		while (rewindSwitch) {
+			view.selectCourseLevelMission();
 
-		if (pairService.isAlreadyPairMatching(pairMatchingInput)) {
-			view.rePairMatching();
+			String pairMatchingInput = pairMatchingReceiver.receive();
+
+			if (pairService.isAlreadyPairMatching(pairMatchingInput)) {
+				view.rePairMatching();
+
+				String answer = rePairMatchingAskReceiver.receive();
+				if (answer.equals("아니오")) {
+					continue;
+				}
+				if (answer.equals("네")) {
+					rewindSwitch = false;
+				}
+			}
+
+			pairService.makePairMatching(pairMatchingInput);
+			break;
 		}
-
-		pairService.makePairMatching(pairMatchingInput);
 	}
 }

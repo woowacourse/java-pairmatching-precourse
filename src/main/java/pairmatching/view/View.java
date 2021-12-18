@@ -25,8 +25,11 @@ public class View {
 		System.out.println(MAIN_MENU_MESSAGE);
 	}
 
-	public void pairMatching() {
+	public void courseLevelMissionInfo() {
 		System.out.println(COURSE_LEVEL_MISSION_INFO_MESSAGE);
+	}
+
+	public void selectCourseLevelMission() {
 		System.out.println(SELECT_COURSE_LEVEL_MISSION_MESSAGE);
 	}
 
