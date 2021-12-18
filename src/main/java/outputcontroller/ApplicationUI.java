@@ -29,6 +29,7 @@ public class ApplicationUI {
 
     public static void printPariMatchingResult() {
         System.out.println("페어 매칭 결과입니다.");
-        for (int )
+//        for (int )
+        // 매칭 결과를 출력
     }
 }

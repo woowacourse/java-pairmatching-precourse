@@ -53,4 +53,12 @@ public class MatchMain {
             throw new IllegalArgumentException("[ERROR] 매칭 안 됨\n");
         }
     }
+
+    public static void pairPrint() {
+        // 매칭의 결과를 출력
+    }
+
+    public static void pairInit() {
+        // 매칭 오브젝트들을 초기화
+    }
 }
