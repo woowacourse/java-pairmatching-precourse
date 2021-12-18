@@ -17,19 +17,25 @@ public class MatchingSystem {
 		this.matchingList = new ArrayList<>();
 	}
 
-	public boolean saveMatchingResult(Matching newMatching) {
+	public boolean save(Matching newMatching) {
 
 		if (!matchingList.contains(newMatching)) {
 			OutputView.printQueryMatchingInformation();
 
-			if(Console.readLine().equals("아니요")) {
+			if (Console.readLine().equals("아니요")) {
 				return false;
 			}
-			return true;
 		}
 
 		matchingList.add(newMatching);
 		return true;
 	}
 
+	public void remove(Matching targetMatching) {
+		if(!matchingList.contains(targetMatching)) {
+			throw new IllegalArgumentException();
+		}
+
+		matchingList.remove(targetMatching);
+	}
 }

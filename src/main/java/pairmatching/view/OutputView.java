@@ -40,4 +40,9 @@ public class OutputView {
 	public static void printQueryMatchingInformation() {
 		System.out.println(Message.PRINT_QUERY_MATCHING);
 	}
+
+	public static void printCompleteInitialize() {
+		System.out.println(Message.);
+		System.out.println();
+	}
 }

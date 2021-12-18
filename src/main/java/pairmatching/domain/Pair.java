@@ -23,8 +23,4 @@ public class Pair {
 		return function.handleFunction(information);
 	}
 
-
-
-
-
 }

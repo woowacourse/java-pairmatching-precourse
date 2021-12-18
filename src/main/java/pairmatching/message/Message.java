@@ -28,5 +28,7 @@ public class Message {
 		+ "네 | 아니오\n"
 		+ "아니오";
 
+	public static final String PRINT_COMPLETE_INITIALIZE = "초기화 되었습니다. ";
+
 
 }

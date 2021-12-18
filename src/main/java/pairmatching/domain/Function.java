@@ -57,7 +57,7 @@ public class Function {
 
 		OutputView.printMatchingResult(matchingResult);
 
-		return matchingSystem.saveMatchingResult(new Matching(Course.mapToCourse(course), Level.mapToLevel(level), Mission
+		return matchingSystem.save(new Matching(Course.mapToCourse(course), Level.mapToLevel(level), Mission
 			.mapToLevel(mission), matchingResult));
 	}
 
@@ -77,12 +77,14 @@ public class Function {
 		return crewName;
 	}
 
-	private void check(String process, String level, String mission) {
+	private void check(String course, String level, String mission) {
 
 	}
 
-	private void initialize(String process, String level, String mission) {
-		matchingSystem.remove();
-	}
+	private void initialize(String course, String level, String mission) {
+		matchingSystem.remove(new Matching(Course.mapToCourse(course), Level.mapToLevel(level), Mission
+			.mapToLevel(mission), new ArrayList<>()));
 
+		OutputView.printCompleteInitialize();
+	}
 }
