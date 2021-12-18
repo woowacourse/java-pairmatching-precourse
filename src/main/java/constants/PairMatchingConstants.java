@@ -28,6 +28,7 @@ public class PairMatchingConstants {
 	public static String INPUT_MENU_EXAMPLE = "ex) 백엔드, 레벨1, 자동차경주";
 	public static final String PAIR_MATCHING_RESULT = "페어매칭 결과입니다";
 	public static String PAIR_COLON = " : ";
+	public static final String RESET_MESSAGE = "초기화 되었습니다. ";
 
 	public static String SEPARATOR = " | ";
 	public static String COLON = ": ";

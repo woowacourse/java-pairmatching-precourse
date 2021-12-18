@@ -29,4 +29,8 @@ public class CrewPair {
 		}
 		return pairs.get(info);
 	}
+
+	public void resetPair() {
+		pairs.clear();
+	}
 }

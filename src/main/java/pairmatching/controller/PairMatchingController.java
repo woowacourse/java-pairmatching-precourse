@@ -108,6 +108,8 @@ public class PairMatchingController {
 	}
 
 	private void pairReset() {
+		pairs.resetPair();
+		OutputView.printResetMessage();
 	}
 
 }

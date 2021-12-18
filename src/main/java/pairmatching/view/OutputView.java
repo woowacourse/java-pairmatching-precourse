@@ -35,4 +35,13 @@ public class OutputView {
 		}
 		System.out.println(pair.get(idx));
 	}
+
+	public static void printResetMessage() {
+		System.out.println(RESET_MESSAGE);
+		printNewLine();
+	}
+
+	public static void printNewLine() {
+		System.out.println();
+	}
 }
