@@ -2,7 +2,14 @@ package pairmatching;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+
 public class Utils {
+    public static ArrayList<Crew> backendCrew = new ArrayList<>();
+    public static ArrayList<Crew> frontendCrew = new ArrayList<>();
+
     public static void InputStartMenu() {
         String answer = Console.readLine();
         Utils.SelectFunction(answer);
@@ -30,5 +37,33 @@ public class Utils {
             PrintPage.StartPage();
         }
         Except.PairMatchingInputError();
+    }
+
+    public static void BackEndCrewInput() {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("../../resources/backend-crew.md"));
+            while(true) {
+                String line = br.readLine();
+                if (line==null) break;
+                backendCrew.add(new Crew(line));
+            }
+            br.close();
+        } catch (Exception e) {
+            System.out.println("[ERROR] : 백엔드 명단이 이상해요");
+        }
+    }
+
+    public static void frontEndCrewInput() {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("../../resources/frontend-crew.md"));
+            while(true) {
+                String line = br.readLine();
+                if (line==null) break;
+                frontendCrew.add(new Crew(line));
+            }
+            br.close();
+        } catch (Exception e) {
+            System.out.println("[ERROR] : 프론트엔드 명단이 이상해요");
+        }
     }
 }
