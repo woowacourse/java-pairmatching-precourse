@@ -16,6 +16,15 @@ public enum Mission {
 		this.name = name;
 	}
 
+	public static Mission find(String name) {
+		for (Mission mission : values()) {
+			if (mission.name.equals(name)) {
+				return mission;
+			}
+		}
+		return null;
+	}
+
 	public static boolean contains(String name) {
 		for (Mission mission : values()) {
 			if (mission.name.equals(name)) {

@@ -13,6 +13,15 @@ public enum Level {
 		this.name = name;
 	}
 
+	public static Level find(String name) {
+		for (Level level : values()) {
+			if (level.name.equals(name)) {
+				return level;
+			}
+		}
+		return null;
+	}
+
 	public static boolean contains(String name) {
 		for (Level level : values()) {
 			if (level.name.equals(name)) {

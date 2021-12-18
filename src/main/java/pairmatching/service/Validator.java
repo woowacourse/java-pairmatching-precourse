@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import pairmatching.domain.Course;
+import pairmatching.domain.Crew;
 import pairmatching.domain.Level;
 import pairmatching.domain.Menu;
 import pairmatching.domain.Mission;
@@ -18,6 +19,9 @@ public class Validator {
 	private static final String INVALID_COURSE_STRING = "해당하는 과정이 존재하지 않습니다.";
 	private static final String INVALID_LEVEL_STRING = "해당하는 레벨이 존재하지 않습니다.";
 	private static final String INVALID_MISSION_STRING = "해당하는 미션이 존재하지 않습니다.";
+	private static final List<String> YES_OR_NO = Arrays.asList("네", "아니오");
+	private static final int LEAST_CREW = 2;
+	private static final String NOT_ENOUGH_CREWS = "크루 인원 수가 부족합니다.";
 
 	public static void checkEmptyString(String input) {
 		if (input.isEmpty()) {
@@ -45,7 +49,7 @@ public class Validator {
 		}
 	}
 
-	public static void checkValidInput(List<String> input) {
+	public static void checkExistence(List<String> input) {
 
 		String course = input.get(0);
 		String level = input.get(1);
@@ -61,5 +65,17 @@ public class Validator {
 			throw new IllegalArgumentException(INVALID_MISSION_STRING);
 		}
 
+	}
+
+	public static void checkValidYesOrNo(String input) {
+		if(!YES_OR_NO.contains(input)){
+			throw new IllegalArgumentException(INVALID_INPUT);
+		}
+	}
+
+	public static void checkCrewsSize(List<Crew> crews) {
+		if(crews.size()<LEAST_CREW){
+			throw new IllegalArgumentException(NOT_ENOUGH_CREWS);
+		}
 	}
 }
