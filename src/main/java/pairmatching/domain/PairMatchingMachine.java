@@ -1,7 +1,8 @@
 package pairmatching.domain;
 
+import static java.util.stream.Collectors.*;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class PairMatchingMachine {
@@ -23,8 +24,18 @@ public class PairMatchingMachine {
             .anyMatch(pairInformation -> pairInformation.isSamePairMission(pairMission));
     }
 
-    public void addPairInformation(PairInformation pairInformation) {
-        this.pairInformations.add(pairInformation);
+    public boolean isDuplicateCrew(PairInformation addPairInformation) {
+        List<PairInformation> sameLevelPairInformations = pairInformations.stream()
+            .filter(pairInformation ->
+                pairInformation.getPairMission().isSameLevel(addPairInformation.getPairMission()))
+            .collect(toList());
+
+        return sameLevelPairInformations.stream()
+            .anyMatch(pairInformation -> pairInformation.isSamePair(addPairInformation));
+    }
+
+    public void addPairInformation(PairInformation addPairInformation) {
+        this.pairInformations.add(addPairInformation);
     }
 
     public PairInformation findPairInformation(PairMission pairMission) {

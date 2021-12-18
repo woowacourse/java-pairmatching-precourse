@@ -13,4 +13,8 @@ public class Pair {
     public List<Crew> getCrews() {
         return Collections.unmodifiableList(crews);
     }
+
+    public boolean containsCrew(Pair pair) {
+        return this.crews.containsAll(pair.crews);
+    }
 }

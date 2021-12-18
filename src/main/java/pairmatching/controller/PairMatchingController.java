@@ -30,17 +30,17 @@ public class PairMatchingController {
             return;
         }
 
-        OutputView.printPairMission();
-        PairMission pairMission = getPairMission(pairMatchingMachine);
+        otherCommand(pairMatchingMachine, mainCommand);
+    }
 
+    private void otherCommand(PairMatchingMachine pairMatchingMachine, MainCommand mainCommand) {
+        PairMission pairMission = printPairMission(pairMatchingMachine);
         if (mainCommand == MainCommand.MATCHING) {
             share(pairMission, pairMatchingMachine);
         }
-
         if (mainCommand == MainCommand.FIND) {
             find(pairMission, pairMatchingMachine);
         }
-
         if (mainCommand == MainCommand.INIT) {
             remove(pairMatchingMachine);
         }
@@ -53,6 +53,11 @@ public class PairMatchingController {
             OutputView.printErrorMessage(e.getMessage());
             return getMainCommand();
         }
+    }
+
+    private PairMission printPairMission(PairMatchingMachine pairMatchingMachine) {
+        OutputView.printPairMission();
+        return getPairMission(pairMatchingMachine);
     }
 
     private PairMission getPairMission(PairMatchingMachine pairMatchingMachine) {
@@ -69,6 +74,10 @@ public class PairMatchingController {
     private void share(PairMission pairMission, PairMatchingMachine pairMatchingMachine) {
         List<Crew> crews = getCrews(pairMission);
         PairInformation pairInformation = pairMatchingMachine.share(pairMission, crews);
+
+        if (pairMatchingMachine.isDuplicateCrew(pairInformation)) {
+            share(pairMission, pairMatchingMachine);
+        }
 
         pairMatchingMachine.addPairInformation(pairInformation);
         OutputView.printPairMatchingResult(pairInformation);

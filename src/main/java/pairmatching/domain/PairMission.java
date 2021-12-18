@@ -26,6 +26,10 @@ public class PairMission {
         return course;
     }
 
+    public boolean isSameLevel(PairMission pairMission) {
+        return this.level == pairMission.level;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
