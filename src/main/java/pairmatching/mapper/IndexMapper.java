@@ -2,6 +2,9 @@ package pairmatching.mapper;
 
 import java.util.Arrays;
 
+import pairmatching.controller.PairMatchingController;
+import pairmatching.view.OutputView;
+
 public enum IndexMapper {
     MATCH("1", IndexMapper::mapToMatch),
     INQUIRY("2", IndexMapper::mapToInquiry),
@@ -10,6 +13,7 @@ public enum IndexMapper {
 
     private final String value;
     private final Mappable mappable;
+    private static PairMatchingController pairMatchingController = PairMatchingController.getInstance();
 
     IndexMapper (String value, Mappable mappable) {
         this.value = value;
@@ -26,6 +30,8 @@ public enum IndexMapper {
     }
 
     private static void mapToMatch() {
+        OutputView.printProcess(pairMatchingController.requestProcess());
+        OutputView.printMission(pairMatchingController.requestMission());
     }
 
     public static void map(String request) {

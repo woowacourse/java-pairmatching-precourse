@@ -17,4 +17,13 @@ public enum Level {
         this.name = name;
         this.missions = missions;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public List<Mission> getMissions() {
+        return missions;
+    }
 }
