@@ -12,15 +12,17 @@ public class PairStorage {
 
 	private void setPairMap() {
 		for (Course course : Course.values()) {
-			pairMap.put(course, getPairMapLevel());
+			pairMap.put(course, getPairMapOfMissions());
 		}
 	}
 
-	private HashMap<Mission, HashMap> getPairMapLevel() {
+	private HashMap<Mission, HashMap> getPairMapOfMissions() {
 		HashMap<Mission, HashMap> missionMap = new HashMap();
+
 		for (Mission mission : Mission.values()) {
 			missionMap.put(mission, new HashMap());
 		}
+
 		return missionMap;
 	}
 

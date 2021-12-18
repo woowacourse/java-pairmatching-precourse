@@ -1,6 +1,7 @@
 package userInterafce;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.PairStorage;
 import utils.WrongCommand;
 
 public class Command {
@@ -25,7 +26,10 @@ public class Command {
 
 	public void useKey(String input) {
 		if (input.equals("1")) {
-			new PairMatch().run();
+			PairStorage pairs = new PairStorage();
+			PairMatch pair = new PairMatch(pairs);
+			pair.run();
+			pair.makeNewPairs();
 		} else if (input.equals("2")) {
 			// 매칭 조회
 		} else if (input.equals("3")) {

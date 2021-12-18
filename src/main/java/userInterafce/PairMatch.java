@@ -19,12 +19,14 @@ import utils.WrongTwoCommaWithLetter;
 public class PairMatch {
 	private Crews crews = new Crews();
 	private PrintInterface printer = new PrintInterface();
+	PairStorage pairs;
 	private HashMap<Crew,Crew> missionMap;
 	private Course course;
 	private Level level;
 	private Mission mission;
 
-	public PairMatch() {
+	public PairMatch(PairStorage pairs) {
+		this.pairs = pairs;
 	}
 
 	public void run() {
