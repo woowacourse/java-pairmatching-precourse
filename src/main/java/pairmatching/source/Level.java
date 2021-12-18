@@ -5,9 +5,14 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-public class Level {
+public enum Level {
+    LEVEL1("레벨1", new String[] {"자동차경주", "로또","숫자야구게임"}),
+    LEVEL2("레벨2", new String[] {"장바구니", "결제","지하철노선도"}),
+    LEVEL3("레벨3",  new String[]{}),
+    LEVEL4("레벨4",  new String[] {"성능개선", "배포"}),
+    LEVEL5("레벨5",   new String[]{});
+
     private static final String LEVEL_MISSION_DELIMITER = ": ";
     private static final String MISSION_DELIMITER = " | ";
 
@@ -18,13 +23,13 @@ public class Level {
     private HashMap<String, Mission> missionsMap = new HashMap<>();
     private CrewDataBase crewDataBase;
 
-    public Level(String name, List<String> missions) {
+    Level(String name, String[] missions) {
         this.name = name;
         createMissionHashMap(missions);
         crewDataBase = new CrewDataBase();
     }
 
-    private void createMissionHashMap(List<String> missions){
+    private void createMissionHashMap(String[] missions){
 
         for(String missionName: missions){
             missionsMap.put(missionName, new Mission(missionName));
@@ -62,6 +67,10 @@ public class Level {
 
     }
 
+    public String getName(){
+        return name;
+    }
+
     @Override
     public String toString(){
         StringBuilder missionsOfLevel = new StringBuilder(this.name + LEVEL_MISSION_DELIMITER);
@@ -78,5 +87,4 @@ public class Level {
         return missionsOfLevel.toString();
     }
 
-    // 추가 기능 구현
 }
