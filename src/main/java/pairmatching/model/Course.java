@@ -18,7 +18,7 @@ public enum Course {
 
 	public static Course getCourseType(String courseName) {
 		courseName = replaceGap(courseName);
-		System.out.println(courseName);
+
 		String finalCourseName = courseName;
 		return Arrays.stream(values())
 			.filter(course -> course.getName().equals(finalCourseName))
