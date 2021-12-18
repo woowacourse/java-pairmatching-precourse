@@ -11,10 +11,10 @@ public class Match {
     }
 
     public boolean isSameMatch(Match match) {
-        return match.continaCrew(firstCrew) && match.continaCrew(secondCrew);
+        return match.containCrew(firstCrew) && match.containCrew(secondCrew);
     }
 
-    private boolean continaCrew(Crew crew) {
+    boolean containCrew(Crew crew) {
         return firstCrew.equals(crew) || secondCrew.equals(crew);
     }
 }
