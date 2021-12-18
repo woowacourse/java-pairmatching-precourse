@@ -3,8 +3,6 @@ package pairmatching.validator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-
 public class InputValidator {
 	private static final List<String> course = Arrays.asList("백엔드", "프론트엔드");
 	private static final List<List<String>> level = new ArrayList<>();
@@ -52,7 +50,7 @@ public class InputValidator {
 	}
 
 	private void validateMenuInput(String menu){
-		if(!(menu.equals("Q")||menu.equals("1")||menu.equals("2")||menu.equals(3))){
+		if(!(menu.equals("Q")||menu.equals("1")||menu.equals("2")||menu.equals("3"))){
 			throw new IllegalArgumentException(InputValidator.ERROR_MESSAGE + NOT_EXIST_MENU);
 		}
 	}

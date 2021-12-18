@@ -15,6 +15,9 @@ public class PairMatchingController {
 	public void selectMenu() {
 		while (true) {
 			String selection = view.inputMenu();
+			if(!inputValidator.isValidNumber(selection)){
+				continue;
+			}
 			if (selection.equals("1")) {
 				matching();
 			}
