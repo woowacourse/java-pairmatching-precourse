@@ -54,6 +54,10 @@ public class PairMatching {
 		}
 	}
 
+	public void resetAllMatching() {
+		pairs = new ArrayList<>();
+	}
+
 	public List<Pair> findPairsByPairTarget(PairTarget pairTarget) {
 		List<Pair> pairs = this.pairs.stream()
 			.filter(pair -> pair.isSamePairTarget(pairTarget))

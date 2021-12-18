@@ -102,7 +102,8 @@ public class PairMatchingController {
 	}
 
 	private void runResetPair() {
-
+		pairMatching.resetAllMatching();
+		OutputView.printResetMatching();
 	}
 
 	private void requestPairTarget(PairTarget pairTarget) {
