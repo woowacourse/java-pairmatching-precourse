@@ -16,25 +16,24 @@ public class PairMatchingConstants {
 	public static final String TRIPLE_MATCHING_ERROR = "3회 이상 매칭 중복이 발생하였습니다.";
 	public static final String MATCHING_DUPLICATE = "매칭 중복이 발생하였습니다.";
 
-
-	public static String FEATURE_MENU_MESSAGE = "기능을 선택하세요.";
-	public static String FEATURE_MENU_LIST = "1. 페어 매칭\n"
+	public static final String FEATURE_MENU_MESSAGE = "기능을 선택하세요.";
+	public static final String FEATURE_MENU_LIST = "1. 페어 매칭\n"
 		+ "2. 페어 조회\n"
 		+ "3. 페어 초기화\n"
 		+ "Q. 종료";
 
-	public static String MENU_LINE = "#############################################";
-	public static String COURSE_INFO = "과정: ";
-	public static String MISSION_INFO = "미션: ";
-	public static String INPUT_MENU_MESSAGE = "과정, 레벨, 미션을 선택하세요.";
-	public static String INPUT_MENU_EXAMPLE = "ex) 백엔드, 레벨1, 자동차경주";
+	public static final String MENU_LINE = "#############################################";
+	public static final String COURSE_INFO = "과정: ";
+	public static final String MISSION_INFO = "미션: ";
+	public static final String INPUT_MENU_MESSAGE = "과정, 레벨, 미션을 선택하세요.";
+	public static final String INPUT_MENU_EXAMPLE = "ex) 백엔드, 레벨1, 자동차경주";
 	public static final String PAIR_MATCHING_RESULT = "페어매칭 결과입니다";
-	public static String PAIR_COLON = " : ";
+	public static final String PAIR_COLON = " : ";
 	public static final String RESET_MESSAGE = "초기화 되었습니다. ";
 
-	public static String SEPARATOR = " | ";
-	public static String COLON = ": ";
-	public static String LIST_PREFIX = "  - ";
+	public static final String SEPARATOR = " | ";
+	public static final String COLON = ": ";
+	public static final String LIST_PREFIX = "  - ";
 
 	public static final String PAIR_MATCHING = "1";
 	public static final String PAIR_LOOKUP = "2";
