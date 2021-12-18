@@ -12,12 +12,14 @@ public class Match {
 	Course course;
 	Level level;
 	Mission mission;
+	PeopleReader peopleReader;
 	List<String> pair;
 
 	public Match(Course course, Level level, Mission mission) throws IOException {
 		this.course = course;
 		this.level = level;
 		this.mission = mission;
+		this.peopleReader = new PeopleReader();
 		this.pair = createPair(course);
 	}
 
@@ -25,12 +27,11 @@ public class Match {
 		return pair;
 	}
 
-	private List<String> createPair(Course course) throws IOException {
-		PeopleReader peopleReader = new PeopleReader();
-		if (course.isSameName(BACKEND)){
+	private List<String> createPair(Course course) {
+		if (course.isSameName(BACKEND)) {
 			return Randoms.shuffle(peopleReader.getBackEnd());
 		}
-		if (course.isSameName(FRONTEND)){
+		if (course.isSameName(FRONTEND)) {
 			return Randoms.shuffle(peopleReader.getFrontEnd());
 		}
 		return null;
