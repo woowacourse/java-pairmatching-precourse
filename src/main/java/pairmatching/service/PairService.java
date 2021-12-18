@@ -14,10 +14,6 @@ public class PairService {
 		return pairRepository.save(pair);
 	}
 
-	public Pair findById(Long id) {
-		return pairRepository.findById(id);
-	}
-
 	public void addLastPair(Member member) {
 		pairRepository.addLastPair(member);
 	}
@@ -28,5 +24,9 @@ public class PairService {
 
 	public Boolean isDuplicatedPair(Pair pair) {
 		return pairRepository.isDuplicatedPair(pair);
+	}
+
+	public void initializePairs() {
+		pairRepository.initializePairs();
 	}
 }

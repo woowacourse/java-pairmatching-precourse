@@ -20,6 +20,7 @@ public class Controller {
 	private final MemberService memberService = new MemberService();
 	private final MissionService missionService = new MissionService();
 	private final MenuController menuController = new MenuController();
+	private static final String EXIT = "Q";
 
 	public void run() {
 		try {
@@ -28,17 +29,19 @@ public class Controller {
 			OutputView.printExceptionMessage("파일 경로가 잘못되었습니다.");
 			return;
 		}
-		inputMenuAndRun();
+		while (!inputMenuAndRun().equals(EXIT)) {
+
+		}
 	}
 
-	private void inputMenuAndRun() {
+	private String inputMenuAndRun() {
 		try {
 			String input = InputView.inputMenu();
 			MenuValidator.isRightMenu(input);
-			menuController.run(input, missionService, memberService);
+			return menuController.runAndReturnCode(input, missionService, memberService);
 		} catch (IllegalArgumentException e) {
 			OutputView.printExceptionMessage(e.getMessage());
-			inputMenuAndRun();
+			return inputMenuAndRun();
 		}
 	}
 

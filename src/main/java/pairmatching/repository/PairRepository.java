@@ -11,15 +11,11 @@ import pairmatching.domain.PairInfoDto;
 
 public class PairRepository {
 	private Long id = 0L;
-	private final Map<Long, Pair> pairs = new HashMap<>();
+	private Map<Long, Pair> pairs = new HashMap<>();
 
 	public Long save(Pair pair) {
 		pairs.put(id, pair);
 		return id++;
-	}
-
-	public Pair findById(Long id) {
-		return pairs.get(id);
 	}
 
 	public void addLastPair(Member member) {
@@ -44,5 +40,9 @@ public class PairRepository {
 
 	private boolean isSameLevel(Pair pair, Pair pairValue) {
 		return pairValue.getLevel() == pair.getLevel();
+	}
+
+	public void initializePairs() {
+		pairs = new HashMap<>();
 	}
 }

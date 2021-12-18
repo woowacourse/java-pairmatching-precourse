@@ -27,7 +27,7 @@ public class OutputView {
 	}
 
 	public static void printInitializeMessage() {
-		System.out.println("초기화 되었습니다.");
+		System.out.println("\n초기화 되었습니다.\n");
 	}
 
 	public static void printPairs(List<Pair> pairs) {
@@ -37,5 +37,6 @@ public class OutputView {
 				.map(Member::getName).collect(Collectors.toList());
 			System.out.println(String.join(" : ", memberNames));
 		}
+		System.out.println();
 	}
 }

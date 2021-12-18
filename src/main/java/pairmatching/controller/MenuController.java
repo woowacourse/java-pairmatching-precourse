@@ -2,6 +2,7 @@ package pairmatching.controller;
 
 import java.util.List;
 
+import pairmatching.domain.Pair;
 import pairmatching.domain.PairInfoDto;
 import pairmatching.service.MemberService;
 import pairmatching.service.MissionService;
@@ -9,6 +10,7 @@ import pairmatching.service.PairService;
 import pairmatching.util.InformationValidator;
 import pairmatching.util.PairGenerator;
 import pairmatching.util.Parser;
+import pairmatching.util.RetryValidator;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -19,22 +21,65 @@ public class MenuController {
 	private static final String EXIT = "Q";
 	private final PairService pairService = new PairService();
 
-	public void run(String menu, MissionService missionService, MemberService memberService) {
+	public String runAndReturnCode(String menu, MissionService missionService, MemberService memberService) {
 		if (menu.equals(PAIR_MATCHING)) {
-			OutputView.printStatus(missionService);
-			String input = inputInformation(missionService.getMissionNames());
-			PairInfoDto pairInfoDto = Parser.splitInformation(input, missionService);
-			PairGenerator.generate(memberService, pairInfoDto, pairService);
-			OutputView.printPairs(pairService.findPairs(pairInfoDto));
-			return;
+			return runPairMatchingAndReturnCode(missionService, memberService);
 		}
 		if (menu.equals(FIND_PAIR)) {
-			OutputView.printStatus(missionService);
-			return;
+			return findPairAndReturnCode(missionService);
 		}
 		if (menu.equals(INITIALIZE_PAIR)) {
-			OutputView.printInitializeMessage();
+			return initializePairAndReturnCode();
 		}
+		return EXIT;
+	}
+
+	private String initializePairAndReturnCode() {
+		OutputView.printInitializeMessage();
+		pairService.initializePairs();
+		return INITIALIZE_PAIR;
+	}
+
+	private String findPairAndReturnCode(MissionService missionService) {
+		OutputView.printStatus(missionService);
+		PairInfoDto pairInfoDto = getPairInfoDto(missionService);
+		// List<Pair> pairs = checkAndFindPair(pairInfoDto);
+		// OutputView.printPairs(pairs);
+		return FIND_PAIR;
+	}
+
+	private String runPairMatchingAndReturnCode(MissionService missionService, MemberService memberService) {
+		OutputView.printStatus(missionService);
+		PairInfoDto pairInfoDto = getPairInfoDto(missionService);
+		List<Pair> pairs = pairService.findPairs(pairInfoDto);
+		if (!pairs.isEmpty()) {
+			String retry = getRetry();
+			if (retry.equals("네")) {
+				PairGenerator.generate(memberService, pairInfoDto, pairService);
+				pairs = pairService.findPairs(pairInfoDto);
+				OutputView.printPairs(pairs);
+				return PAIR_MATCHING;
+			}
+		}
+		OutputView.printPairs(pairs);
+		return PAIR_MATCHING;
+	}
+
+	private String getRetry() {
+		try {
+			String input = InputView.printDuplicateMatchMessage();
+			RetryValidator.isRightRetry(input);
+			return input;
+		} catch (IllegalArgumentException e) {
+			OutputView.printExceptionMessage(e.getMessage());
+			return getRetry();
+		}
+	}
+
+	private PairInfoDto getPairInfoDto(MissionService missionService) {
+		String input = inputInformation(missionService.getMissionNames());
+		PairInfoDto pairInfoDto = Parser.splitInformation(input, missionService);
+		return pairInfoDto;
 	}
 
 	private String inputInformation(List<String> missionNames) {
