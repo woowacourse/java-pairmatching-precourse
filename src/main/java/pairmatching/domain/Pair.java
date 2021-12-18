@@ -5,28 +5,12 @@ import pairmatching.view.OutputView;
 
 public class Pair {
 
+	public Function function;
 
-	public boolean handleFunction(String pick) {
-		if(pick.equals("1")) {
-			matching();
-		}
-
-		if(pick.equals("2")) {
-			check();
-		}
-
-		if(pick.equals("3")) {
-			initialize();
-		}
-
-		if(pick.equals("Q")) {
-			return false;
-		}
-
+	public Pair(int num) {
+		function = new Function(num);
 		OutputView.printProcessMissionLevel();
-		return true;
 	}
-
 
 	private void matching() {
 
