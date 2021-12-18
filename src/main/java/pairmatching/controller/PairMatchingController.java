@@ -1,11 +1,9 @@
 package pairmatching.controller;
 
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import pairmatching.domain.PairMatching;
 import pairmatching.domain.Pairs;
-import pairmatching.utils.validator.MissionValidator;
 import pairmatching.view.Input;
 import pairmatching.view.Output;
 
