@@ -1,9 +1,6 @@
 package pairmatching;
 
-import java.util.ArrayList;
-
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 
 public class Controller {
     Crews crews = new Crews();

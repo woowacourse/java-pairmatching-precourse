@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -182,6 +181,7 @@ public class Crews {
             return;
         }
         System.out.println(": " + temp.get(temp.size() - 1));
+        System.out.println();
     }
 
     private void createInfo(int type) {
