@@ -2,26 +2,35 @@ package pairmatching.util;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CrewReadUtils {
 
-	public static List<String> readBackendCrews() {
+	ClassLoader classLoader;
+
+	public CrewReadUtils(){
+		this.classLoader = getClass().getClassLoader();
+	}
+
+	public List<String> readBackendCrews() {
 		return readLines("backend-crew.md");
 	}
 
-	public static List<String> readFrontendCrews() {
+	public List<String> readFrontendCrews() {
 		return readLines("frontend-crew.md");
 	}
 
-	private static List<String> readLines(String fileName) {
+	private List<String> readLines(String fileName) {
 		List<String> lines = new ArrayList<>();
 		try {
-			FileReader fileReader = new FileReader(String.valueOf(ClassLoader.getSystemResource(fileName)));
-			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			InputStream inputStream = getClass().getClassLoader().getResourceAsStream(fileName);
+			InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
 			String line;
 			while ((line = bufferedReader.readLine()) != null)

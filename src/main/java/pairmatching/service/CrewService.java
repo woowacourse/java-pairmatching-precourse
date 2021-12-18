@@ -11,8 +11,9 @@ public class CrewService {
 	private CrewRepository crewRepository;
 
 	public CrewService() {
-		List<String> frontendCrews = CrewReadUtils.readFrontendCrews();
-		List<String> backendCrews = CrewReadUtils.readBackendCrews();
+		CrewReadUtils crewReadUtils = new CrewReadUtils();
+		List<String> frontendCrews = crewReadUtils.readFrontendCrews();
+		List<String> backendCrews = crewReadUtils.readBackendCrews();
 		this.crewRepository = new CrewRepository(frontendCrews, backendCrews);
 	}
 
