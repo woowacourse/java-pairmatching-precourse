@@ -13,7 +13,7 @@ public class PairMatchingController {
         return 0;
     }
 
-    public void match() throws IOException {
+    public void match(){
         String[] information = PairMatchingInput.choiceMatchingInformation();
         Pair pair = pairMatching.addPairInPairListOfLevel(information[0], information[1], information[2]);
         PairMatchingOutput.printPair(pair);
@@ -24,6 +24,6 @@ public class PairMatchingController {
     }
 
     public void initialize() {
-
+        pairMatching.initialize();
     }
 }
