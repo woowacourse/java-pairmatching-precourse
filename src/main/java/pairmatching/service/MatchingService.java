@@ -30,9 +30,9 @@ public class MatchingService {
         String path = getPath();
         if(path.equals("백엔드")){
             String[] nameArr =Path.BACKNAME.split(",");
-            System.out.println(nameArr);
+//            System.out.println(nameArr);
             List<String> tempnameList = new ArrayList<String>(Arrays.asList(nameArr));
-            System.out.println(tempnameList.toString());
+//            System.out.println(tempnameList.toString());
             this.nameList = tempnameList;
             return;
         }
