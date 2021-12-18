@@ -12,7 +12,7 @@ public class OutputView {
 	private static final String FUNCTION_SELECT_MESSAGE = "기능을 선택하세요.";
 	private static final String COURSE_LEVEL_MISSION_SELECT_MESSAGE = "과정, 레벨, 미션을 선택하세요.";
 
-	private static final String DIVIDING_LINE = "################################";
+	private static final String DIVIDING_LINE = "\n################################";
 	private static final String COURSE = "과정";
 	private static final String MISSION = "미션";
 

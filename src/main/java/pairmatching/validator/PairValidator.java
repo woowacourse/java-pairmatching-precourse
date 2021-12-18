@@ -10,6 +10,7 @@ public class PairValidator {
 	private static final String NO_EXIST_COURSE_ERROR = "[ERROR] 해당 과정이 존재하지 않습니다.";
 	private static final String NO_EXIST_LEVEL_ERROR = "[ERROR] 해당 레벨이 존재하지 않습니다.";
 	private static final String NO_EXIST_MISSION_ERROR = "[ERROR] 해당 미션이 존재하지 않습니다.";
+	private static final String NOT_MATCH_LEVEL_MISSION_ERROR = "[ERROR] 미션과 레벨이 일치하지 않습니다.";
 
 	public void validateLength(String input) {
 		if (input.split(", ").length != 3) {
@@ -23,15 +24,24 @@ public class PairValidator {
 		}
 	}
 
-	public void validateLevel(Level level) {
+	private void validateLevel(Level level) {
 		if (level == null) {
 			throw new IllegalArgumentException(NO_EXIST_LEVEL_ERROR);
 		}
 	}
 
-	public void validateMission(Mission mission) {
+	private void validateMission(Mission mission) {
 		if (mission == null) {
 			throw new IllegalArgumentException(NO_EXIST_MISSION_ERROR);
+		}
+	}
+
+	public void validateLevelAndMission(Level level, Mission mission) {
+		validateLevel(level);
+		validateMission(mission);
+
+		if (!Mission.getByLevel(level).contains(mission)) {
+			throw new IllegalArgumentException(NOT_MATCH_LEVEL_MISSION_ERROR);
 		}
 	}
 }

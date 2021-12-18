@@ -6,4 +6,8 @@ import java.util.List;
 public class PairInfoRepository {
 
 	private static List<PairInfo> pairInfoList = new ArrayList<>();
+
+	public boolean contains(PairInfo pairInfo) {
+		return pairInfoList.contains(pairInfo);
+	}
 }
