@@ -82,6 +82,7 @@ public class PairMatching {
 
 	public void initializePairListMap() {
 		pairListMap.initialize();
+		System.out.println("초기화 되었습니다." + "\n");
 	}
 
 }
