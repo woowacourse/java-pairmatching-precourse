@@ -38,8 +38,10 @@ public class MatchingController {
             if (!getRematchAnswer()) {
                 return;
             }
+            printMatchPair(matchingService.rematchAndSavePair(course, level, mission));
+            return;
         }
-        printMatchPair(matchingService.matchAndSavePair(course, level, mission));
+        printMatchPair(matchingService.firstMatch(course, level, mission));
     }
 
     public boolean getRematchAnswer() {

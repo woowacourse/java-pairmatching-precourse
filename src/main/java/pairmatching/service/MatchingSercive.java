@@ -42,7 +42,22 @@ public class MatchingSercive {
         return Mission.getEnumMission(mission);
     }
 
-    public MatchInfo matchAndSavePair(Course course, Level level, Mission mission) {
+    public boolean checkExistPair(Course course, Level level, Mission mission) {
+        if (matchingInfoRepository.isExist(course, level, mission)) {
+            return true;
+        }
+        return false;
+    }
+
+    public MatchInfo firstMatch(Course course, Level level, Mission mission) {
+        return matchingInfoRepository.addMatchInfo(matchPair(course, level, mission));
+    }
+
+    public MatchInfo rematchAndSavePair(Course course, Level level, Mission mission) {
+        return matchingInfoRepository.reviseMatchInfo(matchPair(course, level, mission));
+    }
+
+    public MatchInfo matchPair(Course course, Level level, Mission mission) {
         List<List<Crew>> pair = new ArrayList<>();
         List<Crew> crews = Randoms.shuffle(crewRepository.getCrew(course));
         int index = 0;
@@ -55,15 +70,10 @@ public class MatchingSercive {
             }
             pair.add(onePair);
         }
-        return matchingInfoRepository.addMatchInfo(new MatchInfo(course, level, mission, pair));
+        return new MatchInfo(course, level, mission, pair);
     }
 
-    public boolean checkExistPair(Course course, Level level, Mission mission) {
-        if (matchingInfoRepository.isExist(course, level, mission)) {
-            return true;
-        }
-        return false;
-    }
+
 
 
 }
