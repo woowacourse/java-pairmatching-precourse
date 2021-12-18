@@ -1,6 +1,7 @@
 package pairmatching.model;
 
 import static pairmatching.constants.Constants.*;
+import static pairmatching.constants.ErrorMessage.*;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -22,6 +23,9 @@ public class MatchingInfo {
 
 	public void printMatchingInfo(String course) {
 		List<Pair> pairList = matchingInfo.get(course);
+		if (pairList == null) {
+			throw new IllegalArgumentException(PAIR_NOT_EXIST);
+		}
 		OutputView.printPairs(pairList);
 	}
 }
