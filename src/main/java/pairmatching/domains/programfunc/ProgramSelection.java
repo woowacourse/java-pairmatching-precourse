@@ -21,12 +21,19 @@ public enum ProgramSelection {
 	}
 
 	public static ProgramSelection findBySelection(String selection) {
+		isEmptySelection(selection);
 		return Arrays.stream(ProgramSelection.values())
 			.filter(s -> s.selection.equals(selection))
 			.findAny()
 			.orElseThrow(() -> new IllegalArgumentException(
 				ERROR_PREFIX + SELECTION_NULL + LINE_BREAK
 			));
+	}
+
+	private static void isEmptySelection(String selection) {
+		if (selection.trim().isEmpty()) {
+			throw new IllegalArgumentException(ERROR_PREFIX + SELECTION_NULL + LINE_BREAK);
+		}
 	}
 
 	public String getSelectForm() {
