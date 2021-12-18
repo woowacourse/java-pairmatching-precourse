@@ -14,7 +14,7 @@ public class PairRepository {
     }
 
     public Pairs findByMission(Mission mission) {
-        return pairsMap.getOrDefault(mission, new Pairs());
+        return pairsMap.get(mission);
     }
 
 }
