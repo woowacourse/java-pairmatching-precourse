@@ -47,5 +47,13 @@ public class System {
             frontEndCrewList.forEach(crew -> nameList.add(crew.getName()));
             return nameList;
         }
+        throw new IllegalArgumentException();
+    }
+
+    public MatchingInfo getMatchingInfo(final Course course, final Level level, final String mission) {
+        return matchingInfos.stream()
+            .filter(v -> v.equals(course, level, mission))
+            .findFirst()
+            .orElseThrow(IllegalAccessError::new);
     }
 }
