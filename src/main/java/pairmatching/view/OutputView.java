@@ -1,12 +1,11 @@
 package pairmatching.view;
 
-import static pairmatching.model.MissionRepository.*;
-
 import java.util.List;
 
 import pairmatching.model.Level;
-import pairmatching.model.Mission;
 import pairmatching.model.MissionRepository;
+import pairmatching.model.Pair;
+import pairmatching.model.Pairs;
 
 public class OutputView {
 	private static final String SELECT_FUNTION_MESSAGE = "기능을 선택하세요";
@@ -16,9 +15,13 @@ public class OutputView {
 	private static final String EXIT_MEESAGE = "Q. 종료";
 	private static final String HASH_LINE = "#############################################";
 	private static final String MISSION_MESSAGE = "미션:";
-	private static final String COLON = ":";
-	private static final String LINE = "- ";
+	private static final String COLON = ": ";
+	private static final String LINE = "  - ";
 	private static final String SLASH = " / ";
+	private static final String OPTION_MESSAGE = "과정, 레벨, 미션을 선택하세요.";
+	private static final String OPTION_EXAMPLE = "ex) 백엔드, 레벨1, 자동차경주";
+	private static final String COLON_GAP = " : ";
+	private static final String PAIR_MATCH_MESSAGE = "페어 매칭 결과입니다.";
 
 	private OutputView() {
 	}
@@ -31,7 +34,13 @@ public class OutputView {
 		System.out.println(EXIT_MEESAGE);
 	}
 
+	public static void askSelectOption() {
+		System.out.println(OPTION_MESSAGE);
+		System.out.println(OPTION_EXAMPLE);
+	}
+
 	public static void printMissions() {
+		emptyLine();
 		System.out.println(HASH_LINE);
 		System.out.println(MISSION_MESSAGE);
 
@@ -39,10 +48,18 @@ public class OutputView {
 			System.out.print(LINE + levelName + COLON);
 			List<String> copyMissions = MissionRepository.findByLevel(levelName);
 			System.out.print(String.join(SLASH, copyMissions));
-			emptyLine();
+			System.out.println(PAIR_MATCH_MESSAGE);
 		}
 
 		System.out.println(HASH_LINE);
+	}
+
+	public static void printPairMatch(List<Pair> matchList) {
+		emptyLine();
+		for (Pair pairMatch : matchList) {
+			System.out.println(String.join(COLON_GAP, pairMatch.getPair()));
+		}
+		emptyLine();
 	}
 
 	private static void emptyLine() {
