@@ -1,4 +1,4 @@
-package pairmatching.mode;
+package pairmatching.status;
 
 import java.util.Arrays;
 import pairmatching.exception.ErrorMessage;
@@ -9,22 +9,22 @@ public enum Command {
     MODE_3("3", new PairMatchingInitializer());
 
     private final String input;
-    private final PairMatchingService pairMatchingService;
+    private final PairMatchingApplicationStatus pairMatchingApplicationStatus;
 
-    Command(String input, PairMatchingService service) {
+    Command(String input, PairMatchingApplicationStatus service) {
         this.input = input;
-        this.pairMatchingService = service;
+        this.pairMatchingApplicationStatus = service;
     }
 
-    public static PairMatchingService findServiceByCommand(String inputCommand) {
+    public static PairMatchingApplicationStatus findServiceByCommand(String inputCommand) {
         return Command.findByService(Arrays.stream(Command.values())
             .filter(command -> command.input.equals(inputCommand))
             .findAny()
             .orElseThrow(ErrorMessage.NOT_FOUND_COMMAND::getException));
     }
 
-    private static PairMatchingService findByService(Command command) {
-        return command.pairMatchingService;
+    private static PairMatchingApplicationStatus findByService(Command command) {
+        return command.pairMatchingApplicationStatus;
     }
 
 }

@@ -2,8 +2,15 @@ package pairmatching;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import pairmatching.mode.Command;
-import pairmatching.mode.PairMatchingService;
+import pairmatching.crew.Course;
+import pairmatching.crew.Crew;
+import pairmatching.crew.CrewRepository;
+import pairmatching.crew.Level;
+import pairmatching.crew.Mission;
+import pairmatching.crew.MissionRepository;
+import pairmatching.status.Answer;
+import pairmatching.status.Command;
+import pairmatching.status.PairMatchingApplicationStatus;
 import pairmatching.util.CrewNameFIleReader;
 
 public class PairMatchingRunner implements Runnable {
@@ -33,8 +40,8 @@ public class PairMatchingRunner implements Runnable {
                 if (Answer.isExit(inputCommand)) {
                     break;
                 }
-                PairMatchingService service = Command.findServiceByCommand(inputCommand);
-                service.run();
+                PairMatchingApplicationStatus service = Command.findServiceByCommand(inputCommand);
+                service.execute();
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }

@@ -1,4 +1,4 @@
-package pairmatching;
+package pairmatching.status;
 
 public enum Answer {
     YES("네"),

@@ -1,20 +1,20 @@
-package pairmatching.mode;
+package pairmatching.status;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.stream.Collectors;
-import pairmatching.Course;
-import pairmatching.Crew;
-import pairmatching.Level;
-import pairmatching.Mission;
-import pairmatching.MissionRepository;
-import pairmatching.Pair;
+import pairmatching.crew.Course;
+import pairmatching.crew.Crew;
+import pairmatching.crew.Level;
+import pairmatching.crew.Mission;
+import pairmatching.crew.MissionRepository;
+import pairmatching.crew.Pair;
 
-public class PairMatchingReference implements PairMatchingService {
+public class PairMatchingReference implements PairMatchingApplicationStatus {
     private static final String INPUT_DELIMITER = ",";
 
     @Override
-    public void run() {
+    public void execute() {
         Course course;
         String mission;
         Level level;

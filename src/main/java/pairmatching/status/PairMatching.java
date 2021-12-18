@@ -1,25 +1,24 @@
-package pairmatching.mode;
+package pairmatching.status;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
-import pairmatching.Answer;
-import pairmatching.Course;
-import pairmatching.Crew;
-import pairmatching.CrewRepository;
-import pairmatching.Level;
-import pairmatching.Mission;
-import pairmatching.MissionRepository;
-import pairmatching.Pair;
+import pairmatching.crew.Course;
+import pairmatching.crew.Crew;
+import pairmatching.crew.CrewRepository;
+import pairmatching.crew.Level;
+import pairmatching.crew.Mission;
+import pairmatching.crew.MissionRepository;
+import pairmatching.crew.Pair;
 import pairmatching.exception.ErrorMessage;
 
-public class PairMatching implements PairMatchingService {
+public class PairMatching implements PairMatchingApplicationStatus {
     private static final String INPUT_DELIMITER = ",";
     private static final int SHUFFLE_COUNT = 0;
 
     @Override
-    public void run() {
+    public void execute() {
         while (true) {
             try {
                 progressMatching();

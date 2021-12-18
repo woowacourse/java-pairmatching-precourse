@@ -1,4 +1,4 @@
-package pairmatching;
+package pairmatching.crew;
 
 import java.util.Arrays;
 import pairmatching.exception.ErrorMessage;

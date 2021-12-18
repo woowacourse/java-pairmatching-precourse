@@ -1,7 +1,6 @@
-package pairmatching.mode;
+package pairmatching.status;
 
 public class GuidanceMessage {
-
     public static final String GUIDE = "#############################################\n"
         + "과정: 백엔드 | 프론트엔드\n"
         + "미션:\n"
