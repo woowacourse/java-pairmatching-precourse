@@ -23,19 +23,19 @@ public class OutputView {
 			+ MAIN_OPTION_GET_INFO + NEW_LINE
 			+ MAIN_OPTION_INIT + NEW_LINE
 			+ MAIN_OPTION_QUIT + NEW_LINE;
-		System.out.println(mainViewMsg);
+		System.out.print(mainViewMsg);
 	}
 
 	public static void displayErrorMsg(String errorMsg) {
-		System.out.println(ERROR_MSG_PREFIX + errorMsg);
+		System.out.println(NEW_LINE + ERROR_MSG_PREFIX + errorMsg + NEW_LINE);
 	}
 
 	public static void displayInfo(List<String> course, List<String> mission) {
-		String resultMsg = DELIMIT_LINE + NEW_LINE
+		String resultMsg = NEW_LINE + DELIMIT_LINE + NEW_LINE
 			+ COURSE_MSG + getCourseInfo(course) + NEW_LINE
 			+ MISSION_MSG + NEW_LINE + getMissionInfo(mission)
 			+ DELIMIT_LINE;
-		System.out.println(resultMsg);
+		System.out.print(resultMsg);
 	}
 
 	private static StringBuilder getCourseInfo(List<String> course) {
@@ -48,7 +48,7 @@ public class OutputView {
 
 	private static StringBuilder getMissionInfo(List<String> mission) {
 		StringBuilder stringBuilder = new StringBuilder();
-		for (int i = 0; i < mission.size() - 1; i++) {
+		for (int i = 0; i < mission.size(); i++) {
 			stringBuilder.append("레벨").append(i + 1).append(": ")
 				.append(mission.get(i)).append(NEW_LINE);
 		}
@@ -56,13 +56,14 @@ public class OutputView {
 	}
 
 	public static void displayMatchingResult(List<String> result) {
-		System.out.println(MATCHING_RESULT_MSG);
+		System.out.println(NEW_LINE + MATCHING_RESULT_MSG);
 		for (String pair : result) {
 			System.out.println(pair);
 		}
+		System.out.println();
 	}
 
 	public static void displayInitMsg() {
-		System.out.println(MATCHING_INIT_MSG);
+		System.out.println(NEW_LINE + MATCHING_INIT_MSG + NEW_LINE);
 	}
 }
