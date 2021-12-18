@@ -22,8 +22,9 @@ public enum PairFunction {
 						continue;
 					}
 				}
-				List<CrewPair> crewPairs = CourseRepository.makePair(informationList.get(0), informationList.get(1), informationList.get(2));
-
+				CourseRepository.makePair(informationList.get(0), informationList.get(1), informationList.get(2));
+				List<String> crewPairs = CourseRepository.getMatchingList(informationList.get(0), informationList.get(1), informationList.get(2));
+				OutputView.printCrewPairResult(crewPairs);
 
 			}
 		}

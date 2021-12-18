@@ -3,6 +3,7 @@ package pairmatching.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Mission {
 	private String name;
@@ -16,6 +17,11 @@ public class Mission {
 		this.crewPairs = crewPairs;
 	}
 
+	public List<String> getCrewPairNameList() {
+		return crewPairs.stream()
+			.map(crewPair -> crewPair.toString())
+			.collect(Collectors.toList());
+	}
 	public static Mission from(String name) {
 		return new Mission(name);
 	}

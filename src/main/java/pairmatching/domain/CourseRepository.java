@@ -65,4 +65,9 @@ public class CourseRepository {
 		}
 		throw new IllegalArgumentException("매칭에 실패했습니다.");
 	}
+
+	public static List<String> getMatchingList(String courseName, String levelName, String missionName) {
+		Mission mission = findMission(courseName, levelName, missionName);
+		return mission.getCrewPairNameList();
+	}
 }

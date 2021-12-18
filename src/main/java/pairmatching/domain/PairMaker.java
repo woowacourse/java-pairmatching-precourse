@@ -9,11 +9,13 @@ public class PairMaker {
 		List<CrewPair> crewPairs = new ArrayList<>();
 		List<Crew> crews = CrewRepository.getBackEndCrews();
 		for (int i = 0; i < crews.size() / 2; i++) {
-			List<Crew> crewsOfPair = Arrays.asList(crews.get(i), crews.get(i+1));
-			if(crews.size() % 2 != 0 && i == ((crews.size() / 2) -1)) {
-				crewsOfPair.add(crews.get(i+2));
+			List<Crew> crewsOfPair = new ArrayList<>();
+			crewsOfPair.add(crews.get(i));
+			crewsOfPair.add(crews.get(i + 1));
+			if (crews.size() % 2 != 0 && i == ((crews.size() / 2) - 1)) {
+				crewsOfPair.add(crews.get(i + 2));
 			}
-			if(checkHasSameCrew(missions, crewsOfPair)) {
+			if (checkHasSameCrew(missions, crewsOfPair)) {
 				crewPairs.clear();
 				break;
 			}
