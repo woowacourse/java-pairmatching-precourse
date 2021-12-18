@@ -19,4 +19,8 @@ public class OutputView {
 			System.out.println(pair);
 		}
 	}
+
+	public static void clearMatchView() {
+		System.out.println("초기화 되었습니다.");
+	}
 }

@@ -20,6 +20,8 @@ public class MainController {
 			controller.pairMatching();
 		} else if (menu.equals("2")) {
 			controller.searchMatch();
+		} else if (menu.equals("3")) {
+			controller.clearMatch();
 		}
 	}
 }

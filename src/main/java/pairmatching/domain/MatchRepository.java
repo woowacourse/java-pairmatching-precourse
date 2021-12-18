@@ -30,4 +30,8 @@ public class MatchRepository {
 		}
 		throw new IllegalArgumentException("페어 정보가 존재하지 않습니다.");
 	}
+
+	public static void clearMatchList() {
+		matchList.clear();
+	}
 }

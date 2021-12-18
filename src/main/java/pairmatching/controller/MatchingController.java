@@ -32,6 +32,11 @@ public class MatchingController {
 		OutputView.matchView(match);
 	}
 
+	public void clearMatch() {
+		MatchRepository.clearMatchList();
+		OutputView.clearMatchView();
+	}
+
 	private MatchingInformation getInformation() {
 		MatchingInformation information;
 		InputView.inputMatching();
