@@ -30,7 +30,6 @@ public class PairMatchingController {
             matching();
         }
         if (function.equals("2")) {
-            System.out.println();
             search();
         }
         if (function.equals("3")) {
