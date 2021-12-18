@@ -19,7 +19,7 @@ public class BackendCrewRepository extends CrewRepository {
 		return getRandomOrder(backendCrews);
 	}
 
-	public static boolean haveMeet(Crew targetCrew, Set<Crew> crews) {
+	public static boolean haveMeet(Crew targetCrew, List<Crew> crews) {
 		return haveMeet(backendPairs, targetCrew, crews);
 	}
 }

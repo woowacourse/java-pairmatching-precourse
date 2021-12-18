@@ -20,7 +20,7 @@ public class CrewRepository {
 		return Randoms.shuffle(crews);
 	}
 
-	public static boolean haveMeet(Map<Crew, List<Crew>> pairs, Crew targetCrew, Set<Crew> crews) {
+	public static boolean haveMeet(Map<Crew, List<Crew>> pairs, Crew targetCrew, List<Crew> crews) {
 		for (Crew crew: crews) {
 			if (pairs.get(targetCrew).contains(crew)) {
 				return true;
