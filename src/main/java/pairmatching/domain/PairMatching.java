@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import pairmatching.infomation.BackendCrewRepository;
-import pairmatching.infomation.Crew;
-import pairmatching.infomation.FrontendCrewRepository;
+import pairmatching.init.BackendCrewRepository;
+import pairmatching.init.Crew;
+import pairmatching.init.FrontendCrewRepository;
 import pairmatching.view.OutputView;
 
 import camp.nextstep.edu.missionutils.Randoms;

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 import pairmatching.domain.Pair;
 import pairmatching.domain.PairRepository;
-import pairmatching.infomation.Course;
-import pairmatching.infomation.LevelRepository;
-import pairmatching.infomation.Mission;
-import pairmatching.infomation.MissionRepository;
+import pairmatching.init.Course;
+import pairmatching.init.LevelRepository;
+import pairmatching.init.Mission;
+import pairmatching.init.MissionRepository;
 
 public class OutputView {
     private static final String COURSE = "과정: ";

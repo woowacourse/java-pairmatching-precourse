@@ -1,4 +1,4 @@
-package pairmatching.infomation;
+package pairmatching.init;
 
 import java.util.ArrayList;
 

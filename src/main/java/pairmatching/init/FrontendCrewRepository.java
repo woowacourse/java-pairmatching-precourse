@@ -1,4 +1,4 @@
-package pairmatching.infomation;
+package pairmatching.init;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
