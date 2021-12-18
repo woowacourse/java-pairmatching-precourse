@@ -1,8 +1,8 @@
 package view;
 
-public class OutputDisplay {
+public class InputDisplay {
 
-	private OutputDisplay() {
+	private InputDisplay() {
 	}
 
 	public static void askInputFunctionSelectionNumber() {

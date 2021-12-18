@@ -1,6 +1,6 @@
 package controller;
 
-import view.OutputDisplay;
+import view.InputDisplay;
 
 public class MatchingController {
 
@@ -8,6 +8,6 @@ public class MatchingController {
 	}
 
 	public static void runMatchingProgram() {
-		OutputDisplay.askInputFunctionSelectionNumber();
+		InputDisplay.askInputFunctionSelectionNumber();
 	}
 }
