@@ -28,37 +28,45 @@
 ## 클래스
 
 ### model
-   1. Course
-   2. Level
-      1. name
-      2. missions
-   3. Crew
-   4. MatchingHistory
-      1. Level
-      2. List<Pair>
-   5. MatchingInfo
-      1. Map<String, List<Pair>
-         1. String : ex)백엔드,레벨1,자동차경주
-   6. Pair
-      1. List<String>
 
+1. Course
+2. Level
+    1. name
+    2. missions
+3. Crew
+4. MatchingHistory
+    1. Level
+    2. List<Pair>
+5. MatchingInfo
+    1. Map<String, List<Pair>
+        1. String : ex)백엔드,레벨1,자동차경주
+6. Pair
+    1. List<String>
 
 ### view
-   1. InputView
-   2. OutputView
-   3. ErrorView
+
+1. InputView
+2. OutputView
+3. ErrorView
 
 ### controller
-   1. PairMatchingController
-      1. MatchingHistory
-      2. MatchingInfo
+
+1. PairMatchingController
+    1. MatchingHistory
+    2. MatchingInfo
 
 ### validation
-   1. UtilValidation
-      1. 코스, 레벨, 미션 입력 유효성 검사
+
+1. UtilValidation
+    1. 코스, 레벨, 미션 입력 유효성 검사
 
 ### constants
-   1. Constants
-   2. ErrorMsg
-   3. InputMsg
-   4. OutputMsg
+
+1. Constants
+2. ErrorMsg
+3. InputMsg
+4. OutputMsg
+
+### util
+
+1. FileReader 

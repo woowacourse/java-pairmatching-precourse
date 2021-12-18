@@ -13,4 +13,7 @@ public class Constants {
 	public static final int COURSE_IDX = 0;
 	public static final int LEVEL_IDX = 1;
 	public static final int MISSION_IDX = 2;
+
+	public static final String BACKEND_CREW_FILE = "src/main/resources/backend-crew.md";
+	public static final String FRONTEND_CREW_FILE = "src/main/resources/frontend-crew.md";
 }
