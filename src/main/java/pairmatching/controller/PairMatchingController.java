@@ -23,7 +23,6 @@ public class PairMatchingController {
 		while (true) {
 			int selectFunc = requestSelectFunction();
 			if (selectFunc == MATCHING_NUMBER) {
-				System.out.println("매칭");
 				requestMatching();
 			}
 			if (selectFunc == LOOK_UP_NUMBER) {
@@ -55,9 +54,9 @@ public class PairMatchingController {
 
 	private void requestMatching() {
 		introCourse();
-		String input = selectCourse();
 		try {
-			String[] courseInput = isCourseInput(input);
+			String[] courseInput = isCourseInput(selectCourse());
+			isExistCourse(courseInput);
 		} catch (IllegalArgumentException illegalArgumentException) {
 			printError(illegalArgumentException.getMessage());
 			requestMatching();

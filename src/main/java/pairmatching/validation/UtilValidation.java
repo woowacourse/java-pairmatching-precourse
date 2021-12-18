@@ -1,5 +1,6 @@
 package pairmatching.validation;
 
+import static pairmatching.constants.Constants.*;
 import static pairmatching.constants.ErrorMessage.*;
 
 public class UtilValidation {

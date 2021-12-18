@@ -26,4 +26,14 @@ public enum Level {
 	public List<String> getMissions() {
 		return missions;
 	}
+
+	public static Level findLevelByString(String input) {
+		for (Level level:
+			 Level.values()) {
+			if (level.getName().equals(input)) {
+				return level;
+			}
+		}
+		return null;
+	}
 }
