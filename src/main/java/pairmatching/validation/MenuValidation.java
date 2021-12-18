@@ -8,5 +8,4 @@ public class MenuValidation {
             throw new IllegalArgumentException(ErrorMessage.ERROR +  ErrorMessage.NULL_INPUT);
         }
     }
-
 }
