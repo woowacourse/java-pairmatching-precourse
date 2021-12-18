@@ -42,7 +42,7 @@ public class Pairs {
 		List<Crew> pair = new ArrayList<>();
 
 		int pairCount = DEFAULT_PAIR_COUNT;
-		if (remainingCrews.size() == 1) {
+		if (remainingCrews.size() == ODD_PAIR_COUNT) {
 			pairCount = ODD_PAIR_COUNT;
 		}
 		for (int i = 0; i < pairCount; i++) {

@@ -1,10 +1,12 @@
 package pairmatching.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import pairmatching.domain.course.Course;
+import pairmatching.domain.crew.Crew;
 import pairmatching.domain.level.Level;
 import pairmatching.domain.pair.Pairs;
 import pairmatching.exception.InvalidFormatException;
@@ -84,7 +86,14 @@ public class PairController {
 
 	private void createRandomPairs(Course course, Level level, String mission) {
 		// TODO: 겹칠경우 최대 3번 반복하는 로직 추가해야함.
-		Pairs pairs = Pairs.createRandom(course, level, mission, CrewRepository.getBackend());
+		List<Crew> crews = new ArrayList<>();
+		if (course == Course.BACKEND) {
+			crews = CrewRepository.getBackend();
+		} else if (course == Course.FRONTEND) {
+			crews = CrewRepository.getFrontend();
+		}
+
+		Pairs pairs = Pairs.createRandom(course, level, mission, crews);
 		PairsRepository.create(pairs);
 	}
 
