@@ -123,7 +123,6 @@ public class CoreController {
 	private ArrayList<String> getPeopleInCourse(String course) {
 		ArrayList<String> peopleName = new ArrayList<>();
 		String path = BASE_DIRECTORY + getFileName(course);
-
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(path));
 			String name;
@@ -134,7 +133,6 @@ public class CoreController {
 		} catch (IOException e) {
 			uiLogic.printFileReadError();
 		}
-
 		return peopleName;
 	}
 
@@ -240,23 +238,27 @@ public class CoreController {
 		uiLogic.printInitMessage();
 	}
 
+	private void activateAccordingMenuIndex(String menuIndex) {
+		if (menuIndex.equals(PAIR_MATCH)) {
+			ArrayList<String> courseLevelMission = getCourseLevelMission();
+			matchPair(courseLevelMission.get(COURSE_INDEX), courseLevelMission.get(LEVEL_INDEX),
+				courseLevelMission.get(MISSION_INDEX));
+		}
+		if (menuIndex.equals(PAIR_SEARCH)) {
+			ArrayList<String> courseLevelMission = getCourseLevelMission();
+			searchPair(courseLevelMission.get(COURSE_INDEX), courseLevelMission.get(MISSION_INDEX));
+		}
+		if (menuIndex.equals(PAIR_INIT)) {
+			initAllPair();
+		}
+	}
+
 	protected void run() {
 		String menuIndex = "";
 		while (Boolean.FALSE.equals(menuIndex.equals(TERMINATE))) {
 			menuIndex = uiLogic.printMenu();
 
-			if (menuIndex.equals(PAIR_MATCH)) {
-				ArrayList<String> courseLevelMission = getCourseLevelMission();
-				matchPair(courseLevelMission.get(COURSE_INDEX), courseLevelMission.get(LEVEL_INDEX),
-					courseLevelMission.get(MISSION_INDEX));
-			}
-			if (menuIndex.equals(PAIR_SEARCH)) {
-				ArrayList<String> courseLevelMission = getCourseLevelMission();
-				searchPair(courseLevelMission.get(COURSE_INDEX), courseLevelMission.get(MISSION_INDEX));
-			}
-			if (menuIndex.equals(PAIR_INIT)) {
-				initAllPair();
-			}
+			activateAccordingMenuIndex(menuIndex);
 		}
 	}
 }
