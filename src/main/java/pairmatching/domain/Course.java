@@ -7,6 +7,10 @@ public enum Course {
 
     private String name;
 
+    public String getName() {
+        return name;
+    }
+
     Course(String name) {
         this.name = name;
     }

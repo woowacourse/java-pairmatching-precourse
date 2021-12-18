@@ -9,4 +9,6 @@ public class SystemConstants {
 
     public static String YES = "네";
     public static String NO = "아니오";
+
+    public static String OPTION_SEPARATOR = ", ";
 }

@@ -29,4 +29,9 @@ public class InputView {
         System.out.println(REQUEST_PAIR_MATCHING_OPTIONS_INPUT);
         return Console.readLine();
     }
+
+    public static String requestNewMatchInput() {
+        System.out.println(REQUEST_NEW_MATCH_INPUT);
+        return Console.readLine();
+    }
 }

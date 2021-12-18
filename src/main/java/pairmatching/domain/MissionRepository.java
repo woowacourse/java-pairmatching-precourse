@@ -18,6 +18,14 @@ public class MissionRepository {
         return missions;
     }
 
+    public static Mission getMissionByName(String name) {
+        for (Mission mission : missions) {
+            if(!mission.getName().equals(name)) continue;
+            return mission;
+        }
+        return null;
+    }
+
     public static void addMission(Mission mission) {
             missions.add(mission);
         }
