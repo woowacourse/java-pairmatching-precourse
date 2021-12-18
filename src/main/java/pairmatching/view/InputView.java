@@ -16,4 +16,9 @@ public class InputView {
 		System.out.println("과정, 레벨, 미션을 선택하세요.");
 		return Console.readLine();
 	}
+
+	public static String getNewMatchingInput() {
+		System.out.println("\n매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
+		return Console.readLine();
+	}
 }

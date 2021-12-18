@@ -13,9 +13,14 @@ public enum PairFunction {
 		@Override
 		public void operate() {
 			OutputView.printCourseLevelMissionInformation();
-			List<String> informationList = getCourseLevelMissionInput();
-			if (CourseRepository.isExistPairMatching(informationList.get(0), informationList.get(1), informationList.get(2))) {
-
+			while(true) {
+				List<String> informationList = getCourseLevelMissionInput();
+				if (CourseRepository.isExistPairMatching(informationList.get(0), informationList.get(1), informationList.get(2))) {
+					String newMatchingOpinion = InputView.getNewMatchingInput();
+					if (newMatchingOpinion.equals("아니오")) {
+						continue;
+					}
+				}
 			}
 		}
 	},
