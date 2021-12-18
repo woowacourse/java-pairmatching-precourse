@@ -1,8 +1,11 @@
 package pairmatching.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import pairmatching.exception.DuplicatedCrewNameException;
+import pairmatching.exception.NotFoundFunctionOptionException;
 import pairmatching.model.CrewNameReader;
 import pairmatching.model.CrewRepository;
+import pairmatching.model.FunctionOption;
 import pairmatching.view.InputView;
 
 public class CrewMatchingController {
@@ -12,6 +15,16 @@ public class CrewMatchingController {
 	public void start() {
 		setupCrewInfo();
 		InputView.printFunctionOptions();
+		FunctionOption functionOptionFromClient = getFunctionOptionFromClient();
+	}
+
+	private FunctionOption getFunctionOptionFromClient() {
+		try {
+			return FunctionOption.of(Console.readLine());
+		} catch (NotFoundFunctionOptionException e) {
+			System.out.println(e.getMessage());
+			return getFunctionOptionFromClient();
+		}
 	}
 
 	private void setupCrewInfo() {
