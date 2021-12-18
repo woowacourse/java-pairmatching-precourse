@@ -11,8 +11,15 @@ import pairmatching.exception.NoPairsException;
 public class PairsRepository {
 	private static final List<Pairs> pairsList = new LinkedList<>();
 
+	public static boolean contains(Course course, Level level, String mission) {
+		return pairsList.stream()
+			.filter(pairs -> pairs.getCourse().equals(course))
+			.filter(pairs -> pairs.getLevel().equals(level))
+			.filter(pairs -> pairs.getMission().equals(mission))
+			.count() > 0;
+	}
+
 	public static void create(Pairs pairs) {
-		// TODO: 과정, 레벨, 미션이 이미 등록돼있는지 검사해야함
 		pairsList.add(pairs);
 	}
 

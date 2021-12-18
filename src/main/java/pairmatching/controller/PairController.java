@@ -28,6 +28,9 @@ public class PairController {
 	private static final int LEVEL_INDEX = 1;
 	private static final int MISSION_INDEX = 2;
 
+	private static final String YES = "네";
+	private static final String NO = "아니오";
+
 	public void startMatching() {
 		try {
 			showOverview();
@@ -51,7 +54,6 @@ public class PairController {
 	}
 
 	private void validateCourseLevelMission(List<String> courseLevelMission) {
-		// TODO: 검증 해야함
 		if (!Course.containsName(courseLevelMission.get(COURSE_INDEX))) {
 			throw new NoCourseException();
 		}
@@ -68,6 +70,10 @@ public class PairController {
 
 	private void createRandomPairs(Course course, Level level, String mission) {
 		// TODO: 겹칠경우 최대 3번 반복하는 로직 추가해야함.
+		if (!checkOverlap(course, level, mission)) {
+			return;
+		}
+
 		List<Crew> crews = new ArrayList<>();
 		if (course == Course.BACKEND) {
 			crews = CrewRepository.getBackend();
@@ -76,7 +82,17 @@ public class PairController {
 		}
 
 		Pairs pairs = Pairs.createRandom(course, level, mission, crews);
+		OutputView.printPairMatching(pairs);
 		PairsRepository.create(pairs);
+	}
+
+	private boolean checkOverlap(Course course, Level level, String mission) {
+		boolean exists = PairsRepository.contains(course, level, mission);
+		if (exists) {
+			String input = InputView.inputRematch();
+			return input.equals(YES);
+		}
+		return true;
 	}
 
 	public void startView() {

@@ -21,6 +21,6 @@ public class Pair {
 
 	@Override
 	public String toString() {
-		return String.join(" : ", pair.stream().map(crew -> crew.toString()).collect(Collectors.toList()));
+		return pair.stream().map(Crew::toString).collect(Collectors.joining(" : "));
 	}
 }

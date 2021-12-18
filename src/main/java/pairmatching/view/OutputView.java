@@ -53,4 +53,8 @@ public class OutputView {
 	public static void printClear() {
 		System.out.println(CLEAR);
 	}
+
+	public static void printRematch() {
+		System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n네 | 아니오");
+	}
 }

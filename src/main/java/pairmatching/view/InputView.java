@@ -12,4 +12,9 @@ public class InputView {
 		OutputView.printInputCourseLevelMission();
 		return Console.readLine();
 	}
+
+	public static String inputRematch() {
+		OutputView.printRematch();
+		return Console.readLine();
+	}
 }
