@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.dto.ChoiceDto;
 import pairmatching.validator.InputValidator;
 import pairmatching.view.InputView;
 
@@ -30,12 +31,14 @@ public class PairmatchingController {
 
 	private static String toMatching() {
 		String input = InputView.inputMatching();
-		return input;
+		ChoiceDto choiceDto = new ChoiceDto(input);
+		return "";
 	}
 
 	private static String toRetrieve() {
 		String input = InputView.inputRetrieve();
-		return input;
+		ChoiceDto choiceDto = new ChoiceDto(input);
+		return "";
 	}
 
 	private static String toClear() {

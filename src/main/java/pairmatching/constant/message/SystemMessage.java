@@ -1,7 +1,5 @@
 package pairmatching.constant.message;
 
-import static pairmatching.constant.Course.*;
-
 import pairmatching.constant.Course;
 import pairmatching.constant.Level;
 
@@ -15,13 +13,14 @@ public class SystemMessage {
 		+ "3. 페어 초기화" + NEWLINE
 		+ "Q. 종료";
 
-	public static final String LINE = "#############################################" + NEWLINE;
+	public static final String SHARP_LINE = "#############################################" + NEWLINE;
 	public static final String INPUT_COURSE_MENU =
-		LINE + "과정: " + Course.getSelfDescription() + NEWLINE
+		SHARP_LINE + "과정: " + Course.getSelfDescription() + NEWLINE
 			+ "미션:" + NEWLINE
 			+ Level.getSelfDescription()
-			+ LINE
-			+ "과정, 레벨, 미션을 선택하세요.";
+			+ SHARP_LINE
+			+ "과정, 레벨, 미션을 선택하세요." + NEWLINE
+			+ "ex) 백엔드, 레벨1, 자동차경주" + NEWLINE;
 
 	public static final String QUIT = "Q";
 	public static final String CHOICE_CLEAR = "3";
