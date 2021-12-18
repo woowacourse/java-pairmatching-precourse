@@ -40,14 +40,14 @@ public class WoowaCourse {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
+	public boolean equals(Object other) {
+		if (this == other) {
 			return true;
 		}
-		if (o == null || getClass() != o.getClass()) {
+		if (other == null || getClass() != other.getClass()) {
 			return false;
 		}
-		WoowaCourse that = (WoowaCourse)o;
+		WoowaCourse that = (WoowaCourse)other;
 		return course == that.course && level == that.level && mission == that.mission;
 	}
 

@@ -16,8 +16,7 @@ public class WoowaCourseRepository {
 	}
 
 	public Map<WoowaCourse, PairMatching> get() {
-		Map<WoowaCourse, PairMatching> map = new HashMap<>(woowaCourses);
-		return map;
+		return new HashMap<>(woowaCourses);
 	}
 
 	public void add(WoowaCourse woowaCourse, PairMatching pairMatching) {
