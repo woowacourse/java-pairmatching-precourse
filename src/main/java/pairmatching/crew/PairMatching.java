@@ -64,7 +64,7 @@ public class PairMatching {
         List<String> crews = crew;
         while (crews.size() != 0) {
             List<String> pair = Arrays.asList(crews.get(0), crews.get(1));
-            if (CrewRepository.checkDuplicated(level, pair)) {
+            if (CrewRepository.checkExist(level, pair)) {
                 return false;
             }
             pairCrew.add(pair);

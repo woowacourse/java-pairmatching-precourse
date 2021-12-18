@@ -21,7 +21,7 @@ public class LoadFile {
     }
 
     public void loadBackendCrew() {
-        File file = new File("../../resources/backend-crew.md");
+        File file = new File("/Users/sea/wooteco/java-pairmatching-precourse/src/main/resources/backend-crew.md");
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file.getAbsolutePath()), "UTF8"));
             String str;
@@ -35,7 +35,7 @@ public class LoadFile {
     }
 
     public void loadFrontendCrew() {
-        File file = new File("../../resources/fronted-crew.md");
+        File file = new File("/Users/sea/wooteco/java-pairmatching-precourse/src/main/resources/frontend-crew.md");
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file.getAbsolutePath()), "UTF8"));
             String str;
