@@ -5,6 +5,7 @@ import java.util.List;
 import pairmatching.domain.PairRepository;
 import pairmatching.domain.Pairs;
 import pairmatching.dto.RequestCourseAndLevelAndMissionDto;
+import pairmatching.dto.ResponsePairsDto;
 import pairmatching.enums.Course;
 import pairmatching.enums.Level;
 
@@ -58,5 +59,12 @@ public class PairMatchingService {
 		String name2 = shuffledCrew.get(shuffledCrew.size() - 2);
 		String name3 = shuffledCrew.get(shuffledCrew.size() - 1);
 		pairs.addPair(name1, name2, name3);
+	}
+
+	public ResponsePairsDto getPairs(RequestCourseAndLevelAndMissionDto requestCourseAndLevelAndMissionDto) {
+		Level level = requestCourseAndLevelAndMissionDto.getLevel();
+		Course course = requestCourseAndLevelAndMissionDto.getCourse();
+		String mission = requestCourseAndLevelAndMissionDto.getMission();
+		return new ResponsePairsDto(pairRepository.getPairs(level, course, mission));
 	}
 }

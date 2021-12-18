@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import pairmatching.enums.Course;
@@ -16,6 +17,10 @@ public class Pairs {
 		this.level = level;
 		this.course = course;
 		this.mission = mission;
+	}
+
+	public List<Pair> getPairs() {
+		return Collections.unmodifiableList(pairs);
 	}
 
 	public void addPair(String name1, String name2) {

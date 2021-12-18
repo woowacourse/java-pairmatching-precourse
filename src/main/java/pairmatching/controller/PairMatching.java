@@ -1,10 +1,10 @@
 package pairmatching.controller;
 
-import static pairmatching.enums.ErrorMessage.*;
 import static pairmatching.view.InputView.*;
 import static pairmatching.view.OutputView.*;
 
 import pairmatching.dto.RequestCourseAndLevelAndMissionDto;
+import pairmatching.dto.ResponsePairsDto;
 import pairmatching.enums.FeatureEnum;
 import pairmatching.service.PairMatchingService;
 
@@ -38,11 +38,15 @@ public class PairMatching {
 		outputCourseAndLevel();
 		RequestCourseAndLevelAndMissionDto requestCourseAndLevelAndMissionDto = inputCourseAndLevelAndMission();
 		pairMatchingService.matching(requestCourseAndLevelAndMissionDto);
+		ResponsePairsDto responsePairsDto = pairMatchingService.getPairs(requestCourseAndLevelAndMissionDto);
+		outputPairsResult(responsePairsDto);
 	}
 
 	private void pairSearch() {
 		outputCourseAndLevel();
 		RequestCourseAndLevelAndMissionDto requestCourseAndLevelAndMissionDto = inputCourseAndLevelAndMission();
+		ResponsePairsDto responsePairsDto = pairMatchingService.getPairs(requestCourseAndLevelAndMissionDto);
+		outputPairsResult(responsePairsDto);
 	}
 
 	private void pairInitialize() {

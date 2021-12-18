@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Pair {
@@ -15,5 +16,9 @@ public class Pair {
 		pair.add(name1);
 		pair.add(name2);
 		pair.add(name3);
+	}
+
+	public List<String> getPair() {
+		return Collections.unmodifiableList(pair);
 	}
 }
