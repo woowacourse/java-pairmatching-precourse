@@ -23,6 +23,11 @@ public class PairMaker {
 	}
 
 	public static boolean checkHasSameCrew(List<Mission> missions, List<Crew> crews) {
+		for (Mission mission : missions) {
+			if (mission.hasSameCrewPair(crews)) {
+				return false;
+			}
+		}
 		return true;
 	}
 

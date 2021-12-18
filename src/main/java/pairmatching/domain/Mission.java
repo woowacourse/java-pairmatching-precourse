@@ -6,10 +6,14 @@ import java.util.Objects;
 
 public class Mission {
 	private String name;
-	private List<Crew> crewPairs = new ArrayList<>();
+	private List<CrewPair> crewPairs = new ArrayList<>();
 
 	public Mission(String name) {
 		this.name = name;
+	}
+
+	public void setCrewPairs(List<CrewPair> crewPairs) {
+		this.crewPairs = crewPairs;
 	}
 
 	public static Mission from(String name) {
@@ -20,6 +24,18 @@ public class Mission {
 		return !crewPairs.isEmpty();
 	}
 
+	public boolean hasSameCrewPair(List<Crew> crews) {
+		for (CrewPair crewPair : crewPairs) {
+			if(crewPair.isSame(crews)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public void resetCrewPairs() {
+		crewPairs.clear();
+	}
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
