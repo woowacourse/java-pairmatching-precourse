@@ -24,4 +24,9 @@ public class InputView {
         sb.append(DIVIDER);
         System.out.println(sb);
     }
+
+    public static String requestPairMatchingOptionsInput() {
+        System.out.println(REQUEST_PAIR_MATCHING_OPTIONS_INPUT);
+        return Console.readLine();
+    }
 }
