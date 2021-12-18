@@ -23,6 +23,7 @@ public class OutputView {
 
 	public static final String RESET_PAIRS = "초기화 되었습니다.";
 	public static final String ERROR_NO_MATCHING_HISTORY = "[ERROR] 매칭 이력이 없습니다.";
+	public static final String ERROR_RETRY_COUNT_OVER = "[ERROR] 3회 이상 매칭을 시도했습니다.";
 
 	public static final String SCREEN_MISSION_DASH = "  - ";
 	public static final String SCREEN_MISSION_DELIMITER = ": ";
@@ -83,9 +84,13 @@ public class OutputView {
 	}
 
 	public static void printPairs(Pairs pairs, int count) {
-		if (count < 3) {
+		try {
+			if (count > 3) {
+				throw new IllegalArgumentException(ERROR_RETRY_COUNT_OVER);
+			}
 			System.out.println(pairs);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
 		}
-		System.out.println("[ERROR] 3회 이상 매칭을 시도했습니다.");
 	}
 }
