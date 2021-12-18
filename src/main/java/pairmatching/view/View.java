@@ -2,10 +2,13 @@ package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.Course;
+import pairmatching.domain.Crew;
 import pairmatching.domain.Level;
+import pairmatching.domain.pair.Pair;
 import pairmatching.domain.pair.PairTag;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class View {
@@ -16,8 +19,6 @@ public class View {
     private static final int COURSE_INDEX = 0;
     private static final int MISSION_INDEX = 1;
     private static final int MISSION_NAME_INDEX = 2;
-
-    private static final String INPUT_COMMAND_MESSAGE = "기능을 선택하세요. \n1. 페어 매칭\n2. 페어 조회\n3.페어 초기화\nQ.종료";
 
     public static Menu getMenu() {
         try {
@@ -96,6 +97,17 @@ public class View {
             System.out.println("\t - " + level.getName() + ": " +
                     level.getMissionNames().stream()
                             .collect(Collectors.joining(MENU_DELIMITER)));
+        }
+    }
+
+    public static void printParis(List<Pair> pairs) {
+        System.out.println("페어 매칭 결과입니다.");
+
+        for (Pair pair : pairs) {
+            String resultString = pair.getCrews().stream()
+                    .map(Crew::getName)
+                    .collect(Collectors.joining(" : "));
+            System.out.println(resultString);
         }
     }
 }

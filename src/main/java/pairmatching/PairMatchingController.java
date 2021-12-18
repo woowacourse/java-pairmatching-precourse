@@ -38,11 +38,10 @@ public class PairMatchingController {
 
     private void execute(Menu menu) {
         if (menu == Menu.PAIR_MATCHING) {
-            // TODO: 2021/12/18 페어 매칭 기능 구현
             View.printBoard();
             PairTag pairTag = View.getPairTag();
             List<Pair> pairs = pairService.makePairs(pairTag);
-            System.out.println(pairs);
+            View.printParis(pairs);
 
 
         }
