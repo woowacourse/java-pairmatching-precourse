@@ -2,12 +2,8 @@ package pairmatching.controller;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -78,14 +74,14 @@ public class PairMatchingController {
 		// 페어 매칭
 		pair = new LinkedHashMap<>();
 		for (int i = 0; i < crewSize - 1; i += 2) {
-			Crew crew1 = new Crew(course, crewNames.get(i));
-			Crew crew2 = new Crew(course, crewNames.get(i + 1));
+			Crew crew1 = new Crew(course, shuffledCrew.get(i));
+			Crew crew2 = new Crew(course, shuffledCrew.get(i + 1));
 			if (!pair.containsKey(crew1)) {
 				pair.put(crew1, new ArrayList<>());
 				pair.get(crew1).add(crew2);
 			}
 			if ((crewSize % 2 == 1) && (i == crewSize - 3)) {
-				pair.get(crew1).add(new Crew(course, crewNames.get(crewSize - 1)));
+				pair.get(crew1).add(new Crew(course, shuffledCrew.get(crewSize - 1)));
 			}
 		}
 	}
