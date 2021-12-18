@@ -76,4 +76,11 @@ public class MatchInfo {
 	public boolean isSameLevel(MatchInfo matchInfo) {
 		return this.level.equals(matchInfo.level);
 	}
+
+	public MatchInfo search(String course, String level, String mission) {
+		if (this.course.equals(course) && this.level.equals(level) && this.mission.equals(mission)) {
+			return this;
+		}
+		return null;
+	}
 }

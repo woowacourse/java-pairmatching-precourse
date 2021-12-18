@@ -15,6 +15,9 @@ public class PairMatchingController {
 		if (selection.equals("1")) {
 			matching();
 		}
+		if (selection.equals("2")) {
+			search();
+		}
 	}
 
 	public void matching() {
@@ -32,6 +35,20 @@ public class PairMatchingController {
 			if (manager.setDetail(selects)) {
 				break;
 			}
+		}
+	}
+
+	public void search() {
+		view.printInfo();
+		String select = view.selectDetail();
+		select.replace(" ", "");
+		String[] selects = select.split(",");
+		MatchInfo matchInfo = manager.find(selects);
+		if (matchInfo == null) {
+			return;
+		}
+		if (matchInfo != null) {
+			view.printPair(matchInfo.getPairList());
 		}
 	}
 

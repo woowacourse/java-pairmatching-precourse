@@ -35,4 +35,12 @@ public class Manager {
 		matchInfo.match(sameLevelList);
 	}
 
+	public MatchInfo find(String[] selections) {
+		MatchInfo result = null;
+		for (MatchInfo matchInfo : matchInfos) {
+			result = matchInfo.search(selections[0], selections[1], selections[2]);
+		}
+		return result;
+	}
+
 }
