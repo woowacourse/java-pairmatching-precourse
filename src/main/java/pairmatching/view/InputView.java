@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
 
 import pairmatching.domain.course.Course;
 import pairmatching.domain.crew.Crew;
@@ -41,41 +42,33 @@ public class InputView {
         System.out.println(QUIT_MENU);
     }
 
-    public Crews requestBackendCrews(){
-        File file = new File(BACKEND_CREW_RESOURCE_PATH);
+    public Crews requestBackendCrews() {
         Crews crews = new Crews();
         try {
-            BufferedReader inputFile = new BufferedReader(new FileReader(file));
-            addBackendCrews(crews, inputFile);
+            Scanner scanner = new Scanner(new File(BACKEND_CREW_RESOURCE_PATH));
+            while (scanner.hasNext()) {
+                String crewName = scanner.next();
+                crews.add(new Crew(Course.BACKEND, crewName));
+            }
             return crews;
-        } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 파일 입력에 문제가 발생하였습니다.");
-        }
-    }
-
-    private void addBackendCrews(Crews crews, BufferedReader inputFile) throws IOException {
-        String input = "";
-        while( (input = inputFile.readLine()) != null ) {
-            crews.add(new Crew(Course.BACKEND, input));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return requestBackendCrews();
         }
     }
 
     public Crews requestFrontendCrews() {
-        File file = new File(FRONTEND_CREW_RESOURCE_PATH);
         Crews crews = new Crews();
         try {
-            BufferedReader inputFile = new BufferedReader(new FileReader(file));
-            addFrontendCrews(crews, inputFile);
+            Scanner scanner = new Scanner(new File(FRONTEND_CREW_RESOURCE_PATH));
+            while (scanner.hasNext()) {
+                String crewName = scanner.next();
+                crews.add(new Crew(Course.FRONTEND, crewName));
+            }
             return crews;
-        } catch (Exception e) {
-            throw new IllegalArgumentException(FILE_INPUT_EXCEPTION);
-        }
-    }
-
-    private void addFrontendCrews(Crews crews, BufferedReader inputFile) throws IOException {
-        String input = "";
-        while( (input = inputFile.readLine()) != null ) {
-            crews.add(new Crew(Course.FRONTEND, input));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return requestBackendCrews();
         }
     }
 }
