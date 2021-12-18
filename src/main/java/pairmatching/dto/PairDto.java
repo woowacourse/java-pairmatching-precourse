@@ -1,5 +1,7 @@
 package pairmatching.dto;
 
+import pairmatching.domain.Pair;
+
 public class PairDto {
 	private static final String PAIR_COMPOSITION_SPLIT = ", ";
 	private final String input;
@@ -8,7 +10,8 @@ public class PairDto {
 		this.input = input;
 	}
 
-	public void toPair() {
-		String[] pair = input.split(PAIR_COMPOSITION_SPLIT);
+	public Pair toPair() {
+		String[] pairs = input.split(PAIR_COMPOSITION_SPLIT);
+		return Pair.of(pairs[0], pairs[1], pairs[2]);
 	}
 }

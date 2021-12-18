@@ -22,6 +22,10 @@ public class PairCrews {
 		return new PairCrews(pairCrews);
 	}
 
+	public List<PairCrew> getPairCrews() {
+		return new ArrayList<>(pairCrews);
+	}
+
 	public void add(List<Crew> crews) {
 		PairCrew pairCrew = PairCrew.of(crews);
 		pairCrews.add(pairCrew);

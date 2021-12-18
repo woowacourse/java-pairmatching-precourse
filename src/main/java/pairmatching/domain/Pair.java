@@ -41,4 +41,16 @@ public class Pair {
 	public int hashCode() {
 		return Objects.hash(course, level, mission);
 	}
+
+	public boolean isFrontEnd() {
+		return course.isFrontEnd();
+	}
+
+	public boolean isBackEnd() {
+		return course.isBackEnd();
+	}
+
+	public PairCrews getPairCrews() {
+		return PairCrews.of(pairCrews.getPairCrews());
+	}
 }

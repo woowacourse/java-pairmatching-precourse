@@ -10,6 +10,14 @@ public class Pairs {
 		pairs.clear();
 	}
 
+	public boolean add(Pair pair) {
+		if(isExists(pair)) {
+			return false;
+		}
+		pairs.add(pair);
+		return true;
+	}
+
 	public boolean isExists(Pair pair) {
 		return pairs.stream()
 			.anyMatch(p -> p.equals(pair));
