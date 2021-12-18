@@ -1,4 +1,8 @@
-package pairmatching;
+package pairmatching.pair;
+
+import pairmatching.Course;
+import pairmatching.Level;
+import pairmatching.Mission;
 
 public class PairTarget {
 	private static final String ERROR_INPUT_FORMAT = "과정, 레벨, 미션 형태로 입력해야 합니다.";
@@ -30,6 +34,18 @@ public class PairTarget {
 		level = Level.validateChoose(targets[LEVEL_INDEX]);
 		mission = Mission.validateChoose(targets[MISSION_INDEX]);
 		mission.validateMissionWithLevel(level);
+	}
+
+	public boolean isBackend() {
+		return course == Course.BACKEND;
+	}
+
+	public boolean isFrontend() {
+		return course == Course.FRONTEND;
+	}
+
+	public boolean isSameLevel(PairTarget pairTarget) {
+		return this.level == pairTarget.level;
 	}
 }
 

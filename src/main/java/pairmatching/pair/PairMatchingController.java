@@ -1,18 +1,25 @@
-package pairmatching;
+package pairmatching.pair;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.Menu;
 import pairmatching.view.ErrorView;
 import pairmatching.view.InputView;
+import pairmatching.view.OutputView;
 
 public class PairMatchingController {
+	private PairMatching pairMatching;
 	private Menu menu;
 
+	public PairMatchingController() {
+		this.pairMatching = new PairMatching();
+	}
+
 	public void start() {
-		chooseMainFeature();
-		requestFeature();
-		while (menu != Menu.QUIT) {
+		do {
+			chooseMainFeature();
+			requestFeature();
 			runFeature();
-		}
+		} while (menu != Menu.QUIT);
 	}
 
 	private void chooseMainFeature() {
@@ -49,6 +56,8 @@ public class PairMatchingController {
 		PairTarget pairTarget = new PairTarget();
 		InputView.printSelectPairTarget();
 		requestPairTarget(pairTarget);
+		pairMatching.repeatMatching(pairTarget);
+		OutputView.printMatchingResult(pairMatching.findPairsByPairTarget(pairTarget));
 	}
 
 	private void runFindPair() {
