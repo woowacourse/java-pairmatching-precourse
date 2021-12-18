@@ -14,9 +14,14 @@ public class RunGame {
             if (nextStep.equals("Q")) {
                 break;
             }
+            if (nextStep.equals("1")) {
+                pairMatching();
+            }
         }
     }
-
+    private static void pairMatching() {
+        OutputView.askPairMatching();
+    }
     private static void selectFunction() {
         try {
             setFunction();
