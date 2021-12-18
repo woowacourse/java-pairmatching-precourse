@@ -18,6 +18,8 @@ public class UiLogic {
 		+ "과정, 레벨, 미션을 선택하세요.\n";
 	private static final String ERROR_MESSAGE_COURSE_LEVEL_MISSION
 		= "[ERROR] <과정>, <레벨>, <미션> 형태로 입력해 주세요. 과정, 레벨, 미션이 존재하는 값인지 확인해 주세요\n";
+	private static final String ERROR_MESSAGE_FILE_READ
+		= "[ERROR] 파일 읽기 실패\n";
 	private static final String REGULAR_EXPRESSION_COURSE_LEVEL_MISSION
 		= "^[가-힣]+, [가-힣0-9]+, [a-zA-Z가-힣0-9]+$";
 	private static final String COURSE_LEVEL_MISSION_SEPARATOR
@@ -43,5 +45,9 @@ public class UiLogic {
 
 	protected void printCourseLevelMissionErrorMessage() {
 		ui.printMessage(ERROR_MESSAGE_COURSE_LEVEL_MISSION);
+	}
+
+	protected void printFileReadError() {
+		ui.printMessage(ERROR_MESSAGE_FILE_READ);
 	}
 }
