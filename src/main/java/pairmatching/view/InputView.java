@@ -9,7 +9,7 @@ import java.util.List;
 
 import pairmatching.Application;
 
-public static class InputView {
+public class InputView {
 	public static List<String> getCrewNameByFile(String fileName) {
 		List<String> backCrewNames = null;
 		URL resource = Application.class.getClassLoader().getResource(fileName);
