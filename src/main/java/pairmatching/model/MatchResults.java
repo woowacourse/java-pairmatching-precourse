@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 public class MatchResults {
+	public static final String INFO_MESSAGE_RESET_DONE = "\n초기화 되었습니다.\n";
 	private List<MatchResult> matchResults = new ArrayList<>();
 
 	public List<MatchResult> getMatchResults() {
@@ -80,5 +81,10 @@ public class MatchResults {
 		matchResults.removeIf(match ->
 			match.getMission().getLevel().equals(levelToRemove)
 			&& match.getMission().getName().equals(nameToRemove));
+	}
+
+	public void reset() {
+		matchResults = new ArrayList<>();
+		System.out.println(INFO_MESSAGE_RESET_DONE);
 	}
 }

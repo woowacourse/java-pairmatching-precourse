@@ -50,9 +50,11 @@ public class CrewMatchingController {
 		if (functionOptionFromClient.equals(FunctionOption.MATCH)) {
 			InputView.printCourseInfo();
 			matchProcess();
-		} else  if (functionOptionFromClient.equals(FunctionOption.READ)) {
+		} else if (functionOptionFromClient.equals(FunctionOption.READ)) {
 			InputView.printCourseInfo();
 			InputView.getCourseAndMissionInput();
+		} else if (functionOptionFromClient.equals(FunctionOption.RESET)) {
+			matchResults.reset();
 		}
 
 		return true;
