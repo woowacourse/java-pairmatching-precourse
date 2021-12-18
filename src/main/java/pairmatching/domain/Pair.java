@@ -1,11 +1,10 @@
-package pairmatching;
+package pairmatching.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Pair {
-
-	List<String[]> pairSet;
+	private List<String[]> pairSet;
 	public Pair(){
 		pairSet = new ArrayList<>();
 	}

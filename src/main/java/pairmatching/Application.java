@@ -1,25 +1,43 @@
 package pairmatching;
 
 
-import static pairmatching.Level.*;
-import static pairmatching.Type.*;
+import static pairmatching.domain.Course.*;
+import static pairmatching.domain.Level.*;
 
 import java.util.List;
 
 import org.assertj.core.util.Lists;
+
+import pairmatching.domain.Course;
+import pairmatching.domain.Crew;
+import pairmatching.domain.CrewInfoReader;
+import pairmatching.domain.Mission;
+import pairmatching.domain.Pair;
 
 public class Application {
     static Pair pair = new Pair();
     static Mission mission = new Mission();
     public static void main(String[] args) {
 
-        inputMissionByLevel();
+        // inputMissionByLevel();
+        //
+        // printChooseFunction();
+        //
+        // System.out.println("#############################################");
+        // System.out.print(Course.toOutputString());
+        // System.out.print(mission.toString());
+        // System.out.println("#############################################");
 
-        System.out.println("#############################################");
-        System.out.print(mission.toString());
-        System.out.println("#############################################");
-        // pairMatching(BACKEND);
+        pairMatching(BACKEND);
         // pairMatching(FRONTEND);
+    }
+
+    private static void printChooseFunction() {
+        System.out.println("기능을 선택하세요.");
+        System.out.println("1. 페어 매칭");
+        System.out.println("2. 페어 조회");
+        System.out.println("3. 페어 초기화");
+        System.out.println("Q. 종료");
     }
 
     private static void inputMissionByLevel() {
@@ -31,17 +49,17 @@ public class Application {
         mission_4.stream().forEach(name -> mission.insertMissionByLevel(LEVEL_4, name));
     }
 
-    static void pairMatching(Type type){
+    static void pairMatching(Course course){
         String fileName = "";
-        if(type.equals(BACKEND)){
+        if(course.equals(BACKEND)){
             fileName = "backend";
-        }else if(type.equals(FRONTEND)){
+        }else if(course.equals(FRONTEND)){
             fileName = "frontend";
         }
         List<String> backendList = CrewInfoReader.readCrewListByType(fileName+"-crew");
-        Crew crewList = new Crew(type, backendList);
+        Crew crewList = new Crew(course, backendList);
 
-        List<String> shuffle = crewList.shuffleCrewList(type);
+        List<String> shuffle = crewList.shuffleCrewList(course);
         randomMatching(shuffle);
 
         pair.printPair();

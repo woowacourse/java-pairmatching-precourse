@@ -1,4 +1,4 @@
-package pairmatching;
+package pairmatching.domain;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,17 +7,15 @@ import java.util.Map;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Crew {
-
-
 	// 크루, 인원
-	private Map<Type, List<String>> crewMap = new HashMap<>();
+	private Map<Course, List<String>> crewMap = new HashMap<>();
 
-	public Crew(Type type, List<String> crewList){
+	public Crew(Course type, List<String> crewList){
 		// System.out.println("input");
 		this.crewMap.put(type, crewList);
 	}
 
-	public void getCrewByType(Type type){
+	public void getCrewByType(Course type){
 		List<String> list = crewMap.get(type);
 		for(String name : list){
 			System.out.print(name+" ");
@@ -25,7 +23,7 @@ public class Crew {
 		System.out.println();
 	}
 
-	public List<String> shuffleCrewList(Type type){
+	public List<String> shuffleCrewList(Course type){
 		List<String> list = crewMap.get(type);
 		return Randoms.shuffle(list);
 	}

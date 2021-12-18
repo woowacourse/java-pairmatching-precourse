@@ -1,6 +1,5 @@
-package pairmatching;
+package pairmatching.domain;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -12,16 +11,16 @@ public enum Level {
 	LEVEL_4("레벨4", 4),
 	LEVEL_5("레벨5", 5);
 
-	private String levelName;
+	private String name;
 	private int level;
 
-	Level(String levelName, int level) {
-		this.levelName = levelName;
+	Level(String name, int level) {
+		this.name = name;
 		this.level = level;
 	}
 
-	public String getLevelName() {
-		return levelName;
+	public String getName() {
+		return name;
 	}
 
 	public int getLevel() {

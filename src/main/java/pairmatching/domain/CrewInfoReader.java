@@ -1,7 +1,5 @@
-package pairmatching;
+package pairmatching.domain;
 
-
-import static pairmatching.Type.*;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

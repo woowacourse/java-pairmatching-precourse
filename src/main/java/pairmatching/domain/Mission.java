@@ -1,7 +1,6 @@
-package pairmatching;
+package pairmatching.domain;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -31,7 +30,7 @@ public class Mission {
 		StringBuilder sb = new StringBuilder();
 		sb.append("미션\n");
 		for(Level level : missionMap.keySet()){
-			sb.append("  - ").append(level.getLevelName()).append(": ");
+			sb.append("  - ").append(level.getName()).append(": ");
 			if(!missionMap.get(level).isEmpty()) {
 				sb.append(String.join(" | ", missionMap.get(level)));
 			}
