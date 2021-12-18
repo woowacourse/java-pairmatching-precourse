@@ -29,6 +29,9 @@ public class PairMatchingController {
     private void execute(Menu menu) {
         if (menu == Menu.PAIR_MATCHING) {
             // TODO: 2021/12/18 페어 매칭 기능 구현
+            View.printBoard();
+
+
         }
         if (menu == Menu.PAIR_SEARCH) {
             // TODO: 2021/12/18 페어 조회 기능 구현
