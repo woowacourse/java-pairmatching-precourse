@@ -32,8 +32,7 @@ public class InputException {
 		throw new IllegalArgumentException(INVALID_NUMBER);
 	}
 
-	public static void validateInformation(String information) {
-		List<String> filteredInformation = Arrays.asList(information.split(INFORMATION_DELIMITER));
+	public static void validateInformation(List<String> filteredInformation) {
 		if (!checkCourse(filteredInformation)) {
 			throw new IllegalArgumentException(INVALID_COURSE);
 		}

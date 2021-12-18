@@ -1,10 +1,13 @@
 package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
 import java.util.List;
 import pairmatching.utils.exception.InputException;
 
 public class InputView {
+
+	private static final String INFORMATION_DELIMITER = ", ";
 
 	private InputView() {
 	}
@@ -21,12 +24,14 @@ public class InputView {
 		}
 	}
 
-	public static String selectInformation() {
+	public static List<String> selectInformation() {
 		OutputView.askInformation();
 		try {
 			String information = Console.readLine();
-			InputException.validateInformation(information);
-			return information;
+			List<String> filteredInformation = Arrays.asList(
+				information.split(INFORMATION_DELIMITER));
+			InputException.validateInformation(filteredInformation);
+			return filteredInformation;
 		} catch (IllegalArgumentException IAE) {
 			OutputView.printError(IAE);
 			return selectInformation();

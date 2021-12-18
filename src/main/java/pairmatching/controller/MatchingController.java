@@ -1,22 +1,21 @@
 package pairmatching.controller;
 
 import java.util.List;
-import pairmatching.model.Crew;
+import pairmatching.model.Pair;
 import pairmatching.utils.BasicInformationFactory;
-import pairmatching.utils.CrewFactory;
 import pairmatching.utils.FunctionFactory;
+import pairmatching.utils.PairFactory;
 import pairmatching.view.InputView;
 
 public class MatchingController {
 
 	private static final String QUIT_NUMBER = "Q";
+	private static final String PAIR_MATCHING_NUMBER = "1";
 
 	private MatchingController() {
 	}
 
 	public static void controlMatching() {
-		List<Crew> backendCrews = CrewFactory.loadBackendCrews();
-		List<Crew> frontendCrews = CrewFactory.loadFrontendCrews();
 		controlFunctionSelect();
 	}
 
@@ -26,13 +25,15 @@ public class MatchingController {
 			if (isTerminateCondition(functionNumber)) {
 				break;
 			}
-			controlInformationSelect();
+			if (functionNumber.equals(PAIR_MATCHING_NUMBER)) {
+				List<Pair> pairs = PairFactory.makePairs();
+			}
 		}
 	}
 
-	private static void controlInformationSelect() {
+	public static List<String> controlInformationSelect() {
 		BasicInformationFactory.noticeBasicInformation();
-		InputView.selectInformation();
+		return InputView.selectInformation();
 	}
 
 	private static boolean isTerminateCondition(String functionNumber) {
