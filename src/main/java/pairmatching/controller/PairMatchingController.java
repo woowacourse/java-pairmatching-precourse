@@ -64,6 +64,7 @@ public class PairMatchingController {
 	}
 
 	public void functionInitialization(PairMatchings pairMatchings) {
+		OutputView.printInitialization();
 		pairMatchings.initialization();
 	}
 
