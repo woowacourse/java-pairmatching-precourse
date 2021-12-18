@@ -5,6 +5,8 @@ import pairmatching.domain.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static pairmatching.domain.Mission.getMissionFromNameAndLevel;
+
 public class PairMatchingService {
 
     private List<Pair> pairList = new ArrayList<>();
@@ -20,7 +22,7 @@ public class PairMatchingService {
 
         String missionName = "";
 
-        Mission mission = new Mission(missionName, level);
+        Mission mission = getMissionFromNameAndLevel("", level);
 
         Pair pair = new Pair(crewList, mission);
 

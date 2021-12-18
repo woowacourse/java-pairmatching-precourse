@@ -50,4 +50,14 @@ public enum Mission {
 
         return missionList;
     }
+
+    public static Mission getMissionFromNameAndLevel(String name, Level level) {
+        Mission mission = Mission.valueOf(name);
+
+        if (mission.level != level) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 미션 입니다.");
+        }
+
+        return mission;
+    }
 }
