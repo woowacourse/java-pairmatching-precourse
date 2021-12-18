@@ -24,7 +24,14 @@ public enum Level {
 
 	Level(String name, List<Mission> missions) {
 		this.name = name;
+		this.missions = missions;
 	}
 
-	// 추가 기능 구현
+	public String getName() {
+		return name;
+	}
+
+	public List<Mission> getMissions() {
+		return missions;
+	}
 }
