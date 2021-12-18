@@ -7,7 +7,8 @@ public enum ErrorMessage {
     NOT_FOUND_LEVEL(new IllegalArgumentException("[ERROR] 존재하지 레벨입니다.")),
     NOT_FOUND_MISSION(new IllegalArgumentException("[ERROR] 존재하지 않는 미션입니다.")),
     NOT_FOUND_PAIR(new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.")),
-    NOT_SHUFFLE(new IllegalArgumentException("[ERROR] 매칭에 실패했습니다"));
+    NOT_SHUFFLE(new IllegalArgumentException("[ERROR] 매칭에 실패했습니다")),
+    NOT_FOUND_MATCHING_ANSWER(new IllegalArgumentException("[ERROR] 네 또는 아니오로 입력해주세요"));
 
     private final IllegalArgumentException exception;
 

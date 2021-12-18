@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
-import pairmatching.Check;
+import pairmatching.Answer;
 import pairmatching.Course;
 import pairmatching.Crew;
 import pairmatching.CrewRepository;
@@ -12,6 +12,7 @@ import pairmatching.Level;
 import pairmatching.Mission;
 import pairmatching.MissionRepository;
 import pairmatching.Pair;
+import pairmatching.exception.ErrorMessage;
 
 public class PairMatching implements PairMatchingService {
     private static final String INPUT_DELIMITER = ",";
@@ -48,11 +49,15 @@ public class PairMatching implements PairMatchingService {
         if (MissionRepository.existPair(mission.getName())) {
             System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
                 + "네 | 아니오");
-            if (Check.isYes(Console.readLine())) {
+            String input = Console.readLine();
+            if (Answer.isYes(input)) {
                 mission.addPairs(
                     CrewRepository.matchingCrews(shuffleNames, Level.findByLevel(getLevel(split)), SHUFFLE_COUNT));
                 printPair();
                 return true;
+            }
+            if (!Answer.isNo(input)) {
+                throw ErrorMessage.NOT_FOUND_MATCHING_ANSWER.getException();
             }
         }
         return false;
