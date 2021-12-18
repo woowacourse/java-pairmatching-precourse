@@ -19,7 +19,8 @@ public class MatchingController {
         String choice;
         try {
             String input = GeneralInputView.inputFunctionByClient();
-            if (!input.equals("1") && !input.equals("2") && !input.equals("3") && !input.equals("Q")) {
+            if (!input.equals(GeneralInputView.START_MATCH) && !input.equals(GeneralInputView.SEE_MATCH)
+                    && !input.equals(GeneralInputView.INIT_MATCH) && !input.equals(GeneralInputView.QUIT)) {
                 throw new IllegalArgumentException();
             }
             choice = input;

@@ -14,20 +14,20 @@ public class PairMatching {
     }
 
     public boolean quit(String input) {
-        return input.equals("Q");
+        return input.equals(GeneralInputView.QUIT);
     }
 
     public boolean selectFunctionByInput(String input) {
         if (quit(input)) {
             return false;
         }
-        if (input.equals("1")) {
+        if (input.equals(GeneralInputView.START_MATCH)) {
             matchingController.startMatching(matchingController.inputCourseByUser());
         }
-        if (input.equals("2")) {
+        if (input.equals(GeneralInputView.SEE_MATCH)) {
             matchingController.seeMatchingInfo(matchingController.inputCourseByUser());
         }
-        if (input.equals("3")) {
+        if (input.equals(GeneralInputView.INIT_MATCH)) {
             matchingController.resetMatching();
         }
         return true;

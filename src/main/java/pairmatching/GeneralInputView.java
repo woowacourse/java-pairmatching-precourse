@@ -3,6 +3,11 @@ package pairmatching;
 import camp.nextstep.edu.missionutils.Console;
 
 public class GeneralInputView {
+    public static final String START_MATCH = "1";
+    public static final String SEE_MATCH = "2";
+    public static final String INIT_MATCH = "3";
+    public static final String QUIT = "Q";
+
     public static String inputFunctionByClient() {
         System.out.println("기능을 선택하세요.");
         System.out.println("1. 페어 매칭");
