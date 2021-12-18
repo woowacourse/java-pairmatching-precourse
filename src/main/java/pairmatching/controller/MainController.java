@@ -17,5 +17,6 @@ public class MainController {
 
 	public void run() {
 		System.out.println(viewController.getFunctionSelection());
+		System.out.println(viewController.getTargetSelection());
 	}
 }

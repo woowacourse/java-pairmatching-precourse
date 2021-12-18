@@ -29,4 +29,20 @@ public class InputValidator {
 			throw new IllegalArgumentException(SELECTION_DONT_IN_OPTIONS_ERROR);
 		}
 	}
+
+	public boolean checkTargetSelection(String userSelection) {
+		try {
+			checkSelectThreeCategory(userSelection);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		return true;
+	}
+
+	private void checkSelectThreeCategory(String userSelection) {
+		if (userSelection.split(",").length != 3) {
+			throw new IllegalArgumentException(NOT_SELECT_ALL_ITEM_ERROR);
+		}
+	}
 }
