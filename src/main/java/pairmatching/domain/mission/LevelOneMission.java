@@ -1,6 +1,6 @@
 package pairmatching.domain.mission;
 
-public enum LevelOneMission {
+public enum LevelOneMission implements Mission {
 	RACING_CAR("자동차경주"),
 	LOTTO("로또"),
 	NUMBER_BASEBALL("숫자야구게임");
