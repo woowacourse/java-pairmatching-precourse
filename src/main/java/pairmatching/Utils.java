@@ -10,17 +10,21 @@ public class Utils {
 
     public static void SelectFunction(String answer) {
         if (answer.equals("1")) {
-            // 페어 매칭
+            PrintPage.PairMatching();
         }
-        if (answer.equals("1")) {
+        if (answer.equals("2")) {
             // 페어 조회
         }
-        if (answer.equals("1")) {
+        if (answer.equals("3")) {
             // 페어 초기화
         }
-        if (answer.equals("1")) {
-            // 종료
+        if (!(answer.equals("1")||answer.equals("2")||answer.equals("3")||answer.equals("Q"))) {
+            Except.StartPageError();
         }
-        Except.StartPageError();
+    }
+
+    public static void InputPairMatching() {
+        String[] answer = Console.readLine().split(", ");
+
     }
 }
