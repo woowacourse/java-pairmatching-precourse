@@ -15,4 +15,11 @@ public class Missions {
 
 		return missions;
 	}
+
+	public String toString() {
+		return missionList
+			.stream()
+			.map(Mission::getName)
+			.collect(Collectors.joining(" | "));
+	}
 }

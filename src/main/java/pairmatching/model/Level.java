@@ -1,5 +1,8 @@
 package pairmatching.model;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public enum Level {
 	LEVEL1("레벨1", Missions.init("자동차경주,로또,숫자야구게임")),
 	LEVEL2("레벨2", Missions.init("장바구니,결제,지하철노선도")),
@@ -8,10 +11,20 @@ public enum Level {
 	LEVEL5("레벨5", Missions.init("")); //TODO 미션 init에 빈 문자열 넣어도 nullpointerException터지지 않는지 확인
 
 	private String name;
-	private Missions missionList;
+	private Missions missions;
 
-	Level(String name, Missions missionList) {
+	Level(String name, Missions missions) {
 		this.name = name;
-		this.missionList = missionList;
+		this.missions = missions;
+	}
+
+	public String toString() {
+		return "- " + name + ": " + missions.toString();
+	}
+
+	public static String getAllLevel() {
+		return Arrays.stream(values())
+			.map(Level::toString)
+			.collect(Collectors.joining("\n"));
 	}
 }

@@ -7,4 +7,8 @@ public class Mission {
 	public Mission(String name) {
 		this.name = name;
 	}
+
+	public String getName() {
+		return this.name;
+	}
 }
