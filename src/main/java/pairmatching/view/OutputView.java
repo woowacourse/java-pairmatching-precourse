@@ -43,7 +43,7 @@ public class OutputView {
     public static void printPair(List<String> pair) {
         int i;
 
-        for (i = 0; i < pair.size(); i += 2) {
+        for (i = 0; i < pair.size() - 1; i += 2) {
             System.out.println(pair.get(i) + " : " + pair.get(i + 1));
         }
     }
