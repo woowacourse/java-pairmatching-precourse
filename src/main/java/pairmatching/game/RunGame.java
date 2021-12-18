@@ -19,9 +19,30 @@ public class RunGame {
             if (nextStep.equals("1")) {
                 pairMatching();
             }
+            if (nextStep.equals("2")) {
+                pairLookUp();
+            }
         }
     }
-    private static void pairMatching() {
+
+    private static void pairLookUp() {
+        try {
+            setPairLoopUp();
+        } catch (IllegalArgumentException e) {
+            System.out.println(Constant.PAIR_LOOKUP_ERROR);
+            pairLookUp();
+        }
+    }
+
+    private static void setPairLoopUp() {
+        OutputView.askPairLookUp();
+        String input = Console.readLine();
+        System.out.println();
+        String[] pairLookUpInfo = InputView.splitString(input);
+        OutputView.resultPairLookUp(input);
+    }
+
+    public static void pairMatching() {
         try {
             setPairMatching();
         } catch (IllegalArgumentException | IOException e) {
@@ -33,9 +54,11 @@ public class RunGame {
     private static void setPairMatching() throws IOException {
         OutputView.askPairMatching();
         String input = Console.readLine();
-        String[] pariMatchingInfo = InputView.splitString(input);
-        OutputView.resultPairMatching(pariMatchingInfo);
+        System.out.println();
+        String[] pairMatchingInfo = InputView.splitString(input);
+        OutputView.resultPairMatching(input);
     }
+
 
     private static void selectFunction() {
         try {
@@ -44,7 +67,6 @@ public class RunGame {
             System.out.println(Constant.SELECT_FUNCTION_ERROR);
             selectFunction();
         }
-
     }
 
     private static void setFunction() {
