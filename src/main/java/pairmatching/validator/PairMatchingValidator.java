@@ -31,7 +31,6 @@ public class PairMatchingValidator {
 		if (!Arrays.asList(validCourse).contains(courseName)) {
 			throw new IllegalArgumentException("[ERROR] 없는 과정입니다.");
 		}
-		//
 	}
 
 	public void isValidLevel(String level) {

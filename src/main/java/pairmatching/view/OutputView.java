@@ -12,6 +12,7 @@ import pairmatching.constant.OutputConstant;
 public class OutputView {
 
 	public void printFunction() {
+		System.out.println();
 		System.out.println(OutputConstant.SELECT_FUNCTION_MESSAGE);
 		System.out.println(OutputConstant.MATH_PAIR_MESSAGE);
 		System.out.println(OutputConstant.SHOW_PAIR_MESSAGE);
@@ -20,6 +21,7 @@ public class OutputView {
 	}
 
 	public void showCourseInfo() {
+		System.out.println();
 		Path path = Paths.get(OutputConstant.COURSE_INFO_PATH);
 		try (BufferedReader reader = Files.newBufferedReader(path)) {
 			String line;
@@ -33,6 +35,7 @@ public class OutputView {
 	}
 
 	public void printEvenPair(ArrayList<ArrayList<String>> matchResult) {
+		System.out.println();
 		for (ArrayList<String> item : matchResult) {
 			System.out.println(item.get(0) + " : " + item.get(1));
 		}
@@ -40,6 +43,7 @@ public class OutputView {
 	}
 
 	public void printPair(ArrayList<ArrayList<String>> matchResult) {
+		System.out.println();
 		System.out.println("페어 매칭 결과입니다.");
 		for (ArrayList<String> item : matchResult) {
 			System.out.println(String.join(" : ", item));

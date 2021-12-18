@@ -15,6 +15,7 @@ public class PairMatchingController {
 		while (true) {
 			try {
 				pairMatchingService.start(inputView.getCourseInfo());
+				return;
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}

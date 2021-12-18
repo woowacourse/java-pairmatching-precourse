@@ -1,12 +1,49 @@
 package pairmatching.matchingrecord;
 
+import java.util.ArrayList;
+
 public class Leve1Record {
-	String[] racingCar;
-	String[] lotto;
-	String[] baseballgame;
+	ArrayList<ArrayList<String>> racingCar = null;
+	ArrayList<ArrayList<String>> lotto = null;
+	ArrayList<ArrayList<String>> baseballGame = null;
 
+	private static boolean isRacingCarRecord = false;
+	private static boolean isLottoRecord = false;
+	private static boolean isBaseballGameRecord = false;
 
+	public void setRacingCar(ArrayList<ArrayList<String>> matchResult){
+		this.racingCar = matchResult;
+	}
 
+	public void setLotto(ArrayList<ArrayList<String>> matchResult){
+		this.lotto = matchResult;
+	}
 
+	public void setBaseballGame(ArrayList<ArrayList<String>> matchResult){
+		this.baseballGame = matchResult;
+	}
+
+	public ArrayList<ArrayList<String>> getRacingCarResult() {
+		return racingCar;
+	}
+
+	public ArrayList<ArrayList<String>> racingCarResult() {
+		return lotto;
+
+	}
+
+	public ArrayList<ArrayList<String>> lottoResult() {
+		return baseballGame;
+	}
+
+	public ArrayList<ArrayList<ArrayList<String>>> getLevel1Record() {
+		ArrayList<ArrayList<ArrayList<String>>> level1Record = new ArrayList<>();
+
+		level1Record.add(racingCar);
+		level1Record.add(lotto);
+		level1Record.add(baseballGame);
+
+		return level1Record;
+	}
 
 }
