@@ -16,7 +16,7 @@ public class FrontendRepository {
     
     public static void addCrewNames(){
         try {
-            frontendCrews = Files.readAllLines(Paths.get("C:\\dev\fileSearch\\frontend-crew.md"));
+            frontendCrews = Files.readAllLines(Paths.get("C:\\frontend-crew.md"));
         } catch (IOException e) {
             System.out.println(e.getStackTrace());
         }

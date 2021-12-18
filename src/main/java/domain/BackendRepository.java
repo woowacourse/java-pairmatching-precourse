@@ -15,7 +15,7 @@ public class BackendRepository {
     
     public static void addCrewNames() {
         try {
-            backendCrews = Files.readAllLines(Paths.get("C:\\dev\fileSearch\\backend-crew.md"));
+            backendCrews = Files.readAllLines(Paths.get("c:\\backend-crew.md"));
         } catch (IOException e) {
             System.out.println(e.getStackTrace());
         }

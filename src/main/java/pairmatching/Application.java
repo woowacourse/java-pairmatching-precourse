@@ -1,11 +1,12 @@
 package pairmatching;
 
-import domain.OperationController;
+import domain.MainController;
 
 public class Application {
     public static void main(String[] args) {
         Initialization.intialize();
-        OperationController.runMatchingManagement();
+        
+        MainController.run();
         
     }
 }

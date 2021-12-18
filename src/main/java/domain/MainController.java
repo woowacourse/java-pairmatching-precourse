@@ -13,17 +13,14 @@ public class MainController {
     private static final String PAIR_INITIALIZE = "3";
     private static final String EXIT_PROGRAM = "Q";
     
-    public MainController() {
-    }
-    
-    public void run() {
+    public static void run() {
         List<String> options = Arrays.asList(PAIR_MATCHING,PAIR_SEARCH,PAIR_INITIALIZE,EXIT_PROGRAM);
         
         while(true) {
             OutputView.showMain();
             String option = selectOption(options);
             
-            if(option == EXIT_PROGRAM) {
+            if(option.equals(EXIT_PROGRAM)) {
                 break;
             }
            
@@ -31,7 +28,7 @@ public class MainController {
         }
     }
     
-    private String selectOption(List<String> options) {
+    private static String selectOption(List<String> options) {
         String option;
         while(true) {
             try {
@@ -45,15 +42,15 @@ public class MainController {
         return option;
     }
     
-    private void navigateSubMenu(String option) {
+    private static void navigateSubMenu(String option) {
         if(option == PAIR_MATCHING) {
-            
+            OperationController.runMatchingManagement();
         }
         if(option == PAIR_SEARCH) {
-            
+            OperationController.runSearchingManagement();
         }
         if(option == PAIR_INITIALIZE) {
-            
+            System.out.println("망함");
         }
     }
 }

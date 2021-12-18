@@ -15,6 +15,28 @@ public class OperationController {
         operateMatching();
     }
     
+    public static void runSearchingManagement() {
+        CurriculumBoard.showCurriculumBoard();
+        operateSearching();
+    }
+    
+    private static void operateSearching() {
+        while(true) {
+            String input = InputView.selectCurriculum();
+            try {
+                String [] info = input.split(",",-1); 
+                validationForCurriculum(info);
+                Course course = Course.findByName(info[0]);
+                Level level = Level.findByName(info[1]);
+                Mission mission = Level.findbyMissionName(level, info[2]);
+                OutputView.showMatchingResult(course, mission);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
     private static void operateMatching() {
         while(true) {
             String input = InputView.selectCurriculum();
