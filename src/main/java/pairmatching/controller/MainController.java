@@ -12,10 +12,12 @@ import java.util.List;
 public class MainController {
     Crews pairmatching;
     HashMap<String, List<String>> pairInfo;
+    HashMap<String, List<List<String>>> duplicateCheck;
 
     public MainController() {
         pairmatching = new Crews();
         pairInfo = new HashMap<>();
+        duplicateCheck = new HashMap<>();
         CrewInformationController.readCrews(pairmatching);
     }
 
@@ -44,6 +46,7 @@ public class MainController {
 
     private void pairInquiry() {
         Output.printMissionAndProcess();
+        Output.printMissionAndProcessSelect();
         String inputProcess = Input.inputProcess();
         if (pairInfo.containsKey(inputProcess)) {
             printPairResult(pairInfo.get(inputProcess));
@@ -51,24 +54,28 @@ public class MainController {
     }
 
     private void pairStart() {
+        Output.printMissionAndProcess();
+        String inputData = "";
         while (true) {
-            Output.printMissionAndProcess();
-            String inputProcess = Input.inputProcess();
-            String inputData = "";
-
             try {
+                Output.printMissionAndProcessSelect();
+                String inputProcess = Input.inputProcess();
                 ValidationController.inputProcessValidation(inputProcess);
                 if (pairInfo.containsKey(inputProcess)) {
                     Output.printRematching();
                     inputData = Input.InputYesOrNo();
                     selectMatchingRestart(inputData, inputProcess);
-                }if (!pairInfo.containsKey(inputProcess)) {
+                }
+                if (!pairInfo.containsKey(inputProcess)) {
                     setPair(inputProcess);
                 }
                 if (!inputData.equals("아니오")) {
                     printPairResult(pairInfo.get(inputProcess));
+                    return;
                 }
-                return;
+                if (inputData.equals("아니오")) {
+                    continue;
+                }
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -90,12 +97,30 @@ public class MainController {
 
     private void setPair(String inputProcess) {
         String[] inputSplit = inputProcess.split(", ");
-        System.out.println(inputSplit[0]);
+        List<List<String>> tempList = new ArrayList<>();
+        if (duplicateCheck.containsKey(inputProcess)){
+            tempList.addAll(duplicateCheck.get(inputProcess));
+        }
+
         if (inputSplit[0].equals(Course.BACKEND.getName())) {
             pairInfo.put(inputProcess, PairmatchingController.pairmatchingStart(pairmatching.getCrewBackendNames()));
+            tempList.add(PairmatchingController.pairmatchingStart(pairmatching.getCrewBackendNames()));
+            if (duplicateCheck.containsKey(inputProcess)){
+                duplicateCheck.replace(inputProcess, tempList);
+            }
+            if (!duplicateCheck.containsKey(inputProcess)){
+                duplicateCheck.put(inputProcess, tempList);
+            }
             return;
         }
         pairInfo.put(inputProcess, PairmatchingController.pairmatchingStart(pairmatching.getCrewFrontendNames()));
+        tempList.add(PairmatchingController.pairmatchingStart(pairmatching.getCrewFrontendNames()));
+        if (duplicateCheck.containsKey(inputProcess)){
+            duplicateCheck.replace(inputProcess, tempList);
+        }
+        if (!duplicateCheck.containsKey(inputProcess)){
+            duplicateCheck.put(inputProcess, tempList);
+        }
     }
 
     private int chooseFunction() {
