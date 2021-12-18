@@ -27,7 +27,7 @@ import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class PairMatchingController {
-	private final PairMatcher pairMatcher = new PairMatcher();
+	private PairMatcher pairMatcher = new PairMatcher();
 
 	public void run() {
 		List<String> backCrewNames = getCrewNameByFile("backend-crew.md");
@@ -51,6 +51,8 @@ public class PairMatchingController {
 			readPair(missions);
 		}
 		if (select.equals(PairMatchingConst.SELECT_PAIR_RESET)) { // 페어 초기화
+			pairMatcher = new PairMatcher();
+			OutputView.printInit();
 		}
 		if (select.equals(PairMatchingConst.SELECT_EXIT)) { // 종료
 			return true;

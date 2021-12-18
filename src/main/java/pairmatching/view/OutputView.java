@@ -96,4 +96,8 @@ public class OutputView {
 		}
 		System.out.println(sb.toString());
 	}
+
+	public static void printInit() {
+		System.out.println("초기화 되었습니다.");
+	}
 }
