@@ -36,7 +36,6 @@ public class PairMatchingValidator {
 		} catch (IllegalArgumentException illegalArgumentException) {
 			return true;
 		}
-
 	}
 
 	private void isKeepFormat(String input) throws IllegalArgumentException {
