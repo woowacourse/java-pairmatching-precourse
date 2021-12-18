@@ -15,6 +15,7 @@ public class PairMatchingConstants {
 	public static final String CAN_NOT_FIND_PAIR_ERROR = "해당 조건에 맞는 페어를 찾을 수 없습니다.";
 	public static final String TRIPLE_MATCHING_ERROR = "3회 이상 매칭 중복이 발생하였습니다.";
 	public static final String MATCHING_DUPLICATE = "매칭 중복이 발생하였습니다.";
+	public static final String LEVEL_MISSION_NOT_MATCH = "레벨과 미션이 일치하지 않습니다.";
 
 	public static final String FEATURE_MENU_MESSAGE = "기능을 선택하세요.";
 	public static final String FEATURE_MENU_LIST = "1. 페어 매칭\n"

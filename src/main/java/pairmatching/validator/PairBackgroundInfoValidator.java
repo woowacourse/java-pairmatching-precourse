@@ -17,6 +17,7 @@ public class PairBackgroundInfoValidator {
 		isMatchRegex(userInput);
 		List<String> PairBackgroundInfo = Arrays.asList(userInput.split(", "));
 		isExistValues(PairBackgroundInfo);
+		isRightLevel(PairBackgroundInfo);
 		return PairBackgroundInfo;
 	}
 
@@ -37,6 +38,12 @@ public class PairBackgroundInfoValidator {
 		Course.findByName(pairBackgroundInfo.get(0));
 		Level.findByName(pairBackgroundInfo.get(1));
 		Mission.findByName(pairBackgroundInfo.get(2));
+	}
+
+	private static void isRightLevel(List<String> pairBackgroundInfo) {
+		if (Mission.findByName(pairBackgroundInfo.get(2)).getLevel() != Level.findByName(pairBackgroundInfo.get(1))) {
+			throw new IllegalArgumentException(LEVEL_MISSION_NOT_MATCH);
+		}
 	}
 
 }
