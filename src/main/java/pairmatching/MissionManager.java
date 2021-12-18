@@ -42,7 +42,7 @@ public class MissionManager {
         return missionMap.get(level).stream()
                 .filter(mission -> mission.getMissionName() == missionName)
                 .findFirst()
-                .orElseThrow(NoSuchElementException::new)
+                .orElseThrow(() ->  new IllegalArgumentException("해당 이름의 미션이 없습니다."))
                 .getPairList();
     }
 
@@ -50,7 +50,7 @@ public class MissionManager {
         return missionMap.get(level).stream()
                 .filter(mission -> mission.getMissionName() == missionName)
                 .findFirst()
-                .orElseThrow(NoSuchElementException::new)
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름의 미션이 없습니다."))
                 .isMatched();
     }
 
@@ -132,11 +132,20 @@ public class MissionManager {
                 .filter(mission -> mission.getMissionName() == missionName)
                 .filter(mission -> mission.getCourse() == course)
                 .findFirst()
-                .orElseThrow(NoSuchElementException::new)
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름의 미션이 없습니다."))
                 .setPairList(pairList);
     }
 
     public List<Mission> getMissionListOfLevel(Level level) {
         return missionMap.get(level);
+    }
+
+    public boolean isMissionExists(Level level, Course course,  MissionName missionName) {
+        return missionMap.get(level).stream()
+                .filter(mission -> mission.getMissionName() == missionName)
+                .filter(mission -> mission.getCourse() == course)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름의 미션이 없습니다."))
+                .isPairListExists();
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Pair {
 
@@ -18,6 +19,12 @@ public class Pair {
     }
 
     public Pair(){};
+
+    public List<String> getPairMemberNameList() {
+        return pairMemberMap.values().stream()
+                .map(Crew::getName)
+                .collect(Collectors.toList());
+    }
 
     public void addCrew(Crew crew) {
         pairMemberMap.put(crew.getName(), crew);

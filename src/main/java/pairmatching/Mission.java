@@ -40,5 +40,8 @@ public class Mission {
         return pairList.size() != 0;
     }
 
+    public boolean isPairListExists() {
+        return pairList.size() != 0;
+    }
 
 }
