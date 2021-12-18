@@ -6,6 +6,7 @@ import static pairmatching.constant.PromptConstants.*;
 import pairmatching.constant.FunctionStatus;
 import pairmatching.constant.ProgramStatus;
 import pairmatching.controller.FunctionSelector;
+import pairmatching.exception.InvalidFunctionSelectException;
 import pairmatching.view.MatchingProgramInterface;
 
 public class MatchingProgram implements MatchingProgramInterface {
@@ -35,7 +36,12 @@ public class MatchingProgram implements MatchingProgramInterface {
 					break;
 				}
 				if (functionSelector.getByString(inputFunction) == FunctionStatus.INVALID_INPUT) {
-					break;
+					try {
+						throw new InvalidFunctionSelectException();
+					} catch (InvalidFunctionSelectException exception) {
+						programStatus = ProgramStatus.SHOW_FUNCTIONS;
+
+					}
 				}
 			}
 
