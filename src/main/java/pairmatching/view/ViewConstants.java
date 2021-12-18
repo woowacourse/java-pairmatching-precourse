@@ -18,4 +18,5 @@ public class ViewConstants {
 		+ "############################################";
 	public static final String INPUT_MATCH_INFORMATION = "과정, 레벨, 미션을 선택하세요.\n"
 		+ "ex) 백엔드, 레벨1, 자동차경주";
+	public static final String ERROR_INVALID_FORMAT = "입력 형식이 잘못됐습니다.";
 }
