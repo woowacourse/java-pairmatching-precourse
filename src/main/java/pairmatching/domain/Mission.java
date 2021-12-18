@@ -11,7 +11,7 @@ import pairmatching.domain.crew.Crew;
 import pairmatching.domain.crew.FrontendCrewRepository;
 
 public class Mission {
-	private List<Set<Crew>> pairs;
+	private List<List<Crew>> pairs;
 	private Course course;
 	private Level level;
 	private String name;
@@ -23,8 +23,12 @@ public class Mission {
 		this.name = name;
 	}
 
-	public void setPairs(List<Set<Crew>> pairs) {
+	public void setPairs(List<List<Crew>> pairs) {
 		this.pairs = pairs;
+	}
+
+	public List<List<Crew>> getPairs() {
+		return pairs;
 	}
 
 	public Course getCourse() {
@@ -49,18 +53,18 @@ public class Mission {
 		return this.level == level;
 	}
 
-	public boolean haveSamePair(List<Set<Crew>> targetPairs) {
+	public boolean haveSamePair(List<List<Crew>> targetPairs) {
 		if (!isMatched()) {
 			return false;
 		}
-		for (Set<Crew> pair : targetPairs) {
+		for (List<Crew> pair : targetPairs) {
 			if (checkParisMeet(pair))
 				return true;
 		}
 		return false;
 	}
 
-	private boolean checkParisMeet(Set<Crew> pair) {
+	private boolean checkParisMeet(List<Crew> pair) {
 		for (Crew crew : pair) {
 			if (haveMeet(pair, crew)) {
 				return true;
@@ -69,7 +73,7 @@ public class Mission {
 		return false;
 	}
 
-	private boolean haveMeet(Set<Crew> pair, Crew crew) {
+	private boolean haveMeet(List<Crew> pair, Crew crew) {
 		if (course == Course.BACKEND) {
 			return BackendCrewRepository.haveMeet(crew, pair);
 		}
