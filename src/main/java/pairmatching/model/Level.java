@@ -1,5 +1,7 @@
 package pairmatching.model;
 
+import static pairmatching.model.Course.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,5 +27,15 @@ public enum Level {
 		return Arrays.stream(values())
 			.map(Level::getName)
 			.collect(Collectors.toList());
+	}
+
+	public static Level getLevelType(String levelName) {
+		levelName = replaceGap(levelName);
+
+		String finalLevelName = levelName;
+		return Arrays.stream(values())
+			.filter(level -> level.getName().equals(finalLevelName))
+			.findAny()
+			.orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 레벨은 없습니다."));
 	}
 }
