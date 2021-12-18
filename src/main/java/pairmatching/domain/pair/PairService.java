@@ -25,27 +25,20 @@ public class PairService {
     public List<Pair> makePairs(PairTag pairTag) {
         PairRepository.clear(pairTag);
 
-        List<Pair> result = null;
         int count = 0;
-
         do {
-            List<Pair> pairs = matchPairs(pairTag);
+            List<Pair> pairs = loadPairsWithShuffle(pairTag);
             if (!isDuplicatePair(pairs, pairTag)) {
-                result = pairs;
-                break;
+                PairRepository.save(pairTag, pairs);
+                return pairs;
             }
             count++;
         } while (count < 3);
 
-        if (result == null) {
-            throw new IllegalArgumentException("[ERROR] 이미 페어가 존재하거나 매칭을 할 수 없습니다.");
-        }
-
-        PairRepository.save(pairTag, result);
-        return result;
+        throw new IllegalArgumentException("[ERROR] 이미 페어가 존재하거나 매칭을 할 수 없습니다.");
     }
 
-    private List<Pair> matchPairs(PairTag pairTag) {
+    private List<Pair> loadPairsWithShuffle(PairTag pairTag) {
         List<Pair> result = new ArrayList<>();
         List<Crew> shuffledCrew = null;
         if (pairTag.getCourse() == Course.BACKEND) {
@@ -59,7 +52,6 @@ public class PairService {
         if (isOddSizeCrews(shuffledCrew)) {
             addLastCrewInLastPair(result, shuffledCrew);
         }
-
         return result;
     }
 
