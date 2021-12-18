@@ -48,19 +48,19 @@ public class OutputView {
     private static void printMission() {
         System.out.println("미션: ");
 
-        System.out.println("\t- 레벨1: ");
+        System.out.print("\t- 레벨1: ");
         printMissionByLevel(LEVEL1);
 
-        System.out.println("\t- 레벨2: ");
+        System.out.print("\t- 레벨2: ");
         printMissionByLevel(LEVEL2);
 
-        System.out.println("\t- 레벨3: ");
+        System.out.print("\t- 레벨3: ");
         printMissionByLevel(LEVEL3);
 
-        System.out.println("\t- 레벨4: ");
+        System.out.print("\t- 레벨4: ");
         printMissionByLevel(LEVEL4);
 
-        System.out.println("\t- 레벨5: ");
+        System.out.print("\t- 레벨5: ");
         printMissionByLevel(LEVEL5);
     }
 }
