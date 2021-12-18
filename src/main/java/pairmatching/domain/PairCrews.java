@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class PairCrews {
-	Course course;
-	Level level;
-	Mission mission;
-	List<PairCrew> pairMatchingCrews = new ArrayList<>();
+	private Course course;
+	private Level level;
+	private Mission mission;
+	private List<PairCrew> pairCrews = new ArrayList<>();
 
 	public PairCrews(Course course, Level level, Mission mission) {
 		this.course = course;
@@ -17,11 +17,19 @@ public class PairCrews {
 	}
 
 	public void addPair(PairCrew pairCrew) {
-		pairMatchingCrews.add(pairCrew);
+		pairCrews.add(pairCrew);
+	}
+
+	public List<PairCrew> get() {
+		return pairCrews;
 	}
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(course.toString(), level.toString(), mission.toString());
+	}
+
+	public void addOddCrew(Crew crew) {
+		pairCrews.get(pairCrews.size() - 1).add(crew);
 	}
 }

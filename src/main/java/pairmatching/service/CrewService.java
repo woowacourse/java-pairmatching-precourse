@@ -2,7 +2,6 @@ package pairmatching.service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.List;
 import java.util.Scanner;
 
 import pairmatching.domain.Course;
@@ -13,12 +12,11 @@ public class CrewService {
 	private final CrewRepository crewRepository = CrewRepository.getInstance();
 
 	public CrewService() {
-		try {
-			initBackendCrew();
-			initFrontendCrew();
-		} catch (FileNotFoundException e) {
+	}
 
-		}
+	public void init() throws FileNotFoundException {
+		initBackendCrew();
+		initFrontendCrew();
 	}
 
 	void initBackendCrew() throws FileNotFoundException {
@@ -37,13 +35,5 @@ public class CrewService {
 			Crew crew = new Crew(Course.FRONTEND, scanner.nextLine());
 			crewRepository.addFrontCrews(crew);
 		}
-	}
-
-	public List<Crew> getBackendCrew() {
-		return crewRepository.getBackendCrews();
-	}
-
-	public List<Crew> getFrontendCrew() {
-		return crewRepository.getFrontendCrews();
 	}
 }

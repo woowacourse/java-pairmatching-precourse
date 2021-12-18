@@ -3,6 +3,7 @@ package pairmatching.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.domain.Course;
@@ -32,27 +33,27 @@ public class PairMatchingService {
 	public PairMatchingService() {
 	}
 
-	public void pairMatching(String input) throws IllegalArgumentException {
+	public PairCrews pairMatching(String input) throws IllegalArgumentException {
 		String[] splitInput = input.split(PAIRMATCHING_INPUT_DELIMITER);
 		InputValidator.isSizeThree(splitInput);
 		Course course = toCourse(splitInput[COURSE_INDEX].trim());
 		Level level = toLevel(splitInput[LEVEL_INDEX].trim());
 		Mission mission = toMission(level, splitInput[MISSION_INDEX].trim());
 		pairMatch(course, level, mission);
-		System.out.println(pairMatchingRepository.get());
+		return pairMatchingRepository.getPairCrews(Objects.hash(course.toString(), level.toString(), mission.toString()));
 	}
 
 	public void pairMatch(Course course, Level level, Mission mission) throws IllegalArgumentException {
 		PairCrews pairCrews = new PairCrews(course, level, mission);
 		List<Crew> crewsShuffle = Randoms.shuffle(crewRepository.getCrews(course));
 		for (int i = 0; i < crewsShuffle.size(); i += PAIR_SIZE) {
-			List<Crew> pairCrewList = crewsShuffle
-				.subList(i, Math.min(i + PAIR_SIZE, crewsShuffle.size()));
-			if (i == crewsShuffle.size()-2) {
-				pairCrewList.add(crewsShuffle.get(crewsShuffle.size()-1));
+			List<Crew> pairCrewList = new ArrayList<>(crewsShuffle
+				.subList(i, Math.min(i + PAIR_SIZE, crewsShuffle.size())));
+			if (pairCrewList.size() == 1) {
+				pairCrews.addOddCrew(pairCrewList.get(0));
+				break;
 			}
-			PairCrew pairCrew = new PairCrew(pairCrewList);
-			pairCrews.addPair(pairCrew);
+			pairCrews.addPair(new PairCrew(pairCrewList));
 		}
 		pairMatchingRepository.add(pairCrews);
 	}

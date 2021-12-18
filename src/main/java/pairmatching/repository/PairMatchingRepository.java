@@ -21,7 +21,7 @@ public class PairMatchingRepository {
 		pairCrewsMap.put(pairCrews.hashCode(), pairCrews);
 	}
 
-	public Map<Integer, PairCrews> get() {
-		return pairCrewsMap;
+	public PairCrews getPairCrews(int key) {
+		return pairCrewsMap.get(key);
 	}
 }
