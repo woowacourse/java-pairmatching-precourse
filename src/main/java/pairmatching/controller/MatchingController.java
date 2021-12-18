@@ -1,5 +1,6 @@
 package pairmatching.controller;
 
+import pairmatching.exception.AlreadyExistPairException;
 import pairmatching.exception.QuitProgramException;
 import pairmatching.service.MatchingService;
 import pairmatching.utils.Validator;
@@ -10,6 +11,12 @@ public class MatchingController {
 	private static final int FIRST_FUNCTION_NUMBER = 1;
 	private static final int SECOND_FUNCTION_NUMBER = 2;
 	private static final int MAX_FUNCTION_NUMBER = 3;
+
+	private final MatchingService matchingService;
+
+	public MatchingController() {
+		matchingService = new MatchingService();
+	}
 
 	public void getFunctionNumber() {
 		String input = InputView.chooseFunction();
@@ -41,9 +48,21 @@ public class MatchingController {
 		try {
 			String[] input = InputView.printProgramInformation().split(",");
 			Validator.validateCourseLevelMission(input);
+			matchPair(input);
 		} catch (IllegalArgumentException e) {
 			OutputView.printError(e.getMessage());
 			matching();
+		}
+	}
+
+	private void matchPair(String[] input) {
+		try {
+			String course = input[0];
+			String level = input[1];
+			String mission = input[2];
+			matchingService.matchPair(course, level, mission);
+		} catch (AlreadyExistPairException e) {
+			matchPair(input);
 		}
 	}
 }

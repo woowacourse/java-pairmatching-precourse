@@ -11,4 +11,14 @@ public class CrewService {
 		this.backendCrews = backendCrews;
 		this.frontendCrews = frontendCrews;
 	}
+
+	public BackendCrews getShuffledBackendCrews() {
+		backendCrews.shuffle();
+		return backendCrews;
+	}
+
+	public FrontendCrews getShuffledFrontendCrews() {
+		frontendCrews.shuffle();
+		return frontendCrews;
+	}
 }

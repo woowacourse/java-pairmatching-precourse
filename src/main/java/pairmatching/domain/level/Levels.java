@@ -29,4 +29,8 @@ public class Levels {
 	public boolean contains(String mission) {
 		return levels.stream().anyMatch(level -> level.contains(mission));
 	}
+
+	public Level getLevel(int level) {
+		return levels.get(level);
+	}
 }
