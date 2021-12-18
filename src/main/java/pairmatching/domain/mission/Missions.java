@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Missions {
+	private static final String TO_STRING_DELIMITER = " | ";
+
 	private final List<String> missions;
 
 	private Missions(List<String> missions) {
@@ -21,6 +23,9 @@ public class Missions {
 
 	@Override
 	public String toString() {
-		return missions.toString();
+		if (missions != null) {
+			return String.join(TO_STRING_DELIMITER, missions);
+		}
+		return "";
 	}
 }
