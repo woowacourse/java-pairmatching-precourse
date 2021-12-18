@@ -1,18 +1,22 @@
 package pairmatching.domain.repository;
 
-import static javax.swing.JOptionPane.*;
+
+
+
+import static pairmatching.utils.Constants.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import pairmatching.domain.Level;
+import javax.swing.*;
+
 import pairmatching.domain.Mission;
 
 public class MissionRepository {
 	static List<Mission> missionList = new ArrayList<>();
 
 	static {
-		missionList.add(new Mission( "자동차 경주"));
+		missionList.add(new Mission( "자동차경주"));
 		missionList.add(new Mission( "로또"));
 		missionList.add(new Mission( "숫자야구게임"));
 		missionList.add(new Mission("장바구니"));
@@ -21,7 +25,7 @@ public class MissionRepository {
 	}
 
 
-	public Mission findMission(String level, String name) {
+	public static Mission findMission(String name) {
 		return missionList.stream()
 			.filter(mission -> mission.isSame(name))
 			.findFirst()

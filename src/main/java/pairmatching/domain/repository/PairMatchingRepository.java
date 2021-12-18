@@ -1,7 +1,6 @@
 package pairmatching.domain.repository;
 
-import static javax.swing.JOptionPane.*;
-import static pairmatching.domain.repository.CrewRepository.*;
+import static pairmatching.utils.Constants.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
-import static javax.swing.JOptionPane.*;
+
+import static pairmatching.utils.Constants.*;
 
 import java.util.Arrays;
 

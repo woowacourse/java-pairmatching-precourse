@@ -1,6 +1,7 @@
 package pairmatching.controller.function;
 
-import static javax.swing.JOptionPane.*;
+import static pairmatching.utils.Constants.*;
+import static pairmatching.utils.validator.InputValidator.*;
 import static pairmatching.view.InputView.*;
 import static pairmatching.view.OutputView.*;
 
@@ -19,6 +20,12 @@ public enum PairMatchingFunction {
 			String course = splitPairMatching[0].trim();
 			String level = splitPairMatching[1].trim();
 			String mission = splitPairMatching[2].trim();
+			try{
+				validateInputPairMatching(course, level, mission);
+			}catch (IllegalArgumentException illegalArgumentException) {
+				System.out.println(illegalArgumentException.getMessage());
+				function();
+			}
 			if (PairMatchingRepository.isExistPairMatching(course, level, mission)) {
 				if (inputRequestRematching().equals("네")) {
 					PairMatchingService.pairReMatching(course, level, mission);

@@ -7,7 +7,7 @@ public class Mission {
 		this.name = name;
 	}
 
-	public boolean isSame( String name) {
+	public boolean isSame(String name) {
 		return this.name.equals(name);
 	}
 }
