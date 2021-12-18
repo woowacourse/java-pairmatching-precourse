@@ -4,12 +4,20 @@ import java.util.ArrayList;
 
 public class Saver {
 
-	private static final int SIZE = 5;
-	private static ArrayList<CrewPair>[] savedResult = new ArrayList[SIZE];
+	public static final Saver saver = new Saver();
+	private final int SIZE = 5;
+	private ArrayList<ArrayList<CrewPair>> savedResult;
 
-	public static boolean isValidMatch(ArrayList<CrewPair> matchResult, int levelIndex) {
+	private Saver() {
+		this.savedResult = new ArrayList<>();
+		for (int nowSize = 0; nowSize < SIZE; nowSize++) {
+			this.savedResult.add(new ArrayList<CrewPair>());
+		}
+	}
+
+	public boolean isValidMatch(ArrayList<CrewPair> matchResult, int levelIndex) {
 		for (CrewPair eachPair : matchResult) {
-			int duplicateCount = (int)savedResult[levelIndex].stream()
+			int duplicateCount = (int)this.savedResult.get(levelIndex).stream()
 				.filter(nowPair -> nowPair.isSame(eachPair.getJoinedName()))
 				.count();
 			if (duplicateCount > 0) {
@@ -19,7 +27,7 @@ public class Saver {
 		return true;
 	}
 
-	public static void setMatch(ArrayList<CrewPair> matchResult, int levelIndex) {
-		savedResult[levelIndex] = matchResult;
+	public void setMatch(ArrayList<CrewPair> matchResult, int levelIndex) {
+		this.savedResult.set(levelIndex, matchResult);
 	}
 }
