@@ -3,6 +3,7 @@ package pairmatching.view;
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.Course;
 import pairmatching.domain.Level;
+import pairmatching.domain.pair.PairTag;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -19,7 +20,6 @@ public class View {
     public static Menu getMenu() {
         try {
             printMenu();
-            System.out.println();
             return Menu.of(Console.readLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -43,15 +43,15 @@ public class View {
         System.out.println(PRETTY_BORDER);
     }
 
-    public static UserRequest getUserRequest() {
+    public static PairTag getPairTag() {
         while (true) {
             try {
                 System.out.println("과정, 레벨, 미션을 선택하세요");
                 String[] requests = getUserRequests();
-                return makeUserRequestFromRequests(requests);
+                return makePairTagFromRequests(requests);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                return getUserRequest();
+                return getPairTag();
             }
         }
     }
@@ -64,12 +64,12 @@ public class View {
         return requests;
     }
 
-    private static UserRequest makeUserRequestFromRequests(String[] requests) {
+    private static PairTag makePairTagFromRequests(String[] requests) {
         Course course = getCourse(requests[COURSE_INDEX]);
         Level level = getLevel(requests[MISSION_INDEX]);
         String missionName = requests[MISSION_NAME_INDEX];
         level.checkHasMission(missionName);
-        return new UserRequest(course, level, missionName);
+        return new PairTag(course, level, missionName);
     }
 
     private static Level getLevel(String name) {

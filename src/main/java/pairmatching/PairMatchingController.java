@@ -2,7 +2,9 @@ package pairmatching;
 
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
-import pairmatching.view.UserRequest;
+import pairmatching.domain.pair.Pair;
+import pairmatching.domain.pair.PairService;
+import pairmatching.domain.pair.PairTag;
 import pairmatching.view.View;
 import pairmatching.view.Menu;
 
@@ -16,8 +18,17 @@ import java.util.stream.Collectors;
 
 public class PairMatchingController {
 
-    public static final String BACKEND_CREW_NAMES = "src/main/resources/backend-crew.md";
-    public static final String FRONTEND_CREW_NAMES = "src/main/resources/frontend-crew.md";
+    private static final String BACKEND_CREW_NAMES = "src/main/resources/backend-crew.md";
+    private static final String FRONTEND_CREW_NAMES = "src/main/resources/frontend-crew.md";
+    private final PairService pairService;
+
+    public PairMatchingController() {
+        pairService = initPairService();
+    }
+
+    private PairService initPairService() {
+        return new PairService(loadCrews(Course.FRONTEND), loadCrews(Course.BACKEND));
+    }
 
     public void run() {
         Menu menu;
@@ -31,7 +42,10 @@ public class PairMatchingController {
         if (menu == Menu.PAIR_MATCHING) {
             // TODO: 2021/12/18 페어 매칭 기능 구현
             View.printBoard();
-            UserRequest userRequest = View.getUserRequest();
+            PairTag pairTag = View.getPairTag();
+            List<Pair> pairs = pairService.makePairs(pairTag);
+            System.out.println(pairs);
+
 
         }
         if (menu == Menu.PAIR_SEARCH) {
