@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.model.Course;
 import pairmatching.model.Crew;
 import pairmatching.model.Level;
@@ -36,20 +35,67 @@ public class PairMatchingController {
 		initLevelAndMission();
 	}
 
-	public void matching() {
+	public void run() {
 		outputView.printChooseFeature();
-		outputView.printNewLine();
-		outputView.printCourseAndMissionInfo(levels);
-		List<String> shuffle = Randoms.shuffle(backEndCrewNames);
+		// matching();
+		String featureNumber;
+		// do {
+		// 	featureNumber = inputView.inputChoosingFeature();
+		// }while(!activateFeature(featureNumber));
+		boolean isContinue;
+		do {
+			featureNumber = inputView.inputChoosingFeature();
+			isContinue = activateFeature(featureNumber);
+		} while (isContinue);
 
-		String matchingInfoString = inputView.inputMatchingInfo();
-		MatchingInfo matchingInfo = new MatchingInfo(backEndCrewNames, matchingInfoString, levels);
-		matchingInfoList.add(matchingInfo);
-		for (MatchingInfo info : matchingInfoList) {
-			System.out.println(info.getLevel());
-			info.getCrewList().stream()
-				.forEach(crew -> System.out.println(crew.getCourse() + " " + crew.getName()));
+
+	}
+
+	public void matching() {
+		MatchingInfo matchingInfo;
+		try {
+			outputView.printCourseAndMissionInfo(levels);
+			String matchingInfoString = inputView.inputMatchingInfo();
+			matchingInfo = new MatchingInfo(matchingInfoString, levels, backEndCrewNames,
+				frontEndCrewNames);
+			matchingInfoList.add(matchingInfo);
+			outputView.printPairMatchingResult(matchingInfo);
+		} catch (IllegalArgumentException exception) {
+			System.out.println(exception.getMessage());
+			matching();
 		}
+	}
+
+	private boolean activateFeature(String featureNumber) {
+		String numberRegex = "[1-3]{1}";
+		int number = getNumberByString(featureNumber, numberRegex);
+		if (number == 1) {
+			matching();
+			return true;
+		}
+		if (number == 2) {
+			printMatching();
+			return true;
+		}
+		if (number == 3) {
+			initializePair();
+			return true;
+		}
+		return false;
+	}
+
+	private void initializePair() {
+	}
+
+	private void printMatching() {
+	}
+
+	private int getNumberByString(String featureNumber, String numberRegex) {
+		if (featureNumber.matches(numberRegex)) {
+			int number = Integer.parseInt(featureNumber);
+			return number;
+		}
+		return 4;
 	}
 
 	private void initCourse() {
@@ -61,7 +107,11 @@ public class PairMatchingController {
 			.collect(Collectors.toList());
 	}
 
-
+	// private boolean isExistsPairInSameLevel(MatchingInfo matchingInfo) {
+	// 	matchingInfoList.stream()
+	// 		.filter(m -> m.getLevel().equals(matchingInfo.getLevel()))
+	// 		.forEach(m -> m.getPairList().stream());
+	// }
 
 	private void initLevelAndMission() {
 		List<Level> levelList = new ArrayList<>();
@@ -103,20 +153,22 @@ public class PairMatchingController {
 		missionsOne.add(new Mission("지하철노선도"));
 		return missionsOne;
 	}
+
 	private List<Mission> getMissionsThree() {
 		List<Mission> missionsOne = new ArrayList<>();
 		return missionsOne;
 	}
+
 	private List<Mission> getMissionsFour() {
 		List<Mission> missionsOne = new ArrayList<>();
 		missionsOne.add(new Mission("성능개선"));
 		missionsOne.add(new Mission("배포"));
 		return missionsOne;
 	}
+
 	private List<Mission> getMissionsFive() {
 		List<Mission> missionsOne = new ArrayList<>();
 		return missionsOne;
 	}
-
 
 }

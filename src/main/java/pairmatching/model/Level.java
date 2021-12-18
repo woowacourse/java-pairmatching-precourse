@@ -19,6 +19,22 @@ public enum Level {
 
 	// 추가 기능 구현
 
+	public static Level getLevelByString(String levelString) {
+		if (levelString.equals("레벨1")) {
+			return LEVEL1;
+		}
+		if (levelString.equals("레벨2")) {
+			return LEVEL2;
+		}
+		if (levelString.equals("레벨3")) {
+			return LEVEL3;
+		}
+		if (levelString.equals("레벨4")) {
+			return LEVEL4;
+		}
+		return LEVEL5;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -37,6 +53,6 @@ public enum Level {
 			.map(Mission::getName)
 			.collect(Collectors.toList());
 		String missionsString = String.join(" | ", missionNames);
-		return "- "+ name + ": " + missionsString;
+		return "- " + name + ": " + missionsString;
 	}
 }

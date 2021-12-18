@@ -6,20 +6,29 @@ import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.constants.ExceptionMessages;
+import pairmatching.controller.PairMatchingController;
 
 public class MatchingInfo {
-	private String level;
+	private Level level;
 	private String mission;
-	private List<Crew> crewList = new ArrayList<>();
+	private List<Pair> pairList;
 
 	public static final int LAST_PAIR_SIZE = 3;
 
-	public MatchingInfo(List<String> crewNames, String matchingInfoString, Levels levels) {
+	public MatchingInfo(String matchingInfoString, Levels levels, List<String> backendCrewNames,
+		List<String> frontendCrewNames) {
+		pairList = new ArrayList<>();
 		validateMatchingInfo(matchingInfoString, levels);
 		List<String> infoStringList = Arrays.asList(matchingInfoString.split(", "));
-		List<String> shuffledCrew = Randoms.shuffle(crewNames);
+		List<String> shuffledCrew = new ArrayList<>();
+		if (infoStringList.get(0).equals("프론트엔드")) {
+			shuffledCrew = Randoms.shuffle(frontendCrewNames);
+		}
+		if (infoStringList.get(0).equals("백엔드")) {
+			shuffledCrew = Randoms.shuffle(backendCrewNames);
+		}
 		int numberOfCrews = shuffledCrew.size();
-		this.level = infoStringList.get(1);
+		this.level = Level.getLevelByString(infoStringList.get(1));
 		this.mission = infoStringList.get(2);
 
 		if (numberOfCrews % 2 == 0) {
@@ -27,22 +36,26 @@ public class MatchingInfo {
 				List<Crew> crewList = new ArrayList<>();
 				crewList.add(new Crew(Course.getCourseByString(infoStringList.get(0)), shuffledCrew.get(i)));
 				crewList.add(new Crew(Course.getCourseByString(infoStringList.get(0)), shuffledCrew.get(i + 1)));
+				pairList.add(new Pair(crewList));
 			}
 			return;
 		}
 		for (int i = 0; i < numberOfCrews; i += 2) {
+			List<Crew> crewList = new ArrayList<>();
 			if (i == numberOfCrews - LAST_PAIR_SIZE) {
 				crewList.add(new Crew(Course.getCourseByString(infoStringList.get(0)), shuffledCrew.get(i)));
 				crewList.add(new Crew(Course.getCourseByString(infoStringList.get(0)), shuffledCrew.get(i + 1)));
 				crewList.add(new Crew(Course.getCourseByString(infoStringList.get(0)), shuffledCrew.get(i + 2)));
+				pairList.add(new Pair(crewList));
 				break;
 			}
 			crewList.add(new Crew(Course.getCourseByString(infoStringList.get(0)), shuffledCrew.get(i)));
 			crewList.add(new Crew(Course.getCourseByString(infoStringList.get(0)), shuffledCrew.get(i + 1)));
+			pairList.add(new Pair(crewList));
 		}
 	}
 
-	public String getLevel() {
+	public Level getLevel() {
 		return level;
 	}
 
@@ -50,8 +63,8 @@ public class MatchingInfo {
 		return mission;
 	}
 
-	public List<Crew> getCrewList() {
-		return crewList;
+	public List<Pair> getPairList() {
+		return pairList;
 	}
 
 	private void validatePairMatching(List<String> crewNames) {
@@ -59,15 +72,11 @@ public class MatchingInfo {
 	}
 
 	private void validateMatchingInfo(String matchingInfoString, Levels levels) {
-		try {
-			isValidMatchingInfoString(matchingInfoString);
-			List<String> infoStringList = Arrays.asList(matchingInfoString.split(", "));
-			isValidCourseInfo(infoStringList);
-			isValidLevelInfo(infoStringList, levels);
-			isValidMissionInfo(infoStringList, levels);
-		} catch (IllegalArgumentException exception) {
-			System.out.println(exception.getMessage());
-		}
+		isValidMatchingInfoString(matchingInfoString);
+		List<String> infoStringList = Arrays.asList(matchingInfoString.split(", "));
+		isValidCourseInfo(infoStringList);
+		isValidLevelInfo(infoStringList, levels);
+		isValidMissionInfo(infoStringList, levels);
 	}
 
 	private void isValidCourseInfo(List<String> matchingInfoString) {

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.constants.ExceptionMessages;
 
 public class InputView {
 	private List<String> backEndCrewNames = new ArrayList<>();
@@ -25,7 +26,12 @@ public class InputView {
 	}
 
 	public String inputChoosingFeature() {
-		return Console.readLine();
+		String regex = "[1-3Q]{1}";
+		String input = Console.readLine();
+		if (!input.matches(regex)) {
+			throw new IllegalArgumentException(ExceptionMessages.ERROR_PREFIX + "잘못된 기능 입력입니다.");
+		}
+		return input;
 	}
 
 	public List<String> getBackEndCrewNames() {

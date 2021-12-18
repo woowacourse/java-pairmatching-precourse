@@ -10,6 +10,6 @@ public class Application {
         // TODO 구현 진행
         PairMatchingController pairMatchingController = new PairMatchingController();
         pairMatchingController.init();
-        pairMatchingController.matching();
+        pairMatchingController.run();
     }
 }
