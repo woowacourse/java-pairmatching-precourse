@@ -1,7 +1,7 @@
 package pairmatching.view;
 
 import pairmatching.constant.SystemMessage;
-import pairmatching.domain.enums.MainMenuOption;
+import pairmatching.domain.mainProgram.enums.MainMenuOption;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {

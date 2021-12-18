@@ -1,4 +1,4 @@
-package pairmatching.domain.enums;
+package pairmatching.domain.mainProgram.enums;
 
 public enum MainMenuOption {
     SELECT_MENU("기능을 선택하세요."),
