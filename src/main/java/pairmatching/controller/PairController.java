@@ -17,6 +17,7 @@ import static pairmatching.view.InputView.inputReMatch;
 
 public class PairController {
     private final static String ERROR_OVER_TRY_CNT = "[ERROR] 매칭 시도 최대 횟수 초과";
+    private final static String INITIAL_COMPLETE = "초기화 되었습니다.";
     private final static String SEPARATOR = ",";
     private final static String ANSWER_YES = "네";
     private final static int MAX_TRY_CNT = 3;
@@ -29,23 +30,21 @@ public class PairController {
     }
 
     public void selectMatchPair() {
-        String[] arr = splitMatchingInfo(inputDetails());
-        MatchingInfo matchingInfo = new MatchingInfo(arr[0], arr[1], arr[2]);
+        MatchingInfo matchingInfo = getNewMatchingInfo();
         if (!validator.isDuplicatedInfo(matchingInfos, matchingInfo)
                 || inputReMatch().equals(ANSWER_YES)) {
             try {
                 matchPair(matchingInfo);
                 printPairResult(matchingInfo);
                 matchingInfos.add(matchingInfo);
-            } catch(IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
     public void selectPair() {
-        String[] arr = splitMatchingInfo(inputDetails());
-        MatchingInfo nowMatchingInfo = new MatchingInfo(arr[0], arr[1], arr[2]);
+        MatchingInfo nowMatchingInfo = getNewMatchingInfo();
         if (matchingInfos == null) {
             return;
         }
@@ -58,7 +57,26 @@ public class PairController {
     }
 
     public void initialPair() {
+        MatchingInfo matchingInfo = getNewMatchingInfo();
+        if (matchingInfos != null && removeMatchingInfo(matchingInfo)) {
+            System.out.println(INITIAL_COMPLETE);
+        }
+    }
 
+    private boolean removeMatchingInfo(MatchingInfo matchingInfo) {
+        int size = matchingInfos.size();
+        for (int i = 0; i < size; i++) {
+            if (matchingInfos.get(i).isSameMatching(matchingInfo)) {
+                matchingInfos.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private MatchingInfo getNewMatchingInfo() {
+        String[] arr = splitMatchingInfo(inputDetails());
+        return new MatchingInfo(arr[0], arr[1], arr[2]);
     }
 
     private void printPairResult(MatchingInfo matchingInfo) {
