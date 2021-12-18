@@ -12,4 +12,10 @@ public class ChoiceValidation {
             throw new IllegalArgumentException(Constant.ERROR_IS_EMPTY);
         }
     }
+
+    public static void hasEmpty(String input) {
+        if (input.contains(Constant.SPACE)) {
+            throw new IllegalArgumentException(Constant.ERROR_HAS_EMPTY);
+        }
+    }
 }

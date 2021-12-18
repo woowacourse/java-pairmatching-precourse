@@ -23,6 +23,7 @@ public class Constant {
     public static final String OR = " | ";
     public static final String TAP = "  - ";
     public static final String INPUT_DELIMITER = ", ";
+    public static final String SPACE = " ";
 
     public static final String COURSE = "과정: ";
     public static final String MISSION = "미션:";
@@ -38,4 +39,5 @@ public class Constant {
     public static final String RESET = "초기화 되었습니다.";
 
     public static final String ERROR_IS_EMPTY = "[ERROR] 빈칸으로 입력되었습니다.";
+    public static final String ERROR_HAS_EMPTY = "[ERROR] 빈칸이 포함되어 있습니다.";
 }
