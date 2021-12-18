@@ -10,8 +10,6 @@ public class MissionRepository {
 
     private static final List<Mission> missions = new ArrayList<>();
 
-    public static List<Mission> getMissions() { return missions; }
-
     public static List<Mission> getMissionsByLevel(Level level) {
         List<Mission> missionList = new ArrayList<>();
         for (Mission mission : missions) {

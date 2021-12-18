@@ -7,8 +7,6 @@ public class PairHistoryRepository {
 
     private static final List<PairHistory> histories = new ArrayList<>();
 
-    public static List<PairHistory> getHistories() { return histories; }
-
     public static List<PairHistory> getHistoriesByLevel(Level level) {
         List<PairHistory> levelHistories = new ArrayList<>();
         for (PairHistory history : histories) {
