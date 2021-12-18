@@ -6,9 +6,7 @@ import pairmatching.course.StoreMission;
 import pairmatching.crew.CrewController;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import static pairmatching.course.Course.*;
 
@@ -84,26 +82,13 @@ public class PlayController {
             backendMatching(inputArray);
         }
         if(inputArray[0].equals("프론트엔드")) {
-            frontendMatching(inputArray);
         }
     }
 
     public void backendMatching(String[] inputArray) {
         List<Level> back = BACKEND.getLevelList(); // 백엔드마다 레벨 리스트
         for(Level l : back) {
-            // 해당 레벨의 단계를 찾고
-            if(l.getName().equals(inputArray[1])) {
-                reallyMatching(inputArray[2], l.getMissionList());
-            }
+
         }
-    }
-
-    public void reallyMatching(String missionName, List<String, HashMap<String, ArrayList<String>>> missionList) {
-
-    }
-
-
-    public void fontendMatching(String[] inputArray) {
-        List<Level> front = FRONTEND.getLevelList(); // 프론트엔트마다 레벨 리스트
     }
 }
