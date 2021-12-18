@@ -7,6 +7,10 @@ public class MatchingOutputView {
     public static void seeMatchingResult(List<String> allMatched) {
         System.out.println();
         System.out.println("페어 매칭 결과입니다.");
+        if(allMatched.isEmpty()){
+            System.out.println("[ERROR] 없음");
+            return;
+        }
         for (String matching : allMatched) {
             System.out.println(matching);
         }
