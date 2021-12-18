@@ -11,6 +11,7 @@ import pairmatching.model.repository.PairMatchingRepository;
 
 public class PairService {
 
+	public static final String MATCHING_FAIL_MESSAGE = "[ERROR] 3회 시도까지 매칭이 성공 하지 않았습니다.";
 	CrewList crewList = new CrewList();
 
 	ArrayList<String> backCrewList = crewList.getBackendCrewList();
@@ -57,14 +58,30 @@ public class PairService {
 		if (split.length == 2) {
 			PairMatching pairMatching = new PairMatching(split[0].trim(), split[1].trim());
 
-			if (pairMatching.getCourse().equals("백엔드")) {
-				pairMatching.setPairList(makePairList(backCrewList));
-			}
-			if (pairMatching.getCourse().equals("프론트엔드")) {
-				pairMatching.setPairList(makePairList(frontCrewList));
-			}
+			int count = 0;
+			boolean rewindSwitch = true;
+			while (rewindSwitch) {
+				if (pairMatching.getCourse().equals("백엔드")) {
+					pairMatching.setPairList(makePairList(backCrewList));
+				}
+				if (pairMatching.getCourse().equals("프론트엔드")) {
+					pairMatching.setPairList(makePairList(frontCrewList));
+				}
 
-			///
+				boolean samePairInSameLevel = isSamePairInSameLevel(pairMatching);
+
+				if (samePairInSameLevel) {
+					count++;
+					if (count == 3) {
+						System.out.println(MATCHING_FAIL_MESSAGE);
+						return;
+					}
+				}
+
+				if (!samePairInSameLevel) {
+					rewindSwitch = false;
+				}
+			}
 
 			PairMatchingRepository.repo.add(pairMatching);
 		}
@@ -74,14 +91,30 @@ public class PairService {
 		if (split.length == 3) {
 			PairMatching pairMatching = new PairMatching(split[0].trim(), split[1].trim(), split[2].trim());
 
-			if (pairMatching.getCourse().equals("백엔드")) {
-				pairMatching.setPairList(makePairList(backCrewList));
-			}
-			if (pairMatching.getCourse().equals("프론트엔드")) {
-				pairMatching.setPairList(makePairList(frontCrewList));
-			}
+			int count = 0;
+			boolean rewindSwitch = true;
+			while (rewindSwitch) {
+				if (pairMatching.getCourse().equals("백엔드")) {
+					pairMatching.setPairList(makePairList(backCrewList));
+				}
+				if (pairMatching.getCourse().equals("프론트엔드")) {
+					pairMatching.setPairList(makePairList(frontCrewList));
+				}
 
-			///
+				boolean samePairInSameLevel = isSamePairInSameLevel(pairMatching);
+
+				if (samePairInSameLevel) {
+					count++;
+					if (count == 3) {
+						System.out.println(MATCHING_FAIL_MESSAGE);
+						return;
+					}
+				}
+
+				if (!samePairInSameLevel) {
+					rewindSwitch = false;
+				}
+			}
 
 			PairMatchingRepository.repo.add(pairMatching);
 		}
