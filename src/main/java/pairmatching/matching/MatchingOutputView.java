@@ -1,11 +1,16 @@
 package pairmatching.matching;
 
+import java.util.List;
+
 public class MatchingOutputView {
 
-    public static void seeMatchingResult() {
+    public static void seeMatchingResult(List<String> allMatched) {
         System.out.println();
         System.out.println("페어 매칭 결과입니다.");
         // 결과 출력
+        for (String matching : allMatched) {
+            System.out.println(matching);
+        }
         System.out.println();
     }
 
