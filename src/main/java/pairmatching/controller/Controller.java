@@ -12,21 +12,36 @@ import pairmatching.domain.Member;
 import pairmatching.domain.Mission;
 import pairmatching.service.MemberService;
 import pairmatching.service.MissionService;
+import pairmatching.util.MenuValidator;
+import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class Controller {
 	private final MemberService memberService = new MemberService();
 	private final MissionService missionService = new MissionService();
+	private final MenuController menuController = new MenuController();
 
 	public void run() {
+		inputMenu();
+
 		try {
 			initializeApplication();
 		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println("[ERROR] 파일 경로가 잘못되었습니다.");
+			OutputView.printExceptionMessage("파일 경로가 잘못되었습니다.");
 			return;
 		}
 		OutputView.printStatus(missionService);
+	}
+
+	private void inputMenu() {
+		try {
+			String input = InputView.inputMenu();
+			MenuValidator.isRightMenu(input);
+			menuController.run(input);
+		} catch (IllegalArgumentException e) {
+			OutputView.printExceptionMessage(e.getMessage());
+			inputMenu();
+		}
 	}
 
 	private void initializeApplication() throws IOException {
