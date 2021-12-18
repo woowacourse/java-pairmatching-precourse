@@ -25,7 +25,9 @@ public enum Mission {
                 returnString += (mission.name + " | ");
             }
         }
-        returnString.substring(0, returnString.length()-2);
+        if(!returnString.equals("")){
+            returnString.substring(0, returnString.length()-3);
+        }
         return returnString;
     }
 
