@@ -37,7 +37,7 @@ public class FunctionInputChecker {
     private static void checkExistFunction(String input) throws IllegalArgumentException{
 
         for(String symbol : StringConstant.FUNCTION_SYMBOL){
-            if(symbol == input){
+            if(symbol.equals(input)){
                 return;
             }
         }
