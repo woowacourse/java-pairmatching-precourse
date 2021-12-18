@@ -20,4 +20,9 @@ public class InputView {
     private static void emptyLine() {
         System.out.println();
     }
+
+    public static String printProcessLevelMissionSelection() {
+        System.out.println("과정, 레벨, 미션을 선택하세요.");
+        return readLine();
+    }
 }
