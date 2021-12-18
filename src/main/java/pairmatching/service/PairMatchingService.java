@@ -36,6 +36,7 @@ public class PairMatchingService {
         while (isRunning) {
             showBackgroundInfo();
             String optionsInput = requestPairMatchingOptionsInput();
+
             MatchResult existingResult = MatchResultRepository.getMatchResultByOptions(optionsInput);
             if (!confirmPostNewMatchResult(existingResult)) break;
             isRunning = postMatchResultWithOptions(optionsInput);
@@ -86,7 +87,7 @@ public class PairMatchingService {
     }
 
     public boolean confirmPostNewMatchResult(MatchResult existingResult) {
-        if (existingResult != null) return true;
+        if (existingResult == null) return true;
         while(true) {
             try {
                 String userChoice = requestNewMatchInput();
