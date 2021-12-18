@@ -19,6 +19,8 @@ public class PairService {
     }
 
     public List<Pair> makePairs(PairTag pairTag) {
+        PairRepository.clear(pairTag);
+
         List<Pair> result = null;
         int count = 0;
 
@@ -98,4 +100,7 @@ public class PairService {
     }
 
 
+    public boolean isRegistered(PairTag pairTag) {
+        return PairRepository.hasPairs(pairTag);
+    }
 }

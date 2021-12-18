@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class PairRepository {
 
@@ -28,5 +27,9 @@ public class PairRepository {
 
     public static void save(PairTag pairTag, List<Pair> result) {
         store.put(pairTag, result);
+    }
+
+    public static void clear(PairTag pairTag) {
+        store.remove(pairTag);
     }
 }

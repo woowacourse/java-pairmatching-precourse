@@ -4,6 +4,7 @@ import pairmatching.domain.Course;
 import pairmatching.domain.pair.Pair;
 import pairmatching.domain.pair.PairService;
 import pairmatching.domain.pair.PairTag;
+import pairmatching.view.RematchMenu;
 import pairmatching.view.View;
 import pairmatching.view.Menu;
 
@@ -40,6 +41,14 @@ public class PairMatchingController {
         if (menu == Menu.PAIR_MATCHING) {
             View.printBoard();
             PairTag pairTag = View.getPairTag();
+
+            if (pairService.isRegistered(pairTag)) {
+                RematchMenu rematchMenu = View.getClearOrContinue();
+                if (rematchMenu == RematchMenu.NO_OP) {
+                    return;
+                }
+            }
+
             List<Pair> pairs = pairService.makePairs(pairTag);
             View.printParis(pairs);
 

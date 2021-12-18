@@ -110,4 +110,18 @@ public class View {
             System.out.println(resultString);
         }
     }
+
+    public static RematchMenu getClearOrContinue() {
+        try {
+            System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
+            String exampleString = Arrays.stream(RematchMenu.values())
+                    .map(RematchMenu::getSymbol)
+                    .collect(Collectors.joining(MENU_DELIMITER));
+            System.out.println(exampleString);
+            return RematchMenu.of(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getClearOrContinue();
+        }
+    }
 }
