@@ -32,10 +32,12 @@ public class OutputView {
     public static void printResult(Pairs pairs) {
         if (pairs == null || pairs.getPairList().isEmpty()) {
             System.out.println(PRINT_MATCHING_RESULT_NOT_EXIST);
+            printLineBreak();
             return;
         }
         System.out.println(PRINT_MATCHING_RESULT);
         pairs.getPairList().forEach(pair -> System.out.println(pair));
+        printLineBreak();
     }
 
     public static void printResetAll() {
