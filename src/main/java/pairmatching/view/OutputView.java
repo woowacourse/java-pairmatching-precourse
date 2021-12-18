@@ -33,6 +33,7 @@ public class OutputView {
 		if (pairs.isEmpty()) {
 			System.out.println(Constant.ERROR + Constant.NO_PAIR_MESSAGE);
 		}
+
 		for (Pair pair : pairs) {
 			System.out.println(pair.getCrews()
 				.stream()

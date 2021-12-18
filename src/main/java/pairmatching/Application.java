@@ -1,10 +1,11 @@
 package pairmatching;
 
-import pairmatching.domain.Mission;
-import pairmatching.view.InputView;
+import pairmatching.controller.PairmatchingController;
 
 public class Application {
-    public static void main(String[] args) {
-        // TODO 구현 진행
-    }
+	public static void main(String[] args) {
+		// TODO 구현 진행
+		PairmatchingController pairmatchingController = new PairmatchingController();
+		pairmatchingController.run();
+	}
 }
