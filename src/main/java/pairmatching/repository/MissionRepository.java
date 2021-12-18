@@ -17,10 +17,11 @@ public class MissionRepository {
 	}
 
 	public static boolean existLevel(String level) {
-		return missions.keySet().contains(level);
+		return missions.keySet().contains(Level.nameToLevel(level));
 	}
 
 	public static boolean existMission(String level, String mission) {
-		return missions.get(level).contains(mission);
+		List<String> missionsByLevel = MissionRepository.missions.get(Level.nameToLevel(level));
+		return missionsByLevel.contains(mission);
 	}
 }
