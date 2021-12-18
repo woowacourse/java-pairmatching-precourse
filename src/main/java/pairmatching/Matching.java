@@ -19,6 +19,7 @@ public class Matching {
     public boolean checkActionNumber(String actionNumber) {
         if (actionNumber.equals("1")) {
             matchFunctionInCommon();
+            OutputView.printPairResult(pairList);
         }
         if (actionNumber.equals("2")) {
             matchFunctionInCommon();

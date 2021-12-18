@@ -1,7 +1,10 @@
 package pairmatching;
 
+import java.util.ArrayList;
+
 public class OutputView {
     public static String DASH_LINE = "#############################################";
+    public static String PRINT_PAIR_RESULT_MESSAGE = "페어 매칭 결과입니다.";
 
     public static void outputActions() {
         System.out.println("기능을 선택하세요.");
@@ -19,5 +22,17 @@ public class OutputView {
             System.out.println(Level.getMissionsByLevel(level.getMissionNumber()));
         }
         System.out.println(DASH_LINE);
+    }
+
+    public static void printPairResult(ArrayList<Pair> pairList) {
+        System.out.println(PRINT_PAIR_RESULT_MESSAGE);
+        for (Pair pair : pairList) {
+            if (!pair.isCrew3Empty()) {
+                System.out.println(pair.getCrew1() + " : " + pair.getCrew2() + " : " +pair.getCrew3());
+            }
+            if (pair.isCrew3Empty()) {
+                System.out.println(pair.getCrew1() + " : " + pair.getCrew2());
+            }
+        }
     }
 }
