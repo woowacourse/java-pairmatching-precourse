@@ -3,17 +3,15 @@ package pairmatching.domain.command;
 import java.util.Arrays;
 
 public enum MainCommand {
-    MATCHING("1", "페어 매칭"),
-    FIND("2", "페어 조회"),
-    INIT("3", "페어 초기화"),
-    EXIT("Q", "종료");
+    MATCHING("1"),
+    FIND("2"),
+    INIT("3"),
+    EXIT("Q");
 
     private final String command;
-    private final String description;
 
-    MainCommand(final String command, final String description) {
+    MainCommand(final String command) {
         this.command = command;
-        this.description = description;
     }
 
     public static MainCommand parseMainCommand(String inputCommand) {
