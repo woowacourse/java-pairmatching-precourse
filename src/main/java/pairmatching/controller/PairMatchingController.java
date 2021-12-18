@@ -49,7 +49,7 @@ public class PairMatchingController {
 		} else if (function == PairMatchingType.VIEW.getNumber()) {
 			viewPairMatching();
 		} else if (function == PairMatchingType.RESET.getNumber()) {
-			// TODO: 초기화
+			reset();
 		}
 		selectFunction();
 	}
@@ -93,5 +93,10 @@ public class PairMatchingController {
 		// TODO: 해당 매칭 정보가 없다는 에러 문구
 		selectFunction();
 		return;
+	}
+
+	private void reset() {
+		pairMatching.reset();
+		printReset();
 	}
 }

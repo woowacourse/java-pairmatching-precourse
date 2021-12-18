@@ -22,7 +22,9 @@ public enum Notice {
 
 	REMATCH("매칭 정보가 있습니다. 다시 매칭하시겠습니까?"),
 
-	MATCHING_RESULT("페어 매칭 결과입니다.");
+	MATCHING_RESULT("페어 매칭 결과입니다."),
+
+	RESET("초기화 되었습니다.");
 
 	private String string;
 

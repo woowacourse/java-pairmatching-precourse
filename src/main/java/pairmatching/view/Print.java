@@ -22,6 +22,7 @@ public class Print {
 	}
 
 	public static void printSelectFunction() {
+		System.out.println();
 		System.out.println(Notice.SELECT_FUNCTION.getString());
 	}
 
@@ -55,9 +56,15 @@ public class Print {
 	}
 
 	public static void printPairMatching(ArrayList<ArrayList<String>> crews) {
+		System.out.println();
 		System.out.println(Notice.MATCHING_RESULT.getString());
 		for (ArrayList<String> pair : crews) {
 			System.out.println(String.join(Notice.PAIR_IS.getString(), pair));
 		}
+	}
+
+	public static void printReset() {
+		System.out.println();
+		System.out.println(Notice.RESET.getString());
 	}
 }

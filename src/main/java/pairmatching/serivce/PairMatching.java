@@ -73,4 +73,8 @@ public class PairMatching {
 			}
 		}
 	}
+
+	public void reset() {
+		matchings = new ArrayList<>();
+	}
 }
