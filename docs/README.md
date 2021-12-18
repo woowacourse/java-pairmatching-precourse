@@ -43,6 +43,7 @@
 ### view
    1. InputView
    2. OutputView
+   3. ErrorView
 
 ### controller
    1. PairMatchingController
@@ -54,3 +55,7 @@
       1. 코스, 레벨, 미션 입력 유효성 검사
 
 ### constants
+   1. Constants
+   2. ErrorMsg
+   3. InputMsg
+   4. OutputMsg
