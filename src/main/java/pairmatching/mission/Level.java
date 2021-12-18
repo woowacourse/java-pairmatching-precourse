@@ -23,9 +23,16 @@ public enum Level {
         return name;
     }
 
-    public Level of(int level) {
+    public static Level of(int level) {
         return Arrays.stream(Level.values())
             .filter(l -> l.level == level)
+            .findAny()
+            .orElseThrow(() -> new IllegalArgumentException(NO_LEVEL));
+    }
+
+    public static Level of(String name) {
+        return Arrays.stream(Level.values())
+            .filter(l -> l.name.equals(name))
             .findAny()
             .orElseThrow(() -> new IllegalArgumentException(NO_LEVEL));
     }

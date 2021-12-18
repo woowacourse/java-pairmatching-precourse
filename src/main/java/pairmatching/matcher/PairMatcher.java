@@ -21,8 +21,9 @@ public class PairMatcher {
     public void matchPairs(Mission mission, List<Crew> crews, Position position) {
         List<Mission> missions = MissionRepository.findByLevel(mission.getLevel());
         missions.removeIf(m -> m.getName().equals(mission.getName()));
-        while (!crews.isEmpty()) {
-            if (!match(missions, mission, crews, position)) {
+        List<Crew> copied = new ArrayList<>(crews);
+        while (!copied.isEmpty()) {
+            if (!match(missions, mission, copied, position)) {
                 throw new IllegalArgumentException(ERR_MATCH_UNAVAILABLE);
             }
         }
@@ -31,13 +32,14 @@ public class PairMatcher {
     private boolean match(List<Mission> missions, Mission mission, List<Crew> crews,
         Position position) {
         for (int i = 0; i < MAX_TRY; i++) {
+            List<Crew> picked = pickCrew(crews);
             try {
-                List<Crew> picked = pickCrew(crews);
                 Pair pair = new Pair(position, picked);
                 validateNeverMatched(pair, missions);
                 mission.registerPair(pair);
                 return true;
             } catch (IllegalArgumentException ignore) {
+                crews.addAll(picked);
                 Randoms.shuffle(crews);
             }
         }
@@ -63,6 +65,6 @@ public class PairMatcher {
     }
 
     private boolean isOdd(int count) {
-        return count % EVEN == 1;
+        return count % EVEN != 0;
     }
 }

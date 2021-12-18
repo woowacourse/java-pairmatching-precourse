@@ -1,6 +1,7 @@
 package pairmatching.mission;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 import pairmatching.crew.Position;
 import pairmatching.pair.BackEndPair;
 import pairmatching.pair.FrontEdnPair;
@@ -8,6 +9,7 @@ import pairmatching.pair.Pair;
 
 public class Mission {
 
+    private static final String LINE_BREAK = "\n";
     private final Level level;
     private final String name;
     private final BackEndPair backEndPair = new BackEndPair(this);
@@ -58,5 +60,11 @@ public class Mission {
             return backEndPair.pairs();
         }
         return frontEdnPair.pairs();
+    }
+
+    public String getMatchedResult(Position position) {
+        return getMatchedPair(position).stream()
+            .map(Pair::getMatching)
+            .collect(Collectors.joining(LINE_BREAK));
     }
 }
