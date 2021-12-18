@@ -81,4 +81,11 @@ public class OutputView {
 		}
 		return pairs.toString();
 	}
+
+	public static void printPairs(Pairs pairs, int count) {
+		if (count < 3) {
+			System.out.println(pairs);
+		}
+		System.out.println("[ERROR] 3회 이상 매칭을 시도했습니다.");
+	}
 }

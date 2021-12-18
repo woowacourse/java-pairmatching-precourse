@@ -45,35 +45,33 @@ public class MainController {
 		String mission = stringTokenizer.nextToken();
 
 		if (course.equals(Course.BACKEND.getName())) {
-			Pairs pairs = makeBackRandomPair(mission, INIT_COUNT);
-			System.out.println(pairs);
+			makeBackRandomPairAndPrint(mission, INIT_COUNT);
 		}
 
 		if (course.equals(Course.FRONTEND.getName())) {
-			Pairs pairs = makeFrontRandomPair(mission, INIT_COUNT);
-			System.out.println(pairs);
+			makeFrontRandomPairAndPrint(mission, INIT_COUNT);
 		}
 		run();
 	}
 
-	private Pairs makeBackRandomPair(String mission, int count) {
+	private void makeBackRandomPairAndPrint(String mission, int count) {
 		Pairs pairs = PairService.makeBackPairs(mission);
 		if (pairs.equals(null) && count < 3) {
 			if (InputView.requestTry()) {
-				makeBackRandomPair(mission, count++);
+				makeBackRandomPairAndPrint(mission, count++);
 			}
 		}
-		return pairs;
+		OutputView.printPairs(pairs, count);
 	}
 
-	private Pairs makeFrontRandomPair(String mission, int count) {
+	private void makeFrontRandomPairAndPrint(String mission, int count) {
 		Pairs pairs = PairService.makeFrontPairs(mission);
 		if (pairs.equals(null) && count < 3) {
 			if (InputView.requestTry()) {
-				makeFrontRandomPair(mission, count++);
+				makeFrontRandomPairAndPrint(mission, count++);
 			}
 		}
-		return pairs;
+		OutputView.printPairs(pairs, count);
 	}
 
 	private void searchPair() {
