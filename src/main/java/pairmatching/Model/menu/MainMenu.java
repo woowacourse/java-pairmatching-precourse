@@ -5,22 +5,25 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import pairmatching.Controller.Controller;
 import pairmatching.Controller.MainController;
+import pairmatching.Controller.subcontroller.InquiryController;
+import pairmatching.Controller.subcontroller.MatchingController;
 
 public enum MainMenu {
-	PAIR_MATCHING("1", "1. 페어 매칭", MainController::matchingPair),
-	PAIR_INQUIRY("2", "2. 페어 조회", MainController::inquiryPair),
+	PAIR_MATCHING("1", "1. 페어 매칭", new MatchingController()),
+	PAIR_INQUIRY("2", "2. 페어 조회", new InquiryController()),
 	PAIR_RESET("3", "3. 페어 초기화", MainController::resetPair),
 	QUIT("Q", "Q. 종료", null);
 
 	private String button;
 	private String menu;
-	private Runnable runnable;
+	private Controller controller;
 
-	MainMenu(String button, String menu, Runnable runnable) {
+	MainMenu(String button, String menu, Controller controller) {
 		this.button = button;
 		this.menu = menu;
-		this.runnable = runnable;
+		this.controller = controller;
 	}
 
 	public static List<String> list() {
@@ -46,7 +49,7 @@ public enum MainMenu {
 	}
 
 	public void start() {
-		this.runnable.run();
+		this.controller.run();
 	}
 
 }

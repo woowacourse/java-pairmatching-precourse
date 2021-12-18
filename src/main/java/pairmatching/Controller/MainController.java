@@ -39,13 +39,6 @@ public class MainController implements Controller {
 		}
 	}
 
-	public static void matchingPair() {
-		OutputView.printMessage(matchingService.printCourseAndLevelInfo());
-	}
-
-	public static void inquiryPair() {
-		System.out.println("inquiryPair");
-	}
 
 	public static void resetPair() {
 		System.out.println("resetPair");
