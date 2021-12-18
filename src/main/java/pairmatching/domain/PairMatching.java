@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.constant.Course;
 import pairmatching.constant.Level;
 import pairmatching.constant.Mission;
@@ -53,12 +54,16 @@ public class PairMatching {
 
 	public void setMatchingResult(Course course, Matching matching) {
 		if (course == Course.BACKEND) {
-			matching.setBackResult(crewNameMap.get(course));
+			matching.setBackResult(shuffle(course));
 		}
 		if (course == Course.FRONTEND) {
 			matching.setFrontResult(crewNameMap.get(course));
 
 		}
+	}
+
+	private List<String> shuffle(Course course) {
+		return Randoms.shuffle(crewNameMap.get(course));
 	}
 
 	public List<List<String>> getMatchingResult(Course course, Matching matching) {
