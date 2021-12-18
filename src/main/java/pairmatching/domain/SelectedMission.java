@@ -27,6 +27,10 @@ public class SelectedMission {
 		return Input.readFrontendCrewName();
 	}
 
+	public boolean isSameLevel(SelectedMission mission) {
+		return mission.level == level;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {
