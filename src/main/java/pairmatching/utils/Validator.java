@@ -40,7 +40,7 @@ public class Validator {
 
 		validateCourse(course);
 		validateLevel(level);
-		validateMission(mission);
+		validateMission(mission, level);
 	}
 
 	private static void validateInfoCounts(String[] information) {
@@ -61,8 +61,8 @@ public class Validator {
 		}
 	}
 
-	private static void validateMission(String mission) {
-		if (mission.equals("") || !Levels.getInstance().contains(mission)) {
+	private static void validateMission(String mission, String level) {
+		if (mission.equals("") || !Levels.getInstance().getLevel(level).contains(mission)) {
 			throw new IllegalArgumentException(INVALID_MISSION);
 		}
 	}

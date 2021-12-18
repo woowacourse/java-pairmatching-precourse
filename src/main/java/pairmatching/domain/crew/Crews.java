@@ -34,18 +34,21 @@ public class Crews {
 		shuffledCrews = Randoms.shuffle(crewNames);
 	}
 
-	public Pair makePair() {
-		if (shuffledCrews.size() == MAX_CREWS) {
-			return new Pair(shuffledCrews);
+	public List<Pair> makePairs() {
+		int index = 0;
+		List<Pair> pairs = new ArrayList<>();
+		while (index < shuffledCrews.size()) {
+			List<String> pairCrews = new ArrayList<>();
+			pairCrews.add(shuffledCrews.get(index));
+			pairCrews.add(shuffledCrews.get(index + 1));
+			if (index == crewNames.size() - 3) {
+				pairCrews.add(shuffledCrews.get(index + 2));
+				pairs.add(new Pair(pairCrews));
+				return pairs;
+			}
+			pairs.add(new Pair(pairCrews));
+			index += 2;
 		}
-
-		List<String> pairCrews = new ArrayList<>();
-		pairCrews.add(shuffledCrews.remove(0));
-		pairCrews.add(shuffledCrews.remove(0));
-		return new Pair(pairCrews);
-	}
-
-	public boolean done() {
-		return shuffledCrews.size() == 0;
+		return pairs;
 	}
 }

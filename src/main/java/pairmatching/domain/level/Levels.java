@@ -1,6 +1,7 @@
 package pairmatching.domain.level;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Levels {
@@ -9,6 +10,8 @@ public class Levels {
 	private static final String[] LEVEL3_MISSIONS = {};
 	private static final String[] LEVEL4_MISSIONS = {"성능개선", "배포"};
 	private static final String[] LEVEL5_MISSIONS = {};
+
+	private static final String[] LEVEL_NAMES = {"레벨1", "레벨2", "레벨3", "레벨4", "레벨5"};
 
 	private final List<Level> levels = new ArrayList<>();
 
@@ -26,11 +29,7 @@ public class Levels {
 		return instance;
 	}
 
-	public boolean contains(String mission) {
-		return levels.stream().anyMatch(level -> level.contains(mission));
-	}
-
-	public Level getLevel(int level) {
-		return levels.get(level);
+	public Level getLevel(String level) {
+		return levels.get(Arrays.asList(LEVEL_NAMES).indexOf(level));
 	}
 }
