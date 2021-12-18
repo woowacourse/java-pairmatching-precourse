@@ -11,5 +11,6 @@ public class MainController {
     public void playGame() {
         Output.printFunctionSelection();
         String FunctionSelection = Input.inputFunctionSelection();
+        Output.printMissionAndProcess();
     }
 }
