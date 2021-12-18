@@ -30,7 +30,10 @@ public class InputConverter {
 		pairValidator.validateCourse(course);
 
 		Level level = Level.getByName(inputArray[1]);
+		pairValidator.validateLevel(level);
+
 		Mission mission = Mission.getByName(inputArray[2]);
+		pairValidator.validateMission(mission);
 
 		return new PairInfo(course, mission);
 	}
