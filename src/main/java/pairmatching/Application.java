@@ -15,26 +15,22 @@ public class Application {
 	}
 
 	public static void main(String[] args) {
-		// TODO 구현 진행
 		Application app = AppConfig.getApplication();
 		app.run();
 	}
 
 	private void run() {
-		while (true) {
-			String input = viewManager.input(new ApplicationInputView());
-			ControllerType controllerType;
-			try {
-				controllerType = ControllerType.of(input);
-				execute(controllerType);
-			} catch (IllegalArgumentException e) {
-				viewManager.error(new CommonErrorView(e.getMessage()));
-				continue;
-			}
+		String input = viewManager.input(new ApplicationInputView());
+		try {
+			ControllerType controllerType = ControllerType.of(input);
 			if (ControllerType.QUIT.equals(controllerType)) {
-				break;
+				return;
 			}
+			execute(controllerType);
+		} catch (IllegalArgumentException e) {
+			viewManager.error(new CommonErrorView(e.getMessage()));
 		}
+		run();
 	}
 
 	private void execute(ControllerType controllerType) {
