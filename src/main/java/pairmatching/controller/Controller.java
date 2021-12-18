@@ -103,16 +103,25 @@ public class Controller {
             userInput = InputView.selectCLMMenu();
             inputValidator.CLM(userInput);
             CLM clm = new CLM(splitCLM(userInput));
-            if (!checkFairMatchKey(clm) || fairMatch.get(clm).isEmpty()) {
+            if (checkFairMatchKey(clm)) {
+                OutputView.printFairMatchingResult(findFairMatch(clm));
+            } else {
                 OutputView.printWrongCLM();
                 fairLookUpFunction();
-            } else {
-                OutputView.printFairMatchingResult(fairMatch.get(clm));
             }
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMsg(e);
             fairLookUpFunction();
         }
+    }
+
+    private static List<String> findFairMatch(CLM clm) {
+        for (CLM key : fairMatch.keySet()) {
+            if (clm.isSame(key, clm)) {
+                return fairMatch.get(key);
+            }
+        }
+        return fairMatch.get(clm);
     }
 
     private static void fairInitFunction() {

@@ -18,7 +18,7 @@ public class OutputView {
     }
 
     public static void printWrongCLM() {
-        System.out.println();
+        System.out.println(WRONG_CLM_KEY);
     }
 
     public static void printfairInitMsg() {
