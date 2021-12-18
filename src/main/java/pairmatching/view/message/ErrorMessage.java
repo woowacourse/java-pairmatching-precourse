@@ -11,7 +11,9 @@ public enum ErrorMessage {
 
     ERROR_CANNOT_MATCH_ANY_MORE("[ERROR] 더이상 해당 조건으로 매칭할 수 없습니다."),
     ERROR_CANNOT_MATCH("[ERROR] 해당 조건으로 매칭할 수 없습니다."),
-    ERROR_NO_MATCHING_HISTORY("[ERROR] 매칭 이력이 없습니다.");
+    ERROR_NO_MATCHING_HISTORY("[ERROR] 매칭 이력이 없습니다."),
+
+    ERROR_CANNOT_READ_FILE("[ERROR] 파일을 읽는 중 오류가 발생하였습니다.");
 
     private final String message;
 
