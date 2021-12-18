@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import pairmatching.constant.LevelAndMission;
-import pairmatching.domain.Match;
 import pairmatching.dto.ChoiceDto;
 
 public class InputValidator {
@@ -16,6 +15,7 @@ public class InputValidator {
 	public static final String INVALID_NOT_FOUND_MISSIONS = ERROR_PREFIX + "존재하지 않는 미션입니다";
 
 	public static final List<String> ENTRY_MENU_LIST = Arrays.asList("1", "2", "3", "Q");
+	public static final List<String> YES_OR_NO_LIST = Arrays.asList("예", "아니오");
 
 	public static void validateEntryMenu(String input) {
 		if (!ENTRY_MENU_LIST.contains(input)) {
@@ -42,4 +42,9 @@ public class InputValidator {
 		}
 	}
 
+	public static void validateMatchingAgain(String input) {
+		if (!YES_OR_NO_LIST.contains(input)) {
+			throw new IllegalArgumentException("'예' 혹은 '아니오' 만 입력 가능합니다.");
+		}
+	}
 }

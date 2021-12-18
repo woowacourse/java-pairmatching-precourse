@@ -8,6 +8,8 @@ import pairmatching.validator.InputValidator;
 
 public class InputView {
 
+	public static final String INPUT_MATCHING_AGAIN = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
+
 	public static String chooseEntryMenu() {
 		out.println(INPUT_ENTRY_MENU);
 		String input;
@@ -45,5 +47,18 @@ public class InputView {
 		String input = Console.readLine();
 		out.println();
 		return input;
+	}
+
+	public static String getMatchingAgain() {
+		while (true) {
+			try {
+				out.println(INPUT_MATCHING_AGAIN);
+				String input = Console.readLine();
+				InputValidator.validateMatchingAgain(input);
+				return input;
+			} catch (Exception e) {
+				out.println(e.getMessage());
+			}
+		}
 	}
 }

@@ -14,8 +14,9 @@ import pairmatching.view.OutputView;
 
 public class PairmatchingController {
 
+	public static final String INPUT_NO = "아니오";
 	private Map<String, Voider> mainChoiceMap = new LinkedHashMap<>();
-	private static PairmatchingService pairmatchingService = new PairmatchingService() ;
+	private static PairmatchingService pairmatchingService = new PairmatchingService();
 
 	{
 		mainChoiceMap.put("1", PairmatchingController::toMatching);
@@ -35,6 +36,13 @@ public class PairmatchingController {
 	private static void toMatching() {
 		String input = InputView.inputMatching();
 		ChoiceDto choiceDto = new ChoiceDto(input);
+		PairMatch findPairMatch = pairmatchingService.retrievePairs(choiceDto);
+		if (findPairMatch != null) {
+			String inputMatchingAgain = InputView.getMatchingAgain();
+			if (inputMatchingAgain.equals(INPUT_NO)) {
+				return;
+			}
+		}
 		PairMatch lastPairMatch = pairmatchingService.makePairs(choiceDto);
 		OutputView.outputPairMatchingResult(lastPairMatch);
 	}
@@ -55,6 +63,6 @@ public class PairmatchingController {
 	 * 종료: 아무것도 하지 않습니다
 	 */
 	private static void toExit() {
-		
+
 	}
 }
