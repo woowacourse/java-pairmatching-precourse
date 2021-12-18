@@ -1,8 +1,7 @@
 package pairmatching.controller;
 
-import java.util.Arrays;
+import java.util.List;
 
-import pairmatching.domain.Course;
 import pairmatching.domain.TechCourse;
 import pairmatching.util.InputValidator;
 import pairmatching.view.InputView;
@@ -20,7 +19,8 @@ public class PairMatchingController {
 		while (true) {
 			String mainCommend = getMainCommend();
 			if (mainCommend.equals(MATCH_PAIR)) {
-				matchPair(techCourse);
+				List<String> crewList = matchPair(techCourse);
+				OutputView.showCrewList(crewList);
 			}
 			if (mainCommend.equals(LOOKUP_PAIR)) {
 				// lookUpPair();
@@ -34,13 +34,13 @@ public class PairMatchingController {
 		}
 	}
 
-	private void matchPair(TechCourse techCourse) {
+	private List<String> matchPair(TechCourse techCourse) {
 		String mission = InputView.inputMission();
 		try {
-			techCourse.matchPair(mission);
+			return techCourse.matchPair(mission);
 		} catch (IllegalArgumentException e) {
 			OutputView.showError(e.getMessage());
-			matchPair(techCourse);
+			return matchPair(techCourse);
 		}
 	}
 
