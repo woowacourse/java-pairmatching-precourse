@@ -1,14 +1,13 @@
 package pairmatching.model.matching;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import pairmatching.model.crew.*;
 
 import static camp.nextstep.edu.missionutils.Randoms.shuffle;
 
 public class MatchingSystem {
-    private final List<MatchingHistory> matchingHistories = new ArrayList<>();
+    private final Set<MatchingHistory> matchingHistories = new HashSet<>();
 
     public boolean isMatchedBefore(List<String> courseAndLevelAndMission) {
         Course course = Course.of(courseAndLevelAndMission.get(0));
