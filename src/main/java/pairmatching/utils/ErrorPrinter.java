@@ -1,4 +1,4 @@
-package pairmatching.crew;
+package pairmatching.utils;
 
 public class ErrorPrinter {
 
