@@ -18,7 +18,7 @@ public class PairService {
 		PairRepository.reset();
 	}
 
-	public static void makeBackPairs(String mission) {
+	public static Pairs makeBackPairs(String mission) {
 		List<Crew> shuffleCrew = Randoms.shuffle(CrewRepository.backCrew);
 		Pairs pairs = null;
 		if (shuffleCrew.size() % 2 == 0) {
@@ -29,10 +29,12 @@ public class PairService {
 		}
 		if (PairRepository.validateBackPairs(mission, pairs)) {
 			PairRepository.addBackPairs(mission, pairs);
+			return pairs;
 		}
+		return null;
 	}
 
-	public static void makeFrontPairs(String mission) {
+	public static Pairs makeFrontPairs(String mission) {
 		List<Crew> shuffleCrew = Randoms.shuffle(CrewRepository.frontCrew);
 		Pairs pairs = null;
 		if (shuffleCrew.size() % 2 == 0) {
@@ -43,7 +45,9 @@ public class PairService {
 		}
 		if (PairRepository.validateFrontPairs(mission, pairs)) {
 			PairRepository.addFrontPairs(mission, pairs);
+			return pairs;
 		}
+		return null;
 	}
 
 	private static List<Pair> makePairsWhenEven(List<Crew> shuffleCrew) {

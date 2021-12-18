@@ -5,6 +5,7 @@ import java.util.List;
 
 import pairmatching.domain.Course;
 import pairmatching.domain.Level;
+import pairmatching.domain.Pairs;
 import pairmatching.repository.CourseRepository;
 import pairmatching.repository.MissionRepository;
 
@@ -70,5 +71,9 @@ public class OutputView {
 
 	public static void printResetPairs() {
 		System.out.println("\n" + RESET_PAIRS + "\n");
+	}
+
+	public static void printPairs(Pairs pairs) {
+
 	}
 }

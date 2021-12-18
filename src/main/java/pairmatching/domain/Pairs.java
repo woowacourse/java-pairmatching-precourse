@@ -16,4 +16,14 @@ public class Pairs {
 	public boolean contains(Pair pair) {
 		return pairs.contains(pair);
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("페어 매칭 결과입니다.").append("\n");
+		for (Pair pair : pairs) {
+			stringBuilder.append(pair.toString());
+		}
+		return stringBuilder.toString();
+	}
 }

@@ -17,7 +17,13 @@ public class PairRepository {
 	}
 
 	public static boolean validateBackPairs(String mission, Pairs pairs) {
+		if (backPairs.isEmpty()) {
+			return true;
+		}
 		List<Pairs> pairsList = backPairs.get(mission);
+		if (pairsList.isEmpty()) {
+			return true;
+		}
 		for (Pairs Source : pairsList) {
 			if (!checkEachPair(Source, pairs)) {
 				return false;
