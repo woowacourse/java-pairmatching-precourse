@@ -11,6 +11,7 @@ import pairmatching.domain.MissionRepository;
 import pairmatching.domain.crew.BackendCrewRepository;
 import pairmatching.domain.crew.Crew;
 import pairmatching.domain.crew.FrontendCrewRepository;
+import pairmatching.view.Input;
 import pairmatching.view.Output;
 
 public class MatchingController {
@@ -20,6 +21,9 @@ public class MatchingController {
 	static final int MAX_PAIR_UNIT = 3;
 
 	public static void run(Mission targetMission) {
+		if (!validateRematching(targetMission)) {
+			return;
+		}
 		for (int i = 0; i < MAX_TRIAL; i++) {
 			List<List<Crew>> pairs = matchingPairs(targetMission);
 			if(!validateSamePairs(targetMission, pairs)) {
@@ -30,6 +34,15 @@ public class MatchingController {
 			return;
 		}
 		throw new IllegalArgumentException(ERROR_NOT_MATCHING_FOR_THREE_TIMES);
+	}
+
+	private static boolean validateRematching(Mission targetMission) {
+		if (targetMission.isMatched()) {
+			Output.enterRematching();
+			String answer = Input.readLine();
+			return answer.equals(Option.YES.toString());
+		}
+		return true;
 	}
 
 	private static List<List<Crew>> matchingPairs(Mission mission) {

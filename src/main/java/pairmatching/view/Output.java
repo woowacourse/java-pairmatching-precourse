@@ -24,7 +24,8 @@ public class Output {
 		+ "############################################";
 	static final String ENTER_MISSION_INFO = "과정, 레벨, 미션을 선택하세요.\n"
 		+ "ex) 백엔드, 레벨1, 자동차경주";
-	static final String ENTER_REMATCHING = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
+	static final String ENTER_REMATCHING = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
+		+ "네 | 아니오";
 	static final String MATCHING_RESULT = "페어 매칭 결과입니다.";
 	static final String DONE_INIT = "초기화 되었습니다.";
 

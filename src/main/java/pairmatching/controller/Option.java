@@ -6,7 +6,9 @@ public enum Option {
 	MATCH("1"),
 	PRINT("2"),
 	INIT("3"),
-	QUIT("Q");
+	QUIT("Q"),
+	YES("예"),
+	NO("아니오");
 
 	private static final String ERROR_INVALID_OPTION = "잘못된 옵션입니다. 다시 입력해주세요.";
 	private final String value;
