@@ -1,5 +1,6 @@
 package pairmatching.service;
 
+import pairmatching.constant.Message;
 import pairmatching.model.PairMatching;
 import pairmatching.view.OptionView;
 
@@ -15,8 +16,12 @@ public class PairMatchingSerivce {
 	}
 
 	private PairMatching execute(PairMatching pairMatching) {
-		OptionView optionView = new OptionView();
-		pairMatching.executeOption(optionView.getInput());
+		try {
+			OptionView optionView = new OptionView();
+			pairMatching.executeOption(optionView.getInput());
+		} catch (IllegalArgumentException e) {
+			System.out.println(Message.ERROR + e.getMessage() + "\n");
+		}
 		return pairMatching;
 	}
 }

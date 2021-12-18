@@ -77,6 +77,7 @@ public class PairMatching {
 			return;
 		}
 
+		throw new IllegalArgumentException("없는 페어 매칭 정보입니다.");
 	}
 
 	public void initializePairListMap() {
