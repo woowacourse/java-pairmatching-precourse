@@ -88,4 +88,8 @@ public class PairMatchingService {
         }
         throw new IllegalArgumentException(LOGIC_ERROR);
     }
+
+    public boolean isAlreadyMatching(ProgramInfo programInfo) {
+        return programInfoRepository.hasProgramInfo(programInfo);
+    }
 }

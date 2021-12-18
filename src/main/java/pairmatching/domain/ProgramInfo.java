@@ -16,6 +16,7 @@ public class ProgramInfo {
         this.course = course;
         this.level = level;
         this.mission = mission;
+        pairs.clear();
     }
 
     public Course getCourse() {
@@ -27,7 +28,15 @@ public class ProgramInfo {
     }
 
     public boolean isMatch(Crew crew1, Crew crew2) {
-        return pairs.get(crew1).equals(crew2) || pairs.get(crew2).equals(crew1);
+        boolean result = false;
+        if (pairs.containsKey(crew1)) {
+            result = pairs.get(crew1).equals(crew2);
+        }
+        if (pairs.containsKey(crew2)) {
+            result = result || pairs.get(crew2).equals(crew1);
+        }
+
+        return result;
     }
 
     public void savePairs(List<Crew> shuffledCrews) {
@@ -42,6 +51,10 @@ public class ProgramInfo {
         for (Crew crew : pairs.keySet()) {
             System.out.println(crew+" : "+pairs.get(crew));
         }
+    }
+
+    public void clearPairs() {
+        pairs.clear();
     }
 
     @Override
