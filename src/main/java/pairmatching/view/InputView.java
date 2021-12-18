@@ -8,14 +8,15 @@ import static pairmatching.utils.InputConstants.OPTIONS;
 public class InputView {
     private final static Validator validator = new Validator();
 
-    public static void selectOption() {
+    public static String selectOption() {
         try {
             System.out.println(OPTIONS);
             String input = Console.readLine();
             validator.isValidOption(input);
+            return input;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            selectOption();
+            return selectOption();
         }
     }
 }
