@@ -8,12 +8,15 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import pairmatching.View.InputView;
 import pairmatching.domain.Crew;
 
 public class PairMatchingController {
+	private static final int ONE = 1;
+
 	private final InputView inputView;
 
 	public PairMatchingController() {
@@ -23,6 +26,18 @@ public class PairMatchingController {
 	public int scanFunctionNumber() {
 		return inputView.scanFunctionNumber();
 	}
+
+	public void matchFunction(int functionNumber) {
+		if (functionNumber == ONE) {
+			inputView.scanCourseAndLevelAndMission();
+		}
+	}
+
+	public void matchPair() {
+
+	}
+
+
 
 	public List<String> readBackendCrewNames() {
 		List<String> backendCrewNames = new ArrayList<>();
