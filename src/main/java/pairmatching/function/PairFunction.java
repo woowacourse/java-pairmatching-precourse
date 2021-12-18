@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import pairmatching.domain.CourseRepository;
-import pairmatching.domain.CrewPair;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -25,7 +24,7 @@ public enum PairFunction {
 				CourseRepository.makePair(informationList.get(0), informationList.get(1), informationList.get(2));
 				List<String> crewPairs = CourseRepository.getMatchingList(informationList.get(0), informationList.get(1), informationList.get(2));
 				OutputView.printCrewPairResult(crewPairs);
-
+				return;
 			}
 		}
 	},

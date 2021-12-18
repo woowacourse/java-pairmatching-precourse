@@ -2,8 +2,6 @@ package pairmatching.view;
 
 import java.util.List;
 
-import pairmatching.domain.CrewPair;
-
 public class OutputView {
 	public static void printCourseLevelMissionInformation() {
 		System.out.println("\n#############################################\n"
@@ -20,5 +18,6 @@ public class OutputView {
 	public static void printCrewPairResult(List<String> crewPairs) {
 		System.out.println("\n페어 매칭 결과입니다.");
 		crewPairs.forEach(System.out::println);
+		System.out.println();
 	}
 }
