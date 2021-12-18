@@ -13,7 +13,7 @@ public class Pair {
     List<String> crewNames;
     HashMap<String, String[]> alreadyMatched;
 
-    public Pair(Course course, Mission mission) throws IOException {
+    public Pair(Course course, Mission mission){
         this.course = course;
         this.mission = mission;
 
@@ -21,12 +21,16 @@ public class Pair {
         insertMatchedMap();
     }
 
-    private void shuffledCrew() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(course.getFileName()));
+    private void shuffledCrew(){
         crewNames = new ArrayList<>();
-        String line;
-        while((line = br.readLine())!=null) crewNames.add(line);
-        br.close();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(course.getFileName()));
+            String line;
+            while((line = br.readLine())!=null) crewNames.add(line);
+            br.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
 
         crewNames = Randoms.shuffle(crewNames);
     }
