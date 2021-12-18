@@ -12,13 +12,14 @@ public class OutputView {
     }
 
     public static String printExistPair() {
-        System.out.println("미챙 정보가 있습니다. 다시 매칭하시겠습니까?");
+        System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
         System.out.println("네 | 아니오");
 
         return Console.readLine();
     }
 
     public static String printFunctions() {
+        System.out.println("\n기능을 선택하세요.");
         System.out.println("1. 페어 매칭");
         System.out.println("2. 페어 조회");
         System.out.println("3. 페어 초기화");
