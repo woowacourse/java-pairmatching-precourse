@@ -23,12 +23,22 @@ public class Application {
 
         Command command = Command.init();
         runPairProgram(pairProgram);
+
     }
 
     private static void runPairProgram(PairProgram pairProgram) {
         Command command = inputCommand();
         if (command.isEndGame()) {
             return;
+        }
+        if (command.isMatching()) {
+
+        }
+        if (command.isSelect()) {
+            OutputView.printCurrentBoard(pairProgram.coures(), pairProgram.missions());
+        }
+        if (command.isInit()) {
+
         }
         runPairProgram(pairProgram);
     }

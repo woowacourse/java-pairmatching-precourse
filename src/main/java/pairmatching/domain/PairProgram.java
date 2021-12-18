@@ -3,6 +3,7 @@ package pairmatching.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import pairmatching.exception.OverMatchingException;
 
@@ -18,6 +19,14 @@ public class PairProgram {
 
     public static PairProgram createPairProgram(Crews crews) {
         return new PairProgram(crews, LevelMission.init());
+    }
+
+    public List<String> coures() {
+        return crews.courseNames();
+    }
+
+    public Map<Level, List<String>> missions() {
+        return levelMission.missions();
     }
 
     public void addMissions(Level level, List<String> missionNames) {

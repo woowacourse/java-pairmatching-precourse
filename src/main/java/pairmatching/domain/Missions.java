@@ -2,6 +2,7 @@ package pairmatching.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import pairmatching.exception.MissionNameDuplicateException;
 import pairmatching.exception.MissionNotFoundException;
 
@@ -15,6 +16,13 @@ public class Missions {
 
     public static Missions init() {
         return new Missions(new ArrayList<>());
+    }
+
+    public List<String> missionNames() {
+        return missions.stream()
+            .map(Mission::name)
+            .distinct()
+            .collect(Collectors.toList());
     }
 
     public void addWithMissionName(String name) {

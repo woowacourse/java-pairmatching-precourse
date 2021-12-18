@@ -19,4 +19,8 @@ public enum Level {
     public static List<Level> levels() {
         return Arrays.asList(values().clone());
     }
+
+    public String getName() {
+        return name;
+    }
 }

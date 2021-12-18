@@ -19,6 +19,10 @@ public class Mission {
         return new Mission(new ArrayList<>(), name, course);
     }
 
+    public String name() {
+        return name;
+    }
+
     public Course course() {
         return course;
     }

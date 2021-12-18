@@ -19,6 +19,14 @@ public class LevelMission {
         return new LevelMission(levelMissions);
     }
 
+    public Map<Level, List<String>> missions() {
+        Map<Level, List<String>> missions = new LinkedHashMap<>();
+        for (Level level : levelmissions.keySet()) {
+            missions.put(level, levelmissions.get(level).missionNames());
+        }
+        return missions;
+    }
+
     public void addMission(Level level, List<String> missionNames) {
         Missions missions = levelmissions.get(level);
         missionNames.forEach(missions::addWithMissionName);

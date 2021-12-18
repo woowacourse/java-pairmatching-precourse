@@ -39,6 +39,18 @@ public enum Command {
         return this == COMMAND_Q;
     }
 
+    public boolean isMatching() {
+        return this == COMMAND_1;
+    }
+
+    public boolean isSelect() {
+        return this == COMMAND_2;
+    }
+
+    public boolean isInit() {
+        return this == COMMAND_3;
+    }
+
     public String commandName() {
         return name;
     }

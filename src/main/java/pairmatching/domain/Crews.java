@@ -28,7 +28,7 @@ public class Crews {
     }
 
     public void addFrontEndCrews(List<String> names) {
-        addCrews(Course.BACKEND, names);
+        addCrews(Course.FRONTEND, names);
     }
 
     public List<Crew> crews(Course course) {
@@ -43,5 +43,13 @@ public class Crews {
             .filter(crew -> crew.equals(findCrew))
             .findFirst()
             .orElseThrow(CrewNotFoundException::new);
+    }
+
+    public List<String> courseNames() {
+        return crews.stream()
+            .map(Crew::course)
+            .map(Enum::name)
+            .distinct()
+            .collect(Collectors.toList());
     }
 }
