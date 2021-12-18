@@ -25,6 +25,7 @@ public class PairMatchingSearchView implements View {
 
 	@Override
 	public void printViewMessage() {
+		System.out.println();
 		System.out.println(SystemMessage.INFO_LINE);
 		String courseListString = Application.controller.getCourseListString();
 		System.out.println(SystemMessage.COURSE + courseListString);

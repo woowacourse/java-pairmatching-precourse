@@ -95,4 +95,8 @@ public class PairMatchingController {
 	public boolean isExistParam(MatchParams params) {
 		return pairRepository.isExistParam(params);
 	}
+
+	public void resetPairs() {
+		pairRepository.resetPairs();
+	}
 }

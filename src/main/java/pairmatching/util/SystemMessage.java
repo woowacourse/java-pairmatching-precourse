@@ -16,4 +16,5 @@ public class SystemMessage {
 	public static final String MATCHING_RESULT = "페어 매칭 결과입니다.";
 	public static final String CHECK_REMATCH = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
 		+ "네 | 아니오";
+	public static final String RESET = "초기화 되었습니다.";
 }

@@ -12,6 +12,7 @@ public class PairMatchingResultView implements View {
 
 	@Override
 	public void printViewMessage() {
+		System.out.println();
 		System.out.println(SystemMessage.MATCHING_RESULT);
 		String matchResult = Application.controller.getMatchResult();
 		System.out.println(matchResult);

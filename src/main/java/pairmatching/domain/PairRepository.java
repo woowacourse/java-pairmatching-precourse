@@ -35,4 +35,8 @@ public class PairRepository {
 
 		return false;
 	}
+
+	public void resetPairs() {
+		pairs.clear();
+	}
 }
