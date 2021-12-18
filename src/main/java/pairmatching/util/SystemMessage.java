@@ -24,4 +24,5 @@ public class SystemMessage {
 	public static final String EXIT = "프로그램을 종료합니다.";
 	public static final String NOT_EXIST_PAIR = "매칭 이력이 없습니다.";
 	public static final String ERROR_CANT_SHUFFLE = ERROR + " 같은 레벨에서 같은 페어가 겹칩니다.";
+	public static final String ERROR_NOT_YES_OR_NO = ERROR + " 예, 아니오로 입력해주세요.";
 }

@@ -10,6 +10,9 @@ import pairmatching.util.MissionInfoValidator;
 import pairmatching.util.SystemMessage;
 
 public class PairMatchingInputView implements View {
+	private static final String YES = "네";
+	private static final String NO = "아니오";
+
 	@Override
 	public void flow() {
 		List<String> params;
@@ -57,12 +60,12 @@ public class PairMatchingInputView implements View {
 	private boolean checkReMatch() {
 		System.out.println(SystemMessage.CHECK_REMATCH);
 		String answer = Console.readLine();
-		if (answer.equals("네"))
+		if (answer.equals(YES))
 			return true;
-		if (answer.equals("아니오"))
+		if (answer.equals(NO))
 			return false;
 
-		throw new IllegalArgumentException();
+		throw new IllegalArgumentException(SystemMessage.ERROR_NOT_YES_OR_NO);
 	}
 
 	private void pairMatchAndShowResult() {
