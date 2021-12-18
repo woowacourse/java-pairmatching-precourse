@@ -15,6 +15,7 @@ public class InputView {
 			System.out.println(FEATURE_MENU_MESSAGE);
 			System.out.println(FEATURE_MENU_LIST);
 			String userInput = Console.readLine();
+			OutputView.printNewLine();
 			try {
 				FeatureInputValidator.checkFeatureInput(userInput);
 				return userInput;
@@ -30,6 +31,7 @@ public class InputView {
 			System.out.println(INPUT_MENU_MESSAGE);
 			System.out.println(INPUT_MENU_EXAMPLE);
 			String userInput = Console.readLine();
+			OutputView.printNewLine();
 			try {
 				return PairBackgroundInfoValidator.checkInput(userInput);
 			} catch (IllegalArgumentException e) {
@@ -43,6 +45,7 @@ public class InputView {
 			System.out.println(DUPLICATE_MESSAGE);
 			System.out.println(DUPLICATE_OPTIONS);
 			String userInput = Console.readLine();
+			OutputView.printNewLine();
 			try {
 				ExistingPairValidator.checkInput(userInput);
 				return userInput;

@@ -34,6 +34,7 @@ public class OutputView {
 			System.out.print(pair.get(idx) + PAIR_COLON);
 		}
 		System.out.println(pair.get(idx));
+		printNewLine();
 	}
 
 	public static void printResetMessage() {
