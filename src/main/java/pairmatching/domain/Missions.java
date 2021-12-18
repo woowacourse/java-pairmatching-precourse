@@ -2,6 +2,7 @@ package pairmatching.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import pairmatching.exception.MissionNameDuplicateException;
 
 public class Missions {
 
@@ -13,5 +14,20 @@ public class Missions {
 
     public static Missions init() {
         return new Missions(new ArrayList<>());
+    }
+
+    public void addMission(Mission mission) {
+        checkSameMissionName(mission);
+        missions.add(mission);
+    }
+
+    private void checkSameMissionName(Mission mission) {
+        if (isContainMission(mission)) {
+            throw new MissionNameDuplicateException();
+        }
+    }
+
+    private boolean isContainMission(Mission mission) {
+        return missions.stream().anyMatch(mission1 -> mission1.equalsName(mission));
     }
 }

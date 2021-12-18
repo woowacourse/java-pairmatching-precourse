@@ -16,4 +16,8 @@ public class Mission {
     public static Mission createEmptyMission(String name) {
         return new Mission(new ArrayList<>(), name);
     }
+
+    public boolean equalsName(Mission mission) {
+        return this.name.equals(mission.name);
+    }
 }
