@@ -1,6 +1,7 @@
 package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.Configuration.DependencyInjection;
 import pairmatching.System.SystemErrorMessage;
 import pairmatching.System.SystemInputMessage;
 import pairmatching.validation.Validation;
@@ -11,8 +12,9 @@ public class InputSystem {
     private final OutputSystem outputSystem;
     private final Validation validation;
     private InputSystem() {
-        outputSystem = OutputSystem.getInstance();
-        validation = ValidationImplementation.getInstance();
+        DependencyInjection dependencyInjection = new DependencyInjection();
+        outputSystem = dependencyInjection.outputSystem();
+        validation = dependencyInjection.validation();
     }
 
     public static InputSystem getInstance() {

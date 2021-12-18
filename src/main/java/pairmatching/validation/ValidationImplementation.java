@@ -1,5 +1,6 @@
 package pairmatching.validation;
 
+import pairmatching.Configuration.DependencyInjection;
 import pairmatching.ConstantDataStore;
 import pairmatching.domain.Course;
 import pairmatching.domain.Level;
@@ -19,8 +20,8 @@ public class ValidationImplementation implements Validation {
 
     private final ConstantDataStore constantDataStore;
 
-    public ValidationImplementation() {
-        constantDataStore = ConstantDataStore.getInstance();
+    private ValidationImplementation() {
+        constantDataStore = new DependencyInjection().constantDataStore();
     }
 
     public static ValidationImplementation getInstance() {

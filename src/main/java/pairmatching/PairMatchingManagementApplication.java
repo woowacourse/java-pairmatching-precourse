@@ -2,6 +2,7 @@ package pairmatching;
 
 import java.util.*;
 
+import pairmatching.Configuration.DependencyInjection;
 import pairmatching.System.SystemErrorMessage;
 import pairmatching.System.SystemInputMessage;
 import pairmatching.domain.Crew;
@@ -31,11 +32,12 @@ public class PairMatchingManagementApplication {
     private Map<PropertyDto, String> matchingHistories;
 
     public PairMatchingManagementApplication() {
-        inputSystem = InputSystem.getInstance();
-        outputSystem = OutputSystem.getInstance();
-        constantDataStore = ConstantDataStore.getInstance();
-        matchingService = MatchingService.getInstance();
-        parsingUtility=ParsingUtility.getInstance();
+        DependencyInjection dependencyInjection = new DependencyInjection();
+        inputSystem = dependencyInjection.inputSystem();
+        outputSystem = dependencyInjection.outputSystem();
+        constantDataStore = dependencyInjection.constantDataStore();
+        matchingService = dependencyInjection.matchingService();
+        parsingUtility=dependencyInjection.parsingUtility();
         matchingHistories = new HashMap<>();
     }
 
