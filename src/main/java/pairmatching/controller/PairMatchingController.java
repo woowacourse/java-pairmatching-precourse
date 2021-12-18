@@ -16,6 +16,8 @@ import pairmatching.view.OutputView;
 
 public class PairMatchingController {
 
+	private static final String NO = "아니요";
+
 	private Map<PairMatching, Pair> pairMap;
 	private Crews crews;
 
@@ -67,7 +69,7 @@ public class PairMatchingController {
 		PairMatching matchingInformation = getPairMatchingInformation();
 		if (pairMap.containsKey(matchingInformation)) {
 			String yesOrNot = selectReMatchingOrPrint();
-			if (yesOrNot.equals("아니요")) {
+			if (yesOrNot.equals(NO)) {
 				pairMatching();
 			}
 		}

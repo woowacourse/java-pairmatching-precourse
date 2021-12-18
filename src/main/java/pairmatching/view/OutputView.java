@@ -28,6 +28,7 @@ public class OutputView {
 	private static final String FIND_PAIR_RESULT = "페어 매칭 결과입니다.";
 	private static final String DELIMITER = " : ";
 	private static final String INITIALIZE = "초기화 되었습니다.";
+	private static final String YES_OR_NO = "네 | 아니오";
 
 	public static void printInputMainMenu() {
 		System.out.println(SELECT_MENU);
@@ -57,6 +58,7 @@ public class OutputView {
 	public static void printReMatchingOrPrint() {
 		printNewLine();
 		System.out.println(REMATCHING_OR_PRINT);
+		System.out.println(YES_OR_NO);
 	}
 
 	public static void printResultFindPair() {
