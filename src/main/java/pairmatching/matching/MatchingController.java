@@ -37,20 +37,15 @@ public class MatchingController {
         return selectCourse;
     }
 
-    public List<String> makeListCourseInfo(){
-        return Arrays.asList(inputCourseByUser().split(", "));
-    }
 
-
-    public void startMatching() {
-        // 매칭 중복 확인로직
+    public void startMatching(String courseName) {
+        matchingService.hasDistinctMatching(courseName);
         // 매칭 로직
         // 결과보여주기
         MatchingOutputView.seeMatchingResult();
     }
 
-    public void seeMatchingInfo() {
-        List<String> courseInfo = makeListCourseInfo();
+    public void seeMatchingInfo(String courseName) {
         // 결과 보여주기
         MatchingOutputView.seeMatchingResult();
     }

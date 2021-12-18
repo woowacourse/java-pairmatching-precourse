@@ -22,10 +22,10 @@ public class PairMatching {
             return false;
         }
         if (input.equals("1")) {
-            matchingController.startMatching();
+            matchingController.startMatching(matchingController.inputCourseByUser());
         }
         if (input.equals("2")) {
-            matchingController.seeMatchingInfo();
+            matchingController.seeMatchingInfo(matchingController.inputCourseByUser());
         }
         if (input.equals("3")) {
             matchingController.resetMatching();
