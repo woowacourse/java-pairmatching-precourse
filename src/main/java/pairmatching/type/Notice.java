@@ -14,7 +14,12 @@ public enum Notice {
 		+ PairMatchingType.QUIT.getString() + ". 종료"),
 
 	WOOWACOURSE_COURSE_TITLE("과정: "),
-	WOOWACOURSE_MISSION_TITLE("미션:");
+	WOOWACOURSE_MISSION_TITLE("미션:"),
+
+	INPUT_PAIRMACHING("과정, 레벨, 미션을 선택하세요.\n"
+		+ "ex) 백엔드, 레벨1, 자동차경주"),
+
+	REMATCH("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
 
 	private String string;
 

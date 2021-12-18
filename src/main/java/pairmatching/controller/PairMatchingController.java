@@ -1,16 +1,30 @@
 package pairmatching.controller;
 
-import pairmatching.view.Print;
 import pairmatching.serivce.PairMatching;
 import pairmatching.type.PairMatchingType;
+import pairmatching.type.InputType;
 
 import static pairmatching.view.Input.*;
+import static pairmatching.view.Print.*;
+
+import java.util.HashMap;
 
 public class PairMatchingController {
 	private PairMatching pairMatching;
 
 	public PairMatchingController(PairMatching pairMatching) {
 		this.pairMatching = pairMatching;
+	}
+
+	private HashMap<String, String> setPairMatchingIntoHashMap(String stringOfPairMatching) {
+		String[] parirMatchings = stringOfPairMatching.split(InputType.SPLIT.getString());
+
+		HashMap<String, String> pairMatchingMap = new HashMap<>();
+		pairMatchingMap.put("course", parirMatchings[0]);
+		pairMatchingMap.put("level", parirMatchings[1]);
+		pairMatchingMap.put("mission", parirMatchings[2]);
+
+		return pairMatchingMap;
 	}
 
 	public void start() {
@@ -23,7 +37,7 @@ public class PairMatchingController {
 	}
 
 	private void selectFunction() {
-		Print.printSelectFunction();
+		printSelectFunction();
 		String input = inputFunction();
 		if (input.equalsIgnoreCase(PairMatchingType.QUIT.getString())) {
 			return;
@@ -41,6 +55,24 @@ public class PairMatchingController {
 	}
 
 	private void pairMatching() {
-		Print.printWoowaCourseInfo();
+		printWoowaCourseInfo();
+
+		String input = inputFunction();
+		HashMap<String, String> pairMatchingMap = setPairMatchingIntoHashMap(input);
+		if (!pairMatching.isAvailableMatch(pairMatchingMap)) {
+			checkRematch(pairMatchingMap);
+		}
+		pairMatching.match(pairMatchingMap);
+	}
+
+	private void checkRematch(HashMap<String, String> pairMatchingMap) {
+		printRematch();
+
+		String input = inputRestart();
+		if (input.equals(PairMatchingType.REMATCH.getString())) {
+			pairMatching.match(pairMatchingMap);
+			return;
+		}
+		selectFunction();
 	}
 }

@@ -10,4 +10,18 @@ public class Input {
 
 		return input;
 	}
+
+	public static String inputSetPairMatching() {
+		String input = readLine();
+		// TODO: 검증
+
+		return input;
+	}
+
+	public static String inputRestart() {
+		String input = readLine();
+		// TODO: 검증
+
+		return input;
+	}
 }

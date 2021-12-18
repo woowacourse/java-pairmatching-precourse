@@ -4,7 +4,9 @@ public enum PairMatchingType {
 	MATCH(1),
 	VIEW(2),
 	RESET(3),
-	QUIT("Q");
+	QUIT("Q"),
+	REMATCH("네"),
+	ENDMATCH("아니오");
 
 	private int number;
 	private String string;

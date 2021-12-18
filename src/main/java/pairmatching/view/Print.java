@@ -5,6 +5,7 @@ import pairmatching.model.Missions;
 import pairmatching.type.Notice;
 import pairmatching.type.Course;
 import pairmatching.type.Level;
+import pairmatching.type.PairMatchingType;
 
 public class Print {
 	private static Level[] levels = Level.values();
@@ -32,6 +33,8 @@ public class Print {
 			printWoowaCourseMission(level);
 		}
 		System.out.println(Notice.WOOWACOURSE_INFO_END.getString());
+
+		System.out.println(Notice.INPUT_PAIRMACHING.getString());
 	}
 
 	private static void printWoowaCourseMission(Level level) {
@@ -39,5 +42,12 @@ public class Print {
 
 		ArrayList<String> missions = Missions.missions.get(level);
 		System.out.println(String.join(Notice.WOOWACOURSE_INFO_SPLIT.getString(), missions));
+	}
+
+	public static void printRematch() {
+		System.out.println(Notice.REMATCH.getString());
+		System.out.print(PairMatchingType.REMATCH.getString());
+		System.out.print(Notice.WOOWACOURSE_INFO_SPLIT.getString());
+		System.out.println(PairMatchingType.ENDMATCH.getString());
 	}
 }
