@@ -11,6 +11,8 @@ public class InputView {
 		System.out.println(SELECT_FUNC_2);
 		System.out.println(SELECT_FUNC_3);
 		System.out.println(SELECT_FUNC_Q);
-		return Console.readLine();
+		String input = Console.readLine();
+		System.out.println();
+		return input;
 	}
 }

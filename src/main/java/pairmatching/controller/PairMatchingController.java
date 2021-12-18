@@ -21,7 +21,18 @@ public class PairMatchingController {
 	public void run() {
 		while (true) {
 			int selectFunc = requestSelectFunction();
-			System.out.println("selectFunc = " + selectFunc);
+			if (selectFunc == MATCHING_NUMBER) {
+				System.out.println("매칭");
+			}
+			if (selectFunc == LOOK_UP_NUMBER) {
+				System.out.println("조회");
+			}
+			if (selectFunc == RESET_NUMBER) {
+				System.out.println("초기화");
+			}
+			if (selectFunc == QUIT_NUMBER) {
+				break;
+			}
 		}
 	}
 
