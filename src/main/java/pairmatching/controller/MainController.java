@@ -1,6 +1,10 @@
 package pairmatching.controller;
 
+import java.util.Optional;
+
+import pairmatching.domain.Menu;
 import pairmatching.domain.Order;
+import pairmatching.domain.matcing.Matching;
 import pairmatching.domain.matcing.MatchingRepository;
 import pairmatching.view.OutputView;
 
@@ -29,7 +33,7 @@ public class MainController {
 
 	private void executeOrder(Order order) {
 		if (order.isMatching()) {
-			// TODO: 2021/12/18 matching
+			matching();
 		}
 
 		if (order.isSearch()) {
@@ -40,6 +44,16 @@ public class MainController {
 			matchingRepository.init();
 			OutputView.printInitMessage();
 		}
+	}
+
+	private void matching() {
+		Menu menu = viewController.returnMenu();
+		Optional<Matching> matching = matchingRepository.findMatching(menu);
+		if (matching.isPresent()) {
+			// TODO: 2021/12/18 ask re-matching
+		}
+
+		// TODO: 2021/12/18 matching
 	}
 
 }

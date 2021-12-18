@@ -19,7 +19,8 @@ public class SearchController {
 	public void search() {
 		Menu menu = viewController.returnMenu();
 		try {
-			Matching matching = matchingRepository.findMatching(menu);
+			Matching matching = matchingRepository.findMatching(menu)
+				.orElseThrow(() -> new IllegalArgumentException("매칭을 찾을 수 없습니다."));
 			printMatching(matching.getPairs());
 		} catch (IllegalArgumentException exception) {
 			printError(exception);
