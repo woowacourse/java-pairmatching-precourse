@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import pairmatching.constant.OutputConstant;
 
@@ -31,4 +32,18 @@ public class OutputView {
 
 	}
 
+	public void printEvenPair(ArrayList<ArrayList<String>> matchResult) {
+		for (ArrayList<String> item : matchResult) {
+			System.out.println(item.get(0) + " : " + item.get(1));
+		}
+
+	}
+
+	public void printPair(ArrayList<ArrayList<String>> matchResult) {
+		System.out.println("페어 매칭 결과입니다.");
+		for (ArrayList<String> item : matchResult) {
+			System.out.println(String.join(" : ", item));
+		}
+
+	}
 }

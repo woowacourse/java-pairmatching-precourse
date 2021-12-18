@@ -10,9 +10,11 @@ import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.validator.PairMatchingValidator;
+import pairmatching.view.OutputView;
 
 public class PairMatchingService {
 	PairMatchingValidator pairMatchingValidator = new PairMatchingValidator();
+	OutputView outputView = new OutputView();
 
 	public void start(String rawInfo) {
 		pairMatchingValidator.isValidInput(rawInfo);
@@ -39,33 +41,68 @@ public class PairMatchingService {
 
 	}
 
-	// public String[] save() {
-	//
-	// }
-
 	public void matchFrontEnd(String[] courseInfo) {
+		ArrayList<ArrayList<String>> matchResult;
 		List<String> crewNames = getFileItem(courseInfo[0]);
 		crewNames = shuffleCrews(crewNames);
-		System.out.println("프론트엔드 매칭");
+		if (crewNames.size() % 2 == 0) {
+			matchResult = matchEven(crewNames);
+			outputView.printPair(matchResult);
+			return;
+		}
+		matchResult = matchOdd(crewNames);
+		outputView.printPair(matchResult);
+		//matchOdd();
 
 	}
 
 	public void matchBackEnd(String[] courseInfo) {
+		ArrayList<ArrayList<String>> matchResult;
 		List<String> crewNames = getFileItem(courseInfo[0]);
 		crewNames = shuffleCrews(crewNames);
-		System.out.println("백엔드 매칭");
+		if (crewNames.size() % 2 == 0) {
+			matchResult = matchEven(crewNames);
+			outputView.printPair(matchResult);
+			return;
+		}
+		matchResult = matchOdd(crewNames);
+		System.out.println(matchResult);
+		outputView.printPair(matchResult);
 	}
 
-	// public List<String> shuffleFrontEnd(String[] courseInfo) {
-	// 	List<String> crewNames = getFileItem(courseInfo[0]); // 파일에서 로드한 크루 이름 목록
-	// 	List<String> shuffledCrew = Randoms.shuffle(crewNames);
-	// 	return shuffledCrew;
-	//}
+	public ArrayList<ArrayList<String>> matchEven(List<String> crewNames) {
+		ArrayList<ArrayList<String>> matchingInfo = new ArrayList<ArrayList<String>>();
+		for (int i = 0; i < crewNames.size(); i += 2) {
+			ArrayList<String> rowItems = new ArrayList<>();
+			for (int j = 0; j < 2; j++) {
+				rowItems.add(crewNames.get(i + j));
+			}
+			matchingInfo.add(rowItems);
+		}
+		return matchingInfo;
+	}
 
-	public List<String> shuffleCrews(List<String> crewNames){
+	public ArrayList<ArrayList<String>> matchOdd(List<String> crewNames) {
+
+		ArrayList<ArrayList<String>> matchingInfo = new ArrayList<ArrayList<String>>();
+		for (int i = 0; i < crewNames.size() - 3; i += 2) {
+			ArrayList<String> rowItems = new ArrayList<>();
+			for (int j = 0; j < 2; j++) {
+				rowItems.add(crewNames.get(i + j));
+			}
+			matchingInfo.add(rowItems);
+		}
+		ArrayList<String> rowItems = new ArrayList<>();
+		for (int i = crewNames.size() - 3; i < crewNames.size(); i++) {
+			rowItems.add(crewNames.get(i));
+		}
+		matchingInfo.add(rowItems);
+		return matchingInfo;
+	}
+
+	public List<String> shuffleCrews(List<String> crewNames) {
 		return Randoms.shuffle(crewNames);
 	}
-
 
 	public List<String> getFileItem(String courseName) {
 		String pathString = getPathString(courseName);
@@ -75,7 +112,6 @@ public class PairMatchingService {
 			String line;
 			while ((line = reader.readLine()) != null) {
 				crewNames.add(line);
-				System.out.println(line);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -89,6 +125,5 @@ public class PairMatchingService {
 		}
 		return "src/main/resources/frontend-crew.md";
 	}
-
 
 }
