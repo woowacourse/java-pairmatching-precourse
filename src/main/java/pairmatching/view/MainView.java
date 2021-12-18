@@ -1,5 +1,7 @@
 package pairmatching.view;
 
+import java.util.HashMap;
+import java.util.Map;
 import pairmatching.controller.PairMatchingController;
 import pairmatching.utils.ErrorPrinter;
 
@@ -42,10 +44,13 @@ public class MainView {
         + "프론트엔드, 레벨1, 자동차경주";
     private final String menuBoard;
     private final PairMatchingController controller;
+    private final MissionView missionView;
+    private final Map<String, Task> menu = new HashMap<>();
     private boolean exited = false;
 
     public MainView(PairMatchingController controller) {
         this.controller = controller;
+        this.missionView = new MissionView(controller);
         menuBoard = String.join(LINE_BREAK,
             VIEW_HEADER,
             menu(SELECTOR_MATCH, NAME_MATCH),
@@ -53,6 +58,14 @@ public class MainView {
             menu(SELECTOR_INIT, NAME_INIT),
             menu(SELECTOR_QUIT, NAME_QUIT)
         );
+        menu.put(SELECTOR_MATCH, missionView::matchPair);
+        menu.put(SELECTOR_QUERY, missionView::showResult);
+        menu.put(SELECTOR_INIT, controller::invalidAllPairs);
+        menu.put(SELECTOR_QUIT, this::quit);
+    }
+
+    private void quit() {
+        this.exited = true;
     }
 
     private String menu(String selector, String name) {
@@ -60,89 +73,8 @@ public class MainView {
     }
 
     public void select() {
-        action(() -> {
             String input = InputView.getLineWithPrompt(menuBoard);
-            if (input.equals(SELECTOR_QUIT)) {
-                exited = true;
-                return;
-            }
-            select(input);
-        });
-    }
-
-    private void select(String input) {
-        if (input.equals(SELECTOR_MATCH)) {
-            action(this::matchPair);
-            return;
-        }
-        if (input.equals(SELECTOR_QUERY)) {
-            showResult();
-            return;
-        }
-
-        if (input.equals(SELECTOR_INIT)) {
-            controller.invalidAllPairs();
-            return;
-        }
-        throw new IllegalArgumentException(ERR_INALID_MENU);
-    }
-
-    public void showResult() {
-        action(
-            () -> {
-                ConsolePrinter.print(MISSION_BOARD);
-                String input = InputView.getLineWithPrompt(MISSION_SELECT_PROMPT);
-                String[] inputs = input.split(INPUT_DELIMITER);
-                showResult(inputs[MISSION_INDEX], inputs[POSITION_INDEX], inputs[LEVEL_INDEX]);
-            }
-        );
-    }
-
-    private void showResult(String mission, String position, String level) {
-        action(
-            () -> ConsolePrinter.print(controller.getResult(mission, position, level))
-        );
-    }
-
-    private void matchPair() {
-        action(
-            () -> {
-                ConsolePrinter.print(MISSION_BOARD);
-                String input = InputView.getLineWithPrompt(MISSION_SELECT_PROMPT);
-                String[] inputs = input.split(INPUT_DELIMITER);
-                String mission = inputs[MISSION_INDEX];
-                String position = inputs[POSITION_INDEX];
-                String level = inputs[LEVEL_INDEX];
-                if (!controller.matchPair(mission, position, level)) {
-                    rematch(mission, position, level);
-                }
-                controller.matchPair(mission, position, level);
-                showResult(mission, position, level);
-            }
-        );
-    }
-
-    private void rematch(String mission, String position, String level) {
-        action(
-            () -> {
-                String input = InputView.getLineWithPrompt(MISSION_REMATCH);
-                if (!input.equals(REMATCH_TRUE) && !input.equals(REMATCH_FALSE)) {
-                    throw new IllegalArgumentException(ERR_INALID_INPUT_REMATCH);
-                }
-                if (input.equals(REMATCH_TRUE)) {
-                    controller.matchPair(mission, position, level);
-                }
-            }
-        );
-    }
-
-    private void action(Task task) {
-        try {
-            task.execute();
-        } catch (IllegalArgumentException e) {
-            ErrorPrinter.print(e);
-            action(task);
-        }
+            menu.get(input).execute();
     }
 
     public boolean exited() {

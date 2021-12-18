@@ -10,6 +10,7 @@ import pairmatching.mission.MissionRepository;
 public class PairMatchingController {
 
     private static final String ERR_INVALID_LEVEL = "레벨이 일치하지 않습니다.";
+    private static final String ERR_MATCH_EXIST = "매치가 존재합니다.";
     private final PairMatcher pairMatcher = new PairMatcher();
 
     public boolean matchPair(String missionName, String positionName, String levelName) {
