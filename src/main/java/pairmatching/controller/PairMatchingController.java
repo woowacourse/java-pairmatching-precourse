@@ -8,11 +8,14 @@ import pairmatching.model.Course;
 import pairmatching.model.Level;
 import pairmatching.model.Mission;
 import pairmatching.model.MissionRepository;
+import pairmatching.model.Pair;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
+import pairmatching.view.Validator;
 
 public class PairMatchingController {
 	private PairMatchingService pairMatchingService = new PairMatchingService();
+	private Validator validator = new Validator();
 
 	public void service() {
 		while (true) {
@@ -21,6 +24,8 @@ public class PairMatchingController {
 
 			if (option.equals("1")) {
 				pairMatching();
+			} else if (option.equals("2")) {
+				printMatchedResult();
 			} else if (option.equals("Q")) {
 				break;
 			}
@@ -28,20 +33,22 @@ public class PairMatchingController {
 	}
 
 	private void pairMatching() {
+		printCourseLevelMission();
+		handlePairMatching();
+	}
+
+	private void printCourseLevelMission() {
 		List<Mission> missions = MissionRepository.findAll();
 		OutputView.printMissionInformation(Arrays.asList(Course.values()), Arrays.asList(Level.values()), missions);
-		handlePairMatching();
 	}
 
 	private void handlePairMatching() {
 		try {
-			String information = retryInput(InputView::inputMatchingInformation);
-
+			String information = inputInformationWithValidation();
 			if (isWantToMatch(information)) {
 				pairMatchingService.match(parseToCourse(information), parseToLevel(information),
 					parseToMission(information));
 			}
-
 			OutputView.printMatchingResult(
 				pairMatchingService.findByCourseAndMission(parseToCourse(information), parseToMission(information)));
 		} catch (IllegalArgumentException e) {
@@ -60,6 +67,29 @@ public class PairMatchingController {
 		}
 
 		return wantToMatch;
+	}
+
+	private void printMatchedResult() {
+		printCourseLevelMission();
+		handlePrintMatchedResult();
+	}
+
+	private void handlePrintMatchedResult() {
+		try {
+			String information = inputInformationWithValidation();
+			List<Pair> pairList =
+				pairMatchingService.findByCourseAndMission(parseToCourse(information), parseToMission(information));
+			OutputView.printMatchingResult(pairList);
+		} catch (IllegalArgumentException e) {
+			OutputView.printErrorMessage(e.getMessage());
+		}
+	}
+
+	private String inputInformationWithValidation() {
+		String information = retryInput(InputView::inputMatchingInformation);
+		validator.validateCourseLevelMission(parseToCourse(information), parseToLevel(information),
+			parseToMission(information));
+		return information;
 	}
 
 	private boolean parseToIsWantToMatch(String value) {

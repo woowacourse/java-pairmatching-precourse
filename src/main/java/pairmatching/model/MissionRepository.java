@@ -36,4 +36,13 @@ public class MissionRepository {
 			.filter(m -> m.getCourse().equals(course))
 			.collect(Collectors.toList());
 	}
+
+	public static List<String> findDistinctMissionNames() {
+		return findAllByCourse(Course.BACKEND).stream().map(Mission::getName).collect(Collectors.toList());
+	}
+	public static List<Mission> findAllByCourse(Course course) {
+		return missions.stream()
+			.filter(m -> m.getCourse().equals(course))
+			.collect(Collectors.toList());
+	}
 }

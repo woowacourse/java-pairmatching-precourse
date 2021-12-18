@@ -13,6 +13,7 @@ public class OutputView {
 	private static final String MISSION_DELIMITER = ": ";
 	private static final String MISSION_PREFIX = "  - ";
 	private static final String OPTION_DELIMITER = ". ";
+
 	public static void printMain() {
 		printMessage("기능을 선택하세요.");
 		printOptionMenu("1", "페어 매칭");
@@ -32,8 +33,10 @@ public class OutputView {
 	}
 
 	public static void printMatchingResult(List<Pair> matchingResult) {
+		printBlankLine();
 		printMessage("페어 매칭 결과입니다.");
 		matchingResult.stream().forEach(p -> printPair(p));
+		printBlankLine();
 	}
 
 	private static void printPair(Pair p) {
@@ -56,14 +59,15 @@ public class OutputView {
 
 	private static void printMissions(List<Level> levels, List<Mission> missions) {
 		for (Level level : levels) {
-			String message = MISSION_PREFIX + level.getName() + MISSION_DELIMITER + missionListWithDelimiter(missions, level);
+			String message =
+				MISSION_PREFIX + level.getName() + MISSION_DELIMITER + missionListWithDelimiter(missions, level);
 			printMessage(message);
 		}
 	}
 
 	private static String missionListWithDelimiter(List<Mission> missions, Level level) {
-		return findMissionsByLevel(missions, level).stream().map(Mission::getName).collect(Collectors.joining(
-			NAME_DELIMITER));
+		return findMissionsByLevel(missions, level).stream().map(Mission::getName).distinct()
+			.collect(Collectors.joining(NAME_DELIMITER));
 	}
 
 	private static List<Mission> findMissionsByLevel(List<Mission> missions, Level level) {
