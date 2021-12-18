@@ -25,6 +25,8 @@ public class Utils {
 
     public static void InputPairMatching() {
         String[] answer = Console.readLine().split(", ");
-
+        if (false) { // 예외처리판정이 들어갈 곳
+            Except.PairMatchingInputError();
+        }
     }
 }

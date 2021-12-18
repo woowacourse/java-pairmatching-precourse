@@ -9,4 +9,12 @@ public class Except {
             PrintPage.StartPage();
         }
     }
+    public static void PairMatchingInputError() {
+        try {
+            throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] : 입력 양식이 잘못됐어요!");
+            Utils.InputPairMatching();
+        }
+    }
 }
