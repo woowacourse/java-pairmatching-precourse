@@ -11,4 +11,7 @@ public class Constants {
 	public static final String SUBWAY_MAP_MISSION = "지하철노선도";
 	public static final String BACK_END = "백엔드";
 	public static final String FRONT_END = "프론트엔드";
+	public static final int COURSE_INDEX = 0;
+	public static final int LEVEL_INDEX = 1;
+	public static final int MISSION_INDEX = 2;
 }
