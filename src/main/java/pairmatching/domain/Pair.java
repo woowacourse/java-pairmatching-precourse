@@ -9,11 +9,11 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Pair {
     Course course;
-    String mission;
+    Mission mission;
     List<String> crewNames;
     HashMap<String, String[]> alreadyMatched;
 
-    public Pair(Course course, String mission) throws IOException {
+    public Pair(Course course, Mission mission) throws IOException {
         this.course = course;
         this.mission = mission;
 
@@ -43,7 +43,7 @@ public class Pair {
         insertRestCrew(totalSize);
     }
 
-    private int calculateTotalSize() {
+    public int calculateTotalSize() {
         if (crewNames.size() % 2 != 0) return crewNames.size() - 3;
         return crewNames.size();
     }
