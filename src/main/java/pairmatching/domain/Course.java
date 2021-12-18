@@ -19,4 +19,8 @@ public enum Course {
 
         return course;
     }
+
+    public static void printCourse() {
+        System.out.println(BACKEND.name + " | " + FRONTEND.name);
+    }
 }
