@@ -41,5 +41,6 @@ public class OutputView {
 		for (String pair : MatchingController.pairs) {
 			System.out.println(pair);
 		}
+		System.out.println();
 	}
 }
