@@ -35,4 +35,5 @@ public class CrewRepository {
 			.map(name -> Crew.from(Course.FRONTEND, name))
 			.collect(Collectors.toList());
 	}
+
 }

@@ -27,6 +27,7 @@ public enum PairFunction {
 			OutputView.printCourseLevelMissionInformation();
 			try {
 				List<String> informationList = getCourseLevelMissionInput();
+				OutputView.printCrewPairResult(informationList);
 			} catch (IllegalArgumentException exception) {
 				OutputView.printErrorMessage(exception.getMessage());
 			}
@@ -35,13 +36,13 @@ public enum PairFunction {
 	RESET("3") {
 		@Override
 		public void operate() {
-
+			CourseRepository.ResetPair();
+			System.out.println("\n초기화 되었습니다.\n");
 		}
 	},
 	QUIT("Q") {
 		@Override
 		public void operate() {
-
 		}
 	};
 

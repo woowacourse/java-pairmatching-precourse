@@ -82,4 +82,13 @@ public class CourseRepository {
 		}
 		return crewPairs;
 	}
+
+	public static void ResetPair() {
+		courseMap.clear();
+		Arrays.stream(Course.values()).forEach(course -> {
+			EnumMap<Level, List<Mission>> levelMap = new EnumMap<>(Level.class);
+			Arrays.stream(Level.values()).forEach(level -> levelMap.put(level, level.missions()));
+			courseMap.put(course, levelMap);
+		});
+	}
 }

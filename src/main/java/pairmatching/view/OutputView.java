@@ -19,6 +19,10 @@ public class OutputView {
 	}
 
 	public static void printCrewPairResult(List<String> crewPairs) {
+		if(crewPairs.size() == 0) {
+			printErrorMessage("매칭 이력이 없습니다.");
+			return;
+		}
 		System.out.println("\n페어 매칭 결과입니다.");
 		crewPairs.forEach(System.out::println);
 		System.out.println();
