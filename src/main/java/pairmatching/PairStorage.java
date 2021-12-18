@@ -3,7 +3,7 @@ package pairmatching;
 import java.util.HashMap;
 
 public class PairStorage {
-	// HashMap<Course, HashMap<Level, HashMap<Mission, HashMap<Crew,Crew>>>>
+	// HashMap<Course, HashMap<Mission, HashMap<Crew,Crew>>>>
 	static final HashMap<Course, HashMap> pairMap = new HashMap<>();
 
 	public PairStorage() {
@@ -16,17 +16,9 @@ public class PairStorage {
 		}
 	}
 
-	private HashMap<Level, HashMap>  getPairMapLevel() {
-		HashMap<Level, HashMap> levelMap = new HashMap<>();
-		for (Level level : Level.values()) {
-			levelMap.put(level,getMissionMap(level));
-		}
-		return levelMap;
-	}
-
-	private HashMap<Mission, HashMap> getMissionMap(Level level) {
+	private HashMap<Mission, HashMap> getPairMapLevel() {
 		HashMap<Mission, HashMap> missionMap = new HashMap();
-		for (Mission mission : Mission.getMissionListByLevel(level)) {
+		for (Mission mission : Mission.values()) {
 			missionMap.put(mission, new HashMap());
 		}
 		return missionMap;
