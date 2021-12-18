@@ -8,22 +8,27 @@ import java.util.Map;
 import java.util.Optional;
 
 public class PairMatching {
-	private HashMap<Curriculum, List<String>> matchingPair;
-	private HashMap<String, String> matchingLog;
+	private HashMap<Curriculum, List<String>> matchingPair = new HashMap<>();
+	private HashMap<String, String> matchingLog = new HashMap<>();
 	private CrewGroup crewGroup = new CrewGroup();
 
+	public PairMatching() {
+	}
+
 	public void run(Curriculum curriculum) {
-		List<String> crews = getCrews(curriculum.getLevel());
-		if (isEmpty(curriculum)) {
+		List<String> crews = putCrews(curriculum);
+		System.out.println(crews);
+		if (!isEmpty(curriculum)) {
 			matchingPair.put(curriculum, crews);
 			logMeet(crews, curriculum.getLevel());
 		}
 	}
 
-	private List<String> getCrews(String level) {
+	private List<String> putCrews(Curriculum curriculum) {
 		for (int i = 0; i < 3; i++) {
-			List<String> shuffledCrews = crewGroup.getShuffledCrews();
-			if (!checkMetBefore(shuffledCrews, level)) {
+			List<String> shuffledCrews = crewGroup.getShuffledCrews(curriculum.getCourse());
+			System.out.println(shuffledCrews);
+			if (!checkMetBefore(shuffledCrews, curriculum.getLevel())) {
 				return shuffledCrews;
 			}
 		}
@@ -32,13 +37,15 @@ public class PairMatching {
 
 	public boolean isEmpty(Curriculum curriculum) {
 		Optional<Curriculum> curriculumOptional = matchingPair.keySet().stream()
-			.filter(cur -> cur.equals(curriculum))
+			.filter(cur -> cur.getMission().equals(curriculum.getMission()))
+			.filter(cur -> cur.getCourse().equals(curriculum.getCourse()))
+			.filter(cur -> cur.getLevel().equals(curriculum.getLevel()))
 			.findAny();
 		return curriculumOptional.isPresent();
 	}
 
 	private void logMeet(List<String> crews, String level) {
-		for (int i = 0; i < crews.size(); ) {
+		for (int i = 0; i < crews.size() / 2;) {
 			matchingLog.put(crews.get(i) + level, crews.get(i + 1));
 			matchingLog.put(crews.get(i + 1) + level, crews.get(i));
 			i += 2;
@@ -53,12 +60,14 @@ public class PairMatching {
 		}
 	}
 
-	public List<String> printMatching(Curriculum curriculum) {
-		if (isEmpty(curriculum)) {
-			throw new IllegalArgumentException();
+	public List<String> getMatching(Curriculum curriculum) {
+		if (!isEmpty(curriculum)) {
+			throw new IllegalArgumentException("비어있다.");
 		}
 		return matchingPair.entrySet().stream()
-			.filter(cur -> cur.getKey().equals(curriculum))
+			.filter(cur -> cur.getKey().getMission().equals(curriculum.getMission()))
+			.filter(cur -> cur.getKey().getCourse().equals(curriculum.getCourse()))
+			.filter(cur -> cur.getKey().getLevel().equals(curriculum.getLevel()))
 			.map(Map.Entry::getValue)
 			.findAny()
 			.orElseThrow(() -> new IllegalArgumentException(DEFAULT));

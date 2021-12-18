@@ -12,4 +12,8 @@ public class Crew {
 	public String getName() {
 		return this.name;
 	}
+
+	public String getCourse() {
+		return this.course;
+	}
 }

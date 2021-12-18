@@ -18,4 +18,8 @@ public class Curriculum {
 	public String getLevel() {
 		return level;
 	}
+
+	public String getMission() {
+		return mission;
+	}
 }

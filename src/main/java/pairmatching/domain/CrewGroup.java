@@ -28,20 +28,22 @@ public class CrewGroup {
 
 	private void bringFrontEndCrews() {
 		for (String name : InputView.getCrew(frontEndCrewDirPath)) {
-			crews.add(new Crew("FRONTEND", name));
+			crews.add(new Crew("프론트엔드", name));
 		}
 	}
 
 	private void bringBackEndCrews() {
 		for (String name : InputView.getCrew(backEndCrewDirPath)) {
-			crews.add(new Crew("BACKEND", name));
+			crews.add(new Crew("백엔드", name));
 		}
 	}
 
-	public List<String> getShuffledCrews() {
+	public List<String> getShuffledCrews(String type) {
 		List<String> crewNames = crews.stream()
+			.filter(crew -> crew.getCourse().equals(type))
 			.map(Crew::getName)
 			.collect(Collectors.toList());
+
 		return shuffle(crewNames);
 	}
 }
