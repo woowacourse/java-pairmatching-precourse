@@ -11,6 +11,6 @@ public abstract class PairMatchingController {
         String selectFunction = InputView.inputPairMatchingFunction();
         CourseInformation courseInformation = new CourseInformation(InputView.inputCourseInformation());
         List<String> courseInformationList = courseInformation.createCourseInformationList();
-
+        List<String> crewNames = InputView.readCrewNames(courseInformationList);
     }
 }

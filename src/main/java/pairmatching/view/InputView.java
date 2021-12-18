@@ -38,40 +38,29 @@ public abstract class InputView {
     private static final String ERROR_MESSAGE_NOT_CONTAINS_LEVEL = "[ERROR] 해당 레벨이 존재하지 않습니다.";
     private static final String ERROR_MESSAGE_NOT_CONTAINS_MISSION = "[ERROR] 해당 미션이 존재하지 않습니다.";
 
-    public static List<String> readFrontendCrew() {
+    public static List<String> readCrewNames(List<String> courseInformationList) {
         try {
-            final List<String> crewNames = new ArrayList<>();
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(FRONTEND_FILE_PATH));
-            String line = null;
-
-            while ((line = bufferedReader.readLine()) != null) {
-                crewNames.add(line);
-            }
-
-            return crewNames;
+            return readCrewNameFile(courseInformationList);
         } catch (IOException e) {
             e.printStackTrace();
 
-            return readFrontendCrew();
+            return readCrewNames(courseInformationList);
         }
     }
 
-    public static List<String> readBackendCrew() {
-        try {
-            final List<String> crewNames = new ArrayList<>();
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(BACKEND_FILE_PATH));
-            String line = null;
+    private static List<String> readCrewNameFile(final List<String> courseInformationList) throws IOException {
+        final List<String> crewNames = new ArrayList<>();
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(BACKEND_FILE_PATH));
 
-            while ((line = bufferedReader.readLine()) != null) {
-                crewNames.add(line);
-            }
-
-            return crewNames;
-        } catch (IOException e) {
-            e.printStackTrace();
-
-            return readFrontendCrew();
+        if(courseInformationList.get(0).equals(Courses.FRONTEND.getName())){
+            bufferedReader = new BufferedReader(new FileReader(FRONTEND_FILE_PATH));
         }
+        String line = null;
+
+        while ((line = bufferedReader.readLine()) != null) {
+            crewNames.add(line);
+        }
+        return crewNames;
     }
 
     public static String[] inputCourseInformation() {
