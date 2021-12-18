@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.io.FileInputHandler;
 import pairmatching.type.Course;
 import pairmatching.type.Crew;
@@ -11,7 +12,7 @@ import pairmatching.util.CrewUtil;
 
 public class CrewProcessor {
 
-	Map<Course, List<Crew>> courseCrewMap = new HashMap<Course, List<Crew>>();
+	public Map<Course, List<Crew>> courseCrewMap = new HashMap<Course, List<Crew>>();
 
 	public CrewProcessor(FileInputHandler fileInputHandler) {
 		List<Course> courseList = Course.courseList();
@@ -20,5 +21,9 @@ public class CrewProcessor {
 				course);
 			courseCrewMap.put(course, crewList);
 		}
+	}
+
+	public void shuffleCrewList(Course course) {
+		courseCrewMap.replace(course, Randoms.shuffle(courseCrewMap.get(course)));
 	}
 }
