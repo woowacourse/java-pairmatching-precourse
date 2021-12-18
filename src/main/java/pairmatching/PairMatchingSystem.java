@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static pairmatching.Validation.*;
@@ -16,7 +17,8 @@ public class PairMatchingSystem {
     static int SUCCESS = 2;
 
     private String featureNum;
-    private Crew crew;
+    private List<Crew> crewList;
+    private HashMap<String, List<Crew>> crewListMap;
     private int matchingCount = 0;
 
     public String getFeatureNum() {
@@ -25,6 +27,14 @@ public class PairMatchingSystem {
 
     public int getMatchingCount() {
         return matchingCount;
+    }
+
+    public HashMap<String, List<Crew>> getCrewListMap() {
+        return crewListMap;
+    }
+
+    public void setCrewListMap(String course, List<Crew> crewList) {
+        this.crewListMap.put(course, crewList);
     }
 
     public void choiceFeature(){
@@ -54,32 +64,34 @@ public class PairMatchingSystem {
                 UI.printException(e.getMessage());
             }
         }
+        UI.printPairMatchingResult(crewList);
     }
 
     public void crewShuffle(String[] courseLevelMission){
-        int status = YES;
-        while(status == YES){
+        int status = NO;
+        while(status == NO){
             try{
-                List<Crew> crewList = loadCrew(courseLevelMission);
-                shuffleLogic(Randoms.shuffle(crewList));
-                UI.printPairMatchingResult(crewList);
+                crewList = loadCrew(courseLevelMission);
+                crewList = Randoms.shuffle(crewList);
+                shuffleLogic(crewList);
                 status = SUCCESS;
+                setCrewListMap(courseLevelMission[COURSE_NAME], crewList);
                 break;
             }catch (Exception e){
                 UI.printMatchedBefore();
                 status = yesOrNo();
             }
         }
-        if(status == NO){
+        if(status == YES){
             throw new IllegalArgumentException();
         }
     }
 
     public int yesOrNo(){
         if(Validation.insertYesOrNo(UI.insertYesOrNo())){
-            return NO;
+            return YES;
         }
-        return YES;
+        return NO;
     }
 
     public void shuffleLogic(List<Crew> shuffleCrewList){
@@ -92,16 +104,23 @@ public class PairMatchingSystem {
         }
     }
 
-    public void pairSelect(List<Crew> crewList){
-
+    public void pairSelect(){
+        while(true){
+            try{
+                UI.printPairMatchingChoice();
+                String[] courseLevelMission = UI.insertPairMatchingChoice().split(",");
+                courseLevelMission = Validation.trimString(courseLevelMission);
+                Validation.validateCourseAndLevel(courseLevelMission);
+                Validation.validateMission(courseLevelMission);
+                UI.printPairMatchingResult(this.crewListMap.get(courseLevelMission[COURSE_NAME]));
+            }catch (Exception e){
+                UI.printException("[ERROR] 해당 과정의 크루가 없습니다.");
+            }
+        }
     }
 
     public void pairReset(){
-
-    }
-
-    public void pairQuit(){
-
+        this.crewListMap = new HashMap<>();
     }
 
     public ArrayList<Crew> loadCrew(String[] courseLevelMission){
