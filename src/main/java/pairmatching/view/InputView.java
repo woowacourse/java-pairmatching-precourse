@@ -3,6 +3,7 @@ package pairmatching.view;
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.converter.InputConverter;
 import pairmatching.domain.Function;
+import pairmatching.domain.PairInfo;
 
 public class InputView {
 
@@ -17,5 +18,21 @@ public class InputView {
 				System.out.println(e.getMessage());
 			}
 		}
+	}
+
+	public PairInfo readPairInfo() {
+		while (true) {
+			try {
+				outputView.printCourseAndLevelAndMission();
+				return InputConverter.convertPairInfo(Console.readLine());
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		InputView inputView = new InputView();
+		inputView.readPairInfo();
 	}
 }

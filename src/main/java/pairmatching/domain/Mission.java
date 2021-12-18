@@ -31,4 +31,11 @@ public enum Mission {
 			.filter(mission -> mission.level == level)
 			.collect(Collectors.toList());
 	}
+
+	public static Mission getByName(String name) {
+		return Arrays.stream(Mission.values())
+			.filter(mission -> mission.name.equals(name))
+			.findFirst()
+			.orElse(null);
+	}
 }
