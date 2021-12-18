@@ -1,12 +1,6 @@
 package userInterafce;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import camp.nextstep.edu.missionutils.Console;
-import pairmatching.Course;
-import pairmatching.Level;
-import pairmatching.Mission;
 import utils.IsCommand;
 
 public class Command {
@@ -40,5 +34,4 @@ public class Command {
 			// 종료
 		}
 	}
-
 }
