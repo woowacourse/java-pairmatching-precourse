@@ -37,6 +37,6 @@ public class Utils {
     }
 
     public static ArrayList<String> shuffleCrewList(ArrayList<String> crewList) {
-       return (ArrayList<String>) Randoms.shuffle(crewList);
+        return (ArrayList<String>) Randoms.shuffle(crewList);
     }
 }

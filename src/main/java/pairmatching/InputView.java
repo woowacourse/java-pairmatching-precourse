@@ -35,11 +35,11 @@ public class InputView {
     }
 
     public static List<String> inputCrew(String listName) {
-        List<String> crewList = new ArrayList<String >();
+        List<String> crewList = new ArrayList<String>();
         if (listName.equals("backend")) {
             Utils.makeFileToList(BACKEND_CREW_LIST);
         }
-        if(listName.equals("frontend")){
+        if (listName.equals("frontend")) {
             Utils.makeFileToList(FRONTEND_CREW_LIST);
         }
         return crewList;

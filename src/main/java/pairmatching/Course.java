@@ -9,7 +9,7 @@ public enum Course {
     Course(String name) {
         this.name = name;
     }
-    // 추가 기능 구현
+
     public String getName() {
         return this.name;
     }

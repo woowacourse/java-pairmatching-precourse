@@ -2,6 +2,7 @@ package pairmatching;
 
 public class OutputView {
     public static String DASH_LINE = "#############################################";
+
     public static void outputActions() {
         System.out.println("기능을 선택하세요.");
         for (Action action : Action.values()) {

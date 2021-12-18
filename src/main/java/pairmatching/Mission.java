@@ -21,12 +21,12 @@ public enum Mission {
     public static String returnNamesByMissionNumber(int missionNumber) {
         String returnString = "";
         for (Mission mission : Mission.values()) {
-            if(missionNumber == mission.missionNumber) {
+            if (missionNumber == mission.missionNumber) {
                 returnString += (mission.name + " | ");
             }
         }
-        if(!returnString.equals("")){
-            returnString.substring(0, returnString.length()-3);
+        if (!returnString.equals("")) {
+            returnString.substring(0, returnString.length() - 3);
         }
         return returnString;
     }

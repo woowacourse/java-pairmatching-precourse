@@ -23,7 +23,7 @@ public class Pair {
         ArrayList<Pair> pairList = new ArrayList<Pair>();
         for (int i = 0; i < crewList.size(); i += 2) {
             if (i + 1 >= crewList.size()) {
-                pairList.set(pairList.size()-1, new Pair(crewList.get(i-2),crewList.get(i-1),crewList.get(i)));
+                pairList.set(pairList.size() - 1, new Pair(crewList.get(i - 2), crewList.get(i - 1), crewList.get(i)));
             }
             if (i + 1 < crewList.size()) {
                 Pair pair = new Pair(crewList.get(i), crewList.get(i + 1));

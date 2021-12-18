@@ -16,7 +16,7 @@ public enum Level {
         this.name = name;
         this.missionNumber = missionNumber;
     }
-    // 추가 기능 구현
+
     public String getName() {
         return this.name;
     }
@@ -25,7 +25,7 @@ public enum Level {
         return this.missionNumber;
     }
 
-    public static String getMissionsByLevel (int missionNumber) {
+    public static String getMissionsByLevel(int missionNumber) {
         return Mission.returnNamesByMissionNumber(missionNumber);
     }
 }
