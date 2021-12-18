@@ -37,18 +37,12 @@ public class PairMatchingController {
 
 	public void run() {
 		outputView.printChooseFeature();
-		// matching();
 		String featureNumber;
-		// do {
-		// 	featureNumber = inputView.inputChoosingFeature();
-		// }while(!activateFeature(featureNumber));
 		boolean isContinue;
 		do {
 			featureNumber = inputView.inputChoosingFeature();
 			isContinue = activateFeature(featureNumber);
 		} while (isContinue);
-
-
 	}
 
 	public void matching() {
@@ -85,6 +79,7 @@ public class PairMatchingController {
 	}
 
 	private void initializePair() {
+		matchingInfoList = new ArrayList<>();
 	}
 
 	private void printMatching() {
