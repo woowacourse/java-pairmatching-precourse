@@ -12,12 +12,11 @@ public class Pair {
     public Pair() {
     }
 
-    public Pair(List<Crew> shuffledCrews) {
-        this.crews = shuffledCrews;
+    public Pair(List<String> shuffledCrews) {
     }
 
-    public void addCrew(Crew crew) {
-        crews.add(crew);
+    public void addCrew(String crew) {
+        crews.add(new Crew(crew));
     }
 
     @Override

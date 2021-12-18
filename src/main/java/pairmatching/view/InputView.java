@@ -6,11 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import pairmatching.domain.course.Course;
 import pairmatching.domain.course.enums.CourseEnum;
 import pairmatching.domain.crew.Crew;
+import pairmatching.domain.level.Level;
 import pairmatching.domain.matching.MatchingCondition;
 import pairmatching.domain.menu.Menu;
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.domain.mission.Mission;
 import pairmatching.domain.rematch.RematchInput;
 
 public class InputView {

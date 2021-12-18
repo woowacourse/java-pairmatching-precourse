@@ -15,7 +15,7 @@ public class OutputView {
     private static final String LEVEL_FOUR_MISSION = "  - 레벨4: 성능개선 | 배포";
     private static final String LEVEL_FIVE_MISSION = "  - 레벨5: ";
     public static final String PAIR_MATCHING_RESULT = "페어 매칭 결과입니다.";
-    public static final String NO_PAIR_MESSAGE = "페어가 매칭되지 않았습니다";
+    public static final String NO_PAIR_MESSAGE = "[ERROR] 페어가 매칭되지 않았습니다";
 
     public static void showCoursesAndMissions() {
         System.out.println(SEPARATOR_LINE);

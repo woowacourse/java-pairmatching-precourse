@@ -14,6 +14,10 @@ public class Crew {
         this.name = name;
     }
 
+    public Crew(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
@@ -25,12 +29,12 @@ public class Crew {
         if (o == null || getClass() != o.getClass())
             return false;
         Crew crew = (Crew)o;
-        return course == crew.course && Objects.equals(name, crew.name);
+        return Objects.equals(getName(), crew.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(course, name);
+        return Objects.hash(getName());
     }
 
     @Override

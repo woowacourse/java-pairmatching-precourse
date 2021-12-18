@@ -48,15 +48,22 @@ public class PairmatchingController {
     private void executePairMatching() {
         OutputView.showCoursesAndMissions();
         MatchingCondition matchingCondition = InputView.requestMatchingCondition();
-        if (matchingResults.cotains(matchingCondition)) {
-            RematchInput answer = InputView.requestRematch();
-            if (answer.noRematch()) {
-                return;
-            }
+        if (wantNoRematch(matchingCondition)) {
+            return;
         }
         Pairs pairs = crews.getMatchResult(matchingCondition);
         OutputView.showPairs(pairs);
         matchingResults.add(matchingCondition, pairs);
+    }
+
+    private boolean wantNoRematch(MatchingCondition matchingCondition) {
+        if (matchingResults.cotains(matchingCondition)) {
+            RematchInput answer = InputView.requestRematch();
+            if (answer.noRematch()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void executeReadPair() {

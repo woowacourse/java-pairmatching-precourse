@@ -6,6 +6,7 @@ import java.util.Objects;
 import pairmatching.domain.mission.enums.MissionEnum;
 
 public class Mission {
+    public static final String NON_EXIST_MISSION_EXCEPTION = "[ERROR] 존재하지 않는 미션입니다.";
     private String name;
 
     public Mission(String name) {
@@ -15,7 +16,7 @@ public class Mission {
 
     private void validateMission(String name) {
         if (!existMission(name)) {
-            throw new IllegalArgumentException("[ERROR] 존재하지 않는 미션입니다.");
+            throw new IllegalArgumentException(NON_EXIST_MISSION_EXCEPTION);
         }
     }
 

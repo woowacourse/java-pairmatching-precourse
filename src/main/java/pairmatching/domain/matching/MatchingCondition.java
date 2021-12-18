@@ -23,7 +23,7 @@ public class MatchingCondition {
         this.mission = mission;
     }
 
-    public MatchingCondition(String rawMatchingCondition) {
+    public MatchingCondition(String rawMatchingCondition) throws IllegalArgumentException {
         String[] rawMatchingConditions = rawMatchingCondition.split(SPLIT_DELIMITER);
         this.course = new Course(rawMatchingConditions[COURSE_INDEX]);
         this.level = new Level(rawMatchingConditions[LEVEL_INDEX].trim());
