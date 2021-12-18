@@ -1,43 +1,22 @@
 package pairmatching.domain;
 
-import pairmatching.domain.input.FunctionType;
+import pairmatching.domain.crew.Crews;
+import pairmatching.domain.input.Course;
 import pairmatching.domain.matching.Matchings;
 
 public class PairMatcher {
 	private Matchings matchings;
+	Crews frontEndCrews;
+	Crews backEndCrews;
 
 	public PairMatcher() {
 		this.matchings = Matchings.newInstance();
+		this.frontEndCrews = Crews.of("src/main/resources/frontend-crew.md", Course.FRONTEND);
+		this.backEndCrews = Crews.of("src/main/resources/backend-crew.md", Course.BACKEND);
 	}
 
-	public void run(String inputFunctionNumber) {
-		FunctionType functionType = FunctionType.fromFunctionNumber(inputFunctionNumber);
-
-		if (functionType == FunctionType.MATCH) {
-			matchPairs();
-			return;
-		}
-		if (functionType == FunctionType.VIEW) {
-			viewPairs();
-			return;
-		}
-		if (functionType == FunctionType.RESET) {
-			resetPairs();
-			return;
-		}
-		if (functionType == FunctionType.EXIT) {
-			exit();
-		}
-	}
-
-	private void matchPairs() {}
-
-	private void viewPairs() {}
-
-	private void resetPairs() {
+	public void resetMatchingInfo() {
 		matchings.reset();
 	}
 
-	private void exit() {
-	}
 }

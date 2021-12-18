@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import pairmatching.domain.PairMatcher;
+import pairmatching.domain.input.FunctionType;
 import pairmatching.domain.input.Level;
 import pairmatching.domain.input.LevelMissionInfo;
 import pairmatching.domain.mission.LevelFourMission;
@@ -23,9 +24,8 @@ public class PairMathcerController {
 
 	public void init() {
 		initLevelAndMissionInfo();
-		runPairMatcher();
+		selectFunctionOptions();
 		String matchingTarget = InputView.getMatchingTarget(levelMissionInfo);
-		
 	}
 
 	private void initLevelAndMissionInfo() {
@@ -45,14 +45,46 @@ public class PairMathcerController {
 		levelMissionInfo.addInfo(Level.LEVEL5);
 	}
 
-	private void runPairMatcher() {
+	private void selectFunctionOptions() {
 		try {
 			String inputFunctionNumber = InputView.getFunctionNumber();
-			pairMatcher.run(inputFunctionNumber);
+			run(inputFunctionNumber);
 		} catch (IllegalArgumentException e) {
 			ErrorView.printErrorMesasge(e.getMessage());
-			runPairMatcher();
+			selectFunctionOptions();
 		}
+	}
+
+	public void run(String inputFunctionNumber) {
+		FunctionType functionType = FunctionType.fromFunctionNumber(inputFunctionNumber);
+
+		if (functionType == FunctionType.MATCH) {
+			return;
+		}
+		if (functionType == FunctionType.VIEW) {
+			viewPairs();
+			return;
+		}
+		if (functionType == FunctionType.RESET) {
+			resetPairs();
+			return;
+		}
+		if (functionType == FunctionType.EXIT) {
+			exit();
+		}
+	}
+
+	private void matchPairs(String matchingTarget) {
+
+	}
+
+	private void viewPairs() {}
+
+	private void resetPairs() {
+		pairMatcher.resetMatchingInfo();
+	}
+
+	private void exit() {
 	}
 
 }
