@@ -15,8 +15,11 @@ public class MainController {
 	}
 
 	private void executeMenu(String menu) {
+		MatchingController controller = new MatchingController();
 		if (menu.equals("1")) {
-			new MatchingController().pairMatching();
+			controller.pairMatching();
+		} else if (menu.equals("2")) {
+			controller.searchMatch();
 		}
 	}
 }

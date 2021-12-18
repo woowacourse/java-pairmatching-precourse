@@ -21,6 +21,17 @@ public class MatchingController {
 		}
 	}
 
+	public void searchMatch() {
+		Match match = null;
+		try {
+			match = MatchRepository.getMatchByInformation(getInformation());
+		} catch (IllegalArgumentException exception) {
+			OutputView.errorView(exception.getMessage());
+			searchMatch();
+		}
+		OutputView.matchView(match);
+	}
+
 	private MatchingInformation getInformation() {
 		MatchingInformation information;
 		InputView.inputMatching();
