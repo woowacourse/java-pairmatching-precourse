@@ -26,12 +26,4 @@ public enum Level {
 			.findAny()
 			.orElseThrow(() -> new IllegalArgumentException(ERROR_NOT_LEVEL));
 	}
-
-	public static MissionType findByMission(String command) {
-		return Arrays.stream(Level.values())
-			.filter(level -> level.missions.contains(command))
-			.map(level -> MissionType.isSameMissionType(command))
-			.findAny()
-			.orElseThrow(() -> new IllegalArgumentException(ERROR_NOT_MISSION));
-	}
 }
