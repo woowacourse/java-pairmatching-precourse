@@ -10,6 +10,10 @@ import java.util.stream.Collectors;
 
 public class PairService {
 
+    private static final int FIRST_CREW_INDEX = 0;
+    private static final int SECOND_CREW_INDEX = 1;
+    private static final int THIRD_CREW_INDEX = 2;
+
     private final List<String> frontend;
     private final List<String> backend;
 
@@ -90,7 +94,7 @@ public class PairService {
     private boolean isAlreadyPairedInSameLevel(List<Pair> pairs, Pair testPair) {
         List<Crew> crews = testPair.getCrews();
         for (Pair pair : pairs) {
-            if (pair.hasCrew(crews.get(0)) && pair.hasCrew(crews.get(1))) {
+            if (pair.hasCrew(crews.get(FIRST_CREW_INDEX)) && pair.hasCrew(crews.get(SECOND_CREW_INDEX))) {
                 return true;
             }
         }
@@ -103,10 +107,10 @@ public class PairService {
     // 한 페어의 크루원이 3명인 경우
     private boolean isAlreadyPairedInSameLevel(List<Pair> pairs, List<Crew> crews) {
         for (Pair pair : pairs) {
-            if (pair.hasCrew(crews.get(0)) && pair.hasCrew(crews.get(2))) {
+            if (pair.hasCrew(crews.get(FIRST_CREW_INDEX)) && pair.hasCrew(crews.get(THIRD_CREW_INDEX))) {
                 return true;
             }
-            if (pair.hasCrew(crews.get(1)) && pair.hasCrew(crews.get(2))) {
+            if (pair.hasCrew(crews.get(SECOND_CREW_INDEX)) && pair.hasCrew(crews.get(THIRD_CREW_INDEX))) {
                 return true;
             }
         }
