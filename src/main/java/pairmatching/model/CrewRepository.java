@@ -17,4 +17,8 @@ public class CrewRepository {
 	public static List<Crew> findAll() {
 		return crews;
 	}
+
+	public static Crew findByName(String name) {
+		return crews.stream().filter(c -> c.getName().equals(name)).findFirst().get();
+	}
 }

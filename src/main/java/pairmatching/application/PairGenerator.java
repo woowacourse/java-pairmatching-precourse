@@ -3,9 +3,9 @@ package pairmatching.application;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import pairmatching.model.Crew;
 import pairmatching.model.CrewRepository;
-import pairmatching.model.Level;
 import pairmatching.model.Mission;
 import pairmatching.model.MissionRepository;
 import pairmatching.model.Pair;
@@ -29,8 +29,8 @@ public class PairGenerator {
 	}
 
 	private List<Pair> generatePairList(Mission mission) {
-		List<Crew> shuffledCrew = Randoms.shuffle(CrewRepository.findAll());
 		List<Pair> result = new ArrayList<>();
+		List<Crew> shuffledCrew = getShuffledCrew();
 
 		for (int index = 0; index < shuffledCrew.size(); index += 2) {
 			result.add(createPair(mission, shuffledCrew, index));
@@ -42,19 +42,27 @@ public class PairGenerator {
 		return result;
 	}
 
+	private List<Crew> getShuffledCrew() {
+		return getShuffledCrewNames().stream().map(CrewRepository::findByName).collect(Collectors.toList());
+	}
+
+	private List<String> getShuffledCrewNames() {
+		return Randoms.shuffle(CrewRepository.findAll().stream().map(Crew::getName).collect(
+			Collectors.toList()));
+	}
+
 	private boolean isValidPairList(Mission mission, List<Pair> pairList) {
-		Level level = mission.getLevel();
-		List<Mission> sameLevelMissions = MissionRepository.findByLevel(level);
+		List<Mission> sameLevelMissions = MissionRepository.findByLevel(mission.getLevel());
 		return !sameLevelMissions.stream()
-			.anyMatch(m -> isDuplicatedByOtherMission(pairList, m));
+			.anyMatch(m -> isDuplicatedPairByOtherMission(pairList, m));
 	}
 
-	private boolean isDuplicatedByOtherMission(List<Pair> pairList, Mission otherMission) {
+	private boolean isDuplicatedPairByOtherMission(List<Pair> pairList, Mission otherMission) {
 		List<Pair> otherPairList = PairRepository.findByMission(otherMission);
-		return otherPairList.stream().anyMatch(p -> isDuplicatedByOtherPair(pairList, p));
+		return otherPairList.stream().anyMatch(p -> isDuplicatedByOtherPairList(pairList, p));
 	}
 
-	private boolean isDuplicatedByOtherPair(List<Pair> pairList, Pair otherPair) {
+	private boolean isDuplicatedByOtherPairList(List<Pair> pairList, Pair otherPair) {
 		return pairList.stream().anyMatch(p -> p.isDuplicatedPair(otherPair));
 	}
 
