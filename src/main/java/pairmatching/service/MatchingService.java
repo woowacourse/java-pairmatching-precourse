@@ -44,12 +44,17 @@ public class MatchingService {
 	}
 
 	public void getMatchingList() {
-		OutputView.printAdvanceInformation();
-		String courseAndLevelAndMission = InputView.inputCourseAndLevelAndMission();
-		String[] split = courseAndLevelAndMission.split(",");
-		Level level = Level.getLevel(split[LEVEL_INDEX].trim());
-		MatchingValidator.isExistMatching(level, matching);
-		OutputView.printMatchingInfo(matching);
+		try {
+			OutputView.printAdvanceInformation();
+			String courseAndLevelAndMission = InputView.inputCourseAndLevelAndMission();
+			String[] split = courseAndLevelAndMission.split(",");
+			Level level = Level.getLevel(split[LEVEL_INDEX].trim());
+			MatchingValidator.isExistMatching(level, matching);
+			OutputView.printMatchingInfo(matching);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return;
+		}
 
 	}
 
