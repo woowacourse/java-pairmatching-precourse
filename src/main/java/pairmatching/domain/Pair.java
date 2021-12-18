@@ -41,7 +41,7 @@ public class Pair {
     private void insertMatchedMap() {
         int totalSize = calculateTotalSize();
 
-        for (int crewNumber = 0; crewNumber < totalSize;) {
+        for (int crewNumber = 0; crewNumber <= totalSize;) {
             // TODO: 중복 검사
             alreadyMatched.put(crewNames.get(crewNumber), new String[] {crewNames.get(crewNumber+1)});
             alreadyMatched.put(crewNames.get(crewNumber+1), new String[] {crewNames.get(crewNumber)});
@@ -52,11 +52,11 @@ public class Pair {
 
     public int calculateTotalSize() {
         if (crewNames.size() % 2 != 0) return crewNames.size() - 3;
-        return crewNames.size();
+        return crewNames.size() - 2;
     }
 
     private void insertRestCrew(int total) {
-        if (total ==  crewNames.size()) return;
+        if (total % 2 == 0) return;
         int[] right = {1, -1, -2};
         int[] left = {2, 1, -1};
 

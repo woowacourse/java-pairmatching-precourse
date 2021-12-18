@@ -40,12 +40,12 @@ public class PairMatchingOutput {
     public static void printPair(Pair pair) {
         int totalSize = pair.calculateTotalSize();
         StringBuilder stringBuilder = new StringBuilder();
-        for(int number = 0; number < totalSize;) {
+        for(int number = 0; number <= totalSize;) {
             stringBuilder.append(String.join(pairDelim, new String[]{pair.crewNameByNumber(number), pair.crewNameByNumber(number + 1)}));
             stringBuilder.append("\n");
             number = number + 2;
         }
-        if (totalSize ==  pair.getCrewSize()) {
+        if (totalSize % 2 == 0) {
             System.out.println(stringBuilder);
             return;
         }
