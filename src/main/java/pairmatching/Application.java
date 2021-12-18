@@ -1,7 +1,9 @@
 package pairmatching;
 
+import pairmatching.model.Operation;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO 구현 진행
+        Operation.start();
     }
 }
