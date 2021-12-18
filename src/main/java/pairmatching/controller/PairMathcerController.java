@@ -8,6 +8,7 @@ public class PairMathcerController {
 	private PairMatcher pairMatcher;
 
 	public void init() {
+		pairMatcher = new PairMatcher();
 		runPairMatcher();
 	}
 
