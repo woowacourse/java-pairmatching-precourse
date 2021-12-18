@@ -57,21 +57,8 @@ public class PairController {
     }
 
     public void initialPair() {
-        MatchingInfo matchingInfo = getNewMatchingInfo();
-        if (matchingInfos != null && removeMatchingInfo(matchingInfo)) {
-            System.out.println(INITIAL_COMPLETE);
-        }
-    }
-
-    private boolean removeMatchingInfo(MatchingInfo matchingInfo) {
-        int size = matchingInfos.size();
-        for (int i = 0; i < size; i++) {
-            if (matchingInfos.get(i).isSameMatching(matchingInfo)) {
-                matchingInfos.remove(i);
-                return true;
-            }
-        }
-        return false;
+        matchingInfos = new ArrayList<>();
+        System.out.println(INITIAL_COMPLETE);
     }
 
     private MatchingInfo getNewMatchingInfo() {
