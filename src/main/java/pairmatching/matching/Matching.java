@@ -70,6 +70,10 @@ public class Matching {
         return allMatched.stream().distinct().count() != allMatched.size();
     }
 
+    public void makeThisCourseMatching(String courseName, List<String> matched){
+        Integer courseIndex = hashMap.get(courseName);
+        course.set(courseIndex, matched);
+    }
 
     public List<String> getMatching(String courseName) {
         return course.get(hashMap.get(courseName));
