@@ -9,11 +9,11 @@ public class InputView {
 	public static final String REGEX = ",";
 	public static final int INFO_SIZE = 3;
 
-	public static String selectMenu() {
+	public static Menu selectMenu() {
 		String choice = Console.readLine();
 		validateMenuChoiceInput(choice);
 
-		return choice;
+		return Menu.create(choice);
 	}
 
 	public static String inputInfoForPairMatching() {
