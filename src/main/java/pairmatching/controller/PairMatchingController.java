@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pairmatching.domain.Course;
-import pairmatching.domain.Crew;
 import pairmatching.domain.Crews;
 import pairmatching.domain.Level;
 import pairmatching.domain.Mission;
 import pairmatching.domain.Missions;
 import pairmatching.view.InputView;
-import pairmatching.view.OutputView;
 
 public class PairMatchingController {
 	public void run() {
@@ -36,18 +34,24 @@ public class PairMatchingController {
 		crews.addByCrewName(frontCrewNames, Course.FRONTEND);
 
 		// 사전 제공 정보 출력
-		System.out.println("#############################################");
-		System.out.print("과정: ");
-		StringBuilder sb = new StringBuilder();
-		for (Course course : Course.values()) {
-			sb.append(course.getName());
-			sb.append(" | ");
-		}
-		String s = sb.toString();
-		String substring = s.substring(0, s.length() - 3);
-		System.out.println(substring);
-		sb.setLength(0);
+		printSeparator();
+		printCourseNames();
+		printMissionsNames(missions);
+		printSelectMatchingOption();
+		printSeparator();
+	}
 
+	private void printSeparator() {
+		System.out.println("#############################################");
+	}
+
+	private void printSelectMatchingOption() {
+		System.out.println("과정, 레벨, 미션을 선택하세요.");
+		System.out.println("ex) 백엔드, 레벨1, 자동차경주");
+	}
+
+	private void printMissionsNames(Missions missions) {
+		StringBuilder sb = new StringBuilder();
 		System.out.println("미션: ");
 		for (Level level : Level.values()) {
 			sb.append("  - ");
@@ -69,8 +73,17 @@ public class PairMatchingController {
 			System.out.println(substring1);
 			sb.setLength(0);
 		}
-		System.out.println("과정, 레벨, 미션을 선택하세요.");
-		System.out.println("ex) 백엔드, 레벨1, 자동차경주");
-		System.out.println("#############################################");
+	}
+
+	private void printCourseNames() {
+		System.out.print("과정: ");
+		StringBuilder sb = new StringBuilder();
+		for (Course course : Course.values()) {
+			sb.append(course.getName());
+			sb.append(" | ");
+		}
+		String s = sb.toString();
+		String substring = s.substring(0, s.length() - 3);
+		System.out.println(substring);
 	}
 }
