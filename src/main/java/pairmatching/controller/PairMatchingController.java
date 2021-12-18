@@ -10,5 +10,6 @@ public class PairMatchingController {
 	public void run() {
 		inputView.enterRoleNumber();
 		outputView.printCourseAndMission();
+		inputView.enterCourseLevelMission();
 	}
 }

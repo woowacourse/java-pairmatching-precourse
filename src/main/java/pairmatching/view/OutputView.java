@@ -7,10 +7,11 @@ import pairmatching.model.Level;
 import pairmatching.model.Role;
 
 public class OutputView {
-	private final String CHOOSE_ROLE = "기능을 선택하세요.";
-	private final String COURSE = "과정: ";
-	private final String MISSION = "미션: ";
-	private final String DIVIDING_LINE = "#############################################";
+	private static final String CHOOSE_ROLE = "기능을 선택하세요.";
+	private static final String COURSE = "과정: ";
+	private static final String MISSION = "미션: ";
+	private static final String DIVIDING_LINE = "#############################################";
+	private static final String SELECT_COURSE_LEVEL_MISSION = "과정, 레벨, 미션을 선택하세요";
 
 	public void printRoleList() {
 		System.out.println(CHOOSE_ROLE);
@@ -37,5 +38,9 @@ public class OutputView {
 
 	private void printDividingLine() {
 		System.out.println(DIVIDING_LINE);
+	}
+
+	public void printCourseLevelMission() {
+		System.out.println(SELECT_COURSE_LEVEL_MISSION);
 	}
 }
