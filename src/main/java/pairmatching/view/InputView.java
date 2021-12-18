@@ -75,7 +75,7 @@ public abstract class InputView {
             System.out.println(createCourseInformationPrintFormat());
             String inputCourseInformation = inputValue();
             String[] splitInputCourseInformation = inputCourseInformation.split(COMMA);
-
+            validateCourseInformation(splitInputCourseInformation);
 
             return splitInputCourseInformation;
         } catch (IllegalArgumentException illegalArgumentException) {
@@ -85,6 +85,24 @@ public abstract class InputView {
         }
     }
 
+    private static void validateCourseInformation(final String[] splitInputCourseInformation) {
+        validateCourse(splitInputCourseInformation[COURSE_INDEX]);
+    }
+
+    private static void validateCourse(final String inputCourseName) {
+        boolean isContainsInputCourseName = true;
+
+        for (Course course:Course.values()) {
+            if (course.getName().equals(inputCourseName.trim())) {
+                isContainsInputCourseName = false;
+                break;
+            }
+        }
+
+        if(isContainsInputCourseName){
+            throw new IllegalArgumentException("[ERROR] 해당 과정이 존재하지 않습니다.");
+        }
+    }
 
     private static String createCourseInformationPrintFormat() {
         return NEW_LINE + BOUNDARY + NEW_LINE + MISSION + COLON + NEW_LINE
