@@ -55,7 +55,6 @@ public class PairMatchingController {
 			}
 			OutputView.printPairResult(pair);
 		}
-
 		if (functionNumber == TWO) {
 			String[] courseAndLevelAndMission = inputView.scanCourseAndLevelAndMission().trim().split(DELIMITER);
 			if (pairHistory.contains(courseAndLevelAndMission[0] + courseAndLevelAndMission[1])) {
@@ -63,6 +62,11 @@ public class PairMatchingController {
 				return;
 			}
 			OutputView.printErrorNotMathcingHistory();
+		}
+		if (functionNumber == THREE) {
+			pair = new LinkedHashMap<>();
+			pairHistory = new HashSet<>();
+			OutputView.printPairResetMessage();
 		}
 	}
 

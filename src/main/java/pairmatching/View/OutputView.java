@@ -8,6 +8,7 @@ import pairmatching.domain.Crew;
 public class OutputView {
 	private static final String PAIR_MATHCING_RESULT_GUIDE_MESSEAGE = "페어 매칭 결과입니다.";
 	private static final String NOT_MATHCING_HISTORY_ERROR_MESSEAGE = "[ERROR] 매칭 이력이 없습니다.";
+	private static final String RESET_GUIDE_MESSEAGE = "초기화 되었습니다.";
 
 	public static void printPairResult(Map<Crew, ArrayList<Crew>> pair) {
 		System.out.println();
@@ -24,5 +25,10 @@ public class OutputView {
 	public static void printErrorNotMathcingHistory() {
 		System.out.println();
 		System.out.println(NOT_MATHCING_HISTORY_ERROR_MESSEAGE);
+	}
+
+	public static void printPairResetMessage() {
+		System.out.println();
+		System.out.println(RESET_GUIDE_MESSEAGE);
 	}
 }
