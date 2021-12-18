@@ -6,6 +6,7 @@ import pairmatching.domain.Mission;
 import pairmatching.domain.Missions;
 import pairmatching.service.MatchingSercive;
 
+import static pairmatching.utils.Constants.*;
 import static pairmatching.utils.Validator.checkInfoCount;
 import static pairmatching.utils.Validator.checkRematchAnswer;
 import static pairmatching.view.InputViews.getConfirmRematch;
@@ -32,11 +33,11 @@ public class MatchingController {
     }
 
     public void matchPair(String input, Missions missions) {
-        String[] infoArr = input.split(", ");
+        String[] infoArr = input.split(ITEM_SEPORATOR);
         checkInfoCount(infoArr);
-        Course course = matchingService.checkCourse(infoArr[0]);
-        Level level = matchingService.checkLevel(infoArr[1]);
-        Mission mission = matchingService.checkMission(infoArr[1], infoArr[2], missions);
+        Course course = matchingService.checkCourse(infoArr[COURSE_INDEX]);
+        Level level = matchingService.checkLevel(infoArr[LEVEL_INDEX]);
+        Mission mission = matchingService.checkMission(infoArr[LEVEL_INDEX], infoArr[MISSION_INDEX], missions);
 
         if (matchingService.checkExistPair(course, level, mission)) {
             if (!getRematchAnswer()) {
@@ -53,7 +54,7 @@ public class MatchingController {
         while (!flag) {
             try {
                 String input = checkRematchAnswer(getConfirmRematch());
-                if (input.equals("아니요")) {
+                if (input.equals(ANSWER_NO)) {
                     return false;
                 }
                 flag = true;

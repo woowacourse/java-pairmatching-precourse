@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static pairmatching.utils.Constants.BACKEND_CREW_INFO;
+import static pairmatching.utils.Constants.FRONTEND_CREW_INFO;
 import static pairmatching.utils.ExceptionMessage.ERROR_FILE_READ;
 
 public class CrewRepository {
@@ -38,7 +40,7 @@ public class CrewRepository {
     private static void readBackend() throws IOException {
         List<Crew> crewList = new ArrayList<>();
         BufferedReader reader = new BufferedReader(
-                new FileReader("src/main/resources/backend-crew.md")
+                new FileReader(BACKEND_CREW_INFO)
         );
         String str;
         while ((str = reader.readLine()) != null) {
@@ -51,7 +53,7 @@ public class CrewRepository {
     private static void readFrontEnd() throws IOException {
         List<Crew> crewList = new ArrayList<>();
         BufferedReader reader = new BufferedReader(
-                new FileReader("src/main/resources/frontend-crew.md")
+                new FileReader(FRONTEND_CREW_INFO)
         );
         String str;
         while ((str = reader.readLine()) != null) {

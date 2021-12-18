@@ -3,6 +3,8 @@ package pairmatching.utils;
 import java.util.Arrays;
 import java.util.List;
 
+import static pairmatching.utils.Constants.BLANK;
+import static pairmatching.utils.Constants.NUM_OF_ITEM;
 import static pairmatching.utils.ExceptionMessage.*;
 
 public class Validator {
@@ -26,13 +28,13 @@ public class Validator {
     }
 
     private static void checkFrontBlank(String input) {
-        if (input.charAt(0) == ' ') {
+        if (input.charAt(0) == BLANK) {
             throw new IllegalArgumentException(ERROR_FRONT_BLANK);
         }
     }
 
     public static void checkInfoCount(String[] input) {
-        if (input.length != 3) {
+        if (input.length != NUM_OF_ITEM) {
             throw new IllegalArgumentException(ERROR_LESS_INFO);
         }
     }

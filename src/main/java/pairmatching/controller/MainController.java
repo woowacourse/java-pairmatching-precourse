@@ -1,5 +1,6 @@
 package pairmatching.controller;
 
+import static pairmatching.utils.Constants.*;
 import static pairmatching.utils.Validator.checkAvailableSelect;
 import static pairmatching.view.InputViews.getMainSelect;
 
@@ -14,7 +15,7 @@ public class MainController {
             try {
                 String input = checkAvailableSelect(getMainSelect());
                 runSelectFunction(input);
-                if (input.equals("Q")) {
+                if (input.equals(EXIT)) {
                     flag = true;
                 }
             } catch (IllegalArgumentException e) {
@@ -24,13 +25,13 @@ public class MainController {
     }
 
     private void runSelectFunction(String input) {
-        if (input.equals("1")) {
+        if (input.equals(SELECT_MATCHING)) {
             matchingController.run();
         }
-        if (input.equals("2")) {
+        if (input.equals(SELECT_INQUERY)) {
             inqueryController.run();
         }
-        if (input.equals("3")) {
+        if (input.equals(SELECT_INITIALIZE)) {
             initializeController.run();
         }
     }
