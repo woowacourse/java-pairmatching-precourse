@@ -18,12 +18,12 @@ public enum Course {
 
 	public static Course getCourseType(String courseName) {
 		courseName = replaceGap(courseName);
-
+		System.out.println(courseName);
 		String finalCourseName = courseName;
 		return Arrays.stream(values())
 			.filter(course -> course.getName().equals(finalCourseName))
-			.findAny()
-			.orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 코스는 업습니다."));
+			.findFirst()
+			.orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 코스는 없습니다."));
 	}
 
 	protected static String replaceGap(String name) {
