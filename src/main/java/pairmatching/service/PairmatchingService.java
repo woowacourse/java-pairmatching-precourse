@@ -23,4 +23,8 @@ public class PairmatchingService {
 		PairMatch pairMatches = PairMatchRepository.getPairMatches(match);
 		return pairMatches;
 	}
+
+	public void clearAllPairs() {
+		PairMatchRepository.clear();
+	}
 }

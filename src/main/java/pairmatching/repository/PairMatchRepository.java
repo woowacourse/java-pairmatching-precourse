@@ -63,4 +63,8 @@ public class PairMatchRepository {
 			.findAny()
 			.orElseGet(() -> null);
 	}
+
+	public static void clear() {
+		pairMatches = new ArrayList<>();
+	}
 }

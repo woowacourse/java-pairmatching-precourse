@@ -9,6 +9,7 @@ public class OutputView {
 
 	public static final String OUTPUT_MATCHING_RESULT = "페어 매칭 결과입니다.";
 	public static final String OUTPUT_NO_MATCH_DATA = "매칭 정보가 존재하지 않습니다.\n";
+	public static final String OUTPUT_CLEAR_PAIRS = "초기화 되었습니다. \n";
 
 	public static void outputPairMatchingResult(PairMatch pairMatch) {
 		if (pairMatch == null) {
@@ -21,5 +22,9 @@ public class OutputView {
 			System.out.println(pair);
 		}
 		System.out.println();
+	}
+
+	public static void printClearMessage() {
+		System.out.println(OUTPUT_CLEAR_PAIRS);
 	}
 }

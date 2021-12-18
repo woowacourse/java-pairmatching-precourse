@@ -46,6 +46,7 @@ public class PairmatchingController {
 	}
 
 	private static void toClear() {
-		System.out.println("초기화 되었습니다. ");
+		pairmatchingService.clearAllPairs();
+		OutputView.printClearMessage();
 	}
 }
