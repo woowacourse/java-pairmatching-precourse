@@ -3,10 +3,7 @@ package pairmatching.domain.pair;
 import pairmatching.domain.Course;
 import pairmatching.domain.Level;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PairRepository {
 
@@ -35,5 +32,13 @@ public class PairRepository {
 
     public static void clear() {
         store.clear();
+    }
+
+    public static List<Pair> get(PairTag pairTag) {
+        List<Pair> pairs = store.get(pairTag);
+        if (pairs == null) {
+            return Collections.EMPTY_LIST;
+        }
+        return pairs;
     }
 }

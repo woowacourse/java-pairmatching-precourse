@@ -107,4 +107,8 @@ public class PairService {
     public void clear() {
         PairRepository.clear();
     }
+
+    public List<Pair> getPairs(PairTag pairTag) {
+        return PairRepository.get(pairTag);
+    }
 }

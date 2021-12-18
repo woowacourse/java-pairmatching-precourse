@@ -101,8 +101,13 @@ public class View {
     }
 
     public static void printParis(List<Pair> pairs) {
-        System.out.println("페어 매칭 결과입니다.");
 
+        if (pairs.isEmpty()) {
+            System.out.println("[ERROR] 매칭 이력이 없습니다.");
+            return;
+        }
+
+        System.out.println("페어 매칭 결과입니다.");
         for (Pair pair : pairs) {
             String resultString = pair.getCrews().stream()
                     .map(Crew::getName)
