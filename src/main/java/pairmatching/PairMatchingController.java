@@ -1,6 +1,6 @@
 package pairmatching;
 
-import pairmatching.domain.MainMenu;
+import pairmatching.domain.menu.MainMenu;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 

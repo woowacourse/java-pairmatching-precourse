@@ -1,4 +1,4 @@
-package pairmatching.domain;
+package pairmatching.domain.menu;
 
 import java.util.Arrays;
 
