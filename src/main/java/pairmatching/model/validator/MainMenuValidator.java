@@ -22,6 +22,7 @@ public class MainMenuValidator {
 
 		if (!menuList.contains(input)) {
 			System.out.println(IS_MENU_ERROR_MESSAGE);
+			throw new IllegalArgumentException();
 		}
 	}
 }
