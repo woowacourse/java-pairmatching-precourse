@@ -45,16 +45,23 @@ public class PairView {
 		int i;
 		if (crews.size() % 2 == EVEN) {
 			for (i = 0; i < crews.size(); i += 2) {
-				System.out.printf(PAIR_FORMAT_TWO, crews.get(i).getName(), crews.get(i + 1).getName());
+				String name1 = String.valueOf(crews.get(i));
+				String name2 = String.valueOf(crews.get(i + 1));
+
+				System.out.printf(PAIR_FORMAT_TWO, name1, name2);
 			}
 		}
 		if (crews.size() % 2 == ODD) {
 			for (i = 0; i < crews.size() - 3; i += 2) {
-				System.out.printf(PAIR_FORMAT_TWO, crews.get(i).getName(), crews.get(i + 1).getName());
+				String name1 = String.valueOf(crews.get(i));
+				String name2 = String.valueOf(crews.get(i + 1));
+				System.out.printf(PAIR_FORMAT_TWO, name1, name2);
 			}
 			i = crews.size();
-			System.out.printf(PAIR_FORMAT_THREE, crews.get(i - 3).getName(), crews.get(i - 2).getName(),
-				crews.get(i - 3).getName());
+			String name1 = String.valueOf(crews.get(i - 3));
+			String name2 = String.valueOf(crews.get(i - 2));
+			String name3 = String.valueOf(crews.get(i - 1));
+			System.out.printf(PAIR_FORMAT_THREE, name1, name2, name3);
 		}
 		System.out.println();
 
