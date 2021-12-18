@@ -10,7 +10,7 @@ import static pairmatching.view.OutputView.*;
 import pairmatching.model.PairMatching;
 
 public class PairMatchingController {
-	private PairMatching pairMatching;
+	private final PairMatching pairMatching;
 
 	public PairMatchingController(PairMatching pairMatching) {
 		this.pairMatching = pairMatching;
@@ -51,10 +51,12 @@ public class PairMatchingController {
 
 	private void requestMatching() {
 		introCourse();
+		String input = selectCourse();
 		try {
-			String[] courseInput = isCourseInput(selectCourse());
+			String[] courseInput = isCourseInput(input);
 			isExistCourse(courseInput);
 			pairMatching.matchingPair(courseInput);
+			pairMatching.printMatchingInfo(input);
 		} catch (IllegalArgumentException illegalArgumentException) {
 			printError(illegalArgumentException.getMessage());
 			requestMatching();

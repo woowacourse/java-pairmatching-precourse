@@ -18,4 +18,8 @@ public class Pair {
 		}
 		return true;
 	}
+
+	public List<String> getPair() {
+		return pair;
+	}
 }

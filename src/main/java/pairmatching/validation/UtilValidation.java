@@ -13,7 +13,7 @@ public class UtilValidation {
 	}
 
 	public static String[] isCourseInput(String input) {
-		String[] split = input.split(", ");
+		String[] split = input.split(SPLIT_DELIMETER);
 		if (!(split.length == 3)) {
 			throw (new IllegalArgumentException(NOT_COUSE_FORM));
 		}

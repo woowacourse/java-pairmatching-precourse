@@ -9,6 +9,8 @@ public class Constants {
 	public static final int QUIT_NUMBER = 4;
 
 	public static final String JOIN_DELIMETER = " | ";
+	public static final String JOIN_PAIR_DELIMETER = " : ";
+	public static final String SPLIT_DELIMETER = ", ";
 
 	public static final int COURSE_IDX = 0;
 	public static final int LEVEL_IDX = 1;

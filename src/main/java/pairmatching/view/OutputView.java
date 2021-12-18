@@ -9,6 +9,7 @@ import java.util.List;
 
 import pairmatching.model.Course;
 import pairmatching.model.Level;
+import pairmatching.model.Pair;
 
 public class OutputView {
 	public static void introCourse() {
@@ -32,5 +33,14 @@ public class OutputView {
 			 values) {
 			System.out.println(INDENT + HYPHEN + level.getName() + COLON + String.join(JOIN_DELIMETER, level.getMissions()));
 		}
+	}
+
+	public static void printPairs(List<Pair> pairList) {
+		System.out.println(PAIR_MATCHING);
+		for (Pair pair:
+			 pairList) {
+			System.out.println(String.join(JOIN_PAIR_DELIMETER, pair.getPair()));
+		}
+		System.out.println();
 	}
 }

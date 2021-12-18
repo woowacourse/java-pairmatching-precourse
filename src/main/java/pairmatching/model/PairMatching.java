@@ -36,9 +36,10 @@ public class PairMatching {
 			List<Pair> pairList = makePairs(Level.findLevelByString(courseInfos[LEVEL_IDX]), courseInfos[COURSE_IDX]);
 			matchingHistory.addHisotry(Level.findLevelByString(courseInfos[LEVEL_IDX]), pairList);
 			matchingInfo.addInfo(courseInfos, pairList);
-			if (pairList == null) {
-				resetCnt++;
+			if (pairList != null) {
+				break;
 			}
+			resetCnt++;
 			if (resetCnt == RESET_CNT) {
 				throw new IllegalArgumentException(PAIR_EXIST);
 			}
@@ -63,6 +64,10 @@ public class PairMatching {
 			}
 		}
 		return pairList;
+	}
+
+	public void printMatchingInfo(String course) {
+		matchingInfo.printMatchingInfo(course);
 	}
 
 }

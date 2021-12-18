@@ -7,4 +7,7 @@ public class OutputMessage {
 	public static final String INDENT = "  ";
 	public static final String HYPHEN = "- ";
 	public static final String COLON = ": ";
+
+	public static final String PAIR_MATCHING = "페어 매칭 결과입니다.";
+
 }
