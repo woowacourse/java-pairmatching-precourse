@@ -9,4 +9,8 @@ public enum Course {
 	Course(String name) {
 		this.name = name;
 	}
+
+	public static String getCourseInfo(){
+		return String.format("과정: %s | %s", BACKEND.name, FRONTEND.name);
+	}
 }

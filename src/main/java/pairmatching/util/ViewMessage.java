@@ -1,7 +1,8 @@
 package pairmatching.util;
 
 public enum ViewMessage {
-	INPUT_MACHINE_MONEY("");
+	SELECT_MENU_MSG("기능을 선택하세요."),
+	START_END_PRINT_INFO("#############################################");
 
 
 	private final String message;

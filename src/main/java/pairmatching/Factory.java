@@ -11,39 +11,28 @@ public class Factory {
 	public Scanner frontendScanner;
 
 	public Factory() {
-		try{
+		try {
 			this.backendScanner = new Scanner(new FileInputStream("src/main/resources/backend-crew.md"));
 			this.frontendScanner = new Scanner(new FileInputStream("src/main/resources/frontend-crew.md"));
-		}catch (FileNotFoundException e){
+		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	public List<String> getBackEndCrewList(){
+	public List<String> getBackEndCrewList() {
 		List<String> crews = new ArrayList<>();
-		while(backendScanner.hasNext()){
+		while (backendScanner.hasNext()) {
 			crews.add(backendScanner.next());
 		}
 		return crews;
 	}
 
-	public List<String> getFrontEndCrewList(){
+	public List<String> getFrontEndCrewList() {
 		List<String> crews = new ArrayList<>();
-		while(frontendScanner.hasNext()){
+		while (frontendScanner.hasNext()) {
 			crews.add(frontendScanner.next());
 		}
 		return crews;
 	}
 
-	public void printCrew(){
-		System.out.println("Backend \n");
-		for (String s : getBackEndCrewList()) {
-			System.out.println(s);
-		}
-
-		System.out.println("frontend");
-		for (String s : getFrontEndCrewList()) {
-			System.out.println(s);
-		}
-	}
 }
