@@ -14,6 +14,14 @@ public class ProgramInfoRepository {
         programInfos.add(programInfo);
     }
 
+    public boolean hasProgramInfo(ProgramInfo nowProgramInfo) {
+        return programInfos.stream().anyMatch(programInfo -> programInfo.equals(nowProgramInfo));
+    }
+
+    public void delete(ProgramInfo programInfo) {
+        programInfos.remove(programInfo);
+    }
+
     public boolean checkTwoCrewsAlreadyMatch(ProgramInfo nowProgramInfo, Crew crew1, Crew crew2) {
         Course course = nowProgramInfo.getCourse(); //백인지 프론트인지
         Level level = nowProgramInfo.getLevel(); // 몇 단계 미션인지

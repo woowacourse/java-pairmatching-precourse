@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class ProgramInfo {
     Course course;
@@ -41,5 +42,20 @@ public class ProgramInfo {
         for (Crew crew : pairs.keySet()) {
             System.out.println(crew+" : "+pairs.get(crew));
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        ProgramInfo that = (ProgramInfo)o;
+        return getCourse() == that.getCourse() && getLevel() == that.getLevel() && mission == that.mission;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCourse(), getLevel(), mission);
     }
 }
