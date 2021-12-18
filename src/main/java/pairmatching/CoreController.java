@@ -141,7 +141,10 @@ public class CoreController {
 	}
 
 	private void showPair(String missionName) {
-		List<String> pair = pairInMission.get(missionName);
+		List<String> pair = null;
+		if (pairInMission.containsKey(missionName)) {
+			pair = pairInMission.get(missionName);
+		}
 		uiLogic.printPair(pair);
 	}
 
@@ -193,6 +196,10 @@ public class CoreController {
 			return;
 		}
 		pairInMission.put(mission, pair);
+		showPair(mission);
+	}
+
+	protected void searchPair(String course, String level, String mission) {
 		showPair(mission);
 	}
 }
