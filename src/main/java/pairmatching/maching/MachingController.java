@@ -1,5 +1,7 @@
 package pairmatching.maching;
 
+import static pairmatching.maching.MachingRepository.*;
+
 import java.util.List;
 
 import pairmatching.edu.Course;
@@ -31,6 +33,17 @@ public class MachingController {
 
 		output.printPairList(machingService.makeMaching(course, level, mission));
 
+	}
+
+	public void finding() {
+		List<String> infos = startPair();
+		Course course = Course.findByName(infos.get(0));
+		Level level = Level.findByName(infos.get(1));
+		String mission = infos.get(2);
+		//출력
+		//검증해야함
+		List<Pair> pairList = findByCourseLevelMission(course, level, mission).getPairList();
+		output.printPairList(pairList);
 	}
 
 	private List<String> startPair() {
