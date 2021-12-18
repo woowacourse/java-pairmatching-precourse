@@ -18,18 +18,24 @@ public class MatchingController {
 	public void start() {
 		InputController inputController = new InputController();
 		PairStorage pairStorage = new PairStorage();
-		String inputNum = inputController.scanSelectFunction();
-		if (inputNum.equals("1")) {
-			InputView.askCourseLevelMission();
-			String[] eachInform = inputController.scanCourseLevelMission();
-			HashMap<String, Pairs> missionPair = new HashMap<>();
-			Pairs pairs = shuffleCrew(eachInform[COURSE_INDEX]);
-			missionPair.put(eachInform[MISSION_INDEX], pairs);
-			pairStorage.backEndPair.put(Level.getLevelByName(eachInform[LEVEL_INDEX]), missionPair);
-			OutputView.printPairResult(pairs);
-		} else if (inputNum.equals("2")) {
-			InputView.askCourseLevelMission();
-			inputController.scanCourseLevelMission();
+		while (true) {
+			String inputNum = inputController.scanSelectFunction();
+			if (inputNum.equals("1")) {
+				InputView.askCourseLevelMission();
+				String[] eachInform = inputController.scanCourseLevelMission();
+				HashMap<String, Pairs> missionPair = new HashMap<>();
+				Pairs pairs = shuffleCrew(eachInform[COURSE_INDEX]);
+				missionPair.put(eachInform[MISSION_INDEX], pairs);
+				pairStorage.backEndPair.put(Level.getLevelByName(eachInform[LEVEL_INDEX]), missionPair);
+				OutputView.printPairResult(pairs);
+			} else if (inputNum.equals("2")) {
+				InputView.askCourseLevelMission();
+				inputController.scanCourseLevelMission();
+			} else if (inputNum.equals("3")) {
+				pairStorage.initPairStorage();
+			} else if (inputNum.equals("Q")) {
+				break;
+			}
 		}
 	}
 

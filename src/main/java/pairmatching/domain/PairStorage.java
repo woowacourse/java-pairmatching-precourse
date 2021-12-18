@@ -5,4 +5,9 @@ import java.util.HashMap;
 public class PairStorage {
 	public HashMap<Level, HashMap<String, Pairs>> backEndPair = new HashMap<>();
 	public HashMap<Level, HashMap<String, Pairs>> frontEndPair = new HashMap<>();
+
+	public void initPairStorage() {
+		backEndPair = new HashMap<>();
+		frontEndPair = new HashMap<>();
+	}
 }
