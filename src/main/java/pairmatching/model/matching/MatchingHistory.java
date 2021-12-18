@@ -6,6 +6,7 @@ import pairmatching.model.crew.Level;
 import pairmatching.model.crew.Mission;
 
 import java.util.List;
+import java.util.Objects;
 
 public class MatchingHistory {
     private final Course course;
@@ -21,7 +22,7 @@ public class MatchingHistory {
         this.matchedCrews = matchedCrews;
     }
 
-    public boolean hasMatchedBeforeInConditionOf(Course course, Level level, Mission mission) {
+    public boolean isSameWith(Course course, Level level, Mission mission) {
         return this.course == course && this.level == level && this.mission == mission;
     }
 
@@ -37,5 +38,4 @@ public class MatchingHistory {
         return newPairs.stream()
                 .anyMatch(before::equals);
     }
-
 }
