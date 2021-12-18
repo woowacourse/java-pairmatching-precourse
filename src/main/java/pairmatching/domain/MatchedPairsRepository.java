@@ -1,0 +1,17 @@
+package pairmatching.domain;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MatchedPairsRepository {
+	private static final List<MatchedPairs> matchedPairsList = new ArrayList<>();
+
+	public static boolean isMatched(Course course, Mission mission) {
+		return matchedPairsList.stream()
+			.anyMatch(matchedPairs -> matchedPairs.isMission(mission) && matchedPairs.isCourse(course));
+	}
+
+	public static void add(MatchedPairs matchedPairs) {
+		matchedPairsList.add(matchedPairs);
+	}
+}
