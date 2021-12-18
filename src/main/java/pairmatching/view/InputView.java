@@ -1,10 +1,10 @@
 package pairmatching.view;
 
+import java.io.IOException;
+
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.PairMatching;
 import pairmatching.domain.PairRepository;
-
-import java.io.IOException;
 
 public class InputView {
     private static final String FUNCTION_GUIDE_MESSAGE = "기능을 선택하세요.\n" + "1. 페어 매칭\n" +

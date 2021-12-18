@@ -1,8 +1,8 @@
-package pairmatching;
-
-import pairmatching.view.InputView;
+package pairmatching.domain;
 
 import java.io.IOException;
+
+import pairmatching.view.InputView;
 
 public class PairMatchingProgram {
 

@@ -20,7 +20,7 @@ public class PairMatching {
     private static final int MISSION_IDX = 2;
     private static final int MAX_SHUFFLE = 3;
 
-    static ArrayList<String> pair = new ArrayList<>();
+    static ArrayList<String> evenPair = new ArrayList<>();
     static ArrayList<String> oddPair = new ArrayList<>();
 
     public static void matching(String[] information) throws IOException {
@@ -57,16 +57,15 @@ public class PairMatching {
             crewsNames.add(crew.getName());
         }
         if (crews.size() % 2 == 0) {
-            evenMatching(crewsNames, crews, course, level, mission);
+            evenMatching(crewsNames, course, level, mission);
         }
 
         if (crews.size() % 2 == 1) {
-            oddMatching(crewsNames, crews, course, level, mission);
+            oddMatching(crewsNames, course, level, mission);
         }
     }
 
-    private static void evenMatching(List<String> crewsNames,
-                                     ArrayList<Crew> crews, String course, String level, String mission) {
+    private static void evenMatching(List<String> crewsNames, String course, String level, String mission) {
         int shuffleCount = 0;
         while (true) {
             if (shuffleCount > MAX_SHUFFLE) {
@@ -81,8 +80,7 @@ public class PairMatching {
         }
     }
 
-    private static void oddMatching(List<String> crewsNames,
-                                    ArrayList<Crew> crews, String course, String level, String mission) {
+    private static void oddMatching(List<String> crewsNames, String course, String level, String mission) {
         int shuffleCount = 0;
         while (true) {
             if (shuffleCount > 3) {
@@ -101,7 +99,7 @@ public class PairMatching {
         ArrayList<Pair> pairOddRepositoryTemp = new ArrayList<>();
 
         for (int idx = 0; idx < shuffleCrews.size()-1; idx++) {
-            if (!isPassOddPair(shuffleCrews, idx, mission, level)) {
+            if (!isPassOddPair(shuffleCrews, idx, level)) {
                 return false;
             }
             if (idx % 2 == 1) {
@@ -112,7 +110,7 @@ public class PairMatching {
         return true;
     }
 
-    private static boolean isPassOddPair(List<String> shuffleCrews, int idx, String mission, String level) {
+    private static boolean isPassOddPair(List<String> shuffleCrews, int idx, String level) {
         if (idx == shuffleCrews.size()-2) {
             oddPair.add(shuffleCrews.get(idx));
             oddPair.add(shuffleCrews.get(shuffleCrews.size()-1));
@@ -137,14 +135,27 @@ public class PairMatching {
         ArrayList<Pair> pairRepositoryTemp= new ArrayList<>();
 
         for (int idx = 0; idx < shuffleCrews.size(); idx++) {
-            if (!isPassPair(shuffleCrews, idx, mission, level)) {
+            if (!isPassEvenPair(shuffleCrews, idx, mission, level)) {
                 return false;
             }
             if (idx % 2 == 1) {
-                pairRepositoryTemp.add(new Pair(course, level, mission, pair));
+                pairRepositoryTemp.add(new Pair(course, level, mission, evenPair));
             }
         }
         storePair(pairRepositoryTemp);
+        return true;
+    }
+
+    private static boolean isPassEvenPair(List<String> shuffleCrews, int idx, String mission, String level) {
+        if (idx % 2 == 0) {
+            evenPair = new ArrayList<>();
+        }
+        evenPair.add(shuffleCrews.get(idx));
+        if (idx % 2 == 1) {
+            if (!isPair(evenPair, level)) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -152,19 +163,6 @@ public class PairMatching {
         for (Pair pair : pairRepositoryTemp) {
             PairRepository.addPair(new Pair(pair.getCourse(), pair.getLevel(), pair.getMission(), pair.getCrews()));
         }
-    }
-
-    private static boolean isPassPair(List<String> shuffleCrews, int idx, String mission, String level) {
-        if (idx % 2 == 0) {
-            pair = new ArrayList<>();
-        }
-        pair.add(shuffleCrews.get(idx));
-        if (idx % 2 == 1) {
-            if (!isPair(pair, level)) {
-                return false;
-            }
-        }
-        return true;
     }
 
     private static boolean isPair(ArrayList<String> pairNames, String level) {
