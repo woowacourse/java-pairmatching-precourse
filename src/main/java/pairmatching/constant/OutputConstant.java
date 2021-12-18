@@ -8,4 +8,6 @@ public class OutputConstant {
 	public final static String REFRESH_PAIR_MESSAGE = "3. 페어 초기화";
 	public final static String END_MESSAGE = "Q. 종료";
 
+	public final static String COURSE_INFO_PATH = "src/main/resources/course-info.txt";
+
 }

@@ -6,6 +6,7 @@ import pairmatching.view.OutputView;
 public class ProgramController {
 	OutputView outputView = new OutputView();
 	InputView inputView = new InputView();
+	PairMatchingController pairMatchingController = new PairMatchingController();
 
 	public void start() {
 		String userInput;
@@ -21,6 +22,7 @@ public class ProgramController {
 
 	public void selectFunction(String functionNumber) {
 		if (functionNumber.equals("1")) {
+			pairMatchingController.start();
 			return;
 		}
 		if (functionNumber.equals("2")) {
