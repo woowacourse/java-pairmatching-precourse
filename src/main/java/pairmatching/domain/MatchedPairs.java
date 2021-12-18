@@ -15,6 +15,10 @@ public class MatchedPairs {
 		this.mission = mission;
 	}
 
+	public List<Pair> getPairs() {
+		return pairs;
+	}
+
 	public boolean isCourse(Course course) {
 		return this.course == course;
 	}

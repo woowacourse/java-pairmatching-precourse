@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum Mission {
-	CAR_RACE("자동차 경주", Level.LEVEL1),
+	CAR_RACE("자동차경주", Level.LEVEL1),
 	LOTTO("로또", Level.LEVEL1),
 	BASEBALL("숫자야구게임", Level.LEVEL1),
 	CART("장바구니", Level.LEVEL2),

@@ -5,6 +5,8 @@ import java.io.IOException;
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.domain.Course;
 import pairmatching.domain.Level;
+import pairmatching.domain.MatchedPairs;
+import pairmatching.domain.MatchedPairsRepository;
 import pairmatching.domain.Mission;
 import pairmatching.domain.PairManager;
 import pairmatching.utils.DataInitializer;
@@ -63,7 +65,7 @@ public class Controller {
 		outputView.printCourseAndMission();
 		String[] missionInfo = Console.readLine().split(MISSION_SEPARATOR);
 		try {
-			pairManager.runFunction(
+			runPairFunction(
 				Course.findByName(missionInfo[INDEX_COURSE]),
 				Level.findByName(missionInfo[INDEX_LEVEL]),
 				Mission.findByName(missionInfo[INDEX_MISSION]),
@@ -72,5 +74,17 @@ public class Controller {
 			outputView.printError(e);
 			chooseMission(function);
 		}
+	}
+
+	private void runPairFunction(Course course, Level level, Mission mission, Function function) {
+		if (function == Function.MATCHING) {
+			runMatchingFunction(course, level, mission);
+		}
+	}
+
+	private void runMatchingFunction(Course course, Level level, Mission mission) {
+		MatchedPairs matchedPairs = pairManager.matchPair(course, level, mission);
+		MatchedPairsRepository.add(matchedPairs);
+		outputView.printMatchedPairs(matchedPairs);
 	}
 }
