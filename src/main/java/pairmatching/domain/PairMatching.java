@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class PairMatching {
-    private static final HashMap<String, List<String>> MatchingTable = new HashMap<>();
+    private static final HashMap<String, List<String>> MatcingTable = new HashMap<>();
     private static final List<Crew> frontendCrews = new ArrayList<>();
     private static final List<Crew> backendCrews = new ArrayList<>();
 
@@ -29,14 +29,13 @@ public class PairMatching {
         initBackendCrews();
     }
 
-
     private static void initFrontendCrews() throws IOException {
         File path = new File("src/main/resources");
         BufferedReader br = new BufferedReader(new FileReader(path.getAbsolutePath() + "/frontend-crew.md"));
         while(true) {
             String name = br.readLine();
             if (name==null) break;
-            frontendCrews.add(new Crew(name));
+            frontendCrews.add(new Crew(name, "프론트엔드"));
         }
         br.close();
     }
@@ -47,8 +46,21 @@ public class PairMatching {
         while(true) {
             String name = br.readLine();
             if (name==null) break;
-            backendCrews.add(new Crew(name));
+            backendCrews.add(new Crew(name, "백엔드"));
         }
         br.close();
+    }
+
+    public static void addPairMatching(String key, List<String> value) {
+        MatcingTable.put(key, value);
+    }
+
+    public static boolean existPairMatching(String key) {
+        for (String tableKey : MatcingTable.keySet()) {
+            if(tableKey.equals(key)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

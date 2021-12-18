@@ -32,7 +32,9 @@ public enum Mission {
     }
 
     public static boolean isMatchMissionLevel(String name, String level) {
+        System.out.println(findMission(level));
         for ( Mission missionName : findMission(level)) {
+            System.out.println(missionName);
             if (missionName.getName().equals(name)) {
                 return true;
             }
@@ -40,8 +42,8 @@ public enum Mission {
         return false;
     }
 
-    public static List<Mission> findMission(String level) {
-        return Arrays.stream(values()).filter(levelNum -> levelNum.getLevel().equals(level)).collect(Collectors.toList());
+    public static List<Mission> findMission(String inputlevel) {
+        return Arrays.asList(Mission.values()).stream().filter(levelNum -> levelNum.getLevel().equals(inputlevel)).collect(Collectors.toList());
     }
 
     public static List<String> getMissionList() {
