@@ -15,7 +15,7 @@ public class Pair {
 	}
 
 	public static Pair from(List<Crew> crews) {
-		Set<Crew> newCrews = new HashSet<>(crews);
+		Set<Crew> newCrews = new LinkedHashSet<>(crews);
 		return new Pair(newCrews);
 	}
 
