@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class PairMatching {
-	private Course course;
-	private Mission mission;
-	private Level level;
-	private List<MatchingCrew> crewList;
+	private final Course course;
+	private final Mission mission;
+	private final Level level;
+	private final List<MatchingCrew> crewList;
 
 	public PairMatching(Course course, Mission mission,Level level, List<MatchingCrew> crewList) {
 		this.course = course;

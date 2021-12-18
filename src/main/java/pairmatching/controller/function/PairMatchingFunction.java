@@ -21,6 +21,7 @@ public enum PairMatchingFunction {
 				String course = splitPairMatching[0].trim();
 				String level = splitPairMatching[1].trim();
 				String mission = splitPairMatching[2].trim();
+				validateInputPairMatching(course, level, mission);
 				if (PairMatchingRepository.isExistPairMatching(course, level, mission)) {
 					if (inputRequestRematching().equals("네")) {
 						PairMatchingService.pairReMatching(course, level, mission);
@@ -65,10 +66,6 @@ public enum PairMatchingFunction {
 
 	PairMatchingFunction(String command) {
 		this.command = command;
-	}
-
-	public String getCommand() {
-		return command;
 	}
 
 	public static PairMatchingFunction findFunction(String command) {

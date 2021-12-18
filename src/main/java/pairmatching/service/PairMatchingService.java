@@ -1,5 +1,7 @@
 package pairmatching.service;
 
+import static pairmatching.utils.Constants.*;
+import static pairmatching.view.InputView.*;
 import static pairmatching.view.OutputView.*;
 
 import pairmatching.domain.PairMatching;
@@ -17,7 +19,5 @@ public class PairMatchingService {
 		PairMatching pairMatching = PairMatchingRepository.find(course, level, mission);
 		printPairMatchingResult(pairMatching.getPairMatchingResult());
 	}
-
-
 
 }

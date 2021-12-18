@@ -1,5 +1,7 @@
 package pairmatching.view;
 
+import static pairmatching.utils.validator.InputValidator.*;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
@@ -17,6 +19,13 @@ public class InputView {
 	public static String inputRequestRematching() {
 		System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
 		System.out.println("네 | 아니오");
-		return Console.readLine();
+		String input = Console.readLine();
+		try{
+			validateInputRequestRematching(input);
+			return input;
+		}catch (IllegalArgumentException illegalArgumentException) {
+			System.out.println(illegalArgumentException.getMessage());
+			return inputRequestRematching();
+		}
 	}
 }

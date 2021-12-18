@@ -29,5 +29,4 @@ public enum Level {
 			.findFirst()
 			.orElseThrow(() -> new IllegalArgumentException(ERROR_MESSAGE + "올바르지 않은 레벨 입력 값 입니다."));
 	}
-	// 추가 기능 구현
 }
