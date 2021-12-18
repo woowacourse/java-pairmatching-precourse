@@ -7,7 +7,7 @@ import pairmatching.view.PairMatchingInputView;
 import pairmatching.view.PairMatchingOutputView;
 
 public class PairMatchingController {
-	private List<String> crewNames; // 역대 매칭된 페어정보만
+	private List<Matching> matches;
 
 	public PairMatchingController() {
 	}
@@ -27,6 +27,7 @@ public class PairMatchingController {
 	private void match() {
 		String inputMatchingCondition = PairMatchingInputView.readCourseAndMission();
 		Matching matching = new Matching(inputMatchingCondition);
+		matches.add(matching);
 		PairMatchingOutputView.printMatchingResult(matching.toString());
 	}
 }
