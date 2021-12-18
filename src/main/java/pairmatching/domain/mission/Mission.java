@@ -35,4 +35,18 @@ public class Mission {
     public boolean existsPairByNames(String name1, String name2) {
         return pairSet.stream().anyMatch((pair) -> pair.hasCrewNames(name1, name2));
     }
+
+    public boolean isSameMission(Level level, MissionName missionName) {
+        return isSameLevel(level) && isSameName(missionName);
+    }
+
+    private boolean isSameName(MissionName missionName) {
+        return name.equals(missionName);
+    }
+
+    private boolean isSameLevel(Level level) {
+        return this.level.equals(level);
+    }
+
+
 }
