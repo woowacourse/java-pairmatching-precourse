@@ -4,11 +4,18 @@ import java.util.List;
 
 import pairmatching.domain.input.Course;
 import pairmatching.domain.input.Level;
-import pairmatching.domain.mission.Mission;
 
 public class Matching {
 	private Course course;
 	private Level level;
-	private Mission mission;
+	private String missionName;
 	private List<Pair> matchedPairs;
+
+	public Matching(Course course, Level level, String missionName,
+		List<Pair> matchedPairs) {
+		this.course = course;
+		this.level = level;
+		this.missionName = missionName;
+		this.matchedPairs = matchedPairs;
+	}
 }

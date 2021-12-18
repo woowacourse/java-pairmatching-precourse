@@ -5,11 +5,14 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.domain.input.Course;
+import pairmatching.domain.matching.Pair;
 
 public class Crews {
-	private final List<Crew> crewList;
+	private List<Crew> crewList;
 
 	private Crews(List<Crew> crewList) {
 		this.crewList = crewList;
@@ -35,5 +38,38 @@ public class Crews {
 		return null;
 
 		// TODO: null 처리, try with resource 구문?
+	}
+
+	public List<Pair> generatePairs() {
+		List<Pair> pairList = new ArrayList<>();
+		List<String> shuffledCrewList = shuffle();
+
+		while (shuffledCrewList.size() > 1) {
+			Pair pair = Pair.newInstance();
+
+			String firstName = shuffledCrewList.remove(0);
+			String secondName = shuffledCrewList.remove(0);
+
+			pair.add(firstName);
+			pair.add(secondName);
+
+			if (shuffledCrewList.size() == 1) {
+				String thirdName = shuffledCrewList.remove(0);
+				pair.add(thirdName);
+			}
+
+			pairList.add(pair);
+		}
+		return pairList;
+	}
+
+	public List<String> shuffle() {
+		return Randoms.shuffle(crewList.stream()
+			.map(Crew::getName)
+			.collect(Collectors.toList()));
+	}
+
+	public boolean isOdd() {
+		return crewList.size() % 2 == 0;
 	}
 }

@@ -18,4 +18,8 @@ public class Matchings {
 		matchingList.clear();
 	}
 
+	public void add(Matching matching) {
+		matchingList.add(matching);
+	}
+
 }

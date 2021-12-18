@@ -75,7 +75,7 @@ public class PairMathcerController {
 	}
 
 	private void matchPairs(String matchingTarget) {
-
+		pairMatcher.matchPairs(matchingTarget);
 	}
 
 	private void viewPairs() {}

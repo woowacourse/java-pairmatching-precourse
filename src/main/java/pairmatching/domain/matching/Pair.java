@@ -1,11 +1,20 @@
 package pairmatching.domain.matching;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pair {
 	private List<String> pair;
 
-	public Pair(List<String> pair) {
-		this.pair = pair;
+	private Pair() {
+		this.pair = new ArrayList<>();
+	}
+
+	public static Pair newInstance() {
+		return new Pair();
+	}
+
+	public void add(String name) {
+		pair.add(name);
 	}
 }
