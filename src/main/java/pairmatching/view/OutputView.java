@@ -1,11 +1,9 @@
 package pairmatching.view;
 
 import static pairmatching.constant.message.SystemMessage.*;
-import static pairmatching.validator.InputValidator.*;
 
 import java.util.List;
 
-import pairmatching.constant.message.SystemMessage;
 import pairmatching.domain.Pair;
 import pairmatching.domain.PairMatch;
 

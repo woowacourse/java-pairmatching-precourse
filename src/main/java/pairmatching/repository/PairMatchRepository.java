@@ -3,15 +3,12 @@ package pairmatching.repository;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Queue;
-import java.util.stream.Collectors;
 
 import pairmatching.domain.Crew;
 import pairmatching.domain.Match;
 import pairmatching.domain.Pair;
 import pairmatching.domain.PairMatch;
-import pairmatching.util.FileInputUtils;
 
 public class PairMatchRepository {
 
