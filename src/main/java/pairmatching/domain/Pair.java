@@ -25,6 +25,7 @@ public class Pair {
 		PairMatchGenerator pairMatchGenerator = new PairMatchGenerator();
 		this.pairCrews = pairMatchGenerator.generate(crews);
 	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {

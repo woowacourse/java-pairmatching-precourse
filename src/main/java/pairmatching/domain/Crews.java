@@ -26,7 +26,7 @@ public class Crews {
 
 	private static void validateDuplicate(List<String> crewNameList) {
 		Set<String> crewNameSet = new HashSet<>(crewNameList);
-		if(crewNameSet.size() != crewNameList.size()) {
+		if (crewNameSet.size() != crewNameList.size()) {
 			throw new IllegalArgumentException(Notification.CREW_NAME_DUPLICATED.getMessage());
 		}
 	}

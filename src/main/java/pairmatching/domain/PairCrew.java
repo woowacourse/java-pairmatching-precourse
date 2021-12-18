@@ -6,7 +6,7 @@ import pairmatching.constant.Notification;
 
 public class PairCrew {
 	private static final int PAIR_CREW_MAXIMUM_VALUE = 3;
-	private List<Crew> crews;
+	private final List<Crew> crews;
 
 	public PairCrew(List<Crew> crews) {
 		this.crews = crews;
@@ -18,7 +18,7 @@ public class PairCrew {
 	}
 
 	private static void validateSize(List<Crew> crews) {
-		if(crews.size()> PAIR_CREW_MAXIMUM_VALUE) {
+		if (crews.size() > PAIR_CREW_MAXIMUM_VALUE) {
 			throw new IllegalArgumentException(Notification.NOT_GATHER_PAIR_CREW.getMessage());
 		}
 	}
@@ -26,15 +26,15 @@ public class PairCrew {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		for(int iterator = 0; iterator < crews.size() ; iterator++) {
+		for (int iterator = 0; iterator < crews.size(); iterator++) {
 			sb.append(crews.get(iterator).getName());
-			sb.append(getSpliterator(iterator,crews.size()));
+			sb.append(getSpliterator(iterator, crews.size()));
 		}
 		return sb.toString();
 	}
 
 	private String getSpliterator(int iterator, int size) {
-		if(iterator != size-1) {
+		if (iterator != size - 1) {
 			return " : ";
 		}
 		return "";

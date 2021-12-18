@@ -1,7 +1,6 @@
 package pairmatching.domain;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 import pairmatching.constant.Notification;
 
@@ -15,6 +14,13 @@ public enum Course {
 		this.title = title;
 	}
 
+	public static Course getByTitle(String courseTitle) {
+		return Arrays.stream(values())
+			.filter(course -> course.title.equals(courseTitle))
+			.findFirst()
+			.orElseThrow(() -> new IllegalArgumentException(Notification.NOT_SUPPORTED_COURSE.getMessage()));
+	}
+
 	public String getTitle() {
 		return this.title;
 	}
@@ -25,12 +31,5 @@ public enum Course {
 
 	public boolean isBackEnd() {
 		return this == Course.BACKEND;
-	}
-
-	public static Course getByTitle(String courseTitle) {
-		return Arrays.stream(values())
-			.filter(course -> course.title.equals(courseTitle))
-			.findFirst()
-			.orElseThrow(() -> new IllegalArgumentException(Notification.NOT_SUPPORTED_COURSE.getMessage()));
 	}
 }

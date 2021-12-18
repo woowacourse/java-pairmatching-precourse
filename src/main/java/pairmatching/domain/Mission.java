@@ -1,15 +1,10 @@
 package pairmatching.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import pairmatching.constant.Notification;
-import pairmatching.view.Function;
 
 public enum Mission {
 	CAR_RACING(Level.LEVEL1, "자동차경주"),
@@ -36,14 +31,14 @@ public enum Mission {
 			.orElseThrow(() -> new IllegalArgumentException(Notification.NOT_SUPPORTED_MISSION.getMessage()));
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
 	public static List<Mission> getMissionsByLevel(Level level) {
 		return Arrays.stream(values())
 			.filter(mission -> mission.level.equals(level))
 			.collect(Collectors.toList());
+	}
+
+	public String getTitle() {
+		return title;
 	}
 
 }

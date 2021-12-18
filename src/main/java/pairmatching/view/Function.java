@@ -2,7 +2,6 @@ package pairmatching.view;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 import pairmatching.constant.Notification;
 
@@ -29,15 +28,15 @@ public enum Function {
 		this.message = message;
 	}
 
-	@Override
-	public String toString() {
-		return key + ". " + message;
-	}
-
 	public static Function valueOf(char key) {
-		if(BY_KEY.containsKey(key)) {
+		if (BY_KEY.containsKey(key)) {
 			return BY_KEY.get(key);
 		}
 		throw new IllegalArgumentException(Notification.NOT_SUPPORTED_FUNCTION.getMessage());
+	}
+
+	@Override
+	public String toString() {
+		return key + ". " + message;
 	}
 }

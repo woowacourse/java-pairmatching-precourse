@@ -13,7 +13,6 @@ public class OutputProcessor {
 	private static final String PAIR_INTERFACE_SELECT_MESSAGE = "과정, 레벨, 미션을 선택하세요.";
 	private static final String PAIR_INTERFACE_EXAMPLE = "ex) 백엔드, 레벨1, 자동차경주";
 
-
 	public void printPairInterface() {
 		System.out.println(CROSS_HATCH_CONTINUOUS);
 		System.out.println(getCourses());
@@ -26,7 +25,7 @@ public class OutputProcessor {
 	private String getMissions() {
 		StringBuilder sb = new StringBuilder(MISSION_MESSAGE);
 		Level[] levels = Level.values();
-		for(int iterator = 0; iterator < levels.length ; iterator++) {
+		for (int iterator = 0; iterator < levels.length; iterator++) {
 			Level level = levels[iterator];
 			sb.append(getMission(level)).append(getLine(iterator, levels.length));
 		}
@@ -34,9 +33,9 @@ public class OutputProcessor {
 	}
 
 	private String getMission(Level level) {
-		StringBuilder sb = new StringBuilder("- "+level.getTitle()+": ");
+		StringBuilder sb = new StringBuilder("- " + level.getTitle() + ": ");
 		List<Mission> missionByLevel = Mission.getMissionsByLevel(level);
-		for(int iterator = 0; iterator < missionByLevel.size(); iterator++) {
+		for (int iterator = 0; iterator < missionByLevel.size(); iterator++) {
 			String missionTitle = missionByLevel.get(iterator).getTitle();
 			sb.append(missionTitle).append(getSeparator(iterator, missionByLevel.size()));
 		}
@@ -46,7 +45,7 @@ public class OutputProcessor {
 	private String getCourses() {
 		StringBuilder sb = new StringBuilder(COURSE_MESSAGE);
 		Course[] courses = Course.values();
-		for(int iterator = 0; iterator<courses.length; iterator++) {
+		for (int iterator = 0; iterator < courses.length; iterator++) {
 			String courseTitle = courses[iterator].getTitle();
 			sb.append(courseTitle).append(getSeparator(iterator, courses.length));
 		}
@@ -54,14 +53,14 @@ public class OutputProcessor {
 	}
 
 	private String getSeparator(int iterator, int length) {
-		if(iterator != length-1) {
+		if (iterator != length - 1) {
 			return " | ";
 		}
 		return "";
 	}
 
 	private String getLine(int iterator, int length) {
-		if(iterator != length-1) {
+		if (iterator != length - 1) {
 			return "\n";
 		}
 		return "";

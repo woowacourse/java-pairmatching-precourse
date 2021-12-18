@@ -11,7 +11,7 @@ public enum Level {
 	LEVEL4("레벨4"),
 	LEVEL5("레벨5");
 
-	private String title;
+	private final String title;
 
 	Level(String title) {
 		this.title = title;

@@ -11,7 +11,7 @@ public class Pairs {
 	}
 
 	public boolean add(Pair pair) {
-		if(isExists(pair)) {
+		if (isExists(pair)) {
 			return false;
 		}
 		pairs.add(pair);

@@ -27,10 +27,10 @@ public class PairMatchGenerator {
 
 	private List<Crew> getLastPairCrew(List<Crew> shuffleCrews) {
 		List<Crew> lastPairCrew = new ArrayList<>();
-		lastPairCrew.add(shuffleCrews.get(shuffleCrews.size()-1));
-		lastPairCrew.add(shuffleCrews.get(shuffleCrews.size()-2));
-		if(shuffleCrews.size()%2 == ODD_CHECK_VALUE) {
-			lastPairCrew.add(shuffleCrews.get(shuffleCrews.size()-3));
+		lastPairCrew.add(shuffleCrews.get(shuffleCrews.size() - 1));
+		lastPairCrew.add(shuffleCrews.get(shuffleCrews.size() - 2));
+		if (shuffleCrews.size() % 2 == ODD_CHECK_VALUE) {
+			lastPairCrew.add(shuffleCrews.get(shuffleCrews.size() - 3));
 		}
 		return lastPairCrew;
 	}

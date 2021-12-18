@@ -19,9 +19,9 @@ public class PairMatchingController {
 
 	public PairCrews matchCrews(PairDto pairDto) {
 		Pair pair = pairDto.toPair();
-		if(pair.isFrontEnd()) {
+		if (pair.isFrontEnd()) {
 			pair.matchCrew(frontEndCrews);
-		} else if(pair.isBackEnd()) {
+		} else if (pair.isBackEnd()) {
 			pair.matchCrew(backEndCrews);
 		}
 		pairs.add(pair);
