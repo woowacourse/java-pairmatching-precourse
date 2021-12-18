@@ -23,4 +23,8 @@ public class OutputView {
 	public static void printPairMatchingResult(String pairMatchingResult) {
 		System.out.println(pairMatchingResult);
 	}
+
+	public static void printFinishPairMatchingRepositoryReset() {
+		System.out.println("초기화 되었습니다.");
+	}
 }
