@@ -1,19 +1,22 @@
 package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.model.enums.Option;
 import pairmatching.utils.Validator;
 
+import static pairmatching.model.enums.Option.findNameByValue;
 import static pairmatching.utils.InputConstants.OPTIONS;
 
 public class InputView {
     private final static Validator validator = new Validator();
 
-    public static String selectOption() {
+    public static Option selectOption() {
         try {
             System.out.println(OPTIONS);
             String input = Console.readLine();
             validator.isValidOption(input);
-            return input;
+            return findNameByValue(input);
+
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return selectOption();
