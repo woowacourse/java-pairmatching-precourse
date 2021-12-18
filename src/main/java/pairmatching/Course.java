@@ -13,11 +13,10 @@ public enum Course {
         this.name = name;
     }
 
-    public static String findByCourse(String name) {
+    public static Course findByCourse(String name) {
         return Arrays.stream(Course.values())
             .filter(course -> course.name.equals(name))
             .findAny()
-            .orElseThrow(ErrorMessage.NOT_FOUND_COURSE::getException)
-            .name;
+            .orElseThrow(ErrorMessage.NOT_FOUND_COURSE::getException);
     }
 }

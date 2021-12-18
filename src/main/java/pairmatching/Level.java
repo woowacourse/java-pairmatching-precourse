@@ -16,11 +16,10 @@ public enum Level {
         this.name = name;
     }
 
-    public static String findByLevel(String name) {
+    public static Level findByLevel(String name) {
         return Arrays.stream(Level.values())
             .filter(level -> level.name.equals(name))
             .findAny()
-            .orElseThrow(ErrorMessage.NOT_FOUND_LEVEL::getException)
-            .name;
+            .orElseThrow(ErrorMessage.NOT_FOUND_LEVEL::getException);
     }
 }
