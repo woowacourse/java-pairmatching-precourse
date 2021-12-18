@@ -43,4 +43,10 @@ public class Manager {
 		return result;
 	}
 
+	public void resetAllPair() {
+		for (MatchInfo matchInfo : matchInfos) {
+			matchInfo.resetPair();
+		}
+	}
+
 }

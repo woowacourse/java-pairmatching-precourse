@@ -18,6 +18,9 @@ public class PairMatchingController {
 		if (selection.equals("2")) {
 			search();
 		}
+		if (selection.equals("3")) {
+			reset();
+		}
 	}
 
 	public void matching() {
@@ -50,6 +53,10 @@ public class PairMatchingController {
 		if (matchInfo != null) {
 			view.printPair(matchInfo.getPairList());
 		}
+	}
+
+	public void reset() {
+		manager.resetAllPair();
 	}
 
 }

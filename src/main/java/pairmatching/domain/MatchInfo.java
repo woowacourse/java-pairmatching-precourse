@@ -83,4 +83,8 @@ public class MatchInfo {
 		}
 		return null;
 	}
+
+	public void resetPair() {
+		pairList.clear();
+	}
 }
