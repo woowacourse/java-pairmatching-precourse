@@ -34,6 +34,7 @@ public class PairMatchingController {
                     continue;
                 }
                 pairMatchingService.matchPairs(programInfo);
+                OutputView.showThisProgramPair(programInfo);
 
             }
             if (mainCode == MainCode.SEARCH) {
