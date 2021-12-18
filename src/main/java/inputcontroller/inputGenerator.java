@@ -53,5 +53,48 @@ public class inputGenerator {
         registerMission3(inputTextParsed[2]);
     }
 
+    public static void registerLevel(char ch) {
+        courseTypeInput[1] = ch - '0';
+    }
 
+    public static void registerMission1(String text) {
+        if (text.equals("자동차경주")) {
+            courseTypeInput[2] = 0;
+            return;
+        }
+        if (text.equals("로또")) {
+            courseTypeInput[2] = 1;
+            return;
+        }
+        if (text.equals("숫자야구게임")) {
+            courseTypeInput[2] = 2;
+            return;
+        }
+    }
+
+    public static void registerMission2(String text) {
+        if (text.equals("장바구니")) {
+            courseTypeInput[2] = 0;
+            return;
+        }
+        if (text.equals("결제")) {
+            courseTypeInput[2] = 1;
+            return;
+        }
+        if (text.equals("지하철노선도")) {
+            courseTypeInput[2] = 2;
+            return;
+        }
+    }
+
+    public static void registerMission3(String text) {
+        if (text.equals("성능개선")) {
+            courseTypeInput[2] = 0;
+            return;
+        }
+        if (text.equals("배포")) {
+            courseTypeInput[2] = 1;
+            return;
+        }
+    }
 }
