@@ -26,4 +26,14 @@ public class Pair {
 		}
 		return result;
 	}
+
+	public boolean isExistPair(Pair pair) {
+		boolean check = true;
+		for (String name : pair.names) {
+			if (!names.contains(check)) {
+				check = false;
+			}
+		}
+		return check;
+	}
 }

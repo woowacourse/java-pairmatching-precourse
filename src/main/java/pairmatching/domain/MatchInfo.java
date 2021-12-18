@@ -8,8 +8,9 @@ public class MatchInfo {
 	String level;
 	String mission;
 	List<Pair> pairList = new ArrayList<>();
-	Crew backendCrew = new Crew("백엔드");
-	Crew frontendCrew = new Crew("프론트엔드");
+	List<String> crewNames = new ArrayList<>();
+	Crew backend = new Crew("백엔드");
+	Crew frontend = new Crew("프론트엔드");
 
 	public MatchInfo(String[] selections) {
 		this.course = selections[0];
@@ -17,27 +18,48 @@ public class MatchInfo {
 		this.mission = selections[2];
 	}
 
-	public void match() {
-		List<String> names = new ArrayList<>();
+	private void storeCrewNames() {
 		if (course.equals("백엔드")) {
-			names = backendCrew.getNames();
+			crewNames = backend.getNames();
 		}
 		if (course.equals("프론트엔드")) {
-			names = frontendCrew.getNames();
+			crewNames = frontend.getNames();
 		}
-		while (names.size() != 0) {
-			if (names.size() == 3) {
-				Pair pair = new Pair(names.get(0), names.get(1));
-				pair.add(names.get(2));
+	}
+
+	public void match(List<MatchInfo> matchInfos) {
+		storeCrewNames();
+		while (crewNames.size() != 0) {
+			if (crewNames.size() == 3) {
+				Pair pair = new Pair(crewNames.get(0), crewNames.get(1));
+				if (isExistPair(matchInfos, pair)) {
+					storeCrewNames();
+					continue;
+				}
+				pair.add(crewNames.get(2));
 				pairList.add(pair);
-				names.clear();
+				crewNames.clear();
 				return;
 			}
-			Pair pair = new Pair(names.get(0), names.get(1));
+			Pair pair = new Pair(crewNames.get(0), crewNames.get(1));
+			if (isExistPair(matchInfos, pair)) {
+				storeCrewNames();
+			}
 			pairList.add(pair);
-			names.remove(0);
-			names.remove(0);
+			crewNames.remove(0);
+			crewNames.remove(0);
 		}
+	}
+
+	private boolean isExistPair(List<MatchInfo> matchInfos, Pair pair) {
+		for (MatchInfo matchInfo : matchInfos) {
+			for (int i = 0; i < matchInfo.pairList.size(); i++) {
+				if (pairList.get(i).isExistPair(pair)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public List<Pair> getPairList() {
@@ -49,5 +71,9 @@ public class MatchInfo {
 			return true;
 		}
 		return false;
+	}
+
+	public boolean isSameLevel(MatchInfo matchInfo) {
+		return this.level.equals(matchInfo.level);
 	}
 }
