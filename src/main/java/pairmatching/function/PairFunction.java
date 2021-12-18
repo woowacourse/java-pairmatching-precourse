@@ -4,36 +4,40 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import pairmatching.domain.CourseRepository;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public enum PairFunction {
-	MATCHING("1"){
+	MATCHING("1") {
 		@Override
 		public void operate() {
 			OutputView.printCourseLevelMissionInformation();
 			List<String> informationList = getCourseLevelMissionInput();
+			if (CourseRepository.isExistPairMatching(informationList.get(0), informationList.get(1), informationList.get(2))) {
 
+			}
 		}
 	},
-	SEARCH("2"){
+	SEARCH("2") {
 		@Override
 		public void operate() {
 
 		}
 	},
-	RESET("3"){
+	RESET("3") {
 		@Override
 		public void operate() {
 
 		}
 	},
-	QUIT("Q"){
+	QUIT("Q") {
 		@Override
 		public void operate() {
 
 		}
-	},;
+	},
+	;
 
 	private String menu;
 
