@@ -18,4 +18,9 @@ public class LevelMissionsMap {
 				.map(mission -> mission.getName())
 				.collect(Collectors.joining(" | "));
 	}
+
+	public boolean isMissionInLevel(Level level, Mission inputMission) {
+		List<Mission> missions = levelMissions.get(level);
+		return missions.contains(inputMission);
+	}
 }

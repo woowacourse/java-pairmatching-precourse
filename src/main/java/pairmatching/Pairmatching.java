@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static pairmatching.input.UserInput.*;
+import static pairmatching.model.Error.NOT_MISSION_IN_LEVEL;
 
 public class Pairmatching {
 
@@ -60,10 +61,11 @@ public class Pairmatching {
 			Course course = Course.getCourseByName(inputs.get(COURSE_INDEX));
 			Level level = Level.getLevelByName(inputs.get(LEVEL_INDEX));
 			Mission mission = Mission.getMissionByName(inputs.get(MISSION_INDEX));
+			checkMissionInLevel(levelMissionsMap, level, mission);
 			List<String> crewNames = fileService.readCrewNamesFromFile(Course.BACKEND);
 			List<String > randomMatch = matchService.getRandomMatch(crewNames);
 			viewer.showCrewPairs(randomMatch);
-			saveMatchResult(course.toString() + "_" + level.toString() + "_" + mission.toString() + ".md", randomMatch);
+			saveMatchResult(getMatchFileName(course, level, mission), randomMatch);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			runMatch(levelMissionsMap);
@@ -77,7 +79,7 @@ public class Pairmatching {
 			Course course = Course.getCourseByName(inputs.get(COURSE_INDEX));
 			Level level = Level.getLevelByName(inputs.get(LEVEL_INDEX));
 			Mission mission = Mission.getMissionByName(inputs.get(MISSION_INDEX));
-			fileService.readMatch(course.toString() + "_" + level.toString() + "_" + mission.toString() + ".md");
+			fileService.readMatch(getMatchFileName(course, level, mission));
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			runSearch(levelMissionsMap);
@@ -86,5 +88,19 @@ public class Pairmatching {
 
 	private void resetMatch() {
 		fileService.deleteMatchFiles();
+	}
+
+	private boolean checkAlreadyMatched(String fileName) {
+		return fileService.checkFileExist(fileName);
+	}
+
+	private String getMatchFileName(Course course, Level level, Mission mission) {
+		return course.toString() + "_" + level.toString() + "_" + mission.toString() + ".md";
+	}
+
+	private void checkMissionInLevel(LevelMissionsMap levelMissionsMap, Level level, Mission mission) {
+		if (!levelMissionsMap.isMissionInLevel(level, mission)) {
+			throw new IllegalArgumentException(NOT_MISSION_IN_LEVEL);
+		}
 	}
 }
