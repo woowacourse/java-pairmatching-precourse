@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MissionRepository {
+	static final String ERROR_NOT_EXIST_MISSION = "존재하지 않는 미션입니다.";
+
 	private static final List<Mission> missions = new ArrayList<>();
 
 	public static void initMission() {
@@ -17,5 +19,12 @@ public class MissionRepository {
 			missions.add(new Mission(course, Level.LEVEL4, "성능개선"));
 			missions.add(new Mission(course, Level.LEVEL4, "배포"));
 		}
+	}
+
+	public static Mission getMission(List<String> missionInput) {
+		return missions.stream()
+			.filter((mission) -> mission.isMatchMission(missionInput))
+			.findFirst()
+			.orElseThrow(() -> new IllegalArgumentException(ERROR_NOT_EXIST_MISSION));
 	}
 }
