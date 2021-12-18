@@ -3,6 +3,8 @@ package pairmatching.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import pairmatching.view.OutputView;
+
 public class Pair {
 
 	private List<List<Crew>> pairs;
@@ -21,5 +23,13 @@ public class Pair {
 			String name = crews.get(crewIndex).getName();
 			pairs.get(pairs.size() - 1).add(new Crew(course, name));
 		}
+	}
+
+	public void findPair() {
+		OutputView.printResultFindPair();
+		for (List<Crew> pair : pairs) {
+			OutputView.printPair(pair);
+		}
+		OutputView.printNewLine();
 	}
 }

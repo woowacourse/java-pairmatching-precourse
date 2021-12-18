@@ -1,5 +1,10 @@
 package pairmatching.view;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import pairmatching.domain.Crew;
+
 public class OutputView {
 
 	private static final String SELECT_MENU = "기능을 선택하세요.";
@@ -18,6 +23,8 @@ public class OutputView {
 	private static final String OUTPUT_EXAMPLE = "과정, 레벨, 미션을 선택하세요.\n"
 		+ "ex) 백엔드, 레벨1, 자동차경주";
 	private static final String REMATCHING_OR_PRINT = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
+	private static final String FIND_PAIR_RESULT = "페어 매칭 결과입니다.";
+	private static final String DELIMITER = " : ";
 
 	public static void printInputMainMenu() {
 		System.out.println(SELECT_MENU);
@@ -40,12 +47,27 @@ public class OutputView {
 		System.out.println(OUTPUT_EXAMPLE);
 	}
 
-	private static void printNewLine() {
+	public static void printNewLine() {
 		System.out.println();
 	}
 
 	public static void printReMatchingOrPrint() {
 		printNewLine();
 		System.out.println(REMATCHING_OR_PRINT);
+	}
+
+	public static void printResultFindPair() {
+		printNewLine();
+		System.out.println(FIND_PAIR_RESULT);
+	}
+
+	public static void printPair(List<Crew> pair) {
+		System.out.println(pair.stream()
+			.map(Crew::getName)
+			.collect(Collectors.joining(DELIMITER)));
+	}
+
+	public static void printFindPairByInputMenu() {
+		printInputInformation();
 	}
 }

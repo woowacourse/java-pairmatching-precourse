@@ -40,11 +40,21 @@ public class PairMatchingController {
 			return;
 		}
 		if (menu.isFindPair()) {
-			// findPair();
+			findPairByInputMenu();
 			return;
 		}
 		if (menu.isInitialize()) {
 			initialize();
+		}
+	}
+
+	private void findPairByInputMenu() {
+		try {
+			OutputView.printFindPairByInputMenu();
+			findPair(InputView.inputInformation());
+		} catch (IllegalArgumentException exception) {
+			OutputView.printException(exception);
+			findPairByInputMenu();
 		}
 	}
 
@@ -63,11 +73,12 @@ public class PairMatchingController {
 		List<Crew> shuffledCrews = Randoms.shuffle(crews.findCrews(matchingInformation.getCourse()));
 		Pair pair = new Pair(shuffledCrews);
 		pairMap.put(matchingInformation, pair);
-		printPair(matchingInformation);
+		findPair(matchingInformation);
 	}
 
-	private void printPair(PairMatching matchingInformation) {
-
+	private void findPair(PairMatching matchingInformation) {
+		Pair pair = pairMap.get(matchingInformation);
+		pair.findPair();
 	}
 
 	private String selectReMatchingOrPrint() {
