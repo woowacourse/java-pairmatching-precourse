@@ -22,4 +22,8 @@ public class Mission {
 		Mission mission = new Mission(name);
 		return mission;
 	}
+
+	public void setMatchingPairs(MatchingPairs matchingPairs) {
+		this.matchingPairs = matchingPairs;
+	}
 }

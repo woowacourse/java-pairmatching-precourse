@@ -12,4 +12,8 @@ public class Crew {
 		this.course = course;
 		this.name = name;
 	}
+
+	public void addMatchedCrew(Level level, Crew crew) throws IllegalArgumentException {
+		matchedCrew.add(level, crew);
+	}
 }

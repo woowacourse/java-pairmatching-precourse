@@ -14,6 +14,8 @@ import pairmatching.view.OutputView;
 public class PairMatchingController {
 	InputView inputView = new InputView();
 	OutputView outputView = new OutputView();
+	private static final List<Crew> backendCrews = FileUtils.read("src/main/resources/backend-crew.md", Course.BACKEND);
+	private static final List<Crew> frontendCrews = FileUtils.read("src/main/resources/frontend-crew.md", Course.FRONTEND);
 
 	public void run() {
 		String roleNumber = inputView.enterRoleNumber();
@@ -21,8 +23,7 @@ public class PairMatchingController {
 		Role.parse(roleNumber).role();
 
 		// TODO 매칭 기록 체크
-		List<Crew> backendCrews = FileUtils.read("src/main/resources/backend-crew.md", Course.BACKEND);
-		List<Crew> frontendCrews = FileUtils.read("src/main/resources/frontend-crew.md", Course.FRONTEND);
+
 
 	}
 
@@ -34,7 +35,7 @@ public class PairMatchingController {
 		String courseLevelMissionStr = inputView.enterCourseLevelMission();
 		CourseLevelMission courseLevelMission = new CourseLevelMission();
 		courseLevelMission.init(courseLevelMissionStr);
-		matchingService.match();
+		matchingService.match(courseLevelMission, backendCrews, frontendCrews);
 	}
 
 	public void inquire() {
