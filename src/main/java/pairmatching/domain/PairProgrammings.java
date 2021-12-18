@@ -12,27 +12,18 @@ public class PairProgrammings {
     private List<PairProgramming> pairProgrammings = new ArrayList<>();
 
     public void enrollNewProgram(String targetCourse, String targetLevel, String targetMission, List<String> shuffledCrew) {
-        System.out.println("여기까지 도달");
         for (PairProgramming pairProgramming : pairProgrammings) {
             if (pairProgramming.getCourse().equals(targetCourse)) {
                 System.out.println(pairProgramming.getLevel());
                 System.out.println(targetLevel);
                 if (pairProgramming.getLevel().equals(targetLevel)) {
-                    System.out.println("여기까지도도 도달");
                     pairProgramming.addMission(shuffledCrew, targetMission);
-                    System.out.println("여기까지도도도 도달");
                     return;
                 }
             }
         }
 
         pairProgrammings.add(new PairProgramming(targetCourse, targetLevel, targetMission, shuffledCrew));
-        PairProgramming pairProgramming1 = pairProgrammings.stream()
-            .filter(pairProgramming -> Objects.equals(pairProgramming.getCourse(), targetCourse))
-            .filter(pairProgramming -> Objects.equals(pairProgramming.getLevel(), targetLevel))
-            .findFirst().get();
-
-
     }
 
     public Map<String, Set<String>> getPairInfo(String targetCourse, String targetLevel, String targetMission) {
