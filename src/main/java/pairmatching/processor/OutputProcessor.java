@@ -35,7 +35,7 @@ public class OutputProcessor {
 
 	private String getMission(Level level) {
 		StringBuilder sb = new StringBuilder("- "+level.getTitle()+": ");
-		List<Mission> missionByLevel = Mission.getMissionByLevel(level);
+		List<Mission> missionByLevel = Mission.getMissionsByLevel(level);
 		for(int iterator = 0; iterator < missionByLevel.size(); iterator++) {
 			String missionTitle = missionByLevel.get(iterator).getTitle();
 			sb.append(missionTitle).append(getSeparator(iterator, missionByLevel.size()));

@@ -1,5 +1,10 @@
 package pairmatching.domain;
 
+import java.util.Arrays;
+import java.util.Optional;
+
+import pairmatching.constant.Notification;
+
 public enum Course {
 	BACKEND("백엔드"),
 	FRONTEND("프론트엔드");
@@ -20,5 +25,12 @@ public enum Course {
 
 	public boolean isBackEnd() {
 		return this == Course.BACKEND;
+	}
+
+	public static Course getByTitle(String courseTitle) {
+		return Arrays.stream(values())
+			.filter(course -> course.title.equals(courseTitle))
+			.findFirst()
+			.orElseThrow(() -> new IllegalArgumentException(Notification.NOT_SUPPORTED_COURSE.getMessage()));
 	}
 }

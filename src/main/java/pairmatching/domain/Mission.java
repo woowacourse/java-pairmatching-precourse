@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import pairmatching.constant.Notification;
 import pairmatching.view.Function;
 
 public enum Mission {
@@ -28,11 +29,18 @@ public enum Mission {
 		this.title = title;
 	}
 
+	public static Mission getByTitleAndLevel(Level level, String missionTitle) {
+		return Arrays.stream(values())
+			.filter(mission -> mission.level.equals(level) && mission.title.equals(missionTitle))
+			.findFirst()
+			.orElseThrow(() -> new IllegalArgumentException(Notification.NOT_SUPPORTED_MISSION.getMessage()));
+	}
+
 	public String getTitle() {
 		return title;
 	}
 
-	public static List<Mission> getMissionByLevel(Level level) {
+	public static List<Mission> getMissionsByLevel(Level level) {
 		return Arrays.stream(values())
 			.filter(mission -> mission.level.equals(level))
 			.collect(Collectors.toList());
