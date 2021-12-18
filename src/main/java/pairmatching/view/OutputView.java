@@ -43,4 +43,8 @@ public class OutputView {
 		}
 		System.out.println();
 	}
+
+	public static void alertInit() {
+		System.out.println("\n" + HostMessage.ALERT_INIT);
+	}
 }

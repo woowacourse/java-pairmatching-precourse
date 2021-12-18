@@ -15,4 +15,5 @@ public class HostMessage {
 	public static final String ASK_MATCHING_INFO = "과정, 레벨, 미션을 선택하세요.";
 	public static final String SHOW_MATCHING_INFO_EX = "ex) 백엔드, 레벨1, 자동차경주";
 	public static final String SHOW_MATCHING_RESULT = "페어 매칭 결과입니다.";
+	public static final String ALERT_INIT = "초기화 되었습니다.";
 }

@@ -49,7 +49,7 @@ public class MatchingInfoFormatValidator {
 				break;
 			}
 		}
-		if (count == 0) {
+		if (count != 1) {
 			throw new IllegalArgumentException(ErrorMessage.IS_NOT_IN_MISSION);
 		}
 	}

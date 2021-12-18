@@ -11,6 +11,7 @@ public class ServiceController {
 	public static ArrayList<Mission> missions;
 	static String choice = "";
 	static String[] matchingInfo;
+	static ArrayList<String> pairs;
 
 	public static void run() {
 		generateMission();
@@ -18,7 +19,10 @@ public class ServiceController {
 			askFunction();
 			if (choice.equals("1")) {
 				doMatching();
-			} else if (choice.equals("3")) {
+			} else if (choice.equals("2")) {
+				showMatchingInfo();;
+			}
+			else if (choice.equals("3")) {
 				initPairs();
 			}
 		}
@@ -28,6 +32,7 @@ public class ServiceController {
 		for (Mission mission : missions) {
 			mission.initPairs();
 		}
+		OutputView.alertInit();
 	}
 
 	private static void doMatching() {
@@ -65,6 +70,19 @@ public class ServiceController {
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			askMatchingInfo();
+		}
+	}
+
+	private static void showMatchingInfo() {
+		askMatchingInfo();
+		for (Mission mission : missions) {
+			String level = String.valueOf(mission.getLevel());
+			String name = mission.getName();
+			if (matchingInfo[1].equals(level) && matchingInfo[2].equals(name)) {
+				for (String pair : mission.getPairs()) {
+					System.out.println(pair);
+				}
+			}
 		}
 	}
 }
