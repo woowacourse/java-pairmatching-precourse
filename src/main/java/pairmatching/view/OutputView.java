@@ -6,6 +6,7 @@ import pairmatching.model.Level;
 import java.util.Arrays;
 
 public class OutputView {
+
     public void printInformation() {
         System.out.println("#############################################");
         printCourse();
@@ -15,7 +16,6 @@ public class OutputView {
 
     private void printCourse() {
         System.out.println("과정: 백엔드 | 프론트엔드");
-
     }
 
     private void printMission() {
