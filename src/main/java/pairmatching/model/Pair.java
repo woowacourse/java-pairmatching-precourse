@@ -28,7 +28,7 @@ public class Pair {
 	public boolean isDuplicatedPair(Pair pair) {
 		int count = 0;
 
-		for(Crew crew : crews) {
+		for (Crew crew : crews) {
 			count += countOfSameCrew(pair, crew);
 		}
 
@@ -37,8 +37,8 @@ public class Pair {
 
 	private int countOfSameCrew(Pair pair, Crew crew) {
 		int count = 0;
-		for(Crew other : pair.getCrews()) {
-			if(crew.equals(other)) {
+		for (Crew other : pair.getCrews()) {
+			if (crew.equals(other)) {
 				count++;
 			}
 		}

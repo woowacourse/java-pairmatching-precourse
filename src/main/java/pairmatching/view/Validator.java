@@ -25,7 +25,7 @@ public class Validator {
 	}
 
 	private void validateLevelName(String levelName) {
-		if (!isValidLevel(levelName)){
+		if (!isValidLevel(levelName)) {
 			throw new IllegalArgumentException("레벨 이름이 잘못되었습니다.");
 		}
 	}
@@ -48,7 +48,7 @@ public class Validator {
 		Level level = Level.valueByName(levelName);
 		Mission mission = parseToMission(missionName, courseName);
 
-		if(!mission.getLevel().equals(level)) {
+		if (!mission.getLevel().equals(level)) {
 			throw new IllegalArgumentException("레벨에 맞는 미션이 없습니다.");
 		}
 	}

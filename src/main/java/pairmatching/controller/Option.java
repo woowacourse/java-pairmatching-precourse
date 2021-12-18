@@ -12,9 +12,9 @@ public enum Option {
 	public static Option valueBySymbol(String symbol) {
 		if (symbol.equals("1")) {
 			return MATCH_PAIRS;
-		} else if(symbol.equals("2")) {
+		} else if (symbol.equals("2")) {
 			return PRINT_MATCHED_PAIRS;
-		} else if(symbol.equals("3")) {
+		} else if (symbol.equals("3")) {
 			return INITIALIZE_PAIRS;
 		}
 		return QUIT;

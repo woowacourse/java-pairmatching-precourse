@@ -1,5 +1,6 @@
 package pairmatching.controller;
 
+import static pairmatching.controller.Option.*;
 import java.util.List;
 import java.util.function.Supplier;
 import pairmatching.application.PairMatchingService;
@@ -8,7 +9,6 @@ import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 import pairmatching.view.Parser;
 import pairmatching.view.Validator;
-import static pairmatching.controller.Option.*;
 
 public class PairMatchingController {
 	private PairMatchingService pairMatchingService = new PairMatchingService();

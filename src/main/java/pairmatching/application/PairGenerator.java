@@ -56,7 +56,8 @@ public class PairGenerator {
 	}
 
 	private boolean isValidPairList(Mission mission, List<Pair> pairList) {
-		List<Mission> sameLevelMissions = MissionRepository.findByLevelAndCourse(mission.getLevel(), mission.getCourse());
+		List<Mission> sameLevelMissions =
+			MissionRepository.findByLevelAndCourse(mission.getLevel(), mission.getCourse());
 		return !sameLevelMissions.stream()
 			.anyMatch(m -> isDuplicatedPairByOtherMission(pairList, m));
 	}
