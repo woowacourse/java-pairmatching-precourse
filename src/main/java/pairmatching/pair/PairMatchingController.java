@@ -10,8 +10,6 @@ import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class PairMatchingController {
-	private static final int ZERO = 0;
-
 	private PairMatching pairMatching;
 	private Menu menu;
 
@@ -61,16 +59,22 @@ public class PairMatchingController {
 		PairTarget pairTarget = new PairTarget();
 		InputView.printSelectPairTarget();
 		requestPairTarget(pairTarget);
+		isAlreadyPairs(pairTarget);
+		pairMatching.repeatMatching(pairTarget);
+		OutputView.printMatchingResult(pairMatching.findPairsByPairTarget(pairTarget));
+	}
+
+	private void isAlreadyPairs(PairTarget pairTarget) {
 		try {
 			validateAlreadyPairs(pairTarget);
 		} catch (IllegalArgumentException illegalArgumentException) {
 			if (illegalArgumentException.getMessage() != Answer.NO.toString()) {
 				ErrorView.print(illegalArgumentException.getMessage());
+				isAlreadyPairs(pairTarget);
+				return;
 			}
 			runRandomPairMatching();
 		}
-		pairMatching.repeatMatching(pairTarget);
-		OutputView.printMatchingResult(pairMatching.findPairsByPairTarget(pairTarget));
 	}
 
 	private void validateAlreadyPairs(PairTarget pairTarget) {
