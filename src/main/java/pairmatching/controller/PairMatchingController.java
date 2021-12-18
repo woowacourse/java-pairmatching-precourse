@@ -62,6 +62,7 @@ public class PairMatchingController {
     private void search() {
         try {
             String value = Input.matching();
+            pairs.validate(value);
             pairMatching.validate(value);
             List<String> names = pairs.getNames(value);
             Output.matching(names);

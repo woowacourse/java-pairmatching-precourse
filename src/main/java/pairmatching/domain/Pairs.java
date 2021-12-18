@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static pairmatching.utils.Error.*;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,5 +24,11 @@ public class Pairs {
             }
         }
         return null;
+    }
+
+    public void validate(String value) {
+        if (getNames(value) == null) {
+            throw new IllegalArgumentException("\n" + SEARCH_ERROR + "\n");
+        }
     }
 }
