@@ -3,7 +3,6 @@ package pairmatching;
 import java.io.IOException;
 import java.util.List;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.models.Course;
 import pairmatching.utils.NameList;
 
