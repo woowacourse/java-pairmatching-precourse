@@ -15,7 +15,7 @@ public class Matching {
 		return pairsMap;
 	}
 
-	public boolean isExsistLevel(Level level){
+	public boolean isExistLevel(Level level){
 		if (pairsMap.containsKey(level)) {
 			return true;
 		}
