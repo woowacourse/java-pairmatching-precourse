@@ -20,7 +20,45 @@ public class CrewPair {
 	}
 
 	public void addPair(Pair<Course, Mission> info, List<String> crews) {
+		for (Pair<Course, Mission> key : pairs.keySet()) {
+			if (key.getKey() == info.getKey() && key.getValue().getLevel() == key.getValue().getLevel()) {
+				checkCrews(pairs.get(key), crews);
+			}
+		}
 		pairs.put(info, crews);
+	}
+
+	private void checkCrews(List<String> existCrews, List<String> newCrews) {
+		int idx = 0;
+		for (; idx < existCrews.size() - 2; idx += 2) {
+			if (existCrews.get(idx).equals(newCrews.get(idx)) && existCrews.get(idx + 1)
+				.equals(newCrews.get(idx + 1))) {
+				throw new IllegalArgumentException(MATCHING_DUPLICATE);
+			}
+		}
+		if (existCrews.size() % 2 == 0) {
+			checkEvenNumberOfCrews(existCrews, newCrews);
+		}
+		if (existCrews.size() % 2 == 1) {
+			checkOddNumberOfCrews(existCrews, newCrews);
+		}
+	}
+
+	private void checkEvenNumberOfCrews(List<String> existCrews, List<String> newCrews) {
+		if (existCrews.get(existCrews.size() - 1).equals(newCrews.get(existCrews.size() - 1)) && existCrews.get(
+			existCrews.size() - 2)
+			.equals(newCrews.get(existCrews.size() - 2))) {
+			throw new IllegalArgumentException(MATCHING_DUPLICATE);
+		}
+	}
+
+	private void checkOddNumberOfCrews(List<String> existCrews, List<String> newCrews) {
+		if (existCrews.get(existCrews.size() - 1).equals(newCrews.get(existCrews.size() - 1)) && existCrews.get(
+			existCrews.size() - 2)
+			.equals(newCrews.get(existCrews.size() - 2)) && existCrews.get(existCrews.size() - 3)
+			.equals(newCrews.get(existCrews.size() - 3))) {
+			throw new IllegalArgumentException(MATCHING_DUPLICATE);
+		}
 	}
 
 	public List<String> getPair(Pair<Course, Mission> info) {
