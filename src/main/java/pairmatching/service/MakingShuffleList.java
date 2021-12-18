@@ -11,7 +11,7 @@ public class MakingShuffleList {
 	}
 
 	public static void printPairList(List<String> pairList) {
-		System.out.println("페어 매칭 결과입니다.");
+		System.out.println("\n페어 매칭 결과입니다.");
 
 		for (int i = 0; i < pairList.size() / 2; i++) {
 
@@ -24,7 +24,9 @@ public class MakingShuffleList {
 		}
 
 		if (pairList.size() % 2 != 0) {
-			System.out.println(" : " + pairList.get(pairList.size() - 1));
+			System.out.print(" : " + pairList.get(pairList.size() - 1));
 		}
+
+		System.out.println("\n");
 	}
 }

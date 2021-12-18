@@ -10,7 +10,7 @@ public class PairMatchingView {
 	}
 
 	public void selectCourseLevelMission() {
-		System.out.println("###############################");
+		System.out.println("\n###############################");
 		System.out.println("과정: 백엔드 | 프론트엔드");
 		System.out.println("미션:");
 		System.out.println("\t- 레벻1: 자동차경주 | 로또 | 숫자야구게임");

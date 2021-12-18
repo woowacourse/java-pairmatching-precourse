@@ -16,4 +16,15 @@ public class MissionInfo {
 		this.mission = mission;
 		missionList = MakingShuffleList.shuffle(memberList);
 	}
+
+	public boolean find(String CourseLevelMission) {
+		String[] str = CourseLevelMission.split(", ", -1);
+
+		if (!str[0].equals(course) || !str[1].equals(level) || !str[2].equals(mission)) {
+			return false;
+		}
+
+		MakingShuffleList.printPairList(missionList);
+		return true;
+	}
 }

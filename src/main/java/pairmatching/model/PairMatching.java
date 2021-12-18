@@ -7,19 +7,17 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class PairMatching {
 	public List<String> backendCrew;
 	public List<String> frontendCrew;
-	public Set<MissionInfo> missionInfoSet;
+	public List<MissionInfo> missionInfoSet;
 
 	public PairMatching() {
 		backendCrew = makeInitList("backend-crew.md");
 		frontendCrew = makeInitList("frontend-crew.md");
-		missionInfoSet = new HashSet<MissionInfo>();
+		missionInfoSet = new ArrayList<MissionInfo>();
 	}
 
 	public List<String> makeInitList(String str) {
@@ -47,5 +45,13 @@ public class PairMatching {
 		}
 		missionInfoSet.add(missionInfo);
 		return missionInfo.missionList;
+	}
+
+	public boolean findPair(String CourseLevelMission) {
+		for (int i = 0; i < missionInfoSet.size(); i++) {
+			if (missionInfoSet.get(i).find(CourseLevelMission))
+				return true;
+		}
+		return false;
 	}
 }

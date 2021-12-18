@@ -20,15 +20,25 @@ public class PairMatchingController {
 	}
 
 	public void use() {
-		pairMatchingView.selectOptionToDO();
-		String option = userView.selectOptionToDo();
+		while (true) {
+			pairMatchingView.selectOptionToDO();
+			String option = userView.selectOptionToDo();
 
-		if (option.equals("Q"))
-			return;
+			if (option.equals("Q"))
+				return;
 
-		if (option.equals("1")) {
-			pairMatchingView.selectCourseLevelMission();
-			MakingShuffleList.printPairList(pairMatching.makePair(userView.selectCourseLevelMission()));
+			if (option.equals("1")) {
+				pairMatchingView.selectCourseLevelMission();
+				MakingShuffleList.printPairList(pairMatching.makePair(userView.selectCourseLevelMission()));
+			}
+
+			if (option.equals("2")) {
+				pairMatchingView.selectCourseLevelMission();
+				if (!pairMatching.findPair(userView.selectCourseLevelMission())) {
+					System.out.println("[ERROR]");
+				}
+				;
+			}
 		}
 	}
 }
