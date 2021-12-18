@@ -14,6 +14,15 @@ public class PairMatchingController {
     InputView inputView = new InputView();
     MainCode mainCode = MainCode.MATCHING;
     public void run() {
+        try {
+            executeFunction();
+        } catch (IllegalArgumentException e) {
+            OutputView.showErrorMessage(e);
+            run();
+        }
+    }
+
+    private void executeFunction() {
         while (mainCode != MainCode.QUIT) {
             MainCode mainCode = MainCode.find(inputView.determineMainFunction());
             if (mainCode == MainCode.QUIT) {
