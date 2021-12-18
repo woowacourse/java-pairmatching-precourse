@@ -19,7 +19,7 @@ public class PairMatchingInput{
         PairMatchingOutput.choiceInstruction();
         String information = Console.readLine();
         Validator.validateInformationFormat(information);
-        String[] matchingInformation = information.split(",");
+        String[] matchingInformation = information.split(", ");
         Validator.validateInformationContent(matchingInformation);
         return matchingInformation;
     }
