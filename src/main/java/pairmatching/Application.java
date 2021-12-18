@@ -7,5 +7,6 @@ public class Application {
         // TODO 구현 진행
         MatchingController matchingController = new MatchingController();
         matchingController.ready();
+        matchingController.matchingProgram();
     }
 }
