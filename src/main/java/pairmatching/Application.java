@@ -1,7 +1,5 @@
 package pairmatching;
 
-import static pairmatching.view.InputView.inputCommandIsNo;
-
 import java.util.List;
 import pairmatching.domain.Command;
 import pairmatching.domain.Course;
@@ -10,6 +8,7 @@ import pairmatching.domain.Level;
 import pairmatching.domain.Match;
 import pairmatching.domain.Mission;
 import pairmatching.domain.PairProgram;
+import pairmatching.domain.YesNoCommand;
 import pairmatching.exception.MissionNotFoundMatchException;
 import pairmatching.exception.OverMatchingException;
 import pairmatching.view.InputView;
@@ -68,13 +67,22 @@ public class Application {
             Level level = Level.getLevel(matchingInformation.get(1));
             String missionName = matchingInformation.get(2);
             Mission mission = Mission.createEmptyMission(missionName, course);
-            if (pairProgram.isMatched(level, mission) && inputCommandIsNo(InputView.inputAlreadyMatching())) {
+            if (pairProgram.isMatched(level, mission) && yesNoCommand().isNo()) {
                 matching(pairProgram);
             }
             return pairProgram.matching(level, mission);
         } catch (IllegalArgumentException | OverMatchingException e) {
             OutputView.printErrorMessage(e.getMessage());
             return matching(pairProgram);
+        }
+    }
+
+    private static YesNoCommand yesNoCommand() {
+        try {
+            return YesNoCommand.getCommand(InputView.inputAlreadyMatching());
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return yesNoCommand();
         }
     }
 

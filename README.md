@@ -43,3 +43,7 @@
 ## Command
 - 요청 Command는 1, 2, 3, Q의 요청이 있다.
 - [ERROR] 없는 요청 Command를 호출할 경우 exception이 발생해야 한다.
+
+## YesNoCommand
+- 재매칭 요청 시 네, 아니오의 요청을 가질 수 있다.
+- [ERROR] 네, 아니오가 아닌 요청 Command를 호출할 경우 exception이 발생해야 한다.

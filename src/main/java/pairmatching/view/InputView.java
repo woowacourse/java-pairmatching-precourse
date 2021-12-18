@@ -189,8 +189,4 @@ public class InputView {
         System.out.println(INPUT_ALREADY_MATCH);
         return Console.readLine();
     }
-
-    public static boolean inputCommandIsNo(String command) {
-        return command.equals(INPUT_NO_MATCH);
-    }
 }
