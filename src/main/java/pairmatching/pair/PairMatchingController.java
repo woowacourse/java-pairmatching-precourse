@@ -60,8 +60,17 @@ public class PairMatchingController {
 		InputView.printSelectPairTarget();
 		requestPairTarget(pairTarget);
 		isAlreadyPairs(pairTarget);
-		pairMatching.repeatMatching(pairTarget);
-		OutputView.printMatchingResult(pairMatching.findPairsByPairTarget(pairTarget));
+		tryPairMatching(pairTarget);
+	}
+
+	private void tryPairMatching(PairTarget pairTarget) {
+		try {
+			pairMatching.repeatMatching(pairTarget);
+			OutputView.printMatchingResult(pairMatching.findPairsByPairTarget(pairTarget));
+		} catch (IllegalArgumentException illegalArgumentException) {
+			ErrorView.print(illegalArgumentException.getMessage());
+			runRandomPairMatching();
+		}
 	}
 
 	private void isAlreadyPairs(PairTarget pairTarget) {

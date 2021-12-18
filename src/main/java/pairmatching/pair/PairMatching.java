@@ -77,7 +77,7 @@ public class PairMatching {
 			} catch (IllegalArgumentException illegalArgumentException) {
 				matchingTry++;
 			}
-
+		resetPairs(pairTarget);
 		throw new IllegalArgumentException(ERROR_NOT_MATCHING);
 	}
 
