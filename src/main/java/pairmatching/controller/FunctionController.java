@@ -32,7 +32,7 @@ public class FunctionController {
 
 	private void pairMatching() {
 		OutputView.printAdvanceInformation();
-		String inputCourseAndLevelAndMission = InputView.InputCourseAndLevelAndMission();
+		String inputCourseAndLevelAndMission = InputView.inputCourseAndLevelAndMission();
 		Matching matching = matchingService.generateRandomMatching(inputCourseAndLevelAndMission);
 		OutputView.printMatchingInfo(matching);
 

@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import pairmatching.exception.NotFoundMissionException;
+
 public class Mission {
 	Map<Level, List<String>> missions = new TreeMap<>();
 
@@ -15,6 +17,14 @@ public class Mission {
 		missions.put(Level.LEVEL3, Collections.emptyList());
 		missions.put(Level.LEVEL4, Arrays.asList("성능개선", "배포"));
 		missions.put(Level.LEVEL5, Collections.emptyList());
+	}
+
+	public String findMissionName(Level level, String mission) {
+		List<String> missionList = missions.get(level);
+		if (missionList.contains(mission)) {
+			return missionList.get(missionList.indexOf(mission));
+		}
+		throw new NotFoundMissionException();
 	}
 
 	@Override

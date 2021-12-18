@@ -2,6 +2,7 @@ package pairmatching.view;
 
 import pairmatching.domain.Matching;
 import pairmatching.domain.Mission;
+import pairmatching.validator.MatchingValidator;
 
 public class OutputView {
 	private static final String LINE = "#############################################";

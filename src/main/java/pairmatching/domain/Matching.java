@@ -11,6 +11,10 @@ public class Matching {
 		pairsMap.put(level, pairs);
 	}
 
+	public Map<Level, List<Pairs>> getPairsMap() {
+		return pairsMap;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder stringBuffer = new StringBuilder();
