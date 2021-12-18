@@ -35,6 +35,7 @@ public class PairMatching {
 	private void pairMatching() {
 		outputCourseAndLevel();
 		RequestCourseAndLevelAndMissionDto requestCourseAndLevelAndMissionDto = inputCourseAndLevelAndMission();
+		pairMatchingService.matching(requestCourseAndLevelAndMissionDto);
 	}
 
 	private void pairSearch() {

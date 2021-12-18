@@ -1,5 +1,7 @@
 package pairmatching.enums;
 
+import static pairmatching.enums.ErrorMessage.*;
+
 import java.util.List;
 
 import pairmatching.domain.MissionList;
@@ -17,6 +19,15 @@ public enum Level {
 
 	Level(String name) {
 		this.name = name;
+	}
+
+	public static Level getByValue(String level) {
+		for (Level value : Level.values()) {
+			if (value.getName().equals(level)) {
+				return value;
+			}
+		}
+		throw new IllegalArgumentException(LEVEL_GET_BY_VALUE_ERROR.get());
 	}
 
 	public String getName() {
