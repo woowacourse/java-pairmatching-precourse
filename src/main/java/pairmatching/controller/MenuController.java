@@ -30,11 +30,11 @@ public class MenuController {
 		String input;
 		do {
 			input = InputView.inputMenu(menu);
-		} while (!validateMenu(input));
+		} while (!validate(input));
 
 	}
 
-	private boolean validateMenu(String input) {
+	private boolean validate(String input) {
 		boolean isValid = menu.validate(input);
 		ExceptionHandler.handleInputError(isValid, Constants.ERROR_MESSAGE_INPUT_MENU);
 		return isValid;

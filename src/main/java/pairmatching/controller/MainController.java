@@ -7,5 +7,8 @@ public class MainController {
 
 		CrewController crewController = new CrewController();
 		crewController.loadCrewName();
+
+		ProcessController processController = new ProcessController();
+		processController.input();
 	}
 }

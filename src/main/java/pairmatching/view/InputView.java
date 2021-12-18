@@ -10,4 +10,9 @@ public class InputView {
 		System.out.println(menu);
 		return Console.readLine();
 	}
+
+	public static String inputProcess() {
+		System.out.println(Constants.INPUT_MESSAGE_PROCESS);
+		return Console.readLine();
+	}
 }
