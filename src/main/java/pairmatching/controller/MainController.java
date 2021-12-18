@@ -13,6 +13,7 @@ public class MainController {
 	public static final String PAIR_SEARCHING = "2";
 	public static final String PAIR_RESET = "3";
 	public static final String EXIT = "Q";
+	public static final int INIT_COUNT = 0;
 
 	public void run() {
 		String function = InputView.requestFunction();
@@ -44,12 +45,12 @@ public class MainController {
 		String mission = stringTokenizer.nextToken();
 
 		if (course.equals(Course.BACKEND.getName())) {
-			Pairs pairs = makeBackRandomPair(mission, 0);
+			Pairs pairs = makeBackRandomPair(mission, INIT_COUNT);
 			System.out.println(pairs);
 		}
 
 		if (course.equals(Course.FRONTEND.getName())) {
-			Pairs pairs = makeFrontRandomPair(mission, 0);
+			Pairs pairs = makeFrontRandomPair(mission, INIT_COUNT);
 			System.out.println(pairs);
 		}
 		run();
@@ -58,7 +59,9 @@ public class MainController {
 	private Pairs makeBackRandomPair(String mission, int count) {
 		Pairs pairs = PairService.makeBackPairs(mission);
 		if (pairs.equals(null) && count < 3) {
-			makeBackRandomPair(mission, count++);
+			if (InputView.requestTry()) {
+				makeBackRandomPair(mission, count++);
+			}
 		}
 		return pairs;
 	}
@@ -66,7 +69,9 @@ public class MainController {
 	private Pairs makeFrontRandomPair(String mission, int count) {
 		Pairs pairs = PairService.makeFrontPairs(mission);
 		if (pairs.equals(null) && count < 3) {
-			makeFrontRandomPair(mission, count++);
+			if (InputView.requestTry()) {
+				makeFrontRandomPair(mission, count++);
+			}
 		}
 		return pairs;
 	}

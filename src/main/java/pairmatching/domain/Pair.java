@@ -15,7 +15,7 @@ public class Pair {
 	public String toString() {
 		List<String> nameList = new ArrayList<>();
 		for (Crew crew : pair) {
-			nameList.add(crew.getName());
+			nameList.add(crew.toString());
 		}
 		return String.join(" : ", nameList) + "\n";
 	}
