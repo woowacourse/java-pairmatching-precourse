@@ -1,2 +1,4 @@
-package pairmatching.utils;public class ShuffleNames {
+package pairmatching.utils;
+
+public class ShuffleNames {
 }

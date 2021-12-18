@@ -1,2 +1,4 @@
-package pairmatching.utils;public class InputMessage {
+package pairmatching.utils;
+
+public class InputMessage {
 }
