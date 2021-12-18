@@ -11,18 +11,21 @@ import pairmatching.Course;
 import pairmatching.Crew;
 import pairmatching.Crews;
 import pairmatching.Level;
+import pairmatching.Mission;
 import pairmatching.PairStorage;
 import utils.WrongTwoCommaWithLetter;
 
 public class PairMatch {
 	Crews crews = new Crews();
-	PairMatch() {
-		this.crews = crews;
+	PrintInterface printer = new PrintInterface();
+
+	public PairMatch() {
 	}
 
 	public void run() {
-		new PrintInterface().printCourseAndMission();
-
+		printer.printCourseAndMission();
+		printer.printInputCourseLevelMission();
+		getArrWithSplitCommaBlank(getCourseAndLevelAndMission());
 	}
 
 	private String getCourseAndLevelAndMission() {
@@ -34,6 +37,59 @@ public class PairMatch {
 			System.out.println(error.getMessage());
 		}
 		return input;
+	}
+
+	private String[] getArrWithSplitCommaBlank(String input) {
+		String[] stringArrOfCourseLevelMission = input.split(", ");
+		if (checkEachOfCourseLevelMission(stringArrOfCourseLevelMission)) {
+			return stringArrOfCourseLevelMission;
+		}
+		throw new IllegalArgumentException("[ERROR] 올바른 과정,레벨,미션 입력이 아닙니다.");
+	}
+
+	private boolean checkEachOfCourseLevelMission(String[] stringArrOfCourseLevelMission) {
+		String courseName = stringArrOfCourseLevelMission[0];
+		String levelName = stringArrOfCourseLevelMission[1];
+		String MissionName = stringArrOfCourseLevelMission[2];
+
+		return isCourseName(courseName)
+			&& isLevelName(levelName)
+			&& isMissionName(MissionName, levelName);
+	}
+
+	private boolean isCourseName(String courseName) {
+		for (Course course : Course.values()) {
+			if (course.toString().equals(courseName)) {
+				return true;
+			}
+		}
+		throw new IllegalArgumentException("[ERROR] 과정 이름이 잘못되었습니다.");
+	}
+
+	private boolean isLevelName(String levelName) {
+		for (Level level : Level.values()) {
+			if (level.toString().equals(levelName)) {
+				return true;
+			}
+		}
+		throw new IllegalArgumentException("[ERROR] 레벨 이름이 잘못되었습니다.");
+	}
+
+	private boolean isMissionName(String missionName, String levelName) {
+		for (Mission mission : Mission.values()) {
+			if (mission.toString().equals(missionName)
+				&& matchesMissionAndLevel(mission, levelName)) {
+				return true;
+			}
+		}
+		throw new IllegalArgumentException("[ERROR] 미션 이름이 잘못되었습니다.");
+	}
+
+	private boolean matchesMissionAndLevel(Mission mission, String levelName) {
+		if (mission.getLevel().toString().equals(levelName)) {
+			return true;
+		}
+		throw new IllegalArgumentException("[ERROR] 미션과 레벨이 잘못 매치되었습니다.");
 	}
 
 	boolean isDone () {

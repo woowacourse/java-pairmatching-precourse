@@ -38,10 +38,10 @@
 2. 매칭 기능 입력 -> ( (콘솔:과정,레벨,미션) -> ) 
    - 과정,레벨,미션이 들어있는 텍스트 입력 받기 ( -> String) [x]
      - 올바른 양식인지 확인하기 (String -> boolean) [x]
-   - 각각 과정, 레벨, 미션으로 split하기 ( String -> String[]{과정,레벨,미션})
-     - 과정이 맞는지 확인하기 (String -> boolean)
-     - 레벨이 맞는지 확인하기 (String -> boolean)
-     - 미션이 맞는지 확인하기 (String -> boolean)
+   - 각각 과정, 레벨, 미션으로 split하기 ( String -> String[]{과정,레벨,미션}) [x]
+     - 과정이 맞는지 확인하기 (String -> boolean) [x]
+     - 레벨이 맞는지 확인하기 (String -> boolean) [x]
+     - 미션이 맞는지 확인하기 (String -> boolean) [x]
    - 크루별로 HashMap (과정,레벨,미션)에 저장된 값이 있는지 확인하기
      - 있으면 새로만들건지 확인 ( 입력받기 : 네|아니오)
         - 입력값이 올바른 command 인지 확인
