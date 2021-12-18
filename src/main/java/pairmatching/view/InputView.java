@@ -14,14 +14,6 @@ import pairmatching.validator.InputValidator;
 
 public class InputView {
 
-	public static Map<String, Supplier<String>> mainChoiceMap = new LinkedHashMap<>();
-
-	static {
-		mainChoiceMap.put("1", InputView::toMatching);
-		mainChoiceMap.put("2", InputView::toRetrieve);
-		mainChoiceMap.put("3", InputView::toClear);
-	}
-
 	public static String chooseEntryMenu() {
 		System.out.println(INPUT_ENTRY_MENU);
 		String input = Console.readLine();
@@ -29,25 +21,19 @@ public class InputView {
 		if (input.equals(QUIT)) {
 			return QUIT;
 		}
-		String courseInput = mainChoiceMap.get(input).get();
-		return courseInput;
-	}
-
-	private static String toMatching() {
-		System.out.println(INPUT_COURSE_MENU);
-		String input = Console.readLine();
-		InputValidator.validateCourseMenu(input);
 		return input;
 	}
 
-	private static String toRetrieve() {
-		System.out.println(INPUT_COURSE_MENU);
-		String input = Console.readLine();
-		InputValidator.validateCourseMenu(input);
-		return input;
+	public static String inputMatching() {
+		return commonSubMenuInput();
 	}
 
-	private static String toClear() {
-		return CHOICE_CLEAR;
+	public static String inputRetrieve() {
+		return commonSubMenuInput();
+	}
+
+	public static String commonSubMenuInput() {
+		System.out.println(INPUT_COURSE_MENU);
+		return Console.readLine();
 	}
 }
