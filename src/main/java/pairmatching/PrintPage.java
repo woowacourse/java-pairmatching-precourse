@@ -7,7 +7,7 @@ public class PrintPage {
         System.out.println("2. 페어 조회");
         System.out.println("3. 페어 초기화");
         System.out.println("Q. 종료");
-
+        Utils.InputStartMenu();
     }
 
 }
