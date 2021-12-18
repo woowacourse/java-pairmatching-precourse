@@ -31,14 +31,16 @@ public class PairMatchingMessage {
 
 	private static final String RESHUFFLE_PAIR_OR_NOT = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
 
-	private static final String YES = "네";
+	public static final String YES = "네";
 
-	private static final String NO = "아니요";
+	public static final String NO = "아니요";
 
 	/* error message */
 	private static final String ERROR_PREFIX = "[ERROR]: ";
 
 	private static final String FUNCTION_SELECTION_ERROR = " 기능 선택은 1, 2, 3, Q 중 하나만 입력되야 합니다";
+
+	private static final String DISTINGUISH_COURSE_LEVEL_MISSION = "코스, 레벨, 미션은 ,로 구분되야 합니다";
 
 	private static final String WRONG_COURSE = " 존재하지 않는 과정입니다";
 
@@ -121,6 +123,10 @@ public class PairMatchingMessage {
 
 	public static String wrongMissionError(final String mission) {
 		return ERROR_PREFIX + mission + WRONG_MISSION;
+	}
+
+	public static String getDistinguishCourseLevelMissionError(final String courseLevelMission) {
+		return ERROR_PREFIX + courseLevelMission + DISTINGUISH_COURSE_LEVEL_MISSION;
 	}
 
 	public static String resetMatchingInformationError(final String selected) {

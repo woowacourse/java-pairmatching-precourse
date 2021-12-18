@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import pairmatching.controller.InputController;
 import pairmatching.models.Course;
 import pairmatching.models.Mission;
+import pairmatching.utils.CourseList;
 import pairmatching.utils.DataValidation;
 import pairmatching.utils.MissionList;
 import pairmatching.utils.NameList;
@@ -20,6 +22,7 @@ public class Application {
 		c.add(Course.FRONTEND.getName());
 		List<Mission> m = (new MissionList()).initMissionList();
 		PairMachineInput in = new PairMachineInput();
-
+		InputController ic = new InputController(in, new DataValidation());
+		ic.selectRematchPairOrNot();
     }
 }
