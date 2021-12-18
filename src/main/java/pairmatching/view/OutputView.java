@@ -11,7 +11,7 @@ public class OutputView {
 		System.out.println(GUIDE);
 	}
 
-	public static void pringCourse() {
+	public static void printCourse() {
 		System.out.println(COURSE_INFORMATION);
 	}
 }
