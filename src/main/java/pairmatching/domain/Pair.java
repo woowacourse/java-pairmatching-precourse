@@ -24,4 +24,15 @@ public class Pair {
 	public Crew getCrew2() {
 		return crew2;
 	}
+
+	public Crew getCrew3() {
+		return crew3;
+	}
+
+	public boolean existCrew3() {
+		if (crew3.getName() == "") {
+			return false;
+		}
+		return true;
+	}
 }

@@ -22,6 +22,10 @@ public class OutputView {
 	public static void printPairResult(Pairs pairList) {
 		System.out.println(PAIR_RESULT_MESSAGE);
 		for (Pair pair : pairList.pairList) {
+			if (pair.existCrew3()){
+				System.out.println(pair.getCrew1().getName() + " : " + pair.getCrew2().getName() + " : " + pair.getCrew3().getName());
+				return ;
+			}
 			System.out.println(pair.getCrew1().getName() + " : " + pair.getCrew2().getName());
 		}
 	}
