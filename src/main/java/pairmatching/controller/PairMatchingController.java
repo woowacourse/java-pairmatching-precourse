@@ -57,18 +57,22 @@ public class PairMatchingController {
 	private void lookPair(String source) {
 		checkSourceFormat(source);
 		String[] sources = SplitByComma(source);
-		if (!pairService.findMatch(sources[COURSE_IDX], sources[LEVEL_IDX], sources[MISSION_IDX])) {
+		if (!isFindMatch(sources[COURSE_IDX], sources[LEVEL_IDX], sources[MISSION_IDX])) {
 			throw new NotFindMatchException();
 		}
 		Match match = pairService.look(sources[COURSE_IDX], sources[LEVEL_IDX], sources[MISSION_IDX]);
 		outputView.reportMatch(match.getPair());
 	}
 
+	private boolean isFindMatch(String course, String level, String mission) {
+		return pairService.findMatch(course, level, mission);
+	}
+
 	private void matchPair(String source) throws IOException {
 		checkSourceFormat(source);
 		String[] sources = SplitByComma(source);
-		if (pairService.findMatch(sources[COURSE_IDX], sources[LEVEL_IDX], sources[MISSION_IDX])) {
-			String match = inputView.requestDuplicateMatch();
+		if (isFindMatch(sources[COURSE_IDX], sources[LEVEL_IDX], sources[MISSION_IDX])) {
+			String match = checkEmptyInput(inputView.requestDuplicateMatch());
 			if (match.equals(NOT_MATCHING_MSG)) {
 				run();
 			}
