@@ -78,22 +78,21 @@ public class PairMatchingSystem {
                 setCrewListMap(courseLevelMission[COURSE_NAME], crewList);
                 break;
             }catch (Exception e){
-                UI.printMatchedBefore();
-                status = yesOrNo();
+                //UI.printMatchedBefore();
             }
         }
         if(status == YES){
             throw new IllegalArgumentException();
         }
     }
-
+/*
     public int yesOrNo(){
         if(Validation.insertYesOrNo(UI.insertYesOrNo())){
             return YES;
         }
         return NO;
     }
-
+*/
     public void shuffleLogic(List<Crew> shuffleCrewList){
         for(int i = 0; i < shuffleCrewList.size()-1; i+=2){
             if(Validation.validateMeetList(shuffleCrewList.get(i).getMeet(), shuffleCrewList.get(i+1).getName())){
