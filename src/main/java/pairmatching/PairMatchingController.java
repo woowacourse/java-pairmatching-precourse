@@ -17,8 +17,8 @@ import java.util.Optional;
 
 public class PairMatchingController {
 
-    private static final String BACKEND_CREW_NAMES = "src/main/resources/backend-crew.md";
-    private static final String FRONTEND_CREW_NAMES = "src/main/resources/frontend-crew.md";
+    private static final String BACKEND_CREW_NAMES_PATH = "src/main/resources/backend-crew.md";
+    private static final String FRONTEND_CREW_NAMES_PATH = "src/main/resources/frontend-crew.md";
     private final PairService pairService;
 
     public PairMatchingController() {
@@ -106,7 +106,7 @@ public class PairMatchingController {
 
     private Optional<List<String>> loadBackendCrewName() {
         try {
-            Path path = Paths.get(BACKEND_CREW_NAMES);
+            Path path = Paths.get(BACKEND_CREW_NAMES_PATH);
             List<String> crewNames = Files.readAllLines(path);
             return Optional.of(crewNames);
         } catch (IOException e) {
@@ -117,7 +117,7 @@ public class PairMatchingController {
 
     private Optional<List<String>> loadFrontendCrewName() {
         try {
-            Path path = Paths.get(FRONTEND_CREW_NAMES);
+            Path path = Paths.get(FRONTEND_CREW_NAMES_PATH);
             List<String> crewNames = Files.readAllLines(path);
             return Optional.of(crewNames);
         } catch (IOException e) {
