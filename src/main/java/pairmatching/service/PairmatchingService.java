@@ -17,4 +17,10 @@ public class PairmatchingService {
 		PairMatch lastPairMatch = PairMatchRepository.addPairMatches(match, crews);
 		return lastPairMatch;
 	}
+
+	public PairMatch retrievePairs(ChoiceDto choiceDto) {
+		Match match = Match.of(choiceDto);
+		PairMatch pairMatches = PairMatchRepository.getPairMatches(match);
+		return pairMatches;
+	}
 }

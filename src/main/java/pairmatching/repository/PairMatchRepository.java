@@ -56,4 +56,11 @@ public class PairMatchRepository {
 	private static boolean isRemainingCrewNumberThree(Queue<Crew> queue) {
 		return queue.size() == 3;
 	}
+
+	public static PairMatch getPairMatches(Match match) {
+		return pairMatches.stream()
+			.filter(pairMatch -> pairMatch.getMatch().equals(match))
+			.findAny()
+			.orElseGet(() -> null);
+	}
 }

@@ -41,6 +41,8 @@ public class PairmatchingController {
 	private static void toRetrieve() {
 		String input = InputView.inputRetrieve();
 		ChoiceDto choiceDto = new ChoiceDto(input);
+		PairMatch findPairMatch = pairmatchingService.retrievePairs(choiceDto);
+		OutputView.outputPairMatchingResult(findPairMatch);
 	}
 
 	private static void toClear() {
