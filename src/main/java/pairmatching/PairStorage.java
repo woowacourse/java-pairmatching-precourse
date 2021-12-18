@@ -1,31 +1,38 @@
 package pairmatching;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class PairStorage {
-	private final HashMap<Crew, HashMap<Level, HashSet<Crew>>> pairMap = new HashMap<>();
+	// HashMap<Course, HashMap<Level, HashMap<Mission, HashMap<Crew,Crew>>>>
+	static final HashMap<Course, HashMap> pairMap = new HashMap<>();
 
 	public PairStorage() {
-		setPairMapLevel();
+		setPairMap();
 	}
 
-	private void setPairMapLevel() {
-		for (Crew crew : new Crews().getCrewList()) {
-			HashMap<Level, HashSet<Crew>> levelMap = setLevelMapWithCrew(crew);
-			pairMap.put(crew,levelMap);
+	private void setPairMap() {
+		for (Course course : Course.values()) {
+			pairMap.put(course, getPairMapLevel());
 		}
 	}
 
-	private HashMap<Level, HashSet<Crew>>  setLevelMapWithCrew(Crew crew) {
-		HashMap<Level, HashSet<Crew>> individualLevelMap = new HashMap<>();
+	private HashMap<Level, HashMap>  getPairMapLevel() {
+		HashMap<Level, HashMap> levelMap = new HashMap<>();
 		for (Level level : Level.values()) {
-			individualLevelMap.put(level, new HashSet<Crew>());
+			levelMap.put(level,getMissionMap(level));
 		}
-		return individualLevelMap;
+		return levelMap;
 	}
 
-	public HashMap<Crew, HashMap<Level, HashSet<Crew>>> getPairMap() {
+	private HashMap<Mission, HashMap> getMissionMap(Level level) {
+		HashMap<Mission, HashMap> missionMap = new HashMap();
+		for (Mission mission : Mission.getMissionListByLevel(level)) {
+			missionMap.put(mission, new HashMap());
+		}
+		return missionMap;
+	}
+
+	public static HashMap<Course, HashMap> getPairMap() {
 		return pairMap;
 	}
 }
