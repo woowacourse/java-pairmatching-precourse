@@ -12,8 +12,8 @@ public class CourseLevelMission {
 	public CourseLevelMission init(String courseLevelMission) {
 		List<String> courseLevelMissionList = Arrays.stream(courseLevelMission.split(", ")).collect(Collectors.toList());
 		this.course = Course.parse(courseLevelMissionList.get(0));
-		this.level = Level.parse(courseLevelMissionList.get(1));
-		this.mission = Mission.parse(this.level, courseLevelMissionList.get(2));
+		this.level = course.getLevel(courseLevelMissionList.get(1));
+		this.mission = level.getMission(courseLevelMissionList.get(2));
 
 		return this;
 	}

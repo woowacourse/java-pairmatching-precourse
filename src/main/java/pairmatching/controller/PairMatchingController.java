@@ -21,7 +21,9 @@ public class PairMatchingController {
 	public void run() {
 		String roleNumber = inputView.enterRoleNumber();
 
-		Role.parse(roleNumber).role();
+		while (!roleNumber.equals("Q")) {
+			Role.parse(roleNumber).role();
+		}
 
 		// TODO 매칭 기록 체크
 
@@ -39,20 +41,16 @@ public class PairMatchingController {
 		//TODO 매칭 결과 체크
 	}
 
-	public void inquire() {
+	public static void inquire() {
 		InquiringService inquiringService = new InquiringService();
 
 		String courseLevelMissionStr = inputView.enterCourseLevelMission();
 		CourseLevelMission courseLevelMission = new CourseLevelMission();
 		courseLevelMission.init(courseLevelMissionStr);
-		inquiringService.inquire(courseLevelMission);
+		outputView.printPair(inquiringService.inquire(courseLevelMission));
+		//TODO pair 가 없는 경우
 	}
 
-	public void initialize() {
-
-	}
-
-	public void finish() {
-
+	public static void initialize() {
 	}
 }

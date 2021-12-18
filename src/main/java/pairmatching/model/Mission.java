@@ -17,6 +17,10 @@ public class Mission {
 		return this.name;
 	}
 
+	public MatchingPairs getMatchingPairs() {
+		return matchingPairs;
+	}
+
 	public static Mission parse(Level level, String name) {
 		Level.isValidMission(level, name);
 		Mission mission = new Mission(name);

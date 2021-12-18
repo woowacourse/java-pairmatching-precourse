@@ -1,6 +1,7 @@
 package pairmatching.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Pair {
 	private List<Crew> crews;
@@ -16,5 +17,13 @@ public class Pair {
 		crews.add(crew1);
 		crews.add(crew2);
 		crews.add(crew3);
+	}
+
+	public int size() {
+		return crews.size();
+	}
+
+	public String toString() {
+		return crews.stream().map(Crew::getName).collect(Collectors.joining(" : "));
 	}
 }

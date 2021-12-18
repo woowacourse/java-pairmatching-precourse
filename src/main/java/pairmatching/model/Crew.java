@@ -8,6 +8,10 @@ public class Crew {
 	private String name;
 	private MatchedCrew matchedCrew;
 
+	public String getName() {
+		return name;
+	}
+
 	public void initCrew(Course course, String name) {
 		this.course = course;
 		this.name = name;

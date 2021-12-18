@@ -43,4 +43,8 @@ public class OutputView {
 	public void printCourseLevelMission() {
 		System.out.println(SELECT_COURSE_LEVEL_MISSION);
 	}
+
+	public void printPair(String pairs) {
+		System.out.println(pairs);
+	}
 }

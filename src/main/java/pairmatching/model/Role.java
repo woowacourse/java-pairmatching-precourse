@@ -14,12 +14,12 @@ public enum Role {
 	},
 	PAIR_INQUIRE("2", "페어 조회") {
 		public void role() {
-
+			PairMatchingController.inquire();
 		}
 	},
 	PAIR_INITIALIZE("3", "페어 초기화") {
 		public void role() {
-
+			PairMatchingController.initialize();
 		}
 	},
 	EXIT("Q", "종료") {
