@@ -42,6 +42,10 @@ public class MatchingService {
         }
     }
 
+    public List<String> returnMatching(String courseName){
+        return matching.getMatching(courseName);
+    }
+
     public List<String> startMatching(String courseName) {
         if (courseName.contains(BACK_COURSE)) {
             List<String> matchingBackList = makeMatchingList(backendPeople);
@@ -53,14 +57,17 @@ public class MatchingService {
         return matchingFrontList;
     }
 
-    public boolean makeDistinctBackMatching(String courseName, List<String> matching){
-        // 랜덤 안되는 경우 검증로직
+    public boolean makeDistinctBackMatching(String courseName, List<String> matched){
         List<String> matchingList = makeMatchingList(backendPeople);
+        // 랜덤 안되는 경우 검증로직
+        matching.makeThisCourseMatching(courseName, matched);
         return true;
     }
 
-    public boolean makeDistinctFrontMatching(String courseName, List<String> matching){
+    public boolean makeDistinctFrontMatching(String courseName, List<String> matched){
+        List<String> matchingList = makeMatchingList(frontendPeople);
         // 랜덤 안되는 경우 검증로직
+        matching.makeThisCourseMatching(courseName, matched);
         return true;
     }
 
