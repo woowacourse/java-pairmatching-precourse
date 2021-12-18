@@ -1,114 +1,100 @@
 package pairmatching;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.System.SystemErrorMessage;
+import pairmatching.System.SystemInputMessage;
 import pairmatching.domain.Crew;
+import pairmatching.dto.PropertyDto;
+import pairmatching.service.MatchingService;
 import pairmatching.view.InputSystem;
 import pairmatching.view.OutputSystem;
 
 public class PairMatchingManagementApplication {
 
     private final static String BACK_END = "백엔드";
-    private final static String FRONT_END = "프론트앤드";
-    private final static char PAIR_MATCHING = 1;
-    private final static char PAIR_SELECT = 2;
-    private final static char PAIR_RESET = 3;
+    private final static String FRONT_END = "프론트엔드";
+    private final static String YES = "네";
+    private final static String NO = "아니오";
+    private final static int NOT_EXIST_MATCHING_RECODE = 0;
+    private final static char PAIR_SELECT = '2';
+    private final static char PAIR_RESET = '3';
     private final static char EXIT = 'Q';
 
     private final InputSystem inputSystem;
-    private final ConstantDataStore constantDataStore;
     private final OutputSystem outputSystem;
+    private final ConstantDataStore constantDataStore;
+    private final MatchingService matchingService;
 
-    private StringBuilder matchingResults;
-    boolean MatchingAttempts = false;
+    private Map<PropertyDto, String> matchingHistories;
 
     public PairMatchingManagementApplication() {
         inputSystem = InputSystem.getInstance();
-        constantDataStore = ConstantDataStore.getInstance();
         outputSystem = OutputSystem.getInstance();
+        constantDataStore = ConstantDataStore.getInstance();
+        matchingService = MatchingService.getInstance();
+        matchingHistories = new HashMap<>();
     }
 
     public void start() {
         char inputFunctionNumber;
+        List<Crew> crews = new ArrayList<>();
+        PropertyDto previousPropertyDto = null;
         do {
             inputFunctionNumber = inputSystem.inputFunctionList();
-            if (inputFunctionNumber == PAIR_SELECT && !MatchingAttempts) {
+            if (inputFunctionNumber == PAIR_SELECT && previousPropertyDto == null) {
                 outputSystem.printConsoleMessage(SystemErrorMessage.NOT_MATCHING_HISTORY.getMessage());
+                continue;
+            } else if (inputFunctionNumber == PAIR_SELECT) {
+                outputSystem.printConsoleMessage(matchingHistories.get(previousPropertyDto));
+                continue;
+            }
+            if (inputFunctionNumber == PAIR_RESET) {
+                matchingHistories = new HashMap<>();
+                outputSystem.printConsoleMessage(SystemInputMessage.RESET.getMessage());
                 continue;
             }
             String courseAndLevelAndMission = inputSystem.inputPropertyInput();
-            Property property = extractedPropertyInformation(courseAndLevelAndMission);
-            if (!MatchingAttempts) {
-                behaveFunction(inputFunctionNumber, property);
+            PropertyDto propertyDto = extractedPropertyInformation(courseAndLevelAndMission);
+            crews = pickCrews(propertyDto.getCourse());
+            if (!matchingHistories.containsKey(propertyDto)) {
+                String matchingResult = matchingService.matchTheCrews(crews, propertyDto).toString();
+                if (matchingResult.toString().equals(SystemErrorMessage.NOT_MATCHING.getMessage())) {
+                    outputSystem.printConsoleMessage(matchingResult.toString());
+                    continue;
+                }
+                previousPropertyDto = propertyDto;
+                matchingHistories.put(propertyDto, SystemInputMessage.RESULT_PAIR_MATCHING.getMessage() + "\n" + matchingResult);
             } else {
                 String inputYesOrNo = inputSystem.inputYesOrNo();
+                if (inputYesOrNo.equals(YES)) {
+                    matchingHistories.put(propertyDto, SystemInputMessage.RESULT_PAIR_MATCHING.getMessage() + "\n" + matchingService.matchTheCrews(crews, propertyDto).toString());
+                    previousPropertyDto = propertyDto;
+                } else if (inputYesOrNo.equals(NO)) {
+                    continue;
+                }
             }
-
+            outputSystem.printConsoleMessage(matchingHistories.get(propertyDto));
         } while (inputFunctionNumber != EXIT);
     }
 
-    private Property extractedPropertyInformation(String courseAndLevelAndMission) {
+    private PropertyDto extractedPropertyInformation(String courseAndLevelAndMission) {
         String[] propertyInformation = courseAndLevelAndMission.split(",");
-        List<String> courseLevelMission = new ArrayList<>();
-
         for (int index = 0; index < propertyInformation.length; index++) {
             propertyInformation[index] = propertyInformation[index].trim();
         }
         String course = propertyInformation[0];
         String level = propertyInformation[1];
         String mission = propertyInformation[2];
-
-        return new Property(course, level, mission);
+        return new PropertyDto(course, level, mission);
     }
 
-    private void behaveFunction(char inputFunctionNumber, Property property) {
-        List<Crew> crews = pickCrews(property);
-        boolean even = (crews.size() % 2 == 0);
-        if (inputFunctionNumber == PAIR_MATCHING) {
-        } else if (inputFunctionNumber == PAIR_SELECT) {
-
-        } else if (inputFunctionNumber == PAIR_RESET) {
-
-        } else if (inputFunctionNumber == EXIT) {
-
-        }
-    }
-
-
-    private List<Crew> pickCrews(Property property) {
-        if (property.course.equals(BACK_END)) {
+    private List<Crew> pickCrews(String course) {
+        if (course.equals(BACK_END)) {
             return constantDataStore.getBackendCrews();
-        } else if (property.course.equals(FRONT_END)) {
+        } else if (course.equals(FRONT_END)) {
             return constantDataStore.getFrontedCrews();
         }
         return null;
     }
-
-    class Property {
-        private final String course;
-        private final String level;
-        private final String mission;
-
-        public Property(String course, String level, String mission) {
-            this.course = course;
-            this.level = level;
-            this.mission = mission;
-        }
-
-        public String getCourse() {
-            return course;
-        }
-
-        public String getLevel() {
-            return level;
-        }
-
-        public String getMission() {
-            return mission;
-        }
-    }
-
 }

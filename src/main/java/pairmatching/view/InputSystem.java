@@ -72,7 +72,7 @@ public class InputSystem {
     }
 
     private String combinateCustomPropertyMessage() {
-        return "#############################################" + SystemInputMessage.SELECT_PROPERTY_INFORMATION.getMessage()
+        return "\n#############################################\n" + SystemInputMessage.SELECT_PROPERTY_INFORMATION.getMessage()
                 + "#############################################" + SystemInputMessage.SELECT_PROPERTY_INPUT.getMessage();
     }
 }

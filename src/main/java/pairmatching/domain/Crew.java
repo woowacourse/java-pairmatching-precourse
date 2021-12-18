@@ -1,48 +1,59 @@
 package pairmatching.domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Crew {
-    private String course;
-    private String name;
-    private Map<Level, ArrayList<Crew>> alreadyPair = new HashMap<>();
+    private static final int MAXIMUM_LEVEL = 1;
+    private static final int MINIMUM_LEVEL = 5;
+    private final String name;
+    private Map<Level, Set<Crew>> matchingHistory;
 
-    public Crew(String name, String course) {
+    public Crew(String name) {
         this.name = name;
-        this.course = course;
+        initMatchingHistory();
+    }
+
+    private void initMatchingHistory() {
+        matchingHistory = new HashMap<>();
+        for (Level level : Level.values()) {
+            matchingHistory.put(level, new HashSet<>());
+        }
+    }
+
+    public void addHistory(Crew colleague, Level level) {
+        matchingHistory.get(level).add(colleague);
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || this.getClass() != object.getClass()) {
+            return false;
+        }
+        Crew other = (Crew) object;
+        return this.name.equals(other.name) && this.matchingHistory == other.matchingHistory;
     }
 
     public String getName() {
         return name;
     }
 
-    public void printName() {
-        System.out.printf(this.name);
+    public Map<Level, Set<Crew>> getMatchingHistory() {
+        return matchingHistory;
     }
 
-    public boolean isEqual(String name) {
-        if (this.name.equals(name)) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean checkAlreadyPair(Level level, Crew crew) {
-        if (alreadyPair.size() == 0) {
-            return false;
-        }
-        if (alreadyPair.get(level).contains(crew)) {
-            throw new IllegalArgumentException("페어가 취소되었습니다");
-        }
-        return false;
-    }
-
-    public void addAlreadyPair(Level level, Crew crew) {
-        if (!alreadyPair.containsKey(level)) {
-            this.alreadyPair.put(level, new ArrayList<Crew>());
-        }
-        this.alreadyPair.get(level).add(crew);
+    @Override
+    public String toString() {
+        return "Crew{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

@@ -13,9 +13,13 @@ public enum SystemInputMessage {
             "  - 레벨2: 장바구니 | 결제 | 지하철노선도\n" +
             "  - 레벨3: \n" +
             "  - 레벨4: 성능개선 | 배포\n" +
-            "  - 레벨5: \n"),
-    SELECT_PROPERTY_INPUT("\n과정, 레벨, 미션을 선택하세요"),
-    RETRY_MATCHING("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n네 | 아니오");
+            "  - 레벨5: "),
+    SELECT_PROPERTY_INPUT("\n과정, 레벨, 미션을 선택하세요.\n" +
+            "ex) 백엔드, 레벨1, 자동차경주"),
+    RETRY_MATCHING("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n" +
+            "네 | 아니오"),
+    RESET("초기화 되었습니다."),
+    RESULT_PAIR_MATCHING("\n페어 매칭 결과입니다.");
 
 
     private final String message;
