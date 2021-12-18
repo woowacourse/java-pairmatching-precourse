@@ -3,11 +3,11 @@ package pairmatching.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import pairmatching.Answer;
-import pairmatching.Course;
-import pairmatching.Level;
 import pairmatching.Menu;
-import pairmatching.Mission;
+import pairmatching.condition.Answer;
+import pairmatching.condition.Course;
+import pairmatching.condition.Level;
+import pairmatching.condition.Mission;
 
 public class InputView {
 	private static final String SELECT_FEATURE = "기능을 선택하세요.";

@@ -3,8 +3,8 @@ package pairmatching.pair;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
-import pairmatching.Answer;
 import pairmatching.Menu;
+import pairmatching.condition.Answer;
 import pairmatching.view.ErrorView;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;

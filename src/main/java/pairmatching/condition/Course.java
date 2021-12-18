@@ -1,4 +1,4 @@
-package pairmatching;
+package pairmatching.condition;
 
 import java.util.Arrays;
 
@@ -17,7 +17,7 @@ public enum Course {
 	public String toString() {
 		return name;
 	}
-	
+
 	public static Course validateChoose(String name) {
 		return Arrays.stream(Course.values())
 			.filter(course -> course.name.equals(name))

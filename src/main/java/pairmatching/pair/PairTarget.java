@@ -1,8 +1,8 @@
 package pairmatching.pair;
 
-import pairmatching.Course;
-import pairmatching.Level;
-import pairmatching.Mission;
+import pairmatching.condition.Course;
+import pairmatching.condition.Level;
+import pairmatching.condition.Mission;
 
 public class PairTarget {
 	private static final String ERROR_INPUT_FORMAT = "과정, 레벨, 미션 형태로 입력해야 합니다.";

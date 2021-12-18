@@ -1,4 +1,4 @@
-package pairmatching;
+package pairmatching.condition;
 
 import java.util.Arrays;
 
@@ -7,7 +7,7 @@ public enum Answer {
 	NO("아니오");
 
 	private static final String ERROR_NOT_FOUND = "해당 입력은 사용할 수 없습니다.";
-	
+
 	private String answer;
 
 	Answer(String answer) {

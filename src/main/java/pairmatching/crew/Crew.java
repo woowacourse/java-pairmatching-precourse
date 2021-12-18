@@ -1,6 +1,6 @@
 package pairmatching.crew;
 
-import pairmatching.Course;
+import pairmatching.condition.Course;
 
 public class Crew {
 	private Course course;

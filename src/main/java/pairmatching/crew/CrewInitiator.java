@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import pairmatching.Course;
+import pairmatching.condition.Course;
 import pairmatching.view.ErrorView;
 
 public class CrewInitiator {
