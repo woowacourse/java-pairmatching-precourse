@@ -33,20 +33,31 @@ public class OutputView {
 			sb.append(": ");
 			Missions nowLevelMissions = missions.getByLevel(level);
 			if (nowLevelMissions.isEmpty()) {
-				System.out.println(sb.toString());
-				sb.setLength(0);
+				printToString(sb);
 				continue;
 			}
-			List<String> missionsNames = nowLevelMissions.getNames();
-			for (String missionName : missionsNames) {
-				sb.append(missionName);
-				sb.append(" | ");
-			}
-			String s2 = sb.toString();
-			String substring1 = sb.substring(0, s2.length() - 3);
-			System.out.println(substring1);
-			sb.setLength(0);
+			printNowLevelMissionsNames(sb, nowLevelMissions);
+			String str = trimedLastSeparator(sb);
+			printToString(sb);
 		}
+	}
+
+	private static void printToString(StringBuilder sb) {
+		System.out.println(sb.toString());
+		sb.setLength(0);
+	}
+
+	private static void printNowLevelMissionsNames(StringBuilder sb, Missions nowLevelMissions) {
+		List<String> missionsNames = nowLevelMissions.getNames();
+		for (String missionName : missionsNames) {
+			sb.append(missionName);
+			sb.append(" | ");
+		}
+	}
+
+	private static String trimedLastSeparator(StringBuilder sb) {
+		String now = sb.toString();
+		return sb.substring(0, now.length() - 3);
 	}
 
 	private static void printCourseNames() {
@@ -56,8 +67,11 @@ public class OutputView {
 			sb.append(course.getName());
 			sb.append(" | ");
 		}
-		String s = sb.toString();
-		String substring = s.substring(0, s.length() - 3);
-		System.out.println(substring);
+		String str = trimedLastSeparator(sb);
+		System.out.println(str);
+	}
+
+	public static void printError(String message) {
+		System.out.println(message);
 	}
 }
