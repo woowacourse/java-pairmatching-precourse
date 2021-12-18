@@ -18,4 +18,5 @@ public class OutputView {
 	public void printNewLine() {
 		System.out.println();
 	}
+
 }

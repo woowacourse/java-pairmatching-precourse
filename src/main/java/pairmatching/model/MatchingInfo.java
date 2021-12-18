@@ -1,18 +1,61 @@
 package pairmatching.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.constants.ExceptionMessages;
 
 public class MatchingInfo {
-	private Course course;
-	private Level level;
-	private Mission mission;
-	private List<Crew> crewList;
+	private String level;
+	private String mission;
+	private List<Crew> crewList = new ArrayList<>();
 
-	public MatchingInfo(String matchingInfoString, Levels levels) {
+	public static final int LAST_PAIR_SIZE = 3;
+
+	public MatchingInfo(List<String> crewNames, String matchingInfoString, Levels levels) {
 		validateMatchingInfo(matchingInfoString, levels);
+		List<String> infoStringList = Arrays.asList(matchingInfoString.split(", "));
+		List<String> shuffledCrew = Randoms.shuffle(crewNames);
+		int numberOfCrews = shuffledCrew.size();
+		this.level = infoStringList.get(1);
+		this.mission = infoStringList.get(2);
+
+		if (numberOfCrews % 2 == 0) {
+			for (int i = 0; i < numberOfCrews; i += 2) {
+				List<Crew> crewList = new ArrayList<>();
+				crewList.add(new Crew(Course.getCourseByString(infoStringList.get(0)), shuffledCrew.get(i)));
+				crewList.add(new Crew(Course.getCourseByString(infoStringList.get(0)), shuffledCrew.get(i + 1)));
+			}
+			return;
+		}
+		for (int i = 0; i < numberOfCrews; i += 2) {
+			if (i == numberOfCrews - LAST_PAIR_SIZE) {
+				crewList.add(new Crew(Course.getCourseByString(infoStringList.get(0)), shuffledCrew.get(i)));
+				crewList.add(new Crew(Course.getCourseByString(infoStringList.get(0)), shuffledCrew.get(i + 1)));
+				crewList.add(new Crew(Course.getCourseByString(infoStringList.get(0)), shuffledCrew.get(i + 2)));
+				break;
+			}
+			crewList.add(new Crew(Course.getCourseByString(infoStringList.get(0)), shuffledCrew.get(i)));
+			crewList.add(new Crew(Course.getCourseByString(infoStringList.get(0)), shuffledCrew.get(i + 1)));
+		}
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public String getMission() {
+		return mission;
+	}
+
+	public List<Crew> getCrewList() {
+		return crewList;
+	}
+
+	private void validatePairMatching(List<String> crewNames) {
+
 	}
 
 	private void validateMatchingInfo(String matchingInfoString, Levels levels) {

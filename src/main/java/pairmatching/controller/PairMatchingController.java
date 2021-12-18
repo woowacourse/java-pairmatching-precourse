@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.model.Course;
 import pairmatching.model.Crew;
 import pairmatching.model.Level;
@@ -18,6 +19,7 @@ public class PairMatchingController {
 	private static List<String> frontEndCrewNames;
 	private static List<Crew> backendCrews;
 	private static List<Crew> frontendCrews;
+	private static List<MatchingInfo> matchingInfoList = new ArrayList<>();
 	private static Levels levels;
 	private InputView inputView;
 	private OutputView outputView;
@@ -38,8 +40,16 @@ public class PairMatchingController {
 		outputView.printChooseFeature();
 		outputView.printNewLine();
 		outputView.printCourseAndMissionInfo(levels);
+		List<String> shuffle = Randoms.shuffle(backEndCrewNames);
+
 		String matchingInfoString = inputView.inputMatchingInfo();
-		MatchingInfo matchingInfo = new MatchingInfo(matchingInfoString, levels);
+		MatchingInfo matchingInfo = new MatchingInfo(backEndCrewNames, matchingInfoString, levels);
+		matchingInfoList.add(matchingInfo);
+		for (MatchingInfo info : matchingInfoList) {
+			System.out.println(info.getLevel());
+			info.getCrewList().stream()
+				.forEach(crew -> System.out.println(crew.getCourse() + " " + crew.getName()));
+		}
 	}
 
 	private void initCourse() {
@@ -50,6 +60,8 @@ public class PairMatchingController {
 			.map(crewString -> new Crew(Course.FRONTEND, crewString.toString()))
 			.collect(Collectors.toList());
 	}
+
+
 
 	private void initLevelAndMission() {
 		List<Level> levelList = new ArrayList<>();
