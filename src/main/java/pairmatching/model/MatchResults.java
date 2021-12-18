@@ -41,13 +41,20 @@ public class MatchResults {
 	}
 
 	public void match(CrewRepository crewsByString, Mission mission, int trial) {
-		if (trial > 2) {
-			throw new RuntimeException("[ERROR] 3회 매칭에 실패하였습니다");
-		}
-
+		throwExceptionWhenMoreThridTrial(trial);
 		List<String> shuffle = crewsByString.shuffle();
 
 		List<MatchResult> trialList = new ArrayList<>();
+		getTrialMatchList(mission, shuffle, trialList);
+
+		if (shuffle.size() % 2 == 1) {
+			trialList.get(trialList.size() - 1).getPairMembers().add(shuffle.get(shuffle.size() - 1));
+		}
+
+		matchFinalProcess(crewsByString, mission, trial, trialList);
+	}
+
+	private void getTrialMatchList(Mission mission, List<String> shuffle, List<MatchResult> trialList) {
 		for (int i = 0; i < shuffle.size() - 1; i += 2) {
 			MatchResult matchResult = new MatchResult();
 			matchResult.setMission(mission);
@@ -57,11 +64,15 @@ public class MatchResults {
 			}
 			trialList.add(matchResult);
 		}
+	}
 
-		if (shuffle.size() % 2 == 1) {
-			trialList.get(trialList.size() - 1).getPairMembers().add(shuffle.get(shuffle.size() - 1));
+	private void throwExceptionWhenMoreThridTrial(int trial) {
+		if (trial > 2) {
+			throw new RuntimeException("[ERROR] 3회 매칭에 실패하였습니다");
 		}
+	}
 
+	private void matchFinalProcess(CrewRepository crewsByString, Mission mission, int trial, List<MatchResult> trialList) {
 		boolean matched = isMatchedBefore(matchResults, trialList);
 		if (matched) {
 			match(crewsByString, mission, trial++);
