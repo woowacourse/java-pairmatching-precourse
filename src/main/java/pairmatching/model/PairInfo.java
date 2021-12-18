@@ -2,6 +2,7 @@ package pairmatching.model;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import pairmatching.constant.Message;
 import pairmatching.constant.Rule;
@@ -27,5 +28,25 @@ public class PairInfo {
 
 	public String getCourse() {
 		return course;
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		if (this == other) {
+			return true;
+		}
+
+		if (!(other instanceof PairInfo)) {
+			return false;
+		}
+
+		PairInfo otherPairInfo = (PairInfo)other;
+		return course.equals(otherPairInfo.course) && level.equals(otherPairInfo.level) && mission.equals(
+			otherPairInfo.mission);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(course, level, mission);
 	}
 }

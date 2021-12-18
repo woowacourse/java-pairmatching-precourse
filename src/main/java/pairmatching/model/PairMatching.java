@@ -30,6 +30,6 @@ public class PairMatching {
 		PairList pairList = new PairList(pairInfo);
 		PairListView pairListView = new PairListView();
 		pairListView.print(pairList);
-		// pairListMap.save(pairInfo, pairList);
+		pairListMap.save(pairInfo, pairList);
 	}
 }
