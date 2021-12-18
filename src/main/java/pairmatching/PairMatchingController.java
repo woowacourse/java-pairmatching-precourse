@@ -3,10 +3,17 @@ package pairmatching;
 public class PairMatchingController {
 
 	public void run() {
-		requestFunctionSelect();
+		Function selectedFunction = requestFunctionSelect();
+		run(selectedFunction);
 	}
 
-	private void requestFunctionSelect() {
-		Input.requestFunctionSelect();
+	private Function requestFunctionSelect() {
+		return Input.requestFunctionSelect();
+	}
+
+	private void run(Function function) {
+		if (function == Function.QUIT) {
+			return;
+		}
 	}
 }
