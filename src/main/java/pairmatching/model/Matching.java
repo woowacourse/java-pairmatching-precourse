@@ -2,12 +2,10 @@ package pairmatching.model;
 
 import java.util.List;
 
-import pairmatching.model.Crew;
-
 public class Matching {
-    private List<Crew> crewNames;
+    private List<String> crewNames;
 
-    public Matching(final List<Crew> crewNames) {
+    public Matching(final List<String> crewNames) {
         this.crewNames = crewNames;
     }
 
