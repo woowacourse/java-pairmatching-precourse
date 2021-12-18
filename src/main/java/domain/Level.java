@@ -2,6 +2,7 @@ package domain;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public enum Level {
     LEVEL1("레벨1"),
@@ -11,15 +12,37 @@ public enum Level {
     LEVEL5("레벨5");
 
     private final String name;
-    private List<String> missions;
+    private List<Mission> missions;
 
     Level(final String name) {
       this.name = name;
       missions = new ArrayList<>();
     }
     
-    public void addMissions(String mission) {
+    public void addMissions(Mission mission) {
         missions.add(mission);
+    }
+
+    public List<Mission> getMissions() {
+        return missions;
+    }
+
+    public String getName() {
+        return name;
+    }
+    
+    public static Level findByName(String name) {
+        return Arrays.stream(Level.values()).
+                filter(l -> l.getName().equals(name)).
+                findAny().
+                orElseThrow(IllegalArgumentException:: new);
+    }
+    
+    public static Mission findbyMissionName(Level level, String mission) {
+        return level.getMissions().stream()
+                .filter(m -> m.getName().equals(mission))
+                .findAny()
+                .orElseThrow(IllegalArgumentException:: new);
     }
     
 }
