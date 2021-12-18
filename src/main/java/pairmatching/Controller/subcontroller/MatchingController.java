@@ -2,9 +2,13 @@ package pairmatching.Controller.subcontroller;
 
 import pairmatching.Controller.Controller;
 import pairmatching.Service.MatchingService;
+import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class MatchingController implements Controller {
+	private static final InputView inputView = new InputView();
+	private static final OutputView outputView = new OutputView();
+
 	private final MatchingService matchingService;
 
 	public MatchingController() {
@@ -13,7 +17,7 @@ public class MatchingController implements Controller {
 
 	@Override
 	public void run() {
-		OutputView.printMessage(matchingService.printCourseAndLevelInfo());
+		outputView.printMessage(matchingService.printCourseAndLevelInfo());
 
 
 	}
