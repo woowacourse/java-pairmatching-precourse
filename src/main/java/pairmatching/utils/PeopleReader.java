@@ -8,6 +8,8 @@ import java.util.List;
 
 public class PeopleReader {
 
+	static final String BACKEND_FILE_ADDRESS = "C:\\Users\\dbswn\\Desktop\\java-pairmatching-precourse\\src\\main\\resources\\backend-crew.md";
+	static final String FRONTEND_FILE_ADDRESS = "C:\\Users\\dbswn\\Desktop\\java-pairmatching-precourse\\src\\main\\resources\\frontend-crew.md";
 	List<String> backEnd;
 	List<String> frontEnd;
 
@@ -26,8 +28,7 @@ public class PeopleReader {
 
 	public List<String> createBackPeopleList() throws IOException {
 		List<String> people = new ArrayList<>();
-		BufferedReader reader = new BufferedReader(new FileReader(
-			"C:\\Users\\dbswn\\Desktop\\java-pairmatching-precourse\\src\\main\\resources\\backend-crew.md"));
+		BufferedReader reader = new BufferedReader(new FileReader(BACKEND_FILE_ADDRESS));
 		String person;
 		while ((person = reader.readLine()) != null) {
 			people.add(person);
@@ -37,8 +38,7 @@ public class PeopleReader {
 
 	public List<String> createFrontPeopleList() throws IOException {
 		List<String> people = new ArrayList<>();
-		BufferedReader reader = new BufferedReader(new FileReader(
-			"C:\\Users\\dbswn\\Desktop\\java-pairmatching-precourse\\src\\main\\resources\\frontend-crew.md"));
+		BufferedReader reader = new BufferedReader(new FileReader(FRONTEND_FILE_ADDRESS));
 		String person;
 		while ((person = reader.readLine()) != null) {
 			people.add(person);

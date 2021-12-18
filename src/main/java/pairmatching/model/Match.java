@@ -1,5 +1,7 @@
 package pairmatching.model;
 
+import static pairmatching.constant.constant.*;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
@@ -26,10 +28,10 @@ public class Match {
 
 	private List<String> createPair(Course course) throws IOException {
 		PeopleReader peopleReader = new PeopleReader();
-		if (course.isSameName("백엔드")){
+		if (course.isSameName(BACKEND)){
 			return Randoms.shuffle(peopleReader.getBackEnd());
 		}
-		if (course.isSameName("프론트엔드")){
+		if (course.isSameName(FRONTEND)){
 			return Randoms.shuffle(peopleReader.getFrontEnd());
 		}
 		return null;
