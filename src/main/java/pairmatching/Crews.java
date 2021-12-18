@@ -13,7 +13,7 @@ public class Crews {
 	private final List<String> FRONTEND_CREW_NAME_LIST = Arrays.asList("보노", "시저", "쉐리", "신디", "다비", "덴버", "이브",
 		"제시", "라라", "린다", "리사", "니콜", "로드", "윌터", "제키");
 
-	public void setCrews () {
+	public Crews () {
 		BACKEND_CREW_NAME_LIST.forEach(name -> {
 			CREW_LIST.add(new Crew(name, Course.BACKEND));
 		});
