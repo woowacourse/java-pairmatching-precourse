@@ -161,6 +161,8 @@ public class Crew {
 - 메인 메뉴 출력
     - 메인 메뉴 출력
     - 사용자가 입력( `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용)
+    - [예외] 입력이 없을경우
+    - [예외] 지정된 메뉴 외의 다른 입력이 들어온 경우
 
 - 페어 매칭 기능
     - 전체 도메인 안내 출력
