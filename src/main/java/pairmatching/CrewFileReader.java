@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CrewFileReader {
-    private static final String FILE_PATH="src/main/resources/";
+    private static final String FILE_PATH = "src/main/resources/";
     private static final String BACKEND_FILE = "backend-crew.md";
     private static final String FRONTEND_FILE = "frontend-crew.md";
 
@@ -16,7 +16,6 @@ public class CrewFileReader {
     }
 
     public static List<String> getCrew(boolean isBackend) {
-        System.out.println("getCrew Start");
         List<String> crewList = new ArrayList<>();
 
         try {
@@ -28,15 +27,15 @@ public class CrewFileReader {
             while ((line = bufferedReader.readLine()) != null) {
                 crewList.add(line);
             }
-        } catch (Exception e) {}
-        System.out.println("getCrew Return");
+        } catch (Exception e) {
+        }
         return crewList;
     }
 
-    private static String getFilePath(boolean isBackend){
-        if(isBackend){
-            return FILE_PATH+BACKEND_FILE;
+    private static String getFilePath(boolean isBackend) {
+        if (isBackend) {
+            return FILE_PATH + BACKEND_FILE;
         }
-        return FILE_PATH+FRONTEND_FILE;
+        return FILE_PATH + FRONTEND_FILE;
     }
 }

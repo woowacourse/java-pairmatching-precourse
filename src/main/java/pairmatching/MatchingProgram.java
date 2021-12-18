@@ -22,9 +22,8 @@ public class MatchingProgram {
         Level.LEVEL2.addMission("지하철노선도");
         Level.LEVEL4.addMission("성능개선");
         Level.LEVEL4.addMission("배포");
-
-        System.out.println("initiate program");
     }
+
     private void getAndPerformFunction() {
         MessagePrinter.printFunctions();
         while (true) {
@@ -62,7 +61,7 @@ public class MatchingProgram {
         MessagePrinter.printMissions();
         while (true) {
             try {
-                String mission = readLine();
+                String mission = InputManager.getMissionInput();
                 matchingInfoSet.performPairMatching(mission);
                 return;
             } catch (IllegalArgumentException e) {
@@ -75,7 +74,7 @@ public class MatchingProgram {
         MessagePrinter.printMissions();
         while (true) {
             try {
-                String mission = readLine();
+                String mission = InputManager.getMissionInput();
                 matchingInfoSet.viewPairMatching(mission);
                 return;
             } catch (IllegalArgumentException e) {
