@@ -18,4 +18,6 @@ public class Message {
         + "네 | 아니오";
 
     public static final String MATCHING_RESULT = "페어 매칭 결과입니다.";
+
+    public static final String RESET = "초기화 되었습니다.";
 }

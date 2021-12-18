@@ -20,6 +20,10 @@ public class Output {
         }
     }
 
+    public static void reset() {
+        System.out.println("\n" + RESET + "\n");
+    }
+
     private static void backMatching(List<String> names) {
         for (int i = 0; i < names.size() - 1; i += 2) {
             System.out.println(names.get(i) + " : " + names.get(i + 1));

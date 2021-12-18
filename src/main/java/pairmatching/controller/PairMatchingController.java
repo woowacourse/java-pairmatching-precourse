@@ -2,7 +2,6 @@ package pairmatching.controller;
 
 import java.util.List;
 
-import pairmatching.domain.Pair;
 import pairmatching.domain.PairMatching;
 import pairmatching.domain.Pairs;
 import pairmatching.view.Input;
@@ -34,6 +33,9 @@ public class PairMatchingController {
             System.out.println();
             search();
         }
+        if (function.equals("3")) {
+            reset();
+        }
     }
 
     private void matching() {
@@ -54,5 +56,10 @@ public class PairMatchingController {
         List<String> names = pairs.getNames(value);
         Output.matching(names);
         System.out.println();
+    }
+
+    private void reset() {
+        pairs = new Pairs();
+        Output.reset();
     }
 }
