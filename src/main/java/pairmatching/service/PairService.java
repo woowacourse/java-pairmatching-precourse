@@ -1,8 +1,6 @@
 package pairmatching.service;
 
-import static pairmatching.exception.ExistException.*;
-import static pairmatching.exception.LevelMissionException.*;
-import static pairmatching.exception.SourceFormatException.*;
+import java.io.IOException;
 
 import pairmatching.model.Course;
 import pairmatching.model.Level;
@@ -18,7 +16,7 @@ public class PairService {
 		matchRepository = new MatchRepository();
 	}
 
-	public Match match(String course, String level, String mission) {
+	public Match match(String course, String level, String mission) throws IOException {
 		return matchRepository.save(Course.findCourseByName(course),
 			Level.findLevelByName(level),
 			Mission.findMissionByName(mission));
