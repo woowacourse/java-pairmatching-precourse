@@ -12,6 +12,8 @@ public class Printer {
 	private static final String COURSE_TEXT = "과정: ";
 	private static final String MISSION_TEXT = "미션: ";
 
+	private static final String MISSION_INPUT_REQUEST_STRING = "과정, 레벨, 미션을 선택하세요.\nex) 백엔드, 레벨1, 자동차경주";
+
 	public static void printFunctions() {
 		System.out.println(FUNCTION_SELECT_TEXT);
 		Function.getFunctionList().forEach(System.out::println);
@@ -19,6 +21,10 @@ public class Printer {
 
 	public static void printMissions() {
 		System.out.println(buildMissionList());
+	}
+
+	public static void printMissionInputRequest() {
+		System.out.println(MISSION_INPUT_REQUEST_STRING);
 	}
 
 	private static String buildMissionList() {
@@ -38,6 +44,6 @@ public class Printer {
 	}
 
 	private static String enclosedWithBorder(String str) {
-		return BORDER_LINE_TEXT + NEW_LINE + str + NEW_LINE + BORDER_LINE_TEXT + NEW_LINE;
+		return BORDER_LINE_TEXT + NEW_LINE + str + NEW_LINE + BORDER_LINE_TEXT;
 	}
 }
