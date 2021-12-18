@@ -9,7 +9,7 @@ import java.util.List;
 
 public class File {
 
-	public static ArrayList<String> readFile(String fileName) {
+	public static List<String> readFile(String fileName) {
 		ArrayList<String> data = new ArrayList<>();
 		try {
 			Path path = Paths.get(fileName);

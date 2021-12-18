@@ -59,10 +59,10 @@ public class PairMatchingController {
 
 		String input = inputFunction();
 		HashMap<String, String> pairMatchingMap = setPairMatchingIntoHashMap(input);
-		if (!pairMatching.isAvailableMatch(pairMatchingMap)) {
+		if (pairMatching.isAvailableMatch(pairMatchingMap)) {
 			checkRematch(pairMatchingMap);
 		}
-		pairMatching.match(pairMatchingMap);
+		match(pairMatchingMap);
 	}
 
 	private void checkRematch(HashMap<String, String> pairMatchingMap) {
@@ -70,9 +70,13 @@ public class PairMatchingController {
 
 		String input = inputRestart();
 		if (input.equals(PairMatchingType.REMATCH.getString())) {
-			pairMatching.match(pairMatchingMap);
+			match(pairMatchingMap);
 			return;
 		}
 		selectFunction();
+	}
+
+	private void match(HashMap<String, String> pairMatchingMap) {
+		pairMatching.match(pairMatchingMap);
 	}
 }

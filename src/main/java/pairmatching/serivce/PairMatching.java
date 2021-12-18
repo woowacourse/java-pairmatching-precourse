@@ -2,38 +2,28 @@ package pairmatching.serivce;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.model.Matching;
-import pairmatching.repository.BackEndRepository;
-import pairmatching.repository.FrontEndRepository;
 import pairmatching.type.File;
+import pairmatching.type.Course;
 
 public class PairMatching {
-	private BackEndRepository backEnd;
-	private FrontEndRepository frontEnd;
+	private static final int PAIR_LIMIT = 2;
+	private static final int times = 3;
+
+	private List<String> backEnd;
+	private List<String> frontEnd;
 	private ArrayList<Matching> matchings = new ArrayList<>();
-	private int times = 3;
 
 	public void setCrews() {
-		backEnd = getBackEnd();
-		frontEnd = getFrontEnd();
+		backEnd = getFileCrews(File.BACK_END.getName());
+		frontEnd = getFileCrews(File.FRONT_END.getName());
 	}
 
-	private BackEndRepository getBackEnd() {
-		String fileName = File.BACK_END.getName();
-		ArrayList<String> crewNames = pairmatching.file.File.readFile(fileName);
-
-		BackEndRepository backEndRepositories = new BackEndRepository(crewNames);
-
-		return backEndRepositories;
-	}
-
-	private FrontEndRepository getFrontEnd() {
-		String fileName = File.FRONT_END.getName();
-		ArrayList<String> crewNames = pairmatching.file.File.readFile(fileName);
-
-		FrontEndRepository frontEndRepositories = new FrontEndRepository(crewNames);
-
-		return frontEndRepositories;
+	private List<String> getFileCrews(String fileName) {
+		return pairmatching.file.File.readFile(fileName);
 	}
 
 	public boolean isAvailableMatch(HashMap<String, String> pairMatching) {
@@ -53,5 +43,28 @@ public class PairMatching {
 
 	public void match(HashMap<String, String> pairMatching) {
 		int count = 0;
+		List<String> suffledCrews = suffledCrews(pairMatching.get("course"));
+
+		ArrayList<ArrayList<String>> matching = new ArrayList<>();
+		ArrayList<String> nowMatching = new ArrayList<>();
+		for (int i = 0; i < suffledCrews.size(); i += PAIR_LIMIT) {
+			nowMatching.add(suffledCrews.get(i));
+			nowMatching.add(suffledCrews.get(i + 1));
+			matching.add(nowMatching);
+			nowMatching = new ArrayList<>();
+		}
+		matchings.add(new Matching(pairMatching.get("course"), pairMatching.get("level"), pairMatching.get("mission"), matching));
+	}
+
+	private List<String> suffledCrews(String course) {
+		List<String> crewNames = getCrews(course);
+		return Randoms.shuffle(crewNames);
+	}
+
+	private List<String> getCrews(String course) {
+		if (course.equals(Course.BACKEND.getName())) {
+			return backEnd;
+		}
+		return frontEnd;
 	}
 }

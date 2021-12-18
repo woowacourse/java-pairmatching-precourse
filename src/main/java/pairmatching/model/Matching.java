@@ -6,7 +6,14 @@ public class Matching {
 	private String course;
 	private String level;
 	private String mission;
-	private ArrayList<Crew> crews;
+	private ArrayList<ArrayList<String>> crews;
+
+	public Matching(String course, String level, String mission, ArrayList<ArrayList<String>> crews) {
+		this.course = course;
+		this.level = level;
+		this.mission = mission;
+		this.crews = crews;
+	}
 
 	public boolean isSameCourse(String course) {
 		return this.course.equals(course);
