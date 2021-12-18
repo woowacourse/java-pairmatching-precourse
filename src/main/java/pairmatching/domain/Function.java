@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import pairmatching.domain.unit.Course;
+import pairmatching.domain.unit.Level;
+import pairmatching.domain.unit.Mission;
 import pairmatching.view.OutputView;
 
 public class Function {
@@ -54,8 +57,8 @@ public class Function {
 
 		OutputView.printMatchingResult(matchingResult);
 
-		return matchingSystem.saveMatchingResult(matchingResult, course,  level, mission);
-
+		return matchingSystem.saveMatchingResult(new Matching(Course.mapToCourse(course), Level.mapToLevel(level), Mission
+			.mapToLevel(mission), matchingResult));
 	}
 
 	// TODO: utils 로 빼기
@@ -79,7 +82,7 @@ public class Function {
 	}
 
 	private void initialize(String process, String level, String mission) {
-
+		matchingSystem.remove();
 	}
 
 }

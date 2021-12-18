@@ -17,8 +17,7 @@ public class MatchingSystem {
 		this.matchingList = new ArrayList<>();
 	}
 
-	public boolean saveMatchingResult(List<String> names, String course, String level, String mission) {
-		Matching newMatching = new Matching(Course.mapToCourse(course), Level.mapToLevel(level), Mission.mapToLevel(mission), names);
+	public boolean saveMatchingResult(Matching newMatching) {
 
 		if (!matchingList.contains(newMatching)) {
 			OutputView.printQueryMatchingInformation();

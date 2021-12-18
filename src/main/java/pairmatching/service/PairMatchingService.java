@@ -25,15 +25,4 @@ public class PairMatchingService {
 		return pair.takeInformation(
 			input.replaceAll(" ","").split(","));
 	}
-
-	public boolean queryReMatching(String input) {
-		//TODO: validation
-
-		if(input.equals("아니오")) {
-			return false;
-		}
-
-
-		return true;
-	}
 }
