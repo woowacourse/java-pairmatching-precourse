@@ -8,11 +8,8 @@ import pairmatching.domain.PairMatching;
 import pairmatching.view.OutputView;
 
 public class MainController {
-    Menu menu = new Menu();
 
-
-
-    public void run() throws IOException{
+    public void run() throws IOException {
         PairMatching.initCrews();
 
         System.out.println("Front 멤버");
@@ -25,6 +22,22 @@ public class MainController {
             System.out.println(crew.getName());
             System.out.println("\n");
         }
+        while (true) {
+            String mainMenu = Menu.processOfSelectMenu();
+            if (mainMenu.equals((Menu.MENU_PAIR_MATCHING))) {
+                processOfPairMatching();
+            } else if (mainMenu.equals(Menu.MENU_PAIR_LOOK_UP)) {
 
+            } else if (mainMenu.equals(Menu.MENU_PAIR_INIT)) {
+
+            } else if (mainMenu.equals(Menu.MENU_EXIT)) {
+                break;
+            }
+        }
+    }
+
+    private void processOfPairMatching() {
+        String courseLevelMission = Menu.processOfPairMatchingSelectMenu();
+        System.out.println(courseLevelMission);
     }
 }
