@@ -29,8 +29,7 @@ public class PairMatchingController {
                 break;
             }
             if (mainCode == MainCode.MATCHING) {
-                ProgramInfo programInfo = matchPairs();//1. 페어 매칭 선택했을 때 사용할 메서드.
-
+                ProgramInfo programInfo = matchPairs();
                 if (!isRematching(programInfo)) {
                     continue;
                 }

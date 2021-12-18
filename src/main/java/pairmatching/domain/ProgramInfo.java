@@ -49,9 +49,6 @@ public class ProgramInfo {
             pairs.put(shuffledCrews.get(crewsCnt - 2), shuffledCrews.get(crewsCnt - 1));
             pairs.put(shuffledCrews.get(crewsCnt - 1), shuffledCrews.get(crewsCnt - 3));
         }
-        for (Crew crew : pairs.keySet()) {
-            System.out.println(crew+" : "+pairs.get(crew));
-        }
     }
 
     public void clearPairs() {
