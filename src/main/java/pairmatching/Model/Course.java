@@ -15,8 +15,8 @@ public enum Course {
 	Course(String name) {
 		this.name = name;
 	}
-	public static void fineCourse(String courseName) {
-		Arrays.stream(Course.values())
+	public static Course fineCourse(String courseName) {
+		return Arrays.stream(Course.values())
 			.filter(c ->c.name.equals(courseName))
 			.findAny()
 			.orElseThrow(() -> new IllegalArgumentException(ErrorMessage.INVALID_COURSE_NAME.getMessage()+ Symbol.NEW_LINE));

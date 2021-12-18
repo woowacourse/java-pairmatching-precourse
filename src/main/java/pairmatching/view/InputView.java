@@ -1,5 +1,6 @@
 package pairmatching.view;
 
+import java.util.Arrays;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -10,7 +11,7 @@ import pairmatching.util.validator.MenuValidator;
 
 public class InputView {
 
-	public static String enterMainMenu() {
+	public String enterMainMenu() {
 		while (true) {
 			try {
 				System.out.println(ViewMessage.SELECT_MENU_MSG.getMessage() + Symbol.NEW_LINE);
@@ -23,14 +24,13 @@ public class InputView {
 		}
 	}
 
-	public static void enterCourseAndMissionInfo(){
+	public List<String> enterCourseAndMissionInfo(){
 		while(true){
 			try {
 				System.out.println(ViewMessage.ENTER_COURSE_INFO_MSG.getMessage() + Symbol.NEW_LINE);
 				String input = Console.readLine();
 				CourseInfoValidator.validateInfo(input);
-				System.out.println(input);
-				return;
+				return Arrays.asList(input.split(", "));
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}

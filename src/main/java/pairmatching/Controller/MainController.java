@@ -1,14 +1,12 @@
 package pairmatching.Controller;
 
 import pairmatching.Model.menu.MainMenu;
-import pairmatching.Service.MatchingService;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class MainController implements Controller {
 	private static final InputView inputView = new InputView();
 	private static final OutputView outputView = new OutputView();
-	private static final MatchingService matchingService = new MatchingService();
 	MainMenu mainMenu;
 
 	@Override

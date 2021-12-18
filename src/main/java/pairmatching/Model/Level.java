@@ -35,13 +35,14 @@ public enum Level {
 		return String.format("  - %s: %s", level.name, stringJoiner.toString());
 	}
 
-	public static void fineLevel(String levelName, String missionName) {
+	public static Level fineLevel(String levelName, String missionName) {
 		Level level = Arrays.stream(Level.values())
 			.filter(l -> l.name.equals(levelName))
 			.findAny()
 			.orElseThrow(
 				() -> new IllegalArgumentException(ErrorMessage.INVALID_LEVEL_INPUT.getMessage() + Symbol.NEW_LINE));
 		fineMission(level, missionName);
+		return level;
 	}
 
 	public static void fineMission(Level level, String missionName) {

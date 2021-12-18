@@ -6,14 +6,12 @@ import java.util.List;
 import pairmatching.Model.Course;
 import pairmatching.Model.Level;
 import pairmatching.util.ErrorMessage;
-import pairmatching.util.Symbol;
 
 public class CourseInfoValidator {
 	public static final int COURSE_INFO = 0;
 	public static final int LEVEL_INFO = 1;
 	public static final int MISSION_NAME_INFO = 2;
 	public static final String INPUT_FORMAT = "[가-힣]+(,\\s레벨[0-9]{1})(,\\s[가-힣]+)";
-
 
 	public static void validateInfo(String input) {
 		validateFormat(input);
@@ -29,20 +27,16 @@ public class CourseInfoValidator {
 
 	}
 
-	private static String[] split(String input){
+	private static String[] split(String input) {
 		return input.split(", ");
 	}
 
-	private static void validateCourse(String[] info){
+	private static void validateCourse(String[] info) {
 		Course.fineCourse(info[COURSE_INFO]);
 	}
 
-	private static void validateMissionName(String[] info){
+	private static void validateMissionName(String[] info) {
 		Level.fineLevel(info[LEVEL_INFO], info[MISSION_NAME_INFO]);
 	}
-	private static void printSplitInfo(String[] info){
-		Arrays.stream(info).forEach(s -> System.out.println(s));
-	}
-
 
 }

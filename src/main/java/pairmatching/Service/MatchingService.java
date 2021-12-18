@@ -7,5 +7,9 @@ import pairmatching.util.ViewMessage;
 
 public class MatchingService extends Service{
 
+	public void run(){
+
+	}
+
 
 }
