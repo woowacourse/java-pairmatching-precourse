@@ -23,11 +23,6 @@ public class FunctionController {
 			//TODO: 페어 초기화 함수 구현
 			// return ~
 		}
-		if ("Q".equals(functionNumber)) {
-			//TODO: 실행 종료 함수 구현
-			// return ~
-		}
-		return;
 	}
 
 	private void pairMatching() {

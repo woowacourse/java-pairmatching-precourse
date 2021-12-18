@@ -7,7 +7,11 @@ public class PairMatchingController {
 	FunctionController functionController = new FunctionController();
 
 	public void run() {
-		String function = InputView.printMainMenu();
-		functionController.choiceFunction(function);
+		String menuChoice = "0";
+		while (menuChoice != "Q") {
+			menuChoice = InputView.printMainMenu();
+			functionController.choiceFunction(menuChoice);
+		}
+
 	}
 }
