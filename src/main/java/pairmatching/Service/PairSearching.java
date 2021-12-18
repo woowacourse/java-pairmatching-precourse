@@ -11,6 +11,8 @@ import java.util.List;
 public class PairSearching {
     private InputView inputView;
     private OutputView outputView;
+    private static final String WRONG_INPUT_MESSAGE = "[ERROR] 잘못된 입력입니다.";
+    private static final String NOT_FOUND_MESSAGE = "[ERROR] 매칭 이력이 없습니다.";
 
     public PairSearching() {
         inputView = new InputView();
@@ -25,12 +27,12 @@ public class PairSearching {
             Course targetCourse = Arrays.stream(Course.values())
                     .filter(course -> course.getName().equals(missionInfo[0].trim()))
                     .findFirst()
-                    .orElseThrow(() -> new IllegalArgumentException("[ERROR] 잘못된 입력입니다."));
+                    .orElseThrow(() -> new IllegalArgumentException(WRONG_INPUT_MESSAGE));
 
             Level targetLevel = Arrays.stream(Level.values())
                     .filter(level -> level.getName().equals(missionInfo[1].trim()))
                     .findFirst()
-                    .orElseThrow(() -> new IllegalArgumentException("[ERROR] 잘못된 입력입니다."));
+                    .orElseThrow(() -> new IllegalArgumentException(WRONG_INPUT_MESSAGE));
 
             String missionName = missionInfo[2].trim();
 
@@ -51,7 +53,7 @@ public class PairSearching {
             Mission mission = MatchingController.missions.stream()
                     .filter(x -> x.isSameMission(course, level, missionName))
                     .findFirst()
-                    .orElseThrow(() -> new IllegalArgumentException("[ERROR] 잘못된 입력입니다."));
+                    .orElseThrow(() -> new IllegalArgumentException(WRONG_INPUT_MESSAGE));
 
             searchMatching(MatchingController.matchingData, mission);
 
@@ -61,16 +63,16 @@ public class PairSearching {
         }
     }
 
-    public void searchMatching(MatchingData matchingData, Mission mission){
-        try{
-            if(matchingData.contains(mission)){
+    public void searchMatching(MatchingData matchingData, Mission mission) {
+        try {
+            if (matchingData.contains(mission)) {
                 List<Pair> matching = matchingData.get(mission);
                 outputView.printMatchingResult(matching);
                 return;
             }
-            throw new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.");
+            throw new IllegalArgumentException(NOT_FOUND_MESSAGE);
 
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
         }
     }

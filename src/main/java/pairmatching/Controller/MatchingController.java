@@ -25,9 +25,9 @@ public class MatchingController {
         missions = new ArrayList<>();
         inputView = new InputView();
         menu = new Menu(inputView);
-        backEndCrews=new ArrayList<>();
-        frontEndCrews=new ArrayList<>();
-        matchingData=new MatchingData();
+        backEndCrews = new ArrayList<>();
+        frontEndCrews = new ArrayList<>();
+        matchingData = new MatchingData();
     }
 
     public static void run() {
@@ -64,8 +64,8 @@ public class MatchingController {
         List<String> backEndCrewNames = Files.readAllLines(pathBackEndCrew, cs);
         List<String> frontEndCrewNames = Files.readAllLines(pathFrontEndCrew, cs);
         backEndCrewNames.stream()
-                .forEach(name->backEndCrews.add(new Crew(Course.valueOf("BACKEND"), name)));
+                .forEach(name -> backEndCrews.add(new Crew(Course.valueOf("BACKEND"), name)));
         frontEndCrewNames.stream()
-                .forEach(name->frontEndCrews.add(new Crew(Course.valueOf("FRONTEND"), name)));
+                .forEach(name -> frontEndCrews.add(new Crew(Course.valueOf("FRONTEND"), name)));
     }
 }

@@ -11,8 +11,8 @@ public class Mission {
         this.name = name;
     }
 
-    public boolean isSameMission(Course targetcourse, Level targetlevel, String missionName){
-        if(course.equals(targetcourse) && level.equals(targetlevel) && name.equals(missionName)){
+    public boolean isSameMission(Course targetcourse, Level targetlevel, String missionName) {
+        if (course.equals(targetcourse) && level.equals(targetlevel) && name.equals(missionName)) {
             return true;
         }
         return false;

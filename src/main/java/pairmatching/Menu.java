@@ -35,11 +35,11 @@ public class Menu {
             pairMatching.run();
         }
         if (selMenu.equals(PAIR_SEARCHING_SEL)) {
-            PairSearching pairSearching=new PairSearching();
+            PairSearching pairSearching = new PairSearching();
             pairSearching.run();
         }
         if (selMenu.equals(PAIR_INITIALIZING_SEL)) {
-            PairInitializing pairInitializing= new PairInitializing();
+            PairInitializing pairInitializing = new PairInitializing();
             pairInitializing.run();
         }
         if (selMenu.equals(QUIT_MENU_SEL)) {

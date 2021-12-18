@@ -18,13 +18,15 @@ public class MatchingData {
         matchingInfo.put(mission, pairs);
     }
 
-    public boolean contains(Mission mission){
+    public boolean contains(Mission mission) {
         return matchingInfo.containsKey(mission);
     }
-    public List<Pair> get(Mission mission){
+
+    public List<Pair> get(Mission mission) {
         return matchingInfo.get(mission);
     }
-    public void clearAll(){
+
+    public void clearAll() {
         matchingInfo.clear();
     }
 }

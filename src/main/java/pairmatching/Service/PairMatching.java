@@ -15,6 +15,8 @@ public class PairMatching {
     private InputView inputView;
     private OutputView outputView;
 
+    private static final String WRONG_INPUT_MESSAGE = "[ERROR] 잘못된 입력입니다.";
+
     public PairMatching() {
         inputView = new InputView();
         outputView = new OutputView();
@@ -27,11 +29,11 @@ public class PairMatching {
             Course targetCourse = Arrays.stream(Course.values())
                     .filter(course -> course.getName().equals(missionInfo[0].trim()))
                     .findFirst()
-                    .orElseThrow(() -> new IllegalArgumentException("[ERROR] 잘못된 입력입니다."));
+                    .orElseThrow(() -> new IllegalArgumentException(WRONG_INPUT_MESSAGE));
             Level targetLevel = Arrays.stream(Level.values())
                     .filter(level -> level.getName().equals(missionInfo[1].trim()))
                     .findFirst()
-                    .orElseThrow(() -> new IllegalArgumentException("[ERROR] 잘못된 입력입니다."));
+                    .orElseThrow(() -> new IllegalArgumentException(WRONG_INPUT_MESSAGE));
             String missionName = missionInfo[2].trim();
             runMission(targetCourse, targetLevel, missionName);
         } catch (IllegalArgumentException e) {
@@ -48,7 +50,7 @@ public class PairMatching {
             Mission mission = MatchingController.missions.stream()
                     .filter(x -> x.isSameMission(course, level, missionName))
                     .findFirst()
-                    .orElseThrow(() -> new IllegalArgumentException("[ERROR] 잘못된 입력입니다."));
+                    .orElseThrow(() -> new IllegalArgumentException(WRONG_INPUT_MESSAGE));
             updateMatching(mission, course);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
@@ -79,19 +81,22 @@ public class PairMatching {
     }
 
     private List<Pair> tryMatching(Course course) {
-        List<String> crewNames=getCrews(course).stream()
-                .map(crew->crew.getName())
+        List<String> crewNames = getCrews(course).stream()
+                .map(crew -> crew.getName())
                 .collect(Collectors.toList());
         crewNames = Randoms.shuffle(crewNames);
-        List<Crew> crews=new ArrayList<>();
-        for(String name : crewNames){
+        List<Crew> crews = new ArrayList<>();
+        for (String name : crewNames) {
             getCrews(course).stream()
-                    .filter(x->name.equals(x.getName()))
-                    .forEach(x->crews.add(new Crew(course, name)));
+                    .filter(x -> name.equals(x.getName()))
+                    .forEach(x -> crews.add(new Crew(course, name)));
         }
+        return matchingBuilder(crews);
+    }
+
+    private List<Pair> matchingBuilder(List<Crew> crews) {
 
         List<Pair> matching = new ArrayList<>();
-
         int count = 0;
         while (count < crews.size() - 3) {
             matching.add(new Pair(crews.get(count), crews.get(count + 1)));
