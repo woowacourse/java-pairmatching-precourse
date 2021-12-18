@@ -17,7 +17,7 @@ public class PairMatchingController {
 	public void pairMatching() {
 		try {
 			String input = InputView.requestCourseLevelMission();
-			pairMatchingService.pairMathcing(input);
+			pairMatchingService.pairMatching(input);
 		} catch (IllegalArgumentException e) {
 			ExceptionView.exceptionUI(e.getMessage());
 			pairMatching();

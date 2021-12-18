@@ -3,6 +3,7 @@ package pairmatching.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 
 public class CrewRepository {
@@ -32,5 +33,15 @@ public class CrewRepository {
 
 	public List<Crew> getFrontendCrews() {
 		return frontendCrews;
+	}
+
+	public List<Crew> getCrews(Course course) {
+		if (course.getName().equals(Course.BACKEND.getName())) {
+			return backendCrews;
+		}
+		if (course.getName().equals(Course.FRONTEND.getName())) {
+			return frontendCrews;
+		}
+		return null;
 	}
 }
