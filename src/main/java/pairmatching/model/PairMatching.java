@@ -59,6 +59,8 @@ public class PairMatching {
 			crew = frontendCrew;
 		}
 
+		crew = checkReduplication(crew, str[0], str[1]);
+		
 		missionInfo = new MissionInfo(str[0], str[1], str[2], crew);
 		missionInfoSet.add(missionInfo);
 		MakingShuffleList.printPairList(missionInfo.missionList);
