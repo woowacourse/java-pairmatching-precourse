@@ -1,6 +1,7 @@
 package pairmatching.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import pairmatching.domain.Pair;
@@ -17,7 +18,7 @@ public class WoowaCourseService {
 	}
 
 	public boolean isDuplicated(WoowaCourse woowaCourse) {
-		Optional<WoowaCourse> one = woowaCourseRepository.findOne(woowaCourse);
+		Optional<Map.Entry<WoowaCourse, PairMatching>> one = findOne(woowaCourse);
 		return one.isPresent();
 	}
 
@@ -29,5 +30,15 @@ public class WoowaCourseService {
 		return pairMatching;
 	}
 
+	public String getPairMatch(WoowaCourse woowaCourse) {
+		Optional<Map.Entry<WoowaCourse, PairMatching>> one = findOne(woowaCourse);
+		if (!one.isPresent()) {
+			return "매칭된 결과가 없습니다.";
+		}
+		return one.get().getValue().toString();
+	}
 
+	private Optional<Map.Entry<WoowaCourse, PairMatching>> findOne(WoowaCourse woowaCourse) {
+		return woowaCourseRepository.findOne(woowaCourse);
+	}
 }

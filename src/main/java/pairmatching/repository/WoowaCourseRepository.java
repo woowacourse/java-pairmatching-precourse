@@ -11,8 +11,8 @@ public class WoowaCourseRepository {
 
 	private static final Map<WoowaCourse, PairMatching> woowaCourses = new HashMap<>();
 
-	public Optional<WoowaCourse> findOne(WoowaCourse woowaCourse) {
-		return woowaCourses.keySet().stream().filter(course -> course.equals(woowaCourse)).findAny();
+	public Optional<Map.Entry<WoowaCourse, PairMatching>> findOne(WoowaCourse woowaCourse) {
+		return woowaCourses.entrySet().stream().filter(course -> course.getKey().equals(woowaCourse)).findAny();
 	}
 
 	public void add(WoowaCourse woowaCourse, PairMatching pairMatching) {
