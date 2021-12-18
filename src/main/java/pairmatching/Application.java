@@ -5,7 +5,9 @@ import java.io.IOException;
 public class Application {
 
     public static void main(String[] args) throws IOException{
-        Controller.start();
+        View view = new View();
+        Controller controller = new Controller(view);
+        controller.start();
         // TODO 구현 진행
     }
 }
