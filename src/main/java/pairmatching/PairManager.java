@@ -14,7 +14,7 @@ public class PairManager {
             BufferedReader rawBackendCrewNames = new BufferedReader(new FileReader("src/main/resources/backend-crew.md"));
             BufferedReader rawFrontendCrewNames = new BufferedReader(new FileReader("src/main/resources/frontend-crew.md"));
             addCrew(rawBackendCrewNames, crews, Course.BACKEND);
-            addCrew(rawBackendCrewNames, crews, Course.FRONTEND);
+            addCrew(rawFrontendCrewNames, crews, Course.FRONTEND);
         } catch (IOException e) {
             System.out.println("파일을 찾을 수 없습니다.");
         }
