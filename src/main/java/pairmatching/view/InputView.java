@@ -3,19 +3,19 @@ package pairmatching.view;
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.model.ProgramFunction;
 
-public class InputView {
+public abstract class InputView {
 
     private static final String INPUT_MESSAGE_CHOOSE_FUNCTION = "기능을 선택하세요.";
     private static final String NEW_LINE = "\n";
     private static final String ERROR_MESSAGE_NOT_CONTAINS_IN_FUNCTION_LIST = "[ERROR] 기능목록에 있는 기능을 선택해 주세요.";
 
-    public String inputPairMatchingFunction() {
+    public static String inputPairMatchingFunction() {
         try {
             String inputFunctionSignal = inputValue();
             String printFormatProvidingFunction = createProvidingFunctionPrintFormat();
 
             validateInputFunctionSignal(inputFunctionSignal);
-
+            System.out.println(printFormatProvidingFunction);
 
             return inputFunctionSignal;
         } catch (IllegalArgumentException illegalArgumentException) {
@@ -25,7 +25,7 @@ public class InputView {
         }
     }
 
-    private String createProvidingFunctionPrintFormat() {
+    private static String createProvidingFunctionPrintFormat() {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(INPUT_MESSAGE_CHOOSE_FUNCTION + NEW_LINE);
 
@@ -36,7 +36,7 @@ public class InputView {
         return stringBuilder.toString();
     }
 
-    private void validateInputFunctionSignal(final String inputFunctionSignal) {
+    private static void validateInputFunctionSignal(final String inputFunctionSignal) {
         boolean isInputFunctionSignal = true;
 
         for (ProgramFunction programFunction : ProgramFunction.values()) {
@@ -51,7 +51,7 @@ public class InputView {
         }
     }
 
-    public String inputValue() {
+    public static String inputValue() {
         return Console.readLine();
     }
 
