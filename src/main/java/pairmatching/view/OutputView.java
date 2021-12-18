@@ -43,4 +43,9 @@ public class OutputView {
     private static void emptyLine() {
         System.out.println();
     }
+
+    public static void printInitPair() {
+        emptyLine();
+        System.out.println("초기화 되었습니다.");
+    }
 }

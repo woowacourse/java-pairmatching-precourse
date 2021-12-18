@@ -23,9 +23,12 @@ public enum IndexMapper {
     }
 
     private static void mapToQuit() {
+        //ㅠㅠ
+        System.exit(0);
     }
 
     private static void mapToInit() {
+        pairMatchingController.requestInitPair();
     }
 
     private static void mapToInquiry() {

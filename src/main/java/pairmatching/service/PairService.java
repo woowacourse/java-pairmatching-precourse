@@ -90,4 +90,9 @@ public class PairService {
         FrontPairs frontPairs = frontPairsList.stream().filter(pairs -> pairs.isSame(requestDto)).findFirst().get();
         return frontPairs.pairs().stream().map(PairDto::new).collect(Collectors.toList());
     }
+
+    public void initPair() {
+        backPairsList.clear();
+        frontPairsList.clear();
+    }
 }

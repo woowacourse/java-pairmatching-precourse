@@ -46,4 +46,9 @@ public class PairMatchingController {
     public void requestPairMatching(RequestDto requestDto) {
         OutputView.printMatchingResult(pairService.getPair(requestDto));
     }
+
+    public void requestInitPair() {
+        pairService.initPair();
+        OutputView.printInitPair();
+    }
 }
