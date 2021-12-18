@@ -9,10 +9,10 @@
 ## ✉️ 미션 제출 방법
 
 - 미션 구현을 완료한 후 GitHub을 통해 제출해야 한다.
-    - GitHub을 활용한 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고해 제출한다.
+	- GitHub을 활용한 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고해 제출한다.
 - GitHub에 미션을 제출한 후 [우아한테크코스 지원 플랫폼](https://apply.techcourse.co.kr) 에 접속하여 프리코스 과제를 제출한다.
-    - 자세한 방법은 [링크](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드) 를 참고한다.
-    - **Pull Request만 보내고, 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
+	- 자세한 방법은 [링크](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드) 를 참고한다.
+	- **Pull Request만 보내고, 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
 
 ## ✔️ 과제 제출 전 체크리스트 - 0점 방지
 
@@ -55,13 +55,13 @@ BUILD SUCCESSFUL in 0s
 
 ```java
 > 코드 예시
-        
-List<String> crewNames; // 파일에서 로드한 크루 이름 목록
-List<String> shuffledCrew = Randoms.shuffle(crewNames); // 섞인 크루 이름 목록
 
-// 페어 매칭 & 검증
+	List<String> crewNames; // 파일에서 로드한 크루 이름 목록
+	List<String> shuffledCrew = Randoms.shuffle(crewNames); // 섞인 크루 이름 목록
 
-...
+	// 페어 매칭 & 검증
+
+	...
 ```
 
 - 페어 재매칭 시도
@@ -82,7 +82,7 @@ List<String> shuffledCrew = Randoms.shuffle(crewNames); // 섞인 크루 이름 
 ## 💾 사전 제공 정보
 - 크루 정보는 src/resources 하위에 md 파일로 제공되며 변경이 가능하다.
 - 과정, 레벨, 미션 정보는 아래에 제공하는 그대로 사용해야 한다.
- 
+
 ```
 ## 과정
 - 백엔드
@@ -295,16 +295,16 @@ Q
 - 프로그램을 실행하는 시작점은 `Application`의 `main()`이다.
 - JDK 8 버전에서 실행 가능해야 한다. **JDK 8에서 정상 동작하지 않을 경우 0점 처리**한다.
 - 자바 코드 컨벤션을 지키면서 프로그래밍한다.
-    - https://naver.github.io/hackday-conventions-java
+	- https://naver.github.io/hackday-conventions-java
 - indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
-    - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
-    - 힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메소드)를 분리하면 된다.
+	- 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
+	- 힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메소드)를 분리하면 된다.
 - 3항 연산자를 쓰지 않는다.
 - 함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-    - 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.
+	- 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.
 - else 예약어를 쓰지 않는다.
-    - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
-    - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
+	- 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
+	- else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
 - build.gradle 파일을 변경할 수 없고, 외부 라이브러리를 사용하지 않는다.
 - 프로그램 종료 시 `System.exit()`를 호출하지 않는다.
 - 프로그래밍 요구사항에서 별도로 변경 불가 안내가 없는 경우 파일 수정과 패키지 이동을 자유롭게 할 수 있다.
@@ -312,8 +312,8 @@ Q
 ### 프로그래밍 요구사항 - Randoms, Console
 
 - JDK에서 기본 제공하는 Random, Scanner API 대신 `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms`, `Console` API를 활용해 구현해야 한다.
-  - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `shuffle()`를 활용한다.
-  - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
+	- Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `shuffle()`를 활용한다.
+	- 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
 - 프로그램 구현을 완료했을 때 `src/test/java` 디렉터리의 `ApplicationTest`에 있는 모든 테스트 케이스가 성공해야 한다. **테스트가 실패할 경우 0점 처리한다.**
 
 ---
@@ -324,43 +324,43 @@ Q
 ### 과정
 ```java
 public enum Course {
-  BACKEND("백엔드"),
-  FRONTEND("프론트엔드");
+	BACKEND("백엔드"),
+	FRONTEND("프론트엔드");
 
-  private String name;
+	private String name;
 
-  Course(String name) {
-    this.name = name;
-  }
+	Course(String name) {
+		this.name = name;
+	}
 
-  // 추가 기능 구현
+	// 추가 기능 구현
 }
 ```
 
 ### 레벨
 ```java
 public enum Level {
-  LEVEL1("레벨1"),
-  LEVEL2("레벨2"),
-  LEVEL3("레벨3"),
-  LEVEL4("레벨4"),
-  LEVEL5("레벨5");
+	LEVEL1("레벨1"),
+	LEVEL2("레벨2"),
+	LEVEL3("레벨3"),
+	LEVEL4("레벨4"),
+	LEVEL5("레벨5");
 
-  private String name;
+	private String name;
 
-  Level(String name) {
-    this.name = name;
-  }
+	Level(String name) {
+		this.name = name;
+	}
 
-  // 추가 기능 구현
+	// 추가 기능 구현
 }
 ```
 
 ### 크루
 ```java
 public class Crew {
-    private Course course;
-    private String name;
+	private Course course;
+	private String name;
 }
 
 ```
@@ -372,5 +372,5 @@ public class Crew {
 - 미션은 [java-pairmatching-precourse](https://github.com/woowacourse/java-pairmatching-precourse) 저장소를 Fork/Clone해 시작한다.
 - **기능을 구현하기 전에 java-pairmatching-precourse/docs/README.md 파일에 구현할 기능 목록을 정리**해 추가한다.
 - **Git의 커밋 단위는 앞 단계에서 README.md 파일에 정리한 기능 목록 단위**로 추가한다.
-    - [AngularJS Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 참고해 commit log를 남긴다.
+	- [AngularJS Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 참고해 commit log를 남긴다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고한다.
