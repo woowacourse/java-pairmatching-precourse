@@ -1,6 +1,7 @@
 package pairmatching;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 public class Utils {
     public static ArrayList<Crew> backendCrew = new ArrayList<>();
     public static ArrayList<Crew> frontendCrew = new ArrayList<>();
+    public static ArrayList<String> backendAttendanceBook = new ArrayList<>();
+    public static ArrayList<String> frontendAttendanceBook = new ArrayList<>();
 
     public static void InputStartMenu() {
         String answer = Console.readLine();
@@ -49,6 +52,7 @@ public class Utils {
                 String line = br.readLine();
                 if (line==null) break;
                 backendCrew.add(new Crew(line));
+                backendAttendanceBook.add(line);
             }
             br.close();
         } catch (Exception e) {
@@ -63,10 +67,20 @@ public class Utils {
                 String line = br.readLine();
                 if (line==null) break;
                 frontendCrew.add(new Crew(line));
+                frontendAttendanceBook.add(line);
             }
             br.close();
         } catch (Exception e) {
             System.out.println("[ERROR] : 프론트엔드 명단이 이상해요");
+        }
+    }
+
+    public static void ShuffleCrew(String end) {
+        if (end.equals("백엔드")) {
+            Randoms.shuffle(backendAttendanceBook);
+        }
+        if (end.equals("프론트엔드")) {
+            Randoms.shuffle(frontendAttendanceBook);
         }
     }
 
