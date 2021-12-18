@@ -24,11 +24,16 @@ public class Pair {
             Crew crew1 = crewList.get(i);
             Crew crew2 = crewList.get(i + 1);
 
+            if (i == crewList.size()-3) {
+                System.out.print(crew1.getName() + " : " + crew2.getName());
+                break;
+            }
+
             System.out.println(crew1.getName() + " : " + crew2.getName());
         }
 
         if (crewList.size() % 2 != 0) {
-            System.out.println(" : " + crewList.get(crewList.size()-1));
+            System.out.println(" : " + crewList.get(crewList.size()-1).getName());
         }
     }
 
