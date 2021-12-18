@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.model.Course;
+import pairmatching.model.MissionRepository;
 
 public class InputView {
 	public static final String REQUEST_FOR_FUNCTION_OPTION_INPUT = "기능을 선택하세요.";
@@ -33,22 +34,24 @@ public class InputView {
 		System.out.println("#############################################");
 	}
 
-	public static String getCourseAndMissionInput() {
+	public static String getCourseAndMissionInput(MissionRepository missions) {
 		System.out.println(REQUEST_MESSAGE_FOR_REQUIRED_COURSE_INFO);
 		System.out.println(SAMPLE_MESSAGE_FOR_COURSE_INFO_INPUT);
 
 		try {
-			return validateCourseInput(Console.readLine());
+			return validateCourseInput(Console.readLine(), missions);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			return getCourseAndMissionInput();
+			return "";
 		}
 	}
 
-	private static String validateCourseInput(String readLine) {
-		// String[] courseInfoInput = readLine.split(DELIMITER_FOR_COURSE_INPUT);
-		// Course.valueOf(courseInfoInput[0]);
-		// return "";
+	private static String validateCourseInput(String readLine, MissionRepository missions) {
+		String missionNameInput = readLine.split(", ")[2];
+		if (!missions.isValidMission(missionNameInput)) {
+			throw new IllegalArgumentException("[ERROR] 존재하지 않는 미션입니다");
+		}
+
 		return readLine;
 	}
 }
