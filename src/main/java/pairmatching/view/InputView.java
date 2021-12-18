@@ -18,6 +18,7 @@ public class InputView {
 	private static final String PREFIX_LEVEL_DASH = "  -";
 	private static final String SUFFIX_LEVEL_COLON = ": ";
 	private static final String SELECT_COURSE_LEVEL_MISSION = "과정,레벨,미션을 선택하세요.";
+	private static final String SELECT_COURSE_LEVEL_MISSION_EXAMPLE = "ex) 백엔드, 레벨1, 자동차경주";
 	private static final String ALREADY_PAIR = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
 
 	private static void printLineBreak() {
@@ -65,6 +66,7 @@ public class InputView {
 
 	private static void printSelectCourseLevelMission() {
 		System.out.println(SELECT_COURSE_LEVEL_MISSION);
+		System.out.println(SELECT_COURSE_LEVEL_MISSION_EXAMPLE);
 	}
 
 	public static void printSelectPairTarget() {
