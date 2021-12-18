@@ -374,3 +374,7 @@ public class Crew {
 - **Git의 커밋 단위는 앞 단계에서 README.md 파일에 정리한 기능 목록 단위**로 추가한다.
     - [AngularJS Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 참고해 commit log를 남긴다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고한다.
+
+## 구현할 기능
+- 이름들을 읽은 후 리스트를 만들어 순서를 섞어 반환하는 클래스 구현 
+    1. 이름을 읽어오는 기능 구현
