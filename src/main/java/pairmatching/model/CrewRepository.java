@@ -3,6 +3,7 @@ package pairmatching.model;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.exception.DuplicatedCrewNameException;
 
 public class CrewRepository {
@@ -27,5 +28,13 @@ public class CrewRepository {
 
 	private boolean hasDuplicatedCrewName(List<String> crewNameList) {
 		return crewNameList.stream().collect(Collectors.toSet()).size() != crewNameList.size();
+	}
+
+	public List<String> shuffle() {
+		List<String> crewNameList = crews.stream()
+										.map(crew -> crew.getName())
+										.collect(Collectors.toList());
+
+		return Randoms.shuffle(crewNameList);
 	}
 }

@@ -80,14 +80,15 @@ public class CrewMatchingController {
 	private void matchByRequest(String courseAndMissionInput) {
 		System.out.println("\n페어 매칭 결과입니다.");
 
-
 		String[] matchRequest = courseAndMissionInput.split(DELIMITER_FOR_MATCH_REQUEST);
 		CrewRepository crewsByString = getCrewsByString(matchRequest[0]);
-		Level level = Level.valueOf(matchRequest[1]);
+		Level level = Level.of(matchRequest[1]);
 		String missionName = matchRequest[2];
 		Mission mission = missions.getMissionByLevelAndName(level, missionName);
 
-		matchResults.match(crewsByString, mission);
+		matchResults.match(crewsByString, mission, 0);
+
+		System.out.println(matchResults.getMatchResultByMission(mission));
 	}
 
 	private CrewRepository getCrewsByString(String crew) {
