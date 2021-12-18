@@ -37,6 +37,7 @@ public class PairProgramming {
 
     private void validMission(String mission) {
         if (level.equals("레벨1")) {
+            System.out.println("HI");
             extracted(LEVEL1MISSION, mission);
         }
         if (level.equals("레벨2")) {
@@ -86,6 +87,11 @@ public class PairProgramming {
                 String crew1 = shuffledCrew.get(i);
                 String crew2 = shuffledCrew.get(i + 1);
 
+                if (crewPairInfoHistory.get(crew1).contains(crew2)) {
+                    System.out.println("중복이 존재합니다");
+                    throw new IllegalArgumentException("중복 존재");
+                }
+
                 crewPairInfo.get(mission).get(crew1).add(crew2);
                 crewPairInfo.get(mission).get(crew2).add(crew1);
                 crewPairInfoHistory.get(crew1).add(crew2);
@@ -131,6 +137,7 @@ public class PairProgramming {
 
     public void addMission(List<String> shuffledCrew, String mission) {
         int crewSize = shuffledCrew.size();
+        validMission(mission);
 
         crewPairInfo.put(mission, new HashMap<>());
         shuffledCrew.forEach(crew -> crewPairInfo.get(mission).put(crew, new HashSet()));
