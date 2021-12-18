@@ -12,27 +12,24 @@ public class CrewList {
 	private final Course course;
 	private final Level level;
 	private final Mission mission;
-	private final List<Crew> crewList = new ArrayList<>();
-	private final List<String> crewNames = new ArrayList<>();
-	private boolean isShuffled = false;
+	private List<String> crewNames;
 
 	public CrewList(List<String> missionInfo, String crewNames) throws IOException {
 		this.course = Course.nameOf(missionInfo.get(0));
 		this.level = Level.nameOf(missionInfo.get(1));
 		this.mission = Mission.nameOf(missionInfo.get(2));
 		BufferedReader reader = new BufferedReader(new FileReader(crewNames));
+		List<String> tempCrewNames = new ArrayList<>();
 		String crewName;
 		while ((crewName = reader.readLine()) != null) {
-			Crew crew = new Crew(course, crewName);
-			this.crewList.add(crew);
-			this.crewNames.add(crewName);
+			tempCrewNames.add(crewName);
 		}
+		this.crewNames = Randoms.shuffle(tempCrewNames);
 		reader.close();
 	}
 
-	public List<String> getShuffledCrew() {
-		isShuffled = true;
-		return Randoms.shuffle(crewNames);
+	public void shuffleCrewNames() {
+		crewNames = Randoms.shuffle(crewNames);
 	}
 
 	public String mission() {

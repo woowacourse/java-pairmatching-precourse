@@ -20,7 +20,8 @@ public class TechCourse {
 		List<String> missionInfo = InputValidator.isValidFormat(mission);
 		for (CrewList crewList : crewTable) {
 			if (crewList.mission().equals(mission)) {
-				return crewList.getShuffledCrew();
+				crewList.shuffleCrewNames();
+				return crewList.getCrewNames();
 			}
 		}
 		if (missionInfo.get(COURSE_INDEX).equals(Course.BACKEND.getName())) {
@@ -32,7 +33,7 @@ public class TechCourse {
 			}
 			crewTable.add(backEndCrewList);
 			assert backEndCrewList != null;
-			return backEndCrewList.getShuffledCrew();
+			return backEndCrewList.getCrewNames();
 		}
 		if (missionInfo.get(COURSE_INDEX).equals(Course.FRONTEND.getName())) {
 			CrewList frontEndCrewList = null;
@@ -43,26 +44,30 @@ public class TechCourse {
 			}
 			crewTable.add(frontEndCrewList);
 			assert frontEndCrewList != null;
-			return frontEndCrewList.getShuffledCrew();
+			return frontEndCrewList.getCrewNames();
 		}
 		return null;
 	}
 
-	public boolean isShuffled(String mission) {
+	public boolean isShuffled(String missionName) {
 		for (CrewList crewList : crewTable) {
-			if (crewList.mission().equals(mission)) {
+			if (crewList.mission().equals(missionName)) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public List<String> getCrewList(String mission) {
+	public List<String> getPairList(String missionName) {
 		for (CrewList crewList : crewTable) {
-			if (crewList.mission().equals(mission)) {
+			if (crewList.mission().equals(missionName)) {
 				return crewList.getCrewNames();
 			}
 		}
 		return null;
+	}
+
+	public List<CrewList> getCrewTable() {
+		return crewTable;
 	}
 }
