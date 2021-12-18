@@ -25,4 +25,17 @@ public class MatchingHistory {
         return this.course == course && this.level == level && this.mission == mission;
     }
 
+    public boolean hasMatchedBeforeInSameLevel(final List<CrewPair> matchedCrews, final Level level) {
+        if (this.level != level) {
+            return false;
+        }
+        return this.matchedCrews.stream()
+                .anyMatch(before -> hasMatchedBeforeInSameLevel(before, matchedCrews));
+    }
+
+    private boolean hasMatchedBeforeInSameLevel(final CrewPair before, List<CrewPair> newPairs) {
+        return newPairs.stream()
+                .anyMatch(before::equals);
+    }
+
 }
