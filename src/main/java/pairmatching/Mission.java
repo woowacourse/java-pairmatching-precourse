@@ -27,6 +27,23 @@ public enum Mission {
         this.level = level;
     }
 
+    public static void PrintPair() {
+        for (int i = 1; i < attendanceBook.size(); i++) {
+            if (i == attendanceBook.size() - 1) {
+                System.out.println(" : " + attendanceBook.get(i));
+            }
+            if (i != attendanceBook.size() - 1 && i % 2 == 1) {
+                System.out.print(attendanceBook.get(i));
+            }
+            if (i != attendanceBook.size() - 1 && i % 2 == 0) {
+                System.out.print(" : " + attendanceBook.get(i));
+            }
+            if (i != attendanceBook.size() - 2 && i % 2 == 0) {
+                System.out.println(" : " + attendanceBook.get(i));
+            }
+        }
+    }
+
     public static void ClearPair() {
         for (Mission mission : Mission.values()) {
             attendanceBook = new ArrayList<>();
