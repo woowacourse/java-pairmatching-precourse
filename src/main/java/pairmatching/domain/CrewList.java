@@ -8,14 +8,14 @@ import java.util.List;
 import static pairmatching.constant.SystemMessage.*;
 
 public class CrewList {
-    List<String> crewList = new ArrayList<>();
+    List<Crew> crewList = new ArrayList<>();
 
     public void add(String crewName) {
-        crewList.add(crewName);
+        crewList.add(new Crew(crewName));
     }
 
     public List<String> shuffle() {
-        return Randoms.shuffle(crewList);
+        return Randoms.shuffle(toStringList());
     }
 
     public boolean isOdd() {
@@ -28,19 +28,38 @@ public class CrewList {
 
     @Override
     public String toString() {
-        StringBuilder matchedCrew = new StringBuilder();
         if (isEven()) {
-            for (int i = 0; i < crewList.size(); i = i + EVEN) {
-                matchedCrew.append(String.join(DELIMITER, crewList.subList(i, i + EVEN)));
-                matchedCrew.append(NEW_LINE);
-            }
-            return matchedCrew.toString();
+            return makeToStringByEven();
         }
-        for (int i = 0; i < crewList.size() - ODD_THREE; i = i + EVEN) {
-            matchedCrew.append(String.join(DELIMITER, crewList.subList(i, i + EVEN)));
+        return makeToStringByOdd();
+    }
+
+    private List<String> toStringList() {
+        List<String> crewListString = new ArrayList<>();
+        for (Crew crew : crewList) {
+            crewListString.add(crew.toString());
+        }
+        return crewListString;
+    }
+
+    private String makeToStringByEven() {
+        StringBuilder matchedCrew = new StringBuilder();
+        List<String> crewListString = toStringList();
+        for (int i = 0; i < crewList.size(); i = i + EVEN) {
+            matchedCrew.append(String.join(DELIMITER, crewListString.subList(i, i + EVEN)));
             matchedCrew.append(NEW_LINE);
         }
-        matchedCrew.append(String.join(DELIMITER, crewList.subList(crewList.size() - ODD_THREE, crewList.size())));
+        return matchedCrew.toString();
+    }
+
+    private String makeToStringByOdd() {
+        StringBuilder matchedCrew = new StringBuilder();
+        List<String> crewListString = toStringList();
+        for (int i = 0; i < crewList.size() - ODD_THREE; i = i + EVEN) {
+            matchedCrew.append(String.join(DELIMITER, crewListString.subList(i, i + EVEN)));
+            matchedCrew.append(NEW_LINE);
+        }
+        matchedCrew.append(String.join(DELIMITER, crewListString.subList(crewList.size() - ODD_THREE, crewList.size())));
         return matchedCrew.toString();
     }
 }
