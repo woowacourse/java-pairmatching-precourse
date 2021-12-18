@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -33,6 +32,17 @@ public class Crews {
 		return crewNames;
 	}
 
+	public static void main(String[] args) throws IOException {
+		Crews backEnd = new Crews();
+		backEnd.crewNames.forEach(System.out::println);
+		System.out.println();
+		backEnd.shuffledCrew.forEach(System.out::println);
+		List<Pair> pairList = backEnd.makePairs();
+		for (Pair pair : pairList) {
+			System.out.println(pair.toString());
+		}
+	}
+
 	public List<Pair> makePairs() {
 		List<Pair> pairList = new ArrayList<>();
 		int index = 0;
@@ -50,14 +60,12 @@ public class Crews {
 		return pairList;
 	}
 
-	public static void main(String[] args) throws IOException {
-		Crews backEnd = new Crews();
-		backEnd.crewNames.forEach(System.out::println);
-		System.out.println();
-		backEnd.shuffledCrew.forEach(System.out::println);
-		List<Pair> pairList = backEnd.makePairs();
-		for (Pair pair : pairList) {
-			System.out.println(pair.toString());
+	public boolean isReShuffle(List<Pair> originalPairs, List<Pair> shuffledPairs) {
+		for (Pair pair : shuffledPairs) {
+			if (originalPairs.contains(pair)) {
+				return true;
+			}
 		}
+		return false;
 	}
 }

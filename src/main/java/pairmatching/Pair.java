@@ -3,9 +3,8 @@ package pairmatching;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-
+import java.util.Objects;
 
 public class Pair {
 
@@ -23,5 +22,20 @@ public class Pair {
 	public String toString() {
 		List<String> pairList = new ArrayList<>(pair);
 		return String.join(" : ", pairList);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Pair pair1 = (Pair)o;
+		return Objects.equals(pair, pair1.pair);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(pair);
 	}
 }
