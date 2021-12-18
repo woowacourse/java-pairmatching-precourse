@@ -1,7 +1,6 @@
 package pairmatching;
 
 import pairmatching.domain.Course;
-import pairmatching.domain.Crew;
 import pairmatching.domain.pair.Pair;
 import pairmatching.domain.pair.PairService;
 import pairmatching.domain.pair.PairTag;
@@ -14,7 +13,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class PairMatchingController {
 
@@ -57,21 +55,15 @@ public class PairMatchingController {
     }
 
 
-    private List<Crew> loadCrews(Course course) {
+    private List<String> loadCrews(Course course) {
         if (course == Course.BACKEND) {
-            List<String> backendCrewNames = loadBackendCrewName()
+            return loadBackendCrewName()
                     .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 파일이 존재하지 않습니다."));
-            return backendCrewNames.stream()
-                    .map(name -> new Crew(Course.BACKEND, name))
-                    .collect(Collectors.toList());
         }
 
         if (course == Course.FRONTEND) {
-            List<String> frontendCrewNames = loadFrontendCrewName()
+            return loadFrontendCrewName()
                     .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 파일이 존재하지 않습니다."));
-            return frontendCrewNames.stream()
-                    .map(name -> new Crew(Course.FRONTEND, name))
-                    .collect(Collectors.toList());
         }
 
         throw new IllegalArgumentException("[ERROR] 크루 생성에 실패했습니다.");

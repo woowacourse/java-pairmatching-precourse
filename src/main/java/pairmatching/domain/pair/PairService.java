@@ -6,13 +6,14 @@ import pairmatching.domain.Crew;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PairService {
 
-    private final List<Crew> frontend;
-    private final List<Crew> backend;
+    private final List<String> frontend;
+    private final List<String> backend;
 
-    public PairService(List<Crew> frontend, List<Crew> backend) {
+    public PairService(List<String> frontend, List<String> backend) {
         this.frontend = frontend;
         this.backend = backend;
     }
@@ -41,12 +42,17 @@ public class PairService {
 
     private List<Pair> matchPairs(PairTag pairTag) {
         List<Pair> result = new ArrayList<>();
+        List<String> shuffledNames = Randoms.shuffle(backend);
         List<Crew> shuffledCrew = null;
         if (pairTag.getCourse() == Course.BACKEND) {
-            shuffledCrew = Randoms.shuffle(backend);
+            shuffledCrew = shuffledNames.stream()
+                    .map(name -> new Crew(Course.BACKEND, name))
+                    .collect(Collectors.toList());
         }
         if (pairTag.getCourse() == Course.FRONTEND) {
-            shuffledCrew = Randoms.shuffle(frontend);
+            shuffledCrew = shuffledNames.stream()
+                    .map(name -> new Crew(Course.FRONTEND, name))
+                    .collect(Collectors.toList());
         }
 
         int i = 0;

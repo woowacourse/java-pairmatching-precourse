@@ -12,10 +12,12 @@ public class View {
 
     private static final String PRETTY_BORDER = "#############################################";
     private static final String MENU_DELIMITER = " | ";
-    public static final String USER_REQUEST_DELIMITER = ",";
+    private static final String USER_REQUEST_DELIMITER = ",";
     private static final int COURSE_INDEX = 0;
     private static final int MISSION_INDEX = 1;
     private static final int MISSION_NAME_INDEX = 2;
+
+    private static final String INPUT_COMMAND_MESSAGE = "기능을 선택하세요. \n1. 페어 매칭\n2. 페어 조회\n3.페어 초기화\nQ.종료";
 
     public static Menu getMenu() {
         try {
@@ -47,6 +49,7 @@ public class View {
         while (true) {
             try {
                 System.out.println("과정, 레벨, 미션을 선택하세요");
+                System.out.println("ex) 백엔드, 레벨1, 자동차경주");
                 String[] requests = getUserRequests();
                 return makePairTagFromRequests(requests);
             } catch (IllegalArgumentException e) {
