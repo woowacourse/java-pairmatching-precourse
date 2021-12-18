@@ -12,20 +12,35 @@ public class ParseService {
 
 	private static final Pattern WOOWA_PATTERN = Pattern.compile("(?<course>.+), (?<level>.+), (?<mission>.+)");
 	private static final String YES = "네";
+	private static final String NO = "아니오";
+
+	private static final String ERROR_YESNO = "잘못 입력하셨습니다. 네, 아니오 중 선택하세요.";
+	private static final String ERROR_WOOWACOURSE = "과정, 레벨, 미션의 입력이 잘못되었습니다.";
 
 	public WoowaCourse parseWoowaCourse(String input) {
-		Matcher matcher = WOOWA_PATTERN.matcher(input);
-		if (!matcher.find()) {
-			throw new IllegalArgumentException("과정, 레벨, 미션의 입력이 잘못되었습니다.");
-		}
+		Matcher matcher = getMatcher(input);
 		return new WoowaCourse(
 			Course.of(matcher.group("course")),
 			Level.of(matcher.group("level")),
-			new Mission(matcher.group("mission"))
+			Mission.of(matcher.group("mission"))
 		);
 	}
 
-	public boolean parseRematch(String rematch) {
-		return YES.equals(rematch);
+	private Matcher getMatcher(String input) {
+		Matcher matcher = WOOWA_PATTERN.matcher(input);
+		if (!matcher.find()) {
+			throw new IllegalArgumentException(ERROR_WOOWACOURSE);
+		}
+		return matcher;
+	}
+
+	public boolean parseRematch(String input) {
+		if (YES.equals(input)) {
+			return true;
+		}
+		if (NO.equals(input)) {
+			return false;
+		}
+		throw new IllegalArgumentException(ERROR_YESNO);
 	}
 }
