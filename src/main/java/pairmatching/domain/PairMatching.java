@@ -16,17 +16,19 @@ public class PairMatching {
     public Pair addPairInPairListOfLevel(String course, String level, String mission) {
         Pair pair;
         int count = 0;
+        Level levelValue = Level.getLevelByName(level);
         do {
             Validator.ValidateMatchable(count);
             pair = new Pair(Course.getCourseByName(course), Mission.existMission(Level.getLevelByName(level), mission));
             count++;
-        } while (!totalPairList.get(Integer.parseInt(level)).checkNotMatchedYet(pair));
-        totalPairList.get(Integer.parseInt(level)).addPair(pair);
+        } while (!totalPairList.get(levelValue.ordinal()).checkNotMatchedYet(pair));
+        totalPairList.get(levelValue.ordinal()).addPair(pair);
         return pair;
     }
     public Pair getPairResult(String course, String level, String mission) {
-        return totalPairList.get(Integer.parseInt(level)).getPair(Course.getCourseByName(course),
-                Mission.existMission(Level.getLevelByName(level), mission));
+        Level levelValue = Level.getLevelByName(level);
+        return totalPairList.get(levelValue.ordinal()).getPair(Course.getCourseByName(course),
+                Mission.existMission(levelValue, mission));
     }
 
     public void initialize() {
