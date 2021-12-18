@@ -5,7 +5,7 @@ import java.util.Arrays;
 public enum Menu {
 	MATCHING("1. 페어 매칭", "1"),
 	FIND("2. 페어 조회", "2"),
-	RESET("3. 페어 조회", "3"),
+	RESET("3. 페어 초기화", "3"),
 	QUIT("Q. 종료", "Q");
 
 	private static final String ERROR_NOT_FOUND = "해당 기능은 존재하지 않습니다.";
