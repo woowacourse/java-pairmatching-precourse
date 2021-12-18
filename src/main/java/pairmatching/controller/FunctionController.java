@@ -1,6 +1,7 @@
 package pairmatching.controller;
 
-import pairmatching.MatchingService;
+import pairmatching.service.MatchingService;
+import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class FunctionController {
@@ -30,6 +31,8 @@ public class FunctionController {
 
 	private void pairMatching() {
 		OutputView.printAdvanceInformation();
+		InputView.InputCourseAndLevelAndMission();
+
 		matchingService.generateRandomMatching();
 	}
 }
