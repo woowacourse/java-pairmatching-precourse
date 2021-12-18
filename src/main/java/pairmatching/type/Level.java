@@ -2,6 +2,7 @@ package pairmatching.type;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import pairmatching.data.ProgramData;
 
@@ -23,5 +24,18 @@ public enum Level {
 	public static List<Level> levelList() {
 		List<Level> levelList = Arrays.asList(Level.values());
 		return levelList;
+	}
+
+	public static String getLevelInfo() {
+		List<Level> levelList = levelList();
+		List<String> levelInfoList = levelList.stream().map(Level::toString).collect(Collectors.toList());
+		return String.format(ProgramData.MISSION_INFO_MESSAGE,
+			String.join(ProgramData.NEWLINE_SEPARATOR, levelInfoList));
+	}
+
+	@Override
+	public String toString() {
+		String missionInfo = String.join(ProgramData.BAR_SEPARATOR, missionList);
+		return String.format(ProgramData.LEVEL_INFO_FORMAT, name, missionInfo);
 	}
 }

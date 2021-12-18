@@ -2,6 +2,7 @@ package pairmatching.type;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import pairmatching.data.ProgramData;
 
@@ -30,5 +31,12 @@ public enum Course {
 		return courseList;
 	}
 
-	//public static String CourseInfo();
+	public static String getCourseInfo() {
+		return String.format(ProgramData.COURSE_LIST_FORMAT, String.join(ProgramData.BAR_SEPARATOR, getCourseNames()));
+	}
+
+	private static List<String> getCourseNames() {
+		List<String> courseNames = courseList().stream().map(Course::getName).collect(Collectors.toList());
+		return courseNames;
+	}
 }
