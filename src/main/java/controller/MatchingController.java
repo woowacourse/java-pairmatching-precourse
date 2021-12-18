@@ -1,6 +1,7 @@
 package controller;
 
 import view.InputDisplay;
+import view.OutputDisplay;
 
 public class MatchingController {
 
@@ -9,6 +10,10 @@ public class MatchingController {
 
 	public static void runMatchingProgram() {
 		InputDisplay.askInputFunctionSelectionNumber();
-		InputController.inputFunctionSelectionNumber();
+		String functionSelectionNumber = InputController.inputFunctionSelectionNumber();
+
+		if (functionSelectionNumber.equals("1")) {
+			OutputDisplay.showProcessAndLevelAndMission();
+		}
 	}
 }
