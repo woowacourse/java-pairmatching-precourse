@@ -26,7 +26,6 @@ public class MatchingService {
 		String[] split = input.split(",");
 		Course course = Course.getCourse(split[COURSE_INDEX].trim());
 		Level level = Level.getLevel(split[LEVEL_INDEX].trim());
-
 		List<String> shuffledCrew;
 		List<String> crewNames = null;
 		if (Course.BACKEND.equals(course)) {
@@ -38,7 +37,6 @@ public class MatchingService {
 		shuffledCrew = Randoms.shuffle(Objects.requireNonNull(crewNames));
 		return makeMatching(level, course, shuffledCrew);
 		//TODO: 매칭 리스트 level에 따라 중복되는 지 점검
-
 	}
 
 	private Matching makeMatching(Level level, Course course, List<String> shuffledCrew) {
@@ -49,7 +47,10 @@ public class MatchingService {
 				Crew.generateCrew(course, shuffledCrew.get(i + 1)));
 			pairsList.add(pairs);
 		}
-
+		if (shuffledCrew.size() % 2 == 1) {
+			Pairs pairs = pairsList.get(pairsList.size() - 1);
+			pairs.addMoreCrew(Crew.generateCrew(course, shuffledCrew.get(shuffledCrew.size() - 1)));
+		}
 		matching.add(level, pairsList);
 		return matching;
 	}
