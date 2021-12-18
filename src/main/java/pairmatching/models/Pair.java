@@ -55,4 +55,9 @@ public class Pair {
 		exPair.put(crow1, members1);
 		exPair.put(crow2, members2);
 	}
+
+	public void clearPair() {
+		currentPairs.clear();
+		exPair.clear();
+	}
 }

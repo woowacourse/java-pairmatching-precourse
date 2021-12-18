@@ -99,6 +99,10 @@ public class PairMatchingController {
 
 	}
 
+	private void clearPair() {
+		pairs.forEach(Pair::clearPair);
+	}
+
 	public void startProgram() throws IOException {
 		while(true) {
 			final String function = input.selectFunction();
@@ -109,6 +113,10 @@ public class PairMatchingController {
 				final String level = courseLevelMission[1];
 				final String mission = courseLevelMission[2];
 				printMachineResult(level, course);
+			}
+			if(function.equals("3")) {
+				clearPair();
+				output.printClearPairResult();
 			}
 			if(function.equals("Q")) {
 				break;

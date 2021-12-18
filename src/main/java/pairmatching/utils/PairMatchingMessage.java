@@ -53,6 +53,8 @@ public class PairMatchingMessage {
 	/* output message */
 	public static final String MATCHING_RESULT = "페어 매칭 결과입니다.";
 
+	public static final String ALL_CLEAR = "초기화 되었습니다.";
+
 	public static void printInputFunction() {
 		System.out.println(CHOOSE_FUNCTION);
 		System.out.println(FUNCTION1);

@@ -10,4 +10,8 @@ public class PairMachiningOutput {
 		System.out.println(PairMatchingMessage.MATCHING_RESULT);
 		names.forEach(System.out::println);
 	}
+
+	public void printClearPairResult() {
+		System.out.println(PairMatchingMessage.ALL_CLEAR);
+	}
 }
