@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,14 +14,12 @@ import static pairmatching.constant.SystemMessage.FRONT_END_PROCESS_FILE_PATH;
 
 public class MatchingService {
     List<String> crewList = new ArrayList<>();
+    List<String> shuffledCrewList;
 
-    public void readCrewListBy(String processName) throws IOException {
-        if (processName.equals("백엔드")) {
-            readCrewList(BACK_END_PROCESS_FILE_PATH);
-        }
-        if (processName.equals("프론트엔드")) {
-            readCrewList(FRONT_END_PROCESS_FILE_PATH);
-        }
+    public void match(String processName) throws IOException {
+        String filePath = makeFilePath(processName);
+        readCrewList(filePath);
+        shuffleCrewList();
     }
 
     private void readCrewList(String filePath) throws IOException {
@@ -30,5 +30,16 @@ public class MatchingService {
         while ((crewName = reader.readLine()) != null) {
             crewList.add(crewName);
         }
+    }
+
+    private void shuffleCrewList() {
+        shuffledCrewList = Randoms.shuffle(crewList);
+    }
+
+    private String makeFilePath(String processName) {
+        if (processName.equals("백엔드")) {
+            return BACK_END_PROCESS_FILE_PATH;
+        }
+        return FRONT_END_PROCESS_FILE_PATH;
     }
 }
