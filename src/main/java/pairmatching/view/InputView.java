@@ -1,12 +1,17 @@
 package pairmatching.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import pairmatching.domain.Command;
 
 public class InputView {
+
+    private static final String SELECT_COMMAND = "기능을 선택하세요.";
+    private static final String COMMAND_LIST = "%s. %s\n";
 
     private InputView() {
     }
@@ -114,5 +119,15 @@ public class InputView {
             System.out.println("파일 입력이 에러가 발생했습니다.");
             throw new RuntimeException(e.getMessage());
         }
+    }
+
+    public static String inputCommand(List<Command> commands) {
+        System.out.println(SELECT_COMMAND);
+        commands.forEach(InputView::printCommand);
+        return Console.readLine();
+    }
+
+    private static void printCommand(Command command) {
+        System.out.printf(COMMAND_LIST, command.request(), command.commandName());
     }
 }

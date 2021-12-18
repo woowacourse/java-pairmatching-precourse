@@ -1,6 +1,8 @@
 package pairmatching.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import pairmatching.exception.CommandNotFoundException;
 
 public enum Command {
@@ -23,5 +25,25 @@ public enum Command {
             .filter(command -> command.request.equals(request))
             .findFirst()
             .orElseThrow(CommandNotFoundException::new);
+    }
+
+    public static Command init() {
+        return COMMAND_1;
+    }
+
+    public static List<Command> commands() {
+        return Collections.unmodifiableList(Arrays.asList(values()));
+    }
+
+    public boolean isEndGame() {
+        return this == COMMAND_Q;
+    }
+
+    public String commandName() {
+        return name;
+    }
+
+    public String request() {
+        return request;
     }
 }

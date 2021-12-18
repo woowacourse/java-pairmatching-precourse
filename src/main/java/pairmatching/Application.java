@@ -1,9 +1,11 @@
 package pairmatching;
 
+import pairmatching.domain.Command;
 import pairmatching.domain.Crews;
 import pairmatching.domain.Level;
 import pairmatching.domain.PairProgram;
 import pairmatching.view.InputView;
+import pairmatching.view.OutputView;
 
 public class Application {
 
@@ -18,5 +20,25 @@ public class Application {
         pairProgram.addMissions(Level.LEVEL3, InputView.inputThirdLevelMission());
         pairProgram.addMissions(Level.LEVEL4, InputView.inputFourthLevelMission());
         pairProgram.addMissions(Level.LEVEL5, InputView.inputFifthLevelMission());
+
+        Command command = Command.init();
+        runPairProgram();
+    }
+
+    private static void runPairProgram() {
+        Command command = inputCommand();
+        if (command.isEndGame()) {
+            return;
+        }
+        runPairProgram();
+    }
+
+    private static Command inputCommand() {
+        try {
+            return Command.getCommand(InputView.inputCommand(Command.commands()));
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return inputCommand();
+        }
     }
 }
