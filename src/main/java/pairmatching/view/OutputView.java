@@ -15,7 +15,7 @@ public class OutputView {
 		printSeparator();
 	}
 
-	public static void printSelectOption(){
+	public static void printSelectOption() {
 		System.out.println("기능을 선택하세요.");
 		System.out.println("1. 페어 매칭\n2. 페어 조회\n3. 페어 초기화\nQ. 종료");
 	}
@@ -43,7 +43,7 @@ public class OutputView {
 			}
 			printNowLevelMissionsNames(sb, nowLevelMissions);
 			String str = trimedLastSeparator(sb);
-			printToString(sb);
+			System.out.println(str);
 		}
 	}
 
@@ -78,5 +78,9 @@ public class OutputView {
 
 	public static void printError(String message) {
 		System.out.println(message);
+	}
+
+	public static void printReMatching() {
+		System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
 	}
 }

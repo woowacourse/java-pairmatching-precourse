@@ -13,6 +13,10 @@ public class MatchingOption {
 		return course;
 	}
 
+	public Mission getMission() {
+		return mission;
+	}
+
 	@Override
 	public String toString() {
 		return "MatchingOption{" +

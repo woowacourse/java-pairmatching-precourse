@@ -19,6 +19,7 @@ import pairmatching.domain.MatchingOption;
 import pairmatching.domain.Mission;
 import pairmatching.domain.Missions;
 import pairmatching.domain.Pair;
+import pairmatching.domain.PairMatcher;
 import pairmatching.utils.Converter;
 import pairmatching.utils.Validator;
 import pairmatching.view.InputView;
@@ -33,43 +34,61 @@ public class PairMatchingController {
 		Crews crews = initCrews(backCrewNames, frontCrewNames);
 
 		// 기능 선택 기능
+		boolean isDone = false;
+		do {
+			isDone = selectOption(missions, crews);
+		} while (!isDone);
+	}
+
+	private boolean selectOption(Missions missions, Crews crews) {
 		String select = enterSelectOption();
 		if (select.equals(PairMatchingConst.SELECT_PAIR_MATCHING)) { // 페어 매칭
-			List<Pair> pairs = matchingPair(missions, crews);
+			MatchingOption matchingOption = enterMatchingOption(missions);
+			PairMatcher pairMatcher = new PairMatcher();
+			if (pairMatcher.existMatching(matchingOption)) { // 재매칭 판단
+				OutputView.printReMatching();
+			}
+			List<Pair> pairs = makePair(crews, matchingOption);
 			// pairs 검증
+
 		}
 		if (select.equals(PairMatchingConst.SELECT_PAIR_READ)) { // 페어 조회
 		}
 		if (select.equals(PairMatchingConst.SELECT_PAIR_RESET)) { // 페어 초기화
 		}
 		if (select.equals(PairMatchingConst.SELECT_EXIT)) { // 종료
-			return;
+			return true;
 		}
+		return false;
 	}
 
-	private List<Pair> matchingPair(Missions missions, Crews crews) {
+	private List<Pair> makePair(Crews crews, MatchingOption matchingOption) {
+		Course nowCourse = matchingOption.getCourse();
+		List<Crew> crewsByCourse = crews.getCrewsByCourse(nowCourse);
+		List<Crew> shuffledCrew = Randoms.shuffle(crewsByCourse);
+		List<Pair> pairs = new ArrayList<>();
 		try {
-			OutputView.printCourseAndMissionStatus(missions);
-			String matchingOptionInput = InputView.enterString();
-			MatchingOption matchingOption = Converter.toMatchingOption(matchingOptionInput, missions);
-
-			// 페어 매칭 구현
-			Course nowCourse = matchingOption.getCourse();
-			List<Crew> crewsByCourse = crews.getCrewsByCourse(nowCourse);
-
-			List<Crew> shuffledCrew = Randoms.shuffle(crewsByCourse);
-			List<Pair> pairs = new ArrayList<>();
-			for (int i = 0; i < shuffledCrew.size() / 2; i += 2) {
+			for (int i = 0; i + 1 < shuffledCrew.size(); i += 2) {
 				Pair pair = new Pair(crewsByCourse.get(i), crewsByCourse.get(i + 1));
 				pairs.add(pair);
 			}
-			if (shuffledCrew.size() % 2 == 1) { // 홀수인 경우 마지막 페어에 삽입
-				pairs.get(pairs.size() - 1).add(shuffledCrew.get(shuffledCrew.size() - 1));
-			}
-			return pairs;
+			addLastPairOne(shuffledCrew, pairs);
 		} catch (IllegalArgumentException ex) {
 			OutputView.printError(ex.getMessage());
 		}
+		return pairs;
+	}
+
+	private void addLastPairOne(List<Crew> shuffledCrew, List<Pair> pairs) {
+		if (shuffledCrew.size() % 2 == 1) {
+			pairs.get(pairs.size() - 1).add(shuffledCrew.get(shuffledCrew.size() - 1));
+		}
+	}
+
+	private MatchingOption enterMatchingOption(Missions missions) {
+		OutputView.printCourseAndMissionStatus(missions);
+		String matchingOptionInput = InputView.enterString();
+		return Converter.toMatchingOption(matchingOptionInput, missions);
 	}
 
 	private String enterSelectOption() {
