@@ -27,12 +27,11 @@ public class Matching {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Matching matching = (Matching)o;
-		return course == matching.course && level == matching.level && mission == matching.mission
-			&& Objects.equals(names, matching.names);
+		return course == matching.course && level == matching.level && mission == matching.mission;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(course, level, mission, names);
+		return Objects.hash(course, level, mission);
 	}
 }

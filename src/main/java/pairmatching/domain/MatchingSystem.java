@@ -21,10 +21,10 @@ public class MatchingSystem {
 
 		if (!matchingList.contains(newMatching)) {
 			OutputView.printQueryMatchingInformation();
+
 			if(Console.readLine().equals("아니요")) {
 				return false;
 			}
-
 			return true;
 		}
 
