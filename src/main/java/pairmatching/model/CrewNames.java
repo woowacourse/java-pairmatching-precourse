@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 public class CrewNames {
 	public List<String> crewNames = new ArrayList<>();
 
@@ -15,6 +17,10 @@ public class CrewNames {
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+
+	public List<String> getShuffledCrewNames() {
+		return Randoms.shuffle(crewNames);
 	}
 
 	private void addCrewNames(String crewFile) throws IOException {
