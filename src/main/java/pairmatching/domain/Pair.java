@@ -36,7 +36,7 @@ public class Pair {
     public boolean equals(Object object) {
         Pair pair = (Pair) object;
 
-        if (pair.getMission() == pair.getMission()) {
+        if (this.mission == pair.getMission()) {
             return true;
         }
 
