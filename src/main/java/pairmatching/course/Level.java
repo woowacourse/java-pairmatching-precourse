@@ -1,6 +1,7 @@
 package pairmatching.course;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public enum Level {
@@ -11,7 +12,7 @@ public enum Level {
     LEVEL5("레벨5");
 
     private String name;
-    private List<String> missionList;
+    private List<String, HashMap<String,ArrayList<String>>> missionList;
     Level(String name) {
         this.name = name;
     }

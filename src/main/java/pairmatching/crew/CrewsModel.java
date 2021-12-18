@@ -21,23 +21,22 @@ public class CrewsModel {
         this.crews = new Crews();
     }
 
-    public void readBackEndCrew() throws IOException {
+    public List<Crew> readBackEndCrew() throws IOException {
         List<Crew> crewList = new ArrayList<>();
         reader = new BufferedReader(
                 new FileReader("C:\\Users\\chamg\\OneDrive\\바탕 화면\\wootaco_finalTest\\java-pairmatching-precourse\\src\\main\\resources\\backend-crew.md")
         );
         String str;
-        System.out.println("백엔드");
         while((str = reader.readLine()) != null) {
             this.crew = new Crew(BACKEND, str);
-            System.out.println(str);
             crewList.add(crew);
         }
         reader.close();
         crews.setBackEndCrews(crewList);
+        return crewList;
     }
 
-    public void readFrontEndCrew() throws IOException{
+    public List<Crew> readFrontEndCrew() throws IOException{
         List<Crew> crewList = new ArrayList<>();
         reader = new BufferedReader(
                 new FileReader("C:\\Users\\chamg\\OneDrive\\바탕 화면\\wootaco_finalTest\\java-pairmatching-precourse\\src\\main\\resources\\backend-crew.md")
@@ -49,6 +48,10 @@ public class CrewsModel {
         }
         reader.close();
         crews.setFrontEndCrews(crewList);
+        return crewList;
     }
 
+    public Crews getCrews() {
+        return crews;
+    }
 }
