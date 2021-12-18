@@ -2,6 +2,7 @@ package pairmatching.view;
 
 public class OutputView {
 	private static final String NEW_LINE = "\n";
+	private static final String ERROR_MSG_PREFIX = "[ERROR] ";
 	private static final String MAIN_OPTION_MATCHING = "1. 페어 매칭";
 	private static final String MAIN_OPTION_GET_INFO = "2. 페어 조회";
 	private static final String MAIN_OPTION_INIT = "3. 페어 초기화";
@@ -14,5 +15,9 @@ public class OutputView {
 			.append(MAIN_OPTION_INIT).append(NEW_LINE)
 			.append(MAIN_OPTION_QUIT).append(NEW_LINE);
 		System.out.println(stringBuilder);
+	}
+
+	public static void displayErrorMsg(String errorMsg) {
+		System.out.println(ERROR_MSG_PREFIX + errorMsg);
 	}
 }
