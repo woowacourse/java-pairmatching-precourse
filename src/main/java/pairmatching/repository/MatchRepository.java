@@ -24,7 +24,6 @@ public class MatchRepository {
 	}
 
 	public Match save(Course course, Level level, Mission mission) throws IOException {
-		checkMatchLevelAndMission(level.getName(), mission.getName());
 		Match match = new Match(course, level, mission);
 		matches.add(match);
 		return match;

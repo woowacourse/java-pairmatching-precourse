@@ -4,6 +4,7 @@ import static pairmatching.constant.constant.*;
 import static pairmatching.exception.EmptyException.*;
 import static pairmatching.exception.FunctionException.*;
 import static pairmatching.exception.SourceFormatException.*;
+import static pairmatching.utils.Splitter.*;
 
 import java.io.IOException;
 
@@ -55,24 +56,24 @@ public class PairMatchingController {
 
 	private void lookPair(String source) {
 		checkSourceFormat(source);
-		String[] sourceSplitByComma = source.replaceAll(BLANK, "").split(COMMA);
-		if (!pairService.findMatch(sourceSplitByComma[COURSE_IDX], sourceSplitByComma[LEVEL_IDX], sourceSplitByComma[MISSION_IDX])) {
+		String[] sources = SplitByComma(source);
+		if (!pairService.findMatch(sources[COURSE_IDX], sources[LEVEL_IDX], sources[MISSION_IDX])) {
 			throw new NotFindMatchException();
 		}
-		Match match = pairService.look(sourceSplitByComma[COURSE_IDX], sourceSplitByComma[LEVEL_IDX], sourceSplitByComma[MISSION_IDX]);
+		Match match = pairService.look(sources[COURSE_IDX], sources[LEVEL_IDX], sources[MISSION_IDX]);
 		outputView.reportMatch(match.getPair());
 	}
 
 	private void matchPair(String source) throws IOException {
 		checkSourceFormat(source);
-		String[] sourceSplitByComma = source.replaceAll(BLANK, "").split(COMMA);
-		if (pairService.findMatch(sourceSplitByComma[COURSE_IDX], sourceSplitByComma[LEVEL_IDX], sourceSplitByComma[MISSION_IDX])) {
+		String[] sources = SplitByComma(source);
+		if (pairService.findMatch(sources[COURSE_IDX], sources[LEVEL_IDX], sources[MISSION_IDX])) {
 			String match = inputView.requestDuplicateMatch();
 			if (match.equals(NOT_MATCHING_MSG)) {
 				run();
 			}
 		}
-		Match match = pairService.match(sourceSplitByComma[COURSE_IDX], sourceSplitByComma[LEVEL_IDX], sourceSplitByComma[MISSION_IDX]);
+		Match match = pairService.createMatch(sources[COURSE_IDX], sources[LEVEL_IDX], sources[MISSION_IDX]);
 		outputView.reportMatch(match.getPair());
 	}
 }
