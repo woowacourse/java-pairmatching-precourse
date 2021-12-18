@@ -14,4 +14,11 @@ public class CrewRepository {
 		}
 		frontendCrews.add(crew);
 	}
+
+	public static List<Crew> getCrews(Course course) {
+		if (course.equals(Course.BACKEND)) {
+			return backendCrews;
+		}
+		return frontendCrews;
+	}
 }

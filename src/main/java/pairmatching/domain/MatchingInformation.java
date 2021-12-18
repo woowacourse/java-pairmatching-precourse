@@ -28,4 +28,8 @@ public class MatchingInformation {
 		List<String> information = Arrays.asList(line.split(","));
 		return information.stream().map(string -> string.trim()).collect(Collectors.toList());
 	}
+
+	public Course getCourse() {
+		return course;
+	}
 }
