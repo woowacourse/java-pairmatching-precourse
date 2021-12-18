@@ -40,6 +40,8 @@ public class PairMatchingController {
 			MatchingService matchingService = new MatchingService();
 			Matching newMatching = matchingService.getMatching(matchingInput);
 			newMatching = selectOriginOrNew(newMatching);
+			newMatching.makeCombination();
+			System.out.println(newMatching);
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
 			matchPair();

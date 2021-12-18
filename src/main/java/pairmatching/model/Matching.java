@@ -1,5 +1,6 @@
 package pairmatching.model;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -7,12 +8,15 @@ import pairmatching.model.enums.Assignment;
 import pairmatching.model.enums.Level;
 import pairmatching.model.enums.Mission;
 import pairmatching.model.enums.Process;
+import pairmatching.model.process.BackEnd;
+import pairmatching.model.process.FrontEnd;
+import pairmatching.model.process.ProcessCrew;
 
 public class Matching {
 	private Process process;
 	private Level level;
 	private Assignment assignment;
-	private List<Set<String>> combination;
+	private Set<Set<String>> combination = new HashSet<>();
 
 	public Matching(Process process, Level level, Assignment assignment) {
 		validateMatching(level, assignment);
@@ -33,15 +37,43 @@ public class Matching {
 			&& assignment == newMatching.assignment;
 	}
 
-	// public List<Set<String>> getCombination() {
-	// 	ProcessCrew ProcessCrew = getProcessCrew();
-	//
-	// }
+	public void makeCombination() {
+		ProcessCrew processCrew = getProcessCrew();
+		List<String> crew = processCrew.getShuffledCrew();
+		combination = getCombinationBy(crew);
+	}
 
-	// private ProcessCrew getProcessCrew() {
-	// 	if (process == Process.BACK_END) {
-	// 		return new BackEnd();
-	// 	}
-	// 	return new FrontEnd();
-	// }
+	private ProcessCrew getProcessCrew() {
+		if (process == Process.BACK_END) {
+			return new BackEnd();
+		}
+		return new FrontEnd();
+	}
+
+	private Set<Set<String>> getCombinationBy(List<String> crew) {
+		if (crew.size() < 2) {
+			combination.add(new HashSet<>(crew));
+			return combination;
+		}
+		for (int index = 0; index < crew.size(); index += 2) {
+			HashSet<String> pair = new HashSet<>();
+			pair.add(crew.get(index));
+			pair.add(crew.get(index + 1));
+			combination.add(pair);
+		}
+		addLast(crew);
+		return combination;
+	}
+
+	private void addLast(List<String> crew) {
+		if (crew.size() % 2 == 1) {
+			HashSet<String> last = new HashSet<>();
+			last.add(crew.get(crew.size() - 1));
+			combination.add(last);
+		}
+	}
+
+	public Set<Set<String>> getCombination() {
+		return combination;
+	}
 }

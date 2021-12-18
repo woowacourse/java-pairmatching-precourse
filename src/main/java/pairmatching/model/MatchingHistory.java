@@ -19,8 +19,6 @@ public class MatchingHistory {
 	}
 
 	public void add(Matching newMatching) {
-		Matching origin = getSameMatch(newMatching);
-		history.remove(origin);
 		history.add(newMatching);
 	}
 }
