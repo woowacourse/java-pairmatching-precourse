@@ -18,15 +18,15 @@ public class InputView {
 		}
 	}
 
-	public static void requestMission() {
+	public static String requestMission() {
 		try {
 			OutputView.printPairScreen();
 			String inputValue = Console.readLine();
 			MissionValidator.validateMission(inputValue);
+			return inputValue;
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			return;
+			return requestMission();
 		}
 	}
-
 }
