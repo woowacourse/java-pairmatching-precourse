@@ -20,4 +20,9 @@ public class InputView {
 			return selectFunction(functions);
 		}
 	}
+
+	public static String selectInformation() {
+		OutputView.askInformation();
+		return Console.readLine();
+	}
 }

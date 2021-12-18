@@ -1,6 +1,6 @@
 package pairmatching.controller;
 
-import java.util.List;
+import pairmatching.utils.BasicInformationFactory;
 import pairmatching.utils.FunctionFactory;
 import pairmatching.view.InputView;
 
@@ -19,7 +19,13 @@ public class MatchingController {
 		String functionNumber;
 		do {
 			functionNumber = InputView.selectFunction(FunctionFactory.makeFunctions());
+			controlInformationSelect();
 		} while (!isTerminateCondition(functionNumber));
+	}
+
+	private static void controlInformationSelect() {
+		BasicInformationFactory.noticeBasicInformation();
+		InputView.selectInformation();
 	}
 
 	private static boolean isTerminateCondition(String functionNumber) {
