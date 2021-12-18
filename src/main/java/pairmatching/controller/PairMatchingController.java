@@ -3,12 +3,14 @@ package pairmatching.controller;
 import pairmatching.domain.Manager;
 import pairmatching.domain.MatchInfo;
 import pairmatching.domain.Pair;
+import pairmatching.validator.InputValidator;
 import pairmatching.view.PairMatchingView;
 
 public class PairMatchingController {
 	private static PairMatchingView view = new PairMatchingView();
 	private MatchInfo matchInfo;
 	private Manager manager = new Manager();
+	private static InputValidator inputValidator = new InputValidator();
 
 	public void selectMenu() {
 		while (true) {
@@ -34,6 +36,9 @@ public class PairMatchingController {
 			String select = view.selectDetail();
 			select.replace(" ", "");
 			String[] selects = select.split(",");
+			if(validateDetail(selects)){
+				continue;
+			}
 			if (manager.isDuplication(selects)) {
 				String choice = view.selectRematching();
 				if (choice.equals("아니오")) {
@@ -53,6 +58,13 @@ public class PairMatchingController {
 				break;
 			}
 		}
+	}
+
+	private boolean validateDetail(String[] selects){
+		if(inputValidator.isValidInfo(selects)){
+			return true;
+		}
+		return false;
 	}
 
 	public void search() {
