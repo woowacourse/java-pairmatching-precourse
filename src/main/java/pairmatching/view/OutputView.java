@@ -47,7 +47,9 @@ public class OutputView {
 	}
 
 	public static void printInitialization() {
+		newLine();
 		System.out.println(DONE_INITIALIZATION);
+		newLine();
 	}
 
 	public static void newLine() {
