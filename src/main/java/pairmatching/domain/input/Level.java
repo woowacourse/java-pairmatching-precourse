@@ -1,5 +1,7 @@
 package pairmatching.domain.input;
 
+import java.util.Arrays;
+
 public enum Level {
 	LEVEL1("레벨1"),
 	LEVEL2("레벨2"),
@@ -15,5 +17,13 @@ public enum Level {
 
 	public String getName() {
 		return this.name;
+	}
+
+	public static Level fromLevelName(String courseName) {
+		Level[] levels = values();
+		return Arrays.stream(levels)
+			.filter(functionType -> functionType.getName().equals(courseName))
+			.findFirst()
+			.orElseThrow(() -> new IllegalArgumentException("해당 레벨은 존재하지 않습니다."));
 	}
 }
