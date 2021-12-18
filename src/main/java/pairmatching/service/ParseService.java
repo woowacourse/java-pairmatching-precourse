@@ -10,7 +10,7 @@ import pairmatching.domain.WoowaCourse;
 
 public class ParseService {
 
-	private static final Pattern WOOWA_PATTERN = Pattern.compile("(?<course>.+) ,(?<level>.+) ,(?<mission>.+)");
+	private static final Pattern WOOWA_PATTERN = Pattern.compile("(?<course>.+), (?<level>.+), (?<mission>.+)");
 	private static final String YES = "네";
 
 	public WoowaCourse parseWoowaCourse(String input) {

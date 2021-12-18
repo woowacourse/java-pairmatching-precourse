@@ -1,7 +1,10 @@
 package pairmatching.service;
 
+import java.util.List;
 import java.util.Optional;
 
+import pairmatching.domain.Pair;
+import pairmatching.domain.PairMatching;
 import pairmatching.domain.WoowaCourse;
 import pairmatching.repository.WoowaCourseRepository;
 
@@ -17,5 +20,14 @@ public class WoowaCourseService {
 		Optional<WoowaCourse> one = woowaCourseRepository.findOne(woowaCourse);
 		return one.isPresent();
 	}
+
+	public PairMatching matchAndEnroll(WoowaCourse woowaCourse) {
+		PairMatchingService service = new PairMatchingService();
+		List<Pair> pairs = service.pairMatch(woowaCourse);
+		PairMatching pairMatching = new PairMatching(pairs);
+		woowaCourseRepository.add(woowaCourse, pairMatching);
+		return pairMatching;
+	}
+
 
 }

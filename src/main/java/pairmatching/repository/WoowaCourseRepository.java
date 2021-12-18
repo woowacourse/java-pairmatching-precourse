@@ -14,4 +14,9 @@ public class WoowaCourseRepository {
 	public Optional<WoowaCourse> findOne(WoowaCourse woowaCourse) {
 		return woowaCourses.keySet().stream().filter(course -> course.equals(woowaCourse)).findAny();
 	}
+
+	public void add(WoowaCourse woowaCourse, PairMatching pairMatching) {
+		woowaCourses.put(woowaCourse, pairMatching);
+	}
+
 }

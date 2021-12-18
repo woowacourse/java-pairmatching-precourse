@@ -1,9 +1,11 @@
 package pairmatching.controller;
 
+import pairmatching.domain.PairMatching;
 import pairmatching.domain.WoowaCourse;
 import pairmatching.service.ParseService;
 import pairmatching.service.WoowaCourseService;
 import pairmatching.view.ViewManager;
+import pairmatching.view.common.CommonOutputView;
 import pairmatching.view.match.MatchInputView;
 import pairmatching.view.match.RematchInputView;
 
@@ -31,7 +33,8 @@ public class MatchController implements Controller {
 	}
 
 	private void match(WoowaCourse woowaCourse) {
-		woowaCourseService.matchAndEnroll(woowaCourse);
+		PairMatching pairMatching = woowaCourseService.matchAndEnroll(woowaCourse);
+		viewManager.output(new CommonOutputView(pairMatching.toString()));
 	}
 
 	private boolean alreadyExists(WoowaCourse woowaCourse) {
