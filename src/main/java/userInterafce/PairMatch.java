@@ -17,10 +17,12 @@ import pairmatching.PairStorage;
 import utils.WrongTwoCommaWithLetter;
 
 public class PairMatch {
-	Crews crews = new Crews();
-	PrintInterface printer = new PrintInterface();
-	HashMap<Crew,Crew> missionMap;
-	Course course;
+	private Crews crews = new Crews();
+	private PrintInterface printer = new PrintInterface();
+	private HashMap<Crew,Crew> missionMap;
+	private Course course;
+	private Level level;
+	private Mission mission;
 
 	public PairMatch() {
 	}
@@ -79,6 +81,7 @@ public class PairMatch {
 	private boolean isLevelName(String levelName) {
 		for (Level level : Level.values()) {
 			if (level.toString().equals(levelName)) {
+				this.level = level;
 				return true;
 			}
 		}
@@ -89,6 +92,7 @@ public class PairMatch {
 		for (Mission mission : Mission.values()) {
 			if (mission.toString().equals(missionName)
 				&& matchesMissionAndLevel(mission, levelName)) {
+				this.mission = mission;
 				return true;
 			}
 		}
@@ -102,14 +106,16 @@ public class PairMatch {
 		throw new IllegalArgumentException("[ERROR] 미션과 레벨이 잘못 매치되었습니다.");
 	}
 
-	private void makeNewPairs(Course course, Level level, Mission mission) {
+	public void makeNewPairs() {
 		if (isNotExist(course,mission)) {
 			List<String> crewArr = getShuffledCrewList(course);
 			Iterator<String> crewNameIterator = crewArr.iterator();
+			matchOneByOne(crewNameIterator);
 		}
+		printPairList();
 	}
 
-	boolean isNotExist(Course course, Mission mission) {
+	private boolean isNotExist(Course course, Mission mission) {
 		HashMap<Course, HashMap> pairMap = PairStorage.getPairMap();
 		HashMap<Mission, HashMap> pairMapWithCourse = pairMap.get(course);
 		missionMap = pairMapWithCourse.get(mission);
@@ -117,7 +123,7 @@ public class PairMatch {
 		return missionMap.isEmpty();
 	}
 
-	boolean isDone () {
+	private  boolean isDone () {
 		return true;
 	}
 
@@ -126,7 +132,23 @@ public class PairMatch {
 	Crew crew2;
 	Crew crew3;
 
-	public void matchOneByOne(Iterator<String> crewNameIterator) {
+	private void printPairList() {
+		HashSet<String> nameSet = new HashSet<>();
+		for (Crew crew : missionMap.keySet()) {
+			String name1 = crew.toString();
+			Crew otherCrew = missionMap.get(name1);
+			String name2 = otherCrew.toString();
+			if (nameSet.contains(name1) || nameSet.contains(name2)){
+				continue;
+			}
+			nameSet.add(name1);
+			nameSet.add(name2);
+
+			System.out.printf("%s : %s\n" , name1, name2);
+		}
+	}
+
+	private void matchOneByOne(Iterator<String> crewNameIterator) {
 		while(crewNameIterator.hasNext()) {
 			String name1 = crewNameIterator.next();
 			crew1 =  crews.getCrewByCourseAndName(course, name1);
@@ -143,28 +165,28 @@ public class PairMatch {
 		}
 	}
 
-	public void setOddCrew() {
+	private void setOddCrew() {
 		missionMap.put(crew1,crew3);
 		missionMap.put(crew3,crew1);
 		missionMap.put(crew2,crew3);
 		missionMap.put(crew3,crew2);
 	}
 
-	public HashSet<Crew> getSetOfCrewLevel(Crew crew, Level level) {
+	private HashSet<Crew> getSetOfCrewLevel(Crew crew, Level level) {
 		HashMap<Course, HashMap> pairMap = PairStorage.getPairMap();
 		HashMap<Level, HashSet<Crew>> crewMap = pairMap.get(crew);
 		HashSet<Crew> crewLevelSet = crewMap.get(level);
 		return crewLevelSet;
 	}
 
-	public List<String> getShuffledCrewList(Course course) {
+	private List<String> getShuffledCrewList(Course course) {
 		List<String> crewNameList = getCrewList(course);
 		crewNameList = Randoms.shuffle(crewNameList);
 
 		return crewNameList;
 	}
 
-	public List<String> getCrewList(Course course) {
+	private List<String> getCrewList(Course course) {
 		List<String> crewNameList = new ArrayList<>();
 
 		for (Crew crew : crews.getCrewList()) {
@@ -172,7 +194,6 @@ public class PairMatch {
 				crewNameList.add(crew.toString());
 			}
 		}
-
 		return crewNameList;
 	}
 }
