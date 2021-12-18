@@ -6,7 +6,9 @@ import java.util.List;
 public class Pair {
     private List<String> members = new ArrayList<>();
 
-    public Pair() {
+    public Pair(String member1, String member2) {
+        addMember(member1);
+        addMember(member2);
     }
 
     public void addMember(String member) {
@@ -17,7 +19,12 @@ public class Pair {
         return this.members;
     }
 
+    public int getMemberCnt() {
+        return this.members.size();
+    }
+
     public boolean isEquals(Pair pair) {
-        return members.containsAll(pair.getMembers());
+        return getMemberCnt() == pair.getMemberCnt()
+                && members.containsAll(pair.getMembers());
     }
 }
