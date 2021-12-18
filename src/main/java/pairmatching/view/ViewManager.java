@@ -1,26 +1,31 @@
 package pairmatching.view;
 
+import pairmatching.client.ErrorClient;
+import pairmatching.client.InputClient;
+import pairmatching.client.OutputClient;
+
 public class ViewManager {
 
-	private final InputView inputView;
-	private final OutputView outputView;
-	private final ErrorView errorView;
+	private final InputClient inputClient;
+	private final OutputClient outputClient;
+	private final ErrorClient errorClient;
 
-	public ViewManager(InputView inputView, OutputView outputView, ErrorView errorView) {
-		this.inputView = inputView;
-		this.outputView = outputView;
-		this.errorView = errorView;
+	public ViewManager(InputClient inputClient, OutputClient outputClient, ErrorClient errorClient) {
+		this.inputClient = inputClient;
+		this.outputClient = outputClient;
+		this.errorClient = errorClient;
 	}
 
-	public String input() {
-		return inputView.input();
+
+	public String input(InputView inputView) {
+		return inputClient.input(inputView.input());
 	}
 
-	public void error(String message) {
-		errorView.error(message);
+	public void output(OutputView outputView) {
+		outputClient.output(outputView.output());
 	}
 
-	public void output(String message) {
-		outputView.output(message);
+	public void error(ErrorView errorView) {
+		errorClient.error(errorView.error());
 	}
 }
