@@ -23,6 +23,7 @@ public class OutputView {
 	}
 
 	public static void printCourseAndMission() {
+		newLine();
 		System.out.println(SPLIT);
 		printCourse();
 		printMission();
