@@ -68,21 +68,26 @@ public class PairMatchingController {
 	}
 
 	private void pairMatching() {
-		pairBackgroundInfo = InputView.getPairBackgroundInfo();
-		Course course = Course.findByName(pairBackgroundInfo.get(0));
-		Mission mission = Mission.findByName(pairBackgroundInfo.get(2));
-		Pair<Course, Mission> info = new Pair<>(course, mission);
-
-		if(pairs.isExist(info)){
-			if(InputView.getTryMore().equals(NO)){
-				return;
-			}
+		Pair<Course, Mission> info = getPairInfo();
+		if (pairs.isExist(info) && InputView.getTryMore().equals(NO)) {
+			return;
 		}
 
-		pairs.addPair(info, backendCrewName.getShuffledCrewName());
+		if (info.getKey() == Course.BACKEND) {
+			pairs.addPair(info, backendCrewName.getShuffledCrewName());
+		}
+		if (info.getKey() == Course.FRONTEND) {
+			pairs.addPair(info, frontendCrewName.getShuffledCrewName());
+		}
 		OutputView.printPairResult(pairs.getPair(info));
 	}
 
+	private Pair<Course, Mission> getPairInfo() {
+		pairBackgroundInfo = InputView.getPairBackgroundInfo();
+		Course course = Course.findByName(pairBackgroundInfo.get(0));
+		Mission mission = Mission.findByName(pairBackgroundInfo.get(2));
+		return new Pair<>(course, mission);
+	}
 
 	private void pairLookUp() {
 		pairBackgroundInfo = InputView.getPairBackgroundInfo();

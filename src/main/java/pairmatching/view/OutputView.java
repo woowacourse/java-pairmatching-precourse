@@ -26,8 +26,13 @@ public class OutputView {
 
 	public static void printPairResult(List<String> pair) {
 		System.out.println(PAIR_MATCHING_RESULT);
-		for (int idx = 0; idx < pair.size(); idx += 2) {
+		int idx = 0;
+		for (; idx < pair.size() - 3; idx += 2) {
 			System.out.println(pair.get(idx) + PAIR_COLON + pair.get(idx + 1));
 		}
+		for (; idx < pair.size() - 1; idx++) {
+			System.out.print(pair.get(idx) + PAIR_COLON);
+		}
+		System.out.println(pair.get(idx));
 	}
 }
