@@ -17,7 +17,7 @@ public class Crew {
     }
 
     private static void checkNameIsEmpty(String name) {
-        if (Objects.isNull(name) || name.trim().equals("")) {
+        if (Objects.isNull(name) || name.trim().equals(EMPTY_NAME)) {
             throw new CrewNameEmptyException();
         }
     }
