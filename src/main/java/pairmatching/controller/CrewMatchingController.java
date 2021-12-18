@@ -52,7 +52,9 @@ public class CrewMatchingController {
 			matchProcess();
 		} else if (functionOptionFromClient.equals(FunctionOption.READ)) {
 			InputView.printCourseInfo();
-			InputView.getCourseAndMissionInput();
+			String courseAndMissionInput = InputView.getCourseAndMissionInput(missions);
+			Mission mission = getMissionByCourseInput(courseAndMissionInput);
+			System.out.println(matchResults.getMatchResultByMission(mission));
 		} else if (functionOptionFromClient.equals(FunctionOption.RESET)) {
 			matchResults.reset();
 		}
@@ -61,7 +63,7 @@ public class CrewMatchingController {
 	}
 
 	private void matchProcess() {
-		String courseAndMissionInput = InputView.getCourseAndMissionInput();
+		String courseAndMissionInput = InputView.getCourseAndMissionInput(missions);
 		if (hasMatchResult(courseAndMissionInput)) {
 			rematchProcess(courseAndMissionInput);
 		} else if (!hasMatchResult(courseAndMissionInput)) {

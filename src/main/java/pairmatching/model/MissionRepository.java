@@ -48,4 +48,11 @@ public class MissionRepository {
 			throw new DuplicatedMissionNameException();
 		}
 	}
+
+	public boolean isValidMission(String missionInput) {
+		return missions.stream()
+			.filter(mission -> Objects.equals(mission.getName(), missionInput))
+			.collect(Collectors.toList())
+			.size() > 0;
+	}
 }
