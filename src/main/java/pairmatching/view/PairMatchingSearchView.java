@@ -12,15 +12,15 @@ import pairmatching.util.SystemMessage;
 public class PairMatchingSearchView implements View {
 	@Override
 	public void flow() {
-		String missionInfo = readMissionInfo();
-		List<String> params = MissionInfoValidator.validate(missionInfo);
-		MatchParams matchParams = Application.controller.setMatchParams(params);
-		if(Application.controller.isExistParam(matchParams)) {
-			Application.controller.view(ViewMappingKey.PAIR_MATCHING_RESULT);
+		List<String> params;
+		try {
+			params = readPairParams();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			reshow();
 			return;
 		}
-
-		Application.controller.view(ViewMappingKey.FUNCTION_SELECT);
+		showResultOrBack(params);
 	}
 
 	@Override
@@ -37,7 +37,21 @@ public class PairMatchingSearchView implements View {
 		System.out.println(SystemMessage.MISSION_INFO_EX);
 	}
 
-	private String readMissionInfo() {
-		return Console.readLine();
+	private void showResultOrBack(List<String> params) {
+		MatchParams matchParams = Application.controller.setMatchParams(params);
+		if (Application.controller.isExistParam(matchParams)) {
+			Application.controller.view(ViewMappingKey.PAIR_MATCHING_RESULT);
+			return;
+		}
+		System.out.println(SystemMessage.NOT_EXIST_PAIR);
+		Application.controller.view(ViewMappingKey.FUNCTION_SELECT);
+	}
+
+	private List<String> readPairParams() {
+		return MissionInfoValidator.validate(Console.readLine());
+	}
+
+	private void reshow() {
+		Application.controller.view(ViewMappingKey.PAIR_MATCHING_SEARCH);
 	}
 }

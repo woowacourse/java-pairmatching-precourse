@@ -63,10 +63,15 @@ public class PairMatchingController {
 			.map(Crew::getName)
 			.collect(Collectors.toList());
 
-		List<String> shuffledCrew = Randoms.shuffle(crewNames);
+		shuffleAndPair(pairs, crewNames);
 
+		pairRepository.addPair(lastMatchParams, pairs);
+	}
+
+	private void shuffleAndPair(List<List<String>> pairs, List<String> crewNames) {
+		List<String> shuffledCrew = Randoms.shuffle(crewNames);
 		for (int i = 0; i < shuffledCrew.size(); i += 2) {
-			if(i + 1 >=  shuffledCrew.size()) // 한명 남을 경우 종료
+			if (i + 1 >= shuffledCrew.size()) // 한명 남을 경우 종료
 				break;
 			List<String> pair = new ArrayList<>();
 			pair.add(shuffledCrew.get(i));
@@ -76,8 +81,6 @@ public class PairMatchingController {
 
 		if (shuffledCrew.size() % 2 == 1) // 홀수라서 한명 남은 경우 한명을 마지막 페어에 추가
 			pairs.get(pairs.size() - 1).add(shuffledCrew.get(shuffledCrew.size() - 1));
-
-		pairRepository.addPair(lastMatchParams, pairs);
 	}
 
 	public MatchParams setMatchParams(List<String> params) {

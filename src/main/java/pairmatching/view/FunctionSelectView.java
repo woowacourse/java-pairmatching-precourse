@@ -9,11 +9,12 @@ public class FunctionSelectView implements View {
 	@Override
 	public void flow() {
 		String option = readOption();
-		boolean isRun = exactOption(option);
-		if(isRun)
+		boolean isExit = exactOption(option);
+		if (isExit) {
+			printExit();
 			return;
-
-		Application.controller.view(ViewMappingKey.FUNCTION_SELECT);
+		}
+		reshow();
 	}
 
 	@Override
@@ -26,18 +27,26 @@ public class FunctionSelectView implements View {
 	}
 
 	private boolean exactOption(String option) {
-		if(option.equals("1")) {
+		if (option.equals("1")) {
 			Application.controller.view(ViewMappingKey.PAIR_MATCHING_INPUT);
 			return true;
 		}
-		if(option.equals("2")) {
+		if (option.equals("2")) {
 			Application.controller.view(ViewMappingKey.PAIR_MATCHING_SEARCH);
 			return true;
 		}
-		if(option.equals("3")) {
+		if (option.equals("3")) {
 			Application.controller.view(ViewMappingKey.PAIR_RESET);
 			return true;
 		}
 		return option.equals("Q");
+	}
+
+	private void printExit() {
+		System.out.println(SystemMessage.EXIT);
+	}
+
+	public void reshow() {
+		Application.controller.view(ViewMappingKey.FUNCTION_SELECT);
 	}
 }

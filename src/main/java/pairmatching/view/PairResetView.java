@@ -7,13 +7,21 @@ import pairmatching.util.SystemMessage;
 public class PairResetView implements View {
 	@Override
 	public void flow() {
-		Application.controller.resetPairs();
-		Application.controller.view(ViewMappingKey.FUNCTION_SELECT);
+		resetPair();
+		goFunctionSelect();
 	}
 
 	@Override
 	public void printViewMessage() {
 		System.out.println();
 		System.out.println(SystemMessage.RESET);
+	}
+
+	private void resetPair() {
+		Application.controller.resetPairs();
+	}
+
+	private void goFunctionSelect() {
+		Application.controller.view(ViewMappingKey.FUNCTION_SELECT);
 	}
 }

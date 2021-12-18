@@ -15,7 +15,7 @@ public class PairRepository {
 
 	public String getMatchResultString(MatchParams params) {
 		List<List<String>> pairList = new ArrayList<>();
-		for(MatchParams matchParams : pairs.keySet()) {
+		for (MatchParams matchParams : pairs.keySet()) {
 			if (matchParams.equals(params)) {
 				pairList = pairs.get(matchParams);
 				break;
@@ -28,7 +28,7 @@ public class PairRepository {
 	}
 
 	public boolean isExistParam(MatchParams params) {
-		for(MatchParams matchParams : pairs.keySet()) {
+		for (MatchParams matchParams : pairs.keySet()) {
 			if (matchParams.equals(params))
 				return true;
 		}

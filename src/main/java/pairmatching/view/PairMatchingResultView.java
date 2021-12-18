@@ -7,7 +7,7 @@ import pairmatching.util.SystemMessage;
 public class PairMatchingResultView implements View {
 	@Override
 	public void flow() {
-		Application.controller.view(ViewMappingKey.FUNCTION_SELECT);
+		goFunctionSelect();
 	}
 
 	@Override
@@ -16,5 +16,9 @@ public class PairMatchingResultView implements View {
 		System.out.println(SystemMessage.MATCHING_RESULT);
 		String matchResult = Application.controller.getMatchResult();
 		System.out.println(matchResult);
+	}
+
+	private void goFunctionSelect() {
+		Application.controller.view(ViewMappingKey.FUNCTION_SELECT);
 	}
 }

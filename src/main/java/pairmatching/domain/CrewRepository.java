@@ -11,18 +11,26 @@ public class CrewRepository {
 	private final List<Crew> crews = new ArrayList<>();
 
 	public CrewRepository() throws IOException {
+		readBackEnd();
+		readFrontEnd();
+	}
+
+	private void readBackEnd() throws IOException {
 		File backendFile = new File("./src/main/resources/backend-crew.md");
-		if(backendFile.exists()) {
+		if (backendFile.exists()) {
 			BufferedReader inFile = new BufferedReader(new FileReader(backendFile));
 			String sLine;
-			while( (sLine = inFile.readLine()) != null )
+			while ((sLine = inFile.readLine()) != null)
 				crews.add(new Crew(Course.BACKEND, sLine));
 		}
+	}
+
+	private void readFrontEnd() throws IOException {
 		File frontendFile = new File("./src/main/resources/frontend-crew.md");
-		if(frontendFile.exists()) {
+		if (frontendFile.exists()) {
 			BufferedReader inFile = new BufferedReader(new FileReader(frontendFile));
 			String sLine;
-			while( (sLine = inFile.readLine()) != null )
+			while ((sLine = inFile.readLine()) != null)
 				crews.add(new Crew(Course.FRONTEND, sLine));
 		}
 	}

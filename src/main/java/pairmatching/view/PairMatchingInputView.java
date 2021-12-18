@@ -12,27 +12,15 @@ import pairmatching.util.SystemMessage;
 public class PairMatchingInputView implements View {
 	@Override
 	public void flow() {
-		String missionInfo = readMissionInfo();
 		List<String> params;
 		try {
-			params = MissionInfoValidator.validate(missionInfo);
+			params = readPairParams();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			Application.controller.view(ViewMappingKey.PAIR_MATCHING_INPUT);
+			reshow();
 			return;
 		}
-		MatchParams matchParams = Application.controller.setMatchParams(params);
-		if(Application.controller.isExistParam(matchParams)) {
-			if(checkReMatch()) {
-				Application.controller.pairMatching();
-				Application.controller.view(ViewMappingKey.PAIR_MATCHING_RESULT);
-				return;
-			}
-			Application.controller.view(ViewMappingKey.FUNCTION_SELECT);
-			return;
-		}
-		Application.controller.pairMatching();
-		Application.controller.view(ViewMappingKey.PAIR_MATCHING_RESULT);
+		doPairMatch(params);
 	}
 
 	@Override
@@ -49,11 +37,24 @@ public class PairMatchingInputView implements View {
 		System.out.println(SystemMessage.MISSION_INFO_EX);
 	}
 
-	private String readMissionInfo() {
-		return Console.readLine();
+	public void doPairMatch(List<String> params) {
+		MatchParams matchParams = Application.controller.setMatchParams(params);
+		if (Application.controller.isExistParam(matchParams)) {
+			if (checkReMatch()) {
+				pairMatchAndShowResult();
+				return;
+			}
+			goFunctionSelect();
+			return;
+		}
+		pairMatchAndShowResult();
 	}
 
-	public boolean checkReMatch() {
+	private List<String> readPairParams() {
+		return MissionInfoValidator.validate(Console.readLine());
+	}
+
+	private boolean checkReMatch() {
 		System.out.println(SystemMessage.CHECK_REMATCH);
 		String answer = Console.readLine();
 		if (answer.equals("네"))
@@ -62,5 +63,18 @@ public class PairMatchingInputView implements View {
 			return false;
 
 		throw new IllegalArgumentException();
+	}
+
+	private void pairMatchAndShowResult() {
+		Application.controller.pairMatching();
+		Application.controller.view(ViewMappingKey.PAIR_MATCHING_RESULT);
+	}
+
+	private void goFunctionSelect() {
+		Application.controller.view(ViewMappingKey.FUNCTION_SELECT);
+	}
+
+	private void reshow() {
+		Application.controller.view(ViewMappingKey.PAIR_MATCHING_INPUT);
 	}
 }

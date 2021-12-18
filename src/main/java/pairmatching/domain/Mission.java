@@ -10,7 +10,6 @@ public enum Mission {
 	PERFORMANCE("성능개선"),
 	DEPLOYMENT("배포");
 
-
 	private String name;
 
 	Mission(String name) {

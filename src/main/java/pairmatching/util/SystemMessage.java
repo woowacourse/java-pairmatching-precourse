@@ -21,4 +21,6 @@ public class SystemMessage {
 	public static final String ERROR_NOT_COURSE = ERROR + "존재하는 코스를 입력해주세요.";
 	public static final String ERROR_NOT_LEVEL = ERROR + "존재하는 레벨을 입력해주세요.";
 	public static final String ERROR_NOT_MISSION = ERROR + "존재하는 미션을 입력해주세요.";
+	public static final String EXIT = "프로그램을 종료합니다.";
+	public static final String NOT_EXIST_PAIR = "아직 페어를 생성하지 않았습니다.";
 }
