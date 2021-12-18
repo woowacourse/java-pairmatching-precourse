@@ -1,6 +1,6 @@
 package pairmatching.model;
 
-public enum Mission {
+public enum Missions {
     CAR_RACING("자동차경주"),
     LOTTO("로또"),
     NUMBER_BASEBALL_GAME("숫자야구게임"),
@@ -13,7 +13,7 @@ public enum Mission {
 
     private String mission;
 
-    Mission(final String mission) {
+    Missions(final String mission) {
         this.mission = mission;
     }
 
