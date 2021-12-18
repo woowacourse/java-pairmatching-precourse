@@ -3,6 +3,7 @@ package pairmatching.view;
 public class InputView {
 
     public void printSelectMenu() {
+        System.out.println();
         System.out.println("기능을 선택하세요.");
         System.out.println("1. 페어 매칭");
         System.out.println("2. 페어 조회");

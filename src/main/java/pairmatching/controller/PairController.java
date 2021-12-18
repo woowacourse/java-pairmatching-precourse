@@ -8,7 +8,6 @@ import pairmatching.validator.Validator;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PairController {
@@ -20,10 +19,13 @@ public class PairController {
     public void run() {
         initialSetting.initialInformation();
         initialSetting.getFileNameInDirectory();
-        selectMenu();
+        while(selectMenu()){
+
+        }
+
     }
 
-    public void selectMenu() {
+    public boolean selectMenu() {
         try {
             inputView.printSelectMenu();
             String selectMenu = Console.readLine();
@@ -38,12 +40,13 @@ public class PairController {
                 initialPair();
             }
             if (selectMenu.equals("Q")) {
-                return;
+                return false;
             }
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+            outputView.printError(exception.getMessage());
             selectMenu();
         }
+        return true;
     }
 
     public void pairMatch() {
@@ -58,14 +61,25 @@ public class PairController {
             inputPair(course, mission);
             outputView.printPairList(course, mission);
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+            outputView.printError(exception.getMessage());
             pairMatch();
         }
     }
 
     public void getPair() {
-        outputView.printInformation();
-        inputView.inputInformation();
+        try {
+            outputView.printInformation();
+            inputView.inputInformation();
+            String inputInformation = Console.readLine();
+            String[] splitInformation = validator.validateCountComma(inputInformation);
+            Course course = validator.validateCourse(splitInformation[0]);
+            Level level = validator.validateLevel(splitInformation[1]);
+            Mission mission = validator.validateMission(level, splitInformation[2]);
+            validator.validateExistPairList(course, mission);
+            outputView.printPairList(course, mission);
+        }catch (IllegalArgumentException exception){
+            outputView.printError(exception.getMessage());
+        }
     }
 
     public void initialPair() {

@@ -69,4 +69,11 @@ public class Validator {
         }
         return mission;
     }
+
+    public boolean validateExistPairList(Course course, Mission mission) {
+        if (mission.getPairList(course) == null) {
+            throw new IllegalArgumentException("매칭 이력이없습니다.");
+        }
+        return true;
+    }
 }

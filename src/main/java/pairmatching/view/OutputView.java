@@ -7,6 +7,7 @@ import java.util.List;
 
 public class OutputView {
     private static final String DIVIDER = "#############################################";
+    private static final String ERROR = "[ERROR] ";
 
     public void printInformation() {
         System.out.println(DIVIDER);
@@ -22,7 +23,6 @@ public class OutputView {
             stringList.add(course.getName());
         }
         System.out.println(String.join(" | ", stringList));
-
     }
 
     private void printMissions() {
@@ -51,5 +51,9 @@ public class OutputView {
 
     public void printPair(Pair pair) {
         System.out.println(String.join(" : ", pair.getPair()));
+    }
+
+    public void printError(String message) {
+        System.out.println(ERROR + message);
     }
 }
