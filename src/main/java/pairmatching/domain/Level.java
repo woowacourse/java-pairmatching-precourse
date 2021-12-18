@@ -20,11 +20,20 @@ public enum Level {
 	LEVEL5("레벨5", new ArrayList<>());
 
 	private String name;
-	private List<Mission> missions = new ArrayList<Mission>();
+	private List<Mission> missions;
 
 	Level(String name, List<Mission> missions) {
 		this.name = name;
 		this.missions = missions;
+	}
+
+	public static Level findForName(String input) {
+		for (Level level : Level.values()) {
+			if (level.name.equals(input)) {
+				return level;
+			}
+		}
+		return null;
 	}
 
 	public String getName() {

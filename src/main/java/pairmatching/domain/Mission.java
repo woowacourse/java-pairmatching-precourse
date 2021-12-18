@@ -16,6 +16,15 @@ public enum Mission {
 		this.name = name;
 	}
 
+	public static Mission findForName(String input) {
+		for (Mission mission : Mission.values()) {
+			if (mission.name.equals(input)) {
+				return mission;
+			}
+		}
+		return null;
+	}
+
 	public String getName() {
 		return name;
 	}

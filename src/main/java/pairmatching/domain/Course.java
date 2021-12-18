@@ -19,4 +19,13 @@ public enum Course {
 	public String getName() {
 		return name;
 	}
+
+	public static Course findForName(String name) {
+		for (Course course : Course.values()) {
+			if (course.name.equals(name)) {
+				return course;
+			}
+		}
+		return null;
+	}
 }
