@@ -4,8 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import pairmatching.constant.Course;
 import pairmatching.constant.Level;
 import pairmatching.constant.Menu;
-import pairmatching.constant.Mission;
-import pairmatching.domain.PairMatching;
 
 public class InputView {
 	private final static String INPUT_FUNCTION_MESSAGE = "기능을 선택하세요.\n";
@@ -49,13 +47,9 @@ public class InputView {
 	}
 
 	private void addCourse(StringBuilder message) {
-		message.append(COURSE_NAME)
-			.append(COLON);
+		message.append(COURSE_NAME).append(COLON);
 		for (Course course : Course.values()) {
-			if (course.ordinal() != 0) {
-				message.append(PIPE);
-			}
-			message.append(course.getName());
+			message.append(String.join(PIPE, course.getName()));
 		}
 		message.append(END_LINE);
 	}
@@ -65,9 +59,7 @@ public class InputView {
 
 		for (Level level : Level.values()) {
 			message.append(DASH).append(level.getName()).append(COLON);
-			for (String mission : level.getMissions()) {
-				message.append(mission).append(PIPE);
-			}
+			message.append(String.join(PIPE, level.getMissions()));
 			message.append(END_LINE);
 		}
 	}
