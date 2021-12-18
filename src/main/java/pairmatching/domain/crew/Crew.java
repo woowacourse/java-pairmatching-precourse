@@ -12,16 +12,7 @@ public class Crew {
 	private Map<Course, List<String>> crewMap = new HashMap<>();
 
 	public Crew(Course type, List<String> crewList){
-		// System.out.println("input");
 		this.crewMap.put(type, crewList);
-	}
-
-	public void getCrewByType(Course type){
-		List<String> list = crewMap.get(type);
-		for(String name : list){
-			System.out.print(name+" ");
-		}
-		System.out.println();
 	}
 
 	public List<String> shuffleCrewList(Course type){

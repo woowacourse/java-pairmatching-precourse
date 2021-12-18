@@ -17,11 +17,6 @@ public class Application {
     static Mission mission = new Mission();
     public static void main(String[] args) {
         inputMissionByLevel();
-        // System.out.println(getLevelNameList().stream().anyMatch(s -> s.equals("레벨1")));
-        // System.out.println(getLevelNameList().stream().anyMatch(s -> s.equals("레벨2")));
-        // System.out.println(getLevelNameList().stream().anyMatch(s -> s.equals("레벨3")));
-        // System.out.println(getLevelNameList().stream().anyMatch(s -> s.equals("레벨4")));
-
         Set<MatchingType> matchingSet = new HashSet<>();
         Input inputProcessor = new Input(mission);
 

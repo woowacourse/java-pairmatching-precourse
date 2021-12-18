@@ -19,11 +19,4 @@ public class Pair {
 	public List<String[]> getPairList(){
 		return pairList;
 	}
-	public void printPair(){
-		StringBuilder sb = new StringBuilder();
-		for(String[] pair : pairList){
-			sb.append(String.join(" : ", pair)).append("\n");
-		}
-		System.out.println(sb.toString());
-	}
 }
