@@ -55,11 +55,24 @@ public class PairMatchingController {
 		try {
 			String[] courseInput = isCourseInput(input);
 			isExistCourse(courseInput);
-			pairMatching.matchingPair(courseInput);
+			if (!pairMatching.matchingPair(courseInput)) {
+				requestNewMatching();
+				return;
+			}
 			pairMatching.printMatchingInfo(input);
 		} catch (IllegalArgumentException illegalArgumentException) {
 			printError(illegalArgumentException.getMessage());
 			requestMatching();
+		}
+	}
+
+	private void requestNewMatching() {
+		String input = newMatching();
+		if (input.equals(YES)) {
+			System.out.println("Y");
+		}
+		if (input.equals(NO)) {
+			System.out.println("N");
 		}
 	}
 

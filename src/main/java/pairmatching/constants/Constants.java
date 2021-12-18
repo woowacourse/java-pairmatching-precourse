@@ -3,6 +3,9 @@ package pairmatching.constants;
 public class Constants {
 	public static final String QUIT_CHAR = "Q";
 
+	public static final String YES = "네";
+	public static final String NO = "아니오";
+
 	public static final int MATCHING_NUMBER = 1;
 	public static final int LOOK_UP_NUMBER = 2;
 	public static final int RESET_NUMBER = 3;

@@ -28,4 +28,12 @@ public class MatchingInfo {
 		}
 		OutputView.printPairs(pairList);
 	}
+
+	public boolean isExistMatchingInfo(String course) {
+		List<Pair> pairList = matchingInfo.get(course);
+		if (pairList == null) {
+			return false;
+		}
+		return true;
+	}
 }

@@ -30,7 +30,10 @@ public class PairMatching {
 		frontendCrew.forEach(name -> crews.add(new Crew(Course.FRONTEND, name)));
 	}
 
-	public void matchingPair(String[] courseInfos) {
+	public boolean matchingPair(String[] courseInfos) {
+		if (matchingInfo.isExistMatchingInfo(String.join(SPLIT_DELIMETER, courseInfos))) {
+			return false;
+		}
 		crews = Randoms.shuffle(crews);
 		int resetCnt = RESET_START;
 		while (true) {
@@ -45,6 +48,7 @@ public class PairMatching {
 				throw new IllegalArgumentException(PAIR_EXIST);
 			}
 		}
+		return true;
 	}
 
 	public List<Pair> makePairs(Level level, String course) {

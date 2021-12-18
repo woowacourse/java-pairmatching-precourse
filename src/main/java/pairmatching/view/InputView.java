@@ -25,4 +25,10 @@ public class InputView {
 		System.out.println(COURSE_EXAMPLE);
 		return requestInput();
 	}
+
+	public static String newMatching() {
+		System.out.println(EXIST_MATCHING);
+		System.out.println(YES_OR_NO);
+		return requestInput();
+	}
 }
