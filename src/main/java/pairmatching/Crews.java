@@ -171,7 +171,7 @@ public class Crews {
         return false;
     }
 
-    private void result(int type) {
+    public void result(int type) {
         createInfo(type);
         System.out.println(Message.RESULT_PAIR);
         for (int i = 0; i < temp.size() - 2; i = i + 2) {
@@ -193,6 +193,13 @@ public class Crews {
             temp = pairsFrontend.get(courseIndex);
             return;
         }
+    }
+
+    public void clearAll() {
+        pairsBackend.clear();
+        pairsFrontend.clear();
+        createCourses();
+        System.out.println(Message.INIT);
     }
 
 }

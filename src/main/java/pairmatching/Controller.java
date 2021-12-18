@@ -32,10 +32,29 @@ public class Controller {
         if (input.charAt(0) == '1') {
             selectCourses();
             crews.matching(courses);
+            selectFunctions();
         }
-
-
+        courses();
     }
+
+    private void courses() {
+        if (input.charAt(0) == '2') {
+            selectCourses();
+            if (courses[0].equals("백엔드")) {
+                crews.result(0);
+            }
+            if (courses[0].equals("프론트엔드")) {
+                crews.result(1);
+            }
+        }
+        if (input.charAt(0) == '3') {
+            crews.clearAll();
+        }
+        if (input.charAt(0) != 'Q') {
+            selectFunctions();
+        }
+    }
+
 
     private boolean inputFunctions() {
         try {

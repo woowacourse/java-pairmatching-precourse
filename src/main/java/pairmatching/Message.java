@@ -10,4 +10,5 @@ public class Message {
     public static String INPUT_COURSES = "과정, 레벨, 미션을 선택하세요.\nex) 백엔드, 레벨1, 자동차경주";
     public static String ALREADY_EXISTS = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
     public static String RESULT_PAIR = "\n페어 매칭 결과입니다.";
+    public static String INIT = "\n초기화 하였습니다.";
 }
