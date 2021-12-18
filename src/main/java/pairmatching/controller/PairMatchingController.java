@@ -1,5 +1,7 @@
 package pairmatching.controller;
 
+import static pairmatching.ErrorMessage.*;
+
 import pairmatching.code.MainCode;
 import pairmatching.domain.ProgramInfo;
 import pairmatching.service.PairMatchingService;
@@ -19,7 +21,12 @@ public class PairMatchingController {
             }
             if (mainCode == MainCode.MATCHING) {
                 ProgramInfo programInfo = matchPairs();//1. 페어 매칭 선택했을 때 사용할 메서드.
+
+                if (!isRematching(programInfo)) {
+                    continue;
+                }
                 pairMatchingService.matchPairs(programInfo);
+
             }
             if (mainCode == MainCode.SEARCH) {
                 searchProgramsPair();
@@ -28,6 +35,21 @@ public class PairMatchingController {
                 pairMatchingService.clearAllMatchingInfo();
             }
         }
+    }
+
+    private boolean isRematching(ProgramInfo programInfo) {
+        if (pairMatchingService.isAlreadyMatching(programInfo)) {
+            String rematchingCode = inputView.determineReMatching();
+            if (rematchingCode.equals("아니오")) {
+                return false;
+            }
+            if (rematchingCode.equals("네")) {
+                programInfo.clearPairs();
+                return true;
+            }
+            throw new IllegalArgumentException(INVALID_INPUT_ERROR);
+        }
+        return true;
     }
 
     private void searchProgramsPair() {
@@ -43,11 +65,6 @@ public class PairMatchingController {
     private ProgramInfo matchPairs() {
         try {
             ProgramInfo programInfo = ProgramInfoTransformer.makeProgramInfo(inputView.determineProgramInfo());
-            if (pairMatchingService.isAlreadyMatching(programInfo)) {
-                inputView.determineReMatching();
-                // TODO 네 하면 밑으로, 아니오 하면 다시 함수.
-                programInfo.clearPairs();
-            }
             return programInfo;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
