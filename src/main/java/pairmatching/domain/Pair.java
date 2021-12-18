@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
@@ -24,7 +25,8 @@ public class Pair {
     private void shuffledCrew(){
         crewNames = new ArrayList<>();
         try {
-            BufferedReader br = new BufferedReader(new FileReader(course.getFileName()));
+            File path = new File(course.getFileName());
+            BufferedReader br = new BufferedReader(new FileReader(path.getAbsolutePath()));
             String line;
             while((line = br.readLine())!=null) crewNames.add(line);
             br.close();
