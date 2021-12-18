@@ -52,8 +52,17 @@ public class MainController {
 
     public void pairMatching() {
         OutputView.printSection();
-        //TODO : 매칭하고자 하는 과정 레벨 미션 입력 받기
-        getSection();
+        Section section = null;
+        while(true) {
+            section = getSection();
+            if (!checkExistSection(section)) {
+                break;
+            }
+            if(getRematch()) {
+                break;
+            }
+        }
+        startMatch(section);
     }
 
     private Section getSection() {
@@ -67,4 +76,56 @@ public class MainController {
         }
     }
 
+    private boolean checkExistSection(Section section) {
+        try {
+            pairMemoryRepository.searchPairMemory(section);
+            return true;
+        }catch (IllegalArgumentException e) {
+            return false;
+        }
+    }
+
+    private boolean getRematch() {
+        while(true) {
+            try {
+                String rematch = InputView.getRematch();
+                return rematch.equals(InputConstants.REMATCH_YES);
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void startMatch(Section section) {
+        List<List<String>> pairs = getPairs(section.getCourse());
+        PairMemory pairMemory = new PairMemory(section, pairs);
+        try {
+            validatePairs(pairMemory);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+        pairMemoryRepository.addPairMemory(pairMemory);
+        // TODO : 매칭결과 프린트
+        OutputView.printPairResult(pairs);
+    }
+
+    private List<List<String>> getPairs(Course course) {
+        if(course.equals(Course.BACKEND)) {
+            return CrewRepository.makeBackendPair();
+        }
+        return CrewRepository.makeFrontendPair();
+    }
+
+    private void validatePairs(PairMemory pairMemory) {
+        for(int i = 0; i < 3; i++) {
+            try {
+                pairMemoryRepository.validatePairMemory(pairMemory);
+                return;
+            }catch (IllegalArgumentException e) {
+
+            }
+        }
+        throw new IllegalArgumentException("[ERROR] 경우의 수가 없습니다.");
+    }
 }

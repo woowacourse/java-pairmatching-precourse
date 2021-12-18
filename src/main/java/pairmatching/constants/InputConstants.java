@@ -11,4 +11,7 @@ public class InputConstants {
     public static final String PAIR_QUIT = "Q";
 
     public static final List<String> INPUT = Arrays.asList(new String [] {PAIR_MATCHING, PAIR_SEARCHING, PAIR_CLEAR, PAIR_QUIT});
+
+    public static final String REMATCH_YES = "네";
+    public static final String REMATCH_NO = "아니오";
 }

@@ -29,6 +29,7 @@ public class InputView {
 
     public static Section getSection() {
         System.out.println("과정, 레벨, 미션을 선택하세요.");
+        System.out.println("ex) 백엔드, 레벨1, 자동차경주");
         String input = Console.readLine();
         return convertSection(input);
     }
@@ -49,6 +50,20 @@ public class InputView {
         List<String> missons = LevelMissonRepository.findMissonByLevel(level);
         if(!missons.contains(misson)) {
             throw new IllegalArgumentException("[ERROR] : 해당 레벨에 존재하는 미션이 아닙니다.");
+        }
+    }
+
+    public static String getRematch() {
+        System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
+        System.out.println(InputConstants.REMATCH_YES + " | " + InputConstants.REMATCH_NO);
+        String input = Console.readLine();
+        validateRematch(input);
+        return input;
+    }
+
+    private static void validateRematch(String input) {
+        if(!input.equals(InputConstants.REMATCH_YES) && !input.equals(InputConstants.REMATCH_NO)) {
+            throw new IllegalArgumentException("[ERROR] 네, 아니오 중에서 답해주세요.");
         }
     }
 }

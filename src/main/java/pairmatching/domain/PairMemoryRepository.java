@@ -31,7 +31,14 @@ public class PairMemoryRepository {
     }
 
     public void addPairMemory(PairMemory pairMemory) {
-        pairMemoryList.add(pairMemory);
+        try {
+            PairMemory found = searchPairMemory(pairMemory.getSection());
+            delete(found);
+        }catch (IllegalArgumentException e) {
+
+        }finally {
+            pairMemoryList.add(pairMemory);
+        }
     }
 
     public void delete(PairMemory pairMemory) {
@@ -62,7 +69,7 @@ public class PairMemoryRepository {
     }
 
     private void validatePair(List<String> existPair, List<String> pair) {
-        System.out.println("compare with " + existPair + " and " + pair);
+//        System.out.println("compare with " + existPair + " and " + pair);
         if(existPair.containsAll(pair)) {
             throw new IllegalArgumentException("[ERROR] 이미 존재하는 조합입니다.");
         }

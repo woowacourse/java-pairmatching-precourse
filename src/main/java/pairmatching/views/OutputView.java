@@ -33,4 +33,11 @@ public class OutputView {
     public static void printHeaderOrFooter() {
         System.out.println(HEADER_FOOTER);
     }
+
+    public static void printPairResult(List<List<String>> pairs) {
+        System.out.println("페어 매칭 결과입니다.");
+        for(List<String> pair : pairs) {
+            System.out.println(String.join(" : ", pair));
+        }
+    }
 }
