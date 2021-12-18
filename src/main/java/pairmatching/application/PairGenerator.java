@@ -30,21 +30,17 @@ public class PairGenerator {
 	}
 
 	private List<Pair> generatePairList(Mission mission) {
-		List<Pair> result = new ArrayList<>();
+		List<Pair> pairList = new ArrayList<>();
 		List<Crew> shuffledCrew = getShuffledCrewByCourse(mission.getCourse());
 
 		for (int index = 0; index < shuffledCrew.size(); index += 2) {
-			result.add(createPair(mission, shuffledCrew, index));
+			pairList.add(createPair(mission, shuffledCrew, index));
 			if (isThreeCrewsInLastPair(shuffledCrew, index)) {
 				break;
 			}
 		}
 
-		return result;
-	}
-
-	private boolean isThreeCrewsInLastPair(List<Crew> shuffledCrew, int index) {
-		return shuffledCrew.size() - index == 3;
+		return pairList;
 	}
 
 	private List<Crew> getShuffledCrewByCourse(Course course) {
