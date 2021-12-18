@@ -14,6 +14,10 @@ public class OutputView {
 		System.out.println(message);
 	}
 
+	public void printErrorMessage(String message) {
+		printMessage("[ERROR] " + message);
+	}
+
 	public void printFunctionChoice() {
 		printMessage("기능을 선택하세요.");
 		Arrays.stream(FunctionChoice.values())

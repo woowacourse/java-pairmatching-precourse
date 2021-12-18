@@ -1,7 +1,17 @@
 package pairmatching;
 
+import pairmatching.controller.MatchingController;
+import pairmatching.controller.MatchingControllerImpl;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO 구현 진행
+        Application application = new Application();
+        application.run();
     }
+
+    public void run() {
+        MatchingController matchingController = new MatchingControllerImpl();
+        matchingController.run();
+    }
+
 }

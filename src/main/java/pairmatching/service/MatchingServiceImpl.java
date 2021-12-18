@@ -21,6 +21,7 @@ public class MatchingServiceImpl implements MatchingService {
 		this.matchGroupRepository = new MatchGroupRepository();
 		this.crewRepository = new CrewRepositoryImpl();
 		this.pairMatcher = new PairMatcher();
+		this.loadCrews();
 	}
 
 	@Override
@@ -30,15 +31,26 @@ public class MatchingServiceImpl implements MatchingService {
 
 	@Override
 	public List<String> matchCrews(MatchDto matchDto) {
-		List<Crew> crews = crewRepository.findAll(matchDto.getCourse());
-		List<List<Crew>> crewPairs = pairMatcher.match(crews);
-
-		return null;
+		List<List<Crew>> shuffledCrewPairs = getShuffledCrewPairs(matchDto.getCourse());
+		MatchGroup matchGroup = findMatchGroup(matchDto);
+		matchGroup.updateCrewPair(shuffledCrewPairs);
+		return matchGroup.getPairResultsAsString();
 	}
 
+	private List<List<Crew>> getShuffledCrewPairs(Course course) {
+		List<Crew> crews = crewRepository.findAll(course);
+		return pairMatcher.match(crews);
+	}
+
+	@Override
 	public boolean isAlreadyMatched(MatchDto matchDto) {
 		MatchGroup matchGroup = findMatchGroup(matchDto);
 		return matchGroup.isAlreadyMatched();
+	}
+
+	@Override
+	public boolean isNotAlreadyMatched(MatchDto matchDto) {
+		return !isAlreadyMatched(matchDto);
 	}
 
 	private MatchGroup findMatchGroup(MatchDto matchDto) {
@@ -49,9 +61,13 @@ public class MatchingServiceImpl implements MatchingService {
 	}
 
 	@Override
-	public Crew findCrew() {
-		return null;
+	public List<String> getPairResultOfMatchGroup(MatchDto matchDto) {
+		MatchGroup matchGroup = findMatchGroup(matchDto);
+		return matchGroup.getPairResultsAsString();
 	}
 
+	public void resetMatchGroups() {
+		matchGroupRepository.reset();
+	}
 
 }

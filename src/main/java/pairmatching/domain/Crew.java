@@ -14,4 +14,8 @@ public class Crew {
 		return (this.course == course);
 	}
 
+	public String getName() {
+		return this.name;
+	}
+
 }

@@ -12,6 +12,11 @@ public class MatchGroupRepository {
 	private List<MatchGroup> matchGroups = new ArrayList<>();
 
 	public MatchGroupRepository() {
+		reset();
+	}
+
+	public void reset() {
+		matchGroups.clear();
 		for (Course course : Course.values()) {
 			for (Level level : Level.values()) {
 				level.getMissions().forEach(mission -> {

@@ -21,7 +21,7 @@ public enum FunctionChoice {
 
 	public static FunctionChoice of(String choice) {
 		return Arrays.stream(FunctionChoice.values())
-			.filter(functionChoice -> functionChoice.choice == choice)
+			.filter(functionChoice -> choice.equals(functionChoice.choice))
 			.findAny()
 			.orElseThrow(FunctionChoiceNotFoundException::new);
 	}

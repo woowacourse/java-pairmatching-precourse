@@ -2,6 +2,7 @@ package pairmatching.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MatchGroup {
 
@@ -22,8 +23,20 @@ public class MatchGroup {
 			&& mission.equals(this.mission);
 	}
 
+	public void updateCrewPair(List<List<Crew>> crewPairs) {
+		this.crewPairs = crewPairs;
+	}
+
 	public boolean isAlreadyMatched() {
 		return (crewPairs.size() != 0);
+	}
+
+	public List<String> getPairResultsAsString() {
+		List<String> results = new ArrayList<>();
+		crewPairs.forEach((List<Crew> crewPair) -> {
+			results.add(String.join(" : ", crewPair.stream().map(Crew::getName).collect(Collectors.toList())));
+		});
+		return results;
 	}
 
 }

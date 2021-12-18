@@ -5,7 +5,7 @@ import pairmatching.view.output.ErrorMessage;
 public class MatchDataNotFoundException extends PairMatchingException {
 
 	public MatchDataNotFoundException() {
-		super(ErrorMessage.MATCH_DATA_FOUND_MESSAGE);
+		super(ErrorMessage.MATCH_DATA_NOT_FOUND_MESSAGE);
 	}
 
 }
