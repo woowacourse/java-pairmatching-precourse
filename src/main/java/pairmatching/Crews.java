@@ -12,8 +12,31 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Crews {
+    final int COURSES = 16;
     ArrayList<String> backendCrewNames = new ArrayList<>();
     ArrayList<String> frontendCrewNames = new ArrayList<>();
+    ArrayList<ArrayList<String>> pairsBackend = new ArrayList<>();
+    ArrayList<ArrayList<String>> pairsFrontend = new ArrayList<>();
+
+    int courseIndex;
+    final int LEVEL1_CarRACING = 0;
+    final int LEVEL1_LOTTO = 1;
+    final int LEVEL1_BASEBALL = 2;
+    final int LEVEL2_BASKET = 3;
+    final int LEVEL2_PAYMENT = 4;
+    final int LEVEL2_SUBWAY = 5;
+    final int LEVEL4_PERFORMANCE = 6;
+    final int LEVEL4_STREAM = 7;
+
+
+    public void createCourses() {
+        for (int i = 0; i < COURSES/2; i++) {
+            pairsBackend.add(new ArrayList<>());
+        }
+        for (int i = 0; i < COURSES/2; i++) {
+            pairsFrontend.add(new ArrayList<>());
+        }
+    }
 
     public void readBackend() {
         try{
@@ -45,5 +68,60 @@ public class Crews {
         }
     }
 
+    public void findIndex(String[] courses) {
+        findIndexLevel1(courses);
+        findIndexLevel2(courses);
+        findIndexLevel4(courses);
+    }
 
+    private void findIndexLevel1(String[] courses) {
+        if (courses[1].equals("레벨1") && courses[2].equals("자동차경주")) {
+            courseIndex = LEVEL1_CarRACING;
+        }
+        if (courses[1].equals("레벨1") && courses[2].equals("로또")) {
+            courseIndex = LEVEL1_LOTTO;
+        }
+        if (courses[1].equals("레벨1") && courses[2].equals("숫자야구게임")) {
+            courseIndex = LEVEL1_BASEBALL;
+        }
+    }
+
+    private void findIndexLevel2(String[] courses) {
+        if (courses[1].equals("레벨2") && courses[2].equals("장바구니")) {
+            courseIndex = LEVEL2_BASKET;
+        }
+        if (courses[1].equals("레벨2") && courses[2].equals("결제")) {
+            courseIndex = LEVEL2_PAYMENT;
+        }
+        if (courses[1].equals("레벨2") && courses[2].equals("지하철노선도")) {
+            courseIndex = LEVEL2_SUBWAY;
+        }
+    }
+
+    private void findIndexLevel4(String[] courses) {
+        if (courses[1].equals("레벨4") && courses[2].equals("성능개선")) {
+            courseIndex = LEVEL4_PERFORMANCE;
+        }
+        if (courses[1].equals("레벨2") && courses[2].equals("배포")) {
+            courseIndex = LEVEL4_STREAM;
+        }
+    }
+
+    public boolean checkAlready(String[] courses) {
+        if (courses[0].equals("백엔드")) {
+            if (pairsBackend.get(courseIndex).size() == 0) {
+                return true;
+            }
+        }
+        if (courses[1].equals("백엔드")) {
+            if (pairsFrontend.get(courseIndex).size() == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void matching() {
+
+    }
 }

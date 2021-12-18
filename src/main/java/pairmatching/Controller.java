@@ -9,7 +9,7 @@ public class Controller {
     Crews crews = new Crews();
 
     String input;
-    String[] courses;
+    public String[] courses;
 
     public void start() {
         crews.readFrontend();
@@ -18,6 +18,7 @@ public class Controller {
     }
 
     private void program() {
+        crews.createCourses();
         selectFunctions();
     }
 
@@ -66,7 +67,19 @@ public class Controller {
             input();
             check = inputCourses();
         }
+        crews.findIndex(courses);
+        if (crews.checkAlready(courses)) {
+            selectAlready();
+        }
+        crews.matching();
+    }
 
+    private void selectAlready() {
+        System.out.println(Message.ALREADY_EXISTS);
+        input();
+        if (input.equals("아니요")) {
+            selectFunctions();
+        }
     }
 
     private boolean inputCourses() {

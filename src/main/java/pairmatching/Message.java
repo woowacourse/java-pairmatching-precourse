@@ -8,4 +8,5 @@ public class Message {
             "  - 레벨2: 장바구니 | 결제 | 지하철노선도\n" + "  - 레벨3:\n" + "  - 레벨4: 성능개선 | 배포\n" +
             "  - 레벨5:\n" + "#############################################";
     public static String INPUT_COURSES = "과정, 레벨, 미션을 선택하세요.\nex) 벡엔드, 레벨1, 자동차경주";
+    public static String ALREADY_EXISTS = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
 }
