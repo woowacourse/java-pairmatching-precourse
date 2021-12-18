@@ -13,6 +13,10 @@ import pairmatching.View.OutputView;
 
 public class MatchingController {
 
+	private static final int REQUEST_INFO_COURSE = 0;
+	private static final int REQUEST_INFO_LEVEL = 1;
+	private static final int REQUEST_INFO_MISSION_NAME = 2;
+
 	private List<Crew> backendCrewList;
 	private List<Crew> frontendCrewList;
 	private List<String> backendCrewNameList = new ArrayList<>();
@@ -61,8 +65,12 @@ public class MatchingController {
 
 	public void pairMatch() {
 		OutputView.printProgramInfo(this.missionList);
-		String userReqeustInfo = InputView.requestMatchInfo();
-		List<String> splitRequestInfo = ParsingString.splitComma(userReqeustInfo);
+		Mission mission;
+		do {
+			String userReqeustInfo = InputView.requestMatchInfo();
+			List<String> splitRequestInfo = ParsingString.splitComma(userReqeustInfo);
+			mission = findMission(splitRequestInfo.get(REQUEST_INFO_MISSION_NAME));
+		} while(!existPair(mission));
 	}
 
 	public void inquireMatchInfo() {
@@ -77,6 +85,20 @@ public class MatchingController {
 
 	public void matchExit() {
 		this.exitChecker = false;
+	}
+
+	public Mission findMission(String input) {
+		return this.missionList.stream().findFirst().filter(mission -> mission.getName().equals(input)).orElse(null);
+		//null일 경우 미션이 존재하지 않는다는 에러 발생시키기
+	}
+
+	public boolean existPair(Mission mission) {
+		if (mission.existPair()) {
+			OutputView.printExistPair();
+			String rematchInfo = InputView.requestRematch();
+			return rematchInfo.equals("아니오");
+		}
+		return false;
 	}
 
 }
