@@ -29,7 +29,7 @@ public class MissionRepository {
             .filter(thisMissions -> thisMissions.equalTo(mission, level))
             .findAny()
             .filter(findMission -> findMission.getPairs().get(0).getCrews().get(0).isEqualToCourse(course))
-            .orElseThrow(ErrorMessage.NOT_FOUND_MISSION::getException);
+            .orElseThrow(ErrorMessage.NOT_FOUND_PAIR::getException);
     }
 
     public static void clear() {

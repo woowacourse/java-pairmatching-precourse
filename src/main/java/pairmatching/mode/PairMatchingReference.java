@@ -15,18 +15,23 @@ public class PairMatchingReference implements PairMatchingService {
 
     @Override
     public void run() {
+        Course course;
+        String mission;
+        Level level;
+
         while (true) {
             try {
                 System.out.println(GuidanceMessage.GUIDE);
                 String[] split = Console.readLine().split(INPUT_DELIMITER);
-                Course course = Course.findByCourse(getCourse(split));
-                Level level = Level.findByLevel(getLevel(split));
-                printPair(MissionRepository.getPairList(course, getMission(split), level));
+                course = Course.findByCourse(getCourse(split));
+                mission = getMission(split);
+                level = Level.findByLevel(getLevel(split));
                 break;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
         }
+        printPair(MissionRepository.getPairList(course, mission, level));
     }
 
     private String getCourse(String[] split) {
