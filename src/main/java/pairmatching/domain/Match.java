@@ -71,4 +71,12 @@ public class Match {
 	public boolean isDuplicated(Pair comparePair) {
 		return pairList.stream().anyMatch(pair -> pair.equals(comparePair));
 	}
+
+	public boolean hasInformation(MatchingInformation information) {
+		return this.information.equals(information);
+	}
+
+	public MatchingInformation getInformation() {
+		return information;
+	}
 }

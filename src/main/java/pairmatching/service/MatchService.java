@@ -6,6 +6,7 @@ import java.util.List;
 import pairmatching.domain.Level;
 import pairmatching.domain.Match;
 import pairmatching.domain.MatchRepository;
+import pairmatching.domain.MatchingInformation;
 import pairmatching.domain.Pair;
 
 public class MatchService {
@@ -22,5 +23,9 @@ public class MatchService {
 
 	private static boolean countDuplicated(List<Pair> pairList) {
 		return pairList.size() != pairList.stream().distinct().count();
+	}
+
+	public static boolean isContainInformation(MatchingInformation information) {
+		return MatchRepository.hasInformationLike(information);
 	}
 }
