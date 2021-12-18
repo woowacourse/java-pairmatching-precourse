@@ -10,17 +10,18 @@ public enum Level {
     LEVEL5("레벨5");
 
     private String name;
-    private ArrayList<String> missions = new ArrayList<>();
+    private ArrayList<String> missionsold = new ArrayList<>();
+    private ArrayList<Mission> missions = new ArrayList<>();
 
     Level(String name) {
         this.name = name;
     }
 
     public void addMission(String missionName) {
-        missions.add(missionName);
+        missions.add(new Mission(missionName));
     }
 
-    public ArrayList<String> getMissions() {
+    public ArrayList<Mission> getMissions() {
         return missions;
     }
 
@@ -32,6 +33,15 @@ public enum Level {
         for (Level level : Level.values()) {
             if (level.getName().equals(name)) {
                 return level;
+            }
+        }
+        return null;
+    }
+
+    public Mission findMissionByName(String missionName) {
+        for (Mission mission : missions) {
+            if (mission.getName().equals(missionName)) {
+                return mission;
             }
         }
         return null;

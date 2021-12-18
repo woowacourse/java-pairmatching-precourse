@@ -50,6 +50,7 @@ public class InitialSetting {
             while ((readLine = bufferedReader.readLine()) != null && course != null) {
                 Crew crew = new Crew(readLine);
                 course.addCrew(crew);
+                course.addStringCrew(readLine);
             }
 //            printCourse(course);
         } catch (FileNotFoundException exception) {

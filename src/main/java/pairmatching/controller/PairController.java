@@ -1,10 +1,15 @@
 package pairmatching.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.InitialSetting;
+import pairmatching.model.*;
 import pairmatching.validator.Validator;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PairController {
     private InputView inputView = new InputView();
@@ -46,7 +51,12 @@ public class PairController {
             outputView.printInformation();
             inputView.inputInformation();
             String inputInformation = Console.readLine();
-            validator.validateInputInformation(inputInformation);
+            String[] splitInformation = validator.validateCountComma(inputInformation);
+            Course course = validator.validateCourse(splitInformation[0]);
+            Level level = validator.validateLevel(splitInformation[1]);
+            Mission mission = validator.validateMission(level, splitInformation[2]);
+            inputPair(course, mission);
+            outputView.printPairList(course, mission);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             pairMatch();
@@ -60,5 +70,21 @@ public class PairController {
 
     public void initialPair() {
 
+    }
+
+    public void inputPair(Course course, Mission mission) {
+        List<String> crewList = shuffleStringCrew(course);
+        PairList pairList = new PairList();
+        Pair pair = new Pair();
+
+        mission.addPairMap(course, pairList);
+    }
+
+    public void addPairList(PairList pairList, Pair pair){
+        pairList.addPair(pair);
+    }
+
+    public List<String> shuffleStringCrew(Course course) {
+        return Randoms.shuffle(course.getStringCrewList());
     }
 }

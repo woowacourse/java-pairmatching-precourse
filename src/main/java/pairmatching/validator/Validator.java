@@ -2,6 +2,7 @@ package pairmatching.validator;
 
 import pairmatching.model.Course;
 import pairmatching.model.Level;
+import pairmatching.model.Mission;
 
 import java.util.Arrays;
 
@@ -14,12 +15,6 @@ public class Validator {
         }
     }
 
-    public void validateInputInformation(String information) {
-        String[] splitInformation = validateCountComma(information);
-        validateCourse(splitInformation[0]);
-        validateLevel(splitInformation[1], splitInformation[2]);
-    }
-
     public String[] validateCountComma(String information) {
         String[] splitInformation = information.split(",");
         if (splitInformation.length != 3) {
@@ -27,27 +22,28 @@ public class Validator {
         }
         return splitInformation;
     }
-    public void validateCourse(String courseName){
-        for(Course course : Course.values()){
-            if(course.getName().equals(courseName)){
-                return;
+
+    public Course validateCourse(String courseName) {
+        for (Course course : Course.values()) {
+            if (course.getName().equals(courseName)) {
+                return course;
             }
         }
         throw new IllegalArgumentException("존재하지 않는 과정입니다.");
     }
 
-    public void validateLevel(String inputLevel, String inputMission) {
+    public Level validateLevel(String inputLevel) {
         inputLevel = validateExistSpace(inputLevel);
         Level level = validateExistLevel(inputLevel);
         if (level == null) {
             throw new IllegalArgumentException("존재하지 않는 레벨입니다.");
         }
-        validateMission(level, inputMission);
+        return level;
     }
 
-    public void validateMission(Level level, String inputMission) {
+    public Mission validateMission(Level level, String inputMission) {
         inputMission = validateExistSpace(inputMission);
-        validateExistMission(level, inputMission);
+        return validateExistMission(level, inputMission);
     }
 
     public String validateExistSpace(String string) {
@@ -66,9 +62,11 @@ public class Validator {
         return null;
     }
 
-    public void validateExistMission(Level level, String mission) {
-        if (!level.getMissions().contains(mission)) {
+    public Mission validateExistMission(Level level, String missionName) {
+        Mission mission = level.findMissionByName(missionName);
+        if (mission == null) {
             throw new IllegalArgumentException("존재하지 않는 미션입니다.");
         }
+        return mission;
     }
 }

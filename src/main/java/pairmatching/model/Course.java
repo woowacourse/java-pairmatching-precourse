@@ -9,6 +9,7 @@ public enum Course {
 
     private String name;
     private List<Crew> crewList = new ArrayList<>();
+    private List<String> stringCrewList = new ArrayList<>();
 
     Course(String name) {
         this.name = name;
@@ -25,4 +26,13 @@ public enum Course {
     public List<Crew> getCrewList() {
         return crewList;
     }
+
+    public void addStringCrew(String name) {
+        stringCrewList.add(name);
+    }
+
+    public List<String> getStringCrewList() {
+        return stringCrewList;
+    }
+
 }

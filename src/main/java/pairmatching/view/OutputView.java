@@ -1,7 +1,6 @@
 package pairmatching.view;
 
-import pairmatching.model.Course;
-import pairmatching.model.Level;
+import pairmatching.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +33,23 @@ public class OutputView {
         }
     }
 
-    private void printMission(ArrayList<String> missions) {
-        System.out.println(String.join(" | ", missions));
+    private void printMission(ArrayList<Mission> missions) {
+        ArrayList<String> stringList = new ArrayList<>();
+        for (Mission mission : missions) {
+            stringList.add(mission.getName());
+        }
+        System.out.println(String.join(" | ", stringList));
+    }
+
+    public void printPairList(Course course, Mission mission) {
+        PairList pairList = mission.getPairList(course);
+        System.out.println(pairList.getPairListLength());
+        for (Pair pair : pairList.getPairList()) {
+            printPair(pair);
+        }
+    }
+
+    public void printPair(Pair pair) {
+        System.out.println(String.join(":", pair.getPair()));
     }
 }
