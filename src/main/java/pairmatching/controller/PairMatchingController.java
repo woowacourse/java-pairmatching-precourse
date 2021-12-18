@@ -1,13 +1,22 @@
 package pairmatching.controller;
 
+import pairmatching.model.Matching;
+import pairmatching.model.MatchingHistory;
 import pairmatching.model.enums.Mission;
 import pairmatching.model.enums.Process;
+import pairmatching.model.process.BackEnd;
+import pairmatching.model.process.FrontEnd;
 import pairmatching.service.MatchingService;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class PairMatchingController {
 	private static final String PAIR_MATCHING = "1";
+	private static final String ORIGIN = "아니오";
+
+	private BackEnd backEnd = new BackEnd();
+	private FrontEnd frontEnd = new FrontEnd();
+	private MatchingHistory matchingHistory = new MatchingHistory();
 
 	public void selectMenu() {
 		try {
@@ -25,9 +34,32 @@ public class PairMatchingController {
 	}
 
 	private void matchPair() {
-		OutputView.printProcessAndMission(Process.getProcessMessage(), Mission.getMissionMessage());
-		String matchingInput = InputView.getMatchingInput();
-		MatchingService matchingService = new MatchingService();
-		matchingService.validateMatching(matchingInput);
+		try {
+			OutputView.printProcessAndMission(Process.getProcessMessage(), Mission.getMissionMessage());
+			String matchingInput = InputView.getMatchingInput();
+			MatchingService matchingService = new MatchingService();
+			Matching newMatching = matchingService.getMatching(matchingInput);
+			newMatching = selectOriginOrNew(newMatching);
+		} catch (IllegalArgumentException exception) {
+			System.out.println(exception.getMessage());
+			matchPair();
+		}
+	}
+
+	private Matching selectOriginOrNew(Matching newMatching) {
+		if (matchingHistory.has(newMatching)) {
+			newMatching = getOriginalOrNewMatching(newMatching);
+			return newMatching;
+		}
+		matchingHistory.add(newMatching);
+		return newMatching;
+	}
+
+	private Matching getOriginalOrNewMatching(Matching newMatching) {
+		String originOrRematchNumber = InputView.getOriginOrRematchNumber();
+		if (originOrRematchNumber.equals(ORIGIN)) {
+			newMatching = matchingHistory.getSameMatch(newMatching);
+		}
+		return newMatching;
 	}
 }

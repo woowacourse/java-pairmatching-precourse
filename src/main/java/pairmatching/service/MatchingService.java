@@ -12,7 +12,7 @@ public class MatchingService {
 	private static final int LEVEL = 1;
 	private static final int ASSIGNMENT = 2;
 
-	public Matching validateMatching(String inputMatching) {
+	public Matching getMatching(String inputMatching) {
 		validateMatchingRegex(inputMatching);
 		String[] matching = inputMatching.split(MATCHING_DELIMITER);
 		Process process = Process.getProcessByInput(matching[PROCESS]);
