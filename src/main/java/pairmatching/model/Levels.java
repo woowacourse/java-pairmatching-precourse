@@ -1,6 +1,6 @@
 package pairmatching.model;
 
-public enum Level {
+public enum Levels {
     LEVEL1("레벨1"),
     LEVEL2("레벨2"),
     LEVEL3("레벨3"),
@@ -9,7 +9,7 @@ public enum Level {
 
     private String name;
 
-    Level(String name) {
+    Levels(String name) {
         this.name = name;
     }
 
