@@ -1,15 +1,18 @@
 package pairmatching.domain.matching;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import pairmatching.domain.pair.Pair;
+import pairmatching.domain.pair.Pairs;
 
 public class MatchingResults {
-    private Map<MatchingCondition, List<Pair>> matchingResults = new HashMap<>();
+    private Map<MatchingCondition, Pairs> matchingResults = new HashMap<>();
 
-    public void match(MatchingCondition matchingCondition) {
+    public void add(MatchingCondition matchingCondition, Pairs pairs) {
+        matchingResults.put(matchingCondition, pairs);
+    }
+
+    public void initialize() {
+        matchingResults.clear();
     }
 }

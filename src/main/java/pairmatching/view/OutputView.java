@@ -1,5 +1,7 @@
 package pairmatching.view;
 
+import pairmatching.domain.pair.Pairs;
+
 public class OutputView {
 
     public static final String SEPARATOR_LINE = "#############################################";
@@ -10,6 +12,7 @@ public class OutputView {
     private static final String LEVEL_THREE_MISSION = "  - 레벨3: ";
     private static final String LEVEL_FOUR_MISSION = "  - 레벨4: 성능개선 | 배포";
     private static final String LEVEL_FIVE_MISSION = "  - 레벨5: ";
+    public static final String PAIR_MATCHING_RESULT = "페어 매칭 결과입니다.";
 
     public static void showCoursesAndMissions() {
         System.out.println(SEPARATOR_LINE);
@@ -21,5 +24,10 @@ public class OutputView {
         System.out.println(LEVEL_FOUR_MISSION);
         System.out.println(LEVEL_FIVE_MISSION);
         System.out.println(SEPARATOR_LINE);
+    }
+
+    public static void showPairs(Pairs pairs) {
+        System.out.println(PAIR_MATCHING_RESULT);
+        System.out.println(pairs.toString());
     }
 }

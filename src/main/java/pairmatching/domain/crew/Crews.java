@@ -20,7 +20,7 @@ public class Crews {
         this.crews.put(new Course(courseEnum.getName()), crewList);
     }
 
-    public Pairs match(MatchingCondition matchingCondition) {
+    public Pairs getMatchResult(MatchingCondition matchingCondition) {
         Pairs pairs = new Pairs();
         ArrayList<Crew> shuffledCrews = (ArrayList<Crew>)getShuffledCrews(matchingCondition);
         while (!shuffledCrews.isEmpty()) {

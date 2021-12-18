@@ -1,12 +1,8 @@
 package pairmatching.controller;
 
-import java.util.List;
-
 import pairmatching.domain.course.enums.CourseEnum;
-import pairmatching.domain.crew.Crew;
 import pairmatching.domain.crew.Crews;
 import pairmatching.domain.matching.MatchingCondition;
-import pairmatching.domain.matching.MatchingResult;
 import pairmatching.domain.matching.MatchingResults;
 import pairmatching.domain.menu.Menu;
 import pairmatching.domain.pair.Pairs;
@@ -51,13 +47,15 @@ public class PairmatchingController {
     private void executePairMatching() {
         OutputView.showCoursesAndMissions();
         MatchingCondition matchingCondition = InputView.requestMatchingCondition();
-        Pairs pairs = crews.match(matchingCondition);
-        System.out.println(pairs);
+        Pairs pairs = crews.getMatchResult(matchingCondition);
+        OutputView.showPairs(pairs);
+        matchingResults.add(matchingCondition, pairs);
     }
 
     private void executeReadPair() {
     }
 
     private void executeInitializePair() {
+        matchingResults.initialize();
     }
 }
