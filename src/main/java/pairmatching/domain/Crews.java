@@ -1,9 +1,12 @@
 package pairmatching.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import pairmatching.exception.CrewNotFoundException;
+import pairmatching.exception.CrewsNameDuplicateException;
 
 public class Crews {
 
@@ -21,6 +24,17 @@ public class Crews {
         names.stream()
             .map(name -> new Crew(course, name))
             .forEach(crews::add);
+        checkDuplicateCourseCrew(course);
+    }
+
+    private void checkDuplicateCourseCrew(Course course) {
+        List<String> crews = crews(course).stream()
+            .map(Crew::name)
+            .collect(Collectors.toList());
+        Set<String> crewSet = new HashSet<>(crews);
+        if (crews.size() != crewSet.size()) {
+            throw new CrewsNameDuplicateException();
+        }
     }
 
     public void addBackEndCrews(List<String> names) {
