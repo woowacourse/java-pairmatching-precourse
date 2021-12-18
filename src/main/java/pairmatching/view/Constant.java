@@ -22,6 +22,7 @@ public class Constant {
     public static final String AND = " : ";
     public static final String OR = " | ";
     public static final String TAP = "  - ";
+    public static final String INPUT_DELIMITER = ", ";
 
     public static final String COURSE = "과정: ";
     public static final String MISSION = "미션:";
