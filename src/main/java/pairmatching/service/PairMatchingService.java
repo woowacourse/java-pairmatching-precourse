@@ -19,11 +19,6 @@ import static pairmatching.view.OutputView.*;
 
 public class PairMatchingService {
 
-    public void run() {
-        showBackgroundInfo();
-        postNewMatchResult();
-    }
-
     public void readMatchResult() {
         showBackgroundInfo();
         String optionsInput = requestPairMatchingOptionsInput();
@@ -36,17 +31,33 @@ public class PairMatchingService {
     }
 
     public void postNewMatchResult() {
+        showBackgroundInfo();
         String optionsInput = requestPairMatchingOptionsInput();
         MatchResult existingResult = MatchResultRepository.getMatchResultByOptions(optionsInput);
         if (!confirmPostNewMatchResult(existingResult)) {
             return;
         }
 
+        MatchResult matchResult = generateValidMatchResult(optionsInput);
+        if (matchResult == null) {
+            postNewMatchResult();
+        }
+        saveValidMatchResult(matchResult);
+    }
 
-        List<Pair> pairs = returnMatchResult();
-        MatchResult matchResult = new MatchResult(optionsInput, pairs);
-        boolean isValid = validateNoDuplicateHistory(pairs, matchResult.getLevel());
+    private MatchResult generateValidMatchResult(String optionsInput) {
+        int trialNum = 0;
+        while (trialNum < 3) {
+            List<Pair> pairs = returnMatchResult();
+            MatchResult matchResult = new MatchResult(optionsInput, pairs);
+            boolean isValid = validateNoDuplicateHistory(pairs, matchResult.getLevel());
+            if (isValid) return matchResult;
+            trialNum++;
+        }
+        return null;
+    }
 
+    private void saveValidMatchResult(MatchResult matchResult) {
         MatchResultRepository.addMatchResult(matchResult);
         saveAllPairHistory(matchResult.getPairs(), matchResult.getLevel());
         showMatchResult(matchResult);
