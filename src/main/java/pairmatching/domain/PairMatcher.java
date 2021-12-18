@@ -1,8 +1,14 @@
 package pairmatching.domain;
 
 import pairmatching.domain.input.FunctionType;
+import pairmatching.domain.matching.Matchings;
 
 public class PairMatcher {
+	private Matchings matchings;
+
+	public PairMatcher() {
+		this.matchings = Matchings.newInstance();
+	}
 
 	public void run(String inputFunctionNumber) {
 		FunctionType functionType = FunctionType.fromFunctionNumber(inputFunctionNumber);
@@ -28,7 +34,10 @@ public class PairMatcher {
 
 	private void viewPairs() {}
 
-	private void resetPairs() {}
+	private void resetPairs() {
+		matchings.reset();
+	}
 
-	private void exit() {}
+	private void exit() {
+	}
 }
