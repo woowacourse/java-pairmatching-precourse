@@ -21,4 +21,10 @@ public class MatchingHistory {
 	public void add(Matching newMatching) {
 		history.add(newMatching);
 	}
+
+	public boolean hasSameCombination(Matching newMatching) {
+		return history.stream()
+			.filter(matching -> matching.getLevel() == newMatching.getLevel())
+			.anyMatch(matching -> matching.hasSameCombination(newMatching));
+	}
 }

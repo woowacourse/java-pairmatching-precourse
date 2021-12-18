@@ -13,6 +13,7 @@ import pairmatching.view.OutputView;
 public class PairMatchingController {
 	private static final String PAIR_MATCHING = "1";
 	private static final String ORIGIN = "아니오";
+	private static final int COMBINATION_COUNT = 3;
 
 	private BackEnd backEnd = new BackEnd();
 	private FrontEnd frontEnd = new FrontEnd();
@@ -40,8 +41,7 @@ public class PairMatchingController {
 			MatchingService matchingService = new MatchingService();
 			Matching newMatching = matchingService.getMatching(matchingInput);
 			newMatching = selectOriginOrNew(newMatching);
-			newMatching.makeCombination();
-			System.out.println(newMatching);
+			String newMatchingCombination = getMatchingCombination(newMatching);
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
 			matchPair();
@@ -53,7 +53,6 @@ public class PairMatchingController {
 			newMatching = getOriginalOrNewMatching(newMatching);
 			return newMatching;
 		}
-		matchingHistory.add(newMatching);
 		return newMatching;
 	}
 
@@ -63,5 +62,17 @@ public class PairMatchingController {
 			newMatching = matchingHistory.getSameMatch(newMatching);
 		}
 		return newMatching;
+	}
+
+	private String getMatchingCombination(Matching newMatching) {
+		for (int count = 0; count < COMBINATION_COUNT; count++) {
+			newMatching.makeCombination();
+			if (!matchingHistory.hasSameCombination(newMatching)) {
+				matchingHistory.add(newMatching);
+				break;
+			}
+			newMatching.deleteCombination();
+		}
+		return newMatching.getCombinationMessage();
 	}
 }

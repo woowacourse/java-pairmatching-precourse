@@ -13,6 +13,8 @@ import pairmatching.model.process.FrontEnd;
 import pairmatching.model.process.ProcessCrew;
 
 public class Matching {
+	private static final String NAME_DELIMITER = " : ";
+
 	private Process process;
 	private Level level;
 	private Assignment assignment;
@@ -75,5 +77,33 @@ public class Matching {
 
 	public Set<Set<String>> getCombination() {
 		return combination;
+	}
+
+	public Level getLevel() {
+		return level;
+	}
+
+	public boolean hasSameCombination(Matching newMatching) {
+		for (Set<String> set : combination) {
+			if (newMatching.combination.contains(set)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void deleteCombination() {
+		combination = new HashSet<>();
+	}
+
+	public String getCombinationMessage() {
+		if (combination.size() == 0) {
+			throw new IllegalArgumentException("[ERROR] 매칭을 할 수 없습니다.");
+		}
+		StringBuilder result = new StringBuilder();
+		combination.forEach(
+			set -> result.append(String.join(NAME_DELIMITER, set) + "\n")
+		);
+		return result.toString();
 	}
 }
