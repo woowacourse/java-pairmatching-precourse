@@ -9,4 +9,12 @@ public enum Course {
     Course(String name) {
         this.name = name;
     }
+
+    public static Course getCourseName(String name) {
+        for(Course course : Course.values()) {
+            if(course.name.equals(name))
+                return course;
+        }
+        return null;
+    }
 }

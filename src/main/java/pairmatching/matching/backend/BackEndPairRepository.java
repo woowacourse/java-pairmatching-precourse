@@ -31,4 +31,15 @@ public class BackEndPairRepository {
         }
         return sameLevelPairs;
     }
+
+    public List<Pair> findAllByLevelAndMission(Level level, String mission) {
+        List<Pair> sameLevelPairs = findAllByLevel(level);
+
+        List<Pair> result = new ArrayList<>();
+        for(Pair pair : sameLevelPairs) {
+            if(pair.isSameMission(mission))
+                result.add(pair);
+        }
+        return result;
+    }
 }

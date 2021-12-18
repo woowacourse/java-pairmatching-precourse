@@ -4,9 +4,11 @@ import pairmatching.crew.Course;
 import pairmatching.crew.Crew;
 import pairmatching.crew.Level;
 import pairmatching.matching.CourseMatchingService;
+import pairmatching.matching.MatchingService;
 import pairmatching.matching.Pair;
 import pairmatching.matching.mathcingtitle.MatchingTitle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BackEndMatchingService implements CourseMatchingService {
@@ -29,7 +31,7 @@ public class BackEndMatchingService implements CourseMatchingService {
 
     public List<Pair> getPair(List<Crew> crews, Level level, String mission) {
         for(int i = 0; i < 3; ++i) {
-            List<Pair> pairs = createPair(crews, level);
+            List<Pair> pairs = createPair(crews, level, mission);
             if(isNotDuplicateSameLevel(pairs, level)){
                 savePair(pairs);
                 saveMatchingTitle(level, mission);
@@ -60,5 +62,18 @@ public class BackEndMatchingService implements CourseMatchingService {
             }
         }
         return true;
+    }
+
+    public boolean isExistMatching(Level level, String mission) {
+        List<MatchingTitle> titles = backEndMatchingTitleRepository.findAll();
+        for(MatchingTitle title : titles) {
+            if(title.isSame(level, mission))
+                return true;
+        }
+        return false;
+    }
+
+    public List<Pair> findPair(Level level, String mission) {
+        return backEndPairRepository.findAllByLevelAndMission(level, mission);
     }
 }

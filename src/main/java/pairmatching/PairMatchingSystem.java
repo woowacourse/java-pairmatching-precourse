@@ -50,6 +50,7 @@ public class PairMatchingSystem {
         String inputMatchingMenu = Console.readLine();
         //TODO: 데이터 검증
         List<String> data = separatedData(inputMatchingMenu);
+        matchingController.printPairMatching(data);
     }
 
     private void initializeMatching() {}

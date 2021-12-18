@@ -13,7 +13,7 @@ public interface CourseMatchingService {
 
     void savePair(List<Pair> pairs);
 
-    default List<Pair> createPair(List<Crew> crews, Level level) {
+    default List<Pair> createPair(List<Crew> crews, Level level, String mission) {
         List<Crew> shuffledCrew = Randoms.shuffle(crews);
         int crewCount = (shuffledCrew.size() + 1) / 2;
 
@@ -21,7 +21,7 @@ public interface CourseMatchingService {
         for(int i = 0; i < crewCount; i += 2) {
             String firstCrewName = shuffledCrew.get(i).getName();
             String secondCrewName = shuffledCrew.get(i + 1).getName();
-            Pair newPair = Pair.fromTwoCrewName(level, firstCrewName, secondCrewName);
+            Pair newPair = Pair.fromTwoCrewName(level, mission, firstCrewName, secondCrewName);
 
             if(crewCount - 1 == i + 2) {
                 String thirdCrewName = shuffledCrew.get(i + 2).getName();

@@ -11,6 +11,9 @@ import java.util.List;
 
 public class MatchingService {
 
+    private final String BACKEND = "백엔드";
+    private final String FRONTEND = "프론트엔드";
+
     private final CrewService crewService;
     private final BackEndMatchingService backEndMatchingService;
     private final FrontEndMatchingService frontEndMatchingService;
@@ -39,4 +42,24 @@ public class MatchingService {
         return frontEndMatchingService.getPair(crews, level, mission);
     }
 
+    public List<Pair> getPair(Course course, Level level, String mission) {
+        if(isExistMatchingTitle(course, level, mission)){
+            if(course.equals(Course.BACKEND))
+                return backEndMatchingService.findPair(level, mission);
+
+            if(course.equals(Course.FRONTEND))
+                return frontEndMatchingService.findPair(level, mission);
+        }
+        return null;
+    }
+
+    public boolean isExistMatchingTitle(Course course, Level level, String mission) {
+        if(course.equals(Course.BACKEND))
+            return backEndMatchingService.isExistMatching(level, mission);
+
+        if(course.equals(Course.FRONTEND))
+            return frontEndMatchingService.isExistMatching(level, mission);
+
+        return false;
+    }
 }

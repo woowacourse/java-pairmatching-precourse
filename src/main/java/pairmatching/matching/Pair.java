@@ -10,6 +10,7 @@ import java.util.Set;
 public class Pair {
 
     private Level level;
+    private String mission;
     private List<String> crewNames;
     private String firstCrewName;
     private String secondCrewName;
@@ -17,7 +18,7 @@ public class Pair {
 
     private Pair(){}
 
-    public static Pair fromTwoCrewName(Level level, String firstCrewName, String secondCrewName) {
+    public static Pair fromTwoCrewName(Level level, String mission, String firstCrewName, String secondCrewName) {
         Pair pair = new Pair();
         pair.level = level;
         pair.crewNames.add(firstCrewName);
@@ -31,6 +32,10 @@ public class Pair {
 
     public boolean isSameLevel(Level level) {
         return this.level.equals(level);
+    }
+
+    public boolean isSameMission(String mission) {
+        return this.mission.equals(mission);
     }
 
     public boolean isExistPair(Pair pair) {
