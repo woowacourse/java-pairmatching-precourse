@@ -19,6 +19,7 @@ import pairmatching.view.InputView;
 
 public class CrewMatchingController {
 	public static final String DELIMITER_FOR_MATCH_REQUEST = ", ";
+	public static final String INFO_MESSAGE_IF_WANT_TO_REMATCH = "\n매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n네 | 아니오\n";
 	private CrewRepository frontendCrews;
 	private CrewRepository backendCrews;
 	private MissionRepository missions;
@@ -48,11 +49,7 @@ public class CrewMatchingController {
 
 		if (functionOptionFromClient.equals(FunctionOption.MATCH)) {
 			InputView.printCourseInfo();
-			String courseAndMissionInput = InputView.getCourseAndMissionInput();
-			if (hasMatchResult(courseAndMissionInput)) {
-				rematchProcess();
-			}
-			matchByRequest(courseAndMissionInput);
+			matchProcess();
 		} else  if (functionOptionFromClient.equals(FunctionOption.READ)) {
 			InputView.printCourseInfo();
 			InputView.getCourseAndMissionInput();
@@ -61,10 +58,31 @@ public class CrewMatchingController {
 		return true;
 	}
 
-	private void rematchProcess() {
+	private void matchProcess() {
+		String courseAndMissionInput = InputView.getCourseAndMissionInput();
+		if (hasMatchResult(courseAndMissionInput)) {
+			rematchProcess(courseAndMissionInput);
+		} else if (!hasMatchResult(courseAndMissionInput)) {
+			matchByRequest(courseAndMissionInput);
+		}
+	}
 
+	private void rematchProcess(String courseAndMissionInput) {
+		System.out.println(INFO_MESSAGE_IF_WANT_TO_REMATCH);
+		String s = Console.readLine();
+		if (Objects.equals(s, "네")) {
+			matchResults.resetMatchResultByMission(getMissionByCourseInput(courseAndMissionInput));
+			matchByRequest(courseAndMissionInput);
+		} else if (!Objects.equals(s, "네")) {
+			matchProcess();
+		}
+	}
 
-
+	private Mission getMissionByCourseInput(String courseInput) {
+		String[] matchRequest = courseInput.split(DELIMITER_FOR_MATCH_REQUEST);
+		Level level = Level.of(matchRequest[1]);
+		String missionName = matchRequest[2];
+		return missions.getMissionByLevelAndName(level, missionName);
 	}
 
 	private boolean hasMatchResult(String courseAndMissionInput) {

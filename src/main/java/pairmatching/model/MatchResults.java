@@ -73,4 +73,12 @@ public class MatchResults {
 		collect.forEach(e -> resultBuilder.append(e.getPairMemberNames()));
 		return resultBuilder.toString();
 	}
+
+	public void resetMatchResultByMission(Mission mission) {
+		Level levelToRemove = mission.getLevel();
+		String nameToRemove = mission.getName();
+		matchResults.removeIf(match ->
+			match.getMission().getLevel().equals(levelToRemove)
+			&& match.getMission().getName().equals(nameToRemove));
+	}
 }
