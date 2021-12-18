@@ -1,6 +1,7 @@
 package pairmatching.matching;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import pairmatching.ValidatorMessage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class MatchingService {
         } catch (IOException e) {
             throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException();
+            ValidatorMessage.printError(ValidatorMessage.ERROR_MESSAGE + ValidatorMessage.NOT_EXIST_FILE);
         }
     }
 
