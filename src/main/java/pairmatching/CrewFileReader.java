@@ -16,6 +16,7 @@ public class CrewFileReader {
     }
 
     public static List<String> getCrew(boolean isBackend) {
+        System.out.println("getCrew Start");
         List<String> crewList = new ArrayList<>();
 
         try {
@@ -28,6 +29,7 @@ public class CrewFileReader {
                 crewList.add(line);
             }
         } catch (Exception e) {}
+        System.out.println("getCrew Return");
         return crewList;
     }
 

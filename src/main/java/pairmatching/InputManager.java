@@ -22,6 +22,7 @@ public class InputManager {
 
     public static MatchingInfoSet.MatchingKey getMissionKey(String missionString) {
         String[] missionList = missionString.split(", ");
+        checkMissionListSize(missionList);
 
         Course course = Course.of(missionList[0]);
         Level level = Level.of(missionList[1]);
@@ -33,7 +34,6 @@ public class InputManager {
 
     private static void checkMissionListSize(String[] missionList) {
         if (missionList.length != 3) {
-            System.out.println("[ERROR] 과정, 레벨, 미션 형식에 맞게 입력해주세요.");
             throw new IllegalArgumentException();
         }
     }

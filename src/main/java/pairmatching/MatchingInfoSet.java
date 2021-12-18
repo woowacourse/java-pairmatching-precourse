@@ -39,15 +39,21 @@ public class MatchingInfoSet {
             info=allMatchingInfo.get(key);
         }
         info.match(key.isBackend());
+        allMatchingInfo.put(key,info);
     }
 
     public void viewPairMatching(String missionString) {
         MatchingKey key=InputManager.getMissionKey(missionString);
 
         if(allMatchingInfo.containsKey(key)) {
-            allMatchingInfo.get(key).printMatchingInfo();
+            allMatchingInfo.get(key).view();
             return;
         }
         System.out.println("[ERROR] 매칭 이력이 없습니다.");
     }
+
+    public void initializeAllPairMatching(){
+        allMatchingInfo.clear();
+    }
+
 }

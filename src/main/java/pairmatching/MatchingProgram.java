@@ -66,7 +66,7 @@ public class MatchingProgram {
                 matchingInfoSet.performPairMatching(mission);
                 return;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 존재하는 과정, 레벨, 미션을 형식에 맞게 입력하세요.");
+                System.out.println("[ERROR] 과정, 레벨, 미션 형식에 맞게 입력해주세요.");
             }
         }
     }
@@ -79,14 +79,13 @@ public class MatchingProgram {
                 matchingInfoSet.viewPairMatching(mission);
                 return;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 존재하는 과정, 레벨, 미션을 형식에 맞게 입력하세요.");
+                System.out.println("[ERROR] 과정, 레벨, 미션 형식에 맞게 입력해주세요.");
             }
         }
     }
 
     private void pairInitializing() {
-
-        System.out.println("pairInitializing");
+        matchingInfoSet.initializeAllPairMatching();
     }
 
     private void quitProgram() {
