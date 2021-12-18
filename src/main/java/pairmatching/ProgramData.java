@@ -9,12 +9,12 @@ import java.util.Map;
 public class ProgramData {
 	private static List<String> backEndCrewNames;
 	private static List<String> frontEndCrewNames;
-	private static List<PairMatcher> backEndLevel1History;
-	private static List<PairMatcher> backEndLevel3History;
-	private static List<PairMatcher> backEndLevel4History;
-	private static List<PairMatcher> frontEndLevel1History;
-	private static List<PairMatcher> frontEndLevel3History;
-	private static List<PairMatcher> frontEndLevel4History;
+	private static List<PairMatchRecorder> backEndLevel1History;
+	private static List<PairMatchRecorder> backEndLevel3History;
+	private static List<PairMatchRecorder> backEndLevel4History;
+	private static List<PairMatchRecorder> frontEndLevel1History;
+	private static List<PairMatchRecorder> frontEndLevel3History;
+	private static List<PairMatchRecorder> frontEndLevel4History;
 
 	ProgramData() throws IOException {
 		backEndCrewNames = Crew.getCrewNames(Course.BACKEND);
@@ -22,8 +22,8 @@ public class ProgramData {
 
 	}
 
-	public boolean checkDuplicatedPair(Course course, Level level, String mission, HashMap<String, String> pairMap){
-		List<PairMatcher> checkList = new ArrayList<>();
+	public List<PairMatchRecorder> getMatchingHistory(Course course, Level level, String mission, HashMap<String, String> pairMap){
+		List<PairMatchRecorder> checkList = new ArrayList<>();
 
 		if(course == Course.BACKEND){
 			if(level == Level.LEVEL1){
@@ -43,7 +43,7 @@ public class ProgramData {
 			}
 		}
 
-		return true;
+		return checkList;
 	}
 
 	public static List<String> getCrewNames(Course course){
