@@ -45,17 +45,27 @@ public class PairMatchingController {
         try {
             String value = Input.matching();
             if (pairs.getNames(value) != null) {
-                if (Input.rematching().equals("아니오")) {
-                    matching();
-                }
+                notFirstMatching(value);
             }
-            pairMatching.validate(value);
-            List<String> names = pairMatching.matching(value);
-            pairs.add(names, value);
-            Output.matching(names);
-            System.out.println();
+            if (pairs.getNames(value) == null) {
+                firstMatching(value);
+            }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private void firstMatching(String value) {
+        pairMatching.validate(value);
+        List<String> names = pairMatching.matching(value);
+        pairs.add(names, value);
+        Output.matching(names);
+        System.out.println();
+    }
+
+    private void notFirstMatching(String value) {
+        if (Input.rematching().equals("아니오")) {
+            matching();
         }
     }
 
