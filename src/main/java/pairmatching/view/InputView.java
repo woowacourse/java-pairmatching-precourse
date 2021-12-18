@@ -29,4 +29,10 @@ public class InputView {
 			return getInputOfCourseAndLevelAndMission();
 		}
 	}
+
+	public static String getInputOfRematching() {
+		System.out.println(Constant.REMATCHING);
+		System.out.println(Constant.YES_OR_NO);
+		return Console.readLine();
+	}
 }
