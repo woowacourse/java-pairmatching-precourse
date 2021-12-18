@@ -19,7 +19,6 @@ public class CrewPair {
 			crewList = ((FrontendCrews)crews).getFrontendCrews();
 		}
 
-		matchingCrews(crewList);
 	}
 
 	private void matchingCrews(List<Crew> crews) {
