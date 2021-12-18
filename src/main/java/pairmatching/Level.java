@@ -10,27 +10,19 @@ public enum Level {
     LEVEL5("레벨5");
 
     private String name;
-    private List<Mission> missionList=new ArrayList<>();
+    private List<String> missionList=new ArrayList<>();
 
     Level(String name) {
         this.name = name;
     }
 
-    public void addMission(Mission mission){
-        this.missionList.add(mission);
+    public void addMission(String missionName){
+        this.missionList.add(missionName);
     }
 
     public void printLevel(){
         System.out.print("  - "+name+": ");
-
-        if(missionList.size()>0){
-            missionList.get(0).printMission();
-            for(Mission m:missionList){
-                System.out.print(" | ");
-                m.printMission();
-            }
-        }
-
-        System.out.println();
+        ArrayList<String> missionList=new ArrayList<>();
+        System.out.println(String.join(" | ",missionList));
     }
 }

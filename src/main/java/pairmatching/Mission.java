@@ -1,5 +1,7 @@
 package pairmatching;
 
+import java.util.ArrayList;
+
 public enum Mission {
     RACING("자동차경주",Level.LEVEL1),
     LOTTO("로또",Level.LEVEL1),
@@ -16,11 +18,13 @@ public enum Mission {
     Mission(String name,Level level) {
         this.name = name;
         this.level = level;
+        this.level.addMission(name);
+     }
 
-        level.addMission(this);
-    }
-
-    public void printMission(){
-        System.out.print(name);
-    }
+     public void checkLevel(String levelName){
+        if(this.level==Level.valueOf(levelName)){
+            return;
+        }
+        throw new IllegalArgumentException();
+     }
 }
