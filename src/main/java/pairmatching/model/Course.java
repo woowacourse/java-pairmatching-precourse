@@ -24,4 +24,11 @@ public enum Course {
 			.collect(Collectors.toList());
 	}
 
+	public boolean isBackend() {
+		return this == BACKEND;
+	}
+
+	public boolean isFrontend() {
+		return this == FRONTEND;
+	}
 }
