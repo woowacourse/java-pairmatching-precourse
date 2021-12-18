@@ -16,4 +16,12 @@ public class OutputView {
             System.out.println(fairs.get(i) + " : " + fairs.get(i+1));
         }
     }
+
+    public static void printWrongCLM() {
+        System.out.println();
+    }
+
+    public static void printfairInitMsg() {
+        System.out.println(FAIR_INIT_MSG);
+    }
 }

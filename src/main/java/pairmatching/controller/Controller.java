@@ -99,23 +99,25 @@ public class Controller {
     }
 
     private static void fairLookUpFunction() {
-        // try {
-        //     String userInput = InputView.selectCLMMenu();
-        //     inputValidator.CLM(userInput);
-        // } catch (IllegalArgumentException e) {
-        //     OutputView.printErrorMsg(e);
-        //     fairMatching();
-        // }
+        try {
+            userInput = InputView.selectCLMMenu();
+            inputValidator.CLM(userInput);
+            CLM clm = new CLM(splitCLM(userInput));
+            if (!checkFairMatchKey(clm) || fairMatch.get(clm).isEmpty()) {
+                OutputView.printWrongCLM();
+                fairLookUpFunction();
+            } else {
+                OutputView.printFairMatchingResult(fairMatch.get(clm));
+            }
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMsg(e);
+            fairLookUpFunction();
+        }
     }
 
     private static void fairInitFunction() {
-        // try {
-        //     String userInput = InputView.selectCLMMenu();
-        //     inputValidator.CLM(userInput);
-        // } catch (IllegalArgumentException e) {
-        //     OutputView.printErrorMsg(e);
-        //     fairMatching();
-        // }
+        OutputView.printfairInitMsg();
+        fairMatch = new HashMap<>();
     }
 
 }

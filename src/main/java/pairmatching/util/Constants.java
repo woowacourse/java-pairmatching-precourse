@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Constants {
-    // public static final String
     public static final String BACKEND_CREW_DIR = "src/main/resources/backend-crew.md";
     public static final String FRONTEND_CREW_DIR ="src/main/resources/frontend-crew.md";
 
@@ -39,6 +38,8 @@ public class Constants {
     public static final String ASK_REMATCHING_MSG = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
     public static final String REMATCHING_OPTION_MSG = "네 | 아니오";
 
+    public static final String FAIR_INIT_MSG = "초기화 되었습니다.";
+
     public static final String CLM_PATTERN = "(\\w+), (\\w+), (\\w+)";
     public static final String FUNCTION_PATTERN = "[123Q]";
 
@@ -47,6 +48,7 @@ public class Constants {
     public static final String ERROR = "[ERROR] ";
     public static final String WRONG_FUNCTION_PATTERN = "잘못된 기능을 선택하셨습니다.";
     public static final String WRONG_CLM_PATTERN = "잘못된 과정, 레벨, 미션을 입력하셨습니다.";
+    public static final String WRONG_CLM_KEY = "존재하지 않는 과정, 레벨, 미션입니다.";
 
     public static final List<String> COURSES = new ArrayList<>(
         Arrays.asList(
