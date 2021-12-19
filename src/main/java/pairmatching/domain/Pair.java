@@ -1,29 +1,36 @@
 package pairmatching.domain;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Pair {
-	private Set<String> crewSet;
+import pairmatching.constant.Level;
+import pairmatching.exception.MatchFailException;
 
-	public Pair(List<String> crews) {
+public class Pair {
+	private Set<Crew> crewSet;
+
+	public Pair(Level level, Crew... crews) throws MatchFailException {
 		this.crewSet = new HashSet<>();
-		crewSet.addAll(crews);
+		Arrays.stream(crews).forEach(crew -> validateCrew(level, crew));
+		crewSet.addAll(Arrays.asList(crews));
+		Arrays.stream(crews).forEach(crew -> addHistory(level, crew));
 	}
 
-	public void addCrew(String name) {
-		crewSet.add(name);
+	private void validateCrew(Level level, Crew crew) {
+		boolean didMeet = crewSet.stream().anyMatch(crewExisting -> crewExisting.didMeet(level, crew.getName()));
+		if (didMeet)
+			throw new MatchFailException("매칭에 실패했습니다. 이미 만난 적 있는 페어가 있습니다");
+	}
+
+	private void addHistory(Level level, Crew crew) {
+		crewSet.forEach(crewExisting -> crewExisting.addHistory(level, crew.getName()));
 	}
 
 	public List<String> getCrews() {
-		return new ArrayList<>(crewSet);
-	}
-
-	public List<String> getCrewsExcept(String name) {
-		return crewSet.stream().filter(s -> !s.equals(name)).collect(Collectors.toList());
+		return crewSet.stream().map(Crew::getName).collect(Collectors.toList());
 	}
 
 	public int size() {
@@ -32,6 +39,6 @@ public class Pair {
 
 	@Override
 	public String toString() {
-		return String.join(" : ", crewSet);
+		return String.join(" : ", getCrews());
 	}
 }

@@ -9,19 +9,29 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import pairmatching.constant.Course;
+
 public class CrewReadUtils {
 
 	ClassLoader classLoader;
 
-	public CrewReadUtils(){
+	public CrewReadUtils() {
 		this.classLoader = getClass().getClassLoader();
 	}
 
-	public List<String> readBackendCrews() {
+	public List<String> readCrews(Course course) {
+		if (course == Course.BACKEND)
+			return readBackendCrews();
+		if (course == Course.FRONTEND)
+			return readFrontendCrews();
+		return null;
+	}
+
+	private List<String> readBackendCrews() {
 		return readLines("backend-crew.md");
 	}
 
-	public List<String> readFrontendCrews() {
+	private List<String> readFrontendCrews() {
 		return readLines("frontend-crew.md");
 	}
 

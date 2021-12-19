@@ -17,15 +17,14 @@ public enum Level {
 		this.name = name;
 	}
 
-	// 추가 기능 구현
 	public String getName() {
 		return name;
 	}
 
 	public static Level ofName(String name) {
-		List<Level> levels = Arrays.stream(Level.values())
+		return Arrays.stream(Level.values())
 			.filter(level -> level.getName().equals(name))
-			.collect(Collectors.toList());
-		return levels.get(0);
+			.findAny()
+			.orElseThrow(() -> new IllegalArgumentException("[ERROR]" + "잘못된 레벨입니다."));
 	}
 }

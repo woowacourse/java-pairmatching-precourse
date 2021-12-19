@@ -1,5 +1,6 @@
 package pairmatching.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import pairmatching.constant.Course;
@@ -11,11 +12,11 @@ public class Mission {
 	private String name;
 	private List<Pair> pairList;
 
-	public Mission(Course course, Level level, String name, List<Pair> pairList) {
+	public Mission(Course course, Level level, String name) {
 		this.course = course;
 		this.level = level;
 		this.name = name;
-		this.pairList = pairList;
+		this.pairList = new ArrayList<>();
 	}
 
 	public Course getCourse() {
@@ -32,6 +33,10 @@ public class Mission {
 
 	public List<Pair> getPairList() {
 		return pairList;
+	}
+
+	public void setPairList(List<Pair> result) {
+		this.pairList = result;
 	}
 
 	@Override

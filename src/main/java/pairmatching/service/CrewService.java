@@ -1,43 +1,64 @@
 package pairmatching.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.constant.Course;
 import pairmatching.constant.Level;
+import pairmatching.domain.Crew;
+import pairmatching.domain.Mission;
 import pairmatching.domain.Pair;
+import pairmatching.exception.MatchFailException;
 import pairmatching.repository.CrewRepository;
 import pairmatching.util.CrewReadUtils;
 
 public class CrewService {
 	private CrewRepository crewRepository;
 
-	public CrewService() {
+	public CrewService(Course course) {
 		CrewReadUtils crewReadUtils = new CrewReadUtils();
-		List<String> frontendCrews = crewReadUtils.readFrontendCrews();
-		List<String> backendCrews = crewReadUtils.readBackendCrews();
-		this.crewRepository = new CrewRepository(frontendCrews, backendCrews);
+		this.crewRepository = new CrewRepository(course, crewReadUtils.readCrews(course));
 	}
 
-	public List<String> getCrewsShuffled(Course course) {
-		return Randoms.shuffle(crewRepository.getCrews(course));
+	public List<Crew> getCrewsShuffled() {
+		return Randoms.shuffle(crewRepository.getCrewNames())
+			.stream()
+			.map(name -> crewRepository.findByName(name).orElseThrow(MatchFailException::new))
+			.collect(
+				Collectors.toList());
 	}
 
-	public boolean didMeet(Course course, Level level, String name, String opponent) {
-		return crewRepository.findByName(course, name).didMeet(level,opponent);
+	public Mission match(Mission mission, int trialNumber) {
+		try {
+			return matchOnce(mission);
+		} catch (MatchFailException e) {
+			if (trialNumber == 3)
+				throw new MatchFailException("매칭에 실패했습니다");
+			return match(mission, trialNumber + 1);
+		}
 	}
 
-	public void addToHistory(Course course, Level level, List<Pair> pairList) {
-		pairList.forEach(pair -> {
-			addToHistoryEach(course,level,pair);
-		});
+	private Mission matchOnce(Mission mission) throws MatchFailException {
+		List<Crew> crews = getCrewsShuffled();
+		List<Pair> result = new ArrayList<>();
+
+		int index = 0;
+		while (index < crews.size()) {
+			Pair pair = getPairFromCrews(crews, mission.getLevel(), index);
+			result.add(pair);
+			index += pair.size();
+		}
+
+		mission.setPairList(result);
+		return mission;
 	}
 
-	private void addToHistoryEach(Course course, Level level, Pair pair){
-		pair.getCrews().forEach(s -> {
-			pair.getCrewsExcept(s).forEach(s1 -> {
-				crewRepository.findByName(course, s).addHistory(level, s1);
-			});
-		});
+	private Pair getPairFromCrews(List<Crew> crews, Level level, int index) {
+		if (crews.size() - index == 3)
+			return new Pair(level, crews.get(index), crews.get(index + 1),
+				crews.get(index + 2));
+		return new Pair(level, crews.get(index), crews.get(index + 1));
 	}
 }
