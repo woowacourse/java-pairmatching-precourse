@@ -1,10 +1,10 @@
 package pairmatching.controller.mainmenu;
 
 public enum Option {
-    MATCHING("1", "페어 매칭"),
-    INQUIRY("2", "페어 조회"),
-    INIT("3", "페어 초기화"),
-    QUIT("4", "종료");
+    pairMatching("1", "페어 매칭"),
+    pairSearch("2", "페어 조회"),
+    pairInit("3", "페어 초기화"),
+    end("4", "종료");
 
     private String option;
     private String detail;
