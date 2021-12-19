@@ -39,34 +39,6 @@ public class MainController {
         return null;
     }
 
-<<<<<<< HEAD
-    private void runOptionSelected(String optionSelected) {
-        if (optionSelected.equals(Option.MATCHING.getOption())) {
-
-        }
-        if (optionSelected.equals(Option.INIT.getOption())) {
-
-        }
-        if (optionSelected.equals(Option.INQUIRY.getOption())) {
-
-        }
-    }
-
-    private void printMisionsAvailable() {
-        userView.printMessage("#############################################");
-        userView.printMessage("과정: 백엔드 | 프론트엔드");
-        userView.printMessage("미션:");
-        userView.printMessage("  - 레벨1: 자동차경주 | 로또 | 숫자야구게임");
-        userView.printMessage("  - 레벨2: 장바구니 | 결제 | 지하철노선도");
-        userView.printMessage("  - 레벨3: ");
-        userView.printMessage("  - 레벨4: 성능개선 | 배포");
-        userView.printMessage("  - 레벨5: \n");
-        userView.printMessage("#############################################");
-    }
-
-
-=======
->>>>>>> parent of 77a8c73 (feat: 초기 미션 생성 기능 구현)
     private void initializeCrews() {
         initializeBackEndCrews();
         initializeFrontEndCrews();
