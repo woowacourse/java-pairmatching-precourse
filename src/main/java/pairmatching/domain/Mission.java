@@ -5,14 +5,16 @@ import java.util.List;
 
 import pairmatching.constant.Course;
 import pairmatching.constant.Level;
+import pairmatching.constant.MissionName;
 
 public class Mission {
-	private Course course;
-	private Level level;
-	private String name;
+	private final Course course;
+	private final Level level;
+	private final String name;
 	private List<Pair> pairList;
 
 	public Mission(Course course, Level level, String name) {
+		validateName(name);
 		this.course = course;
 		this.level = level;
 		this.name = name;
@@ -31,8 +33,9 @@ public class Mission {
 		return name;
 	}
 
-	public List<Pair> getPairList() {
-		return pairList;
+	public void validateName(String name) {
+		if (!MissionName.ofLevel(getLevel()).contains(name))
+			throw new IllegalArgumentException("[ERROR] " + "그런 미션은 없습니다");
 	}
 
 	public void setPairList(List<Pair> result) {
