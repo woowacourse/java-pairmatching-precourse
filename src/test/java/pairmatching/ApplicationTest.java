@@ -18,7 +18,12 @@ class ApplicationTest extends NsTest {
         assertShuffleTest(
             () -> {
                 run("1", "백엔드, 레벨1, 자동차경주", "Q");
-                assertThat(output()).contains("백호 : 태웅", "치수 : 태섭");
+                assertThat(output()).satisfies(s -> {
+                    assertThat(s.contains("백호"));
+                    assertThat(s.contains("태웅"));
+                    assertThat(s.contains("태섭"));
+                    assertThat(s.contains("치수"));
+                });
             },
             Arrays.asList("태웅", "백호", "치수", "태섭")
         );
