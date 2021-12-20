@@ -2,11 +2,9 @@ package pairmatching.controller;
 
 import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 
 import pairmatching.constant.Course;
-import pairmatching.constant.Level;
 import pairmatching.domain.Mission;
 import pairmatching.exception.MatchFailException;
 import pairmatching.service.CrewService;
@@ -16,6 +14,9 @@ import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class MatcherController {
+
+	public static final String FUNCTION_PAIR_MATCH = "1";
+	public static final String FUNCTION_FIND_MATCHING = "2";
 
 	private final Map<Course, CrewService> crewServiceMap;
 	private final Map<Course, MissionService> missionServiceMap;
@@ -31,9 +32,7 @@ public class MatcherController {
 
 	public Mission requestMatchInfo() {
 		try {
-			String input = InputView.inputMatchInfo();
-			List<String> infoList = Arrays.asList(input.split(", ", -1));
-			return new Mission(Course.ofName(infoList.get(0)), Level.ofName(infoList.get(1)), infoList.get(2));
+			return InputView.inputMatchRequest();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return requestMatchInfo();
@@ -56,13 +55,13 @@ public class MatcherController {
 
 	public boolean operateLoop() {
 		String input = requestFunctionNumber();
-		if (input.equals("1")) {
+		if (input.equals(FUNCTION_PAIR_MATCH)) {
 			Mission mission = match(requestMatchInfo());
 			if (mission != null)
 				OutputView.printMatchInfo(mission);
 			return true;
 		}
-		if (input.equals("2")) {
+		if (input.equals(FUNCTION_FIND_MATCHING)) {
 			printMission(getMission());
 			return true;
 		}
