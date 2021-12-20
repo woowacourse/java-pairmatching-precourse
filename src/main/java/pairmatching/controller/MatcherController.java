@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import pairmatching.constant.Course;
-import pairmatching.constant.ExceptionMessage;
 import pairmatching.constant.Level;
 import pairmatching.domain.Mission;
 import pairmatching.exception.MatchFailException;
 import pairmatching.service.CrewService;
 import pairmatching.service.MissionService;
+import pairmatching.util.CrewReadUtils;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -22,7 +22,8 @@ public class MatcherController {
 
 	public MatcherController() {
 		this.crewServiceMap = new EnumMap<>(Course.class);
-		Arrays.stream(Course.values()).forEach(course -> crewServiceMap.put(course, new CrewService(course)));
+		Arrays.stream(Course.values())
+			.forEach(course -> crewServiceMap.put(course, new CrewService(CrewReadUtils.readCrews(course))));
 
 		this.missionServiceMap = new EnumMap<>(Course.class);
 		Arrays.stream(Course.values()).forEach(course -> missionServiceMap.put(course, new MissionService()));

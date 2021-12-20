@@ -1,15 +1,12 @@
 package pairmatching.domain;
 
-import pairmatching.constant.Course;
 import pairmatching.constant.Level;
 
 public class Crew {
-	private Course course;
-	private String name;
-	private PairHistory pairHistory;
+	private final String name;
+	private final PairHistory pairHistory;
 
-	public Crew(Course course, String name) {
-		this.course = course;
+	public Crew(String name) {
 		this.name = name;
 		this.pairHistory = new PairHistory();
 	}
@@ -23,6 +20,6 @@ public class Crew {
 	}
 
 	public boolean didMeet(Level level, String opponent) {
-		return pairHistory.didMeet(level,opponent);
+		return pairHistory.didMeet(level, opponent);
 	}
 }

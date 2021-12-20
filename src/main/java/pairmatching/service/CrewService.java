@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import pairmatching.constant.Course;
 import pairmatching.constant.ExceptionMessage;
 import pairmatching.constant.Level;
 import pairmatching.domain.Crew;
@@ -13,14 +12,12 @@ import pairmatching.domain.Mission;
 import pairmatching.domain.Pair;
 import pairmatching.exception.MatchFailException;
 import pairmatching.repository.CrewRepository;
-import pairmatching.util.CrewReadUtils;
 
 public class CrewService {
-	private CrewRepository crewRepository;
+	private final CrewRepository crewRepository;
 
-	public CrewService(Course course) {
-		CrewReadUtils crewReadUtils = new CrewReadUtils();
-		this.crewRepository = new CrewRepository(course, crewReadUtils.readCrews(course));
+	public CrewService(List<String> crewNames) {
+		this.crewRepository = new CrewRepository(crewNames);
 	}
 
 	public List<Crew> getCrewsShuffled() {

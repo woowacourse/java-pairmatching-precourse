@@ -10,16 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pairmatching.constant.Course;
+import pairmatching.constant.ExceptionMessage;
 
 public class CrewReadUtils {
+	private static final String BACKEND_CREW_FILE = "backend-crew.md";
+	private static final String FRONTEND_CREW_FILE = "frontend-crew.md";
 
-	ClassLoader classLoader;
-
-	public CrewReadUtils() {
-		this.classLoader = getClass().getClassLoader();
-	}
-
-	public List<String> readCrews(Course course) {
+	public static List<String> readCrews(Course course) {
 		if (course == Course.BACKEND)
 			return readBackendCrews();
 		if (course == Course.FRONTEND)
@@ -27,21 +24,26 @@ public class CrewReadUtils {
 		return null;
 	}
 
-	private List<String> readBackendCrews() {
-		return readLines("backend-crew.md");
+	private static List<String> readBackendCrews() {
+		return readLines(BACKEND_CREW_FILE);
 	}
 
-	private List<String> readFrontendCrews() {
-		return readLines("frontend-crew.md");
+	private static List<String> readFrontendCrews() {
+		return readLines(FRONTEND_CREW_FILE);
 	}
 
-	private List<String> readLines(String fileName) {
+	private static BufferedReader getBufferedReader(String fileName) throws FileNotFoundException {
+		InputStream inputStream = CrewReadUtils.class.getClassLoader().getResourceAsStream(fileName);
+		if (inputStream == null)
+			throw new FileNotFoundException();
+		InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+		return new BufferedReader(inputStreamReader);
+	}
+
+	private static List<String> readLines(String fileName) {
 		List<String> lines = new ArrayList<>();
 		try {
-			InputStream inputStream = getClass().getClassLoader().getResourceAsStream(fileName);
-			InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
-			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
+			BufferedReader bufferedReader = getBufferedReader(fileName);
 			String line;
 			while ((line = bufferedReader.readLine()) != null)
 				lines.add(line);

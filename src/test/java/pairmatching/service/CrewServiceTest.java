@@ -3,7 +3,6 @@ package pairmatching.service;
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
-import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,12 +17,12 @@ class CrewServiceTest {
 
 	@BeforeEach
 	void setUp() {
-		this.crewService = new CrewService(Course.BACKEND);
+		this.crewService = new CrewService(CrewReadUtils.readCrews(Course.BACKEND));
 	}
 
 	@Test
 	void match() {
-		List<String> crewNames = new CrewReadUtils().readCrews(Course.BACKEND);
+		List<String> crewNames = CrewReadUtils.readCrews(Course.BACKEND);
 		Mission mission = new Mission(Course.BACKEND, Level.LEVEL1, "자동차게임");
 		Mission result = crewService.match(mission, 0);
 		Assertions.assertThat(crewNames).allSatisfy(s -> Assertions.assertThat(result.toString()).containsOnlyOnce(s));

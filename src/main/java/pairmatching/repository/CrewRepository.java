@@ -6,15 +6,14 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import pairmatching.constant.Course;
 import pairmatching.domain.Crew;
 
 public class CrewRepository {
-	private Map<String, Crew> crewMap;
+	private final Map<String, Crew> crewMap;
 
-	public CrewRepository(Course course, List<String> crews) {
+	public CrewRepository(List<String> crews) {
 		this.crewMap = new HashMap<>();
-		crews.forEach(name -> crewMap.put(name, new Crew(course, name)));
+		crews.forEach(name -> crewMap.put(name, new Crew(name)));
 	}
 
 	public List<String> getCrewNames() {
