@@ -5,33 +5,27 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import pairmatching.constant.Course;
 import pairmatching.constant.Level;
 import pairmatching.domain.Mission;
 import pairmatching.exception.MatchFailException;
 import pairmatching.service.CrewService;
+import pairmatching.service.MissionService;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class MatcherController {
 
 	private final Map<Course, CrewService> crewServiceMap;
-	private Map<Course, Map<Level, Map<String, Mission>>> missionMap;
+	private final Map<Course, MissionService> missionServiceMap;
 
 	public MatcherController() {
 		this.crewServiceMap = new EnumMap<>(Course.class);
 		Arrays.stream(Course.values()).forEach(course -> crewServiceMap.put(course, new CrewService(course)));
 
-		this.missionMap = new HashMap<>();
-		for (Course course : Course.values()) {
-			Map<Level, Map<String, Mission>> map = new HashMap<>();
-			for (Level level : Level.values()) {
-				map.put(level, new HashMap<>());
-			}
-			missionMap.put(course, map);
-		}
+		this.missionServiceMap = new EnumMap<>(Course.class);
+		Arrays.stream(Course.values()).forEach(course -> missionServiceMap.put(course, new MissionService()));
 	}
 
 	public Mission requestMatchInfo() {
@@ -68,8 +62,7 @@ public class MatcherController {
 			return true;
 		}
 		if (input.equals("2")) {
-			Mission mission = requestMatchInfo();
-			printMission(mission);
+			printMission(getMission());
 			return true;
 		}
 		return false;
@@ -81,18 +74,22 @@ public class MatcherController {
 	}
 
 	public void saveMission(Mission mission) {
-		Map<Level, Map<String, Mission>> mapCourse = missionMap.get(mission.getCourse());
-		Map<String, Mission> map = mapCourse.get(mission.getLevel());
-		map.put(mission.getName(), mission);
+		missionServiceMap.get(mission.getCourse())
+			.save(mission);
 	}
 
-	public Optional<Mission> findMission(Mission mission) {
-		return Optional.ofNullable(missionMap.get(mission.getCourse()).get(mission.getLevel()).get(mission.getName()));
+	public Mission getMission() {
+		try {
+			Mission missionRequest = requestMatchInfo();
+			return missionServiceMap.get(missionRequest.getCourse())
+				.getMission(missionRequest);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return getMission();
+		}
 	}
 
 	public void printMission(Mission mission) {
-		Mission result = findMission(mission).orElseThrow(
-			() -> new IllegalArgumentException("[ERROR] " + "해당 매칭이 없습니다"));
-		OutputView.printMatchInfo(result);
+		OutputView.printMatchInfo(mission);
 	}
 }
