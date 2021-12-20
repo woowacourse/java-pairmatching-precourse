@@ -28,7 +28,7 @@ public class MissionService {
 
 	public Mission getMission(Mission mission) {
 		return getMissionRepository(mission.getLevel()).findByName(mission.getName())
-			.orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.MATCHING_NOT_FOUND));
+			.orElse(null);
 	}
 
 	public void clearMissions() {

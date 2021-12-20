@@ -9,17 +9,19 @@ import pairmatching.constant.Level;
 import pairmatching.constant.MissionName;
 
 public class Mission {
+	public static final char NEW_LINE = '\n';
+
 	private final Course course;
 	private final Level level;
 	private final String name;
 	private List<Pair> pairList;
 
 	public Mission(Course course, Level level, String name) {
-		validateName(name);
 		this.course = course;
 		this.level = level;
 		this.name = name;
 		this.pairList = new ArrayList<>();
+		validateName(name);
 	}
 
 	public Course getCourse() {
@@ -35,7 +37,7 @@ public class Mission {
 	}
 
 	public void validateName(String name) {
-		if (!MissionName.ofLevel(getLevel()).contains(name))
+		if (!MissionName.ofLevel(level).contains(name))
 			throw new IllegalArgumentException(ExceptionMessage.INVALID_MISSION_NAME);
 	}
 
@@ -46,7 +48,7 @@ public class Mission {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		pairList.forEach(pair -> sb.append(pair).append(Character.LINE_SEPARATOR));
+		pairList.forEach(pair -> sb.append(pair).append(NEW_LINE));
 		return sb.toString();
 	}
 }

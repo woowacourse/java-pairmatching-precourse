@@ -12,6 +12,7 @@ import pairmatching.domain.Mission;
 public class InputView {
 
 	public static final String MATCHING_INFO_DELIMITER = ", ";
+	public static final String REMATCHING_YES = "네";
 
 	public static String inputFunctionNumber() {
 		System.out.println(Hint.HINT_FUNCTION_SELECTION.getHint());
@@ -23,5 +24,10 @@ public class InputView {
 		String input = Console.readLine();
 		List<String> infoList = Arrays.asList(input.split(MATCHING_INFO_DELIMITER, -1));
 		return new Mission(Course.ofName(infoList.get(0)), Level.ofName(infoList.get(1)), infoList.get(2));
+	}
+
+	public static boolean inputRematchOrNot() {
+		System.out.println(Hint.HINT_REMATCHING.getHint());
+		return Console.readLine().equals(REMATCHING_YES);
 	}
 }

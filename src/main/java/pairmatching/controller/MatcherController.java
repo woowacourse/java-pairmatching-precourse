@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import pairmatching.constant.Course;
+import pairmatching.constant.ExceptionMessage;
 import pairmatching.domain.Mission;
 import pairmatching.exception.MatchFailException;
 import pairmatching.service.CrewService;
@@ -44,10 +45,16 @@ public class MatcherController {
 		return InputView.inputFunctionNumber();
 	}
 
-	public Mission match(Mission mission) {
+	public boolean requestRematchOrNot() {
+		return InputView.inputRematchOrNot();
+	}
+
+	public Mission match(Mission missionRequest) {
+		if (findMission(missionRequest) != null && !requestRematchOrNot())
+			return null;
 		try {
-			saveMission(crewServiceMap.get(mission.getCourse()).match(mission, 0));
-			return mission;
+			saveMission(crewServiceMap.get(missionRequest.getCourse()).match(missionRequest, 0));
+			return missionRequest;
 		} catch (MatchFailException e) {
 			System.out.println(e.getMessage());
 			return null;
@@ -57,13 +64,13 @@ public class MatcherController {
 	public boolean operateLoop() {
 		String input = requestFunctionNumber();
 		if (input.equals(FUNCTION_PAIR_MATCH)) {
-			Mission mission = match(requestMatchInfo());
-			if (mission != null)
-				OutputView.printMatchInfo(mission);
+			Mission matchRequest = requestMatchInfo();
+			Mission mission = match(matchRequest);
+			OutputView.printMatchInfo(mission, ExceptionMessage.MATCHING_FAIL_FINALLY);
 			return true;
 		}
 		if (input.equals(FUNCTION_FIND_MATCHING)) {
-			printMission(getMission());
+			printMission();
 			return true;
 		}
 		if (input.equals(FUNCTION_CLEAR_MATCHING)) {
@@ -79,19 +86,11 @@ public class MatcherController {
 	}
 
 	public void saveMission(Mission mission) {
-		missionServiceMap.get(mission.getCourse())
-			.save(mission);
+		missionServiceMap.get(mission.getCourse()).save(mission);
 	}
 
-	public Mission getMission() {
-		try {
-			Mission missionRequest = requestMatchInfo();
-			return missionServiceMap.get(missionRequest.getCourse())
-				.getMission(missionRequest);
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			return getMission();
-		}
+	private Mission findMission(Mission missionRequest) {
+		return missionServiceMap.get(missionRequest.getCourse()).getMission(missionRequest);
 	}
 
 	public void clearMatching() {
@@ -100,7 +99,14 @@ public class MatcherController {
 		OutputView.printCleared();
 	}
 
-	public void printMission(Mission mission) {
-		OutputView.printMatchInfo(mission);
+	public void printMission() {
+		try {
+			Mission mission = findMission(requestMatchInfo());
+			OutputView.printMatchInfo(mission, ExceptionMessage.MATCHING_NOT_FOUND);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			printMission();
+		}
+
 	}
 }

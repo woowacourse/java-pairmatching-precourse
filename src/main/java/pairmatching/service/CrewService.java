@@ -34,7 +34,7 @@ public class CrewService {
 			return matchOnce(mission);
 		} catch (MatchFailException e) {
 			if (trialNumber == 3)
-				throw new MatchFailException(ExceptionMessage.MATCHING_FAIL_FINALLY);
+				throw new MatchFailException(ExceptionMessage.MATCHING_FAIL);
 			return match(mission, trialNumber + 1);
 		}
 	}
