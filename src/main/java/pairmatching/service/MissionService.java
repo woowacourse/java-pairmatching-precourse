@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import pairmatching.constant.ExceptionMessage;
 import pairmatching.constant.Level;
 import pairmatching.constant.MissionName;
 import pairmatching.domain.Mission;
@@ -23,13 +24,13 @@ public class MissionService {
 	private MissionRepository getMissionRepository(Level level) {
 		MissionRepository missionRepository = missionRepositoryMap.get(level);
 		if (missionRepository == null)
-			throw new IllegalArgumentException("[ERROR] " + "그런 레벨은 없습니다");
+			throw new IllegalArgumentException(ExceptionMessage.INVALID_LEVEL);
 		return missionRepository;
 	}
 
 	public Mission getMission(Mission mission) {
 		return getMissionRepository(mission.getLevel()).findByName(mission.getName())
-			.orElseThrow(() -> new IllegalArgumentException("[ERROR] " + "그런 미션은 없습니다"));
+			.orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.INVALID_MISSION_NAME));
 	}
 
 	public void save(Mission mission) {

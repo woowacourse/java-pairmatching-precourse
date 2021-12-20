@@ -2,11 +2,11 @@ package pairmatching.controller;
 
 import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import pairmatching.constant.Course;
+import pairmatching.constant.ExceptionMessage;
 import pairmatching.constant.Level;
 import pairmatching.domain.Mission;
 import pairmatching.exception.MatchFailException;
@@ -48,7 +48,7 @@ public class MatcherController {
 			saveMission(crewServiceMap.get(mission.getCourse()).match(mission, 0));
 			return mission;
 		} catch (MatchFailException e) {
-			System.out.println("매칭에 실패했습니다. 메인으로 돌아갑니다.");
+			System.out.println(e.getMessage());
 			return null;
 		}
 	}

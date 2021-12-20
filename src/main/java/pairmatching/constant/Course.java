@@ -20,6 +20,6 @@ public enum Course {
 		return Arrays.stream(Course.values())
 			.filter(course -> course.getName().equals(name))
 			.findAny()
-			.orElseThrow(() -> new IllegalArgumentException("[ERROR]" + "잘못된 코스입니다."));
+			.orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.INVALID_COURSE));
 	}
 }

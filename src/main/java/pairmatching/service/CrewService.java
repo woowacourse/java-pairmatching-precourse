@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.constant.Course;
+import pairmatching.constant.ExceptionMessage;
 import pairmatching.constant.Level;
 import pairmatching.domain.Crew;
 import pairmatching.domain.Mission;
@@ -25,7 +26,8 @@ public class CrewService {
 	public List<Crew> getCrewsShuffled() {
 		return Randoms.shuffle(crewRepository.getCrewNames())
 			.stream()
-			.map(name -> crewRepository.findByName(name).orElseThrow(MatchFailException::new))
+			.map(name -> crewRepository.findByName(name).orElseThrow(() -> new MatchFailException(
+				ExceptionMessage.INVALID_CREW)))
 			.collect(
 				Collectors.toList());
 	}
@@ -35,7 +37,7 @@ public class CrewService {
 			return matchOnce(mission);
 		} catch (MatchFailException e) {
 			if (trialNumber == 3)
-				throw new MatchFailException("매칭에 실패했습니다");
+				throw new MatchFailException(ExceptionMessage.MATCHING_FAIL_FINALLY);
 			return match(mission, trialNumber + 1);
 		}
 	}

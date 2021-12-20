@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import pairmatching.constant.ExceptionMessage;
 import pairmatching.constant.Level;
 import pairmatching.exception.MatchFailException;
 
@@ -22,7 +23,7 @@ public class Pair {
 	private void validateCrew(Level level, Crew crew) {
 		boolean didMeet = crewSet.stream().anyMatch(crewExisting -> crewExisting.didMeet(level, crew.getName()));
 		if (didMeet)
-			throw new MatchFailException("매칭에 실패했습니다. 이미 만난 적 있는 페어가 있습니다");
+			throw new MatchFailException(ExceptionMessage.MATCHING_FAIL);
 	}
 
 	private void addHistory(Level level, Crew crew) {

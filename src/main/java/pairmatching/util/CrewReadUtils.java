@@ -47,9 +47,9 @@ public class CrewReadUtils {
 				lines.add(line);
 			return lines;
 		} catch (FileNotFoundException e) {
-			System.err.println("파일을 찾지 못했습니다");
+			System.err.println(ExceptionMessage.CREW_READ_FAIL_NOT_FOUND);
 		} catch (IOException e) {
-			System.err.println("파일을 읽지 못했습니다");
+			System.err.println(ExceptionMessage.CREW_READ_FAIL_INACCESSIBLE);
 		}
 		return lines;
 	}

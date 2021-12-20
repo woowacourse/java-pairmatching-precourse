@@ -1,8 +1,6 @@
 package pairmatching.constant;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public enum Level {
 	LEVEL1("레벨1"),
@@ -25,6 +23,6 @@ public enum Level {
 		return Arrays.stream(Level.values())
 			.filter(level -> level.getName().equals(name))
 			.findAny()
-			.orElseThrow(() -> new IllegalArgumentException("[ERROR]" + "잘못된 레벨입니다."));
+			.orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.INVALID_LEVEL));
 	}
 }

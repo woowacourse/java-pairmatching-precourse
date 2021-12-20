@@ -26,19 +26,11 @@ public enum MissionName {
 		return names;
 	}
 
-	public int size() {
-		return names.size();
-	}
-
-	public boolean isEmpty() {
-		return names.isEmpty();
-	}
-
 	public static List<String> ofLevel(Level level) {
 		return Arrays.stream(MissionName.values())
 			.filter(missionName -> missionName.level.equals(level))
 			.findAny()
-			.orElseThrow(() -> new IllegalArgumentException("[ERROR]" + "그런 미션은 없습니다"))
+			.orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.INVALID_MISSION_NAME))
 			.getNames();
 	}
 }

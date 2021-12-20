@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pairmatching.constant.Course;
+import pairmatching.constant.ExceptionMessage;
 import pairmatching.constant.Level;
 import pairmatching.constant.MissionName;
 
@@ -35,7 +36,7 @@ public class Mission {
 
 	public void validateName(String name) {
 		if (!MissionName.ofLevel(getLevel()).contains(name))
-			throw new IllegalArgumentException("[ERROR] " + "그런 미션은 없습니다");
+			throw new IllegalArgumentException(ExceptionMessage.INVALID_MISSION_NAME);
 	}
 
 	public void setPairList(List<Pair> result) {
@@ -45,7 +46,7 @@ public class Mission {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		pairList.forEach(pair -> sb.append(pair).append("\n"));
+		pairList.forEach(pair -> sb.append(pair).append(Character.LINE_SEPARATOR));
 		return sb.toString();
 	}
 }
