@@ -20,4 +20,8 @@ public class MissionRepository {
 	public void save(Mission mission) {
 		missionMap.put(mission.getName(), mission);
 	}
+
+	public void clear() {
+		missionMap.clear();
+	}
 }

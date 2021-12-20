@@ -11,4 +11,5 @@ public class ExceptionMessage {
 	public static final String MATCHING_FAIL = PREFIX + "매칭에 실패했습니다";
 	public static final String CREW_READ_FAIL_NOT_FOUND = PREFIX + "파일을 찾지 못했습니다";
 	public static final String CREW_READ_FAIL_INACCESSIBLE = PREFIX + "파일을 찾지 못했습니다";
+	public static final String MATCHING_NOT_FOUND = PREFIX + "매칭이 없습니다";
 }

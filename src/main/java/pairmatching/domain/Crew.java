@@ -19,6 +19,10 @@ public class Crew {
 		pairHistory.add(level, opponent);
 	}
 
+	public void clearMeet() {
+		pairHistory.clearMeet();
+	}
+
 	public boolean didMeet(Level level, String opponent) {
 		return pairHistory.didMeet(level, opponent);
 	}

@@ -20,6 +20,10 @@ public class CrewRepository {
 		return crewMap.values().stream().map(Crew::getName).collect(Collectors.toList());
 	}
 
+	public void clearHistories() {
+		crewMap.values().forEach(Crew::clearMeet);
+	}
+
 	public Optional<Crew> findByName(String name) {
 		return Optional.ofNullable(crewMap.get(name));
 	}

@@ -54,6 +54,10 @@ public class CrewService {
 		return mission;
 	}
 
+	public void clearHistories() {
+		crewRepository.clearHistories();
+	}
+
 	private Pair getPairFromCrews(List<Crew> crews, Level level, int index) {
 		if (crews.size() - index == 3)
 			return new Pair(level, crews.get(index), crews.get(index + 1),

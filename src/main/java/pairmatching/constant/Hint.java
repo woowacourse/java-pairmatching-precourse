@@ -17,7 +17,8 @@ public enum Hint {
 		+ "############################################\n"
 		+ "과정, 레벨, 미션을 선택하세요.\n"
 		+ "ex) 백엔드, 레벨1, 자동차경주"),
-	HINT_PAIR_MATCHING_RESULT("페어 매칭 결과입니다.")
+	HINT_PAIR_MATCHING_RESULT("페어 매칭 결과입니다."),
+	HINT_CLEARED("초기화 되었습니다.")
 	;
 
 	private final String hint;

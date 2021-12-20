@@ -9,7 +9,7 @@ import java.util.Set;
 import pairmatching.constant.Level;
 
 public class PairHistory {
-	private Map<Level, Set<String>> nameAtLevelMap;
+	private final Map<Level, Set<String>> nameAtLevelMap;
 
 	public PairHistory() {
 		this.nameAtLevelMap = new HashMap<>();
@@ -18,6 +18,10 @@ public class PairHistory {
 
 	public void add(Level level, String opponent) {
 		nameAtLevelMap.get(level).add(opponent);
+	}
+
+	public void clearMeet() {
+		nameAtLevelMap.clear();
 	}
 
 	public boolean didMeet(Level level, String opponent) {

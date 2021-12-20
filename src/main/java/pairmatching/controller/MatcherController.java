@@ -17,6 +17,7 @@ public class MatcherController {
 
 	public static final String FUNCTION_PAIR_MATCH = "1";
 	public static final String FUNCTION_FIND_MATCHING = "2";
+	public static final String FUNCTION_CLEAR_MATCHING = "3";
 
 	private final Map<Course, CrewService> crewServiceMap;
 	private final Map<Course, MissionService> missionServiceMap;
@@ -65,6 +66,10 @@ public class MatcherController {
 			printMission(getMission());
 			return true;
 		}
+		if (input.equals(FUNCTION_CLEAR_MATCHING)) {
+			clearMatching();
+			return true;
+		}
 		return false;
 	}
 
@@ -87,6 +92,12 @@ public class MatcherController {
 			System.out.println(e.getMessage());
 			return getMission();
 		}
+	}
+
+	public void clearMatching() {
+		missionServiceMap.values().forEach(MissionService::clearMissions);
+		crewServiceMap.values().forEach(CrewService::clearHistories);
+		OutputView.printCleared();
 	}
 
 	public void printMission(Mission mission) {

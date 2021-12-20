@@ -6,7 +6,6 @@ import java.util.Map;
 
 import pairmatching.constant.ExceptionMessage;
 import pairmatching.constant.Level;
-import pairmatching.constant.MissionName;
 import pairmatching.domain.Mission;
 import pairmatching.repository.MissionRepository;
 
@@ -16,9 +15,8 @@ public class MissionService {
 
 	public MissionService() {
 		this.missionRepositoryMap = new HashMap<>();
-		Arrays.stream(MissionName.values())
-			.forEach(missionAtLevel -> missionAtLevel.getNames()
-				.forEach(name -> missionRepositoryMap.put(missionAtLevel.getLevel(), new MissionRepository())));
+		Arrays.stream(Level.values())
+			.forEach(level -> missionRepositoryMap.put(level, new MissionRepository()));
 	}
 
 	private MissionRepository getMissionRepository(Level level) {
@@ -30,7 +28,11 @@ public class MissionService {
 
 	public Mission getMission(Mission mission) {
 		return getMissionRepository(mission.getLevel()).findByName(mission.getName())
-			.orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.INVALID_MISSION_NAME));
+			.orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.MATCHING_NOT_FOUND));
+	}
+
+	public void clearMissions() {
+		missionRepositoryMap.values().forEach(MissionRepository::clear);
 	}
 
 	public void save(Mission mission) {
