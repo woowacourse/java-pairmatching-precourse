@@ -19,8 +19,13 @@ public class Crew {
         return name;
     }
 
-    public boolean equals(Crew crew) {
-        return (isCourse(crew.course) && isName(crew.name));
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Crew)) {
+            return false;
+        }
+        Crew c = (Crew)o;
+        return isCourse(c.course) && isName(c.name);
     }
 
     public boolean isCourse(Course course) {
