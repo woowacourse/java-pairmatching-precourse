@@ -14,7 +14,7 @@ project
 │    │      ├─ Level.java
 │    │      └─ Mission.java
 │    │      
-│    ├─ MatchingInformation.java 	   
+│    ├─ MatchingCrewList.java 	   
 │    │      └─ Crew.java
 │    │        
 │    ├─ SelectSkill	   

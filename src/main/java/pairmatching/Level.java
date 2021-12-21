@@ -28,22 +28,25 @@ public enum Level {
 			  missionList.add("숫자야구게임");
 			  return missionList;
 		  }
-		  /*if(level.equals(LEVEL2.getLevel())) {
-			  String[] missionList = {"장바구니", "결제", "지하철노선도"};
+		  if(this.name == LEVEL2.getLevel()) {
+			  missionList.add("장바구니");
+			  missionList.add("결제");
+			  missionList.add("지하철노선도");
 			  return missionList;
 		  }
-		  if(level.equals(LEVEL3.getLevel())) {
-			  String[] missionList = {};
+		  if(this.name.equals(LEVEL3.getLevel())) {
 			  return missionList;
 		  }
-		  if(level.equals(LEVEL4.getLevel())) {
-			  String[] missionList = {"성능개선", "배포"};
+		  if(name.equals(LEVEL4.getLevel())) {
+			  missionList.add("성능개선");
+			  missionList.add("배포");
 			  return missionList;
 		  }
-		  if(level.equals(LEVEL5.getLevel())) {
-			  String[] missionList = {};
+		  if(name.equals(LEVEL5.getLevel())) {
+		
 			  return missionList;
-		  }*/
+		  }
+		  // 해당레벨에 없는 미션입니다. 
 		  throw new IllegalArgumentException();
 	  }
 }
