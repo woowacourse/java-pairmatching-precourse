@@ -11,7 +11,7 @@ public class Application {
     	while(continueMatch == 1) {
     		continueMatch = SelectSkill.checkSkill();
     	}
-    	
+
     	// 페어 매칭 & 검증
     }
 }

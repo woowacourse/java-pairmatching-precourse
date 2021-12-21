@@ -9,7 +9,6 @@ public class ValidCheck {
 		static Course matchCourse;
 		static Level matchLevel;
 		static String matchMission;
-		static List<Crew> CrewMatching;
 		// 입력받은값 3개로 분류하기
 		public static Pair Stringdivide(String input) {
 			
@@ -22,24 +21,27 @@ public class ValidCheck {
 		}
 
 		// 프론트/백 체크
-		private static void checkPart(String course) {
+		private static boolean checkPart(String course) {
 			String part = course.trim();
 			if (part.equals(Course.BACKEND.getCourse())) {
 				matchCourse = Course.BACKEND;
+				return true;
 			}
 			if (part.equals(Course.FRONTEND.getCourse())) {
 				matchCourse = Course.FRONTEND;
+				return true;
 			}
 			// 에러메시지
 			throw new IllegalArgumentException("[ERROR]");
 		}
 
 		// 레벨체크
-		private static void checkLevel(String level) {
+		private static boolean checkLevel(String level) {
 			String Lv= level.trim();
 			for (Level stage : Level.values()) {
 				if (stage.getLevel().equals(Lv)) {
 					matchLevel = stage;
+					return true;
 				}
 			}
 			// 에러메시지
@@ -48,14 +50,16 @@ public class ValidCheck {
 
 		
 		// 미션 체크
-		private static void checkMission(Level level, String mission) {
+		private static boolean checkMission(Level level, String mission) {
 			ArrayList<String> missionList = level.getMission();
 			for (String m : missionList) {
-				if (m.equals(mission)) {
+				if (m.equals(mission.trim())) {
 					matchMission = mission;
+					return true;
 				}
 			}
 			// 에러메시지
+
 			throw new IllegalArgumentException("[ERROR]");
 		}
 }

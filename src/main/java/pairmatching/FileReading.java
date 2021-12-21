@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class FileReading {
-    static String filepath = "C:\\Users\\shin\\java-pairmatching-precourse\\src\\main\\resources\\";
+    static String filepath = "src\\main\\resources\\";
     static String frontFileName = "frontend-crew.md";
     static String backFileName = "backend-crew.md";
     
@@ -16,9 +16,9 @@ public class FileReading {
     	try {
     	    Path path = Paths.get(filepath + frontFileName);
     	    lines = Files.readAllLines(path);
-    	    for(String line : lines) {
-    	        System.out.println(line);
-    	    }
+//    	    for(String line : lines) {
+//    	        System.out.println(line);
+//    	    }
     	} catch (IOException e) {
     	    e.printStackTrace();
     	}
@@ -31,9 +31,9 @@ public class FileReading {
     	try {
     	    Path path = Paths.get(filepath + backFileName);
     	    lines = Files.readAllLines(path);
-    	    for(String line : lines) {
-    	        System.out.println(line);
-    	    }
+//    	    for(String line : lines) {
+//    	        System.out.println(line);
+//    	    }
     	} catch (IOException e) {
     	    e.printStackTrace();
     	}
