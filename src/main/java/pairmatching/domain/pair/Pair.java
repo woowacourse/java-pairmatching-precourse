@@ -34,6 +34,10 @@ public class Pair {
         return crews.size() < MAX_CREW_COUNT;
     }
 
+    public Course getCourse() {
+        return this.course;
+    }
+
     private void checkCrewAddable() {
         if (!isAddable()) {
             throw new IllegalArgumentException(ErrorMessage.makeErrorMessage(
