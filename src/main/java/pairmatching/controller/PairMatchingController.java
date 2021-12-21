@@ -1,6 +1,6 @@
 package pairmatching.controller;
 
-import java.util.List;
+import static pairmatching.constant.ErrorMessage.*;
 
 import pairmatching.domain.Curriculum;
 import pairmatching.domain.PairMatching;
@@ -9,7 +9,11 @@ import pairmatching.view.OutputView;
 
 public class PairMatchingController {
 
-	private int number = 0;
+	private static final String PAIR_MATCH_NUMBER = "1";
+	private static final String PAIR_SEARCH_NUMBER = "2";
+	private static final String PAIR_CLEAR_NUMBER = "3";
+	private static final String APP_QUIT_CHAR = "Q";
+
 	private String input;
 	private PairMatching pairMatching = new PairMatching();
 
@@ -17,74 +21,55 @@ public class PairMatchingController {
 		do {
 			OutputView.printGuide();
 			input = InputView.readString();
-			checkAnswer();
+			orderByInput();
 		} while (!quit());
 	}
 
-	private void checkAnswer() {
-		if (input.equals("1")) {
-			OutputView.printCourse();
+	private void orderByInput() {
+		if (input.equals(PAIR_MATCH_NUMBER)) {
 			matchPair();
+			return;
 		}
-		if (input.equals("2")) {
-			OutputView.printCourse();
-			String[] curriculumInfo = InputView.readString().split(", ");
-			Curriculum curriculum = new Curriculum(curriculumInfo[0], curriculumInfo[1], curriculumInfo[2]);
-			checkPair(curriculum);
+		if (input.equals(PAIR_SEARCH_NUMBER)) {
+			searchPair();
+			return;
 		}
-		if (input.equals("3")) {
+		if (input.equals(PAIR_CLEAR_NUMBER)) {
 			clearPair();
-			OutputView.printClearMessage();
+			return;
 		}
-
+		throw new IllegalArgumentException(WRONG_INPUT);
 	}
 
 	private void matchPair() {
 		OutputView.printEnterCurriculum();
-		String[] curriculumInfo = InputView.readString().split(", ");
-		Curriculum curriculum = new Curriculum(curriculumInfo[0], curriculumInfo[1], curriculumInfo[2]);
-		if (!pairMatching.isEmpty(curriculum)) {
-			pairMatching.run(curriculum);
-			System.out.println();
-			checkPair(curriculum);
+		Curriculum curriculum = InputView.readCurriculum();
+		if (isPair(curriculum)) {
+			// 존재하면 만들지 말지 물어봐야함
 			return;
 		}
-		OutputView.printAlreadyPair();
-		retry(curriculum);
 	}
 
-	private void retry(Curriculum curriculum) {
+	private boolean isPair(Curriculum curriculum) {
+		return !pairMatching.isEmpty(curriculum);
+	}
+
+	private boolean askRematch() {
 		String input = InputView.readString();
 		if (input.equals("네")) {
-			pairMatching.run(curriculum);
-			checkPair(curriculum);
+			return true;
 		}
 		if (input.equals("아니오")) {
-			matchPair();
+			return false;
 		}
-		throw new IllegalArgumentException();
+		throw new IllegalArgumentException(WRONG_INPUT);
 	}
 
-	private void checkPair(Curriculum curriculum) {
+	private void searchPair() {
 		OutputView.printCourse();
-		List<String> matchingTeam = pairMatching.getMatching(curriculum);
-		if (matchingTeam.size() % 2 == 0) {
-			for (int i = 0; i < matchingTeam.size(); ) {
-				System.out.println();
-				System.out.print(matchingTeam.get(i) + " : " + matchingTeam.get(i + 1));
-				i += 2;
-			}
-		}
-		if (matchingTeam.size() % 2 != 0) {
-			for (int i = 0; i < (matchingTeam.size() - 1); ) {
-				System.out.println();
-				System.out.print(matchingTeam.get(i) + " : " + matchingTeam.get(i + 1));
-				i += 2;
-			}
-			System.out.println(" : " + matchingTeam.get(matchingTeam.size() - 1));
-		}
+		Curriculum curriculum = InputView.readCurriculum();
 		System.out.println();
-
+		// 구현남음
 	}
 
 	private void clearPair() {
@@ -92,6 +77,6 @@ public class PairMatchingController {
 	}
 
 	private boolean quit() {
-		return input.equals("Q");
+		return input.equals(APP_QUIT_CHAR);
 	}
 }

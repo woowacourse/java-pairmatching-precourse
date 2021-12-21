@@ -18,32 +18,30 @@ public class CrewGroup {
 	private final List<Crew> crews = new LinkedList<>();
 
 	public CrewGroup() {
-		bringCrews();
+		bringCrewsFromResources();
 	}
 
-	private void bringCrews() {
+	private void bringCrewsFromResources() {
 		bringBackEndCrews();
 		bringFrontEndCrews();
 	}
 
 	private void bringFrontEndCrews() {
 		for (String name : InputView.getCrew(frontEndCrewDirPath)) {
-			crews.add(new Crew("프론트엔드", name));
+			crews.add(new Crew(Course.FRONTEND, name));
 		}
 	}
 
 	private void bringBackEndCrews() {
 		for (String name : InputView.getCrew(backEndCrewDirPath)) {
-			crews.add(new Crew("백엔드", name));
+			crews.add(new Crew(Course.BACKEND, name));
 		}
 	}
 
-	public List<String> getShuffledCrews(String type) {
-		List<String> crewNames = crews.stream()
-			.filter(crew -> crew.getCourse().equals(type))
+	public List<String> getShuffledCrewNames(Course course) {
+		return shuffle(crews.stream()
+			.filter(crew -> crew.compareCourse(course))
 			.map(Crew::getName)
-			.collect(Collectors.toList());
-
-		return shuffle(crewNames);
+			.collect(Collectors.toList()));
 	}
 }

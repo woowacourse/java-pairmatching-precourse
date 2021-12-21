@@ -1,10 +1,14 @@
 package pairmatching.domain;
 
 public class Crew {
-	private String course;
+	private Course course;
 	private String name;
 
-	public Crew(String course, String name) {
+	public Crew(String name) {
+		this.name = name;
+	}
+
+	public Crew(Course course, String name) {
 		this.course = course;
 		this.name = name;
 	}
@@ -13,7 +17,11 @@ public class Crew {
 		return this.name;
 	}
 
-	public String getCourse() {
-		return this.course;
+	public boolean compareCourse(Course course) {
+		return this.course == course;
+	}
+
+	public boolean compareCrew(String name) {
+		return this.name.equals(name);
 	}
 }

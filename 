@@ -1,0 +1,179 @@
+[33mcommit 9a57d4cc7ec249e03908d3ea9312794ce7df1f18[m[33m ([m[1;36mHEAD -> [m[1;32mseungmin[m[33m, [m[1;31morigin/seungmin[m[33m)[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 17:52:23 2021 +0900
+
+    [수정] 없는 미션에 대한 예외처리 추가
+
+[33mcommit 6e170b6a1158b1aced209b40f0341c92a9bd7429[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 17:38:08 2021 +0900
+
+    [수정] 전체적인 오류 수정
+
+[33mcommit 6add874551aa90b55983ada477f7503510a6e310[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 16:38:47 2021 +0900
+
+    [추가] clear메서드 추가
+
+[33mcommit 6c27d3d8a95bcbed6bc75e6c2496d8c176152ce0[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 16:38:15 2021 +0900
+
+    [추가] 번호에 따라 실행시키는 컨트롤메서드 추가
+
+[33mcommit ed1a3591e224356cf0f5677497ee256615712bac[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 16:37:42 2021 +0900
+
+    [추가] 기본 출력 메시지들 추가
+
+[33mcommit 8dfb63eef3d828683f3f172e99a1bc54039ab86f[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 16:37:08 2021 +0900
+
+    [추가] 예외처리메시지 상수 추가
+
+[33mcommit 10ef9e18d0e669a3d47a2f29addeb8811e092067[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 16:12:21 2021 +0900
+
+    [추가] 만난것을 기록하는 메서드 추가
+
+[33mcommit a5eca2c4d84dcbd0f7e0876ee1b8ea17f1ca3669[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 16:11:50 2021 +0900
+
+    [추가] 레벨을 반환하는 메서드 추가
+
+[33mcommit 736197af8937424324930733fc46782aea040e8e[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 15:52:45 2021 +0900
+
+    [수정] 매칭 방법 수정
+
+[33mcommit e2cbc916943919e26e9a91edc3edba478cc95f6d[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 15:29:52 2021 +0900
+
+    [수정] 추후의 리팩터예정, 일단 사용하기 쉬운 String으로 수정
+
+[33mcommit 6d2cf55ff36d5acc777724d9c5cc1bf1779f8f66[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 15:29:34 2021 +0900
+
+    [추가] 에러메시지 상수 추가
+
+[33mcommit dd7498384337249dfd317c03857dfc19963d8624[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 15:29:18 2021 +0900
+
+    [추가] 리스트의 목록이 잘 가져와는지 확인 코드
+
+[33mcommit 31924e8dc319fe5704a190b2d024ce105f392eeb[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 15:28:41 2021 +0900
+
+    [추가] 시작과 안내메시지 메서드 추가
+
+[33mcommit df34d2492a1c2d721efbcc3d213efa3f319c8388[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 15:28:21 2021 +0900
+
+    [수정] 일단 enum 대신 string으로 대체
+
+[33mcommit 95b7c9cc954a50cea8edd80742bd06ff210d6abc[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 15:27:16 2021 +0900
+
+    [추가] 컨트롤러의 기반 추가
+
+[33mcommit c6a2d604f440b0664b39b006e74f7388c14d2d96[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 15:26:22 2021 +0900
+
+    [추가] 조회한 커리큘럼에 대해서 크루리스트를 반환하는 메서드 추가
+
+[33mcommit 5b74c06269ffcc417af4f580368b5d8f5b9903c0[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 15:26:02 2021 +0900
+
+    [추가] 커리큘럼을 조회하여 있는지 확인하는 메서드 추가
+
+[33mcommit fca6c366586248c614084d41f42652b2ce1cc45d[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 15:25:36 2021 +0900
+
+    [추가] 페어매칭을 실행시켜 랜덤으로 추가하는 메서드 추가
+
+[33mcommit a2567232c85f9d7724277d59c998210f268db528[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 14:55:34 2021 +0900
+
+    [추가] 시작과 정보를 알리는 뷰메서드 추가
+
+[33mcommit 3e04220dbb4a0b8d08295570f13671700c0be289[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 14:52:48 2021 +0900
+
+    [추가] 스트링 입력 받는 메서드 추가
+
+[33mcommit 8ff6bca7b7d54022e174c21801659ff19b8e1924[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 14:06:22 2021 +0900
+
+    [추가] 섞인 크루이름 리스트를 반환하는 메서드 축
+
+[33mcommit dd03b52401e79ba1a0171ddc8e337d68e8929c5d[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 14:01:05 2021 +0900
+
+    [추가] 버퍼를 이용한 입출력으로 파일에서 데이터 가져오는 뷰 추가
+
+[33mcommit 66d987d66f70c775c875e7590eb3f200e693fa72[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 14:00:26 2021 +0900
+
+    [추가] 각 과정의 크루 목록을 가져오는 메서드 추가
+
+[33mcommit 08c8e9a0f6c0a64d3fc4379f6c7c2ac9c2b95e15[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 13:46:21 2021 +0900
+
+    [추가] 크루 목록을 가져오는 메서드 추가
+
+[33mcommit 75fbb7815486eedcdfb3fe4b2b8ce3caca6606af[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 13:38:48 2021 +0900
+
+    [추가] 구현 기능 목록 추가
+
+[33mcommit 1f124824d50837f2d09a4b1744a4b24169e8ca58[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 13:29:35 2021 +0900
+
+    [추가] 구현 기능 목록 작성
+
+[33mcommit af1cc358f1268ed8b86decadb99f4a0da5946f0a[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 13:11:44 2021 +0900
+
+    [추가] 필요한 클래스 목록들 추가
+
+[33mcommit 5a4e6ce42ae80c4736cc022bb730802e4742d042[m[33m ([m[1;32mmain[m[33m)[m
+Author: Seungmin Lim <seungmin9066@gmail.com>
+Date:   Sat Dec 18 13:07:13 2021 +0900
+
+    [추가] 필요한 클래스 목록들 추가
+
+[33mcommit 6aa2570bfc76a32792ab44220bad774d8843a241[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: gracefulBrown <brown@woowahan.com>
+Date:   Sat Dec 18 08:22:53 2021 +0900
+
+    readme
+
+[33mcommit 77cf9768fe5d3c1c111e141ed758642debc058bb[m
+Author: gracefulBrown <brown@woowahan.com>
+Date:   Wed Nov 24 11:21:10 2021 +0900
+
+    init
