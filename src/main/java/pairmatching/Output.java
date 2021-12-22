@@ -17,9 +17,20 @@ public class Output {
 	}
 	public static void resultPrint(ArrayList<ArrayList<String>> CrewMatching) {
 		System.out.println("페어 매칭 결과입니다.");
-		for(List s : CrewMatching) {
-			System.out.println(s);
+		for(ArrayList<String> s : CrewMatching) {
+			crewsPrint(s);
+			System.out.println();
 		}
 		
 	}
+	private static void crewsPrint(ArrayList<String> crews) {
+		for(int index=0; index < crews.size();index++) {
+			System.out.print(crews.get(index));
+			if(index == crews.size()-1) {
+				break;
+			}
+			System.out.print(" : ");
+		}
+	}
+	
 }
