@@ -4,92 +4,95 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Matching {
 	static List<String> CrewNames;
 	static List<String> shuffledCrew;
-	static HashMap<Pair,ArrayList> linkPairCrew = new  HashMap<>();
-	
-	
-	// 페어 매칭 첫번째 화면
-	public static void mathingStart() {
-		Output.pairMatching();
-		Pair validList;
-		while (true) {
-			try {
-				String inputString = Input.pairMatching();
-				validList = ValidCheck.Stringdivide(inputString);
-				break;
-			} catch (IllegalArgumentException e) {
-				// 옳바른 과정, 레벨, 미션값을 입력해주세요.
-				System.out.println("[ERROR]");
-			}
-		}
-		
-		
-		
-		//크루 불러오기 
-		CrewNames = Course.crewLoad(validList.getCourse());
+	static ArrayList<Pair> linkPair= new ArrayList<>(); 
+	static ArrayList<ArrayList<ArrayList<String>>> linkCrew = new ArrayList<>();
+	static String errorMessage;
+
+	public static void matchingHashMap() {
+
+		Pair pair = matchingStart();
+		CrewNames = Course.crewLoad(pair.getCourse());
 		shuffleCrew();
-		
-		ArrayList<ArrayList<String>> CrewMatching= new ArrayList<>();
+		ArrayList<ArrayList<String>> CrewMatching = new ArrayList<>();
 		CrewMatching = crewTotalNumber();
 		Output.resultPrint(CrewMatching);
-		
-		linkPairCrew.put(validList, CrewMatching);
-		
-		// 이미 페어를 맺은 크루가 있는 지 체크
-		
-		
-		System.out.println(linkPairCrew.keySet());
-		System.out.println(CrewMatching);
-
-		
+		linkPair.add(pair);
+		linkCrew.add(CrewMatching);
 	}
-	// 페어 조회 첫번째 화면
+
+	// 페어 매칭전 값 확인
+	private static Pair matchingStart() {
+		Output.pairMatching();
+		while (true) {
+			Pair validList = ValidCheck.stringDivide();
+			int index = searchingPair(validList);
+			
+			if (index < 0 ) {// 중복되는 값이 아닌 경우
+				return validList;
+			}
+			String answer = Input.overWrite();
+			if (answerCheck(answer.trim())) {// 덮어씌우기
+				linkPair.remove(index);
+				linkCrew.remove(index);
+				return validList;
+			}
+		}
+
+	}
+
+	// 덮어씌우기 답변
+	private static boolean answerCheck(String answer) {
+		boolean overWrite = true;
+		if (answer.equals("네")) {
+			return overWrite;
+		}
+		return !overWrite;
+	}
+
+	
+	
+	// 페어 조회 화면
 	public static void searchingStart() {
 		Output.pairMatching();
-		Pair validList;
-		while (true) {
-			try {
-				String inputString = Input.pairMatching();
-				validList = ValidCheck.Stringdivide(inputString);
-				break;
-			} catch (IllegalArgumentException e) {
-				// 에러메시지
-				System.out.println("[ERROR]");
-			}
-			
+		Pair validList = ValidCheck.stringDivide();
+		int index = searchingPair(validList);
+		if (index < 0 ) {// 조회할 값이 없는 경우
+			errorMessage = "[ERROR] 매칭 이력이 없습니다.";
+			throw new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.");
+		}
+		//조회할 값이 있는 경우 
+		Output.resultPrint(linkCrew.get(index));
 
-		}
-		searchingPair(validList);
+	}
 		
 	
-	}
-	
-	//조회 
-	static boolean searchingPair(Pair searchPair){
-		for(Pair makePair:linkPairCrew.keySet()) {
-			if(makePair.getCourse().equals(searchPair.getCourse())&&
-					makePair.getLevel().equals(searchPair.getLevel())&&
-					makePair.getMission().equals(searchPair.getMission())){
-						
-				System.out.println(linkPairCrew.get(makePair)); //출력 수정필요
-				return true;
+	// 조회
+	static int searchingPair(Pair searchPair) {
+		for (Pair makePair : linkPair) {
+			if (makePair.getCourse().equals(searchPair.getCourse()) && makePair.getLevel().equals(searchPair.getLevel())
+					&& makePair.getMission().equals(searchPair.getMission())) {
+				int index = linkPair.indexOf(makePair); //조회된 곳 인덱스
+				return index;
 			}
 		}
-		System.out.println("[ERROR] 매칭되지 않은 페어입니다.");
-		throw new IllegalArgumentException("[ERROR] 매칭되지 않은 페어입니다.");
-		
-		
+		return -1;
 	}
-	//초기화
+		
+		
+		
+	// 초기화
 	static void cleanPair() {
-		linkPairCrew.clear();
-		//초기화 출력 
+		linkPair.clear();
+		linkCrew.clear();
+		System.out.println("초기화되었습니다.");
+		// 초기화 출력
 	}
+
 	
 	
 	
@@ -103,7 +106,7 @@ public class Matching {
 		for (int index = 0; index < crewListSize; index += 2) {
 			ArrayList<String> twoCrew = new ArrayList<>();
 			twoCrew.add(shuffledCrew.get(index));
-			twoCrew.add(shuffledCrew.get(index+1));
+			twoCrew.add(shuffledCrew.get(index + 1));
 			crewMatching.add(twoCrew);
 		}
 	}
@@ -112,26 +115,24 @@ public class Matching {
 	public static void pairthreeMatching(ArrayList<ArrayList<String>> crewMatching) {
 		int index = shuffledCrew.size() - 1;
 		ArrayList<String> threeCrew = new ArrayList<>();
-		threeCrew.add(shuffledCrew.get(index-2));
-		threeCrew.add(shuffledCrew.get(index-1));
+		threeCrew.add(shuffledCrew.get(index - 2));
+		threeCrew.add(shuffledCrew.get(index - 1));
 		threeCrew.add(shuffledCrew.get(index));
 		crewMatching.add(threeCrew);
 	}
 
 	// 크루 총인원 체크
 	public static ArrayList<ArrayList<String>> crewTotalNumber() {
-		ArrayList<ArrayList<String>> CrewMatching= new ArrayList<>();
-		
+		ArrayList<ArrayList<String>> CrewMatching = new ArrayList<>();
+
 		if (shuffledCrew.size() % 2 == 0) {
 			pairMatching(shuffledCrew.size(), CrewMatching); // 짝수면 두명씩 매칭 가능
 		}
 		if (shuffledCrew.size() % 2 != 0) {
-			pairMatching(shuffledCrew.size()-3, CrewMatching);
+			pairMatching(shuffledCrew.size() - 3, CrewMatching);
 			pairthreeMatching(CrewMatching); // 홀수면 마지막 세명이 매칭
 		}
 		return CrewMatching;
 	}
-	
-
 
 }

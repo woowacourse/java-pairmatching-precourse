@@ -2,7 +2,7 @@ package pairmatching;
 
 public class SelectSkill {
 
-	static String[] skillList = { "1", "2", "3", "Q" };
+	static String[] skillList = { "1", "2", "3", "Q","q" };
 	static String errorMessage;
 	// 기능선택 체크
 	public static int checkSkill() {
@@ -10,6 +10,7 @@ public class SelectSkill {
 		while (true) {
 			try {
 				select =Input.skillSelect();
+				select = select.trim();
 				vaild(select);
 				break;
 			} catch (IllegalArgumentException e) {
@@ -17,8 +18,9 @@ public class SelectSkill {
 			}
 		}
 		if (select.equals(skillList[0])) {
+			
 			//페어 매칭
-			Matching.mathingStart();
+			Matching.matchingHashMap();
 			return 1;
 		}
 		if (select.equals(skillList[1])) {

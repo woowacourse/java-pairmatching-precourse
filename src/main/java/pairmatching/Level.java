@@ -21,6 +21,7 @@ public enum Level {
 		  
 	  }
 	  public ArrayList<String> getMission() {
+		  
 		  ArrayList<String> missionList= new ArrayList<>(); 
 		  if(this.name ==LEVEL1.getLevel()) {
 			  missionList.add("자동차경주");
@@ -37,16 +38,16 @@ public enum Level {
 		  if(this.name.equals(LEVEL3.getLevel())) {
 			  return missionList;
 		  }
-		  if(name.equals(LEVEL4.getLevel())) {
+		  if(this.name.equals(LEVEL4.getLevel())) {
 			  missionList.add("성능개선");
 			  missionList.add("배포");
 			  return missionList;
 		  }
-		  if(name.equals(LEVEL5.getLevel())) {
+		  if(this.name.equals(LEVEL5.getLevel())) {
 		
 			  return missionList;
 		  }
-		  // 해당레벨에 없는 미션입니다. 
-		  throw new IllegalArgumentException();
+		
+		  throw new IllegalArgumentException("[ERROR]해당레벨에 없는 미션입니다");
 	  }
 }
