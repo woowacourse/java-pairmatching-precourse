@@ -62,12 +62,16 @@ public class Matching {
 		Pair validList = ValidCheck.stringDivide();
 		int index = searchingPair(validList);
 		if (index < 0 ) {// 조회할 값이 없는 경우
-			errorMessage = "[ERROR] 매칭 이력이 없습니다.";
-			throw new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.");
+			try {
+				throw new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.");
+			}catch(IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
 		}
-		//조회할 값이 있는 경우 
+		//조회할 값이 있는 경우
+		if(index>-1){ 
 		Output.resultPrint(linkCrew.get(index));
-
+		}
 	}
 		
 	
