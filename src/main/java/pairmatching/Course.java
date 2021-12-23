@@ -18,10 +18,13 @@ public enum Course {
 	}
 
 	public static List<String> crewLoad(Course course) {
-		if (course.equals(BACKEND.getCourse())) {
-			return FileReading.backCrewReading();		}
-		return FileReading.frontCrewReading();
-
+		if (course.equals(BACKEND)) {
+			return FileReading.backCrewReading();		
+		}
+		if (course.equals(FRONTEND)){
+			return FileReading.frontCrewReading();
+		}
+		throw new IllegalArgumentException("[ERROR]");
 	}
 
 }
