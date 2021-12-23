@@ -26,6 +26,8 @@
      3. 입력한 정보에 해당하는 페어 정보가 있는지 확인
         - 존재 O
           - 덮어쓰기
+            - 현재 존재하는 페어 매칭 정보 초기화
+            - 페어 매칭 진행
           - Skip
         - 존재 X
           - 페어 매칭 진행
@@ -55,10 +57,14 @@ List<String> shuffledCrew = Randoms.shuffle(crewNames); // 섞인 크루 이름 
 [ERROR] 매칭 이력이 없습니다.
 ```
 
-### 파일 입출력
+## 파일 입출력
 - 페어 매칭에 필요한 크루들의 이름을 파일 입출력을 통해 불러온다.
 - `src/main/resources/backend-crew.md`과 `src/main/resources/frontend-crew.md` 파일을 이용한다.
 - 두 파일의 내용은 수정이 가능하다. 수정 시 크루들의 이름은 중복될 수 없다.
 - 파일 입출력 방법은 `자바 파일 읽기`나 `자바 파일 입출력`과 같은 키워드로 구글링해서 찾을 수 있다.
 
 ---
+
+## 추후 프로그래밍 시 주의할 점
+- private static final의 기능 파악
+  -  PairList 목록을 private static final로 설정하여 미션 내 다른 페어 목록을 가지고 오는데 문제 발생 
