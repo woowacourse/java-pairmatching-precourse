@@ -70,4 +70,13 @@ public class ValidCheck {
 		}
 		throw new IllegalArgumentException("[ERROR]해당레벨에 없는 미션입니다");
 	}
+	
+	
+	public static void threeTryError() {
+		try {
+			throw new IllegalArgumentException("[ERROR]3회이상 매칭 싫패하였습니다.");
+			}catch(IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+	}
 }
