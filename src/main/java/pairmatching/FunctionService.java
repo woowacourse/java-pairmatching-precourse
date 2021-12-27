@@ -4,54 +4,48 @@ import java.util.ArrayList;
 
 public class FunctionService {
     private static int selectedOption = -1;
-    private ArrayList<String> functionNameList = new ArrayList<>();
-    private ArrayList<String> functionOptionList = new ArrayList<>();
-
-    public FunctionService () {
-        initNameList();
-        initOptionList();
-    }
-
-    private void initNameList() {
-        functionNameList.add("페어 매칭");
-        functionNameList.add("페어 조회");
-        functionNameList.add("페어 초기화");
-        functionNameList.add("종료");
-    }
-
-    private void initOptionList() {
-        functionOptionList.add("1");
-        functionOptionList.add("2");
-        functionOptionList.add("3");
-        functionOptionList.add("Q");
-    }
-
-    public void isExistOption(String input) throws IllegalArgumentException {
-        int index = 0;
-        for (int i = 0; i < functionOptionList.size(); i++) {
-            if (functionOptionList.get(i).equals(input)) {
-                index = i;
-            }
-        }
-        if (index == -1) {
-            throw new IllegalArgumentException("[ERROR] 목록에 있는 옵션을 입력해 주세요.");
-        }
-        setIndex(index);
-    }
-
-    private void setIndex(int index) {
-        this.selectedOption = index;
-    }
 
     public int getSelectedOption() {
         return selectedOption;
     }
 
-    @Override
-    public String toString() {
-        String result = "";
-        for (int i = 0; i < functionNameList.size(); i++) {
-            result += functionOptionList.get(i) + ". " + functionNameList.get(i) + "\n";
+    public boolean isValidFunctionOption(String input) throws IllegalArgumentException {
+        ArrayList<Integer> selectedNumberList = isNumberOption(input);
+        ArrayList<Integer> selectedNameList = isNameOption(input);
+        if (selectedNameList.size() + selectedNumberList.size() >= 2
+                || selectedNameList.size() + selectedNumberList.size() == 0) {
+            if (!selectedNameList.equals(selectedNumberList)) {
+                throw new IllegalArgumentException("[ERROR] 목록에 있는 하나의 옵션을 선택하세요.");
+            }
+        }
+        setSelectedOption(selectedNumberList, selectedNameList);
+        return true;
+    }
+
+    private void setSelectedOption(ArrayList<Integer> numberList, ArrayList<Integer> nameList) {
+        if (numberList.size() == 1) {
+            selectedOption = numberList.get(0);
+            return;
+        }
+        selectedOption = nameList.get(0);
+    }
+
+    private ArrayList<Integer> isNameOption(String input) {
+        ArrayList<Integer> result = new ArrayList<>();
+        for (FunctionOption.Number number : FunctionOption.Number.values()) {
+            if (input.contains(number.getNumber())) {
+                result.add(number.ordinal());
+            }
+        }
+        return result;
+    }
+
+    private ArrayList<Integer> isNumberOption(String input) {
+        ArrayList<Integer> result = new ArrayList<>();
+        for (FunctionOption.Name name : FunctionOption.Name.values()) {
+            if (input.contains(name.getName())) {
+                result.add(name.ordinal());
+            }
         }
         return result;
     }
