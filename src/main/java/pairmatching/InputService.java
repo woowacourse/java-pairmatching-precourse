@@ -11,8 +11,14 @@ public class InputService {
         printService.printWithMessage(functionService.toString());
         while (true) {
             String input = Console.readLine();
-            if (validateService.isValidOption(input)) {
+            if (input.equals("")) {
+                continue;
+            }
+            try {
+                functionService.isValidFunctionOption(input);
                 return functionService.getSelectedOption();
+            } catch (IllegalArgumentException e) {
+                printService.printWithMessage(e.getMessage());
             }
         }
     }
