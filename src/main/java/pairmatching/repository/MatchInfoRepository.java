@@ -25,6 +25,20 @@ public class MatchInfoRepository {
         return matchInfo;
     }
 
+    public MatchInfo reviseMatchInfo(MatchInfo info) {
+        int index = 0;
+        int removeIndex = 0;
+        for (MatchInfo matchInfo : matchInfoList) {
+            if (info.getCourse() == matchInfo.getCourse() && info.getLevel() == matchInfo.getLevel()
+                    && info.getMission() == matchInfo.getMission()) {
+                removeIndex = index;
+            }
+            index++;
+        }
+        matchInfoList.remove(removeIndex);
+        matchInfoList.add(info);
+        return info;
+    }
     public boolean isExist(Course course, Level level, Mission mission) {
         List<MatchInfo> result = matchInfoList.stream()
                 .filter(matchInfo -> course == matchInfo.getCourse())

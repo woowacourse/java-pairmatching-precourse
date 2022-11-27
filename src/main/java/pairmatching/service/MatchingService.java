@@ -62,4 +62,28 @@ public class MatchingService {
         }
         return false;
     }
+
+    public MatchInfo firstMatch(Course course, Level level, Mission mission) {
+        return matchInfoRepository.addMatchInfo(matchPair(course, level, mission));
+    }
+
+    public MatchInfo rematchAndSavePair(Course course, Level level, Mission mission) {
+        return matchInfoRepository.reviseMatchInfo(matchPair(course, level, mission));
+    }
+
+    public MatchInfo matchPair(Course course, Level level, Mission mission) {
+        List<List<Crew>> pair = new ArrayList<>();
+        List<Crew> crews = Randoms.shuffle(crewRepository.getCrew(course));
+        int index = 0;
+        while (crews.size() != index) {
+            List<Crew> onePair = new ArrayList<>();
+            onePair.add(crews.get(index++));
+            onePair.add(crews.get(index++));
+            if (index == crews.size() - 1) {
+                onePair.add(crews.get(index++));
+            }
+            pair.add(onePair);
+        }
+        return new MatchInfo(course, level, mission, pair);
+    }
 }
