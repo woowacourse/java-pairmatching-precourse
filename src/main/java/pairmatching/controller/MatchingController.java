@@ -1,10 +1,12 @@
 package pairmatching.controller;
 
+import pairmatching.domain.MatchInfo;
 import pairmatching.domain.Missions;
 import pairmatching.service.MatchingService;
 
 
 import static pairmatching.view.InputView.getMatchingInfo;
+import static pairmatching.view.OutputView.printMatchPair;
 import static pairmatching.view.OutputView.printMissionInfo;
 
 public class MatchingController {
@@ -16,7 +18,8 @@ public class MatchingController {
             try {
                 printMissionInfo(missions);
                 String input = getMatchingInfo();
-                matchingService.checkMissionInfo(input, missions);
+                MatchInfo matchInfo = matchingService.matchPair(input, missions);
+                printMatchPair(matchInfo);
                 flag = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

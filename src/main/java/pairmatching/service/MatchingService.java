@@ -15,12 +15,13 @@ public class MatchingService {
 
     private static final MatchInfoRepository matchInfoRepository = MatchInfoRepository.getInstance();
     private static final CrewRepository crewRepository = CrewRepository.getInstance();
-    public void checkMissionInfo(String input, Missions missions) {
+    public MatchInfo matchPair(String input, Missions missions) {
         String[] infoArr = input.split(", ");
         Course course = checkCourse(infoArr[0]);
         Level level = checkLevel(infoArr[1]);
         Mission mission = checkMission(infoArr[1], infoArr[2], missions);
-        matchPair(course, level, mission);
+
+        return matchAndSavePair(course, level, mission);
     }
 
     private Course checkCourse(String course) {
@@ -47,7 +48,7 @@ public class MatchingService {
         return Mission.getEnumMission(mission);
     }
 
-    public void matchPair(Course course, Level level, Mission mission) {
+    public MatchInfo matchAndSavePair(Course course, Level level, Mission mission) {
         List<List<Crew>> pair = new ArrayList<>();
         List<Crew> crews = Randoms.shuffle(crewRepository.getCrew(course));
         int index = 0;
@@ -60,7 +61,7 @@ public class MatchingService {
             }
             pair.add(onePair);
         }
-        matchInfoRepository.addMatchInfo(new MatchInfo(course, level, mission, pair));
+        return matchInfoRepository.addMatchInfo(new MatchInfo(course, level, mission, pair));
     }
 
 }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static pairmatching.utils.ExceptionMessage.ERROR_FILE_READ;
 
@@ -25,7 +26,7 @@ public class CrewRepository {
         return instance;
     }
 
-    public void init() {
+    public static void initCrewInfo() {
         try {
             readBackendCrew();
             readFrontendCrew();
@@ -34,7 +35,7 @@ public class CrewRepository {
         }
     }
 
-    private void readBackendCrew() throws IOException {
+    private static void readBackendCrew() throws IOException {
         List<Crew> crewList = new ArrayList<>();
         BufferedReader reader = new BufferedReader(
                 new FileReader("src/main/resources/backend-crew.md")
@@ -47,7 +48,7 @@ public class CrewRepository {
         crews.put(Course.BACKEND, crewList);
     }
 
-    private void readFrontendCrew() throws IOException {
+    private static void readFrontendCrew() throws IOException {
         List<Crew> crewList = new ArrayList<>();
         BufferedReader reader = new BufferedReader(
                 new FileReader("src/main/resources/frontend-crew.md")
@@ -61,6 +62,6 @@ public class CrewRepository {
     }
 
     public List<Crew> getCrew(Course course) {
-        return crews.get(course);
+        return crews.get(course).stream().collect(Collectors.toList());
     }
 }
