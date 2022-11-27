@@ -1,9 +1,6 @@
 package pairmatching;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Missions {
     private static Map<Level, List<String>> missionMap;
@@ -29,7 +26,8 @@ public class Missions {
 
         missionMap.get(Level.LEVEL4).add("성능개선");
         missionMap.get(Level.LEVEL4).add("배포");
-
-
+    }
+    public List<String> getValue(Level level) {
+        return Collections.unmodifiableList(missionMap.get(level));
     }
 }

@@ -19,7 +19,7 @@ public enum Course {
     public String getName() {
         return name;
     }
-    public List<String> getList() {
+    public static List<String> getList() {
         return Arrays.stream(Course.values())
                 .map(Course::getName)
                 .sequential()
