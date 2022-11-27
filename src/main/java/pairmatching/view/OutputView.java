@@ -1,9 +1,8 @@
 package pairmatching.view;
 
-import camp.nextstep.edu.missionutils.Console;
-import pairmatching.Course;
-import pairmatching.Level;
-import pairmatching.Missions;
+import pairmatching.model.Course;
+import pairmatching.model.Level;
+import pairmatching.model.Missions;
 
 public class OutputView {
     public void printSelectFunction() {
@@ -13,7 +12,7 @@ public class OutputView {
                 "3. 페어 초기화\n" +
                 "Q. 종료");
     }
-    public static void printCourseAndMission(Missions missions) {
+    public static void printMissionInfo(Missions missions) {
         System.out.println("\n#############################################");
         System.out.print("과정: ");
         System.out.println(String.join(" | ", Course.getList()));

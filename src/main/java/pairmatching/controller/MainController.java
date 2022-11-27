@@ -11,7 +11,7 @@ public class MainController {
         boolean flag = false;
         while (!flag) {
             try {
-                String input = validate.validateCheckNumber(inputView.getMainSelect());
+                String input = validate.checkMissionInfo(inputView.getMainSelect());
                 readSelect(input);
                 if (input.equals("Q")) {
                     flag = true;
