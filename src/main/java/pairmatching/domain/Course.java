@@ -33,4 +33,10 @@ public enum Course {
         }
         return false;
     }
+
+    public static Course getEnumCourse(String name) {
+        return Arrays.stream(Course.values())
+                .filter((course -> course.getName().equals(name)))
+                .collect(Collectors.toList()).get(0);
+    }
 }
