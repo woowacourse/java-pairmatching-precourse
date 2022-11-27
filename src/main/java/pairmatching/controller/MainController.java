@@ -7,6 +7,7 @@ public class MainController {
     public static final Validate validate = new Validate();
     public static final MatchingController matchingController = new MatchingController();
     public static final InputView inputView = new InputView();
+
     public void run() {
         boolean flag = false;
         while (!flag) {
@@ -21,6 +22,7 @@ public class MainController {
             }
         }
     }
+
     private void readSelect(String input) {
         if (input.equals("1")) {
             matchingController.run();

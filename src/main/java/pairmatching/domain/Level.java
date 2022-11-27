@@ -27,6 +27,7 @@ public enum Level {
                 .sequential()
                 .collect(Collectors.toList());
     }
+
     public static Level getEnumLevel(String name) {
         return Arrays.stream(Level.values())
                 .filter(level -> level.getName().equals(name))
@@ -34,7 +35,7 @@ public enum Level {
     }
 
     public static boolean isExist(String name) {
-        List<Level> result =  Arrays.stream(Level.values())
+        List<Level> result = Arrays.stream(Level.values())
                 .filter(level -> level.getName().equals(name))
                 .collect(Collectors.toList());
         if (result.size() == 1) {

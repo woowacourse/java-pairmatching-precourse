@@ -18,14 +18,16 @@ public enum Course {
     public String getName() {
         return name;
     }
+
     public static List<String> getList() {
         return Arrays.stream(Course.values())
                 .map(Course::getName)
                 .sequential()
                 .collect(Collectors.toList());
     }
+
     public static boolean isExist(String name) {
-        List<Course> result =  Arrays.stream(Course.values())
+        List<Course> result = Arrays.stream(Course.values())
                 .filter(course -> course.getName().equals(name))
                 .collect(Collectors.toList());
         if (result.size() == 1) {

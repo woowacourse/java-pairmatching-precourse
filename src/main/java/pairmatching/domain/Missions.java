@@ -10,12 +10,14 @@ public class Missions {
         missionMap = new TreeMap<>();
         init();
     }
+
     private void init() {
         Level.getList().stream()
                 .forEach(level -> missionMap.put(level, new ArrayList<>()));
 
         addInfo();
     }
+
     private void addInfo() {
         missionMap.get(Level.LEVEL1).add(Mission.CAR_RACE);
         missionMap.get(Level.LEVEL1).add(Mission.LOTTO);
@@ -28,6 +30,7 @@ public class Missions {
         missionMap.get(Level.LEVEL4).add(Mission.IMPROVEMENT_PERFORMANCE);
         missionMap.get(Level.LEVEL4).add(Mission.DEPLOYMENT);
     }
+
     public List<String> getValue(Level level) {
         return Collections.unmodifiableList(missionMap.get(level).stream()
                 .map(mission -> mission.getName())

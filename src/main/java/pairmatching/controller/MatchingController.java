@@ -12,9 +12,10 @@ import static pairmatching.view.OutputView.printMissionInfo;
 public class MatchingController {
     public static final Missions missions = new Missions();
     public static final MatchingService matchingService = new MatchingService();
+
     public void run() {
         boolean flag = false;
-        while(!flag) {
+        while (!flag) {
             try {
                 printMissionInfo(missions);
                 String input = getMatchingInfo();

@@ -15,6 +15,7 @@ public class MatchingService {
 
     private static final MatchInfoRepository matchInfoRepository = MatchInfoRepository.getInstance();
     private static final CrewRepository crewRepository = CrewRepository.getInstance();
+
     public MatchInfo matchPair(String input, Missions missions) {
         String[] infoArr = input.split(", ");
         Course course = checkCourse(infoArr[0]);
@@ -56,7 +57,7 @@ public class MatchingService {
             List<Crew> onePair = new ArrayList<>();
             onePair.add(crews.get(index++));
             onePair.add(crews.get(index++));
-            if (index == crews.size()-1) {
+            if (index == crews.size() - 1) {
                 onePair.add(crews.get(index++));
             }
             pair.add(onePair);

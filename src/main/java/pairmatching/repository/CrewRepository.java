@@ -22,6 +22,7 @@ public class CrewRepository {
     private CrewRepository() {
 
     }
+
     public static CrewRepository getInstance() {
         return instance;
     }
@@ -41,7 +42,7 @@ public class CrewRepository {
                 new FileReader("src/main/resources/backend-crew.md")
         );
         String str;
-        while((str = reader.readLine()) != null) {
+        while ((str = reader.readLine()) != null) {
             crewList.add(new Crew(Course.BACKEND, str));
         }
         reader.close();
@@ -54,7 +55,7 @@ public class CrewRepository {
                 new FileReader("src/main/resources/frontend-crew.md")
         );
         String str;
-        while((str = reader.readLine()) != null) {
+        while ((str = reader.readLine()) != null) {
             crewList.add(new Crew(Course.FRONTEND, str));
         }
         reader.close();

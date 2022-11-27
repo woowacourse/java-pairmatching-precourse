@@ -14,6 +14,7 @@ public class MatchInfo {
         this.mission = mission;
         this.pair = pair;
     }
+
     public List<List<Crew>> getPairInfo() {
         return pair;
     }
