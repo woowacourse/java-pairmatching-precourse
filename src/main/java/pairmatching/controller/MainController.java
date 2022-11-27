@@ -1,13 +1,35 @@
 package pairmatching.controller;
 
-public class MainController {
-    public static final MatchingController matchingController = new MatchingController();
-    public void runSelectFunction(String input ) {
-        int selectNum = Integer.parseInt(input);
+import pairmatching.utils.Validate;
+import pairmatching.view.InputView;
 
-        if(input.equals(selectNum == 1) {
-            matchingController.run();
+public class MainController {
+    public static final Validate validate = new Validate();
+    public static final MatchingController matchingController = new MatchingController();
+    public static final InputView inputView = new InputView();
+    public void run() {
+        boolean flag = false;
+        while (!flag) {
+            try {
+                String input = validate.validateCheckNumber(inputView.getMainSelect());
+
+                if (input.equals("Q")) {
+                    flag = true;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
+    private void readSelect(String input) {
+        if (input.equals("1")) {
+            matchingController.run();
+        }
+        if (input.equals("2")) {
 
+        }
+        if (input.equals("3")) {
+
+        }
+    }
 }
