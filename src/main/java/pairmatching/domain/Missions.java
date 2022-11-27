@@ -1,4 +1,4 @@
-package pairmatching.model;
+package pairmatching.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;

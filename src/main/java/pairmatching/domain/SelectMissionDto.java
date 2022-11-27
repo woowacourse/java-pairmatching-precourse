@@ -1,4 +1,4 @@
-package pairmatching.model;
+package pairmatching.domain;
 
 public class SelectMissionDto {
     Course course;

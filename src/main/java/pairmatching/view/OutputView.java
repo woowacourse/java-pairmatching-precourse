@@ -1,8 +1,8 @@
 package pairmatching.view;
 
-import pairmatching.model.Course;
-import pairmatching.model.Level;
-import pairmatching.model.Missions;
+import pairmatching.domain.Course;
+import pairmatching.domain.Level;
+import pairmatching.domain.Missions;
 
 public class OutputView {
     public void printSelectFunction() {
