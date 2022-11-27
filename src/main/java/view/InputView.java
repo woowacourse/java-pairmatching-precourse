@@ -7,4 +7,8 @@ public class InputView {
         String selectNumber = Console.readLine();
         return selectNumber;
     }
+    public String readSelectCourseAndMission() {
+        String selectCourAndMis = Console.readLine();
+        return selectCourAndMis;
+    }
 }
