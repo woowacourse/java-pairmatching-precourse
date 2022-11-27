@@ -40,22 +40,6 @@ public class MatchingService {
         return Mission.getEnumMission(mission);
     }
 
-    public MatchInfo matchAndSavePair(Course course, Level level, Mission mission) {
-        List<List<Crew>> pair = new ArrayList<>();
-        List<Crew> crews = Randoms.shuffle(crewRepository.getCrew(course));
-        int index = 0;
-        while (crews.size() != index) {
-            List<Crew> onePair = new ArrayList<>();
-            onePair.add(crews.get(index++));
-            onePair.add(crews.get(index++));
-            if (index == crews.size() - 1) {
-                onePair.add(crews.get(index++));
-            }
-            pair.add(onePair);
-        }
-        return matchInfoRepository.addMatchInfo(new MatchInfo(course, level, mission, pair));
-    }
-
     public boolean checkExistPair(Course course, Level level, Mission mission) {
         if (matchInfoRepository.isExist(course, level, mission)) {
             return true;
