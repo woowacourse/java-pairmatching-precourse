@@ -9,9 +9,17 @@ public class Validate {
     private final static String ERROR_MESSAGE = "[ERROR]";
 
     public static String checkMissionInfo(String input) {
-        List<String> candidateNumAndQ = Arrays.asList(new String[]{"1", "2", "3", "Q"});
-        if (!candidateNumAndQ.contains(input)) {
+        List<String> candidate = Arrays.asList(new String[]{"1", "2", "3", "Q"});
+        if (!candidate.contains(input)) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "보기에 있는 기능 선택만 할 수 있습니다.");
+        }
+        return input;
+    }
+
+    public static String checkRematchAnswer(String input) {
+        List<String> candidate = Arrays.asList(new String[]{"네", "아니요"});
+        if (!candidate.contains(input)) {
+            throw new IllegalArgumentException(ERROR_INVALID_SELECT);
         }
         return input;
     }

@@ -1,6 +1,7 @@
 package pairmatching.utils;
 
 public class ExceptionMessage {
+    public static final String ERROR_INVALID_SELECT ="[ERROR] 보기에 없는 선택입니다.";
     public static final String ERROR_EMPTY_INPUT = "[ERROR] 비어있는 값이 존재합니다.";
     public static final String ERROR_LESS_INFO = "[ERROR] 3개의 입력 값이 필요합니다.";
     public static final String ERROR_FRONT_BLANK = "[ERROR] 입력값 앞에 공백이 존재합니다. " +

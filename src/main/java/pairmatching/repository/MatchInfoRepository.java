@@ -24,4 +24,16 @@ public class MatchInfoRepository {
         matchInfoList.add(matchInfo);
         return matchInfo;
     }
+
+    public boolean isExist(Course course, Level level, Mission mission) {
+        List<MatchInfo> result = matchInfoList.stream()
+                .filter(matchInfo -> course == matchInfo.getCourse())
+                .filter(matchInfo -> level == matchInfo.getLevel())
+                .filter(matchInfo -> mission == matchInfo.getMission())
+                .collect(Collectors.toList());
+        if (result.size() == 1) {
+            return true;
+        }
+        return false;
+    }
 }

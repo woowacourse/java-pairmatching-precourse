@@ -17,4 +17,10 @@ public class InputView {
                 "ex) 백엔드, 레벨1, 자동차경주");
         return Console.readLine();
     }
+
+    public static String getConfirmRematch() {
+        System.out.println("\n매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n" +
+                "네 | 아니오");
+        return Console.readLine();
+    }
 }
