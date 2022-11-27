@@ -1,4 +1,4 @@
-package pairmatching;
+package pairmatching.model;
 
 import java.util.*;
 
@@ -29,5 +29,12 @@ public class Missions {
     }
     public List<String> getValue(Level level) {
         return Collections.unmodifiableList(missionMap.get(level));
+    }
+
+    public boolean isExist(String level, String mission) {
+        if (missionMap.get(Level.getEnumLevel(level)).contains(mission)) {
+            return true;
+        }
+        return false;
     }
 }

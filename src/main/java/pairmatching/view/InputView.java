@@ -11,8 +11,9 @@ public class InputView {
                 "Q. 종료");
         return Console.readLine();
     }
-    public String getSelectCourseAndMission() {
-        String selectCourAndMis = Console.readLine();
-        return selectCourAndMis;
+    public static String getMatchingInfo() {
+        System.out.println("과정, 레벨, 미션을 선택하세요.\n" +
+                "ex) 백엔드, 레벨1, 자동차경주");
+        return Console.readLine();
     }
 }

@@ -1,6 +1,5 @@
-package pairmatching;
+package pairmatching.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,5 +23,14 @@ public enum Course {
                 .map(Course::getName)
                 .sequential()
                 .collect(Collectors.toList());
+    }
+    public static boolean isExist(String name) {
+        List<Course> result =  Arrays.stream(Course.values())
+                .filter(course -> course.getName().equals(name))
+                .collect(Collectors.toList());
+        if (result.size() == 1) {
+            return true;
+        }
+        return false;
     }
 }
