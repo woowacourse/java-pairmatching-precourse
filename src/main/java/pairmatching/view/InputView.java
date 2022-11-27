@@ -3,11 +3,15 @@ package pairmatching.view;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    public String readSelect() {
-        String selectNumber = Console.readLine();
-        return selectNumber;
+    public static String getMainSelect() {
+        System.out.println("\n기능을 선택하세요.\n" +
+                "1. 페어 매칭\n" +
+                "2. 페어 조회\n" +
+                "3. 페어 초기화\n" +
+                "Q. 종료");
+        return Console.readLine();
     }
-    public String readSelectCourseAndMission() {
+    public String getSelectCourseAndMission() {
         String selectCourAndMis = Console.readLine();
         return selectCourAndMis;
     }
