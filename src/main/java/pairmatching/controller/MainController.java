@@ -1,6 +1,5 @@
 package pairmatching.controller;
 
-import pairmatching.service.InitializeService;
 import pairmatching.utils.Validate;
 import pairmatching.view.InputView;
 
