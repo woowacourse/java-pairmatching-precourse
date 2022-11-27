@@ -6,9 +6,10 @@ import java.util.Optional;
 import static pairmatching.utils.ExceptionMessage.ERROR_MISSION_NOT_EXIST;
 
 public enum Mission {
-    CAT_RACE("자동차경주"),
+    CAR_RACE("자동차경주"),
     LOTTO("로또"),
     BASEBALL("숫자야구게임"),
+    BASKET("장바구니"),
     PAY("결제"),
     SUBWAY("지하철노선도"),
     IMPROVEMENT_PERFORMANCE("성능개선"),
