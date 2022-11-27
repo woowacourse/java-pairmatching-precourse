@@ -12,7 +12,7 @@ public class MainController {
         while (!flag) {
             try {
                 String input = validate.validateCheckNumber(inputView.getMainSelect());
-
+                readSelect(input);
                 if (input.equals("Q")) {
                     flag = true;
                 }
