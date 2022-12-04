@@ -25,13 +25,41 @@
 
 - ### Main diagram
 
+- [x] Application - 시작
+- [x] controller
+  - [x] MainController
+  - [x] MatchingController - 페어 매칭
+  - [x] InquiryController - 페어 조회
+  - [x] InitializeController - 페어 초기화
 
+- [x] domain
+  - [x] Course
+  - [x] Crew
+  - [x] Level
+  - [x] Mission
+  - [x] Missions
+  - [x] SelectMissionDto
+
+- [x] repository
+  - [x] CrewRepository
+  - [x] MatchingService
+
+- [x] service
+  - [x] InitializeService
+  - [x] InquiryService
+  - [x] MatchingService
 
 - ### Util diagram
 
-
+- [x] utils
+  - [x] ExceptionMessage
+  - [x] Validate
 
 - ### View diagram
+
+- [x] view
+  - [x] InputView
+  - [x] OutputView
 
 ---
 
@@ -51,10 +79,6 @@
   - [x] 페어 초기화 숫자를 입력하면 페어 미션에 대한 정보가 초기화 된다.
   - [x] 초기화 되었다는 내용을 출력한다.
 - [ ] 종료(Q)를 입력하면 게임이 종료된다.
-
-## ✅추가할 객체
-
-1. 
 
 ## ✅예외 처리
 
