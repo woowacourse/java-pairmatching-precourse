@@ -12,9 +12,8 @@ import pairmatching.vo.PairMatchingInfo;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class MatchingPairController implements Controller {
+public class MatchingPairController extends AbstractController {
     public static final String CREW_MATCHING_FAILED_THREE_TIMES_MESSAGE = "크루 매칭이 3회 이상 실패하였습니다.";
     private final CrewRepository crewRepository;
     private final PairMatchingRepository pairMatchingRepository;
@@ -29,7 +28,7 @@ public class MatchingPairController implements Controller {
     }
 
     @Override
-    public void process(Map<String, Object> model) {
+    public void doProcess(Map<String, Object> model) {
         PairMatchingInfo pairMatchingInfo = (PairMatchingInfo) model.get("pairMatchingInfo");
         List<Crew> crews = crewRepository.findByCourse(pairMatchingInfo.getCourse());
         List<Pair> pairs;

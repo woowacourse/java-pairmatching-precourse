@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ReadingCrewsFileController implements Controller {
+public class ReadingCrewsFileController extends AbstractController {
 
     public static final String BACKEND_CREWS_FILE_DIRECTORY = "src/main/resources/backend-crew.md";
     public static final String FRONTEND_CREWS_FILE_DIRECTORY = "src/main/resources/frontend-crew.md";
@@ -25,7 +25,7 @@ public class ReadingCrewsFileController implements Controller {
     }
 
     @Override
-    public void process(Map<String, Object> model) {
+    public void doProcess(Map<String, Object> model) {
         try {
             List<Crew> backEndCrews = NamesToCrewConverter.convert(readBackEndCrews(), Course.BACKEND);
             crewRepository.saveAll(backEndCrews);

@@ -6,7 +6,7 @@ import pairmatching.vo.PairMatchingInfo;
 
 import java.util.Map;
 
-public class FindPairController implements Controller {
+public class FindPairController extends AbstractController {
     private final OutputView outputView;
     private final PairMatchingRepository pairMatchingRepository;
 
@@ -16,7 +16,7 @@ public class FindPairController implements Controller {
     }
 
     @Override
-    public void process(Map<String, Object> model) {
+    public void doProcess(Map<String, Object> model) {
         PairMatchingInfo pairMatchingInfo = (PairMatchingInfo) model.get("pairMatchingInfo");
         model.put("matchedPairNames", pairMatchingRepository.findAllNamesByPairMatchingInfo(pairMatchingInfo));
         outputView.print(model);

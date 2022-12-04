@@ -5,7 +5,7 @@ import pairmatching.repository.PairMatchingRepository;
 
 import java.util.Map;
 
-public class ResetPairController implements Controller {
+public class ResetPairController extends AbstractController {
     private final PairMatchingRepository pairMatchingRepository;
     private final OutputView outputView;
 
@@ -15,7 +15,7 @@ public class ResetPairController implements Controller {
     }
 
     @Override
-    public void process(Map<String, Object> model) {
+    public void doProcess(Map<String, Object> model) {
         pairMatchingRepository.resetAll();
         outputView.print(model);
     }

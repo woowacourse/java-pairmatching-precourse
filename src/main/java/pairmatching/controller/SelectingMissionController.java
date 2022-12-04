@@ -9,7 +9,7 @@ import pairmatching.vo.PairMatchingInfo;
 
 import java.util.Map;
 
-public class SelectingMissionController implements Controller {
+public class SelectingMissionController extends AbstractController {
     private final OutputView outputView;
     private final InputView<PairMatchingInfo> inputView;
     private final MissionRepository missionRepository;
@@ -21,7 +21,7 @@ public class SelectingMissionController implements Controller {
     }
 
     @Override
-    public void process(Map<String, Object> model) {
+    public void doProcess(Map<String, Object> model) {
         printMessage(model);
         readInputIntoModel(model);
     }

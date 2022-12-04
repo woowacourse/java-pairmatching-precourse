@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class SavingMissionsController implements Controller {
+public class SavingMissionsController extends AbstractController {
     private final MissionRepository missionRepository;
 
     public SavingMissionsController(MissionRepository missionRepository) {
@@ -15,7 +15,7 @@ public class SavingMissionsController implements Controller {
     }
 
     @Override
-    public void process(Map<String, Object> model) {
+    public void doProcess(Map<String, Object> model) {
         saveMissions(getLevelOneMissionNames(), Level.LEVEL1);
         saveMissions(getLevelTwoMissionNames(), Level.LEVEL2);
         saveMissions(getLevelFiveMissionNames(), Level.LEVEL4);
