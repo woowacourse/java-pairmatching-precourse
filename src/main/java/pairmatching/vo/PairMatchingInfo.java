@@ -1,6 +1,7 @@
 package pairmatching.vo;
 
 import pairmatching.model.Course;
+import pairmatching.model.Level;
 import pairmatching.model.Mission;
 
 public class PairMatchingInfo {
@@ -14,5 +15,9 @@ public class PairMatchingInfo {
 
     public Course getCourse() {
         return course;
+    }
+
+    public Level getLevel() {
+        return mission.getLevel();
     }
 }
