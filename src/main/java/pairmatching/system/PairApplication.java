@@ -72,16 +72,28 @@ public class PairApplication {
 
     private void doFeature(FeatureCommand featureCommand, HashMap<String, Object> model) {
         if (featureCommand == FeatureCommand.MATCHING) {
-            controllers.get(SELECTING_MISSION_PATH).process(model);
-            controllers.get(MATCHING_PAIR).process(model);
+            doMatchingProcess(model);
         }
         if (featureCommand == FeatureCommand.FIND) {
-            controllers.get(SELECTING_MISSION_PATH).process(model);
-            controllers.get(FIND_PAIR_PATH).process(model);
+            doFindingProcess(model);
         }
         if (featureCommand == FeatureCommand.RESET) {
-            controllers.get(RESET_PAIR_CONTROLLER_PATH).process(model);
+            doResetProcess(model);
         }
+    }
+
+    private void doResetProcess(HashMap<String, Object> model) {
+        controllers.get(RESET_PAIR_CONTROLLER_PATH).process(model);
+    }
+
+    private void doFindingProcess(HashMap<String, Object> model) {
+        controllers.get(SELECTING_MISSION_PATH).process(model);
+        controllers.get(FIND_PAIR_PATH).process(model);
+    }
+
+    private void doMatchingProcess(HashMap<String, Object> model) {
+        controllers.get(SELECTING_MISSION_PATH).process(model);
+        controllers.get(MATCHING_PAIR).process(model);
     }
 
     private void readFeatureCommand(HashMap<String, Object> model) {

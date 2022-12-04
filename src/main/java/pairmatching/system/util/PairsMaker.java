@@ -1,6 +1,5 @@
 package pairmatching.system.util;
 
-import pairmatching.model.Crew;
 import pairmatching.model.Pair;
 
 import java.util.ArrayList;
