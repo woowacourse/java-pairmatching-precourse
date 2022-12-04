@@ -9,7 +9,7 @@ import pairmatching.repository.MatchInfoRepository;
 import static pairmatching.controller.MatchingController.missions;
 import static pairmatching.utils.ExceptionMessage.ERROR_NOT_EXIST_MATCH;
 import static pairmatching.utils.Validate.checkInfoCount;
-public class InqueryService {
+public class InquiryService {
     private static final MatchInfoRepository matchingInfoRepository = MatchInfoRepository.getInstance();
     public static final MatchingService matchService = new MatchingService();
 

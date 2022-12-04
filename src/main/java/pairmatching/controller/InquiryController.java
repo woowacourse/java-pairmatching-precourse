@@ -1,14 +1,14 @@
 package pairmatching.controller;
 
-import pairmatching.service.InqueryService;
+import pairmatching.service.InquiryService;
 
 import static pairmatching.controller.MatchingController.missions;
 import static pairmatching.view.InputView.getInqueryInfo;
 import static pairmatching.view.OutputView.printMatchPair;
 import static pairmatching.view.OutputView.printMissionInfo;
 
-public class InqueryController {
-    private static final InqueryService inqueryService = new InqueryService();
+public class InquiryController {
+    private static final InquiryService inquiryService = new InquiryService();
 
     public void run() {
         boolean flag = false;
@@ -24,6 +24,6 @@ public class InqueryController {
     }
 
     public void printMatchInfo(String input) {
-        printMatchPair(inqueryService.getMatchInfo(input));
+        printMatchPair(inquiryService.getMatchInfo(input));
     }
 }
