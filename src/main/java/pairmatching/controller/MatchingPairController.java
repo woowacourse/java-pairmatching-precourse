@@ -11,6 +11,8 @@ import pairmatching.vo.PairMatchingInfo;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MatchingPairController implements Controller {
     public static final String CREW_MATCHING_FAILED_THREE_TIMES_MESSAGE = "크루 매칭이 3회 이상 실패하였습니다.";
@@ -43,7 +45,7 @@ public class MatchingPairController implements Controller {
         List<Pair> pairs;
         int notMatchedCount = 0;
         do {
-            pairs = pairsMaker.makePairs(getShuffledCrews(crews));
+            pairs = pairsMaker.makePairs(getShuffledCrewNames(crews));
             notMatchedCount++;
             if (notMatchedCount == 3) {
                 throw new IllegalStateException(CREW_MATCHING_FAILED_THREE_TIMES_MESSAGE);
@@ -52,7 +54,10 @@ public class MatchingPairController implements Controller {
         return pairs;
     }
 
-    private List<Crew> getShuffledCrews(List<Crew> crews) {
-        return Randoms.shuffle(crews);
+    private List<String> getShuffledCrewNames(List<Crew> crews) {
+        List<String> crewNames = crews.stream()
+                .map(Crew::getName)
+                .collect(Collectors.toList());
+        return Randoms.shuffle(crewNames);
     }
 }
