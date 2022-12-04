@@ -7,6 +7,8 @@ import pairmatching.outputview.SelectingFeatureOutputView;
 import pairmatching.outputview.SelectingMissionOutputView;
 import pairmatching.repository.CrewRepository;
 import pairmatching.repository.MissionRepository;
+import pairmatching.repository.PairMatchingRepository;
+import pairmatching.system.util.PairsMaker;
 import pairmatching.vo.FeatureCommand;
 
 import java.util.HashMap;
@@ -17,12 +19,14 @@ public class PairApplication {
     public static final String SAVE_MISSIONS_CONTROLLER_PATH = "saveMissions";
     public static final String SELECT_FEATURE_CONTROLLER_PATH = "selectFeature";
     public static final String SELECTING_MISSION_PATH = "selectMission";
+    public static final String MATCHING_PAIR = "matchPair";
     private final Map<String, Controller> controllers = new HashMap<>();
 
     public PairApplication() {
         MissionRepository missionRepository = new MissionRepository();
+        CrewRepository crewRepository = new CrewRepository();
 
-        controllers.put(READING_CREW_FILE_CONTROLLER_PATH, new ReadingCrewsFileController(new CrewRepository()));
+        controllers.put(READING_CREW_FILE_CONTROLLER_PATH, new ReadingCrewsFileController(crewRepository));
         controllers.put(SAVE_MISSIONS_CONTROLLER_PATH, new SavingMissionsController(missionRepository));
         controllers.put(SELECT_FEATURE_CONTROLLER_PATH, new SelectingFeatureController(
                 new SelectingFeatureOutputView(),
@@ -33,6 +37,9 @@ public class PairApplication {
                 new SelectingMissionInputView(),
                 missionRepository
         ));
+        controllers.put(MATCHING_PAIR, new MatchingPairController(
+                crewRepository, new PairMatchingRepository(), new PairsMaker())
+        );
     }
 
     public void run() {
@@ -48,6 +55,7 @@ public class PairApplication {
         FeatureCommand featureCommand = (FeatureCommand) model.get("featureCommand");
         if (featureCommand == FeatureCommand.MATCHING) {
             controllers.get(SELECTING_MISSION_PATH).process(model);
+            controllers.get(MATCHING_PAIR).process(model);
         }
         if (featureCommand == FeatureCommand.FIND) {
 

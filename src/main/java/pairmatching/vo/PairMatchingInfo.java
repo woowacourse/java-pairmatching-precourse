@@ -11,4 +11,8 @@ public class PairMatchingInfo {
         this.course = course;
         this.mission = mission;
     }
+
+    public Course getCourse() {
+        return course;
+    }
 }
