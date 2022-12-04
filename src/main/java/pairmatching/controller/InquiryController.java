@@ -3,7 +3,7 @@ package pairmatching.controller;
 import pairmatching.service.InquiryService;
 
 import static pairmatching.controller.MatchingController.missions;
-import static pairmatching.view.InputView.getInqueryInfo;
+import static pairmatching.view.InputView.getInquiryInfo;
 import static pairmatching.view.OutputView.printMatchPair;
 import static pairmatching.view.OutputView.printMissionInfo;
 
@@ -15,7 +15,7 @@ public class InquiryController {
         while (!flag) {
             try {
                 printMissionInfo(missions);
-                printMatchInfo(getInqueryInfo());
+                printMatchInfo(getInquiryInfo());
                 flag = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
