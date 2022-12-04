@@ -82,9 +82,6 @@ public class PairApplication {
         if (featureCommand == FeatureCommand.RESET) {
             controllers.get(RESET_PAIR_CONTROLLER_PATH).process(model);
         }
-        if (featureCommand == FeatureCommand.QUIT) {
-
-        }
     }
 
     private void readFeatureCommand(HashMap<String, Object> model) {
