@@ -3,6 +3,7 @@ package pairmatching.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.model.Crew;
 import pairmatching.model.Pair;
+import pairmatching.outputview.OutputView;
 import pairmatching.repository.CrewRepository;
 import pairmatching.repository.PairMatchingRepository;
 import pairmatching.system.util.PairsMaker;
@@ -16,11 +17,13 @@ public class MatchingPairController implements Controller {
     private final CrewRepository crewRepository;
     private final PairMatchingRepository pairMatchingRepository;
     private final PairsMaker pairsMaker;
+    private final OutputView outputView;
 
-    public MatchingPairController(CrewRepository crewRepository, PairMatchingRepository pairMatchingRepository, PairsMaker pairsMaker) {
+    public MatchingPairController(CrewRepository crewRepository, PairMatchingRepository pairMatchingRepository, PairsMaker pairsMaker, OutputView outputView) {
         this.crewRepository = crewRepository;
         this.pairMatchingRepository = pairMatchingRepository;
         this.pairsMaker = pairsMaker;
+        this.outputView = outputView;
     }
 
     @Override
@@ -29,6 +32,15 @@ public class MatchingPairController implements Controller {
         List<Crew> crews = crewRepository.findByCourse(pairMatchingInfo.getCourse());
         List<Pair> pairs;
 
+        pairs = makePairs(pairMatchingInfo, crews);
+        pairMatchingRepository.save(pairMatchingInfo, pairs);
+
+        model.put("matchedPairNames", pairMatchingRepository.findAllNamesByPairMatchingInfo(pairMatchingInfo));
+        outputView.print(model);
+    }
+
+    private List<Pair> makePairs(PairMatchingInfo pairMatchingInfo, List<Crew> crews) {
+        List<Pair> pairs;
         int notMatchedCount = 0;
         do {
             pairs = pairsMaker.makePairs(getShuffledCrews(crews));
@@ -37,8 +49,7 @@ public class MatchingPairController implements Controller {
                 throw new IllegalStateException(CREW_MATCHING_FAILED_THREE_TIMES_MESSAGE);
             }
         } while (pairMatchingRepository.hasDuplicatingAtSameLevel(pairMatchingInfo, pairs));
-
-        pairMatchingRepository.save(pairMatchingInfo, pairs);
+        return pairs;
     }
 
     private List<Crew> getShuffledCrews(List<Crew> crews) {

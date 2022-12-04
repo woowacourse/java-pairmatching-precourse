@@ -3,6 +3,7 @@ package pairmatching.system;
 import pairmatching.controller.*;
 import pairmatching.inputview.GettingFeatureCommandInputView;
 import pairmatching.inputview.SelectingMissionInputView;
+import pairmatching.outputview.MatchingResultOutputView;
 import pairmatching.outputview.SelectingFeatureOutputView;
 import pairmatching.outputview.SelectingMissionOutputView;
 import pairmatching.repository.CrewRepository;
@@ -38,7 +39,10 @@ public class PairApplication {
                 missionRepository
         ));
         controllers.put(MATCHING_PAIR, new MatchingPairController(
-                crewRepository, new PairMatchingRepository(), new PairsMaker())
+                crewRepository,
+                new PairMatchingRepository(),
+                new PairsMaker(),
+                new MatchingResultOutputView())
         );
     }
 

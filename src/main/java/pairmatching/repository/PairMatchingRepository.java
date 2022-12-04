@@ -60,4 +60,17 @@ public class PairMatchingRepository {
             }
         });
     }
+
+    public List<List<String>> findAllNamesByPairMatchingInfo(PairMatchingInfo pairMatchingInfo) {
+        List<Pair> pairs = findByPairMatchingInfo(pairMatchingInfo);
+        List<List<String>> pairNamesArray = new ArrayList<>();
+        for (Pair pair : pairs) {
+            pairNamesArray.add(pair.getCrewNames());
+        }
+        return pairNamesArray;
+    }
+
+    private List<Pair> findByPairMatchingInfo(PairMatchingInfo pairMatchingInfo) {
+        return matchedPairs.get(pairMatchingInfo);
+    }
 }
