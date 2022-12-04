@@ -26,38 +26,38 @@
 - ### Main diagram
 
 - [x] Application - 시작
-- [x] controller
-  - [x] MainController
+- [x] controller - View 와 Service 에 위치한 메서드를 호출하여 최종적인 단일 기능의 메서드를 생성합니다.
+  - [x] MainController - 세 개의 컨트롤러와 연결(중앙 제어)
   - [x] MatchingController - 페어 매칭
   - [x] InquiryController - 페어 조회
   - [x] InitializeController - 페어 초기화
 
-- [x] domain
-  - [x] Course
-  - [x] Crew
-  - [x] Level
-  - [x] Mission
-  - [x] Missions
-  - [x] SelectMissionDto
+- [x] domain(model) - 해당 프로그램에서 사용되는 객체 클래스 파일이 담겨있습니다.
+  - [x] Course - 과정(백엔드, 프론트엔드)
+  - [x] Crew - 크루 이름
+  - [x] Level - 레벨별 미션들
+  - [x] Mission - 각각의 미션들
+  - [x] Missions - 각각의 미션들을 트리맵으로 선언한뒤, 레벨별로 ArrayList 로 묶음
 
-- [x] repository
+- [x] repository - Entity(domain 에 있는 클래스)에 의해 생성된 DB에 접근하는 메서드 들을 사용하기 위한 인터페이스입니다.
   - [x] CrewRepository
   - [x] MatchingService
 
-- [x] service
+- [x] service - Repository 와 Controller 사이에서 비즈니스 로직들이 위치하여 있습니다.
+- Controller 로부터 알맞는 정보를 가공합니다. 즉, 비즈니스 로직을 수행하는 역할입니다.
   - [x] InitializeService
   - [x] InquiryService
   - [x] MatchingService
 
 - ### Util diagram
 
-- [x] utils
+- [x] utils - 앞에서 말한 코드 외의 입력 값이 조건에 맞는 값인지 체크하는 로직이 담겨있습니다.
   - [x] ExceptionMessage
   - [x] Validate
 
 - ### View diagram
 
-- [x] view
+- [x] view - 사용자 입출력을 해주는 로직이 담겨있습니다.
   - [x] InputView
   - [x] OutputView
 
