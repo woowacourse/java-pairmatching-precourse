@@ -5,15 +5,16 @@ import pairmatching.model.Course;
 import pairmatching.model.Level;
 import pairmatching.outputview.OutputView;
 import pairmatching.repository.MissionRepository;
+import pairmatching.vo.PairMatchingInfo;
 
 import java.util.Map;
 
 public class SelectingMissionController implements Controller {
     private final OutputView outputView;
-    private final InputView inputView;
+    private final InputView<PairMatchingInfo> inputView;
     private final MissionRepository missionRepository;
 
-    public SelectingMissionController(OutputView outputView, InputView inputView, MissionRepository missionRepository) {
+    public SelectingMissionController(OutputView outputView, InputView<PairMatchingInfo> inputView, MissionRepository missionRepository) {
         this.outputView = outputView;
         this.inputView = inputView;
         this.missionRepository = missionRepository;
@@ -21,9 +22,23 @@ public class SelectingMissionController implements Controller {
 
     @Override
     public void process(Map<String, Object> model) {
+        printMessage(model);
+        readInputIntoModel(model);
+    }
+
+    private void readInputIntoModel(Map<String, Object> model) {
+        putAllMissionsToModel(model);
+        model.put("pairMatchingInfo", inputView.getInput(model));
+    }
+
+    private void printMessage(Map<String, Object> model) {
         putCoursesNameToModel(model);
         putMissionNamesToModel(model);
         outputView.print(model);
+    }
+
+    private Object putAllMissionsToModel(Map<String, Object> model) {
+        return model.put("missions", missionRepository.findAll());
     }
 
     private static Object putCoursesNameToModel(Map<String, Object> model) {

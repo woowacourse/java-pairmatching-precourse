@@ -2,6 +2,7 @@ package pairmatching.system;
 
 import pairmatching.controller.*;
 import pairmatching.inputview.GettingFeatureCommandInputView;
+import pairmatching.inputview.SelectingMissionInputView;
 import pairmatching.outputview.SelectingFeatureOutputView;
 import pairmatching.outputview.SelectingMissionOutputView;
 import pairmatching.repository.CrewRepository;
@@ -28,7 +29,9 @@ public class PairApplication {
                 new GettingFeatureCommandInputView()
         ));
         controllers.put(SELECTING_MISSION_PATH, new SelectingMissionController(
-                new SelectingMissionOutputView(), null, missionRepository
+                new SelectingMissionOutputView(),
+                new SelectingMissionInputView(),
+                missionRepository
         ));
     }
 

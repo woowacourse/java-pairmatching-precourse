@@ -18,6 +18,6 @@ public class SelectingFeatureController implements Controller {
     @Override
     public void process(Map<String, Object> model) {
         outputView.print(model);
-        model.put("featureCommand", inputView.getInput());
+        model.put("featureCommand", inputView.getInput(model));
     }
 }

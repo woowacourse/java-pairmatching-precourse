@@ -4,6 +4,7 @@ import pairmatching.model.Level;
 import pairmatching.model.Mission;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,5 +22,9 @@ public class MissionRepository {
                 .filter(mission -> mission.getLevel() == level)
                 .map(Mission::getName)
                 .collect(Collectors.toList());
+    }
+
+    public List<Mission> findAll() {
+        return Collections.unmodifiableList(missions);
     }
 }
