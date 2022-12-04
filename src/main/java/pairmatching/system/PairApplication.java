@@ -4,6 +4,7 @@ import pairmatching.controller.*;
 import pairmatching.inputview.GettingFeatureCommandInputView;
 import pairmatching.inputview.SelectingMissionInputView;
 import pairmatching.outputview.MatchingResultOutputView;
+import pairmatching.outputview.ResetOutputView;
 import pairmatching.outputview.SelectingFeatureOutputView;
 import pairmatching.outputview.SelectingMissionOutputView;
 import pairmatching.repository.CrewRepository;
@@ -22,6 +23,7 @@ public class PairApplication {
     public static final String SELECTING_MISSION_PATH = "selectMission";
     public static final String MATCHING_PAIR = "matchPair";
     public static final String FIND_PAIR_PATH = "findPair";
+    public static final String RESET_PAIR_CONTROLLER_PATH = "resetPair";
     private final Map<String, Controller> controllers = new HashMap<>();
 
     public PairApplication() {
@@ -51,6 +53,8 @@ public class PairApplication {
         controllers.put(FIND_PAIR_PATH, new FindPairController(
                 matchingResultOutputView, pairMatchingRepository
         ));
+        controllers.put(RESET_PAIR_CONTROLLER_PATH, new ResetPairController(
+                pairMatchingRepository, new ResetOutputView()));
     }
 
     public void run() {
@@ -76,7 +80,7 @@ public class PairApplication {
             controllers.get(FIND_PAIR_PATH).process(model);
         }
         if (featureCommand == FeatureCommand.RESET) {
-
+            controllers.get(RESET_PAIR_CONTROLLER_PATH).process(model);
         }
         if (featureCommand == FeatureCommand.QUIT) {
 
