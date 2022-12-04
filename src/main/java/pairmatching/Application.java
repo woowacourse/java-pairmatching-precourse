@@ -1,8 +1,6 @@
 package pairmatching;
 
 import pairmatching.controller.MainController;
-import pairmatching.view.InputView;
-import pairmatching.view.OutputView;
 
 import static pairmatching.repository.CrewRepository.initCrewInfo;
 
