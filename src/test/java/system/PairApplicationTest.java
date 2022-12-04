@@ -1,0 +1,5 @@
+package system;
+
+class PairApplicationTest {
+
+}
