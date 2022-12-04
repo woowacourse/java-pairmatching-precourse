@@ -1,8 +1,8 @@
-package controller;
+package pairmatching.controller;
 
-import inputview.InputView;
-import outputview.OutputView;
-import vo.FeatureCommand;
+import pairmatching.inputview.InputView;
+import pairmatching.outputview.OutputView;
+import pairmatching.vo.FeatureCommand;
 
 import java.util.Map;
 

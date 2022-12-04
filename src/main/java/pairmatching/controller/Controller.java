@@ -1,4 +1,4 @@
-package controller;
+package pairmatching.controller;
 
 import java.util.Map;
 

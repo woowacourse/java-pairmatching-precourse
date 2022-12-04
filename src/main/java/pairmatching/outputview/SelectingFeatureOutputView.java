@@ -1,6 +1,6 @@
-package outputview;
+package pairmatching.outputview;
 
-import vo.FeatureCommand;
+import pairmatching.vo.FeatureCommand;
 
 import java.util.Map;
 

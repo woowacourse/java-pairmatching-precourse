@@ -1,4 +1,4 @@
-package outputview;
+package pairmatching.outputview;
 
 import java.util.Map;
 

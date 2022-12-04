@@ -1,6 +1,6 @@
-package repository;
+package pairmatching.repository;
 
-import model.Crew;
+import pairmatching.model.Crew;
 
 import java.util.ArrayList;
 import java.util.List;

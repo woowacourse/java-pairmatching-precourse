@@ -1,7 +1,7 @@
-package system.convertion;
+package pairmatching.system.convertion;
 
-import model.Course;
-import model.Crew;
+import pairmatching.model.Course;
+import pairmatching.model.Crew;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,9 +1,9 @@
-package controller;
+package pairmatching.controller;
 
-import model.Course;
-import model.Crew;
-import repository.CrewRepository;
-import system.convertion.NamesToCrewConverter;
+import pairmatching.model.Course;
+import pairmatching.model.Crew;
+import pairmatching.repository.CrewRepository;
+import pairmatching.system.convertion.NamesToCrewConverter;
 
 import java.io.BufferedReader;
 import java.io.File;

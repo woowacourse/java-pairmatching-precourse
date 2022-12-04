@@ -1,4 +1,4 @@
-package model;
+package pairmatching.model;
 
 public class Crew {
     private final Course course;

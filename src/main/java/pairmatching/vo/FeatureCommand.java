@@ -1,4 +1,4 @@
-package vo;
+package pairmatching.vo;
 
 public enum FeatureCommand {
     MATCHING("1", "페어 매칭"),

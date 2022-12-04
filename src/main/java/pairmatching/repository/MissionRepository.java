@@ -1,7 +1,7 @@
-package repository;
+package pairmatching.repository;
 
-import model.Level;
-import model.Mission;
+import pairmatching.model.Level;
+import pairmatching.model.Mission;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,5 +14,12 @@ public class MissionRepository {
         missions.addAll(missionNames.stream()
                 .map(missionName -> new Mission(level, missionName))
                 .collect(Collectors.toList()));
+    }
+
+    public List<String> findAllNamesByLevel(Level level) {
+        return missions.stream()
+                .filter(mission -> mission.getLevel() == level)
+                .map(Mission::getName)
+                .collect(Collectors.toList());
     }
 }

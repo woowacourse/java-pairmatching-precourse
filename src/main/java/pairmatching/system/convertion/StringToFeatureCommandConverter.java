@@ -1,6 +1,6 @@
-package system.convertion;
+package pairmatching.system.convertion;
 
-import vo.FeatureCommand;
+import pairmatching.vo.FeatureCommand;
 
 import java.util.Arrays;
 

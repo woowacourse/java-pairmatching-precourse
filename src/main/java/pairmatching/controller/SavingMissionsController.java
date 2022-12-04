@@ -1,7 +1,7 @@
-package controller;
+package pairmatching.controller;
 
-import model.Level;
-import repository.MissionRepository;
+import pairmatching.model.Level;
+import pairmatching.repository.MissionRepository;
 
 import java.util.Arrays;
 import java.util.List;

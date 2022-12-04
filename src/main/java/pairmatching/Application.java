@@ -1,6 +1,6 @@
 package pairmatching;
 
-import system.PairApplication;
+import pairmatching.system.PairApplication;
 
 public class Application {
     public static void main(String[] args) {

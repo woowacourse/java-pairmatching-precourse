@@ -1,4 +1,4 @@
-package model;
+package pairmatching.model;
 
 import java.util.List;
 

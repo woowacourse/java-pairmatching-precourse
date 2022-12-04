@@ -1,8 +1,8 @@
-package inputview;
+package pairmatching.inputview;
 
 import camp.nextstep.edu.missionutils.Console;
-import system.convertion.StringToFeatureCommandConverter;
-import vo.FeatureCommand;
+import pairmatching.system.convertion.StringToFeatureCommandConverter;
+import pairmatching.vo.FeatureCommand;
 
 public class GettingFeatureCommandInputView implements InputView<FeatureCommand> {
     @Override

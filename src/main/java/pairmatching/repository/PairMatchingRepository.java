@@ -1,7 +1,7 @@
-package repository;
+package pairmatching.repository;
 
-import model.Mission;
-import model.Pair;
+import pairmatching.model.Mission;
+import pairmatching.model.Pair;
 
 import java.util.HashMap;
 import java.util.List;
