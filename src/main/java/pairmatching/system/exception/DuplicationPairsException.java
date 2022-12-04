@@ -1,6 +1,6 @@
 package pairmatching.system.exception;
 
-public class DuplicationPairsException extends Exception {
+public class DuplicationPairsException extends IllegalStateException {
     public DuplicationPairsException() {
         super();
     }

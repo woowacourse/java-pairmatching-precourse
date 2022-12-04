@@ -3,6 +3,7 @@ package pairmatching.repository;
 import pairmatching.model.Level;
 import pairmatching.model.Pair;
 import pairmatching.system.exception.DuplicationPairsException;
+import pairmatching.system.exception.EmptyPairMatchingInfoException;
 import pairmatching.vo.PairMatchingInfo;
 
 import java.util.ArrayList;
@@ -63,11 +64,23 @@ public class PairMatchingRepository {
 
     public List<List<String>> findAllNamesByPairMatchingInfo(PairMatchingInfo pairMatchingInfo) {
         List<Pair> pairs = findByPairMatchingInfo(pairMatchingInfo);
+        if (pairs == null) {
+            throw new EmptyPairMatchingInfoException();
+        }
+
+        return findAllNamesFromPairs(pairs);
+    }
+
+    private static List<List<String>> findAllNamesFromPairs(List<Pair> pairs) {
         List<List<String>> pairNamesArray = new ArrayList<>();
+        findAllNamesFromPair(pairs, pairNamesArray);
+        return pairNamesArray;
+    }
+
+    private static void findAllNamesFromPair(List<Pair> pairs, List<List<String>> pairNamesArray) {
         for (Pair pair : pairs) {
             pairNamesArray.add(pair.getCrewNames());
         }
-        return pairNamesArray;
     }
 
     private List<Pair> findByPairMatchingInfo(PairMatchingInfo pairMatchingInfo) {
