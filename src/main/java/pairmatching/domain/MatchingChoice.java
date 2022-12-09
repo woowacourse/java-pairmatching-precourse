@@ -46,8 +46,9 @@ public class MatchingChoice {
     }
 
     private void initMission(Level level, String mission) {
-        if (isValidatedMission(level, mission)){
-            this.mission = mission;
+        if (!isValidatedMission(level, mission)){
+            throw new IllegalArgumentException("존재자나이!");
         }
+        this.mission = mission;
     }
 }
