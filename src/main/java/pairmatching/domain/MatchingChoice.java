@@ -34,9 +34,9 @@ public class MatchingChoice {
     }
 
     private void initialize(List<String> inputs) {
-        initCourse(inputs.get(0));
-        initLevel(inputs.get(1));
-        initMission(level, inputs.get(2));
+        initCourse(inputs.get(0).trim());
+        initLevel(inputs.get(1).trim());
+        initMission(level, inputs.get(2).trim());
     }
 
     private void initCourse(String course) {
