@@ -22,17 +22,18 @@ public class MainController {
     public void execute() {
         Crews crews = loadCrewNames();
         while (isContinue){
-            Controller controller = getMatchingController();
+            Controller controller = getMatchingController(crews);
             controller.execute();
         }
     }
 
-    private Controller getMatchingController() {
+    private Controller getMatchingController(Crews crews) {
         try {
-            return executeByUserChoice(inputView.inputMenuChoice());
+            String choice = inputView.inputMenuChoice();
+            return executeByUserChoice(choice, crews);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
-            return getMatchingController();
+            return getMatchingController(crews);
         }
     }
 

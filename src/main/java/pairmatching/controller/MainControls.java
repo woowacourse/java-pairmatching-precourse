@@ -1,7 +1,8 @@
 package pairmatching.controller;
 
 import java.util.Arrays;
-import java.util.function.Supplier;
+import java.util.function.Function;
+import pairmatching.domain.Crews;
 
 public enum MainControls {
     PAIR_MATCHING("1", PairMatcher::new),
@@ -10,15 +11,15 @@ public enum MainControls {
     QUIT("Q", ProgramFinish::new);
 
     private final String choice;
-    private final Supplier<Controller> controllerMaker;
+    private final Function<Crews, Controller> controllerMaker;
 
-    MainControls(String choice, Supplier<Controller> controllerMaker) {
+    MainControls(String choice, Function<Crews, Controller> controllerMaker) {
         this.choice = choice;
         this.controllerMaker = controllerMaker;
     }
 
-    public Controller generatedController() {
-        return controllerMaker.get();
+    public Controller generatedController(Crews crews) {
+        return controllerMaker.apply(crews);
     }
 
     public static MainControls getMatchingControls(String choice) {
