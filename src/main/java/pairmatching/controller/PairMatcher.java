@@ -22,18 +22,17 @@ public class PairMatcher implements Controller {
     public void execute() {
         inputView.showMatchingMenu();
         MatchingChoice matchingChoice = getMatchingChoice();
-
         // runPairMatcher(matchingChoice); //이미 record에 존재하는가?
     }
 
     private MatchingChoice getMatchingChoice() {
-        while (true) {
-            MatchingChoice matchingChoice = getPairMatchingInput();
-            if (choiceExists(matchingChoice)) {
-                String choice = getNextStep();
-                if (choice.equals("네")) return matchingChoice;
-            }
+        MatchingChoice matchingChoice = getPairMatchingInput();
+        if (choiceExists(matchingChoice)) {
+            String choice = getNextStep();
+            if (choice.equals("네")) return matchingChoice;
+            else getMatchingChoice();
         }
+        return matchingChoice;
     }
 
     private boolean choiceExists(MatchingChoice matchingChoice) {
