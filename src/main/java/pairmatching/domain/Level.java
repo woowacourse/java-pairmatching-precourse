@@ -9,7 +9,7 @@ public enum Level {
     LEVEL4("레벨4"),
     LEVEL5("레벨5");
 
-    private static final String LEVEL_ERROR_MESSAGE = "[ERROR] 레벨 값은 1~5로 이루어져 있습니다."
+    private static final String LEVEL_ERROR_MESSAGE = "[ERROR] 레벨 값은 1~5로 이루어져 있습니다.";
 
     private final String name;
 
