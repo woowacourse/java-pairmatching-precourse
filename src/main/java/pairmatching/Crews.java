@@ -13,4 +13,8 @@ public class Crews {
     public void addCrew(Crew crew) {
         crews.add(crew);
     }
+
+    public List<Crew> getCrews() {
+        return crews;
+    }
 }

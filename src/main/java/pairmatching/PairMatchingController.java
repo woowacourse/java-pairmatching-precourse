@@ -20,8 +20,8 @@ public class PairMatchingController {
             DataLoader dataLoader = new DataLoader();
             return dataLoader.load();
         } catch (FileNotFoundException exception) {
-            // 에러 출력
-            return null;
+            outputView.printErrorMessage(exception.getMessage());
+            return loadCrewNames();
         }
     }
 }
