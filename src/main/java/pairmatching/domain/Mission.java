@@ -1,34 +1,33 @@
 package pairmatching.domain;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.Arrays;
 
-public class Mission {
-    private static final List<String> MISSION_LEVEL1 = List.of("자동차경주", "로또", "숫자야구게임");
-    private static final List<String> MISSION_LEVEL2 = List.of("장바구니", "결제", "지하철노선도");
-    private static final List<String> MISSION_LEVEL3 = List.of();
-    private static final List<String> MISSION_LEVEL4 = List.of("성능 개선", "배포");
-    private static final List<String> MISSION_LEVEL5 = List.of();
-    private static final List<List<String>> MISSION_NAMES = List.of(MISSION_LEVEL1, MISSION_LEVEL2, MISSION_LEVEL3,
-            MISSION_LEVEL4, MISSION_LEVEL5);
-    private static final int INDEX_ZERO = 0;
-    private static final int MAX_LEVEL = 5;
-    private static final String MISSION_ERROR_MESSAGE = "[ERROR] 미션이름을 잘못 입력하셨습니다.";
+public enum Mission {
+    RACING_GAME(Level.LEVEL1, "자동차경주"),
+    LOTTO(Level.LEVEL1, "로또"),
+    NUMBER_BASEBALL_GAME(Level.LEVEL1, "숫자야구게임"),
+    SHOPPING_BASKET(Level.LEVEL2, "장바구니"),
+    PAYMENT(Level.LEVEL2, "결제"),
+    SUBWAY_ROUTE_MAP(Level.LEVEL2, "지하철노선도"),
+    IMPROVE_PERFORMANCE(Level.LEVEL4, "성능 개선"),
+    DISTRIBUTION(Level.LEVEL4, "배포");
 
-    private static final HashMap<Level, List<String>> mission = new HashMap<>();
+    private static final String MISSION_ERROR_MESSAGE = "[ERROR] 레벨에 포함되지 않는 미션이름을 입력하셨습니다.";
 
-    static{
-        int levelIndex = INDEX_ZERO;
-        while(levelIndex<MAX_LEVEL){
-            mission.put(Level.values()[levelIndex], MISSION_NAMES.get(levelIndex));
-            levelIndex++;
-        }
+    private Level level;
+    private String missionName;
+
+    Mission(Level level, String missionName){
+        this.level = level;
+        this.missionName = missionName;
     }
 
-    public static void isExistedMission(Level level, String missionName){
-        List<String> missionNames = mission.get(level);
-        if(!missionNames.contains(missionName)){
-            throw new IllegalArgumentException(MISSION_ERROR_MESSAGE);
-        }
+    public static Mission ofValues(Level level, String missionName){
+        return Arrays.stream(values())
+                .filter(mission->mission.level.equals(level))
+                .filter(mission->mission.missionName.equals(missionName))
+                .findFirst()
+                .orElseThrow(()->new IllegalArgumentException(MISSION_ERROR_MESSAGE));
     }
+
 }
