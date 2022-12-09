@@ -1,6 +1,7 @@
 package pairmatching.ui;
 
 import static pairmatching.ui.InputReader.getUserInput;
+import static pairmatching.ui.Messages.INVALID_RETRY_INPUT;
 
 public class InputView {
     private static final String CHOOSE_MENU_OPENING = "기능을 선택하세요.";
@@ -17,15 +18,30 @@ public class InputView {
             + "############################################";
     private static final String CHOOSE_INFOS_OPENING = "과정, 레벨, 미션을 선택하세요.\n ex) 백엔드, 레벨1, 자동차경주";
 
+    private static final String ASK_REMATCH = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
+            + "네 | 아니오";
+
     public String inputMenuChoice() {
         System.out.println(CHOOSE_MENU_OPENING);
         System.out.println(MAIN_MENU);
         return getUserInput();
     }
 
+    public void showMatchingMenu() {
+        System.out.println('\n' + PAIR_MATCHING_BOARD);
+    }
+
     public String inputPairMatching() {
-        System.out.println(PAIR_MATCHING_BOARD);
-        System.out.println(CHOOSE_INFOS_OPENING);
+        System.out.println('\n' + CHOOSE_INFOS_OPENING);
         return getUserInput();
+    }
+
+    public String inputRematchTry(){
+        System.out.println(ASK_REMATCH);
+        String userInput = getUserInput();
+        if (!userInput.matches("네|아니오")){
+            throw new IllegalArgumentException(INVALID_RETRY_INPUT.getMessage());
+        }
+        return userInput;
     }
 }
