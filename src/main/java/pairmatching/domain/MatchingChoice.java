@@ -4,6 +4,7 @@ import static pairmatching.domain.Course.findMatchingCourse;
 import static pairmatching.domain.Level.findMatchingLevel;
 import static pairmatching.domain.Level.isValidatedMission;
 import static pairmatching.ui.Messages.INVALID_INPUT_STRUCT;
+import static pairmatching.ui.Messages.INVALID_MISSION;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,7 +49,7 @@ public class MatchingChoice {
 
     private void initMission(Level level, String mission) {
         if (!isValidatedMission(level, mission)){
-            throw new IllegalArgumentException("존재자나이!");
+            throw new IllegalArgumentException(INVALID_MISSION.getMessage());
         }
         this.mission = mission;
     }
