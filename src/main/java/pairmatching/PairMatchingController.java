@@ -12,15 +12,16 @@ public class PairMatchingController {
     }
 
     public void execute() {
-        loadCrewNames();
+        Crews crews = loadCrewNames();
     }
 
-    private void loadCrewNames() {
+    private Crews loadCrewNames() {
         try {
             DataLoader dataLoader = new DataLoader();
-            dataLoader.load();
+            return dataLoader.load();
         } catch (FileNotFoundException exception) {
             // 에러 출력
+            return null;
         }
     }
 }

@@ -7,16 +7,23 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DataLoader {
-    public void load() throws FileNotFoundException {
+    private final Crews crews;
+
+    public DataLoader() {
+        crews = new Crews();
+    }
+
+    public Crews load() throws FileNotFoundException {
         List<String> backendCrews = loadBackendCrews();
         List<String> frontendCrews = loadFrontendCrews();
 
         initBackend(backendCrews);
         initFrontend(frontendCrews);
+
+        return crews;
     }
 
     private void initBackend(List<String> backendCrews) {
-        Crews crews = new Crews();
         for (String backendCrew : backendCrews) {
             Crew crew = new Crew(Course.BACKEND, backendCrew);
             crews.addCrew(crew);
@@ -24,7 +31,6 @@ public class DataLoader {
     }
 
     private void initFrontend(List<String> frontendCrews) {
-        Crews crews = new Crews();
         for (String frontendCrew : frontendCrews) {
             Crew crew = new Crew(Course.FRONTEND, frontendCrew);
             crews.addCrew(crew);
