@@ -1,2 +1,7 @@
-package pairmatching.domain;public class PairMatchingRepository {
+package pairmatching.domain;
+
+import java.util.List;
+
+public class PairMatchingRepository {
+    private List<PairMatchingRecord> records;
 }
