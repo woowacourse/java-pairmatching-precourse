@@ -1,4 +1,4 @@
-package pairmatching;
+package pairmatching.controller;
 
 public class ControllerMapper {
     public static Controller executeByUserChoice(String choice){

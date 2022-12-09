@@ -1,4 +1,4 @@
-package pairmatching;
+package pairmatching.ui;
 
 public class OutputView {
     public void printErrorMessage(String message) {

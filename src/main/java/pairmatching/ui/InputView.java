@@ -1,6 +1,6 @@
-package pairmatching;
+package pairmatching.ui;
 
-import static pairmatching.InputReader.getUserInput;
+import static pairmatching.ui.InputReader.getUserInput;
 
 public class InputView {
     private static final String CHOOSE_MENU_OPENING = "기능을 선택하세요.";

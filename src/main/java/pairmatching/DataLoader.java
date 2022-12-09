@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import pairmatching.domain.Course;
+import pairmatching.domain.Crew;
+import pairmatching.domain.Crews;
 
 public class DataLoader {
     private final Crews crews;

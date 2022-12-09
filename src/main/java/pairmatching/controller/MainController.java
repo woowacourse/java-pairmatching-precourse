@@ -1,16 +1,20 @@
-package pairmatching;
+package pairmatching.controller;
 
-import static pairmatching.ControllerMapper.executeByUserChoice;
+import static pairmatching.controller.ControllerMapper.executeByUserChoice;
 
 import java.io.FileNotFoundException;
+import pairmatching.domain.Crews;
+import pairmatching.DataLoader;
+import pairmatching.ui.InputView;
+import pairmatching.ui.OutputView;
 
-public class PairMatchingController {
+public class MainController {
     private final InputView inputView;
     private final OutputView outputView;
 
     public static boolean isContinue = true;
 
-    public PairMatchingController() {
+    public MainController() {
         inputView = new InputView();
         outputView = new OutputView();
     }
