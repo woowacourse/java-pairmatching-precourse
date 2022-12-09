@@ -20,4 +20,12 @@ public class Crew {
     public boolean matches(Crew crew) {
         return this.equals(crew);
     }
+
+    public boolean takesSameCourse(Course course) {
+        return this.course == course;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

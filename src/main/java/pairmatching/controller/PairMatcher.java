@@ -1,5 +1,7 @@
 package pairmatching.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
 import pairmatching.domain.Crews;
 import pairmatching.domain.MatchingChoice;
 import pairmatching.domain.PairMatchingRepository;
@@ -22,7 +24,7 @@ public class PairMatcher implements Controller {
     public void execute() {
         inputView.showMatchingMenu();
         MatchingChoice matchingChoice = getMatchingChoice();
-        // runPairMatcher(matchingChoice); //이미 record에 존재하는가?
+        runPairMatcher(matchingChoice);
     }
 
     private MatchingChoice getMatchingChoice() {
@@ -56,5 +58,10 @@ public class PairMatcher implements Controller {
             outputView.printErrorMessage(exception.getMessage());
             return getPairMatchingInput();
         }
+    }
+
+    private void runPairMatcher(MatchingChoice matchingChoice) {
+        List<String> crewNames = crews.getMatchingCrews(matchingChoice);
+        List<String> shuffledCrew = Randoms.shuffle(crewNames);
     }
 }

@@ -53,4 +53,8 @@ public class MatchingChoice {
         }
         this.mission = mission;
     }
+
+    public Course getCourse() {
+        return course;
+    }
 }
