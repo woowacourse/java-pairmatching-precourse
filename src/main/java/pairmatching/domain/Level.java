@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import static pairmatching.ui.Messages.NON_EXISTENT_LEVEL;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public enum Level {
         return Arrays.stream(Level.values())
                 .filter(level -> level.hasLevel(levelInput))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("존재자나이!"));
+                .orElseThrow(() -> new IllegalArgumentException(NON_EXISTENT_LEVEL.getMessage()));
     }
 
     private boolean hasLevel(String levelInput) {

@@ -3,6 +3,7 @@ package pairmatching.domain;
 import static pairmatching.domain.Course.findMatchingCourse;
 import static pairmatching.domain.Level.findMatchingLevel;
 import static pairmatching.domain.Level.isValidatedMission;
+import static pairmatching.ui.Messages.INVALID_INPUT_STRUCT;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,10 +24,10 @@ public class MatchingChoice {
         initialize(inputs);
     }
 
-    private List<String> getParsedInput(String choiceInput) {
+    private List<String> getParsedInput(String choiceInput) throws IllegalArgumentException{
         List<String> inputs = Arrays.asList(choiceInput.split(","));
         if (inputs.size() != INPUT_SIZE){
-            throw new IllegalArgumentException("parsing 에러");
+            throw new IllegalArgumentException(INVALID_INPUT_STRUCT.getMessage());
         }
         return inputs;
     }
