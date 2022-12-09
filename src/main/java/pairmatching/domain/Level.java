@@ -19,4 +19,23 @@ public enum Level {
     }
 
     // 추가 기능 구현
+    public static Level findMatchingLevel(String levelInput) {
+        return Arrays.stream(Level.values())
+                .filter(level -> level.hasLevel(levelInput))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("존재자나이!"));
+    }
+
+    private boolean hasLevel(String levelInput) {
+        return this.name.equals(levelInput);
+    }
+
+    public static boolean isValidatedMission(Level level, String mission) {
+        return level.missionMatches(mission);
+    }
+
+    private boolean missionMatches(String mission) {
+        return missions.stream()
+                .anyMatch(m -> m.equals(mission));
+    }
 }

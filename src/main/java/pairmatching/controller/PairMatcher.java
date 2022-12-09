@@ -18,14 +18,14 @@ public class PairMatcher implements Controller {
     @Override
     public void execute() {
         MatchingChoice matchingChoice = getPairMatchingInput();
-        // runPairMatcher(matchingChoice);
+        // runPairMatcher(matchingChoice); //이미 record에 존재하는가?
     }
 
     private MatchingChoice getPairMatchingInput() {
         try {
             String input = inputView.inputPairMatching();
-            return new MatchingChoice(input); // 맞는 input인가? && 이미 record에 존재하는건지
-        } catch (IllegalArgumentException exception) {
+            return new MatchingChoice(input);
+        } catch (Exception exception) {
             outputView.printErrorMessage(exception.getMessage());
             return getPairMatchingInput();
         }
