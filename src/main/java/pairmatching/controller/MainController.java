@@ -1,15 +1,14 @@
 package pairmatching.controller;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.EnumMap;
 import java.util.Map;
-import pairmatching.domain.Course;
-import pairmatching.domain.Crew;
+import pairmatching.controller.subController.ApplicationExitController;
+import pairmatching.controller.subController.Controllable;
+import pairmatching.controller.subController.CrewLoadingController;
+import pairmatching.controller.subController.PairInitializingController;
+import pairmatching.controller.subController.PairMatchingController;
+import pairmatching.controller.subController.PairSearchingController;
 import pairmatching.domain.MainOption;
-import pairmatching.domain.repository.Crews;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -26,14 +25,14 @@ public class MainController {
     }
 
     private void initializeControllers() {
-        controllers.put(MainOption.PAIR_MATCHING, new PairMatchingController());
+        controllers.put(MainOption.PAIR_MATCHING, new PairMatchingController(inputView, outputView));
         controllers.put(MainOption.PAIR_SEARCHING, new PairSearchingController());
         controllers.put(MainOption.PAIR_INITIALIZING, new PairInitializingController());
         controllers.put(MainOption.APPLICATION_EXIT, new ApplicationExitController());
     }
 
     public void service() {
-       new CrewLoadingController(inputView, outputView).process();
+        new CrewLoadingController(inputView, outputView).process();
         MainOption mainOption;
         do {
             mainOption = inputView.readMainOption();
@@ -47,22 +46,6 @@ public class MainController {
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);
         }
-    }
-
-
-    private void pairMatching() {
-        String option = inputView.readPairingOption();
-    }
-
-    private void pairSearching() {
-    }
-
-    private void pairInitializing() {
-
-    }
-
-    private void exitApplication() {
-
     }
 
 }

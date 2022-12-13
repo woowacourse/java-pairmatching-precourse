@@ -1,4 +1,4 @@
-package pairmatching.controller;
+package pairmatching.controller.subController;
 
 public class PairSearchingController implements Controllable{
     @Override
