@@ -16,7 +16,7 @@ import pairmatching.view.OutputView;
 public class MainController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final Map<MainOption, Runnable> controllers;
+    private final Map<MainOption, Controllable> controllers;
 
     public MainController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -26,14 +26,14 @@ public class MainController {
     }
 
     private void initializeControllers() {
-        controllers.put(MainOption.PAIR_MATCHING, this::pairMatching);
-        controllers.put(MainOption.PAIR_SEARCHING, this::pairSearching);
-        controllers.put(MainOption.PAIR_INITIALIZING, this::pairInitializing);
-        controllers.put(MainOption.APPLICATION_EXIT, this::exitApplication);
+        controllers.put(MainOption.PAIR_MATCHING, new PairMatchingController());
+        controllers.put(MainOption.PAIR_SEARCHING, new PairSearchingController());
+        controllers.put(MainOption.PAIR_INITIALIZING, new PairInitializingController());
+        controllers.put(MainOption.APPLICATION_EXIT, new ApplicationExitController());
     }
 
     public void service() {
-        crewLoading();
+       new CrewLoadingController(inputView, outputView).process();
         MainOption mainOption;
         do {
             mainOption = inputView.readMainOption();
@@ -43,33 +43,12 @@ public class MainController {
 
     public void progress(MainOption mainOption) {
         try {
-            controllers.get(mainOption).run();
+            controllers.get(mainOption).process();
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);
         }
     }
 
-    private void crewLoading() {
-        try {
-            File backendCrews = new File("src/main/resources/backend-crew.md");
-            BufferedReader backendCrewsReader = new BufferedReader(new FileReader(backendCrews));
-            String backendCrew;
-            while ((backendCrew = backendCrewsReader.readLine()) != null) {
-                Crews.addCrew(new Crew(Course.BACKEND, backendCrew));
-            }
-
-            File frontendCrews = new File("src/main/resources/frontend-crew.md");
-            BufferedReader frontendCrewsReader = new BufferedReader(new FileReader(frontendCrews));
-            String frontendCrew;
-            while ((frontendCrew = frontendCrewsReader.readLine()) != null) {
-                Crews.addCrew(new Crew(Course.FRONTEND, frontendCrew));
-            }
-
-        } catch (IOException exception) {
-            outputView.printExceptionMessage(exception);
-            throw new RuntimeException(exception);
-        }
-    }
 
     private void pairMatching() {
         String option = inputView.readPairingOption();
