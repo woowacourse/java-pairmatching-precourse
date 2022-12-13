@@ -37,10 +37,10 @@
 - [x] `PairingResultRepository`에 `PairingOption`, `PairingResult`를 key, value로 저장
 
 #### 크루 페어 조회
-- [ ] 전체 과정, 레벨, 미션 출력 `PairingOption`
-- [ ] 과정, 레벨, 미션 선택
-- [ ] 매칭 이력이 없는 경우: `매칭 이력이 없습니다.`
-- [ ] 매칭 이력이 있는 경우: 찾아서 출력
+- [x] 전체 과정, 레벨, 미션 출력 `PairingOption`
+- [x] 과정, 레벨, 미션 선택
+- [x] 매칭 이력이 없는 경우: `매칭 이력이 없습니다.`
+- [x] 매칭 이력이 있는 경우: 찾아서 출력
 
 #### 크루 페어 초기화 
 - [ ] `PairingResultRepository`의 저장공간을 `clear`

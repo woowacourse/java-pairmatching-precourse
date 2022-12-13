@@ -56,4 +56,8 @@ public class PairMatchingResults {
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
     }
+
+    public static PairMatchingResult searchByPairingOption(PairingOption pairingOption) {
+        return pairMatchingResults.get(pairingOption);
+    }
 }

@@ -6,13 +6,12 @@ import java.util.function.Supplier;
 import pairmatching.domain.PairMatchingResult;
 import pairmatching.domain.option.PairingOption;
 import pairmatching.domain.repository.PairMatchingResults;
-import pairmatching.domain.status.PairMatchingStatus;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class PairMatchingController implements Controllable {
 
-    public static final int MAX_ATTEMPTS = 3;
+    private static final int MAX_ATTEMPTS = 3;
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -20,6 +19,20 @@ public class PairMatchingController implements Controllable {
     private PairingOption pairingOption;
     private int attempts = 1;
     private PairMatchingResult result;
+
+    private enum PairMatchingStatus {
+        SELECT_PAIRING_OPTION,
+        HANDLE_PREVIOUS_MATCHING,
+        ATTEMPT_PAIR_MATCHING,
+        HANDLE_DUPLICATED_PAIRS,
+        SUCCESS_MATCHING,
+        FAIL_MATCHING,
+        EXIT_PAIR_MATCHING;
+
+        boolean continuePairMatching() {
+            return this != EXIT_PAIR_MATCHING;
+        }
+    }
 
     public PairMatchingController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -31,12 +44,11 @@ public class PairMatchingController implements Controllable {
     private void initializePairMatchingGuide() {
         pairMatchingGuide.put(PairMatchingStatus.SELECT_PAIRING_OPTION, this::selectPairingOption);
         pairMatchingGuide.put(PairMatchingStatus.HANDLE_PREVIOUS_MATCHING, this::handlePreviousMatching);
-        pairMatchingGuide.put(PairMatchingStatus.ATTEMPT_MATCHING, this::attemptMatching);
+        pairMatchingGuide.put(PairMatchingStatus.ATTEMPT_PAIR_MATCHING, this::attemptPairMatching);
         pairMatchingGuide.put(PairMatchingStatus.HANDLE_DUPLICATED_PAIRS, this::handleDuplicatedPairs);
         pairMatchingGuide.put(PairMatchingStatus.SUCCESS_MATCHING, this::successMatching);
         pairMatchingGuide.put(PairMatchingStatus.FAIL_MATCHING, this::failMatching);
     }
-
 
 
     @Override
@@ -52,17 +64,17 @@ public class PairMatchingController implements Controllable {
         if (PairMatchingResults.hasPreviousMatching(pairingOption)) {
             return PairMatchingStatus.HANDLE_PREVIOUS_MATCHING;
         }
-        return PairMatchingStatus.ATTEMPT_MATCHING;
+        return PairMatchingStatus.ATTEMPT_PAIR_MATCHING;
     }
 
     private PairMatchingStatus handlePreviousMatching() {
         if (inputView.readRematchOption().isNo()) {
             return PairMatchingStatus.SELECT_PAIRING_OPTION;
         }
-        return PairMatchingStatus.ATTEMPT_MATCHING;
+        return PairMatchingStatus.ATTEMPT_PAIR_MATCHING;
     }
 
-    private PairMatchingStatus attemptMatching() {
+    private PairMatchingStatus attemptPairMatching() {
         result = new PairMatchingResult(pairingOption);
         if (PairMatchingResults.hasDuplicatedPairsInSameLevel(result)) {
             return PairMatchingStatus.HANDLE_DUPLICATED_PAIRS;
@@ -76,7 +88,7 @@ public class PairMatchingController implements Controllable {
             outputView.printFailMatching();
             return PairMatchingStatus.FAIL_MATCHING;
         }
-        return PairMatchingStatus.ATTEMPT_MATCHING;
+        return PairMatchingStatus.ATTEMPT_PAIR_MATCHING;
     }
 
     private PairMatchingStatus successMatching() {
@@ -84,6 +96,7 @@ public class PairMatchingController implements Controllable {
         outputView.printPairMatching(result.getPairMatchingResult());
         return PairMatchingStatus.EXIT_PAIR_MATCHING;
     }
+
     private PairMatchingStatus failMatching() {
         return PairMatchingStatus.EXIT_PAIR_MATCHING;
     }

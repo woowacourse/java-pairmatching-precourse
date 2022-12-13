@@ -36,11 +36,16 @@ public class OutputView {
         return pair.stream().map(Crew::getName).collect(Collectors.joining(PAIR_MATCHING_JOINER));
     }
 
+    public void printNoMatchingHistory() {
+        System.out.println(Message.OUTPUT_NO_MATCHING_HISTORY.message);
+    }
+
 
     private enum Message {
         OUTPUT_PAIR_MATCHING_RESULT("페어 매칭 결과입니다."),
         OUTPUT_PAIR_INITIALIZED("초기화 되었습니다. "),
-        OUTPUT_FAIL_PAIR_MATCHING("매칭에 실패하였습니다. 메인 화면으로 돌아갑니다.");
+        OUTPUT_FAIL_PAIR_MATCHING("매칭에 실패하였습니다. 메인 화면으로 돌아갑니다."),
+        OUTPUT_NO_MATCHING_HISTORY("[ERROR] 매칭 이력이 없습니다.");
         private final String message;
 
         Message(String message) {

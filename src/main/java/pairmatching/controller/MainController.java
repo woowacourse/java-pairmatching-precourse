@@ -26,7 +26,7 @@ public class MainController {
 
     private void initializeControllers() {
         controllers.put(MainOption.PAIR_MATCHING, new PairMatchingController(inputView, outputView));
-        controllers.put(MainOption.PAIR_SEARCHING, new PairSearchingController());
+        controllers.put(MainOption.PAIR_SEARCHING, new PairSearchingController(inputView, outputView));
         controllers.put(MainOption.PAIR_INITIALIZING, new PairInitializingController());
         controllers.put(MainOption.APPLICATION_EXIT, new ApplicationExitController());
     }
