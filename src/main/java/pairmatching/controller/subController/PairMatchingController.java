@@ -1,5 +1,6 @@
 package pairmatching.controller.subController;
 
+import java.util.ArrayList;
 import java.util.List;
 import pairmatching.domain.Crew;
 import pairmatching.domain.PairMatchingResult;
@@ -34,7 +35,10 @@ public class PairMatchingController implements Controllable {
         }
 
         List<List<Crew>> pairMatchingResult = result.getPairMatchingResult();
-
+        System.out.println(pairMatchingResult);
+        if (PairMatchingResults.hasDuplicatedPairsInSameLevel(result)) {
+            System.out.println("중복되는 크루가 있음!");
+        }
 
     }
 }

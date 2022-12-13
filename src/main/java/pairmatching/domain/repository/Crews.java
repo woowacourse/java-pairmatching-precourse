@@ -15,10 +15,6 @@ public class Crews {
 
     private static final List<Crew> crews = new ArrayList<>();
 
-    public static List<Crew> crews() {
-        return Collections.unmodifiableList(crews);
-    }
-
     public static void addCrew(Crew crew) {
         crews.add(crew);
     }

@@ -1,14 +1,22 @@
 package pairmatching.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import pairmatching.controller.subController.ApplicationExitController;
 import pairmatching.controller.subController.Controllable;
 import pairmatching.controller.subController.CrewLoadingController;
 import pairmatching.controller.subController.PairInitializingController;
 import pairmatching.controller.subController.PairMatchingController;
 import pairmatching.controller.subController.PairSearchingController;
+import pairmatching.domain.Course;
+import pairmatching.domain.Crew;
 import pairmatching.domain.option.MainOption;
+import pairmatching.domain.repository.Crews;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 

@@ -81,4 +81,8 @@ public class PairMatchingResult {
     public List<List<Crew>> getPairMatchingResult() {
         return Collections.unmodifiableList(pairMatchingResult);
     }
+
+    public PairingOption getPairingOption() {
+        return pairingOption;
+    }
 }
