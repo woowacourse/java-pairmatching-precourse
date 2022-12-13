@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 
 public class Crews {
 
     private Crews() {
     }
+
     private static final List<Crew> crews = new ArrayList<>();
 
     public static List<Crew> crews() {
@@ -33,6 +36,11 @@ public class Crews {
                 .filter(crew -> crew.getName().equals(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException());
+    }
+
+    public static List<Crew> getCrewsByCourse(Course course) {
+        return crews.stream().filter(crew -> crew.isCrewOf(course))
+                .collect(Collectors.toList());
     }
 
 }

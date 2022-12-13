@@ -13,6 +13,10 @@ public class Crew {
         return name;
     }
 
+    public boolean isCrewOf(Course course) {
+        return this.course == course;
+    }
+
     @Override
     public String toString() {
         return "Crew{" +

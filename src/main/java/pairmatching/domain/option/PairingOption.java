@@ -28,5 +28,17 @@ public class PairingOption {
     private boolean isExistingMissionInCorrectLevel(Level level, Mission mission) {
         return MissionsByLevel.isExistingMissionInCorrectLevel(level, mission);
     }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public Mission getMission() {
+        return mission;
+    }
 }
 
