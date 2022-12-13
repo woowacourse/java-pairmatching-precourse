@@ -12,6 +12,8 @@ import pairmatching.view.OutputView;
 
 public class CrewLoadingController implements Controllable {
 
+    public static final String BACKEND_CREW_PATH = "src/main/resources/backend-crew.md";
+    public static final String FRONTEND_CREW_PATH = "src/main/resources/frontend-crew.md";
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -23,23 +25,20 @@ public class CrewLoadingController implements Controllable {
     @Override
     public void process() {
         try {
-            File backendCrews = new File("src/main/resources/backend-crew.md");
-            BufferedReader backendCrewsReader = new BufferedReader(new FileReader(backendCrews));
-            String backendCrew;
-            while ((backendCrew = backendCrewsReader.readLine()) != null) {
-                Crews.addCrew(new Crew(Course.BACKEND, backendCrew));
-            }
-
-            File frontendCrews = new File("src/main/resources/frontend-crew.md");
-            BufferedReader frontendCrewsReader = new BufferedReader(new FileReader(frontendCrews));
-            String frontendCrew;
-            while ((frontendCrew = frontendCrewsReader.readLine()) != null) {
-                Crews.addCrew(new Crew(Course.FRONTEND, frontendCrew));
-            }
-
+            readBackendCrews(BACKEND_CREW_PATH, Course.BACKEND);
+            readBackendCrews(FRONTEND_CREW_PATH, Course.FRONTEND);
         } catch (IOException exception) {
             outputView.printExceptionMessage(exception);
             throw new RuntimeException(exception);
+        }
+    }
+
+    private static void readBackendCrews(String pathname, Course backend) throws IOException {
+        File backendCrews = new File(pathname);
+        BufferedReader backendCrewsReader = new BufferedReader(new FileReader(backendCrews));
+        String backendCrew;
+        while ((backendCrew = backendCrewsReader.readLine()) != null) {
+            Crews.addCrew(new Crew(backend, backendCrew));
         }
     }
 }
