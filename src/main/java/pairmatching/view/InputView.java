@@ -7,6 +7,7 @@ import pairmatching.domain.Level;
 import pairmatching.domain.Mission;
 import pairmatching.domain.option.MainOption;
 import pairmatching.domain.option.PairingOption;
+import pairmatching.domain.option.RematchOption;
 import pairmatching.util.Util;
 
 public class InputView {
@@ -52,6 +53,11 @@ public class InputView {
 
     private static List<String> formatPairingOptionInput() {
         return Util.splitByComma(Util.removeSpace(Console.readLine()));
+    }
+
+    public RematchOption readRematchOption() {
+        System.out.println(Message.INPUT_REMATCH.message);
+        return RematchOption.from(Util.removeSpace(Console.readLine()));
     }
 
     private enum Message {
