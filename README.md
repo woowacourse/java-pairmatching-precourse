@@ -43,7 +43,7 @@
 - [x] 매칭 이력이 있는 경우: 찾아서 출력
 
 #### 크루 페어 초기화 
-- [ ] `PairingResultRepository`의 저장공간을 `clear`
+- [x] `PairingResultRepository`의 저장공간을 `clear`
 
 # 미션 - 페어매칭관리 애플리케이션
 
