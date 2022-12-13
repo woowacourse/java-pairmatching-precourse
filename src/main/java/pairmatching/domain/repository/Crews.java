@@ -1,15 +1,15 @@
-package pairmatching.domain;
+package pairmatching.domain.repository;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import pairmatching.domain.Crew;
 
 public class Crews {
 
     private Crews() {
     }
-
     private static final List<Crew> crews = new ArrayList<>();
 
     public static List<Crew> crews() {

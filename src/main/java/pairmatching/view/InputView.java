@@ -1,6 +1,8 @@
 package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.domain.MainOption;
+import pairmatching.util.Util;
 
 public class InputView {
     private static final InputView instance = new InputView();
@@ -12,12 +14,14 @@ public class InputView {
     private InputView() {
     }
 
-    public int readMainOption() {
-        System.out.println(ConsoleMessage.INPUT_MAIN_OPTION.message);
-        String input = Console.readLine();
-        // String input = Util.removeSpace(Console.readLine());
-        // validate
-        return Integer.parseInt(input);
+    public MainOption readMainOption() {
+        try {
+            System.out.println(ConsoleMessage.INPUT_MAIN_OPTION.message);
+            return MainOption.from(Util.removeSpace(Console.readLine()));
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return readMainOption();
+        }
     }
 
     private enum ConsoleMessage {

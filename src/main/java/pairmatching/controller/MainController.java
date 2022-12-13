@@ -6,40 +6,44 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.EnumMap;
 import java.util.Map;
-import pairmatching.domain.ApplicationStatus;
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
-import pairmatching.domain.Crews;
+import pairmatching.domain.MainOption;
+import pairmatching.domain.repository.Crews;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class MainController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final Map<ApplicationStatus, Runnable> controllers;
+    private final Map<MainOption, Runnable> controllers;
 
     public MainController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.controllers = new EnumMap<>(ApplicationStatus.class);
+        this.controllers = new EnumMap<>(MainOption.class);
         initializeControllers();
     }
 
     private void initializeControllers() {
-        controllers.put(ApplicationStatus.CREW_LOADING, this::crewLoading);
-        controllers.put(ApplicationStatus.PAIR_MATCHING, this::pairMatching);
-        controllers.put(ApplicationStatus.PAIR_SEARCHING, this::pairSearching);
-        controllers.put(ApplicationStatus.PAIR_INITIALIZING, this::pairInitializing);
-        controllers.put(ApplicationStatus.APPLICATION_EXIT, this::exitApplication);
+        controllers.put(MainOption.PAIR_MATCHING, this::pairMatching);
+        controllers.put(MainOption.PAIR_SEARCHING, this::pairSearching);
+        controllers.put(MainOption.PAIR_INITIALIZING, this::pairInitializing);
+        controllers.put(MainOption.APPLICATION_EXIT, this::exitApplication);
     }
 
     public void service() {
-        progress(ApplicationStatus.CREW_LOADING);
+        crewLoading();
+        MainOption mainOption;
+        do {
+            mainOption = inputView.readMainOption();
+            progress(mainOption);
+        } while (mainOption.isPlayable());
     }
 
-    public void progress(ApplicationStatus applicationStatus) {
+    public void progress(MainOption mainOption) {
         try {
-            controllers.get(applicationStatus).run();
+            controllers.get(mainOption).run();
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);
         }
@@ -68,6 +72,7 @@ public class MainController {
     }
 
     private void pairMatching() {
+
     }
 
     private void pairSearching() {

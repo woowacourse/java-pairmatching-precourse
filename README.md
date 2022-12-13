@@ -6,8 +6,8 @@
 - [x] `Crew` 객체 모두 생성
 - [x] `Crews`에 각 `Course`의 크루 저장 `List<Crews>`
 
-- [ ] `MainOption` 선택
-    - [ ] 예외) 해당 옵션은 메인 옵션에 존재하지 않습니다.
+- [x] `MainOption` 선택
+    - [x] 예외) 해당 옵션은 메인 옵션에 존재하지 않습니다.
 
 ### 1. 페어 매칭 `PairMatchingController`
 
