@@ -9,7 +9,7 @@ public enum Level {
     LEVEL4("레벨4"),
     LEVEL5("레벨5");
 
-    private static final String LEVEL_ERROR_MESSAGE = "[ERROR] 레벨 값은 1~5로 이루어져 있습니다.";
+    private static final String LEVEL_ERROR_MESSAGE = "[ERROR] 레벨 값은 레벨1 ~ 레벨5로 이루어져 있습니다.";
 
     private final String name;
 
@@ -17,7 +17,7 @@ public enum Level {
         return Arrays.stream(values())
                 .filter(level->level.name.equals(name))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(()->new IllegalArgumentException(LEVEL_ERROR_MESSAGE));
     }
 
     Level(String name){
