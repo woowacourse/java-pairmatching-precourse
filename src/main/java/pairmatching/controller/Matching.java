@@ -44,7 +44,7 @@ public class Matching implements Runnable {
                     return pairMatching();
                 }
             } catch (IllegalArgumentException i) {
-                System.out.println(i.getMessage());
+                Output.printErrorMessage(i.getMessage());
                 return createPairs(matchingInfo);
             }
         }

@@ -22,7 +22,7 @@ public class Input {
         try {
             return Command.from(readTrimLine());
         } catch (IllegalArgumentException i) {
-            System.out.println(i.getMessage());
+            Output.printErrorMessage(i.getMessage());
             return inputCommand();
         }
     }
@@ -33,7 +33,7 @@ public class Input {
             return MatchingInfo.createMatchingInfo(
                     readTrimLine().replaceAll("\\s", "").split(","));
         } catch (IllegalArgumentException i) {
-            System.out.println(i.getMessage());
+            Output.printErrorMessage(i.getMessage());
             return inputMatchingInfo();
         }
     }

@@ -26,4 +26,8 @@ public class Output {
     public static void printInitMessage() {
         System.out.println(INIT_MESSAGE);
     }
+
+    public static void printErrorMessage(String error) {
+        System.out.println("ERROR " + error);
+    }
 }
