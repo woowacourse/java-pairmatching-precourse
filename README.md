@@ -2,9 +2,9 @@
 
 ### 0. 크루 가져오기 `CrewLoadingController`
 
-- [ ] frontend, backend 크루 파일로부터 읽기
-- [ ] `Crew` 객체 모두 생성
-- [ ] `Crews`에 각 `Course`의 크루 저장 `List<Crews>`
+- [x] frontend, backend 크루 파일로부터 읽기
+- [x] `Crew` 객체 모두 생성
+- [x] `Crews`에 각 `Course`의 크루 저장 `List<Crews>`
 
 - [ ] `MainOption` 선택
     - [ ] 예외) 해당 옵션은 메인 옵션에 존재하지 않습니다.
