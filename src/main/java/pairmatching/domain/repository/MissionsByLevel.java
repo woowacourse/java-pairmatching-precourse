@@ -7,7 +7,7 @@ import java.util.Map;
 import pairmatching.domain.Level;
 import pairmatching.domain.Mission;
 
-public class Missions {
+public class MissionsByLevel {
     private static final Map<Level, List<Mission>> missions = new EnumMap<>(Level.class);
 
     static {

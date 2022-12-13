@@ -3,7 +3,7 @@ package pairmatching.domain.option;
 import pairmatching.domain.Course;
 import pairmatching.domain.Level;
 import pairmatching.domain.Mission;
-import pairmatching.domain.repository.Missions;
+import pairmatching.domain.repository.MissionsByLevel;
 import pairmatching.util.ExceptionMessage;
 
 public class PairingOption {
@@ -26,6 +26,7 @@ public class PairingOption {
     }
 
     private boolean isExistingMissionInCorrectLevel(Level level, Mission mission) {
-        return Missions.isExistingMissionInCorrectLevel(level, mission);
+        return MissionsByLevel.isExistingMissionInCorrectLevel(level, mission);
     }
 }
+
