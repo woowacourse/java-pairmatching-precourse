@@ -1,7 +1,13 @@
 package pairmatching.view;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import pairmatching.domain.Crew;
+
 public class OutputView {
     private static final OutputView instance = new OutputView();
+    public static final String PAIR_MATCHING_JOINER = " : ";
 
     public static OutputView getInstance() {
         return instance;
@@ -17,6 +23,19 @@ public class OutputView {
     public void printFailMatching() {
         System.out.println(Message.OUTPUT_FAIL_PAIR_MATCHING.message);
     }
+
+    public void printPairMatching(List<Set<Crew>> pairMatchingResult) {
+        System.out.println(Message.OUTPUT_PAIR_MATCHING_RESULT.message);
+        for (Set<Crew> pair : pairMatchingResult) {
+            System.out.println(formatPairMatching(pair));
+        }
+        System.out.println();
+    }
+
+    private static String formatPairMatching(Set<Crew> pair) {
+        return pair.stream().map(Crew::getName).collect(Collectors.joining(PAIR_MATCHING_JOINER));
+    }
+
 
     private enum Message {
         OUTPUT_PAIR_MATCHING_RESULT("페어 매칭 결과입니다."),

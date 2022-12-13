@@ -72,12 +72,12 @@ public class PairMatchingResult {
 
     private static List<Crew> toCrew(List<Crew> crews) {
         return Randoms.shuffle(toName(crews)).stream()
-                .map(element -> Crews.findCrewByName(element))
+                .map(Crews::findCrewByName)
                 .collect(Collectors.toList());
     }
 
     private static List<String> toName(List<Crew> crews) {
-        return crews.stream().map(crew -> crew.getName()).collect(Collectors.toList());
+        return crews.stream().map(Crew::getName).collect(Collectors.toList());
     }
 
     public List<Set<Crew>> getPairMatchingResult() {

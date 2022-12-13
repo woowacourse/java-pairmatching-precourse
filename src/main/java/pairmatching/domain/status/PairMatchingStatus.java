@@ -6,9 +6,10 @@ public enum PairMatchingStatus {
     ATTEMPT_MATCHING,
     HANDLE_DUPLICATED_PAIRS,
     SUCCESS_MATCHING,
-    FAIL_MATCHING;
+    FAIL_MATCHING,
+    EXIT_PAIR_MATCHING;
 
     public boolean continuePairMatching() {
-        return this != SUCCESS_MATCHING && this != FAIL_MATCHING;
+        return this != EXIT_PAIR_MATCHING;
     }
 }

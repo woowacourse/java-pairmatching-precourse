@@ -33,8 +33,8 @@
     - [x] 시도 회수 +1
     - [x] 크루 목록의 순서를 다시 랜덤으로 섞어서 매칭을 시도
     - [x] 3회 시도까지 매칭되지 않거나, 매칭할 수 있는 경우의 수가 없는 경우 에러 메세지 출력
-- [ ] `PairingOption` 에 따른 결과 출력
-- [ ] `PairingResultRepository`에 `PairingOption`, `PairingResult`를 key, value로 저장
+- [x] `PairingOption` 에 따른 결과 출력
+- [x] `PairingResultRepository`에 `PairingOption`, `PairingResult`를 key, value로 저장
 
 #### 크루 페어 조회
 - [ ] 전체 과정, 레벨, 미션 출력 `PairingOption`

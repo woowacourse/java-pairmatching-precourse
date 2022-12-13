@@ -13,12 +13,13 @@ import pairmatching.view.OutputView;
 public class PairMatchingController implements Controllable {
 
     public static final int MAX_ATTEMPTS = 3;
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
 
     private final Map<PairMatchingStatus, Supplier<PairMatchingStatus>> pairMatchingGuide;
     private PairingOption pairingOption;
     private int attempts = 1;
+    private PairMatchingResult result;
 
     public PairMatchingController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -32,7 +33,11 @@ public class PairMatchingController implements Controllable {
         pairMatchingGuide.put(PairMatchingStatus.HANDLE_PREVIOUS_MATCHING, this::handlePreviousMatching);
         pairMatchingGuide.put(PairMatchingStatus.ATTEMPT_MATCHING, this::attemptMatching);
         pairMatchingGuide.put(PairMatchingStatus.HANDLE_DUPLICATED_PAIRS, this::handleDuplicatedPairs);
+        pairMatchingGuide.put(PairMatchingStatus.SUCCESS_MATCHING, this::successMatching);
+        pairMatchingGuide.put(PairMatchingStatus.FAIL_MATCHING, this::failMatching);
     }
+
+
 
     @Override
     public void process() {
@@ -58,11 +63,10 @@ public class PairMatchingController implements Controllable {
     }
 
     private PairMatchingStatus attemptMatching() {
-        PairMatchingResult result = new PairMatchingResult(pairingOption);
+        result = new PairMatchingResult(pairingOption);
         if (PairMatchingResults.hasDuplicatedPairsInSameLevel(result)) {
             return PairMatchingStatus.HANDLE_DUPLICATED_PAIRS;
         }
-        PairMatchingResults.addPairMatchingResult(pairingOption, result);
         return PairMatchingStatus.SUCCESS_MATCHING;
     }
 
@@ -73,6 +77,15 @@ public class PairMatchingController implements Controllable {
             return PairMatchingStatus.FAIL_MATCHING;
         }
         return PairMatchingStatus.ATTEMPT_MATCHING;
+    }
+
+    private PairMatchingStatus successMatching() {
+        PairMatchingResults.addPairMatchingResult(pairingOption, result);
+        outputView.printPairMatching(result.getPairMatchingResult());
+        return PairMatchingStatus.EXIT_PAIR_MATCHING;
+    }
+    private PairMatchingStatus failMatching() {
+        return PairMatchingStatus.EXIT_PAIR_MATCHING;
     }
 
     private void addAttempts() {
