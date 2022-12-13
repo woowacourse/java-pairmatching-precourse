@@ -1,11 +1,19 @@
 package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import pairmatching.domain.MainOption;
+import java.util.List;
+import pairmatching.domain.Course;
+import pairmatching.domain.Level;
+import pairmatching.domain.Mission;
+import pairmatching.domain.option.MainOption;
+import pairmatching.domain.option.PairingOption;
 import pairmatching.util.Util;
 
 public class InputView {
     private static final InputView instance = new InputView();
+    public static final int COURSE_INDEX = 0;
+    public static final int LEVEL_INDEX = 1;
+    public static final int MISSION_INDEX = 2;
 
     public static InputView getInstance() {
         return instance;
@@ -24,10 +32,26 @@ public class InputView {
         }
     }
 
-    public String  readPairingOption() {
-        System.out.println(Message.INPUT_PAIRING_OPTION.message);
-        String input = Console.readLine();
-        return input;
+    public PairingOption readPairingOption() {
+        try {
+            System.out.println(Message.INPUT_PAIRING_OPTION.message);
+            return getPairingOption();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return readPairingOption();
+        }
+    }
+
+    private static PairingOption getPairingOption() {
+        List<String> pairingOption = formatPairingOptionInput();
+        Course course = Course.from(pairingOption.get(COURSE_INDEX));
+        Level level = Level.from(pairingOption.get(LEVEL_INDEX));
+        Mission mission = new Mission(pairingOption.get(MISSION_INDEX));
+        return new PairingOption(course, level, mission);
+    }
+
+    private static List<String> formatPairingOptionInput() {
+        return Util.splitByComma(Util.removeSpace(Console.readLine()));
     }
 
     private enum Message {

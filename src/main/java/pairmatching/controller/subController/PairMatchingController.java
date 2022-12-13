@@ -1,9 +1,10 @@
 package pairmatching.controller.subController;
 
+import pairmatching.domain.option.PairingOption;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
-public class PairMatchingController implements Controllable{
+public class PairMatchingController implements Controllable {
 
     private InputView inputView;
     private OutputView outputView;
@@ -16,6 +17,6 @@ public class PairMatchingController implements Controllable{
 
     @Override
     public void process() {
-        
+        PairingOption pairingOption = inputView.readPairingOption();
     }
 }

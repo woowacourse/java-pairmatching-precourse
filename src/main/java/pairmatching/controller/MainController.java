@@ -8,7 +8,7 @@ import pairmatching.controller.subController.CrewLoadingController;
 import pairmatching.controller.subController.PairInitializingController;
 import pairmatching.controller.subController.PairMatchingController;
 import pairmatching.controller.subController.PairSearchingController;
-import pairmatching.domain.MainOption;
+import pairmatching.domain.option.MainOption;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
