@@ -16,7 +16,7 @@ public class InputView {
 
     public MainOption readMainOption() {
         try {
-            System.out.println(ConsoleMessage.INPUT_MAIN_OPTION.message);
+            System.out.println(Message.INPUT_MAIN_OPTION.message);
             return MainOption.from(Util.removeSpace(Console.readLine()));
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
@@ -24,7 +24,13 @@ public class InputView {
         }
     }
 
-    private enum ConsoleMessage {
+    public String  readPairingOption() {
+        System.out.println(Message.INPUT_PAIRING_OPTION.message);
+        String input = Console.readLine();
+        return input;
+    }
+
+    private enum Message {
 
         INPUT_MAIN_OPTION("기능을 선택하세요.\n"
                 + "1. 페어 매칭\n"
@@ -49,7 +55,7 @@ public class InputView {
 
         private final String message;
 
-        ConsoleMessage(String message) {
+        Message(String message) {
             this.message = message;
         }
     }

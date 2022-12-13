@@ -72,7 +72,7 @@ public class MainController {
     }
 
     private void pairMatching() {
-
+        String option = inputView.readPairingOption();
     }
 
     private void pairSearching() {
