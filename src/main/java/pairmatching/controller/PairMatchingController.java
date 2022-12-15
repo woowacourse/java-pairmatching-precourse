@@ -1,5 +1,7 @@
 package pairmatching.controller;
 
+import pairmatching.domain.MatchingHistory;
+import pairmatching.domain.MatchingMachine;
 import pairmatching.domain.choice.Choice;
 import pairmatching.domain.choice.ChoiceMaker;
 import pairmatching.domain.choice.item.Course;
@@ -12,6 +14,7 @@ import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class PairMatchingController {
 
@@ -30,10 +33,14 @@ public class PairMatchingController {
     }
 
     private void executeUserCommand() {
-        UserCommand command = readUserCommand();
+        PairMatchingProgram program = new PairMatchingProgram(new MatchingHistory(), new MatchingMachine());
+        UserCommand command = repeat(this::readUserCommand);
         if (command.isCommandOf(Command.MATCHING)) {
-            Choice choice = readChoice();
-
+            Choice choice = repeat(this::readChoice);
+            if (program.hasMatched(choice)) {
+                outputView.printReMatchingGuide();
+                inputView.readReMatchingCommand();
+            }
         }
         if (command.isCommandOf(Command.CHECKING)) {
 
@@ -48,23 +55,21 @@ public class PairMatchingController {
 
     private Choice readChoice() {
         ChoiceMaker choiceMaker = new ChoiceMaker();
-        while(true) {
-            try {
-                outputView.printChoiceGuideMessage(Course.namesOfValues(), Level.namesOfValues(), Mission.values());
-                List<String> items = inputView.readChoice();
-                return choiceMaker.createChoice(items);
-            } catch (IllegalArgumentException e) {
-                outputView.print(e.getMessage());
-            }
-        }
+        outputView.printChoiceGuideMessage(Course.namesOfValues(), Level.namesOfValues(), Mission.values());
+        List<String> items = inputView.readChoice();
+        return choiceMaker.createChoice(items);
     }
 
     private UserCommand readUserCommand() {
-        while (true) {
+        outputView.printCommandGuideMessage(Command.values());
+        String command = inputView.readCommand();
+        return new UserCommand(command);
+    }
+
+    private <T> T repeat(Supplier<T> inputReader) {
+        while(true) {
             try {
-                outputView.printCommandGuideMessage(Command.values());
-                String command = inputView.readCommand();
-                return new UserCommand(command);
+                return inputReader.get();
             } catch (IllegalArgumentException e) {
                 outputView.print(e.getMessage());
             }
