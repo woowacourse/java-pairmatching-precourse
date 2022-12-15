@@ -1,7 +1,7 @@
 package pairmatching.view;
 
-import pairmatching.domain.choice.Mission;
-import pairmatching.domain.program.command.Command;
+import pairmatching.domain.choice.item.Mission;
+import pairmatching.domain.command.Command;
 import pairmatching.view.message.CommandMessage;
 import pairmatching.view.message.Message;
 
@@ -61,7 +61,7 @@ public class OutputView {
                 .collect(Collectors.joining(Message.DELIMITER.getMessage()));
     }
 
-    private void print(String message) {
+    public void print(String message) {
         System.out.print(message);
     }
 }

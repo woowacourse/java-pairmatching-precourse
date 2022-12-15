@@ -1,4 +1,4 @@
-package pairmatching.domain.program.command;
+package pairmatching.domain.command;
 
 import java.util.Arrays;
 
