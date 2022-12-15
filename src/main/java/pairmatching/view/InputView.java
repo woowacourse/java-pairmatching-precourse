@@ -19,6 +19,10 @@ public class InputView {
         return Arrays.asList(input.split(DELIMITER));
     }
 
+    public String readReMatchingCommand() {
+        return readUsing(ValidateTool.RE_MATCHING);
+    }
+
     private String readUsing(ValidateTool validateTool) {
         String input = Console.readLine();
         validateBy(input, validateTool);

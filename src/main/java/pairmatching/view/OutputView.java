@@ -23,7 +23,7 @@ public class OutputView {
         for (int i = 0; i < commands.length; i++) {
             CommandMessage message = commandMessages[i];
             Command command = commands[i];
-            messages.add(message.getFormattedMessage(command.getCommand()));
+            messages.add(message.getFormattedMessage(command.getKey()));
         }
         return messages;
     }
@@ -59,6 +59,11 @@ public class OutputView {
                 .filter(mission -> level.equals(mission.getLevelMessage()))
                 .map(Mission::getName)
                 .collect(Collectors.joining(Message.DELIMITER.getMessage()));
+    }
+
+    public void printReMatchingGuide() {
+        print(Message.RE_MATCHING_GUIDE.getMessage());
+        print(Message.RE_MATCHING_EXAMPLE.getMessage());
     }
 
     public void print(String message) {
