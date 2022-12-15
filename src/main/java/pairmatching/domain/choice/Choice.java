@@ -9,7 +9,7 @@ public class Choice {
     private final Mission mission;
 
     public Choice(String courseName, String missionName) {
-        this.course = Course.valueOf(courseName);
-        this.mission = Mission.valueOf(missionName);
+        this.course = Course.valueOfCourse(courseName);
+        this.mission = Mission.valueOfMission(missionName);
     }
 }

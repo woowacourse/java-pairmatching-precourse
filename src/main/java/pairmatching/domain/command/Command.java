@@ -8,18 +8,25 @@ public enum Command {
     RESETTING("3"),
     QUITTING("Q");
 
-    private final String command;
+    private final String key;
 
-    Command(String command) {
-        this.command = command;
+    Command(String key) {
+        this.key = key;
     }
 
-    public String getCommand() {
-        return command;
+    public String getKey() {
+        return key;
+    }
+
+    public static Command valueOfCommand(String key) {
+        return Arrays.stream(values())
+                .filter(value -> key.equals(value.getKey()))
+                .findAny()
+                .orElseThrow(() -> new IllegalStateException("[ERROR] 지원하는 명령어가 아닙니다."));
     }
 
     public static boolean contains(String command) {
         return Arrays.stream(values())
-                .anyMatch(value -> command.equals(value.getCommand()));
+                .anyMatch(value -> command.equals(value.getKey()));
     }
 }

@@ -20,6 +20,13 @@ public enum Mission {
         this.level = level;
     }
 
+    public static Mission valueOfMission(String missionName) {
+        return Arrays.stream(values())
+                .filter(value -> missionName.equals(value.getName()))
+                .findAny()
+                .orElseThrow(() -> new IllegalStateException("[ERROR] 존재하지 않는 Mission 입니다."));
+    }
+
     public String getName() {
         return name;
     }

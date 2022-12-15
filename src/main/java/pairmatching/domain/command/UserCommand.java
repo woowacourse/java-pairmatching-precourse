@@ -6,7 +6,7 @@ public class UserCommand {
 
     public UserCommand(String command) {
         validate(command);
-        this.command = Command.valueOf(command);
+        this.command = Command.valueOfCommand(command);
     }
 
     private void validate(String command) {
