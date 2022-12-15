@@ -9,6 +9,10 @@ public class InputView {
         return readUsing(ValidateTool.COMMAND);
     }
 
+    public String readChoice() {
+        return readUsing(ValidateTool.CHOICE);
+    }
+
     private String readUsing(ValidateTool validateTool) {
         String input = Console.readLine();
         validateBy(input, validateTool);
