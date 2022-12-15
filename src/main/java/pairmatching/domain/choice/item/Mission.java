@@ -1,4 +1,6 @@
-package pairmatching.domain.choice;
+package pairmatching.domain.choice.item;
+
+import java.util.Arrays;
 
 public enum Mission {
     CAR_RACING("자동차 경주", Level.LEVEL1),
@@ -28,5 +30,10 @@ public enum Mission {
 
     public String getLevelMessage() {
         return level.getName();
+    }
+
+    public static boolean contains(String name) {
+        return Arrays.stream(values())
+                .anyMatch(value -> name.equals(value.getName()));
     }
 }

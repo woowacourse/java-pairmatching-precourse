@@ -1,12 +1,17 @@
 package pairmatching.controller;
 
-import pairmatching.domain.choice.Course;
-import pairmatching.domain.choice.Level;
-import pairmatching.domain.choice.Mission;
+import pairmatching.domain.choice.Choice;
+import pairmatching.domain.choice.ChoiceMaker;
+import pairmatching.domain.choice.item.Course;
+import pairmatching.domain.choice.item.Level;
+import pairmatching.domain.choice.item.Mission;
+import pairmatching.domain.command.UserCommand;
 import pairmatching.domain.program.PairMatchingProgram;
-import pairmatching.domain.program.command.Command;
+import pairmatching.domain.command.Command;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
+
+import java.util.List;
 
 public class PairMatchingController {
 
@@ -20,13 +25,49 @@ public class PairMatchingController {
 
     public void runPairMatchingProgram() {
         executeUserCommand();
-        outputView.printChoiceGuideMessage(Course.namesOfValues(), Level.namesOfValues(), Mission.values());
-        inputView.readChoice();
+
+
     }
 
     private void executeUserCommand() {
-        PairMatchingProgram program = new PairMatchingProgram();
-        outputView.printCommandGuideMessage(Command.values());
-        program.executeCommand(inputView.readCommand());
+        UserCommand command = readUserCommand();
+        if (command.isCommandOf(Command.MATCHING)) {
+            Choice choice = readChoice();
+
+        }
+        if (command.isCommandOf(Command.CHECKING)) {
+
+        }
+        if (command.isCommandOf(Command.RESETTING)) {
+
+        }
+        if (command.isCommandOf(Command.QUITTING)) {
+
+        }
+    }
+
+    private Choice readChoice() {
+        ChoiceMaker choiceMaker = new ChoiceMaker();
+        while(true) {
+            try {
+                outputView.printChoiceGuideMessage(Course.namesOfValues(), Level.namesOfValues(), Mission.values());
+                List<String> items = inputView.readChoice();
+                return choiceMaker.createChoice(items);
+            } catch (IllegalArgumentException e) {
+                outputView.print(e.getMessage());
+            }
+        }
+    }
+
+    private UserCommand readUserCommand() {
+        while (true) {
+            try {
+                outputView.printCommandGuideMessage(Command.values());
+                String command = inputView.readCommand();
+                return new UserCommand(command);
+            } catch (IllegalArgumentException e) {
+                outputView.print(e.getMessage());
+            }
+        }
     }
 }

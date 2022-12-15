@@ -1,4 +1,4 @@
-package pairmatching.domain.choice;
+package pairmatching.domain.choice.item;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +15,11 @@ public enum Level {
 
     Level(String name) {
         this.name = name;
+    }
+
+    public static boolean contains(String level) {
+        return Arrays.stream(values())
+                .anyMatch(value -> level.equals(value.getName()));
     }
 
     public String getName() {

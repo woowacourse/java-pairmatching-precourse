@@ -3,14 +3,20 @@ package pairmatching.view;
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.view.validatetool.ValidateTool;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class InputView {
+
+    private static final String DELIMITER = ", ";
 
     public String readCommand() {
         return readUsing(ValidateTool.COMMAND);
     }
 
-    public String readChoice() {
-        return readUsing(ValidateTool.CHOICE);
+    public List<String> readChoice() {
+        String input = readUsing(ValidateTool.CHOICE);
+        return Arrays.asList(input.split(DELIMITER));
     }
 
     private String readUsing(ValidateTool validateTool) {

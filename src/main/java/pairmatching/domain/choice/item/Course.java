@@ -1,4 +1,4 @@
-package pairmatching.domain.choice;
+package pairmatching.domain.choice.item;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +16,11 @@ public enum Course {
 
     public String getName() {
         return name;
+    }
+
+    public static boolean contains(String name) {
+        return Arrays.stream(values())
+                .anyMatch(value -> name.equals(value.getName()));
     }
 
     public static List<String> namesOfValues() {
