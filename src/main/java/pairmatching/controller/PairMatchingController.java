@@ -1,5 +1,6 @@
 package pairmatching.controller;
 
+import pairmatching.domain.program.PairMatchingProgram;
 import pairmatching.domain.program.command.Command;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
@@ -15,7 +16,12 @@ public class PairMatchingController {
     }
 
     public void runPairMatchingProgram() {
+        readAndExecuteCommand();
+    }
+
+    private void readAndExecuteCommand() {
+        PairMatchingProgram program = new PairMatchingProgram();
         outputView.printCommandGuideMessage(Command.values());
-        inputView.readCommand();
+        program.executeCommand(inputView.readCommand());
     }
 }

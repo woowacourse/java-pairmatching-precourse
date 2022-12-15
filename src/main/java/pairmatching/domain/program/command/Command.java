@@ -18,7 +18,8 @@ public enum Command {
         return command;
     }
 
-    public static void main(String[] args) {
-        System.out.println(Arrays.toString(Command.values()));
+    public static boolean contains(String command) {
+        return Arrays.stream(values())
+                .anyMatch(value -> command.equals(value.getCommand()));
     }
 }
