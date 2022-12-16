@@ -28,15 +28,15 @@ public class PairService {
         MissionPair missionPair = new MissionPair(matchData);
         List<Crew> crewPair = new ArrayList<>();
         for (int i = 0; i < crews.size(); i++) {
-            if (i % 2 == 0 && i != 0) {
-                missionPair.addPair(crewPair);
-                crewPair = new ArrayList<>();
-            }
             crewPair.add(new Crew(crews.get(i)));
             if (crews.size() % 2 == 1 && i == (crews.size() - 2)) {
                 crewPair.add(new Crew(crews.get(i + 1)));
                 missionPair.addPair(crewPair);
                 break;
+            }
+            if (i % 2 == 1) {
+                missionPair.addPair(crewPair);
+                crewPair = new ArrayList<>();
             }
         }
         return missionPair;
