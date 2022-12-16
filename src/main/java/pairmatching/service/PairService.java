@@ -18,8 +18,8 @@ public class PairService {
     private final PairRepository pairRepository = new PairRepository();
 
 
-    public MissionPair doPairMatchingFunction(MatchData matchData) {
-        List<String> crews = matchPair(matchData);
+    public MissionPair matchMissionPair(MatchData matchData) {
+        List<String> crews = getCrews(matchData);
         MissionPair missionPair = makeMissionPair(matchData, crews);
         return pairRepository.addMissionPair(missionPair);
     }
@@ -52,7 +52,7 @@ public class PairService {
         pairRepository.reset();
     }
 
-    private List<String> matchPair(MatchData matchData) {
+    private List<String> getCrews(MatchData matchData) {
         List<String> crews = getCrews(matchData.getCourse());
         return crews;
     }

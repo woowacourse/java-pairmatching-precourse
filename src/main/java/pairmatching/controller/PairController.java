@@ -63,7 +63,7 @@ public class PairController extends Controller{
 
     private void match() {
         MatchData matchData = readMatchData();
-        MissionPair missionPair = pairService.doPairMatchingFunction(matchData);
+        MissionPair missionPair = pairService.matchMissionPair(matchData);
         outputView.printMissionPairs(missionPair);
     }
 
