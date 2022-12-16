@@ -24,4 +24,8 @@ public enum Command {
     public String getCommand() {
         return command;
     }
+
+    public boolean isCommandOf(Command command) {
+        return this.command.equals(command.getCommand());
+    }
 }

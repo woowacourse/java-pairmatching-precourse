@@ -22,6 +22,17 @@ public class Controller {
 
     private void executeCommand() {
         Command command = readValidValueBy(this::readCommand);
+        while (!command.isCommandOf(Command.QUITTING)) {
+            if (command.isCommandOf(Command.MATCHING)) {
+
+            }
+            if (command.isCommandOf(Command.CHECKING)) {
+
+            }
+            if (command.isCommandOf(Command.INITIALIZING)) {
+
+            }
+        }
     }
 
     private Command readCommand() {
