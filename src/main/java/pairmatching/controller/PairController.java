@@ -22,8 +22,7 @@ public class PairController extends Controller{
 
         while(gameRun) {
             String function = readFunction();
-            MatchData matchData = readMatchData();
-            doFunction(function, matchData);
+            doFunction(function);
         }
     }
 
@@ -31,8 +30,9 @@ public class PairController extends Controller{
         String func = repeat(inputView::readFunction);
         return func;
     }
-    public void doFunction(String func, MatchData matchData) {
+    public void doFunction(String func) {
         if (func.equals(FUNC_MATCH)) {
+            MatchData matchData = readMatchData();
             MissionPair missionPair = pairService.doPairMatchingFunction(matchData);
             outputView.printMissionPairs(missionPair);
         } else if (func.equals(FUNC_SHOW)) {
@@ -40,7 +40,7 @@ public class PairController extends Controller{
         } else if (func.equals(FUNC_RESET)) {
 
         } else if (func.equals(FUNC_QUIT)) {
-
+            gameRun = false;
         }
     }
 
