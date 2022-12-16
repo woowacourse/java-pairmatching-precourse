@@ -12,8 +12,8 @@ public enum Mission {
     PERFORMANCE_IMPROVEMENT("성능개선", Level.LEVEL3),
     PUBLISHING("배포", Level.LEVEL3);
 
-    private static final String DISCORDANCE_ERROR_MESSAGE = "[ERROR] %s 미션은 \"%s\"이 아닙니다.";
-    private static final String VALUE_ERROR_MESSAGE = "[ERROR] %s 미션은 존재하지 않습니다.";
+    private static final String DISCORDANCE_ERROR_MESSAGE = "[ERROR] %s 미션은 \"%s\"이 아닙니다.\n";
+    private static final String VALUE_ERROR_MESSAGE = "[ERROR] %s 미션은 존재하지 않습니다.\n";
     private final String missionName;
     private final Level level;
 
@@ -24,7 +24,7 @@ public enum Mission {
 
     public static Mission valueOfMissionAndLevel(String missionName, Level level) {
         Mission mission = valueOfMission(missionName);
-        if (level.equals(mission.getLevel())) {
+        if (!level.equals(mission.getLevel())) {
             throw new IllegalArgumentException(String.format(DISCORDANCE_ERROR_MESSAGE, missionName, level.getLevelName()));
         }
         return mission;
