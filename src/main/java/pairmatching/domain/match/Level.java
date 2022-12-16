@@ -12,6 +12,7 @@ public enum Level {
     LEVEL5("레벨5");
 
     private String name;
+
     Level(String name) {
         this.name = name;
     }

@@ -7,12 +7,12 @@ import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 import static pairmatching.util.Constants.*;
-import static pairmatching.util.Constants.FUNC_QUIT;
 
-public class PairController extends Controller{
+public class PairController extends Controller {
 
     private boolean gameRun = true;
     private final PairService pairService = new PairService();
+
     public PairController(InputView inputView, OutputView outputView) {
         super(inputView, outputView);
     }
@@ -23,7 +23,7 @@ public class PairController extends Controller{
     }
 
     private void start() {
-        while(gameRun) {
+        while (gameRun) {
             String function = readFunction();
             doFunction(function);
         }
@@ -33,6 +33,7 @@ public class PairController extends Controller{
         String func = repeat(inputView::readFunction);
         return func;
     }
+
     public void doFunction(String func) {
         if (func.equals(FUNC_MATCH)) {
             match();
