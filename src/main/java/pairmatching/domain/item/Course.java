@@ -7,7 +7,7 @@ public enum Course {
     FRONTEND("프론트엔드");
 
     private static final String ERROR_MESSAGE = "[ERROR] %s 과정은 존재하지 않습니다.";
-    private String courseName;
+    private final String courseName;
 
     Course(String courseName) {
         this.courseName = courseName;

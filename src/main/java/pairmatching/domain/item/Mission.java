@@ -44,4 +44,8 @@ public enum Mission {
     public Level getLevel() {
         return level;
     }
+
+    public boolean isSameLevel(Mission mission) {
+        return level.equals(mission.getLevel());
+    }
 }

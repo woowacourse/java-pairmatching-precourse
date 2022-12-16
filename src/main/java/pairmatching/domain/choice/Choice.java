@@ -31,4 +31,12 @@ public class Choice {
     public int hashCode() {
         return Objects.hash(course, mission);
     }
+
+    public boolean hasCourseOf(Course course) {
+        return this.course.equals(course);
+    }
+
+    public boolean hasSameLevel(Choice choice) {
+        return mission.isSameLevel(choice.mission);
+    }
 }
