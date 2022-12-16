@@ -14,15 +14,18 @@ public class PairController extends Controller{
 
     @Override
     public void run() {
-        readFunction();
-        readMatchData();
+        String function = readFunction();
+        MatchData matchData = readMatchData();
+        pairService.doFunction(function, matchData);
     }
 
-    private void readFunction() {
+    private String readFunction() {
         String func = repeat(inputView::readFunction);
+        return func;
     }
 
-    private void readMatchData() {
+    private MatchData readMatchData() {
         MatchData matchData = repeat(inputView::readMatchData);
+        return matchData;
     }
 }
