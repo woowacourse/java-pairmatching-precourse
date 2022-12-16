@@ -1,4 +1,4 @@
-package pairmatching.domain;
+package pairmatching.controller.command;
 
 import java.util.Arrays;
 
@@ -8,6 +8,7 @@ public enum Command {
     INITIALIZING("3"),
     QUITTING("Q");
 
+    private static final String ERROR_MESSAGE = "[ERROR] %s는 기능이 아닙니다.\n";
     private final String command;
 
     Command(String command) {
@@ -18,7 +19,7 @@ public enum Command {
         return Arrays.stream(values())
                 .filter(value -> inputCommand.equals(value.getCommand()))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(String.format("[ERROR] %s는 기능이 아닙니다.", inputCommand)));
+                .orElseThrow(() -> new IllegalArgumentException(String.format(ERROR_MESSAGE, inputCommand)));
     }
 
     public String getCommand() {

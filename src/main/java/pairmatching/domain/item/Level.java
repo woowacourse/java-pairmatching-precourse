@@ -9,8 +9,8 @@ public enum Level {
     LEVEL4("레벨4"),
     LEVEL5("레벨5");
 
-    private static final String ERROR_MESSAGE = "[ERROR] %s 레벨은 존재하지 않습니다.";
-    private String levelName;
+    private static final String ERROR_MESSAGE = "[ERROR] %s 레벨은 존재하지 않습니다.\n";
+    private final String levelName;
 
     Level(String levelName) {
         this.levelName = levelName;
