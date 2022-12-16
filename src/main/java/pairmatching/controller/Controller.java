@@ -3,6 +3,7 @@ package pairmatching.controller;
 import pairmatching.domain.Command;
 import pairmatching.domain.choice.Choice;
 import pairmatching.domain.choice.ChoiceMaker;
+import pairmatching.domain.matching.MatchingHistory;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -28,7 +29,8 @@ public class Controller {
         while (!command.isCommandOf(Command.QUITTING)) {
             if (command.isCommandOf(Command.MATCHING)) {
                 Choice choice = readValidValueBy(this::readChoice);
-
+                MatchingHistory history = new MatchingHistory();
+                history.hasMatchingOf(choice);
             }
             if (command.isCommandOf(Command.CHECKING)) {
 
