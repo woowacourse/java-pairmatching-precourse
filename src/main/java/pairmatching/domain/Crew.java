@@ -13,6 +13,6 @@ public class Crew {
 
     @Override
     public String toString() {
-        return "name = " + name;
+        return name;
     }
 }

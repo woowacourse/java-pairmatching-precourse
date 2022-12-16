@@ -8,7 +8,6 @@ import pairmatching.domain.match.MatchData;
 import pairmatching.repository.PairRepository;
 import pairmatching.util.CrewParser;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,31 +17,24 @@ public class PairService {
 
     private final PairRepository pairRepository = new PairRepository();
 
-    public void doFunction(String func, MatchData matchData) {
-        if(func.equals(FUNC_MATCH)) {
-            List<String> crews = matchPair(matchData);
-            MissionPair missionPair = makeMissionPair(matchData, crews);
-            pairRepository.addMissionPair(missionPair);
-        } else if (func.equals(FUNC_SHOW)) {
 
-        } else if (func.equals(FUNC_RESET)) {
-
-        } else if (func.equals(FUNC_QUIT)) {
-
-        }
+    public MissionPair doPairMatchingFunction(MatchData matchData) {
+        List<String> crews = matchPair(matchData);
+        MissionPair missionPair = makeMissionPair(matchData, crews);
+        return pairRepository.addMissionPair(missionPair);
     }
-    
+
     public MissionPair makeMissionPair(MatchData matchData, List<String> crews) {
         MissionPair missionPair = new MissionPair(matchData);
         List<Crew> crewPair = new ArrayList<>();
-        for(int i = 0; i < crews.size(); i++) {
-            if(i % 2 == 0 && i != 0) {
+        for (int i = 0; i < crews.size(); i++) {
+            if (i % 2 == 0 && i != 0) {
                 missionPair.addPair(crewPair);
                 crewPair = new ArrayList<>();
             }
             crewPair.add(new Crew(crews.get(i)));
-            if(crews.size() % 2 == 1 && i == (crews.size()-2)) {
-                crewPair.add(new Crew(crews.get(i+1)));
+            if (crews.size() % 2 == 1 && i == (crews.size() - 2)) {
+                crewPair.add(new Crew(crews.get(i + 1)));
                 missionPair.addPair(crewPair);
                 break;
             }
@@ -55,7 +47,7 @@ public class PairService {
         return crews;
     }
 
-    public List<String> getCrews(Course course){
+    public List<String> getCrews(Course course) {
         CrewParser parser = new CrewParser();
         List<String> crews = parser.parseCrewData(course);
         return shuffleCrews(crews);

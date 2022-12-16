@@ -1,5 +1,11 @@
 package pairmatching.view;
 
+import pairmatching.domain.Crew;
+import pairmatching.domain.MissionPair;
+
+import java.util.List;
+import java.util.StringJoiner;
+
 public class OutputView {
 
     public void printFunctionSelectMessage() {
@@ -34,6 +40,19 @@ public class OutputView {
 
     private void printLine() {
         println("#############################################");
+    }
+
+    public void printMissionPairs(MissionPair missionPair) {
+        println("페어 매칭 결과입니다.");
+        List<List<Crew>> pairs = missionPair.getMissionPair();
+        StringJoiner crewJoiner = new StringJoiner(" : ");
+        for (List<Crew> pair : pairs) {
+            for (Crew crew : pair) {
+                crewJoiner.add(crew.toString());
+            }
+            println(crewJoiner.toString());
+            crewJoiner = new StringJoiner(" : ");
+        }
     }
 
     public void printError(Exception error) {
