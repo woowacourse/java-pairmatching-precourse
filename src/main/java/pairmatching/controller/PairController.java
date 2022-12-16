@@ -1,6 +1,6 @@
 package pairmatching.controller;
 
-import pairmatching.domain.MatchData;
+import pairmatching.domain.match.MatchData;
 import pairmatching.service.PairService;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;

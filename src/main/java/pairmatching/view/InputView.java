@@ -1,7 +1,7 @@
 package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import pairmatching.domain.MatchData;
+import pairmatching.domain.match.MatchData;
 import pairmatching.util.Separator;
 import pairmatching.util.Validator;
 

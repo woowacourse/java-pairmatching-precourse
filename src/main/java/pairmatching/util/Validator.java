@@ -1,16 +1,16 @@
 package pairmatching.util;
 
-import pairmatching.domain.Course;
-import pairmatching.domain.Level;
-import pairmatching.domain.MatchData;
-import pairmatching.domain.Mission;
+import pairmatching.domain.match.Course;
+import pairmatching.domain.match.Level;
+import pairmatching.domain.match.MatchData;
+import pairmatching.domain.match.Mission;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static pairmatching.domain.Course.*;
-import static pairmatching.domain.Level.*;
-import static pairmatching.domain.Mission.*;
+import static pairmatching.domain.match.Course.*;
+import static pairmatching.domain.match.Level.*;
+import static pairmatching.domain.match.Mission.*;
 import static pairmatching.util.Constants.*;
 
 public class Validator {

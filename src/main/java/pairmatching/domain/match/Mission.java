@@ -1,13 +1,13 @@
-package pairmatching.domain;
+package pairmatching.domain.match;
 
 import java.util.Arrays;
 
-import static pairmatching.domain.Level.*;
+import static pairmatching.domain.match.Level.*;
 import static pairmatching.util.Validator.ERROR_PREFIX;
 
 public enum Mission {
 
-    MISSION1_1(LEVEL1, "자동차게임"), MISSION1_2(LEVEL1, "로또"),MISSION1_3(LEVEL1, "숫자야구게임"),
+    MISSION1_1(LEVEL1, "자동차경주"), MISSION1_2(LEVEL1, "로또"),MISSION1_3(LEVEL1, "숫자야구게임"),
     MISSION2_1(LEVEL2, "장바구니"), MISSION2_2(LEVEL2, "결제"), MISSION2_3(LEVEL2, "지하철노선도"),
     MISSION4_1(LEVEL4, "성능개선"), MISSION4_2(LEVEL4, "배포");
 
