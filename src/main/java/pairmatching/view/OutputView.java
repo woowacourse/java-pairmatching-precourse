@@ -17,6 +17,7 @@ public class OutputView {
     }
 
     public void printMatchDataInputMessage() {
+        printEnter();
         printLine();
         printMatchData();
         printExample();
@@ -43,6 +44,7 @@ public class OutputView {
     }
 
     public void printMissionPairs(MissionPair missionPair) {
+        printEnter();
         println("페어 매칭 결과입니다.");
         List<List<Crew>> pairs = missionPair.getMissionPair();
         StringJoiner crewJoiner = new StringJoiner(" : ");
@@ -53,6 +55,7 @@ public class OutputView {
             println(crewJoiner.toString());
             crewJoiner = new StringJoiner(" : ");
         }
+        printEnter();
     }
 
     public void printError(Exception error) {
