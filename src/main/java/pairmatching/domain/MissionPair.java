@@ -22,4 +22,8 @@ public class MissionPair {
     public List<List<Crew>> getMissionPair() {
         return missionPair;
     }
+
+    public MatchData getMatchData() {
+        return matchData;
+    }
 }

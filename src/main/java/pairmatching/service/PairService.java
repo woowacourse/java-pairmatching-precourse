@@ -11,7 +11,7 @@ import pairmatching.util.CrewParser;
 import java.util.ArrayList;
 import java.util.List;
 
-import static pairmatching.util.Constants.*;
+import static pairmatching.util.Validator.ERROR_PREFIX;
 
 public class PairService {
 
@@ -42,12 +42,18 @@ public class PairService {
         return missionPair;
     }
 
-    public List<String> matchPair(MatchData matchData) {
+    public MissionPair findMissionPair(MatchData matchData) {
+        return pairRepository.findMissionPair(matchData)
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_PREFIX + "매칭 이력이 없습니다."));
+
+    }
+
+    private List<String> matchPair(MatchData matchData) {
         List<String> crews = getCrews(matchData.getCourse());
         return crews;
     }
 
-    public List<String> getCrews(Course course) {
+    private List<String> getCrews(Course course) {
         CrewParser parser = new CrewParser();
         List<String> crews = parser.parseCrewData(course);
         return shuffleCrews(crews);

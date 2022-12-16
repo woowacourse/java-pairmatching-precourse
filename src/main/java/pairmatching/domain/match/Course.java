@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import static pairmatching.util.Validator.ERROR_PREFIX;
 
-public enum Course {
+public enum Course{
 
     BACKEND("백엔드"), FRONTEND("프론트엔드");
 

@@ -32,16 +32,36 @@ public class PairController extends Controller{
     }
     public void doFunction(String func) {
         if (func.equals(FUNC_MATCH)) {
-            MatchData matchData = readMatchData();
-            MissionPair missionPair = pairService.doPairMatchingFunction(matchData);
-            outputView.printMissionPairs(missionPair);
+            match();
         } else if (func.equals(FUNC_SHOW)) {
-
+            show();
         } else if (func.equals(FUNC_RESET)) {
 
         } else if (func.equals(FUNC_QUIT)) {
             gameRun = false;
         }
+    }
+
+    private void show() {
+        MissionPair missionPair = findPair();
+        outputView.printMissionPairs(missionPair);
+    }
+
+    private MissionPair findPair() {
+        MissionPair missionPair;
+        try {
+            missionPair = pairService.findMissionPair(readMatchData());
+        } catch (IllegalArgumentException error) {
+            outputView.printError(error);
+            missionPair = findPair();
+        }
+        return missionPair;
+    }
+
+    private void match() {
+        MatchData matchData = readMatchData();
+        MissionPair missionPair = pairService.doPairMatchingFunction(matchData);
+        outputView.printMissionPairs(missionPair);
     }
 
     private MatchData readMatchData() {
