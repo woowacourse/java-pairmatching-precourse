@@ -1,5 +1,6 @@
 package pairmatching.controller;
 
+import pairmatching.domain.MatchData;
 import pairmatching.service.PairService;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
@@ -13,11 +14,15 @@ public class PairController extends Controller{
 
     @Override
     public void run() {
-        executeFunction();
+        readFunction();
+        readMatchData();
     }
 
-    private void executeFunction() {
+    private void readFunction() {
         String func = repeat(inputView::readFunction);
-        pairService.executeFunction(func);
+    }
+
+    private void readMatchData() {
+        MatchData matchData = repeat(inputView::readMatchData);
     }
 }
