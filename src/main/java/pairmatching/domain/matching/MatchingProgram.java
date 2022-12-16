@@ -11,7 +11,8 @@ public class MatchingProgram {
 
     private static final int MINIMUM_COUNT = 0;
     private static final int MAXIMUM_COUNT = 3;
-    private static final String ERROR_MESSAGE = "[ERROR] 매칭 시도가 %d회를 초과하였습니다.";
+    private static final String UN_MATCHED_ERROR_MESSAGE = "[ERROR] 매칭 시도가 %d회를 초과하였습니다.\n";
+    private static final String UN_MATCHED_CHOICE_ERROR_MESSAGE = "[ERROR] 매칭 이력이 없습니다.\n";
     private final MatchingHistory history;
     private final PairMatchingMachine pairMatchingMachine;
 
@@ -30,10 +31,34 @@ public class MatchingProgram {
         do {
             pairs = pairMatchingMachine.makePairs(choice);
             count++;
-            if (count == MAXIMUM_COUNT) {
-                throw new IllegalStateException(String.format(ERROR_MESSAGE, count));
-            }
+            validateMatchingCount(count);
         } while (!history.hasDuplicatePairInSameLevel(choice, pairs));
+        history.record(choice, pairs);
         return pairs;
+    }
+
+    private void validateMatchingCount(int count) {
+        if (count == MAXIMUM_COUNT) {
+            throw new IllegalStateException(String.format(UN_MATCHED_ERROR_MESSAGE, count));
+        }
+    }
+
+    public void deleteHistory(Choice choice) {
+        history.delete(choice);
+    }
+
+    public List<Set<Crew>> show(Choice choice) {
+        validate(choice);
+        return history.getRecord(choice);
+    }
+
+    private void validate(Choice choice) {
+        if (!hasMatched(choice)) {
+            throw new IllegalArgumentException(UN_MATCHED_CHOICE_ERROR_MESSAGE);
+        }
+    }
+
+    public void truncateHistory() {
+        history.truncate();
     }
 }

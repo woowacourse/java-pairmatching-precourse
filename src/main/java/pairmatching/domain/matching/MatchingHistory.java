@@ -36,4 +36,16 @@ public class MatchingHistory {
                 .noneMatch(pair -> pairs.stream()
                         .anyMatch(Predicate.isEqual(pair)));
     }
+
+    public void delete(Choice choice) {
+        history.remove(choice);
+    }
+
+    public List<Set<Crew>> getRecord(Choice choice) {
+        return history.get(choice);
+    }
+
+    public void truncate() {
+        history.clear();
+    }
 }
