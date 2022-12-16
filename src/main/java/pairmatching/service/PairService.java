@@ -48,6 +48,10 @@ public class PairService {
 
     }
 
+    public void resetMissionPair() {
+        pairRepository.reset();
+    }
+
     private List<String> matchPair(MatchData matchData) {
         List<String> crews = getCrews(matchData.getCourse());
         return crews;

@@ -58,6 +58,12 @@ public class OutputView {
         printEnter();
     }
 
+    public void printMissionPairsResetMessage() {
+        printEnter();
+        println("초기화 되었습니다.");
+        printEnter();
+    }
+
     public void printError(Exception error) {
         System.out.println(error.getMessage());
     }

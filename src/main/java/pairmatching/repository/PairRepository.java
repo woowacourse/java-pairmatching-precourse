@@ -23,4 +23,8 @@ public class PairRepository {
                 .findAny();
     }
 
+    public void reset() {
+        missionPairDB = new ArrayList<>();
+    }
+
 }
