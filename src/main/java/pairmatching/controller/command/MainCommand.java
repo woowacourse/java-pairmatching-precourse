@@ -2,7 +2,7 @@ package pairmatching.controller.command;
 
 import java.util.Arrays;
 
-public enum Command {
+public enum MainCommand {
     MATCHING("1"),
     CHECKING("2"),
     INITIALIZING("3"),
@@ -11,11 +11,11 @@ public enum Command {
     private static final String ERROR_MESSAGE = "[ERROR] %s는 기능이 아닙니다.\n";
     private final String command;
 
-    Command(String command) {
+    MainCommand(String command) {
         this.command = command;
     }
 
-    public static Command valueOfCommand(String inputCommand) {
+    public static MainCommand valueOfCommand(String inputCommand) {
         return Arrays.stream(values())
                 .filter(value -> inputCommand.equals(value.getCommand()))
                 .findAny()
@@ -26,7 +26,7 @@ public enum Command {
         return command;
     }
 
-    public boolean isCommandOf(Command command) {
+    public boolean isCommandOf(MainCommand command) {
         return this.command.equals(command.getCommand());
     }
 }

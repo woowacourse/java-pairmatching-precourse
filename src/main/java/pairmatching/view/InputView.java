@@ -9,7 +9,6 @@ import java.util.List;
 public class InputView {
 
     private static final String CHOICE_DELIMITER = ", ";
-    private final String RE_MATCHING_COMMAND = "네";
 
     public String readCommand() {
         return readValidInputBy(Validator.COMMAND);
@@ -20,13 +19,8 @@ public class InputView {
         return Arrays.asList(input.split(CHOICE_DELIMITER));
     }
 
-    public boolean isReMatching() {
-        String input = readValidInputBy(Validator.RE_MATCHING);
-        return convertReMatchingCommandToBoolean(input);
-    }
-
-    private boolean convertReMatchingCommandToBoolean(String input) {
-        return input.equals(RE_MATCHING_COMMAND);
+    public String readReMatchingCommand() {
+        return readValidInputBy(Validator.RE_MATCHING);
     }
 
     private String readValidInputBy(Validator validator) {
