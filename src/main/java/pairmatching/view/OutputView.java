@@ -8,6 +8,10 @@ public class OutputView {
         print(Message.COMMAND_GUIDE.getMessage());
     }
 
+    public void printChoiceGuide() {
+        print(Message.CHOICE_GUIDE.getMessage());
+    }
+
     public void printErrorMessage(String message) {
         print(message);
     }
