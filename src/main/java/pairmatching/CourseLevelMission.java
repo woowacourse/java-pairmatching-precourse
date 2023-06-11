@@ -1,5 +1,8 @@
 package pairmatching;
 
+import java.util.List;
+import java.util.Objects;
+
 public class CourseLevelMission {
 	Course course;
 	Level level;
@@ -11,7 +14,20 @@ public class CourseLevelMission {
 		this.mission = mission;
 	}
 
-	public boolean isEquals(CourseLevelMission courseLevelMission) {
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof CourseLevelMission)) {
+			return false;
+		}
+		CourseLevelMission courseLevelMission = (CourseLevelMission) o;
 		return course.equals(courseLevelMission.course) && level.equals(courseLevelMission.level) && mission.equals(courseLevelMission.mission);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(mission);
 	}
 }
