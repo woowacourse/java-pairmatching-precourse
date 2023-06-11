@@ -47,6 +47,8 @@ public class Match {
 		backendCrewNames = getCrews(BACKENDPATH);
 		frontCrewNames = getCrews(FRONTENDPATH);
 
+		courseLevelMissionMap = new HashMap<>();
+
 		initailizeCourse();
 
 		while(true) {
@@ -114,18 +116,18 @@ public class Match {
 	private static boolean runMenu(String menu) {
 		if (menu.equals("1")) {
 			matchPair();
-			return true;
+			return false;
 		}
 		if (menu.equals("2")) {
-			//inqueryPair();
-			return true;
+			inqueryPair();
+			return false;
 		}
 		if (menu.equals("3")) {
-			//resetPair();
-			return true;
+			resetPair();
+			return false;
 		}
 		if (menu.equals("Q")) {
-			return false;
+			return true;
 		}
 		throw new IllegalArgumentException(ERRMESSAGE);
 	}
@@ -150,11 +152,11 @@ public class Match {
 		Pairs pairs = courseLevelMissionMap.get(courseLevelMission);
 
 		System.out.println(pairs.toString());
-
 	}
 	private static boolean checkCourseLevelMission(CourseLevelMission courseLevelMission) {
+		//System.out.println("now :" + courseLevelMission.toString());
 		Pairs pairs = courseLevelMissionMap.get(courseLevelMission);
-		if (!pairs.isnull) {
+		if (!pairs.isn) {
 			while (true) {
 				try {
 					printRematch();
@@ -247,29 +249,31 @@ public class Match {
 
 		validateCourseLevelMission(input);
 
-		StringTokenizer st = new StringTokenizer(input);
-		Course course = Course.valueOf(st.nextToken());
-		Level level = Level.valueOf(st.nextToken());
-		String mission = st.nextToken();
+		String[] st = input.split(", ");
+		Course course = Course.toEnum(st[0]);
+		Level level = Level.toEnum(st[1]);
+		String mission = st[2];
+
 
 		return new CourseLevelMission(course, level, mission);
 	}
 	private static void validateCourseLevelMission(String input) {
 		String[] inputArray = input.split(", ");
-		String course = inputArray[0];
-		String level = inputArray[0];
-		String mission = inputArray[0];
-
-
 		if (inputArray.length != 3) {
 			throw new IllegalArgumentException(ERRMESSAGE);
 		}
+		String course = inputArray[0];
+		String level = inputArray[1];
+		String mission = inputArray[2];
+
 		if (!Course.toArrayname().contains(course)) {
 			throw new IllegalArgumentException(ERRMESSAGE);
 		}
+
 		if (!Level.toArrayname().contains(level)) {
 			throw new IllegalArgumentException(ERRMESSAGE);
 		}
+
 		if (!isMissionInCourseLevel(course, level, mission)) {
 			throw new IllegalArgumentException(ERRMESSAGE);
 		}
@@ -286,10 +290,28 @@ public class Match {
 		}
 		return false;
 	}
-	// private static void inqueryPair() {
-	//
-	// }
-	// private static void resetPair() {
-	//
-	// }
+	private static void inqueryPair() {
+		printMatchPairHead();
+		while(true) {
+			try {
+				printSelectMatchPair();
+				CourseLevelMission courseLevelMission = getCourseLevelMission();
+				if (checkinquery(courseLevelMission)) {
+					printResult(courseLevelMission);
+					break;
+				}
+				throw new IllegalArgumentException("[ERROR]No Pairs");
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+	private static boolean checkinquery(CourseLevelMission courseLevelMission) {
+		Pairs pairs = courseLevelMissionMap.get(courseLevelMission);
+		return !pairs.isn;
+	}
+	private static void resetPair() {
+		initailizeCourse();
+		System.out.println("초기화 되었습니다.");
+	}
 }

@@ -1,5 +1,6 @@
 package pairmatching;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,11 +18,19 @@ public enum Level {
 		return name;
 	}
 	public static List<String> toArrayname() {
-		List<String> result = Arrays.asList(new String[Level.values().length]);
+		List<String> result = new ArrayList<>();
 
 		for (Level level: Level.values()) {
 			result.add(level.label());
 		}
 		return result;
+	}
+	public static Level toEnum(String name) {
+		for (Level level: Level.values()) {
+			if (level.name.equals(name)) {
+				return level;
+			}
+		}
+		return null;
 	}
 }

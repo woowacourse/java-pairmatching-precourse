@@ -6,13 +6,15 @@ import java.util.List;
 
 public class Pairs {
 	List<String[]> pairs;
-	public boolean isnull;
+	public boolean isn;
 	public Pairs(List<String[]> pairs) {
 		this.pairs = pairs;
-		isnull = false;
+		isn = false;
 	}
 	public Pairs() {
-		isnull = true;
+		String[] non = {""};
+		pairs = Arrays.asList(non,non);
+		isn = true;
 	}
 	public boolean checkPair(List<String[]> pairs) {
 		for (String[] pairA : this.pairs) {

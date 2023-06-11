@@ -13,6 +13,9 @@ public class CourseLevelMission {
 		this.level = level;
 		this.mission = mission;
 	}
+	public String toString() {
+		return course.label() + ":" +level.label() + ":" + mission;
+	}
 
 	@Override
 	public boolean equals(Object o) {
@@ -30,4 +33,5 @@ public class CourseLevelMission {
 	public int hashCode() {
 		return Objects.hash(mission);
 	}
+
 }

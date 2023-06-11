@@ -15,11 +15,19 @@ public enum Course {
 		return name;
 	}
 	public static List<String> toArrayname() {
-		List<String> result = Arrays.asList(new String[Course.values().length]);
+		List<String> result = new ArrayList<>();
 
 		for (Course course: Course.values()) {
 			result.add(course.label());
 		}
 		return result;
+	}
+	public static Course toEnum(String name) {
+		for (Course course: Course.values()) {
+			if (course.name.equals(name)) {
+				return course;
+			}
+		}
+		return null;
 	}
 }
