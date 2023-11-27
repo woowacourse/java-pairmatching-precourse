@@ -24,7 +24,7 @@ public class MissionDto {
     }
 
     public static MissionDto from(List<String> input){
-        validateInput(input);
+        //validateInput(input);
         return new MissionDto(input.get(0), input.get(1), input.get(2));
     }
 

@@ -23,4 +23,8 @@ public class CourseHistory {
     public boolean isDuplicated(MissionDto dto, Set<Pair> pairs) {
         return levels.get(dto.getLevel() - 1).isDuplicated(pairs);
     }
+
+    public void save(int level, String mission, Set<Pair> pairs) {
+        levels.get(level - 1).save(mission, pairs);
+    }
 }

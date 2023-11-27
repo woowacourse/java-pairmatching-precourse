@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import pairmatching.dto.MissionDto;
@@ -29,12 +30,13 @@ public class MatchingService {
         }
         for(int i = 0; i<3; i++){
             Set<Pair> pairs = crewMatcher.matching(crewName);
-            if(matchingHistory.isDuplicated(dto, pairs)){
-                //todo 저장 필요함
+            if(!matchingHistory.isDuplicated(dto, pairs)){
+                matchingHistory.save(dto, pairs);
                 return pairs;
             }
         }
         //3번동안 매칭이 안됨
-        throw new IllegalArgumentException();
+        return new HashSet<>();
+        //throw new IllegalArgumentException();
     }
 }

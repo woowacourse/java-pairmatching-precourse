@@ -33,4 +33,16 @@ public class MatchingHistory {
         }
         return history.isDuplicated(dto, pairs);
     }
+
+    public void save(MissionDto dto, Set<Pair> pairs){
+        CourseHistory history = getHistory(dto.getCourse());
+        history.save(dto.getLevel(), dto.getMission(), pairs);
+    }
+
+    private CourseHistory getHistory(String course){
+        if(course.equals("백엔드")){
+            return backend;
+        }
+        return frontend;
+    }
 }

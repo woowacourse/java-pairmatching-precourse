@@ -41,4 +41,12 @@ public class Pair {
     public int hashCode() {
         return Objects.hash(crews);
     }
+
+    @Override
+    public String toString() {
+        return "Pair{" +
+                "crews=" + String.join(" : ", crews.stream()
+                .toList()) +
+                '}';
+    }
 }

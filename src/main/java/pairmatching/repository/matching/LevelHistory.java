@@ -21,6 +21,10 @@ public class LevelHistory {
                 .anyMatch(pairs::contains);
     }
 
+    public void save(String mission, Set<Pair> pairs) {
+        missionHistories.put(mission, new MissionHistory(pairs));
+    }
+
     /*public boolean isPaired(String... crews) {
 
     }*/

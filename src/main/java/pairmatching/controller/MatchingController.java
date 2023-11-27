@@ -24,18 +24,18 @@ public class MatchingController {
         while(true){
             MissionDto missionDto = inputView.getMissionDto();
             if(matchingService.isMatched(missionDto)){
-                //매칭 정보가 있으면 다시 매칭할건지 물어봐야됨
-                //다시 매칭할거라 하면 continue 써서 다시 입력 받게
+                System.out.println("matched");
+                if(!inputView.reMatching()){
+                    //todo 해당 미션의 매칭 정보 삭제
+                    continue;
+                }
             }
 
             //매칭 정보가 없다면
             Set<Pair> pairs = matchingService.matching(missionDto);
+            System.out.println(pairs);
+            return;
         }
-    }
-
-    //매칭 정보가 있는지 확인
-    private boolean isMatchedMission(){
-        return false;
     }
 
     public void readPair(){
