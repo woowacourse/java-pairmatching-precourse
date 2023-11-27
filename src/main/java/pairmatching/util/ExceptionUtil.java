@@ -2,6 +2,10 @@ package pairmatching.util;
 
 public final class ExceptionUtil {
 
+    private ExceptionUtil() {
+
+    }
+
     public static void throwInvalidValueException() {
 
         throw new IllegalArgumentException();

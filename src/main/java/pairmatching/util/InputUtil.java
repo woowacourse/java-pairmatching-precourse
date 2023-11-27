@@ -6,6 +6,10 @@ import java.util.function.Supplier;
 
 public final class InputUtil {
 
+    private InputUtil() {
+
+    }
+
     public static String input() {
         return Console.readLine();
     }

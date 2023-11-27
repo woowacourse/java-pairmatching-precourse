@@ -6,6 +6,8 @@ import pairmatching.domain.entity.MatchingResult;
 import pairmatching.domain.entity.Pair;
 
 public class MatchingResultDto {
+    private MatchingResultDto() {
+    }
 
     public static List<List<String>> from(MatchingResult matchingResult) {
         List<Pair> pairs = matchingResult.getPairs();
@@ -15,5 +17,6 @@ public class MatchingResultDto {
                 .map(pair -> pair.getCrews())
                 .collect(Collectors.toList());
     }
+
 }
 

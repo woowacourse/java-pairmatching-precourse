@@ -6,6 +6,11 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class FileUtil {
+
+    private FileUtil() {
+
+    }
+
     public static List<String> readFileAsList(String filePath) throws IOException {
         return Files.readAllLines(Paths.get(filePath));
     }

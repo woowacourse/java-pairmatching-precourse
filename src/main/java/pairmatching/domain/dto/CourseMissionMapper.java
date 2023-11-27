@@ -10,6 +10,11 @@ import java.util.stream.Collectors;
 import pairmatching.util.StringUtil;
 
 public class CourseMissionMapper {
+
+    private CourseMissionMapper() {
+
+    }
+
     public static CourseMission toCourseMission(String input) {
         List<String> separated = seperate(input);
 
