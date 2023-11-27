@@ -1,8 +1,7 @@
 package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.regex.Pattern;
-import pairmatching.PairOption;
+import pairmatching.domain.pair.PairOption;
 
 public class InputView {
     public static final String MENU_MESSAGE = "기능을 선택하세요.\n"

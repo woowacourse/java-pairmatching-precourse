@@ -1,4 +1,4 @@
-package pairmatching;
+package pairmatching.domain.pair;
 
 import java.util.ArrayList;
 import java.util.List;

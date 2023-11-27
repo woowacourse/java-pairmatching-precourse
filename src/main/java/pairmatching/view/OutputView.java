@@ -1,8 +1,7 @@
 package pairmatching.view;
 
-import java.util.List;
-import pairmatching.Pair;
-import pairmatching.Pairs;
+import pairmatching.domain.pair.Pair;
+import pairmatching.domain.pair.Pairs;
 
 public class OutputView {
     public static void printException(Exception error) {

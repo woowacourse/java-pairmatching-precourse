@@ -1,10 +1,16 @@
-package pairmatching;
+package pairmatching.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import pairmatching.domain.option.Course;
+import pairmatching.domain.option.Level;
+import pairmatching.domain.option.Mission;
+import pairmatching.domain.pair.Pair;
+import pairmatching.domain.pair.PairOption;
+import pairmatching.domain.pair.Pairs;
 
 public class PairMatchingService {
     private static CrewRepository crewRepository = new CrewRepository();

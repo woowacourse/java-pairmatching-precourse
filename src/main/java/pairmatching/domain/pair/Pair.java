@@ -1,9 +1,10 @@
-package pairmatching;
+package pairmatching.domain.pair;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import pairmatching.Utils;
 
 public class Pair {
     private List<String> crews;

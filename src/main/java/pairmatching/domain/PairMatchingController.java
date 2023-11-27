@@ -1,6 +1,8 @@
-package pairmatching;
+package pairmatching.domain;
 
 import java.util.List;
+import pairmatching.domain.pair.PairOption;
+import pairmatching.domain.pair.Pairs;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 

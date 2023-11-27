@@ -1,9 +1,8 @@
-package pairmatching;
+package pairmatching.domain.option;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public enum Mission {
     RACING_CAR("자동차경주", Level.LEVEL1),

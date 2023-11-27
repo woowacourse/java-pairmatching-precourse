@@ -1,7 +1,10 @@
-package pairmatching;
+package pairmatching.domain.pair;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
+import pairmatching.domain.option.Course;
+import pairmatching.domain.option.Level;
+import pairmatching.domain.option.Mission;
 
 public class PairOption {
     private final Course course;

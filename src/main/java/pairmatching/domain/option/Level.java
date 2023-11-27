@@ -1,4 +1,4 @@
-package pairmatching;
+package pairmatching.domain.option;
 
 public enum Level {
     LEVEL1("레벨1"),
