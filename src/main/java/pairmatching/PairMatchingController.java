@@ -67,7 +67,7 @@ public class PairMatchingController {
     }
 
     private static void pairMatching(Course course, Level level, Mission mission) {
-        List<Pair> matchingResult;
+        Pairs matchingResult;
         if (PairMatchingService.hasHistory(course, level, mission)) {
             if (getValidateRematch().equals("네")) {
                 // 3번 리매칭
@@ -82,10 +82,10 @@ public class PairMatchingController {
         OutputView.printMatchingResult(matchingResult);
     }
 
-    private static List<Pair> handleRematch(Course course, Level level, Mission mission) {
-        List<List<Pair>> history = PairMatchingService.getHistory(course, level);
+    private static Pairs handleRematch(Course course, Level level, Mission mission) {
+        List<Pairs> history = PairMatchingService.getHistory(course, level);
         for (int i = 0; i < 3; i++) {
-            List<Pair> rematch = PairMatchingService.pairMatching(course, level, mission);
+            Pairs rematch = PairMatchingService.pairMatching(course, level, mission);
             if (PairMatchingService.hasSamePair(history, rematch)) {
                 continue;
             }
@@ -116,8 +116,8 @@ public class PairMatchingController {
             if (!PairMatchingService.hasHistory(course, level, mission)) {
                 throw new IllegalArgumentException("매칭 이력이 없습니다.");
             }
-            List<Pair> result = PairMatchingService.findHistory(course, level, mission);
-            OutputView.printMatchingResult(result);
+            Pairs matchedPairs = PairMatchingService.findHistory(course, level, mission);
+            OutputView.printMatchingResult(matchedPairs);
         } catch (IllegalArgumentException error) {
             OutputView.printException(error);
             handlePairHistory();

@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class PairMatchingService {
     private static CrewRepository crewRepository = new CrewRepository();
-    private static Map<String, List<Pair>> history = new HashMap<>();
+    private static Map<String, Pairs> history = new HashMap<>();
 
     public static void initCrews() {
         crewRepository = new CrewRepository();
@@ -31,32 +31,25 @@ public class PairMatchingService {
         }
     }
 
-    public static List<Pair> pairMatching(Course course, Level level, Mission mission) {
+    public static Pairs pairMatching(Course course, Level level, Mission mission) {
         List<String> crewNames = crewRepository.findByCourse(course);
         if (crewNames == null) {
             throw new IllegalArgumentException("존재하지 않는 코스입니다.");
         }
+
         List<String> shuffleCrew = Randoms.shuffle(crewNames);
-        List<Pair> result = new ArrayList<>();
-        for (int i = 0; i < shuffleCrew.size(); i += 2) {
-            if (i + 1 == shuffleCrew.size()) {
-                Pair lastPair = result.get(result.size() - 1);
-                lastPair.addCrew(shuffleCrew.get(i));
-                break;
-            }
-            Pair pair = new Pair(shuffleCrew.get(i), shuffleCrew.get(i + 1));
-            result.add(pair);
-        }
-        history.put(course.name() + level.name() + mission.name(), result);
-        return result;
+        Pairs pairs = Pairs.createByNameList(shuffleCrew);
+
+        history.put(course.name() + level.name() + mission.name(), pairs);
+        return pairs;
     }
 
     public static boolean hasHistory(Course course, Level level, Mission mission) {
         return history.containsKey(course.name() + level.name() + mission.name());
     }
 
-    public static List<List<Pair>> getHistory(Course course, Level level) {
-        List<List<Pair>> result = new ArrayList<>();
+    public static List<Pairs> getHistory(Course course, Level level) {
+        List<Pairs> result = new ArrayList<>();
         Mission.findAll().forEach(mission -> {
             if (hasHistory(course, level, mission)) {
                 result.add(history.get(course.name() + level.name() + mission.name()));
@@ -76,10 +69,10 @@ public class PairMatchingService {
         }
     }
 
-    public static boolean hasSamePair(List<List<Pair>> history, List<Pair> rematch) {
-        for (List<Pair> pairs : history) {
-            for (Pair pair : pairs) {
-                for (Pair rematchPair : rematch) {
+    public static boolean hasSamePair(List<Pairs> history, Pairs rematch) {
+        for (Pairs pairs : history) {
+            for (Pair pair : pairs.getPairs()) {
+                for (Pair rematchPair : rematch.getPairs()) {
                     if (pair.hasSamePair(rematchPair)) {
                         return true;
                     }
@@ -89,7 +82,7 @@ public class PairMatchingService {
         return false;
     }
 
-    public static List<Pair> findHistory(Course course, Level level, Mission mission) {
+    public static Pairs findHistory(Course course, Level level, Mission mission) {
         return history.get(course.name() + level.name() + mission.name());
     }
 

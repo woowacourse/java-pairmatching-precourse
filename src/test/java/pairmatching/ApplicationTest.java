@@ -39,12 +39,14 @@ class ApplicationTest extends NsTest {
     void 재매칭_실패() {
         assertShuffleTest(
                 () -> {
-                    runException("1", "백엔드, 레벨1, 자동차경주", "1", "백엔드, 레벨1, 자동차경주", "네");
-                    assertThat(output()).contains("태웅 : 백호", "치수 : 태섭");
+                    runException("1", "백엔드, 레벨1, 자동차경주", "1", "백엔드, 레벨1, 자동차경주", "네", "프론트앤드, 레벨1, 자동차경주");
+                    assertThat(output()).contains("3번의 리매칭을 모두 실패했습니다.");
                 },
                 Arrays.asList("태웅", "백호", "치수", "태섭"),
                 Arrays.asList("태웅", "백호", "치수", "태섭"),
-                Arrays.asList("태웅", "백호", "치수", "태섭")
+                Arrays.asList("태웅", "백호", "치수", "태섭"),
+                Arrays.asList("태웅", "백호", "치수", "태섭"),
+                Arrays.asList("보노", "시저", "쉐리", "신디", "다비")
         );
     }
 
