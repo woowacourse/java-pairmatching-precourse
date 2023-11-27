@@ -1,6 +1,7 @@
 package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.regex.Pattern;
 
 public class InputView {
     public static final String MENU_MESSAGE = "기능을 선택하세요.\n"
@@ -45,6 +46,15 @@ public class InputView {
                 + "    ############################################");
         System.out.println("과정, 레벨, 미션을 선택하세요.\n"
                 + "    ex) 백엔드, 레벨1, 자동차경주");
-        return readString();
+        String input = readString();
+        String regexPattern = "^[가-힣]+,\\s[가-힣]+\\d,\\s[가-힣]+$";
+
+        // 정규표현식 검사
+        boolean isMatch = Pattern.matches(regexPattern, input);
+
+        if (!isMatch) {
+            throw new IllegalArgumentException("입력 형식이 잘못되었습니다.");
+        }
+        return input;
     }
 }

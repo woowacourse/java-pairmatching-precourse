@@ -31,7 +31,7 @@ public class PairMatchingService {
         }
     }
 
-    public static List<Pair> pairMatching(Course course, Level level) {
+    public static List<Pair> pairMatching(Course course, Level level, Mission mission) {
         List<String> crewNames = crewRepository.findByCourse(course);
         if (crewNames == null) {
             throw new IllegalArgumentException("존재하지 않는 코스입니다.");
@@ -47,16 +47,22 @@ public class PairMatchingService {
             Pair pair = new Pair(shuffleCrew.get(i), shuffleCrew.get(i + 1));
             result.add(pair);
         }
-        history.put(course.name() + level.name(), result);
+        history.put(course.name() + level.name() + mission.name(), result);
         return result;
     }
 
-    public static boolean hasHistory(Course course, Level level) {
-        return history.containsKey(course.name() + level.name());
+    public static boolean hasHistory(Course course, Level level, Mission mission) {
+        return history.containsKey(course.name() + level.name() + mission.name());
     }
 
-    public static List<Pair> getHistory(Course course, Level level) {
-        return history.get(course.name() + level.name());
+    public static List<List<Pair>> getHistory(Course course, Level level) {
+        List<List<Pair>> result = new ArrayList<>();
+        Mission.findAll().forEach(mission -> {
+            if (hasHistory(course, level, mission)) {
+                result.add(history.get(course.name() + level.name() + mission.name()));
+            }
+        });
+        return result;
     }
 
     public static String getValidateRematch(String input) {
@@ -70,11 +76,13 @@ public class PairMatchingService {
         }
     }
 
-    public static boolean hasSamePair(List<Pair> history, List<Pair> rematch) {
-        for (Pair pair : history) {
-            for (Pair rematchPair : rematch) {
-                if (pair.hasSamePair(rematchPair)) {
-                    return true;
+    public static boolean hasSamePair(List<List<Pair>> history, List<Pair> rematch) {
+        for (List<Pair> pairs : history) {
+            for (Pair pair : pairs) {
+                for (Pair rematchPair : rematch) {
+                    if (pair.hasSamePair(rematchPair)) {
+                        return true;
+                    }
                 }
             }
         }

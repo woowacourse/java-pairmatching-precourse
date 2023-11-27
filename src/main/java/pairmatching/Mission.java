@@ -1,5 +1,10 @@
 package pairmatching;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
 public enum Mission {
     RACING_CAR("자동차경주", Level.LEVEL1),
     LOTTO("로또", Level.LEVEL1),
@@ -25,5 +30,9 @@ public enum Mission {
             }
         }
         throw new IllegalArgumentException("잘못된 입력입니다.");
+    }
+
+    public static List<Mission> findAll() {
+        return new ArrayList<>(Arrays.asList(Mission.values()));
     }
 }
