@@ -51,4 +51,20 @@ public class InputView {
         return MissionDto.from(missionInfo);
     }
 
+    public boolean reMatching(){
+        printer.printMessage("""
+                매칭 정보가 있습니다. 다시 매칭하시겠습니까?
+                네 | 아니오""");
+        String input = reader.getString();
+        if (input.equals("네")) {
+            return true;
+        }
+        if (input.equals("아니오")) {
+            return false;
+        }
+
+        //todo
+        throw new IllegalArgumentException();
+    }
+
 }
