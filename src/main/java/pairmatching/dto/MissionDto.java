@@ -1,9 +1,18 @@
 package pairmatching.dto;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
 public class MissionDto {
+    private static final HashMap<String, List<String>> missionMap = new HashMap<>();
+    static {
+        missionMap.put("레벨1", List.of("자동차경주","로또","숫자야구게임"));
+        missionMap.put("레벨2", List.of("장바구니","결제","지하철노선도"));
+        missionMap.put("레벨3", List.of());
+        missionMap.put("레벨4", List.of("성능개선","배포"));
+        missionMap.put("레벨5", List.of());
+    }
     private final String course;
     private final int level;
     private final String mission;
@@ -26,6 +35,7 @@ public class MissionDto {
         }
         validateCourse(input.get(0));
         validateLevel(input.get(1));
+        validateMission(input);
     }
 
 
@@ -43,5 +53,26 @@ public class MissionDto {
         }
         //todo
         throw new IllegalArgumentException();
+    }
+
+    private static void validateMission(List<String> input) {
+        if (missionMap.get(input.get(1)).contains(input.get(2))) {
+            return;
+        }
+
+        //todo
+        throw new IllegalArgumentException("잘못된 미션 이름");
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public String getMission() {
+        return mission;
     }
 }
