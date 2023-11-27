@@ -1,6 +1,7 @@
 package pairmatching.util;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public final class InputUtil {
@@ -9,12 +10,13 @@ public final class InputUtil {
         return Console.readLine();
     }
 
-    public static <T> T retryOnInvalidInput(Supplier<T> inputSupplier, String errorMessage) {
+    public static <T> T retryOnInvalidInput(Supplier<T> inputSupplier,
+                                            Consumer<String> errorHandler) {
         while (true) {
             try {
                 return inputSupplier.get();
             } catch (IllegalArgumentException e) {
-                System.out.println(errorMessage);
+                errorHandler.accept(e.getMessage());
             }
         }
     }
