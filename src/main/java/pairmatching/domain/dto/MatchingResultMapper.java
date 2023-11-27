@@ -10,13 +10,14 @@ public class MatchingResultMapper {
     private MatchingResultMapper() {
     }
 
-    public static List<List<String>> from(MatchingResult matchingResult) {
+    public static MatchingResultDto from(MatchingResult matchingResult) {
         List<Pair> pairs = matchingResult.getPairs();
-
-        return pairs
+        List<List<String>> transformed =  pairs
                 .stream()
                 .map(pair -> pair.getCrews())
                 .collect(Collectors.toList());
+
+        return new MatchingResultDto(transformed);
     }
 
 }

@@ -27,6 +27,7 @@ public enum Course {
                 .orElseThrow(() -> ExceptionUtil.returnInvalidValueException());
     }
 
+
     public List<String> getCrews() {
         try {
             return FileUtil.readFileAsList(getFilePath());

@@ -16,4 +16,8 @@ public class Pair {
     public List<String> getCrews() {
         return crews;
     }
+
+    public void addCrew(String crew) {
+        crews.add(crew);
+    }
 }

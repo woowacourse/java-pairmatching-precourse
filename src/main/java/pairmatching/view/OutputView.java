@@ -33,12 +33,12 @@ public class OutputView {
                 .forEach(System.out::println);
     }
 
-    private String formatPair(List<String> list) {
-        return String.join(" : ", list);
-    }
-
     public void outputErrorMessage(String message) {
         System.out.println(message);
+    }
+
+    private String formatPair(List<String> list) {
+        return String.join(" : ", list);
     }
 
     private void outputCourses() {
