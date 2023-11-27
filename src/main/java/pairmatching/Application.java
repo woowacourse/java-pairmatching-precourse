@@ -23,7 +23,6 @@ public class Application {
             if (menu.equals("3")) {
                 handle(matchingController::resetPair);
             }
-            //todo 어짜피 보장된 값만 받을거임
 
         } while (!menu.equals("Q"));
     }

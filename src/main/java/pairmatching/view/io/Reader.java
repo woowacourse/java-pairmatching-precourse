@@ -20,8 +20,7 @@ public class Reader {
 
     public void assertNotEndWithDelimiter(String input, String delimiter){
         if (input.endsWith(delimiter)) {
-            //todo
-            throw new IllegalArgumentException("입력 형식 잘못됨");
+            throw new IllegalArgumentException("입력 형식 잘못되었습니다.");
         }
     }
 }

@@ -14,16 +14,8 @@ public class MatchingHistory {
     }
 
     public boolean isMatched(MissionDto dto) {
-        String course = dto.getCourse();
-        if (course.equals("백엔드")) {
-            return backend.isMatched(dto.getLevel(), dto.getMission());
-        }
-        if(course.equals("프론트엔드")){
-            return frontend.isMatched(dto.getLevel(), dto.getMission());
-        }
-
-        //todo
-        throw new IllegalArgumentException();
+        CourseHistory history = getHistory(dto.getCourse());
+        return history.isMatched(dto.getLevel(), dto.getMission());
     }
 
     public boolean isDuplicated(MissionDto dto, Set<Pair> pairs){

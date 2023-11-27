@@ -20,8 +20,7 @@ public class CrewRepository {
             backendCrewName = backendFile.lines().toList();
             frontendCrewNames = frontendFile.lines().toList();
         } catch (FileNotFoundException e) {
-            //todo
-            throw new IllegalArgumentException(e);
+            throw new IllegalArgumentException("파일이 존재하지 않습니다.");
         }
     }
 

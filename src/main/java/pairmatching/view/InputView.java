@@ -24,12 +24,10 @@ public class InputView {
 
     private void validateUserMenu(String userMenu) {
         if(!menus.contains(userMenu)){
-            //todo
-            throw new IllegalArgumentException("잘못된 메뉴 입력");
+            throw new IllegalArgumentException("잘못된 메뉴 입력입니다.");
         }
     }
 
-    //todo 얘도 나눠야됨
     public void pairMatchingView(){
         printer.printMessage("""
                 #############################################
@@ -63,8 +61,7 @@ public class InputView {
             return false;
         }
 
-        //todo
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("잘못된 입력입니다.");
     }
 
 }
