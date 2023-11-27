@@ -15,7 +15,7 @@ public class MatchingResultMapperTest {
     private static Stream<Arguments> 제공_매칭결과와_예상결과() {
         return Stream.of(
                 Arguments.of(
-                        new MatchingResult(Arrays.asList(new Pair(Arrays.asList("크루1", "크루2")))),
+                        MatchingResult.create(Arrays.asList(Pair.create(Arrays.asList("크루1", "크루2")))),
                         Arrays.asList(Arrays.asList("크루1", "크루2"))
                 )
         );
