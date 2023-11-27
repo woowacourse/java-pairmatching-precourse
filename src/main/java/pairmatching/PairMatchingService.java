@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class PairMatchingService {
     private static CrewRepository crewRepository = new CrewRepository();
-    private static Map<String, Pairs> history = new HashMap<>();
+    private static Map<PairOption, Pairs> history = new HashMap<>();
 
     public static void initCrews() {
         crewRepository = new CrewRepository();
@@ -31,28 +31,31 @@ public class PairMatchingService {
         }
     }
 
-    public static Pairs pairMatching(Course course, Level level, Mission mission) {
+    public static Pairs pairMatching(PairOption option) {
+        List<String> shuffleCrew = getShuffleCrew(option.getCourse());
+        Pairs pairs = Pairs.createByNameList(shuffleCrew);
+        history.put(option, pairs);
+        return pairs;
+    }
+
+    private static List<String> getShuffleCrew(Course course) {
         List<String> crewNames = crewRepository.findByCourse(course);
         if (crewNames == null) {
             throw new IllegalArgumentException("존재하지 않는 코스입니다.");
         }
-
-        List<String> shuffleCrew = Randoms.shuffle(crewNames);
-        Pairs pairs = Pairs.createByNameList(shuffleCrew);
-
-        history.put(course.name() + level.name() + mission.name(), pairs);
-        return pairs;
+        return Randoms.shuffle(crewNames);
     }
 
-    public static boolean hasHistory(Course course, Level level, Mission mission) {
-        return history.containsKey(course.name() + level.name() + mission.name());
+    public static boolean hasHistory(PairOption option) {
+        return history.containsKey(option);
     }
 
     public static List<Pairs> getHistory(Course course, Level level) {
         List<Pairs> result = new ArrayList<>();
         Mission.findAll().forEach(mission -> {
-            if (hasHistory(course, level, mission)) {
-                result.add(history.get(course.name() + level.name() + mission.name()));
+            PairOption option = new PairOption(course, level, mission);
+            if (hasHistory(option)) {
+                result.add(history.get(option));
             }
         });
         return result;
@@ -82,8 +85,8 @@ public class PairMatchingService {
         return false;
     }
 
-    public static Pairs findHistory(Course course, Level level, Mission mission) {
-        return history.get(course.name() + level.name() + mission.name());
+    public static Pairs findHistory(PairOption option) {
+        return history.get(option);
     }
 
     public static void reset() {

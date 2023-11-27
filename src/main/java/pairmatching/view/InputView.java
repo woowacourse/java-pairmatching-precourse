@@ -2,6 +2,7 @@ package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.regex.Pattern;
+import pairmatching.PairOption;
 
 public class InputView {
     public static final String MENU_MESSAGE = "기능을 선택하세요.\n"
@@ -34,7 +35,7 @@ public class InputView {
         return readString();
     }
 
-    public static String readOption() {
+    public static PairOption readOption() {
         System.out.println(
                 "#############################################\n"
                         + "과정: 백엔드 | 프론트엔드\n"
@@ -48,14 +49,6 @@ public class InputView {
         System.out.println("과정, 레벨, 미션을 선택하세요.\n"
                 + "ex) 백엔드, 레벨1, 자동차경주");
         String input = readString();
-        String regexPattern = "^[가-힣]+,\\s[가-힣]+\\d,\\s[가-힣]+$";
-
-        // 정규표현식 검사
-        boolean isMatch = Pattern.matches(regexPattern, input);
-
-        if (!isMatch) {
-            throw new IllegalArgumentException("입력 형식이 잘못되었습니다.");
-        }
-        return input;
+        return PairOption.createByString(input);
     }
 }
