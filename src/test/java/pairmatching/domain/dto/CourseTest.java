@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.Arguments;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.stream.Stream;
@@ -18,6 +19,10 @@ public class CourseTest {
                 Arguments.of("백엔드", Course.BACKEND, 20),
                 Arguments.of("프론트엔드", Course.FRONTEND, 15)
         );
+    }
+
+    private static Stream<String> provideInvalidCourseNames() {
+        return Stream.of("잘못된코스", "존재하지않음", "비어있음");
     }
 
     @ParameterizedTest
@@ -39,5 +44,19 @@ public class CourseTest {
         // then
         assertNotNull(crews);
         assertThat(crews.size()).isEqualTo(size);
+    }
+
+    @ParameterizedTest
+    @MethodSource("코스이름_및_예상코스")
+    void 유효한_코스_찾기_테스트(String courseName, Course expectedCourse) {
+        Course actualCourse = Course.findCourse(courseName);
+        assertEquals(expectedCourse, actualCourse);
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideInvalidCourseNames")
+    void 잘못된_코스_찾기_예외_테스트(String courseName) {
+        assertThatThrownBy(() -> Course.findCourse(courseName))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
