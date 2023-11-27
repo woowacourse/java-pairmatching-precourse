@@ -1,20 +1,18 @@
 package domain.entity;
 
-import java.util.List;
-
 public class CourseMission {
     private final Course course;
     private final Level level;
-    private final String mission; // TODO: 시간되면 VO 분리
+    private final Mission mission;
 
-    private CourseMission(Course course, Level level, String mission) {
+    private CourseMission(Course course, Level level, Mission mission) {
         this.course = course;
         this.level = level;
         this.mission = mission;
     }
 
-    public static CourseMission create(Course course, Level level, String missionName) {
-        return new CourseMission(course, level, missionName);
+    public static CourseMission create(Course course, Level level, Mission mission) {
+        return new CourseMission(course, level, mission);
     }
 
     public Course getCourse() {
@@ -25,7 +23,7 @@ public class CourseMission {
         return level;
     }
 
-    public String getMission() {
+    public Mission getMission() {
         return mission;
     }
 }

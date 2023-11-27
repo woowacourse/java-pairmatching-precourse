@@ -19,7 +19,7 @@ public enum Function {
 
     public static Function findFunction(String option) {
         return Arrays.stream(Function.values())
-                .filter(function -> function.option == option)
+                .filter(function -> function.option.equals(option))
                 .findAny()
                 .orElseThrow(() -> ExceptionUtil.returnInvalidValueException());
     }
