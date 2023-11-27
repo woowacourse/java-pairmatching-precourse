@@ -12,4 +12,9 @@ public class CourseHistory {
             levels.add(new LevelHistory());
         }
     }
+
+    public boolean isMatched(int level, String mission) {
+        return levels.get(level - 1).isMatched(mission);
+    }
+
 }

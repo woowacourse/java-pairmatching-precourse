@@ -20,13 +20,15 @@ public class MatchingController {
         while(true){
             MissionDto missionDto = inputView.pairMatchingView();
 
-            //매칭 정보가 있는지 확인
-            //if 매칭 정보가 없다면
-            if(true){
-                //출력 - 생성된 페어 출력
-                //return
+            if(matchingHistory.isMatched(missionDto)){
+                //매칭 정보가 있으면 다시 매칭할건지 물어봐야됨
+                //다시 매칭할거라 하면 continue 써서 다시 입력 받게
             }
-            //재입력 시도
+
+            //매칭 정보가 없다면
+            if(true){
+                //여기부턴 매칭 로직
+            }
         }
     }
 
