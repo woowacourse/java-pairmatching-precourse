@@ -39,4 +39,8 @@ public class MatchingService {
         return new HashSet<>();
         //throw new IllegalArgumentException();
     }
+
+    public void removeHistory(MissionDto missionDto) {
+        matchingHistory.removeHistory(missionDto);
+    }
 }

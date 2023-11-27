@@ -1,12 +1,9 @@
 package pairmatching.controller;
 
-import java.util.List;
 import java.util.Set;
 import pairmatching.domain.MatchingService;
 import pairmatching.domain.Pair;
 import pairmatching.dto.MissionDto;
-import pairmatching.repository.matching.CourseHistory;
-import pairmatching.repository.matching.MatchingHistory;
 import pairmatching.view.InputView;
 
 public class MatchingController {
@@ -26,7 +23,7 @@ public class MatchingController {
             if(matchingService.isMatched(missionDto)){
                 System.out.println("matched");
                 if(!inputView.reMatching()){
-                    //todo 해당 미션의 매칭 정보 삭제
+                    matchingService.removeHistory(missionDto);
                     continue;
                 }
             }

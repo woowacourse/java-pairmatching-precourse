@@ -27,4 +27,8 @@ public class CourseHistory {
     public void save(int level, String mission, Set<Pair> pairs) {
         levels.get(level - 1).save(mission, pairs);
     }
+
+    public void removeHistory(MissionDto missionDto) {
+        levels.get(missionDto.getLevel() - 1).removeHistory(missionDto.getMission());
+    }
 }

@@ -45,4 +45,9 @@ public class MatchingHistory {
         }
         return frontend;
     }
+
+    public void removeHistory(MissionDto missionDto) {
+        CourseHistory history = getHistory(missionDto.getCourse());
+        history.removeHistory(missionDto);
+    }
 }
