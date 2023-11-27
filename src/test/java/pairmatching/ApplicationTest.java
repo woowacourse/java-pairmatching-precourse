@@ -60,6 +60,36 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @Test
+    void 없는_코스에_대한_예외_처리() {
+        assertSimpleTest(
+                () -> {
+                    runException("1", "안드로이드, 레벨1, 자동차경주");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
+
+    @Test
+    void 없는_레벨에_대한_예외_처리() {
+        assertSimpleTest(
+                () -> {
+                    runException("1", "백엔드, 레벨6, 자동차경주");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
+
+    @Test
+    void 매칭되지_않는_미션에_대한_예외_처리() {
+        assertSimpleTest(
+                () -> {
+                    runException("1", "백엔드, 레벨2, 숫자야구게임");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

@@ -12,14 +12,22 @@ public class PairOption {
     public static final int LEVEL_INDEX = 1;
     public static final int MISSION_INDEX = 2;
     public static final String OPTION_DELIMITER = ", ";
+
     private final Course course;
     private final Level level;
     private final Mission mission;
 
     public PairOption(Course course, Level level, Mission mission) {
+        validateMatch(level, mission);
         this.course = course;
         this.level = level;
         this.mission = mission;
+    }
+
+    private void validateMatch(Level level, Mission mission) {
+        if (!mission.getLevel().equals(level)) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT);
+        }
     }
 
     public static PairOption createByString(String value) {

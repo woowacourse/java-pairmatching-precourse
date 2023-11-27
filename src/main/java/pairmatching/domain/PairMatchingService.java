@@ -79,7 +79,7 @@ public class PairMatchingService {
 
     public static List<Pairs> getHistory(Course course, Level level) {
         List<Pairs> result = new ArrayList<>();
-        Mission.findAll().forEach(mission -> {
+        Mission.findByLevel(level).forEach(mission -> {
             PairOption option = new PairOption(course, level, mission);
             if (hasHistory(option)) {
                 result.add(history.get(option));

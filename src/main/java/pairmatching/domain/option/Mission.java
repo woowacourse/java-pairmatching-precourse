@@ -3,6 +3,7 @@ package pairmatching.domain.option;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import pairmatching.message.ExceptionMessage;
 
 public enum Mission {
@@ -32,7 +33,13 @@ public enum Mission {
         throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT);
     }
 
-    public static List<Mission> findAll() {
-        return new ArrayList<>(Arrays.asList(Mission.values()));
+    public static List<Mission> findByLevel(Level level) {
+        return Arrays.stream(Mission.values())
+                .filter(mission -> mission.level.equals(level))
+                .collect(Collectors.toList());
+    }
+
+    public Level getLevel() {
+        return level;
     }
 }
