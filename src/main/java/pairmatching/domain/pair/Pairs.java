@@ -24,6 +24,17 @@ public class Pairs {
         return new Pairs(pairs);
     }
 
+    public boolean hasSamePair(Pairs source) {
+        for (Pair pair : source.pairs) {
+            for (Pair thisPair : this.pairs) {
+                if (thisPair.hasSamePair(pair)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public List<Pair> getPairs() {
         return new ArrayList<>(pairs);
     }

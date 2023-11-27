@@ -38,11 +38,27 @@ public class PairMatchingService {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_MENU_INPUT);
         }
     }
-
-    public static Pairs createPairMatching(PairOption option) {
-        List<String> shuffleCrew = getShuffleCrew(option.getCourse());
-        Pairs pairs = Pairs.createByNameList(shuffleCrew);
+    public static Pairs createNewPairMatching(PairOption option) {
+        Pairs pairs = createPairMatching(option);
+        addPairsToHistory(option, pairs);
         return pairs;
+    }
+
+    public static Pairs createNoDuplicatePairMatching(PairOption option, List<Pairs> history) {
+        for (int i = 0; i < 3; i++) {
+            Pairs rematch = createPairMatching(option);
+            if (hasSamePair(history, rematch)) {
+                continue;
+            }
+            addPairsToHistory(option, rematch);
+            return rematch;
+        }
+        throw new IllegalArgumentException(ExceptionMessage.REMATCHING_FAIL);
+    }
+
+    private static Pairs createPairMatching(PairOption option) {
+        List<String> shuffleCrew = getShuffleCrew(option.getCourse());
+        return Pairs.createByNameList(shuffleCrew);
     }
 
     public static void addPairsToHistory(PairOption option, Pairs pairs) {
@@ -85,12 +101,8 @@ public class PairMatchingService {
 
     public static boolean hasSamePair(List<Pairs> history, Pairs rematch) {
         for (Pairs pairs : history) {
-            for (Pair pair : pairs.getPairs()) {
-                for (Pair rematchPair : rematch.getPairs()) {
-                    if (pair.hasSamePair(rematchPair)) {
-                        return true;
-                    }
-                }
+            if (pairs.hasSamePair(rematch)) {
+                return true;
             }
         }
         return false;

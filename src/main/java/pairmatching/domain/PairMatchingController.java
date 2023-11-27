@@ -61,37 +61,25 @@ public class PairMatchingController {
     }
 
     private static void pairMatching(PairOption pairOption) {
-        Pairs matchingResult;
         if (PairMatchingService.hasHistory(pairOption)) {
             handleRematch(pairOption);
             return;
         }
-        matchingResult = PairMatchingService.createPairMatching(pairOption);
+        Pairs matchingResult = PairMatchingService.createNewPairMatching(pairOption);
+        PairMatchingService.addPairsToHistory(pairOption, matchingResult);
         OutputView.printMatchingResult(matchingResult);
     }
 
     private static void handleRematch(PairOption pairOption) {
         if (getValidateRematch().equals(ProgramOption.YES)) {
             // 3번 리매칭
-            Pairs matchingResult = tryRematch(pairOption);
+            List<Pairs> history = PairMatchingService.getHistory(pairOption.getCourse(), pairOption.getLevel());
+            Pairs matchingResult =  PairMatchingService.createNoDuplicatePairMatching(pairOption, history);
             OutputView.printMatchingResult(matchingResult);
             return;
         }
         // 아니오를 선택한 경우 다시 코스, 레벨, 미션을 선택한다.
         handlePairMatching();
-    }
-
-    private static Pairs tryRematch(PairOption pairOption) {
-        List<Pairs> history = PairMatchingService.getHistory(pairOption.getCourse(), pairOption.getLevel());
-        for (int i = 0; i < 3; i++) {
-            Pairs rematch = PairMatchingService.createPairMatching(pairOption);
-            if (PairMatchingService.hasSamePair(history, rematch)) {
-                continue;
-            }
-            PairMatchingService.addPairsToHistory(pairOption, rematch);
-            return rematch;
-        }
-        throw new IllegalArgumentException(ExceptionMessage.REMATCHING_FAIL);
     }
 
     private static String getValidateRematch() {

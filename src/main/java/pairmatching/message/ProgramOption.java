@@ -1,8 +1,8 @@
 package pairmatching.message;
 
 public class ProgramOption {
-    public static final String BACKEND_FILE_PATH = "src/main/resources/backend.txt";
-    public static final String FRONTEND_FILE_PATH = "src/main/resources/frontend.txt";
+    public static final String BACKEND_FILE_PATH = "src/main/resources/backend-crew.md";
+    public static final String FRONTEND_FILE_PATH = "src/main/resources/frontend-crew.md";
 
     public static final String PAIR_MATCHING = "1";
     public static final String PAIR_SEARCH = "2";
