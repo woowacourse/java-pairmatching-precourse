@@ -25,13 +25,22 @@ public class PairMatchingController {
         }
     }
 
+    private static String getValidateMenu() {
+        try {
+            return PairMatchingService.getValidateMenu(InputView.readMenu());
+        } catch (IllegalArgumentException error) {
+            OutputView.printException(error);
+            return getValidateMenu();
+        }
+    }
+
     private static void handleByMenu(String validateMenu) {
         if (validateMenu.equals(ProgramOption.PAIR_MATCHING)) {
             handlePairMatching();
             return;
         }
         if (validateMenu.equals(ProgramOption.PAIR_SEARCH)) {
-            handlePairHistory();
+            handlePairSearch();
             return;
         }
         if (validateMenu.equals(ProgramOption.PAIR_RESET)) {
@@ -40,8 +49,6 @@ public class PairMatchingController {
         }
         throw new IllegalArgumentException(ExceptionMessage.INVALID_MENU_INPUT);
     }
-
-
 
     private static void handlePairMatching() {
         try {
@@ -53,38 +60,35 @@ public class PairMatchingController {
         }
     }
 
-    private static String getValidateMenu() {
-        try {
-            return PairMatchingService.getValidateMenu(InputView.readMenu());
-        } catch (IllegalArgumentException error) {
-            OutputView.printException(error);
-            return getValidateMenu();
-        }
-    }
-
     private static void pairMatching(PairOption pairOption) {
         Pairs matchingResult;
         if (PairMatchingService.hasHistory(pairOption)) {
-            if (getValidateRematch().equals(ProgramOption.YES)) {
-                // 3번 리매칭
-                matchingResult = handleRematch(pairOption);
-                OutputView.printMatchingResult(matchingResult);
-                return;
-            }
-            handlePairMatching(); // 코스, 레벨, 미션을 다시 선택한다.
+            handleRematch(pairOption);
             return;
         }
-        matchingResult = PairMatchingService.pairMatching(pairOption);
+        matchingResult = PairMatchingService.createPairMatching(pairOption);
         OutputView.printMatchingResult(matchingResult);
     }
 
-    private static Pairs handleRematch(PairOption pairOption) {
+    private static void handleRematch(PairOption pairOption) {
+        if (getValidateRematch().equals(ProgramOption.YES)) {
+            // 3번 리매칭
+            Pairs matchingResult = tryRematch(pairOption);
+            OutputView.printMatchingResult(matchingResult);
+            return;
+        }
+        // 아니오를 선택한 경우 다시 코스, 레벨, 미션을 선택한다.
+        handlePairMatching();
+    }
+
+    private static Pairs tryRematch(PairOption pairOption) {
         List<Pairs> history = PairMatchingService.getHistory(pairOption.getCourse(), pairOption.getLevel());
         for (int i = 0; i < 3; i++) {
-            Pairs rematch = PairMatchingService.pairMatching(pairOption);
+            Pairs rematch = PairMatchingService.createPairMatching(pairOption);
             if (PairMatchingService.hasSamePair(history, rematch)) {
                 continue;
             }
+            PairMatchingService.addPairsToHistory(pairOption, rematch);
             return rematch;
         }
         throw new IllegalArgumentException(ExceptionMessage.REMATCHING_FAIL);
@@ -99,7 +103,7 @@ public class PairMatchingController {
         }
     }
 
-    private static void handlePairHistory() {
+    private static void handlePairSearch() {
         try {
             PairOption pairOption = InputView.readOption();
             if (!PairMatchingService.hasHistory(pairOption)) {
@@ -109,7 +113,7 @@ public class PairMatchingController {
             OutputView.printMatchingResult(matchedPairs);
         } catch (IllegalArgumentException error) {
             OutputView.printException(error);
-            handlePairHistory();
+            handlePairSearch();
         }
     }
 

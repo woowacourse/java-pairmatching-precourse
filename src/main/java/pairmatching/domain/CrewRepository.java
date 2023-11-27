@@ -8,8 +8,8 @@ import java.util.List;
 import pairmatching.domain.option.Course;
 
 public class CrewRepository {
-    private List<String> backend = new ArrayList<>();
-    private List<String> frontend = new ArrayList<>();
+    private final List<String> backend = new ArrayList<>();
+    private final List<String> frontend = new ArrayList<>();
 
     public void initBackend(String path) {
         addCrewsByFile(path, backend);

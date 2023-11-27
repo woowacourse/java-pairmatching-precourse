@@ -39,11 +39,14 @@ public class PairMatchingService {
         }
     }
 
-    public static Pairs pairMatching(PairOption option) {
+    public static Pairs createPairMatching(PairOption option) {
         List<String> shuffleCrew = getShuffleCrew(option.getCourse());
         Pairs pairs = Pairs.createByNameList(shuffleCrew);
-        history.put(option, pairs);
         return pairs;
+    }
+
+    public static void addPairsToHistory(PairOption option, Pairs pairs) {
+        history.put(option, pairs);
     }
 
     private static List<String> getShuffleCrew(Course course) {
