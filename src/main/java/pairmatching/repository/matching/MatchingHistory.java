@@ -1,5 +1,7 @@
 package pairmatching.repository.matching;
 
+import java.util.Set;
+import pairmatching.domain.Pair;
 import pairmatching.dto.MissionDto;
 
 public class MatchingHistory {
@@ -22,5 +24,13 @@ public class MatchingHistory {
 
         //todo
         throw new IllegalArgumentException();
+    }
+
+    public boolean isDuplicated(MissionDto dto, Set<Pair> pairs){
+        CourseHistory history = backend;
+        if(dto.getCourse().equals("프론트엔드")){
+            history = frontend;
+        }
+        return history.isDuplicated(dto, pairs);
     }
 }

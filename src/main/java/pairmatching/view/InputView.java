@@ -30,7 +30,7 @@ public class InputView {
     }
 
     //todo 얘도 나눠야됨
-    public MissionDto pairMatchingView(){
+    public void pairMatchingView(){
         printer.printMessage("""
                 #############################################
                 과정: 백엔드 | 프론트엔드
@@ -40,7 +40,11 @@ public class InputView {
                   - 레벨3:
                   - 레벨4: 성능개선 | 배포
                   - 레벨5:
-                ############################################
+                ############################################""");
+    }
+
+    public MissionDto getMissionDto(){
+        printer.printMessage("""
                 과정, 레벨, 미션을 선택하세요.
                 ex) 백엔드, 레벨1, 자동차경주""");
         List<String> missionInfo = reader.getStringsWithDelimiter(",");

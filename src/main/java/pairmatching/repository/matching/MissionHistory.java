@@ -12,4 +12,8 @@ public class MissionHistory {
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }*/
+
+    public Set<Pair> getPairs() {
+        return pairs;
+    }
 }

@@ -3,6 +3,7 @@ package pairmatching.repository;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Collections;
 import java.util.List;
 
 public class CrewRepository {
@@ -22,5 +23,13 @@ public class CrewRepository {
             //todo
             throw new IllegalArgumentException(e);
         }
+    }
+
+    public List<String> getBackendCrewName() {
+        return Collections.unmodifiableList(backendCrewName);
+    }
+
+    public List<String> getFrontendCrewNames() {
+        return Collections.unmodifiableList(frontendCrewNames);
     }
 }

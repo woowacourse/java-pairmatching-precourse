@@ -2,7 +2,10 @@ package pairmatching.repository.matching;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.IntStream;
+import pairmatching.domain.Pair;
+import pairmatching.dto.MissionDto;
 
 public class CourseHistory {
     List<LevelHistory> levels = new ArrayList<>();
@@ -17,4 +20,7 @@ public class CourseHistory {
         return levels.get(level - 1).isMatched(mission);
     }
 
+    public boolean isDuplicated(MissionDto dto, Set<Pair> pairs) {
+        return levels.get(dto.getLevel() - 1).isDuplicated(pairs);
+    }
 }

@@ -1,13 +1,16 @@
 package pairmatching.controller;
 
 import java.util.List;
+import java.util.Set;
+import pairmatching.domain.MatchingService;
+import pairmatching.domain.Pair;
 import pairmatching.dto.MissionDto;
 import pairmatching.repository.matching.CourseHistory;
 import pairmatching.repository.matching.MatchingHistory;
 import pairmatching.view.InputView;
 
 public class MatchingController {
-    private static final MatchingHistory matchingHistory = new MatchingHistory();
+    private static final MatchingService matchingService = new MatchingService();
     private static final InputView inputView = new InputView();
 
     //OutputView
@@ -17,18 +20,16 @@ public class MatchingController {
     }
 
     public void createPair(){
+        inputView.pairMatchingView();
         while(true){
-            MissionDto missionDto = inputView.pairMatchingView();
-
-            if(matchingHistory.isMatched(missionDto)){
+            MissionDto missionDto = inputView.getMissionDto();
+            if(matchingService.isMatched(missionDto)){
                 //매칭 정보가 있으면 다시 매칭할건지 물어봐야됨
                 //다시 매칭할거라 하면 continue 써서 다시 입력 받게
             }
 
             //매칭 정보가 없다면
-            if(true){
-                //여기부턴 매칭 로직
-            }
+            Set<Pair> pairs = matchingService.matching(missionDto);
         }
     }
 
