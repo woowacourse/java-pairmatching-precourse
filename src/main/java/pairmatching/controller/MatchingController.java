@@ -1,15 +1,15 @@
 package pairmatching.controller;
 
-import java.util.HashSet;
 import java.util.Set;
 import pairmatching.domain.MatchingService;
 import pairmatching.domain.Pair;
+import pairmatching.domain.ShuffleCrewMatcher;
 import pairmatching.dto.MissionDto;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class MatchingController {
-    private static final MatchingService matchingService = new MatchingService();
+    private static final MatchingService matchingService = new MatchingService(new ShuffleCrewMatcher());
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
 

@@ -1,7 +1,6 @@
 package pairmatching.domain;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import pairmatching.dto.MissionDto;
@@ -12,8 +11,11 @@ public class MatchingService {
 
     private static MatchingHistory matchingHistory = new MatchingHistory();
     private static final CrewRepository crewRepository = new CrewRepository();
-    private static final CrewMatcher crewMatcher = new CrewMatcher();
+    private final CrewMatcher crewMatcher;
 
+    public MatchingService(CrewMatcher crewMatcher) {
+        this.crewMatcher = crewMatcher;
+    }
 
     public boolean isMatched(MissionDto missionDto) {
         return matchingHistory.isMatched(missionDto);
@@ -35,9 +37,8 @@ public class MatchingService {
                 return pairs;
             }
         }
-        //3번동안 매칭이 안됨
-        return new HashSet<>();
-        //throw new IllegalArgumentException();
+
+        throw new IllegalArgumentException("매칭에 실패했습니다.");
     }
 
     public void removeHistory(MissionDto missionDto) {
