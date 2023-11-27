@@ -1,7 +1,12 @@
 package pairmatching.domain.entity;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 import pairmatching.util.ExceptionUtil;
+import pairmatching.util.FileUtil;
 
 public enum Course {
     BACKEND("백엔드", "backend-crew.md"),
@@ -22,11 +27,24 @@ public enum Course {
                 .orElseThrow(() -> ExceptionUtil.returnInvalidValueException());
     }
 
+    public List<String> getCrews() {
+        try {
+            return FileUtil.readFileAsList(getFilePath());
+        } catch (IOException e) {
+            throw ExceptionUtil.returnInvalidValueException();
+        } catch (URISyntaxException e) {
+            throw ExceptionUtil.returnInvalidValueException();
+        }
+    }
+
     public String getDescription() {
         return description;
     }
 
-    public String getFilePath() {
-        return filePath;
+    public String getFilePath() throws URISyntaxException {
+        return Paths.get(getClass()
+                .getClassLoader()
+                .getResource(filePath)
+                .toURI()).toString();
     }
 }

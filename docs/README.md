@@ -8,7 +8,7 @@
 [페어 매칭]
 - 페어 매칭에 필요한 크루들의 이름을 파일 입출력을 통해 불러온다. O
   - src/main/resources/backend-crew.md과 src/main/resources/frontend-crew.md 파일을 이용한다. O
-- 크루들의 이름 목록을 List<String> 형태로 준비한다.
+- 크루들의 이름 목록을 List<String> 형태로 준비한다. O 
 - 크루 목록의 순서를 랜덤으로 섞는다. 이 때 `camp.nextstep.edu.missionutils.Randoms`의 shuffle 메서드를 활용한다.
 - 랜덤으로 섞인 페어 목록에서 페어 매칭을 할 때 앞에서부터 순서대로 두명씩 페어를 맺는다.
 - 홀수인 경우 마지막 남은 크루는 마지막 페어에 포함시킨다.
