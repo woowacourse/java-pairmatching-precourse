@@ -10,7 +10,7 @@ import pairmatching.repository.matching.MatchingHistory;
 
 public class MatchingService {
 
-    private static final MatchingHistory matchingHistory = new MatchingHistory();
+    private static MatchingHistory matchingHistory = new MatchingHistory();
     private static final CrewRepository crewRepository = new CrewRepository();
     private static final CrewMatcher crewMatcher = new CrewMatcher();
 
@@ -42,5 +42,13 @@ public class MatchingService {
 
     public void removeHistory(MissionDto missionDto) {
         matchingHistory.removeHistory(missionDto);
+    }
+
+    public Set<Pair> getResult(MissionDto missionDto) {
+        return matchingHistory.getResult(missionDto);
+    }
+
+    public void reset() {
+        matchingHistory = new MatchingHistory();
     }
 }

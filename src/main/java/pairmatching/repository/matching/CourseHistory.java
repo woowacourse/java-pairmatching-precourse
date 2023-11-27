@@ -31,4 +31,8 @@ public class CourseHistory {
     public void removeHistory(MissionDto missionDto) {
         levels.get(missionDto.getLevel() - 1).removeHistory(missionDto.getMission());
     }
+
+    public Set<Pair> getResult(MissionDto missionDto) {
+        return levels.get(missionDto.getLevel() - 1).getResult(missionDto.getMission());
+    }
 }

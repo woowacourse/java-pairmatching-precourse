@@ -50,4 +50,9 @@ public class MatchingHistory {
         CourseHistory history = getHistory(missionDto.getCourse());
         history.removeHistory(missionDto);
     }
+
+    public Set<Pair> getResult(MissionDto missionDto) {
+        CourseHistory history = getHistory(missionDto.getCourse());
+        return history.getResult(missionDto);
+    }
 }

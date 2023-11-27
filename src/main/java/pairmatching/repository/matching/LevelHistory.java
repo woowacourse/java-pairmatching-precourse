@@ -29,6 +29,10 @@ public class LevelHistory {
         missionHistories.remove(mission);
     }
 
+    public Set<Pair> getResult(String mission) {
+        return missionHistories.get(mission).getPairs();
+    }
+
     /*public boolean isPaired(String... crews) {
 
     }*/

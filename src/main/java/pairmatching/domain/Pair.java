@@ -20,6 +20,10 @@ public class Pair {
         crews = new HashSet<>(collection);
     }
 
+    public Set<String> getCrews() {
+        return crews;
+    }
+
     public boolean isContains(String crewName){
         return crews.contains(crewName);
     }
