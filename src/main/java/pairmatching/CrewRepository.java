@@ -29,11 +29,13 @@ public class CrewRepository {
         }
     }
 
-    public List<String> getBackend() {
-        return new ArrayList<>(backend);
-    }
-
-    public List<String> getFrontend() {
-        return new ArrayList<>(frontend);
+    public List<String> findByCourse(Course course) {
+        if (course == Course.FRONTEND) {
+            return new ArrayList<>(frontend);
+        }
+        if (course == Course.BACKEND) {
+            return new ArrayList<>(backend);
+        }
+        return null;
     }
 }
