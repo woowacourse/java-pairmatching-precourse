@@ -1,10 +1,15 @@
 package pairmatching.controller;
 
-import org.junit.jupiter.params.shadow.com.univocity.parsers.common.processor.OutputValueSwitch;
+import java.util.List;
+import pairmatching.dto.MissionDto;
+import pairmatching.repository.matching.CourseHistory;
+import pairmatching.repository.matching.MatchingHistory;
 import pairmatching.view.InputView;
 
 public class MatchingController {
-    private final InputView inputView = new InputView();
+    private static final MatchingHistory matchingHistory = new MatchingHistory();
+    private static final InputView inputView = new InputView();
+
     //OutputView
 
     public MatchingController (){
@@ -12,17 +17,22 @@ public class MatchingController {
     }
 
     public void createPair(){
-        //while
-            //입력을 받는다.
+        while(true){
+            MissionDto missionDto = inputView.pairMatchingView();
+
             //매칭 정보가 있는지 확인
             //if 매칭 정보가 없다면
+            if(true){
                 //출력 - 생성된 페어 출력
-        //try
+                //return
+            }
+            //재입력 시도
+        }
     }
 
     //매칭 정보가 있는지 확인
     private boolean isMatchedMission(){
-
+        return false;
     }
 
     public void readPair(){
