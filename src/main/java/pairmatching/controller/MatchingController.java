@@ -42,7 +42,7 @@ public class MatchingController {
             if (function.equals(QUIT)) {
                 return;
             }
-            
+
             processFunctionInput(function);
         }
     }
@@ -70,10 +70,9 @@ public class MatchingController {
 
             if (!matchingResult.isPresent()) {
                 outputView.outputErrorMessage(NOT_EXIST_MATCHING_RESULT.getMessage());
+                return;
             }
-            else {
-                outputView.outputPairMatchingResult(MatchingResultMapper.from(matchingResult.get()));
-            }
+            outputView.outputPairMatchingResult(MatchingResultMapper.from(matchingResult.get()));
         }
     }
 
@@ -87,18 +86,18 @@ public class MatchingController {
             if (!foundMatchingResult.isPresent()) {
                 RematchingOption rematchingOption = inputValidRematchingOption();
                 if (rematchingOption.equals(YES)) {
-                    MatchingResult matchingResult = matchingService.createMatchingResult(course.getCrews());
-                    outputView.outputPairMatchingResult(MatchingResultMapper.from(matchingResult));
-                    matchingService.save(courseMission, matchingResult);
+                    processMatchingResult(course, courseMission);
                 }
+                return;
             }
-
-            else {
-                MatchingResult matchingResult = matchingService.createMatchingResult(course.getCrews());
-                outputView.outputPairMatchingResult(MatchingResultMapper.from(matchingResult));
-                matchingService.save(courseMission, matchingResult);
-            }
+            processMatchingResult(course, courseMission);
         }
+    }
+
+    private void processMatchingResult(Course course, CourseMission courseMission) {
+        MatchingResult matchingResult = matchingService.createMatchingResult(course.getCrews());
+        outputView.outputPairMatchingResult(MatchingResultMapper.from(matchingResult));
+        matchingService.save(courseMission, matchingResult);
     }
 
     private RematchingOption inputValidRematchingOption() {
@@ -127,6 +126,4 @@ public class MatchingController {
     private Function inputFunction() {
         return inputView.inputFunction();
     }
-
-
 }
