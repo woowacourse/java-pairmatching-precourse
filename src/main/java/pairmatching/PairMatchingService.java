@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class PairMatchingService {
     private static final CrewRepository crewRepository = new CrewRepository();
-    private static final Map<String, String> history = new HashMap<>();
+    private static final Map<String, List<Pair>> history = new HashMap<>();
 
     public static void initCrews() {
         crewRepository.initBackend("src/main/resources/backend-crew.md");
@@ -48,8 +48,12 @@ public class PairMatchingService {
         return result;
     }
 
-    public static boolean hasSamePair(Course course, Level level) {
+    public static boolean hasHistory(Course course, Level level) {
         return history.containsKey(course.name() + level.name());
+    }
+
+    public static List<Pair> getHistory(Course course, Level level) {
+        return history.get(course.name() + level.name());
     }
 
     public static String getValidateRematch(String input) {
@@ -61,5 +65,16 @@ public class PairMatchingService {
         if (!input.equals("네") && !input.equals("아니오")) {
             throw new IllegalArgumentException("잘못된 입력입니다.");
         }
+    }
+
+    public static boolean hasSamePair(List<Pair> history, List<Pair> rematch) {
+        for (Pair pair : history) {
+            for (Pair rematchPair : rematch) {
+                if (pair.hasSamePair(rematchPair)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

@@ -36,6 +36,19 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 재매칭_실패() {
+        assertShuffleTest(
+                () -> {
+                    run("1", "백엔드, 레벨1, 자동차경주", "1", "프론트, 레벨1, 자동차경주", "네");
+                    assertThat(output()).contains("태웅 : 백호", "치수 : 태섭");
+                },
+                Arrays.asList("태웅", "백호", "치수", "태섭"),
+                Arrays.asList("태웅", "백호", "치수", "태섭"),
+                Arrays.asList("태웅", "백호", "치수", "태섭")
+        );
+    }
+
+    @Test
     void 없는_미션에_대한_예외_처리() {
         assertSimpleTest(
             () -> {
