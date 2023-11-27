@@ -7,7 +7,7 @@ import java.util.Set;
 import pairmatching.Utils;
 
 public class Pair {
-    private List<String> crews;
+    private final List<String> crews;
 
     public Pair(String firstCrew, String secondCrew) {
         crews = new ArrayList<>();

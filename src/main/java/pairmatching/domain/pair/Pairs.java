@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pairs {
-    private List<Pair> pairs;
+    private final List<Pair> pairs;
 
     public Pairs(List<Pair> pairs) {
         this.pairs = pairs;
@@ -13,15 +13,23 @@ public class Pairs {
     public static Pairs createByNameList(List<String> names) {
         List<Pair> pairs = new ArrayList<>();
         for (int i = 0; i < names.size(); i += 2) {
-            if (i + 1 == names.size()) {
-                Pair lastPair = pairs.get(pairs.size() - 1);
-                lastPair.addCrew(names.get(i));
+            if (isThirdPair(names, i)) {
+                handleThirdPair(names, pairs, i);
                 break;
             }
-            Pair pair = new Pair(names.get(i), names.get(i + 1));
-            pairs.add(pair);
+            Pair newPair = new Pair(names.get(i), names.get(i + 1));
+            pairs.add(newPair);
         }
         return new Pairs(pairs);
+    }
+
+    private static void handleThirdPair(List<String> names, List<Pair> pairs, int i) {
+        Pair lastPair = pairs.get(pairs.size() - 1);
+        lastPair.addCrew(names.get(i));
+    }
+
+    private static boolean isThirdPair(List<String> names, int i) {
+        return i + 1 == names.size();
     }
 
     public boolean hasSamePair(Pairs source) {
