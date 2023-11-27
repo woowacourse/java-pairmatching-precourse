@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 import pairmatching.domain.entity.CourseMission;
 import pairmatching.domain.entity.MatchingResult;
+import pairmatching.domain.entity.Mission;
 
 public class MatchingResultRepository {
 
@@ -18,7 +19,16 @@ public class MatchingResultRepository {
         return Optional.ofNullable(store.get(courseMission));
     }
 
+    public Optional<MatchingResult> findByMission(Mission mission) {
+        return store.keySet()
+                .stream()
+                .filter(courseMission -> courseMission.getMission().equals(mission))
+                .map(courseMission -> store.get(courseMission))
+                .findAny();
+    }
+
     public void deleteAll() {
         store.clear();
     }
+
 }

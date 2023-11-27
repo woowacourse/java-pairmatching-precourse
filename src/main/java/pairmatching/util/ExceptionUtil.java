@@ -23,7 +23,7 @@ public final class ExceptionUtil {
 
     public static IllegalArgumentException returnInvalidValueException(final String message) {
 
-       return new IllegalArgumentException(message);
+        return new IllegalArgumentException(message);
     }
 
 }

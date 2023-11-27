@@ -1,16 +1,16 @@
 package pairmatching.domain.dto;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.stream.Stream;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import pairmatching.domain.entity.Course;
 import pairmatching.domain.entity.CourseMission;
 import pairmatching.domain.entity.Level;
 import pairmatching.domain.entity.Mission;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.Arguments;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.stream.Stream;
 
 public class CourseMissionMapperTest {
 

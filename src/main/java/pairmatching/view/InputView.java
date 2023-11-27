@@ -16,6 +16,12 @@ import pairmatching.util.InputUtil;
 
 public class InputView {
 
+    private static void outputFunctions() {
+        Arrays.stream(Function.values())
+                .forEach(function
+                        -> System.out.println(function.getOption() + ". " + function.getDescription()));
+    }
+
     public Function inputFunction() {
         System.out.println(INPUT_FUNCTION.getMessage());
         outputFunctions();
@@ -34,16 +40,10 @@ public class InputView {
     }
 
     public RematchingOption inputRematchingOption() {
-        System.out.println(INPUT_REMATCHING);
-        System.out.println(RematchingOption.YES+" | "+RematchingOption.NO);
+        System.out.println(INPUT_REMATCHING.getMessage());
+        System.out.println(RematchingOption.YES.getDescription() + " | " + RematchingOption.NO.getDescription());
         String input = InputUtil.input();
 
         return RematchingOptionMapper.toRematchingOption(input);
-    }
-
-    private static void outputFunctions() {
-        Arrays.stream(Function.values())
-                .forEach(function
-                        -> System.out.println(function.getOption() + ". " + function.getDescription()));
     }
 }

@@ -12,7 +12,7 @@ public class MatchingResultMapper {
 
     public static MatchingResultDto from(MatchingResult matchingResult) {
         List<Pair> pairs = matchingResult.getPairs();
-        List<List<String>> transformed =  pairs
+        List<List<String>> transformed = pairs
                 .stream()
                 .map(pair -> pair.getCrews())
                 .collect(Collectors.toList());

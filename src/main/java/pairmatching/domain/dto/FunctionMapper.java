@@ -7,6 +7,7 @@ public class FunctionMapper {
     private FunctionMapper() {
 
     }
+
     public static Function toFunction(String input) {
         final String deleteSpaces = StringUtil.removeAllSpaces(input);
 

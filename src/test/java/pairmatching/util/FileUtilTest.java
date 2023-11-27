@@ -1,16 +1,15 @@
 package pairmatching.util;
 
-import java.net.URISyntaxException;
-import java.util.List;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.Arguments;
-
-import java.util.stream.Stream;
-import java.nio.file.Paths;
-import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Stream;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class FileUtilTest {
 
@@ -31,7 +30,7 @@ public class FileUtilTest {
     public void testFileContent(int lineIndex, String expectedLine) throws IOException, URISyntaxException {
         final String filePath
                 = Paths.get(getClass().getClassLoader().getResource("backend-crew.md").toURI()).toString();
-        final List<String> members =  FileUtil.readFileAsList(filePath);
+        final List<String> members = FileUtil.readFileAsList(filePath);
         final String result = members.get(lineIndex);
 
         assertEquals(expectedLine, result, "Mismatch at line " + (lineIndex + 1));

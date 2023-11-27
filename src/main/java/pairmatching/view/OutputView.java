@@ -4,14 +4,15 @@ import static pairmatching.messages.IOMessages.COURSE;
 import static pairmatching.messages.IOMessages.MISSION;
 import static pairmatching.messages.IOMessages.OUTPUT_DIVIDING_LINE;
 import static pairmatching.messages.IOMessages.OUTPUT_PAIRMATCHING_RESULT;
+import static pairmatching.messages.IOMessages.OUTPUT_RESET;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import pairmatching.domain.dto.MatchingResultDto;
 import pairmatching.domain.entity.Course;
 import pairmatching.domain.entity.Level;
 import pairmatching.domain.entity.Mission;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -37,6 +38,9 @@ public class OutputView {
         System.out.println(message);
     }
 
+    public void ouputReset() {
+        System.out.println(OUTPUT_RESET.getMessage());
+    }
     private String formatPair(List<String> list) {
         return String.join(" : ", list);
     }
