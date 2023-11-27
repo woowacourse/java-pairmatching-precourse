@@ -9,7 +9,7 @@ public class RandonUtil {
 
     }
 
-    public List<String> suffle(List<String> elements) {
+    public static List<String> shuffle(List<String> elements) {
         return Randoms.shuffle(elements);
     }
 }
