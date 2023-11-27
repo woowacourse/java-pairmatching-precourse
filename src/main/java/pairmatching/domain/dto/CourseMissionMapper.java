@@ -1,13 +1,13 @@
-package domain.dto;
+package pairmatching.domain.dto;
 
-import domain.entity.Course;
-import domain.entity.CourseMission;
-import domain.entity.Level;
-import domain.entity.Mission;
+import pairmatching.domain.entity.Course;
+import pairmatching.domain.entity.CourseMission;
+import pairmatching.domain.entity.Level;
+import pairmatching.domain.entity.Mission;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import util.StringUtil;
+import pairmatching.util.StringUtil;
 
 public class CourseMissionMapper {
     public static CourseMission toCourseMission(String input) {

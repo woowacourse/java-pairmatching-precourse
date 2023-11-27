@@ -1,7 +1,7 @@
-package domain.dto;
+package pairmatching.domain.dto;
 
-import domain.entity.Function;
-import util.StringUtil;
+import pairmatching.domain.entity.Function;
+import pairmatching.util.StringUtil;
 
 public class FunctionMapper {
     public static Function toFunction(String input) {

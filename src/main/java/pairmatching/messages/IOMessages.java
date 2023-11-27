@@ -1,4 +1,4 @@
-package messages;
+package pairmatching.messages;
 
 public enum IOMessages {
 

@@ -1,8 +1,8 @@
-package domain.entity;
+package pairmatching.domain.entity;
 
 import java.util.Arrays;
 import java.util.List;
-import util.ExceptionUtil;
+import pairmatching.util.ExceptionUtil;
 
 public enum Level {
     LEVEL1("레벨1", Arrays.asList(Mission.RACING_CAR, Mission.LOTTO, Mission.BASEBALL)),
@@ -11,17 +11,17 @@ public enum Level {
     LEVEL4("레벨4", Arrays.asList(Mission.PERFORMANCE_IMPROVEMENT, Mission.DEPLOYMENT)),
     LEVEL5("레벨5", Arrays.asList());
 
-    private final String name;
+    private final String description;
     private final List<Mission> missions;
 
-    Level(String name, List<Mission> missions) {
-        this.name = name;
+    Level(String description, List<Mission> missions) {
+        this.description = description;
         this.missions = missions;
     }
 
     public static Level findLevel(String levelName) {
         return Arrays.stream(values())
-                .filter(level -> level.name.equals(levelName))
+                .filter(level -> level.description.equals(levelName))
                 .findAny()
                 .orElseThrow(() -> ExceptionUtil.returnInvalidValueException());
     }
@@ -34,8 +34,8 @@ public enum Level {
                 .orElseThrow(() -> ExceptionUtil.returnInvalidValueException());
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
     public List<Mission> getMissions() {

@@ -1,13 +1,13 @@
-package view;
+package pairmatching.view;
 
-import static messages.IOMessages.INPUT_FUNCTION;
-import static messages.IOMessages.INPUT_SELECT_OPTIONS;
+import static pairmatching.messages.IOMessages.INPUT_FUNCTION;
+import static pairmatching.messages.IOMessages.INPUT_SELECT_OPTIONS;
 
-import domain.dto.CourseMissionMapper;
-import domain.dto.FunctionMapper;
-import domain.entity.CourseMission;
-import domain.entity.Function;
-import util.InputUtil;
+import pairmatching.domain.dto.CourseMissionMapper;
+import pairmatching.domain.dto.FunctionMapper;
+import pairmatching.domain.entity.CourseMission;
+import pairmatching.domain.entity.Function;
+import pairmatching.util.InputUtil;
 
 public class InputView {
 

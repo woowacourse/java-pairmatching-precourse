@@ -1,4 +1,4 @@
-package util;
+package pairmatching.util;
 
 import java.io.IOException;
 import java.nio.file.Files;

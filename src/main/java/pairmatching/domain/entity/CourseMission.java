@@ -1,4 +1,4 @@
-package domain.entity;
+package pairmatching.domain.entity;
 
 public class CourseMission {
     private final Course course;

@@ -1,4 +1,4 @@
-package domain.entity;
+package pairmatching.domain.entity;
 
 public enum Mission {
     RACING_CAR("자동차경주"),

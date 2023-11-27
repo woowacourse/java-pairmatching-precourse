@@ -1,10 +1,9 @@
 package pairmatching.domain.dto;
 
-import domain.dto.CourseMissionMapper;
-import domain.entity.Course;
-import domain.entity.CourseMission;
-import domain.entity.Level;
-import domain.entity.Mission;
+import pairmatching.domain.entity.Course;
+import pairmatching.domain.entity.CourseMission;
+import pairmatching.domain.entity.Level;
+import pairmatching.domain.entity.Mission;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.Arguments;

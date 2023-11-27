@@ -1,4 +1,4 @@
-package util;
+package pairmatching.util;
 
 public final class ExceptionUtil {
 

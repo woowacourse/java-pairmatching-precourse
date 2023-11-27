@@ -1,4 +1,4 @@
-package util;
+package pairmatching.util;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.function.Supplier;

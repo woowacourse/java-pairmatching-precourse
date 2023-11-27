@@ -1,7 +1,7 @@
-package domain.entity;
+package pairmatching.domain.entity;
 
 import java.util.Arrays;
-import util.ExceptionUtil;
+import pairmatching.util.ExceptionUtil;
 
 public enum Function {
     PAIR_MATCHING("1","페어 매칭"),
