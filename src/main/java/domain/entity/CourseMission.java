@@ -3,21 +3,29 @@ package domain.entity;
 import java.util.List;
 
 public class CourseMission {
-    private final String course;
-    private final String level;
-    private final String mission;
+    private final Course course;
+    private final Level level;
+    private final String mission; // TODO: 시간되면 VO 분리
 
-    public CourseMission(String course, String level, String mission) {
+    private CourseMission(Course course, Level level, String mission) {
         this.course = course;
         this.level = level;
         this.mission = mission;
     }
 
-    public static CourseMission create(List<String> separated) {
-        String course = separated.get(0);
-        String level = separated.get(1);
-        String mission = separated.get(2);
+    public static CourseMission create(Course course, Level level, String missionName) {
+        return new CourseMission(course, level, missionName);
+    }
 
-        return new CourseMission(course, level, mission);
+    public Course getCourse() {
+        return course;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public String getMission() {
+        return mission;
     }
 }
