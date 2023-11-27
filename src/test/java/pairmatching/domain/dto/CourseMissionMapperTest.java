@@ -4,6 +4,7 @@ import domain.dto.CourseMissionMapper;
 import domain.entity.Course;
 import domain.entity.CourseMission;
 import domain.entity.Level;
+import domain.entity.Mission;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.Arguments;
@@ -20,11 +21,11 @@ public class CourseMissionMapperTest {
                         "백엔드, 레벨1, 자동차경주",
                         Course.BACKEND,
                         Level.LEVEL1,
-                        "자동차경주"),
+                        Mission.RACING_CAR),
                 Arguments.of("프론트엔드, 레벨2, 장바구니",
                         Course.FRONTEND,
                         Level.LEVEL2,
-                        "장바구니")
+                        Mission.SHOPPING_CART)
         );
     }
 
@@ -33,12 +34,12 @@ public class CourseMissionMapperTest {
     public void testToCourseMission(String input,
                                     Course expectedCourse,
                                     Level expectedLevel,
-                                    String expectedMissionName) {
+                                    Mission expectedMission) {
         CourseMission courseMission = CourseMissionMapper.toCourseMission(input);
 
         assertNotNull(courseMission);
         assertEquals(expectedCourse, courseMission.getCourse());
         assertEquals(expectedLevel, courseMission.getLevel());
-        assertEquals(expectedMissionName, courseMission.getMission());
+        assertEquals(expectedMission, courseMission.getMission());
     }
 }
