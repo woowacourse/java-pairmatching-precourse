@@ -10,6 +10,7 @@ import java.util.Set;
 public class CrewMatcher {
     public Set<Pair> matching(List<String> crewName) {
         Queue<String> shuffledName = new LinkedList<>(Randoms.shuffle(crewName));
+        System.out.println(shuffledName);
         Set<Pair> pairs = new HashSet<>();
         while(shuffledName.size() > 3){
             pairs.add(new Pair(shuffledName.poll(), shuffledName.poll()));

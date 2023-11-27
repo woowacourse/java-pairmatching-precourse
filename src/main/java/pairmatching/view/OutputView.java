@@ -16,4 +16,12 @@ public class OutputView {
                 .forEach(System.out::println);
         printer.printMessage("");
     }
+
+    public void printErrorMessage(IllegalArgumentException e){
+        printer.printMessage("[ERROR] " + e.getMessage());
+    }
+
+    public void newLine() {
+        printer.printMessage("");
+    }
 }

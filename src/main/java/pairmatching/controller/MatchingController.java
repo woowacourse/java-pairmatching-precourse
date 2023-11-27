@@ -22,7 +22,6 @@ public class MatchingController {
         while(true){
             MissionDto missionDto = inputView.getMissionDto();
             if(matchingService.isMatched(missionDto)){
-                System.out.println("matched");
                 if(!inputView.reMatching()){
                     matchingService.removeHistory(missionDto);
                     continue;
@@ -43,7 +42,7 @@ public class MatchingController {
             outputView.printMatchingResult(matchingService.getResult(missionDto));
             return;
         }
-        throw new IllegalArgumentException("[ERROR] 매칭 이력이 없습니다.");
+        throw new IllegalArgumentException("매칭 이력이 없습니다.");
     }
 
     public void resetPair(){
