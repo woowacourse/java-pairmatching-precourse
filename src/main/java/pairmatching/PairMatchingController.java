@@ -17,9 +17,33 @@ public class PairMatchingController {
             if (validateMenu.equals("Q")) {
                 break;
             }
+            handleByMenu(validateMenu);
+        }
+    }
 
-            // TODO 메뉴에 따라 기능 수행
-            pairMatching(Course.BACKEND, Level.LEVEL1);
+    private static void handleByMenu(String validateMenu) {
+        if (validateMenu.equals("1")) {
+            handlePairMatching();
+            return;
+        }
+
+    }
+
+    private static void handlePairMatching() {
+        try {
+            String option = InputView.readOption();
+            String[] split = option.split(", ");
+            if (split.length != 3) {
+                throw new IllegalArgumentException("잘못된 입력입니다.");
+            }
+            Course course = Course.findByName(split[0]);
+            Level level = Level.findByName(split[1]);
+            Mission mission = Mission.findByName(split[2]);
+
+            pairMatching(course, level);
+        } catch (IllegalArgumentException error) {
+            OutputView.printException(error);
+            handlePairMatching();
         }
     }
 
@@ -33,18 +57,25 @@ public class PairMatchingController {
     }
 
     private static void pairMatching(Course course, Level level) {
-        List<Pair> matchingResult = PairMatchingService.pairMatching(course);
-        if (PairMatchingService.hasHistory(course, level) && getValidateRematch().equals("네")) {
-            // 3번 리매칭
-            matchingResult = handleRematch(course, level);
+        List<Pair> matchingResult;
+        if (PairMatchingService.hasHistory(course, level)) {
+            if (getValidateRematch().equals("네")) {
+                // 3번 리매칭
+                matchingResult = handleRematch(course, level);
+                OutputView.printMatchingResult(matchingResult);
+                return;
+            }
+            handlePairMatching(); // 코스, 레벨, 미션을 다시 선택한다.
+            return;
         }
+        matchingResult = PairMatchingService.pairMatching(course, level);
         OutputView.printMatchingResult(matchingResult);
     }
 
     private static List<Pair> handleRematch(Course course, Level level) {
         List<Pair> history = PairMatchingService.getHistory(course, level);
         for (int i = 0; i < 3; i++) {
-            List<Pair> rematch = PairMatchingService.pairMatching(course);
+            List<Pair> rematch = PairMatchingService.pairMatching(course, level);
             if (PairMatchingService.hasSamePair(history, rematch)) {
                 continue;
             }

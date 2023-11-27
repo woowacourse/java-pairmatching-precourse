@@ -12,4 +12,13 @@ public enum Level {
     Level(String name) {
         this.name = name;
     }
+
+    public static Level findByName(String name) {
+        for (Level level : Level.values()) {
+            if (level.name.equals(name)) {
+                return level;
+            }
+        }
+        throw new IllegalArgumentException("잘못된 입력입니다.");
+    }
 }

@@ -28,7 +28,7 @@ class ApplicationTest extends NsTest {
     void 홀수_인원_페어_매칭() {
         assertShuffleTest(
                 () -> {
-                    run("1", "프론트, 레벨1, 자동차경주", "Q");
+                    run("1", "프론트엔드, 레벨1, 자동차경주", "Q");
                     assertThat(output()).contains("보노 : 시저", "쉐리 : 신디 : 다비");
                 },
                 Arrays.asList("보노", "시저", "쉐리", "신디", "다비")
@@ -39,7 +39,7 @@ class ApplicationTest extends NsTest {
     void 재매칭_실패() {
         assertShuffleTest(
                 () -> {
-                    run("1", "백엔드, 레벨1, 자동차경주", "1", "프론트, 레벨1, 자동차경주", "네");
+                    runException("1", "백엔드, 레벨1, 자동차경주", "1", "백엔드, 레벨1, 자동차경주", "네");
                     assertThat(output()).contains("태웅 : 백호", "치수 : 태섭");
                 },
                 Arrays.asList("태웅", "백호", "치수", "태섭"),

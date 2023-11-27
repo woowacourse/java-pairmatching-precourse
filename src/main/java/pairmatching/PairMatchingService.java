@@ -7,10 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 public class PairMatchingService {
-    private static final CrewRepository crewRepository = new CrewRepository();
-    private static final Map<String, List<Pair>> history = new HashMap<>();
+    private static CrewRepository crewRepository = new CrewRepository();
+    private static Map<String, List<Pair>> history = new HashMap<>();
 
     public static void initCrews() {
+        crewRepository = new CrewRepository();
+        history = new HashMap<>();
         crewRepository.initBackend("src/main/resources/backend-crew.md");
         crewRepository.initFrontend("src/main/resources/frontend-crew.md");
     }
@@ -29,7 +31,7 @@ public class PairMatchingService {
         }
     }
 
-    public static List<Pair> pairMatching(Course course) {
+    public static List<Pair> pairMatching(Course course, Level level) {
         List<String> crewNames = crewRepository.findByCourse(course);
         if (crewNames == null) {
             throw new IllegalArgumentException("존재하지 않는 코스입니다.");
@@ -45,6 +47,7 @@ public class PairMatchingService {
             Pair pair = new Pair(shuffleCrew.get(i), shuffleCrew.get(i + 1));
             result.add(pair);
         }
+        history.put(course.name() + level.name(), result);
         return result;
     }
 
