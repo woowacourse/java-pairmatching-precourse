@@ -1,18 +1,36 @@
 package pairmatching;
 
-import java.util.List;
+import pairmatching.view.InputView;
+import pairmatching.view.OutputView;
 
 public class PairMatchingController {
     static CrewRepository crewRepository = new CrewRepository();
 
     public static void run() {
+        initCrewRepsoitory();
+        proceed();
+    }
+
+    private static void initCrewRepsoitory() {
         crewRepository.initBackend("src/main/resources/backend-crew.md");
         crewRepository.initFrontend("src/main/resources/frontend-crew.md");
+    }
 
-        List<String> backend = crewRepository.getBackend();
-        List<String> frontend = crewRepository.getFrontend();
+    private static void proceed() {
+        while (true) {
+            String validateMenu = getValidateMenu();
+            if (validateMenu.equals("Q")) {
+                break;
+            }
+        }
+    }
 
-        System.out.println("frontend = " + frontend);
-        System.out.println("backend = " + backend);
+    private static String getValidateMenu() {
+        try {
+            return PairMatchingService.getValidateMenu(InputView.readMenu());
+        } catch (IllegalArgumentException error) {
+            OutputView.printException(error);
+            return getValidateMenu();
+        }
     }
 }
