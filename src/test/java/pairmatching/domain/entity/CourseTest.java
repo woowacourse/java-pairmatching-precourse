@@ -1,4 +1,4 @@
-package pairmatching.domain.dto;
+package pairmatching.domain.entity;
 
 import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,7 +10,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.stream.Stream;
-import pairmatching.domain.entity.Course;
 
 public class CourseTest {
 
