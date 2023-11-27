@@ -88,4 +88,12 @@ public class PairMatchingService {
         }
         return false;
     }
+
+    public static List<Pair> findHistory(Course course, Level level, Mission mission) {
+        return history.get(course.name() + level.name() + mission.name());
+    }
+
+    public static void reset() {
+        history = new HashMap<>();
+    }
 }

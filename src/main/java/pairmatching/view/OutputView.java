@@ -1,12 +1,11 @@
 package pairmatching.view;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import pairmatching.Pair;
 
 public class OutputView {
     public static void printException(Exception error) {
-        System.out.println(error.getMessage());
+        System.out.println("[ERROR] : " + error.getMessage());
     }
 
     public static void printMatchingResult(List<Pair> matchingResult) {

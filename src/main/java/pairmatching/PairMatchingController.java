@@ -26,8 +26,18 @@ public class PairMatchingController {
             handlePairMatching();
             return;
         }
-
+        if (validateMenu.equals("2")) {
+            handlePairHistory();
+            return;
+        }
+        if (validateMenu.equals("3")) {
+            handlePairReset();
+            return;
+        }
+        throw new IllegalArgumentException("잘못된 입력입니다.");
     }
+
+
 
     private static void handlePairMatching() {
         try {
@@ -93,4 +103,28 @@ public class PairMatchingController {
         }
     }
 
+    private static void handlePairHistory() {
+        try {
+            String option = InputView.readOption();
+            String[] split = option.split(", ");
+            if (split.length != 3) {
+                throw new IllegalArgumentException("잘못된 입력입니다.");
+            }
+            Course course = Course.findByName(split[0]);
+            Level level = Level.findByName(split[1]);
+            Mission mission = Mission.findByName(split[2]);
+            if (!PairMatchingService.hasHistory(course, level, mission)) {
+                throw new IllegalArgumentException("매칭 이력이 없습니다.");
+            }
+            List<Pair> result = PairMatchingService.findHistory(course, level, mission);
+            OutputView.printMatchingResult(result);
+        } catch (IllegalArgumentException error) {
+            OutputView.printException(error);
+            handlePairHistory();
+        }
+    }
+
+    private static void handlePairReset() {
+        PairMatchingService.reset();
+    }
 }
