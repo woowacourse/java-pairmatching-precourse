@@ -23,4 +23,12 @@ public enum Function {
                 .findAny()
                 .orElseThrow(() -> ExceptionUtil.returnInvalidValueException());
     }
+
+    public String getOption() {
+        return option;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }
