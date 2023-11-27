@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import pairmatching.domain.entity.MatchingResult;
 import pairmatching.domain.entity.Pair;
 
-public class MatchingResultDtoTest {
+public class MatchingResultMapperTest {
     private static Stream<Arguments> 제공_매칭결과와_예상결과() {
         return Stream.of(
                 Arguments.of(
@@ -26,7 +26,7 @@ public class MatchingResultDtoTest {
     @MethodSource("제공_매칭결과와_예상결과")
     void 매칭결과_DTO_변환_테스트(MatchingResult matchingResult, List<List<String>> expected) {
         // When: 실행
-        List<List<String>> actual = MatchingResultDto.from(matchingResult);
+        List<List<String>> actual = MatchingResultMapper.from(matchingResult);
 
         // Then: 검증
         assertEquals(expected, actual);

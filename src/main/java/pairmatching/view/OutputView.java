@@ -5,6 +5,7 @@ import static pairmatching.messages.IOMessages.MISSION;
 import static pairmatching.messages.IOMessages.OUTPUT_DIVIDING_LINE;
 import static pairmatching.messages.IOMessages.OUTPUT_PAIRMATCHING_RESULT;
 
+import java.util.List;
 import pairmatching.domain.dto.MatchingResultDto;
 import pairmatching.domain.entity.Course;
 import pairmatching.domain.entity.Level;
@@ -26,6 +27,14 @@ public class OutputView {
     public void outputPairMatchingResult(MatchingResultDto matchingResultDto) {
         System.out.println(OUTPUT_PAIRMATCHING_RESULT.getMessage());
 
+        List<List<String>> matchings = matchingResultDto.getMatchingResult();
+        matchings.stream()
+                .map(this::formatPair)
+                .forEach(System.out::println);
+    }
+
+    private String formatPair(List<String> list) {
+        return String.join(" : ", list);
     }
 
     public void outputErrorMessage(String message) {

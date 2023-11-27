@@ -1,22 +1,17 @@
 package pairmatching.domain.dto;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import pairmatching.domain.entity.MatchingResult;
-import pairmatching.domain.entity.Pair;
 
 public class MatchingResultDto {
-    private MatchingResultDto() {
+
+    private final List<List<String>> matchingResult;
+
+    public MatchingResultDto(List<List<String>> matchingResult) {
+        this.matchingResult = matchingResult;
     }
 
-    public static List<List<String>> from(MatchingResult matchingResult) {
-        List<Pair> pairs = matchingResult.getPairs();
-
-        return pairs
-                .stream()
-                .map(pair -> pair.getCrews())
-                .collect(Collectors.toList());
+    public List<List<String>> getMatchingResult() {
+        return matchingResult;
     }
-
 }
 
