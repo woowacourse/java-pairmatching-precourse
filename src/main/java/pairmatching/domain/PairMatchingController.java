@@ -3,6 +3,8 @@ package pairmatching.domain;
 import java.util.List;
 import pairmatching.domain.pair.PairOption;
 import pairmatching.domain.pair.Pairs;
+import pairmatching.message.ExceptionMessage;
+import pairmatching.message.ProgramOption;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -16,7 +18,7 @@ public class PairMatchingController {
     private static void proceed() {
         while (true) {
             String validateMenu = getValidateMenu();
-            if (validateMenu.equals("Q")) {
+            if (validateMenu.equals(ProgramOption.QUIT)) {
                 break;
             }
             handleByMenu(validateMenu);
@@ -24,19 +26,19 @@ public class PairMatchingController {
     }
 
     private static void handleByMenu(String validateMenu) {
-        if (validateMenu.equals("1")) {
+        if (validateMenu.equals(ProgramOption.PAIR_MATCHING)) {
             handlePairMatching();
             return;
         }
-        if (validateMenu.equals("2")) {
+        if (validateMenu.equals(ProgramOption.PAIR_SEARCH)) {
             handlePairHistory();
             return;
         }
-        if (validateMenu.equals("3")) {
+        if (validateMenu.equals(ProgramOption.PAIR_RESET)) {
             handlePairReset();
             return;
         }
-        throw new IllegalArgumentException("잘못된 입력입니다.");
+        throw new IllegalArgumentException(ExceptionMessage.INVALID_MENU_INPUT);
     }
 
 
@@ -63,7 +65,7 @@ public class PairMatchingController {
     private static void pairMatching(PairOption pairOption) {
         Pairs matchingResult;
         if (PairMatchingService.hasHistory(pairOption)) {
-            if (getValidateRematch().equals("네")) {
+            if (getValidateRematch().equals(ProgramOption.YES)) {
                 // 3번 리매칭
                 matchingResult = handleRematch(pairOption);
                 OutputView.printMatchingResult(matchingResult);
@@ -85,7 +87,7 @@ public class PairMatchingController {
             }
             return rematch;
         }
-        throw new IllegalArgumentException("3번의 리매칭을 모두 실패했습니다.");
+        throw new IllegalArgumentException(ExceptionMessage.REMATCHING_FAIL);
     }
 
     private static String getValidateRematch() {
@@ -101,7 +103,7 @@ public class PairMatchingController {
         try {
             PairOption pairOption = InputView.readOption();
             if (!PairMatchingService.hasHistory(pairOption)) {
-                throw new IllegalArgumentException("매칭 이력이 없습니다.");
+                throw new IllegalArgumentException(ExceptionMessage.NO_MATCHING_HISTORY);
             }
             Pairs matchedPairs = PairMatchingService.findHistory(pairOption);
             OutputView.printMatchingResult(matchedPairs);

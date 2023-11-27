@@ -1,5 +1,7 @@
 package pairmatching.domain.option;
 
+import pairmatching.message.ExceptionMessage;
+
 public enum Course {
     BACKEND("백엔드"),
     FRONTEND("프론트엔드");
@@ -18,6 +20,6 @@ public enum Course {
                 return course;
             }
         }
-        throw new IllegalArgumentException("잘못된 입력입니다.");
+        throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT);
     }
 }

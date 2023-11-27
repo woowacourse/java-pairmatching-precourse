@@ -3,6 +3,7 @@ package pairmatching.domain.option;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import pairmatching.message.ExceptionMessage;
 
 public enum Mission {
     RACING_CAR("자동차경주", Level.LEVEL1),
@@ -28,7 +29,7 @@ public enum Mission {
                 return mission;
             }
         }
-        throw new IllegalArgumentException("잘못된 입력입니다.");
+        throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT);
     }
 
     public static List<Mission> findAll() {

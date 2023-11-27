@@ -11,6 +11,8 @@ import pairmatching.domain.option.Mission;
 import pairmatching.domain.pair.Pair;
 import pairmatching.domain.pair.PairOption;
 import pairmatching.domain.pair.Pairs;
+import pairmatching.message.ExceptionMessage;
+import pairmatching.message.ProgramOption;
 
 public class PairMatchingService {
     private static CrewRepository crewRepository = new CrewRepository();
@@ -19,8 +21,8 @@ public class PairMatchingService {
     public static void initCrews() {
         crewRepository = new CrewRepository();
         history = new HashMap<>();
-        crewRepository.initBackend("src/main/resources/backend-crew.md");
-        crewRepository.initFrontend("src/main/resources/frontend-crew.md");
+        crewRepository.initBackend(ProgramOption.BACKEND_FILE_PATH);
+        crewRepository.initFrontend(ProgramOption.FRONTEND_FILE_PATH);
     }
 
     public static String getValidateMenu(String input) {
@@ -30,10 +32,10 @@ public class PairMatchingService {
 
     private static void validateMenu(String input) {
         if (input.length() != 1) {
-            throw new IllegalArgumentException("메뉴에 없는 기능입니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_MENU_INPUT);
         }
-        if (!"123Q".contains(input)) {
-            throw new IllegalArgumentException("메뉴에 없는 기능입니다.");
+        if (!ProgramOption.MENU_INPUT_OPTIONS.contains(input)) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_MENU_INPUT);
         }
     }
 
@@ -47,7 +49,7 @@ public class PairMatchingService {
     private static List<String> getShuffleCrew(Course course) {
         List<String> crewNames = crewRepository.findByCourse(course);
         if (crewNames == null) {
-            throw new IllegalArgumentException("존재하지 않는 코스입니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_MENU_INPUT);
         }
         return Randoms.shuffle(crewNames);
     }
@@ -73,8 +75,8 @@ public class PairMatchingService {
     }
 
     private static void validateRematch(String input) {
-        if (!input.equals("네") && !input.equals("아니오")) {
-            throw new IllegalArgumentException("잘못된 입력입니다.");
+        if (!input.equals(ProgramOption.YES) && !input.equals(ProgramOption.NO)) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_REMATCH_INPUT);
         }
     }
 

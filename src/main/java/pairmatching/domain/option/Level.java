@@ -1,5 +1,7 @@
 package pairmatching.domain.option;
 
+import pairmatching.message.ExceptionMessage;
+
 public enum Level {
     LEVEL1("레벨1"),
     LEVEL2("레벨2"),
@@ -19,6 +21,6 @@ public enum Level {
                 return level;
             }
         }
-        throw new IllegalArgumentException("잘못된 입력입니다.");
+        throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT);
     }
 }

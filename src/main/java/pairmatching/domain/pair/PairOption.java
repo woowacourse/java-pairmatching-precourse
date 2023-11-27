@@ -5,8 +5,13 @@ import java.util.regex.Pattern;
 import pairmatching.domain.option.Course;
 import pairmatching.domain.option.Level;
 import pairmatching.domain.option.Mission;
+import pairmatching.message.ExceptionMessage;
 
 public class PairOption {
+    public static final int COURSE_INDEX = 0;
+    public static final int LEVEL_INDEX = 1;
+    public static final int MISSION_INDEX = 2;
+    public static final String OPTION_DELIMITER = ", ";
     private final Course course;
     private final Level level;
     private final Mission mission;
@@ -19,10 +24,10 @@ public class PairOption {
 
     public static PairOption createByString(String value) {
         validateRegex(value);
-        String[] split = value.split(", ");
-        Course course = Course.findByName(split[0]);
-        Level level = Level.findByName(split[1]);
-        Mission mission = Mission.findByName(split[2]);
+        String[] split = value.split(OPTION_DELIMITER);
+        Course course = Course.findByName(split[COURSE_INDEX]);
+        Level level = Level.findByName(split[LEVEL_INDEX]);
+        Mission mission = Mission.findByName(split[MISSION_INDEX]);
         return new PairOption(course, level, mission);
     }
 
@@ -33,7 +38,7 @@ public class PairOption {
         boolean isMatch = Pattern.matches(regexPattern, value);
 
         if (!isMatch) {
-            throw new IllegalArgumentException("입력 형식이 잘못되었습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT);
         }
     }
 
