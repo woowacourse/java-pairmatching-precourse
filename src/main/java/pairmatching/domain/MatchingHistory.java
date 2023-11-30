@@ -33,5 +33,9 @@ public class MatchingHistory {
     public void deleteMatchingResult(String processInfo) {
         matchingResults.remove(processInfo);
     }
+
+    public void deleteAllMatchingResult() {
+        matchingResults = new HashMap<>();
+    }
 }
 
