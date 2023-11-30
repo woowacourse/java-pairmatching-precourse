@@ -1,6 +1,6 @@
 package pairmatching.controller;
 
 public class PairInquiryController {
-    public static void pairInquiry(String input) {
+    public static void pairInquiry() {
     }
 }

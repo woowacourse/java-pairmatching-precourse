@@ -1,5 +1,8 @@
 package pairmatching.view.ouput;
 
+import pairmatching.view.constant.InputMessage;
+import pairmatching.view.constant.OutputMessage;
+
 class OutputWriter {
 
     OutputWriter() {
@@ -15,5 +18,9 @@ class OutputWriter {
 
     public static void printMessageResponse(OutputMessage responseMessage) {
         println(responseMessage.getMessage());
+    }
+
+    public static void printMessageRequest(InputMessage requestMessage) {
+        println(requestMessage.getMessage());
     }
 }

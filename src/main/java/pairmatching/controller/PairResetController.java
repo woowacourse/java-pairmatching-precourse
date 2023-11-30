@@ -1,6 +1,6 @@
 package pairmatching.controller;
 
 public class PairResetController {
-    public static void pairReset(String input) {
+    public static void pairReset() {
     }
 }

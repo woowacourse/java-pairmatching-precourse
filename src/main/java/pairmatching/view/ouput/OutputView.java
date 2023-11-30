@@ -1,8 +1,11 @@
 package pairmatching.view.ouput;
 
+import static pairmatching.view.constant.InputMessage.*;
+import static pairmatching.view.constant.OutputMessage.*;
+
 public final class OutputView extends OutputWriter {
 
-    public static void printPurchaserMoney(int money){
-        System.out.printf(RESPONSE_USER_COIN.getFormat(), money);
+    public static void displayProcessOfPair(){
+        printMessageResponse(DISPLAY_PROCESS);
     }
 }

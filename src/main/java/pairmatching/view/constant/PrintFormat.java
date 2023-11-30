@@ -1,8 +1,7 @@
 package pairmatching.view.constant;
 
 public enum PrintFormat {
-    RESPONSE_USER_COIN("투입 금액: %d원"),
-    RESPONSE_CHARGE_COIN("%d원 - %d개");
+    RESPONSE_PAIR_RESULT("%s :  %s");
 
     private final String format;
 

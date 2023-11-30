@@ -1,30 +1,32 @@
 package pairmatching.controller;
 
-import static pairmatching.exception.ErrorCode.INVALID_NUMBER_INPUT;
-import static pairmatching.view.input.InputView.InputChooseNumber;
+import static pairmatching.view.input.InputView.inputChooseNumber;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Consumer;
-import pairmatching.view.ouput.ErrorOutputWriter;
 
 public class MainPairMatchingController {
     private MainPairMatchingController(){
     }
 
     public static void start(){
-        Map<String, Consumer<String>> functions = new HashMap<>();
+        Map<String, Runnable> functions = new HashMap<>();
         functions.put("1", PairMatchingController::pairMatching);
         functions.put("2", PairInquiryController::pairInquiry);
         functions.put("3", PairResetController::pairReset);
 
         while (true) {
-            String input = InputChooseNumber();
+            String input = inputChooseNumber();
             if ("Q".equals(input)) {
                 break;
             }
-            functions.getOrDefault(input, ErrorOutputWriter::invalidInput).accept(input);
+
+            Runnable function = functions.get(input);
+            if (function != null) {
+                 function.run();
+            } else {
+                System.out.println("유효하지 않은 입력입니다. 다시 입력해주세요.");
+            }
         }
     }
 }
