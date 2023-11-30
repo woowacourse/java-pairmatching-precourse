@@ -1,6 +1,7 @@
 package pairmatching.controller;
 
 import static pairmatching.view.input.InputView.inputChooseNumber;
+import static pairmatching.view.ouput.ErrorOutputWriter.invalidInput;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,11 +23,11 @@ public class MainPairMatchingController {
             }
 
             Runnable function = functions.get(input);
-            if (function != null) {
+            if (function != null)
                  function.run();
-            } else {
-                System.out.println("유효하지 않은 입력입니다. 다시 입력해주세요.");
-            }
+
+            if (function == null)
+                invalidInput();
         }
     }
 }

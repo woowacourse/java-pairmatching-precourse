@@ -7,7 +7,7 @@ public final class ErrorOutputWriter extends OutputWriter {
         super();
     }
 
-    public static void invalidInput(String input) {
+    public static void invalidInput() {
         System.out.println(INVALID_NUMBER_INPUT.getMessage());
     }
 }
