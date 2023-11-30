@@ -17,7 +17,8 @@ import pairmatching.service.MatchingService;
 import pairmatching.util.Parser;
 
 public class PairMatchingController {
-    private static MatchingHistory matchingHistory = MatchingHistory.of();
+    private final static MatchingHistory matchingHistory = MatchingHistory.of();
+    private static String processInfo = "";
 
     private PairMatchingController() {
     }
@@ -29,7 +30,7 @@ public class PairMatchingController {
     }
 
     private static String getInput(){
-        String processInfo = inputChooseProcess();
+        processInfo = inputChooseProcess();
         if (matchingHistory.isMatchingExist(processInfo)) {
             if (!reInputChooseProcess()) {
                 return getInput();
@@ -38,6 +39,7 @@ public class PairMatchingController {
         }
         return processInfo;
     }
+
     private static List<Crew> getCrewsFromProcess(String processInput){
         List<String> processInfo = Parser.parseProcessInput(processInput);;
         Course course = Course.valueOf(processInfo.get(0));
@@ -49,6 +51,7 @@ public class PairMatchingController {
 
     private static void MatchingCrews(List<Crew> crews) {
         List<Crew> matchedCrews = MatchingService.matchingPair(crews);
+        matchingHistory.recordMatchingResult(processInfo, matchedCrews);
         printPairs(matchedCrews);
     }
 }

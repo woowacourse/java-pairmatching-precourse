@@ -17,19 +17,16 @@ class OutputWriter {
         System.out.println();
     }
 
-    public static void printfFormat(PrintFormat printFormat, Object object) {
-        System.out.printf(printFormat.getFormat(), object);
-    }
-
     public static void printfDoubleFormat(PrintFormat printFormat, Object object1, Object object2 ) {
         System.out.printf(printFormat.getFormat(), object1, object2);
+    }
+
+    public static void printfTripleFormat(PrintFormat printFormat, Object object1, Object object2, Object object3 ) {
+        System.out.printf(printFormat.getFormat(), object1, object2, object3);
     }
 
     public static void printMessageResponse(OutputMessage responseMessage) {
         println(responseMessage.getMessage());
     }
 
-    public static void printMessageRequest(InputMessage requestMessage) {
-        println(requestMessage.getMessage());
-    }
 }

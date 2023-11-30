@@ -9,7 +9,9 @@ public enum OutputMessage {
             + "\t- 레벨3:\n"
             + "\t- 레벨4: 성능개선 | 배포\n"
             + "\t- 레벨5:\n"
-            + "############################################");
+            + "############################################"),
+    RESPONSE_PAIR_MATCHING("페어 매칭 결과입니다."),
+    RESPONSE_INITIALRIZE("초기화 되었습니다.");
 
     private final String message;
 
