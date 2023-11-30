@@ -3,6 +3,7 @@ package pairmatching.controller;
 
 import static pairmatching.view.input.InputView.*;
 import static pairmatching.view.input.InputView.reInputChooseProcess;
+import static pairmatching.view.ouput.OutputView.displayProcessOfPair;
 import static pairmatching.view.ouput.OutputView.printPairs;
 
 import java.util.*;
@@ -22,6 +23,7 @@ public class PairMatchingController {
     }
 
     public  static void pairMatching() {
+        displayProcessOfPair();
         List<Crew> crews = getCrewsFromProcess(getInput());
         MatchingCrews(crews);
     }
@@ -32,6 +34,7 @@ public class PairMatchingController {
             if (!reInputChooseProcess()) {
                 return getInput();
             }
+            matchingHistory.deleteMatchingResult(processInfo);
         }
         return processInfo;
     }
@@ -48,5 +51,4 @@ public class PairMatchingController {
         List<Crew> matchedCrews = MatchingService.matchingPair(crews);
         printPairs(matchedCrews);
     }
-
 }
