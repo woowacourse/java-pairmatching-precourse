@@ -1,5 +1,7 @@
 package pairmatching.view.input;
 
+import static pairmatching.util.Parser.parseInputOfMatchingHistory;
+
 import java.util.List;
 import pairmatching.util.InputUtil;
 import pairmatching.util.Parser;
@@ -11,9 +13,15 @@ public final class InputView  {
         return  InputUtil.readLine();
     }
 
-    public static List<String> inputChooseProcess(){
+    public static String inputChooseProcess(){
         System.out.println(InputMessage.REQUEST_CHOOSE_PROCESS.getMessage());
-        String process = InputUtil.readLine();
-        return Parser.parseProcessInput(process);
+        return InputUtil.readLine();
     }
+
+    public static boolean reInputChooseProcess(){
+        System.out.println(InputMessage.REQUEST_REINPUT_PROCESS.getMessage());
+         String answer = InputUtil.readLine();
+         return parseInputOfMatchingHistory(answer);
+    }
+
 }

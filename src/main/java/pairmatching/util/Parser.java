@@ -10,7 +10,9 @@ import pairmatching.exception.ExceptionHandler;
 
 public class Parser {
     private static final String DELIMITER = ";";
+    private static final String NO = "아니오";
     private static final Pattern REGEX_PROCESS_PATTERN = Pattern.compile("(백엔드|프론트엔드),\\\\s(레벨[1-5]),\\\\s[가-힣]+");
+    private static final Pattern REGEX_MATCHINGHISTORY_PATTERN = Pattern.compile("네 | 아니오");
 
     // Default Constructor
     private Parser() {
@@ -21,6 +23,13 @@ public class Parser {
         INVALID_INPUT.validate(() -> isEndWithDelimiter(process));
         INVALID_INPUT.validate(() -> isInvalidProcessPattern(process));
         return ExceptionHandler.tryOnParseException(() -> parsingStringToList(process));
+    }
+
+    public static boolean parseInputOfMatchingHistory(String input){
+        INVALID_INPUT.validate(() -> isInvalidMatchingHistoryPattern(input));
+        if (input.equals(NO))
+            return false;
+        return true;
     }
 
     //== Parsing Method ==//
@@ -55,6 +64,10 @@ public class Parser {
     // 패턴에 맞는가
     private static boolean isInvalidProcessPattern(String input) {
         return matchWithRegex(input, REGEX_PROCESS_PATTERN);
+    }
+
+    private static boolean isInvalidMatchingHistoryPattern(String input) {
+        return matchWithRegex(input, REGEX_MATCHINGHISTORY_PATTERN);
     }
 
     // 끝이 DELIMITER로 끝나는가

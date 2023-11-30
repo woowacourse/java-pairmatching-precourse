@@ -7,7 +7,8 @@ public enum InputMessage {
             + "3. 페어 초기화\n"
             + "Q. 종료"),
     REQUEST_CHOOSE_PROCESS("과정, 레벨, 미션을 선택하세요.\n"
-            + "ex) 백엔드, 레벨1, 자동차경주")
+            + "ex) 백엔드, 레벨1, 자동차경주"),
+    REQUEST_REINPUT_PROCESS("매칭 정보가 있습니다. 다시 매칭하시겠습니까?")
     ;
     private final String message;
 
