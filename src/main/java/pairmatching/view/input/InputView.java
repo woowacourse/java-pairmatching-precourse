@@ -1,8 +1,11 @@
 package pairmatching.view.input;
 
-public class InputView {
-    public static Map<String, Product> createVMProductFromInput() {
-        String products = InputUtil.readLine();
-        return  Parser.parseVMProductsInput(products);
+import pairmatching.util.InputUtil;
+import pairmatching.view.constant.InputMessage;
+
+public class InputView  {
+    public static String InputChooseNumber() {
+        System.out.println(InputMessage.REQUEST_CHOOSE_FEATURE.getMessage());
+        return  InputUtil.readLine();
     }
 }

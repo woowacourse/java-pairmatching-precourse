@@ -1,6 +1,9 @@
 package pairmatching.exception;
 
+import static pairmatching.exception.ErrorCode.INVALID_INPUT;
+
 import java.util.function.Supplier;
+import pairmatching.view.ouput.ErrorOutputWriter;
 
 public class ExceptionHandler {
     private ExceptionHandler() {
@@ -11,7 +14,7 @@ public class ExceptionHandler {
             try {
                 return supplier.get();
             } catch (BusinessException exception) {
-                Output.ErrorOutputWriter.println(exception.getMessage());
+                ErrorOutputWriter.println(exception.getMessage());
             }
         }
     }
@@ -20,7 +23,7 @@ public class ExceptionHandler {
         try {
             return supplier.get();
         } catch (NumberFormatException exception) {
-            throw BusinessException.of(ErrorCode.INVALID_INPUT, exception);
+            throw BusinessException.of(INVALID_INPUT, exception);
         }
     }
 }

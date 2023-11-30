@@ -1,5 +1,7 @@
 package pairmatching.util;
 
+import static pairmatching.exception.ErrorCode.INVALID_INPUT;
+
 import java.util.regex.Matcher;
 
 public class Parser {

@@ -3,7 +3,8 @@ package pairmatching.exception;
 import java.util.function.BooleanSupplier;
 
 public enum ErrorCode {
-    INVALID_COIN_INPUT("금액은 숫자여야 합니다. 다시 입력해 주세요.");
+    INVALID_NUMBER_INPUT("유효하지 않은 기능입니다. 다시 입력해주세요."),
+    INVALID_INPUT("유효하지 않은 입력입니다. 다시 입력해주세요.");
 
     public static final String ERROR_PREFIX = "[ERROR] ";
     private final String message;
