@@ -4,6 +4,7 @@ import static pairmatching.constants.FilePath.*;
 
 import java.util.List;
 import pairmatching.constants.FilePath;
+import pairmatching.domain.Course;
 import pairmatching.repository.BackendRepository;
 import pairmatching.repository.FrontendRepository;
 import pairmatching.utils.Reader;
@@ -22,5 +23,9 @@ public class PeopleService {
         frontendRepository.save(Frontend);
         List<String> Backend = Reader.readFile(BACK_FILE_PATH.getPath());
         backendRepository.save(Backend);
+    }
+
+    public void pairMatching(Course inputCourse) {
+
     }
 }

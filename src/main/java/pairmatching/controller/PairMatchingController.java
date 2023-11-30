@@ -1,12 +1,12 @@
 package pairmatching.controller;
 
 import static pairmatching.validator.InputChoiceValidator.*;
+import static pairmatching.validator.InputCourseValidator.*;
 import static pairmatching.view.OutputView.*;
 
+import pairmatching.domain.Course;
 import pairmatching.service.PeopleService;
-import pairmatching.validator.InputChoiceValidator;
 import pairmatching.view.InputView;
-import pairmatching.view.OutputView;
 
 public class PairMatchingController {
     private final PeopleService peopleService;
@@ -23,7 +23,7 @@ public class PairMatchingController {
                 break;
             }
             if(choice.equals("1")){
-                pairMatching();
+                peopleService.pairMatching(InputCourse());
             }
         }
     }
@@ -42,10 +42,10 @@ public class PairMatchingController {
         }
     }
 
-    private String pairMatching(){
+    private Course InputCourse(){
         while(true){
             try{
-                return InputView.chooseCourse();
+                return validateInputCourse(InputView.chooseCourse());
             }catch(IllegalArgumentException e){
                 printErrorMessage(e.getMessage());
             }
