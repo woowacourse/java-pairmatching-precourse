@@ -1,6 +1,6 @@
 package pairmatching.view.input;
 
-import static pairmatching.util.Parser.parseInputOfMatchingHistory;
+import static pairmatching.util.Parser.*;
 
 import java.util.List;
 import pairmatching.util.InputUtil;
@@ -15,7 +15,8 @@ public final class InputView  {
 
     public static String inputChooseProcess(){
         System.out.println(InputMessage.REQUEST_CHOOSE_PROCESS.getMessage());
-        return InputUtil.readLine();
+        String inputInfo =  InputUtil.readLine();
+        return validProcessinfInfo(inputInfo);
     }
 
     public static boolean reInputChooseProcess(){

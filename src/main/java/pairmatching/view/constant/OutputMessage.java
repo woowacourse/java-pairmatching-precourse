@@ -1,7 +1,7 @@
 package pairmatching.view.constant;
 
 public enum OutputMessage {
-    DISPLAY_PROCESS("#############################################\n"
+    DISPLAY_PROCESS("\n#############################################\n"
             + "과정: 백엔드 | 프론트엔드\n"
             + "미션:\n"
             + "\t- 레벨1: 자동차경주 | 로또 | 숫자야구게임\n"

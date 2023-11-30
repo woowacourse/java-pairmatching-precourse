@@ -2,7 +2,6 @@ package pairmatching.controller;
 
 import static pairmatching.exception.ErrorCode.*;
 import static pairmatching.view.input.InputView.inputChooseProcess;
-import static pairmatching.view.input.InputView.reInputChooseProcess;
 import static pairmatching.view.ouput.OutputView.displayProcessOfPair;
 import static pairmatching.view.ouput.OutputView.printPairs;
 

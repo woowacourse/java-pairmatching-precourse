@@ -12,9 +12,11 @@ import pairmatching.domain.Crew;
 import pairmatching.domain.MatchingHistory;
 import pairmatching.domain.constant.Course;
 import pairmatching.domain.constant.Level;
+import pairmatching.exception.ExceptionHandler;
 import pairmatching.service.CrewService;
 import pairmatching.service.MatchingService;
 import pairmatching.util.Parser;
+import pairmatching.view.input.InputView;
 
 public class PairMatchingController {
     private final static MatchingHistory matchingHistory = MatchingHistory.of();
@@ -30,7 +32,7 @@ public class PairMatchingController {
     }
 
     private static String getInput(){
-        processInfo = inputChooseProcess();
+        processInfo = ExceptionHandler.retryOnBusinessException(InputView::inputChooseProcess);
         if (matchingHistory.isMatchingExist(processInfo)) {
             if (!reInputChooseProcess()) {
                 return getInput();

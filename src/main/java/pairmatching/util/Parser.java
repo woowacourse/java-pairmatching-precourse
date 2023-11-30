@@ -11,7 +11,7 @@ import pairmatching.exception.ExceptionHandler;
 public class Parser {
     private static final String DELIMITER = ";";
     private static final String NO = "아니오";
-    private static final Pattern REGEX_PROCESS_PATTERN = Pattern.compile("(백엔드|프론트엔드),\\\\s(레벨[1-5]),\\\\s[가-힣]+");
+    private static final Pattern REGEX_PROCESS_PATTERN = Pattern.compile("^(백엔드|프론트엔드),\\\\s*(레벨1|레벨2|레벨3|레벨4|레벨5),\\\\s*[가-힣]+$");
     private static final Pattern REGEX_MATCHINGHISTORY_PATTERN = Pattern.compile("네 | 아니오");
 
     // Default Constructor
@@ -20,9 +20,14 @@ public class Parser {
 
     //== Business Logic ==//
     public static List<String> parseProcessInput(String process) {
-        INVALID_INPUT.validate(() -> isEndWithDelimiter(process));
-        INVALID_INPUT.validate(() -> isInvalidProcessPattern(process));
-        return ExceptionHandler.tryOnParseException(() -> parsingStringToList(process));
+        String validInfo = validProcessinfInfo(process);
+        return ExceptionHandler.tryOnParseException(() -> parsingStringToList(validInfo));
+    }
+
+    public static String validProcessinfInfo(String info){
+        INVALID_INPUT.validate(() -> isEndWithDelimiter(info));
+        INVALID_INPUT.validate(() -> isInvalidProcessPattern(info));
+        return ExceptionHandler.tryOnParseException(() -> info);
     }
 
     public static boolean parseInputOfMatchingHistory(String input){
