@@ -2,16 +2,18 @@ package pairmatching.controller;
 
 import static pairmatching.validator.InputChoiceValidator.validateInputChoice;
 import static pairmatching.validator.InputCourseValidator.validateInputCourse;
+import static pairmatching.validator.InputRetryValidator.validateInputRetry;
+import static pairmatching.view.InputView.chooseCourse;
+import static pairmatching.view.InputView.chooseFunction;
+import static pairmatching.view.InputView.inputRetryCourse;
 import static pairmatching.view.OutputView.printErrorMessage;
 
 import pairmatching.domain.Course;
 import pairmatching.service.MatchingService;
-import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class PairMatchingController {
     private final MatchingService matchingService;
-    private int retryCount = 0;
 
     public PairMatchingController(MatchingService matchingService) {
         this.matchingService = matchingService;
@@ -27,10 +29,10 @@ public class PairMatchingController {
             if (choice.equals("1")) {
                 pairMatching();
             }
-            if(choice.equals("2")) {
+            if (choice.equals("2")) {
                 showMatchingHistory();
             }
-            if(choice.equals("3")) {
+            if (choice.equals("3")) {
                 clearMatchingHistory();
             }
         }
@@ -43,7 +45,7 @@ public class PairMatchingController {
     private String InputChoice() {
         while (true) {
             try {
-                return validateInputChoice(InputView.chooseFunction());
+                return validateInputChoice(chooseFunction());
             } catch (IllegalArgumentException e) {
                 printErrorMessage(e.getMessage());
             }
@@ -53,7 +55,7 @@ public class PairMatchingController {
     private Course InputCourse() {
         while (true) {
             try {
-                return validateInputCourse(InputView.chooseCourse());
+                return validateInputCourse(chooseCourse());
             } catch (IllegalArgumentException e) {
                 printErrorMessage(e.getMessage());
             }
@@ -77,13 +79,20 @@ public class PairMatchingController {
     }
 
     private void processRetryCourse(MatchingService matchingService, Course course) {
-        try {
-            if (InputView.inputRetryCourse().equals("예")) {
-                matchingService.updatePairMatching(course);
-                showPairMatchingResult(course);
+        while (true) {
+            try {
+                String inputRetry = validateInputRetry(inputRetryCourse());
+                if (inputRetry.equals("예")) {
+                    matchingService.updatePairMatching(course);
+                    showPairMatchingResult(course);
+                    break;
+                }
+                if (inputRetry.equals("아니오")) {
+                    break;
+                }
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e.getMessage());
             }
-        } catch (IllegalArgumentException e) {
-            printErrorMessage(e.getMessage());
         }
     }
 
