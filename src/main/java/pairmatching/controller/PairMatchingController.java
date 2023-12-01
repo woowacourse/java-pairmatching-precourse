@@ -1,5 +1,6 @@
 package pairmatching.controller;
 
+import static pairmatching.constants.ErrorMessage.NO_MATCHING_ERROR;
 import static pairmatching.validator.InputChoiceValidator.validateInputChoice;
 import static pairmatching.validator.InputCourseValidator.validateInputCourse;
 import static pairmatching.validator.InputRetryValidator.validateInputRetry;
@@ -108,7 +109,7 @@ public class PairMatchingController {
             if (matchingHistoryByCourse) {
                 OutputView.printMatchingResult(matchingService.pairMatchingResult(course));
             } else {
-                throw new IllegalArgumentException("[ERROR] 매칭 정보가 없습니다.");
+                throw new IllegalArgumentException(NO_MATCHING_ERROR.getMessage());
             }
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());

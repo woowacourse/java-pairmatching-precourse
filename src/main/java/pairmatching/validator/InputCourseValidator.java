@@ -1,8 +1,15 @@
 package pairmatching.validator;
 
+import static pairmatching.constants.ErrorMessage.INPUT_FORMAT_ERROR;
+import static pairmatching.constants.ErrorMessage.INPUT_NO_VALUE;
+import static pairmatching.constants.ErrorMessage.INVALID_LEVEL_ERROR;
+import static pairmatching.constants.ErrorMessage.INVALID_LEVEL_MISSION_ERROR;
+import static pairmatching.constants.ErrorMessage.INVALID_MISSION_ERROR;
+import static pairmatching.constants.ErrorMessage.INVALID_POSITION_ERROR;
+
 import pairmatching.domain.Course;
-import pairmatching.domain.constants.Position;
 import pairmatching.domain.constants.Level;
+import pairmatching.domain.constants.Position;
 
 public class InputCourseValidator {
     public static Course validateInputCourse(String inputCourse) {
@@ -10,7 +17,7 @@ public class InputCourseValidator {
         String[] parts = inputCourse.split(", ");
 
         if (parts.length != 3) {
-            throw new IllegalArgumentException("[ERROR] 입력 형식이 잘못되었습니다.");
+            throw new IllegalArgumentException(INPUT_FORMAT_ERROR.getMessage());
         }
 
         Position position = validatePosition(parts[0]);
@@ -19,9 +26,9 @@ public class InputCourseValidator {
         return new Course(level, position, mission);
     }
 
-    private static void validateInput(String course){
-        if(course == null || course.isEmpty()){
-            throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
+    private static void validateInput(String course) {
+        if (course == null || course.isEmpty()) {
+            throw new IllegalArgumentException(INPUT_NO_VALUE.getMessage());
         }
     }
 
@@ -31,7 +38,7 @@ public class InputCourseValidator {
                 return position;
             }
         }
-        throw new IllegalArgumentException("[ERROR] 백엔드, 프론트엔드 중에 입력해주세요.");
+        throw new IllegalArgumentException(INVALID_POSITION_ERROR.getMessage());
     }
 
     private static Level validateLevel(String part) {
@@ -40,19 +47,19 @@ public class InputCourseValidator {
                 return level;
             }
         }
-        throw new IllegalArgumentException("[ERROR] 레벨1, 레벨2, 레벨3, 레벨4, 레벨5 중에 입력해주세요.");
+        throw new IllegalArgumentException(INVALID_LEVEL_ERROR.getMessage());
     }
 
     private static String validateMission(Level level, String part) {
         if (level.getMissions() == null) {
-            throw new IllegalArgumentException("[ERROR] 현재 " + level.getName() + "은 미션을 지원하지 않습니다.");
+            throw new IllegalArgumentException(String.format(INVALID_MISSION_ERROR.getMessage(), level.getName()));
         }
         for (String mission : level.getMissions()) {
             if (mission.equals(part)) {
                 return mission;
             }
         }
-        throw new IllegalArgumentException("[ERROR] " + level.getName() + "의 미션 중에 입력해주세요.");
+        throw new IllegalArgumentException(String.format(INVALID_LEVEL_MISSION_ERROR.getMessage(), level.getName()));
     }
 
 }

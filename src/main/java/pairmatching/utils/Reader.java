@@ -1,5 +1,7 @@
 package pairmatching.utils;
 
+import static pairmatching.constants.ErrorMessage.FILE_READER_ERROR;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,7 +18,7 @@ public class Reader {
                 lines.add(line);
             }
         } catch (IOException e) {
-            throw new IllegalArgumentException("[ERROR] 파일을 읽을 수 없습니다.");
+            throw new IllegalArgumentException(FILE_READER_ERROR.getMessage());
         }
         return lines;
     }

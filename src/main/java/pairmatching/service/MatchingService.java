@@ -1,5 +1,6 @@
 package pairmatching.service;
 
+import static pairmatching.constants.ErrorMessage.MATCHING_ERROR;
 import static pairmatching.constants.FilePath.BACK_FILE_PATH;
 import static pairmatching.constants.FilePath.FRONT_FILE_PATH;
 import static pairmatching.domain.constants.Position.BACKEND;
@@ -58,7 +59,7 @@ public class MatchingService {
         int count = 0;
         do {
             if ((count++) == 3) {
-                throw new IllegalArgumentException("[ERROR] 매칭에 실패하였습니다.");
+                throw new IllegalArgumentException(MATCHING_ERROR.getMessage());
             }
             pairs.clear();
             List<String> frontend = frontendRepository.getFrontend();
@@ -72,7 +73,7 @@ public class MatchingService {
         int count = 0;
         do {
             if ((count++) == 3) {
-                throw new IllegalArgumentException("[ERROR] 매칭에 실패하였습니다.");
+                throw new IllegalArgumentException(MATCHING_ERROR.getMessage());
             }
             pairs.clear();
             List<String> backend = backendRepository.getBackend();

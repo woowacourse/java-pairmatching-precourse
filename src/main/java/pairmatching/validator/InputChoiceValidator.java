@@ -1,8 +1,6 @@
 package pairmatching.validator;
 
-import static pairmatching.constants.ErrorMessage.*;
-
-import pairmatching.constants.ErrorMessage;
+import static pairmatching.constants.ErrorMessage.INPUT_CHOICE_ERROR;
 
 public class InputChoiceValidator {
 
