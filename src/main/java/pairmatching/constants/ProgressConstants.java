@@ -5,7 +5,7 @@ public enum ProgressConstants {
     PAIR_SEARCH("2"),
     PAIR_RESET("3"),
     QUIT("Q"),
-    RETRY("예"),
+    RETRY("네"),
     NO_RETRY("아니오");
     private final String constName;
 

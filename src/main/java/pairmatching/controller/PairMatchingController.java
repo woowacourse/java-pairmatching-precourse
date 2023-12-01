@@ -10,13 +10,14 @@ import static pairmatching.constants.ProgressConstants.RETRY;
 import static pairmatching.validator.InputChoiceValidator.validateInputChoice;
 import static pairmatching.validator.InputCourseValidator.validateInputCourse;
 import static pairmatching.validator.InputRetryValidator.validateInputRetry;
-import static pairmatching.view.InputView.chooseCourse;
 import static pairmatching.view.InputView.chooseFunction;
-import static pairmatching.view.InputView.inputRetryCourse;
+import static pairmatching.view.InputView.chooseRetryCourse;
+import static pairmatching.view.InputView.inputRetryCheck;
 import static pairmatching.view.OutputView.printErrorMessage;
 
 import pairmatching.domain.Course;
 import pairmatching.service.MatchingService;
+import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class PairMatchingController {
@@ -62,7 +63,7 @@ public class PairMatchingController {
     private Course InputCourse() {
         while (true) {
             try {
-                return validateInputCourse(chooseCourse());
+                return validateInputCourse(InputView.chooseCourse());
             } catch (IllegalArgumentException e) {
                 printErrorMessage(e.getMessage());
             }
@@ -71,8 +72,35 @@ public class PairMatchingController {
 
     private void pairMatching() {
         Course course = InputCourse();
-        boolean matchingHistoryByCourse = matchingService.findMatchingHistoryByCourse(course);
+        chooseCourse(course);
+    }
 
+    private void processRetryCourse(MatchingService matchingService, Course course) {
+        while (true) {
+            try {
+                String inputRetry = validateInputRetry(inputRetryCheck());
+                if (inputRetry.equals(RETRY.getConstName())) {
+                    matchingService.updatePairMatching(course);
+                    showPairMatchingResult(course);
+                    break;
+                }
+                if (inputRetry.equals(NO_RETRY.getConstName())) {
+                    retryCourse();
+                    break;
+                }
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private void retryCourse() {
+        Course course = InputRetryCourse();
+        chooseCourse(course);
+    }
+
+    private void chooseCourse(Course course) {
+        boolean matchingHistoryByCourse = matchingService.findMatchingHistoryByCourse(course);
         try {
             if (!matchingHistoryByCourse) {
                 matchingService.pairMatching(course);
@@ -85,18 +113,10 @@ public class PairMatchingController {
         }
     }
 
-    private void processRetryCourse(MatchingService matchingService, Course course) {
+    private Course InputRetryCourse() {
         while (true) {
             try {
-                String inputRetry = validateInputRetry(inputRetryCourse());
-                if (inputRetry.equals(RETRY.getConstName())) {
-                    matchingService.updatePairMatching(course);
-                    showPairMatchingResult(course);
-                    break;
-                }
-                if (inputRetry.equals(NO_RETRY.getConstName())) {
-                    break;
-                }
+                return validateInputCourse(chooseRetryCourse());
             } catch (IllegalArgumentException e) {
                 printErrorMessage(e.getMessage());
             }
