@@ -1,6 +1,12 @@
 package pairmatching.controller;
 
 import static pairmatching.constants.ErrorMessage.NO_MATCHING_ERROR;
+import static pairmatching.constants.ProgressConstants.NO_RETRY;
+import static pairmatching.constants.ProgressConstants.PAIR_MATCHING;
+import static pairmatching.constants.ProgressConstants.PAIR_RESET;
+import static pairmatching.constants.ProgressConstants.PAIR_SEARCH;
+import static pairmatching.constants.ProgressConstants.QUIT;
+import static pairmatching.constants.ProgressConstants.RETRY;
 import static pairmatching.validator.InputChoiceValidator.validateInputChoice;
 import static pairmatching.validator.InputCourseValidator.validateInputCourse;
 import static pairmatching.validator.InputRetryValidator.validateInputRetry;
@@ -24,16 +30,16 @@ public class PairMatchingController {
         InputPeople();
         while (true) {
             String choice = InputChoice();
-            if (choice.equals("Q")) {
+            if (choice.equals(QUIT.getConstName())) {
                 break;
             }
-            if (choice.equals("1")) {
+            if (choice.equals(PAIR_MATCHING.getConstName())) {
                 pairMatching();
             }
-            if (choice.equals("2")) {
+            if (choice.equals(PAIR_SEARCH.getConstName())) {
                 showMatchingHistory();
             }
-            if (choice.equals("3")) {
+            if (choice.equals(PAIR_RESET.getConstName())) {
                 clearMatchingHistory();
             }
         }
@@ -83,12 +89,12 @@ public class PairMatchingController {
         while (true) {
             try {
                 String inputRetry = validateInputRetry(inputRetryCourse());
-                if (inputRetry.equals("예")) {
+                if (inputRetry.equals(RETRY.getConstName())) {
                     matchingService.updatePairMatching(course);
                     showPairMatchingResult(course);
                     break;
                 }
-                if (inputRetry.equals("아니오")) {
+                if (inputRetry.equals(NO_RETRY.getConstName())) {
                     break;
                 }
             } catch (IllegalArgumentException e) {

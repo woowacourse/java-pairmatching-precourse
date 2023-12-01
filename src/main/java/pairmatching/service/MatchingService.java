@@ -18,6 +18,10 @@ import pairmatching.repository.MatchingHistoryRepository;
 import pairmatching.utils.Reader;
 
 public class MatchingService {
+    private static final int ZERO = 0;
+    private static final int MAX_MATCHING_COUNT = 3;
+    private static final int MIN_PAIR_COUNT = 2;
+    private static final int MAX_PAIR_COUNT = 3;
     private final FrontendRepository frontendRepository;
     private final BackendRepository backendRepository;
     private final MatchingHistoryRepository matchingHistoryRepository;
@@ -56,9 +60,9 @@ public class MatchingService {
 
     private void frontendMatching(Course course) {
         List<Pair> pairs = new ArrayList<>();
-        int count = 0;
+        int count = ZERO;
         do {
-            if ((count++) == 3) {
+            if ((count++) == MAX_MATCHING_COUNT) {
                 throw new IllegalArgumentException(MATCHING_ERROR.getMessage());
             }
             pairs.clear();
@@ -70,9 +74,9 @@ public class MatchingService {
 
     private void backendMatching(Course course) {
         List<Pair> pairs = new ArrayList<>();
-        int count = 0;
+        int count = ZERO;
         do {
-            if ((count++) == 3) {
+            if ((count++) == MAX_MATCHING_COUNT) {
                 throw new IllegalArgumentException(MATCHING_ERROR.getMessage());
             }
             pairs.clear();
@@ -119,7 +123,7 @@ public class MatchingService {
                 .filter(crews::contains)
                 .count();
 
-        return count == 2 || count == 3;
+        return count == MIN_PAIR_COUNT || count == MAX_PAIR_COUNT;
     }
 
 
