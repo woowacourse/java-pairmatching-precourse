@@ -9,7 +9,8 @@ import static pairmatching.constants.ProgressConstants.QUIT;
 public class InputChoiceValidator {
 
     public static String validateInputChoice(String choice) {
-        if (!choice.equals(PAIR_MATCHING.getConstName()) && !choice.equals(PAIR_SEARCH.getConstName()) && !choice.equals(
+        if (!choice.equals(PAIR_MATCHING.getConstName()) && !choice.equals(PAIR_SEARCH.getConstName())
+                && !choice.equals(
                 PAIR_RESET.getConstName()) && !choice.equals(QUIT.getConstName())) {
             throw new IllegalArgumentException(INPUT_CHOICE_ERROR.getMessage());
         }

@@ -1,7 +1,8 @@
 package pairmatching.validator;
 
 import static pairmatching.constants.ErrorMessage.INPUT_RETRY_ERROR;
-import static pairmatching.constants.ProgressConstants.*;
+import static pairmatching.constants.ProgressConstants.NO_RETRY;
+import static pairmatching.constants.ProgressConstants.RETRY;
 
 public class InputRetryValidator {
 
