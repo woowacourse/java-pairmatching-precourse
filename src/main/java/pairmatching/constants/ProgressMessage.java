@@ -3,7 +3,7 @@ package pairmatching.constants;
 public enum ProgressMessage {
     START_CHOICE("기능을 선택하세요.\n1. 페어 매칭\n2. 페어 조회\n3. 페어 초기화\nQ. 종료"),
     LINE("\n"),
-    COURSE_CHOICE("#############################################\n"
+    COURSE_CHOICE("\n#############################################\n"
             + "과정: 백엔드 | 프론트엔드\n"
             + "미션:\n"
             + "  - 레벨1: 자동차경주 | 로또 | 숫자야구게임\n"
@@ -13,7 +13,11 @@ public enum ProgressMessage {
             + "  - 레벨5:\n"
             + "############################################\n"
             + "과정, 레벨, 미션을 선택하세요.\n"
-            + "ex) 백엔드, 레벨1, 자동차경주");
+            + "ex) 백엔드, 레벨1, 자동차경주\n"
+            + "프론트엔드, 레벨1, 자동차경주\n"),
+    RETRY_COURSE("\n매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n"
+            + "예 | 아니오"),
+    PAIR_MATCHING_RESULT("\n페어 매칭 결과입니다.");
     private final String message;
 
     ProgressMessage(String message) {

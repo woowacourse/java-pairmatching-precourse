@@ -13,4 +13,16 @@ public class Course {
         this.position = position;
         this.mission = mission;
     }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public String getMission() {
+        return mission;
+    }
 }
