@@ -7,12 +7,9 @@ import static pairmatching.domain.constants.Position.FRONTEND;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 import pairmatching.domain.Course;
 import pairmatching.domain.MatchingHistory;
 import pairmatching.domain.Pair;
-import pairmatching.domain.constants.Level;
 import pairmatching.domain.constants.Position;
 import pairmatching.repository.BackendRepository;
 import pairmatching.repository.FrontendRepository;
@@ -40,10 +37,9 @@ public class MatchingService {
 
     public boolean findMatchingHistoryByCourse(Course course) {
         MatchingHistory matchingHistoryByCourse = matchingHistoryRepository.findMatchingHistoryByCourse(course);
-        if(matchingHistoryByCourse == null){
+        if (matchingHistoryByCourse == null) {
             return false;
         }
-        Course foundCourse = matchingHistoryByCourse.getCourse();
         return true;
     }
 
@@ -85,13 +81,13 @@ public class MatchingService {
         matchingHistoryRepository.save(new MatchingHistory(course, pairs));
     }
 
-    private List<Pair> matching(List<String> pairByPosition){
+    private List<Pair> matching(List<String> pairByPosition) {
         List<Pair> pairs = new ArrayList<>();
         for (int i = 0; i < pairByPosition.size() - 1; i += 2) {
             Pair pair = new Pair(pairByPosition.get(i), pairByPosition.get(i + 1));
             pairs.add(pair);
         }
-        if(pairByPosition.size() % 2 == 1){
+        if (pairByPosition.size() % 2 == 1) {
             int lastIndex = pairs.size() - 1;
             pairs.get(lastIndex).addCrew(pairByPosition.get(pairByPosition.size() - 1));
         }
@@ -100,7 +96,8 @@ public class MatchingService {
 
 
     private boolean isMatched(Course course, List<Pair> pairs) {
-        List<MatchingHistory> matchingHistoryByLevel = matchingHistoryRepository.findMatchingHistoryByLevel(course.getLevel());
+        List<MatchingHistory> matchingHistoryByLevel = matchingHistoryRepository.findMatchingHistoryByLevel(
+                course.getLevel());
         for (MatchingHistory matchingHistory : matchingHistoryByLevel) {
             List<Pair> pairHistory = matchingHistory.getPair();
             if (isSamePair(pairs, pairHistory)) {
@@ -125,7 +122,7 @@ public class MatchingService {
     }
 
 
-    public List<Pair> pairMatchingResult(Course course){
+    public List<Pair> pairMatchingResult(Course course) {
         MatchingHistory matchingHistoryByCourse = matchingHistoryRepository.findMatchingHistoryByCourse(course);
         return matchingHistoryByCourse.getPair();
     }

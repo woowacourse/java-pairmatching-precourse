@@ -27,6 +27,24 @@ public class PairMatchingController {
             if (choice.equals("1")) {
                 pairMatching();
             }
+            if(choice.equals("2")) {
+                showMatchingHistory();
+            }
+        }
+    }
+
+    private void showMatchingHistory() {
+        Course course = InputCourse();
+        boolean matchingHistoryByCourse = matchingService.findMatchingHistoryByCourse(course);
+
+        try {
+            if (matchingHistoryByCourse) {
+                OutputView.printMatchingResult(matchingService.pairMatchingResult(course));
+            } else {
+                throw new IllegalArgumentException("[ERROR] 매칭 정보가 없습니다.");
+            }
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e.getMessage());
         }
     }
 
