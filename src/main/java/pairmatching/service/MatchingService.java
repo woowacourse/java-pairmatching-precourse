@@ -61,26 +61,43 @@ public class MatchingService {
         List<Pair> pairs = new ArrayList<>();
         int count = 0;
         do {
-            if((count++) == 3){
+            if ((count++) == 3) {
                 throw new IllegalArgumentException("[ERROR] 매칭에 실패하였습니다.");
             }
             pairs.clear();
             List<String> frontend = frontendRepository.getFrontend();
-            for (int i = 0; i < frontend.size() - 1; i += 2) {
-                Pair pair = new Pair(frontend.get(i), frontend.get(i + 1));
-                pairs.add(pair);
-            }
-            if (frontend.size() % 2 == 1) {
-                int lastIndex = pairs.size() - 1;
-                pairs.get(lastIndex).addCrew(frontend.get(frontend.size() - 1));
-            }
-        }while(isMatched(course, pairs));
+            pairs = matching(frontend);
+        } while (isMatched(course, pairs));
         matchingHistoryRepository.save(new MatchingHistory(course, pairs));
     }
 
     private void backendMatching(Course course) {
-
+        List<Pair> pairs = new ArrayList<>();
+        int count = 0;
+        do {
+            if ((count++) == 3) {
+                throw new IllegalArgumentException("[ERROR] 매칭에 실패하였습니다.");
+            }
+            pairs.clear();
+            List<String> backend = backendRepository.getBackend();
+            pairs = matching(backend);
+        } while (isMatched(course, pairs));
+        matchingHistoryRepository.save(new MatchingHistory(course, pairs));
     }
+
+    private List<Pair> matching(List<String> pairByPosition){
+        List<Pair> pairs = new ArrayList<>();
+        for (int i = 0; i < pairByPosition.size() - 1; i += 2) {
+            Pair pair = new Pair(pairByPosition.get(i), pairByPosition.get(i + 1));
+            pairs.add(pair);
+        }
+        if(pairByPosition.size() % 2 == 1){
+            int lastIndex = pairs.size() - 1;
+            pairs.get(lastIndex).addCrew(pairByPosition.get(pairByPosition.size() - 1));
+        }
+        return pairs;
+    }
+
 
     private boolean isMatched(Course course, List<Pair> pairs) {
         List<MatchingHistory> matchingHistoryByLevel = matchingHistoryRepository.findMatchingHistoryByLevel(course.getLevel());

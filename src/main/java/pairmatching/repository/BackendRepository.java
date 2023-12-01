@@ -1,5 +1,6 @@
 package pairmatching.repository;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class BackendRepository {
@@ -10,6 +11,7 @@ public class BackendRepository {
     }
 
     public List<String> getBackend() {
-        return backend;
+        List<String> shuffle = Randoms.shuffle(backend);
+        return shuffle;
     }
 }
