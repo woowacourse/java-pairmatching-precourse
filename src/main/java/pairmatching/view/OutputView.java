@@ -1,5 +1,6 @@
 package pairmatching.view;
 
+import static pairmatching.constants.ProgressMessage.DELETE_MATCHING_RESULT;
 import static pairmatching.constants.ProgressMessage.LINE;
 import static pairmatching.constants.ProgressMessage.PAIR_MATCHING_RESULT;
 import static pairmatching.view.common.Printer.printer;
@@ -20,5 +21,9 @@ public class OutputView {
             printer(formattedOutput);
         }
         printer(LINE.getMessage());
+    }
+
+    public static void printMatchingHistory() {
+        printer(DELETE_MATCHING_RESULT.getMessage());
     }
 }

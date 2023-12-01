@@ -144,5 +144,6 @@ public class PairMatchingController {
 
     private void clearMatchingHistory() {
         matchingService.clearMatchingHistory();
+        OutputView.printMatchingHistory();
     }
 }
