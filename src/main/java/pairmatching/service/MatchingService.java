@@ -131,4 +131,8 @@ public class MatchingService {
         matchingHistoryRepository.deleteMatchingHistory(course);
         pairMatching(course);
     }
+
+    public void clearMatchingHistory() {
+        matchingHistoryRepository.clearMatchingHistory();
+    }
 }

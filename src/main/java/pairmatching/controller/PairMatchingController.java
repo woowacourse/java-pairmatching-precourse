@@ -30,21 +30,33 @@ public class PairMatchingController {
             if(choice.equals("2")) {
                 showMatchingHistory();
             }
+            if(choice.equals("3")) {
+                clearMatchingHistory();
+            }
         }
     }
 
-    private void showMatchingHistory() {
-        Course course = InputCourse();
-        boolean matchingHistoryByCourse = matchingService.findMatchingHistoryByCourse(course);
+    private void InputPeople() {
+        matchingService.initPeople();
+    }
 
-        try {
-            if (matchingHistoryByCourse) {
-                OutputView.printMatchingResult(matchingService.pairMatchingResult(course));
-            } else {
-                throw new IllegalArgumentException("[ERROR] 매칭 정보가 없습니다.");
+    private String InputChoice() {
+        while (true) {
+            try {
+                return validateInputChoice(InputView.chooseFunction());
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e.getMessage());
             }
-        } catch (IllegalArgumentException e) {
-            printErrorMessage(e.getMessage());
+        }
+    }
+
+    private Course InputCourse() {
+        while (true) {
+            try {
+                return validateInputCourse(InputView.chooseCourse());
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e.getMessage());
+            }
         }
     }
 
@@ -79,27 +91,22 @@ public class PairMatchingController {
         OutputView.printMatchingResult(matchingService.pairMatchingResult(course));
     }
 
-    private void InputPeople() {
-        matchingService.initPeople();
-    }
+    private void showMatchingHistory() {
+        Course course = InputCourse();
+        boolean matchingHistoryByCourse = matchingService.findMatchingHistoryByCourse(course);
 
-    private String InputChoice() {
-        while (true) {
-            try {
-                return validateInputChoice(InputView.chooseFunction());
-            } catch (IllegalArgumentException e) {
-                printErrorMessage(e.getMessage());
+        try {
+            if (matchingHistoryByCourse) {
+                OutputView.printMatchingResult(matchingService.pairMatchingResult(course));
+            } else {
+                throw new IllegalArgumentException("[ERROR] 매칭 정보가 없습니다.");
             }
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e.getMessage());
         }
     }
 
-    private Course InputCourse() {
-        while (true) {
-            try {
-                return validateInputCourse(InputView.chooseCourse());
-            } catch (IllegalArgumentException e) {
-                printErrorMessage(e.getMessage());
-            }
-        }
+    private void clearMatchingHistory() {
+        matchingService.clearMatchingHistory();
     }
 }
