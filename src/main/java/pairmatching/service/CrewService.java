@@ -3,7 +3,7 @@ package pairmatching.service;
 import org.xml.sax.SAXException;
 import pairmatching.domain.Crews;
 import pairmatching.domain.constants.Course;
-import pairmatching.util.XMLParser;
+import pairmatching.util.MarkdownParser;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
@@ -17,9 +17,9 @@ public class CrewService {
     }
 
     public Crews generateCrews() throws ParserConfigurationException, IOException, SAXException {
-        XMLParser xmlParser = new XMLParser();
-        List<String> backend = xmlParser.parseName(Course.BACKEND);
-        List<String> frontend = xmlParser.parseName(Course.FRONTEND);
+        MarkdownParser markdownParser = new MarkdownParser();
+        List<String> backend = markdownParser.parseName(Course.BACKEND);
+        List<String> frontend = markdownParser.parseName(Course.FRONTEND);
 
         Crews crews = new Crews();
         crews.add(Course.BACKEND, backend);
