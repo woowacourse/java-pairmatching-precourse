@@ -22,4 +22,8 @@ public enum OptionCommand {
                 .orElseThrow(() -> new IllegalArgumentException(
                         ExceptionMessage.INVALID_COMMAND.getMessage()));
     }
+
+    public String getCommand() {
+        return command;
+    }
 }
