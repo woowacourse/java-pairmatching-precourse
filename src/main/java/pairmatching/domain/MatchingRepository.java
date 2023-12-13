@@ -18,9 +18,7 @@ public class MatchingRepository {
 
     public Pairs search(MatchingConditions conditions) {
         return matchingRepository.stream()
-                .filter(pairs -> pairs.getMatchingConditions().getCourse() == conditions.getCourse())
-                .filter(pairs -> pairs.getMatchingConditions().getLevel() == conditions.getLevel())
-                .filter(pairs -> pairs.getMatchingConditions().getMission() == conditions.getMission())
+                .filter(pairs -> pairs.getMatchingConditions().equals(conditions))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(
                         ExceptionMessage.NON_EXISTENT_HISTORY.getMessage()));
@@ -28,9 +26,7 @@ public class MatchingRepository {
 
     public boolean hasConditionsPair(MatchingConditions conditions) {
         return matchingRepository.stream()
-                .filter(pairs -> pairs.getMatchingConditions().getCourse() == conditions.getCourse())
-                .filter(pairs -> pairs.getMatchingConditions().getLevel() == conditions.getLevel())
-                .noneMatch(pairs -> pairs.getMatchingConditions().getMission() == conditions.getMission());
+                .noneMatch(pairs -> pairs.getMatchingConditions().equals(conditions));
     }
 
     public void reset() {
