@@ -3,8 +3,8 @@ package pairmatching.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import pairmatching.domain.OptionCommand;
-import pairmatching.domain.RematchingCommand;
+import pairmatching.domain.constant.OptionCommand;
+import pairmatching.domain.constant.RematchingCommand;
 
 public class InputView {
 

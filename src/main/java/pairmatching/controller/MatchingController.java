@@ -2,9 +2,9 @@ package pairmatching.controller;
 
 import java.util.List;
 import pairmatching.domain.MatchingConditions;
-import pairmatching.domain.OptionCommand;
+import pairmatching.domain.constant.OptionCommand;
 import pairmatching.domain.Pairs;
-import pairmatching.domain.RematchingCommand;
+import pairmatching.domain.constant.RematchingCommand;
 import pairmatching.service.MatchingService;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;

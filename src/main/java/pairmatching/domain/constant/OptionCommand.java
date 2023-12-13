@@ -1,4 +1,4 @@
-package pairmatching.domain;
+package pairmatching.domain.constant;
 
 import java.util.Arrays;
 import pairmatching.exception.ExceptionMessage;

@@ -5,8 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import pairmatching.domain.Course;
-import pairmatching.domain.Crew;
+import pairmatching.domain.constant.Course;
 import pairmatching.exception.ExceptionMessage;
 
 public class MDParser {

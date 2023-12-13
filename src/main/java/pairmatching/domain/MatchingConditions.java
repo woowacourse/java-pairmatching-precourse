@@ -2,6 +2,9 @@ package pairmatching.domain;
 
 import java.util.List;
 import java.util.Objects;
+import pairmatching.domain.constant.Course;
+import pairmatching.domain.constant.Level;
+import pairmatching.domain.constant.Mission;
 import pairmatching.exception.ExceptionMessage;
 
 public class MatchingConditions {
