@@ -28,7 +28,7 @@ public enum Mission {
                 .filter(mission -> mission.name.equals(input))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(
-                        ExceptionMessage.INVALID_MATCHING_REQUEST.getMessage()));
+                        ExceptionMessage.INVALID_MATCHING_CONDITIONS.getMessage()));
     }
 
     public Level getLevel() {

@@ -19,7 +19,7 @@ public enum Course {
                 .findAny()
                 .orElseThrow(
                         () -> new IllegalArgumentException(
-                                ExceptionMessage.INVALID_MATCHING_REQUEST.getMessage()));
+                                ExceptionMessage.INVALID_MATCHING_CONDITIONS.getMessage()));
     }
 
     public String getName() {

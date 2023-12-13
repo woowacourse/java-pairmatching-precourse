@@ -10,12 +10,12 @@ public class InputView {
 
     private static final String DELIMITER = ", ";
 
-    public String readCommand() {
+    public String readOption() {
         String input = input().trim();
         return OptionCommand.from(input).getCommand();
     }
 
-    public List<String> readInfo() {
+    public List<String> readConditions() {
         return Arrays.asList(input().split(DELIMITER));
     }
 
