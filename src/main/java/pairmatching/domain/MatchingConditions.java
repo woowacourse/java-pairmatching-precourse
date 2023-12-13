@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
 import java.util.List;
+import java.util.Objects;
 import pairmatching.exception.ExceptionMessage;
 
 public class MatchingConditions {
@@ -34,5 +35,22 @@ public class MatchingConditions {
 
     public Mission getMission() {
         return mission;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof MatchingConditions)) {
+            return false;
+        }
+        MatchingConditions conditions = (MatchingConditions) o;
+        return course == conditions.course && level == conditions.level && mission == conditions.mission;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(course, level, mission);
     }
 }
