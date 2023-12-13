@@ -30,4 +30,8 @@ public enum Mission {
                 .orElseThrow(() -> new IllegalArgumentException(
                         ExceptionMessage.INVALID_MATCHING_REQUEST.getMessage()));
     }
+
+    public Level getLevel() {
+        return level;
+    }
 }
