@@ -8,10 +8,12 @@ import pairmatching.domain.MatchingConditions;
 import pairmatching.domain.MatchingRepository;
 import pairmatching.domain.Pair;
 import pairmatching.domain.Pairs;
+import pairmatching.exception.ExceptionMessage;
 import pairmatching.util.MDParser;
 
 public class MatchingService {
 
+    private static final int NUMBER_OF_LOOPS = 3;
     private final MatchingRepository matchingRepository;
 
     public MatchingService() {
@@ -19,11 +21,33 @@ public class MatchingService {
     }
 
     public Pairs matchPair(MatchingConditions matchingConditions) {
+        Pairs pairs;
         List<String> crewNames = getCrews(matchingConditions);
-        List<Crew> crews = mixRandomly(crewNames);
-        Pairs pairs = makePairs(crews, matchingConditions);
-        matchingRepository.add(pairs);
+        pairs = getPairs(matchingConditions, crewNames);
         return pairs;
+    }
+
+    private Pairs getPairs(MatchingConditions matchingConditions, List<String> crewNames) {
+        Pairs pairs;
+        int count = 0;
+        while (true) {
+            checkNumberOfLoops(count);
+            List<Crew> crews = mixRandomly(crewNames);
+            pairs = makePairs(crews, matchingConditions);
+            if (matchingRepository.hasPairs(matchingConditions, pairs)) {
+                count++;
+                continue;
+            }
+            matchingRepository.add(pairs);
+            break;
+        }
+        return pairs;
+    }
+
+    private void checkNumberOfLoops(int count) {
+        if (count == NUMBER_OF_LOOPS) {
+            throw new IllegalArgumentException(ExceptionMessage.FAIL_MATCHING.getMessage());
+        }
     }
 
     private List<String> getCrews(MatchingConditions matchingConditions) {
