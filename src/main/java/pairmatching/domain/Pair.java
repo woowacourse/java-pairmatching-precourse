@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Pair {
 
+    private static final int DUPLICATION_NUMBER = 1;
     private final List<Crew> crews;
 
     public Pair() {
@@ -14,6 +15,12 @@ public class Pair {
 
     public void add(Crew crew) {
         crews.add(crew);
+    }
+
+    public boolean isCrews(Pair pair) {
+        return pair.getCrews().stream()
+                .filter(this.crews::contains)
+                .count() > DUPLICATION_NUMBER;
     }
 
     public List<Crew> getCrews() {
